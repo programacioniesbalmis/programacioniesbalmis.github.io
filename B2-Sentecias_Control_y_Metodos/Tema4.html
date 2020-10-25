@@ -1,0 +1,2146 @@
+<!DOCTYPE html><html><head>
+      <title>Programaci&#xF3;n 1&#xBA; DAM Tema 4</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="tema-4">Tema 4</h1>
+
+<h2 class="mume-header" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#%C3%ADndice">&#xCD;ndice</a></li>
+<li><a href="#introducci%C3%B3n">Introducci&#xF3;n</a>
+<ol>
+<li><a href="#concepci%C3%B3n-de-los-primeros-programas">Concepci&#xF3;n de los primeros programas</a></li>
+<li><a href="#programaci%C3%B3n-estructurada">Programaci&#xF3;n Estructurada</a>
+<ol>
+<li><a href="#definiciones-formales-a-la-hora-de-modularizar-en-pe">Definiciones formales a la hora de modularizar en PE</a></li>
+<li><a href="#hand-resumen-de-criterios-para-una-correcta-modularizaci%C3%B3n">&#x270B; Resumen de criterios para una correcta modularizaci&#xF3;n</a></li>
+</ol>
+</li>
+<li><a href="#dise%C3%B1o-modular-orientado-a-objetos">Dise&#xF1;o modular Orientado a Objetos</a>
+<ol>
+<li><a href="#m%C3%A9todo">M&#xE9;todo</a></li>
+<li><a href="#signatura">Signatura</a></li>
+<li><a href="#tipos-de-m%C3%A9todos">Tipos de m&#xE9;todos</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#definici%C3%B3n-de-interfaces-en-m%C3%A9todos">Definici&#xF3;n de interfaces en m&#xE9;todos</a>
+<ol>
+<li><a href="#conceptos-previos">Conceptos previos</a></li>
+<li><a href="#sintaxis-en-c">Sintaxis en C#</a>
+<ol>
+<li><a href="#declaraci%C3%B3n-de-m%C3%A9todo-est%C3%A1tico-con-retorno">Declaraci&#xF3;n de m&#xE9;todo est&#xE1;tico con retorno</a></li>
+<li><a href="#llamada-a-m%C3%A9todo-est%C3%A1tico-con-retorno">Llamada a m&#xE9;todo est&#xE1;tico con retorno</a></li>
+<li><a href="#declaraci%C3%B3n-de-m%C3%A9todo-est%C3%A1tico-sin-retorno">Declaraci&#xF3;n de m&#xE9;todo est&#xE1;tico sin retorno</a></li>
+<li><a href="#llamada-de-m%C3%A9todo-est%C3%A1tico-sin-retorno">Llamada de m&#xE9;todo est&#xE1;tico sin retorno</a></li>
+<li><a href="#bulb-tips-sobre-la-alineaci%C3%B3n-de-par%C3%A1metros">&#x1F4A1; &apos;<em>Tips</em>&apos; sobre la alineaci&#xF3;n de par&#xE1;metros</a></li>
+<li><a href="#definir-par%C3%A1metros-de-entrada">Definir par&#xE1;metros de entrada</a></li>
+<li><a href="#skull-definir-par%C3%A1metros-de-entradasalida">&#x1F480; Definir par&#xE1;metros de entrada/salida</a></li>
+<li><a href="#definir-par%C3%A1metros-de-salida">Definir par&#xE1;metros de salida</a></li>
+<li><a href="#cuadro-resumen-paso-de-par%C3%A1metros">Cuadro resumen paso de par&#xE1;metros</a></li>
+</ol>
+</li>
+<li><a href="#bulb-tips-para-definir-un-interfaz">&#x1F4A1; &apos;<em>Tips</em>&apos; para definir un interfaz</a>
+<ol>
+<li><a href="#determinar-el-nombre-o-identificador">Determinar el nombre o identificador</a></li>
+<li><a href="#determinar-par%C3%A1metros-de-entrada">Determinar par&#xE1;metros de entrada</a></li>
+<li><a href="#determinar-par%C3%A1metros-de-salida">Determinar par&#xE1;metros de salida</a></li>
+<li><a href="#otras-consideraciones-del-dise%C3%B1o">Otras consideraciones del dise&#xF1;o</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#ejemplo-pr%C3%A1ctico-de-modularizaci%C3%B3n">Ejemplo pr&#xE1;ctico de modularizaci&#xF3;n</a></li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="introducci%C3%B3n">Introducci&#xF3;n</h2>
+
+<h3 class="mume-header" id="concepci%C3%B3n-de-los-primeros-programas">Concepci&#xF3;n de los primeros programas</h3>
+
+<p>Antiguamente <strong>los programas eran monol&#xED;ticos</strong> con instrucciones de ruptura y salto tanto condicional como incondicional del tipo <strong><code>GoTo</code></strong> o <strong><code>GoSub</code></strong>.</p>
+<blockquote>
+<p><strong>Problem&#xE1;ticas</strong></p>
+</blockquote>
+<ul>
+<li>C&#xF3;digo &quot;<em>spaghetti</em>&quot;.</li>
+<li>Tiempo elevado de correcci&#xF3;n de errores.</li>
+<li>Baja reusabilidad del c&#xF3;digo.</li>
+<li>Dif&#xED;cil documentaci&#xF3;n.</li>
+<li>Mantenimiento excesivamente costoso.</li>
+</ul>
+<blockquote>
+<p><strong>Lo que buscamos</strong></p>
+</blockquote>
+<ul>
+<li>Correcci&#xF3;n.</li>
+<li>Legibilidad y portabilidad.</li>
+<li>F&#xE1;cil mantenimiento, c&#xF3;digo no duplicado o repetido.</li>
+<li>F&#xE1;cil depuraci&#xF3;n de errores.</li>
+<li>C&#xF3;digo reutilizable (genericidad) y sencillez.</li>
+</ul>
+<h3 class="mume-header" id="programaci%C3%B3n-estructurada">Programaci&#xF3;n Estructurada</h3>
+
+<p>Durante la <strong>d&#xE9;cada de los 70</strong> diferentes autores como <a href="https://www.academia.edu/7878229/Structured_Design">Stevens, Myers y Constantine, 1974</a> y <a href="https://www.amazon.es/Structured-Design-Fundamentals-Discipline-Computer/dp/B000H39SJE">Yourdon y Constantine, 1979</a> definieron las bases de la <strong>PE</strong> (<em>programaci&#xF3;n estructurada)</em>. Esta, defini&#xF3; las bases de c&#xF3;mo modularizar el c&#xF3;digo, las cuales se usaron hasta <strong>principios de los 90</strong> donde se empez&#xF3; a popularizar la <strong>POO</strong> (<em>Programaci&#xF3;n Orientada a Objetos</em>). <mark><strong>No obstante, estos principios estar&#xE1;n tambi&#xE9;n vigentes en la POO y por tanto deberemos de conocerlos.</strong></mark></p>
+<h4 class="mume-header" id="definiciones-formales-a-la-hora-de-modularizar-en-pe">Definiciones formales a la hora de modularizar en PE</h4>
+
+<ul>
+<li>
+<p><strong>M&#xF3;dulo</strong> o (<em>Subprograma</em>, <em>Subrutina</em>): Parte de un programa que realiza una tarea concreta mediante una serie de instrucciones.<br>
+Lo simbolizaremos mediante una caja.</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="75pt" height="44pt" viewBox="0.00 0.00 74.56 44.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 40)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-40 70.5582,-40 70.5582,4 -4,4"/>
+<!-- módulo -->
+<g id="node1" class="node">
+<title>m&#xF3;dulo</title>
+<polygon fill="none" stroke="#000000" points="66.3388,-36 .2194,-36 .2194,0 66.3388,0 66.3388,-36"/>
+<text text-anchor="middle" x="33.2791" y="-13.8" font-family="Arial" font-size="14.00" fill="#000000">m&#xF3;dulo</text>
+</g>
+</g>
+</svg>
+</p></li>
+<li>
+<p><strong>Modularizar</strong>: Dividir una tarea o m&#xF3;dulo en otros sub-m&#xF3;dulos.</p>
+</li>
+<li>
+<p><strong>Transferencia de control:</strong> Cuando un m&#xF3;dulo llama a un sub-m&#xF3;dulo para realizar parte de su tarea.</p>
+</li>
+<li>
+<p><strong>M&#xF3;dulo principal</strong> o (<em>main</em>): M&#xF3;dulo que controla al resto.<br>
+En el siguiente diagrama estamos simbolizando una <strong>modularizaci&#xF3;n</strong>, donde el <strong>m&#xF3;dulo principal</strong> ser&#xE1; el de m&#xE1;s arriba y lo simbolizaremos por una l&#xED;nea doble. Para realizar su tarea hace una <strong>transferencia de control</strong> a los 3 sub-m&#xF3;dulos inferiores en orden de izquierda a derecha. A su vez el <strong><code>sub-m&#xF3;dulo 2</code></strong> llama transfiere el control a los <strong><code>sub-m&#xF3;dulos 4 y 5</code></strong> respectivamente para realizar su tarea y tiene el <strong><code>sub-m&#xF3;dulo 5</code></strong> en com&#xFA;n con el <strong><code>sub-m&#xF3;dulo 3</code></strong>. Gener&#xE1;ndose as&#xED; una estructura <strong>jer&#xE1;rquica</strong>.</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="382pt" height="207pt" viewBox="0.00 0.00 381.78 207.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 203.2)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-203.2 377.784,-203.2 377.784,4 -4,4"/>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="none" stroke="#000000" points="185.892,-195.2 131.892,-195.2 131.892,-159.2 185.892,-159.2 185.892,-195.2"/>
+<polygon fill="none" stroke="#000000" points="189.892,-199.2 127.892,-199.2 127.892,-155.2 189.892,-155.2 189.892,-199.2"/>
+<text text-anchor="middle" x="158.892" y="-173" font-family="Arial" font-size="14.00" fill="#000000">main</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="none" stroke="#000000" points="93.6762,-119.0019 .1078,-119.0019 .1078,-77.7981 93.6762,-77.7981 93.6762,-119.0019"/>
+<text text-anchor="middle" x="46.892" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="46.892" y="-85.8" font-family="Arial" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="#000000" d="M127.6938,-155.2498C114.4006,-145.8971 98.7708,-134.9005 84.8179,-125.0836"/>
+<polygon fill="#000000" stroke="#000000" points="86.5753,-122.0406 76.3828,-119.1488 82.5474,-127.7656 86.5753,-122.0406"/>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="none" stroke="#000000" points="205.6762,-119.0019 112.1078,-119.0019 112.1078,-77.7981 205.6762,-77.7981 205.6762,-119.0019"/>
+<text text-anchor="middle" x="158.892" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="158.892" y="-85.8" font-family="Arial" font-size="14.00" fill="#000000">2</text>
+</g>
+<!-- n0&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n0-&gt;n2</title>
+<path fill="none" stroke="#000000" d="M158.892,-154.8299C158.892,-146.8721 158.892,-137.7666 158.892,-129.226"/>
+<polygon fill="#000000" stroke="#000000" points="162.3921,-129.2036 158.892,-119.2036 155.3921,-129.2037 162.3921,-129.2036"/>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="none" stroke="#000000" points="317.6762,-119.0019 224.1078,-119.0019 224.1078,-77.7981 317.6762,-77.7981 317.6762,-119.0019"/>
+<text text-anchor="middle" x="270.892" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="270.892" y="-85.8" font-family="Arial" font-size="14.00" fill="#000000">3</text>
+</g>
+<!-- n0&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n0-&gt;n3</title>
+<path fill="none" stroke="#000000" d="M190.0902,-155.2498C203.3834,-145.8971 219.0132,-134.9005 232.9661,-125.0836"/>
+<polygon fill="#000000" stroke="#000000" points="235.2366,-127.7656 241.4012,-119.1488 231.2087,-122.0406 235.2366,-127.7656"/>
+</g>
+<!-- n4 -->
+<g id="node5" class="node">
+<title>n4</title>
+<polygon fill="none" stroke="#000000" points="149.6762,-41.4019 56.1078,-41.4019 56.1078,-.1981 149.6762,-.1981 149.6762,-41.4019"/>
+<text text-anchor="middle" x="102.892" y="-25" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="102.892" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">4</text>
+</g>
+<!-- n2&#45;&gt;n4 -->
+<g id="edge4" class="edge">
+<title>n2-&gt;n4</title>
+<path fill="none" stroke="#000000" d="M143.885,-77.6046C137.7334,-69.0803 130.5067,-59.0661 123.8483,-49.8395"/>
+<polygon fill="#000000" stroke="#000000" points="126.6304,-47.7136 117.9404,-41.6528 120.9541,-51.81 126.6304,-47.7136"/>
+</g>
+<!-- n5 -->
+<g id="node6" class="node">
+<title>n5</title>
+<polygon fill="none" stroke="#000000" points="261.6762,-41.4019 168.1078,-41.4019 168.1078,-.1981 261.6762,-.1981 261.6762,-41.4019"/>
+<text text-anchor="middle" x="214.892" y="-25" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="214.892" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">5</text>
+</g>
+<!-- n2&#45;&gt;n5 -->
+<g id="edge5" class="edge">
+<title>n2-&gt;n5</title>
+<path fill="none" stroke="#000000" d="M173.899,-77.6046C180.0506,-69.0803 187.2773,-59.0661 193.9357,-49.8395"/>
+<polygon fill="#000000" stroke="#000000" points="196.8299,-51.81 199.8436,-41.6528 191.1536,-47.7136 196.8299,-51.81"/>
+</g>
+<!-- n3&#45;&gt;n5 -->
+<g id="edge6" class="edge">
+<title>n3-&gt;n5</title>
+<path fill="none" stroke="#000000" d="M255.885,-77.6046C249.7334,-69.0803 242.5067,-59.0661 235.8483,-49.8395"/>
+<polygon fill="#000000" stroke="#000000" points="238.6304,-47.7136 229.9404,-41.6528 232.9541,-51.81 238.6304,-47.7136"/>
+</g>
+<!-- n6 -->
+<g id="node7" class="node">
+<title>n6</title>
+<polygon fill="none" stroke="#000000" points="373.6762,-41.4019 280.1078,-41.4019 280.1078,-.1981 373.6762,-.1981 373.6762,-41.4019"/>
+<text text-anchor="middle" x="326.892" y="-25" font-family="Arial" font-size="14.00" fill="#000000">sub-m&#xF3;dulo</text>
+<text text-anchor="middle" x="326.892" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">6</text>
+</g>
+<!-- n3&#45;&gt;n6 -->
+<g id="edge7" class="edge">
+<title>n3-&gt;n6</title>
+<path fill="none" stroke="#000000" d="M285.899,-77.6046C292.0506,-69.0803 299.2773,-59.0661 305.9357,-49.8395"/>
+<polygon fill="#000000" stroke="#000000" points="308.8299,-51.81 311.8436,-41.6528 303.1536,-47.7136 308.8299,-51.81"/>
+</g>
+</g>
+</svg>
+</p></li>
+</ul>
+<div style="page-break-after:always;"></div>
+<ul>
+<li><strong>Grado de entrada</strong> o (<em>fan-in</em>): El n&#xFA;mero de m&#xF3;dulos que usan otro m&#xF3;dulo.<br>
+En el diagrama de ejemplo ser&#xED;an las flechas que llegan. As&#xED; pues, el <strong><code>sub-m&#xF3;dulo 5</code></strong> tiene <strong><code>fan-in = 2</code></strong></li>
+<li><strong>Grado de salida</strong> o (<em>fan-out</em>): El n&#xFA;mero de m&#xF3;dulos subordinados a otro. Deber&#xED;a ser el m&#xED;nimo necesario para realizar la tarea.<br>
+En el diagrama de ejemplo ser&#xED;an las l&#xED;neas que salen. As&#xED; pues, el <strong><code>main</code></strong> tiene <strong><code>fan-out = 3</code></strong>, gener&#xE1;ndose as&#xED; una <strong>dependencia</strong> de sus 3 sub-m&#xF3;dulos.</li>
+<li><strong>Visibilidad</strong> o (<em>Scope</em>): El conjunto de m&#xF3;dulos o componentes que pueden ser usados por otro.</li>
+<li><strong>Cohesi&#xF3;n:</strong>
+<ul>
+<li>Debe ser lo m&#xE1;s <mark><strong>alta</strong></mark> posible.</li>
+<li>Se da cuando los m&#xF3;dulos en el &#xFA;ltimo nivel, realizar&#xE1;n tareas <strong>at&#xF3;micas</strong> y no tendr&#xE1; diferentes funcionalidades seg&#xFA;n la entrada aprovechando un c&#xF3;digo com&#xFA;n.</li>
+<li>Un modulo solo hace una cosa y las instrucciones para hacerlo guardan un orden y relaci&#xF3;n l&#xF3;gica.</li>
+</ul>
+</li>
+<li><strong>Acoplamiento:</strong>
+<ul>
+<li>Debe ser el m&#xE1;s <mark><strong>bajo</strong></mark> posible.</li>
+<li>El acoplamiento <strong>mide la interacci&#xF3;n</strong> entre m&#xF3;dulos.</li>
+<li>Por tanto trataremos de ocultar la informaci&#xF3;n contenida en los mismos de tal manera que no pueda ser accedida desde otros m&#xF3;dulos.</li>
+<li><strong>Para tener bajo acoplamiento:</strong>
+<ul>
+<li>Todo lo que comparten dos rutinas se especifica en la lista de par&#xE1;metros del la subrutina llamada (Solo los par&#xE1;metros indispensables).</li>
+<li>No debemos conocer la implementaci&#xF3;n de un m&#xF3;dulo para poder utilizarlo.</li>
+<li>Evitar siempre que dos m&#xF3;dulo utilicen alg&#xFA;n tipo de variable global com&#xFA;n.</li>
+</ul>
+</li>
+<li><strong>Nos proporciona:</strong>
+<ul>
+<li>Nos proporciona independencia entre m&#xF3;dulos.</li>
+<li>Evita la propagaci&#xF3;n de errores.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 class="mume-header" id="tipos-de-sub-m%C3%B3dulos-seg%C3%BAn-su-valor-de-retorno">Tipos de sub-m&#xF3;dulos seg&#xFA;n su valor de retorno.</h5>
+
+<ul>
+<li><strong>Procedimientos</strong>: No devuelven ning&#xFA;n valor asociado a su nombre y son el resultado de la divisi&#xF3;n de un m&#xF3;dulo m&#xE1;s grande que agrupa sentencias relacionadas en una subrutina.</li>
+<li><strong>Funciones</strong>: Retornan al m&#xF3;dulo llamador un valor asociado a su nombre.</li>
+</ul>
+<h4 class="mume-header" id="hand-resumen-de-criterios-para-una-correcta-modularizaci%C3%B3n">&#x270B; Resumen de criterios para una correcta modularizaci&#xF3;n</h4>
+
+<blockquote>
+<ul>
+<li>Definiremos una <strong>interfaz clara</strong>, de tal manera que el nombre y los par&#xE1;metros me indique, sin redundancia, lo que hace un m&#xF3;dulo <strong>sin necesidad de conocer su implementaci&#xF3;n</strong>.</li>
+<li>Buscaremos m&#xF3;dulos con <strong>alta cohesion</strong>. Esto es, peque&#xF1;os, de poca complejidad y que solo hagan una cosa.</li>
+<li>Buscaremos m&#xF3;dulos con <strong>bajo acoplamiento</strong>. Esto es, evitaremos usar en ellos variables globales o externas al &#xE1;mbito del mismo. Un sub-modulo se dedicar&#xE1; a hacer su tarea en funci&#xF3;n de sus par&#xE1;metros de entrada, sin saber por quien es llamado ni para quien la hace. Esto implica que si producimos una salida, ser&#xE1; siempre en funci&#xF3;n de los par&#xE1;metros de entrada.</li>
+</ul>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="dise%C3%B1o-modular-orientado-a-objetos">Dise&#xF1;o modular Orientado a Objetos</h3>
+
+<h4 class="mume-header" id="m%C3%A9todo">M&#xE9;todo</h4>
+
+<ul>
+<li>Aunque en posteriores temas entraremos formalmente el la POO. Podemos decir ya que en POO los m&#xF3;dulos siempre se definir&#xE1;n dentro de una clase y dentro de este &#xE1;mbito se denominar&#xE1;n <strong>m&#xE9;todos</strong>.</li>
+<li>Como C# es un lenguaje OO puro, los m&#xF3;dulos siempre estar&#xE1;n definidos dentro de una y por tanto tendr&#xE1;n la nomenclatura de m&#xE9;todo independientemente de si son funciones o procedimientos.</li>
+</ul>
+<h4 class="mume-header" id="signatura">Signatura</h4>
+
+<ul>
+<li>En POO al conjunto formado por: el identificador o nombre de un m&#xE9;todo, y el n&#xFA;mero y tipo de sus par&#xE1;metros formales, se le denomina <strong>signatura</strong>.</li>
+<li>Dos m&#xE9;todos pueden tener el mismo nombre, si sus par&#xE1;metros son diferentes. (Cambia su signatura). A esto ya veremos m&#xE1;s adelante que se le denomina Sobrecarga o Polimorfismo funcional en POO.</li>
+</ul>
+<h4 class="mume-header" id="tipos-de-m%C3%A9todos">Tipos de m&#xE9;todos</h4>
+
+<ol>
+<li><strong>M&#xE9;todos de objeto o tambi&#xE9;n (de <em>instancia</em>)</strong>: Son llamados a trav&#xE9;s de un objeto o una estructura instanciada en memoria.<br>
+<em>(Profundizaremos en ellos al ver POO)</em></li>
+<li><strong>M&#xE9;todos de acceso y actualizaci&#xF3;n</strong>: Me permiten acceder y modificar el estado de un objeto.<br>
+<em>(Profundizaremos en ellos al ver POO)</em></li>
+<li><mark><strong>M&#xE9;todos est&#xE1;ticos o tambi&#xE9;n (de tipo, de <em>clase</em>)</strong></mark>:
+<ul>
+<li>No necesitan ning&#xFA;n tipo de instancia en memoria del objeto o la estructura a la que pertenecen para ser llamados.</li>
+<li>Son los m&#xE1;s parecidos conceptualmente a las funciones y procedimientos en la PE.</li>
+</ul>
+</li>
+</ol>
+<h2 class="mume-header" id="definici%C3%B3n-de-interfaces-en-m%C3%A9todos">Definici&#xF3;n de interfaces en m&#xE9;todos</h2>
+
+<h3 class="mume-header" id="conceptos-previos">Conceptos previos</h3>
+
+<p>Definiciones conceptuales de par&#xE1;metros</p>
+<ul>
+<li>
+<p><strong>Formales</strong><br>
+La forma en que se comunican el subprograma y el m&#xF3;dulo que lo llama.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">double</span> <span class="token function">Pow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">double</span> y<span class="token punctuation">)</span> <span class="token comment">// Par&#xE1;metro Formal</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p><strong>Reales o Actuales</strong><br>
+Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los par&#xE1;metros formales.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token function">Pow</span><span class="token punctuation">(</span><span class="token number">2</span>d<span class="token punctuation">,</span> <span class="token number">10</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Par&#xE1;metro Real o Actual</span>
+</pre></li>
+</ul>
+<p>Tipo de par&#xE1;metros al flujo de datos</p>
+<ul>
+<li><strong>De entrada</strong>: Los necesitar&#xE1; el m&#xE9;todo para realizar su ejecuci&#xF3;n y no deben  modificar su valor dentro del mismo.</li>
+<li><strong>De salida</strong>: Si el m&#xE9;todo es una &apos;<em>funci&#xF3;n</em>&apos;, contendr&#xE1;n el valor o los valores que devuelve la misma despu&#xE9;s de su ejecuci&#xF3;n.</li>
+<li><strong>De entrada/salida</strong>: Pasan un dato de entrada que puede quedar modificado tras la ejecuci&#xF3;n del m&#xE9;todo. (&#x1F480; <strong>Hay que evitarlos</strong> )</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="sintaxis-en-c">Sintaxis en C#</h3>
+
+<h4 class="mume-header" id="declaraci%C3%B3n-de-m%C3%A9todo-est%C3%A1tico-con-retorno">Declaraci&#xF3;n de m&#xE9;todo est&#xE1;tico con retorno</h4>
+
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Tipo</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> tipoDevuelto IdentificadorM&#xE9;<span class="token function">todo</span><span class="token punctuation">(</span>par&#xE1;metrosFormales<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// Cuerpo del m&#xE9;todo&#x2026;</span>
+    <span class="token keyword">return</span> variableDelTipoDevuelto<span class="token punctuation">;</span> <span class="token comment">// Devuelve una copia</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Al ser p&#xFA;blico el identificador del m&#xE9;todo ir&#xE1; en <strong>PascalCasing</strong> y para los par&#xE1;metros formales usaremos <strong>camelCasing</strong>.</p>
+<h4 class="mume-header" id="llamada-a-m%C3%A9todo-est%C3%A1tico-con-retorno">Llamada a m&#xE9;todo est&#xE1;tico con retorno</h4>
+
+<ul>
+<li>
+<p>Si se hace <strong>fuera</strong> de la clase donde se define:<br>
+<strong><code>tipoDevuelto idVariable = Tipo.IdentificadorM&#xE9;todo(par&#xE1;metrosReales);</code></strong><br>
+<em>(Profundizaremos en ellos al ver POO)</em></p>
+<pre data-role="codeBlock" data-info="csharp {highlight=13}" class="language-csharp" data-line="13"><span class="token keyword">class</span> <span class="token class-name">Fecha</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token keyword">ushort</span> a&#xF1;o<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">bool</span><span class="token punctuation">)</span><span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">||</span> a&#xF1;o <span class="token operator">%</span> <span class="token number">400</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">string</span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>Fecha<span class="token punctuation">.</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
+</div></div></pre></li>
+<li>
+<p>Si se hace <strong>dentro</strong> de la clase donde se define:<br>
+<strong><code>tipoDevuelto idVariable = IdentificadorM&#xE9;todo(par&#xE1;metrosReales);</code></strong><br>
+<em>(Son los que usaremos para aprender a modularizar en los primeros programas)</em></p>
+<pre data-role="codeBlock" data-info="csharp {highlight=10}" class="language-csharp" data-line="10"><span class="token keyword">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">bool</span> A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token keyword">ushort</span> a&#xF1;o<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">bool</span><span class="token punctuation">)</span><span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">||</span> a&#xF1;o <span class="token operator">%</span> <span class="token number">400</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">string</span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div></pre></li>
+</ul>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="declaraci%C3%B3n-de-m%C3%A9todo-est%C3%A1tico-sin-retorno">Declaraci&#xF3;n de m&#xE9;todo est&#xE1;tico sin retorno</h4>
+
+<ul>
+<li>
+<p>Usaremos para ello el tipo <strong><code>void</code></strong> (vac&#xED;o) como tipo de retorno.</p>
+</li>
+<li>
+<p>Su sintaxis suponiendo que es un m&#xE9;todo est&#xE1;tico dentro de una misma clase ser&#xE1;:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">IdProcedimiento</span><span class="token punctuation">(</span>par&#xE1;metros_formales<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// Cuerpo del m&#xE9;todo</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token comment">// Podemos obviarlo</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>Ejemplo ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3-5]}" class="language-csharp" data-line="3-5"><span class="token keyword">class</span> <span class="token class-name">Datos</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
+        <span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
+        <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
+        <span class="token keyword">ushort</span> edad<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;   Nombre: {nombre}\n&quot;</span> <span class="token operator">+</span>
+                          $<span class="token string">&quot; Apellido: {apellido}\n&quot;</span> <span class="token operator">+</span>
+                          $<span class="token string">&quot;     Edad: {edad}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> M&#xE9;<span class="token function">todoSinRetorno</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Llamada desde un m&#xE9;todo de la misma clase.</span>
+        <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token string">&quot;Xusa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Garc&#xED;a&quot;</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3-5" data-start="3" data-end="5">
+
+
+</div></div></pre></li>
+</ul>
+<h4 class="mume-header" id="llamada-de-m%C3%A9todo-est%C3%A1tico-sin-retorno">Llamada de m&#xE9;todo est&#xE1;tico sin retorno</h4>
+
+<ul>
+<li>
+<p>Haremos la llamada sin asignar el retorno a una variable o sin usarlo en una expresi&#xF3;n.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token function">IdProcedimiento</span><span class="token punctuation">(</span>par&#xE1;metros_reales<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p>Ejemplo ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5, 6]}" class="language-csharp" data-line="5,6"><span class="token keyword">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Datos<span class="token punctuation">.</span><span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token string">&quot;Juanjo&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Guarinos&quot;</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Datos<span class="token punctuation">.</span>M&#xE9;<span class="token function">todoSinRetorno</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre></li>
+</ul>
+<h4 class="mume-header" id="bulb-tips-sobre-la-alineaci%C3%B3n-de-par%C3%A1metros">&#x1F4A1; &apos;<em>Tips</em>&apos; sobre la alineaci&#xF3;n de par&#xE1;metros</h4>
+
+<ul>
+<li>
+<p>Visual Studio y <strong>VS Code</strong> tienen herramientas para alineaci&#xF3;n y sangria de par&#xE1;metros en m&#xE9;todos.</p>
+</li>
+<li>
+<p>Cuando tenemos pocos par&#xE1;metros pueden ir en la misma l&#xED;nea de la definici&#xF3;n.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token keyword">string</span> nombre<span class="token punctuation">,</span> <span class="token keyword">string</span> apellido<span class="token punctuation">,</span> <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span> <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span> 
+</pre><p>Si no est&#xE1;n as&#xED;, esto se consigue en el editor, coloc&#xE1;ndose sobre un par&#xE1;metro y pulsando <strong><code>Ctrl+.</code></strong> A continuaci&#xF3;n nos ofrecer&#xE1; la opci&#xF3;n <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Desajustar todos los par&#xE1;metros&apos;</code></p>
+</li>
+<li>
+<p>Si tenemos 4 o m&#xE1;s par&#xE1;metros, nuestra recomendaci&#xF3;n es que se haga una sangria de par&#xE1;metros.<br>
+Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a continuaci&#xF3;n seleccionar <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Alinear par&#xE1;metros ajustados&apos;</code> obteniendo as&#xED;...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
+                           <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
+                           <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span>
+                           <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span>   
+</pre><p>Posteriormente otra vez <strong><code>Ctrl+.</code></strong> y a continuaci&#xF3;n seleccionar <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Aplicar sangr&#xED;a a todos los par&#xE1;metros&apos;</code> obteniendo as&#xED;...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
+    <span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
+    <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
+    <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span>
+    <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span> 
+</pre><p><strong>De esta forma ser&#xE1; m&#xE1;s f&#xE1;cil...</strong></p>
+<ol>
+<li>Ver y saber todos los par&#xE1;metros de una funci&#xF3;n. Si que se pierdan por el lado derecho del editor.</li>
+<li>A&#xF1;adir par&#xE1;metros nuevos.</li>
+<li>Eliminar un par&#xE1;metro en la declaraci&#xF3;n.</li>
+<li>Cambiar el orden de los mismos con <strong><code>Alt+&#x2191;</code></strong> o <strong><code>Alt+&#x2193;</code></strong>  sobre el par&#xE1;metro.</li>
+<li>Adem&#xE1;s, podremos cambiar f&#xE1;cilmente la indentaci&#xF3;n de los mismos, seleccion&#xE1;ndolos y luego aplicando <strong><code>Tab</code></strong> o <strong><code>Shift+Tab</code></strong></li>
+</ol>
+</li>
+</ul>
+<h4 class="mume-header" id="definir-par%C3%A1metros-de-entrada">Definir par&#xE1;metros de entrada</h4>
+
+<h5 class="mume-header" id="paso-por-valorhttpsdocsmicrosoftcomes-esdotnetcsharpprogramming-guideclasses-and-structspassing-value-type-parameters">Paso por <a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/passing-value-type-parameters">valor</a></h5>
+
+<ul>
+<li>
+<p>Si no ponemos ning&#xFA;n modificador o cl&#xE1;usula al par&#xE1;metro formal. El paso ser&#xE1; <strong>por valor</strong>.</p>
+</li>
+<li>
+<p>Por tanto, si es un tipo valor el objeto se duplica en memoria y si pasamos un tipo referencia, se duplicar&#xE1; la referencia al objeto.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; solo existe en este</span>
+        <span class="token comment">// &#xE1;mbito y es una copia en el Heap del tipo valor dato</span>
+        <span class="token comment">// se pas&#xF3; como par&#xE1;metro real.</span>
+
+        <span class="token operator">--</span>d<span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4 </span>
+
+    <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir al finalizar el m&#xE9;todo. </span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Se pasa una copia de dato por que es un Tipo-valor.</span>
+        <span class="token function">RestaUno</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Despu&#xE9;s de la llamada dato sigue valiendo 5 </span>
+        <span class="token comment">// por que lo que se modifica es la copia.</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 5</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="565pt" height="244pt" viewBox="0.00 0.00 565.00 244.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 240)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-240 561,-240 561,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-128 8,-228 485,-228 485,-128 8,-128"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-108 549,-108 549,-8 8,-8"/>
+</g>
+<!-- c1 -->
+<g id="node1" class="node">
+<title>c1</title>
+<text text-anchor="start" x="298.5986" y="-174.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int </text>
+<text text-anchor="start" x="371.7374" y="-174.4" font-family="Arial" font-size="14.00" fill="#0000ff">dato</text>
+<text text-anchor="start" x="398.9758" y="-174.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;= 5; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+</g>
+<!-- o1 -->
+<g id="node2" class="node">
+<title>o1</title>
+<polygon fill="none" stroke="#000000" points="97,-178 97,-216 266,-216 266,-178 97,-178"/>
+<text text-anchor="start" x="107.9678" y="-192.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dato : int &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="97,-140 97,-178 266,-178 266,-140 97,-140"/>
+<text text-anchor="start" x="177.6087" y="-154.4" font-family="Arial" font-size="14.00" fill="#000000">5</text>
+</g>
+<!-- id1 -->
+<g id="node3" class="node">
+<title>id1</title>
+<text text-anchor="middle" x="43" y="-173.8" font-family="Arial" font-size="14.00" fill="#0000ff">dato</text>
+</g>
+<!-- id2 -->
+<g id="node6" class="node">
+<title>id2</title>
+<text text-anchor="middle" x="43" y="-53.8" font-family="Arial" font-size="14.00" fill="#0000ff">d</text>
+</g>
+<!-- id1&#45;&gt;id2 -->
+<g id="edge1" class="edge">
+<title>id1-&gt;id2</title>
+<path fill="none" stroke="transparent" d="M43,-159.7746C43,-140.1904 43,-108.8184 43,-86.0776"/>
+<polygon fill="transparent" stroke="transparent" points="46.5001,-86.0037 43,-76.0037 39.5001,-86.0038 46.5001,-86.0037"/>
+</g>
+<!-- c2 -->
+<g id="node4" class="node">
+<title>c2</title>
+<text text-anchor="start" x="279.6922" y="-54.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;static void RestaUno(int </text>
+<text text-anchor="start" x="481.9586" y="-54.4" font-family="Arial" font-size="14.00" fill="#0000ff">d</text>
+<text text-anchor="start" x="489.7412" y="-54.4" font-family="Arial" font-size="14.00" fill="#000000">) &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+</g>
+<!-- o2 -->
+<g id="node5" class="node">
+<title>o2</title>
+<polygon fill="none" stroke="#000000" points="97,-58 97,-96 246,-96 246,-58 97,-58"/>
+<text text-anchor="start" x="107.6957" y="-72.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;d : int &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="97,-20 97,-58 246,-58 246,-20 97,-20"/>
+<text text-anchor="start" x="167.6087" y="-34.4" font-family="Arial" font-size="14.00" fill="#000000">5</text>
+</g>
+</g>
+</svg>
+</p><pre data-role="codeBlock" data-info="csharp {highlight=3}" class="language-csharp" data-line="3"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token operator">--</span>d<span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4 </span>
+
+        <span class="token comment">// Devolvemos una copia de lo que vale d en el Heap</span>
+        <span class="token comment">// antes de que se &apos;destruya&apos;.</span>
+        <span class="token keyword">return</span> d<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Sobrescribimos el Tipo-valor dato con lo que devuelve la funci&#xF3;n.</span>
+        dato <span class="token operator">=</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div></pre></li>
+<li>
+<p><strong>&#xBF;Qu&#xE9; sucede si pasamos por <mark>valor</mark> un Tipo-referencia en lugar de un Tipo-Valor?</strong><br>
+En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;sico cadena.<br>
+(<em>Este tipo lo veremos en m&#xE1;s profundidad m&#xE1;s adelante.</em>)</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=3}" class="language-csharp" data-line="3"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">string</span> t<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// t es una copia de la referencia texto.</span>
+        t <span class="token operator">=</span> t <span class="token operator">+</span> <span class="token string">&quot;!!!!&quot;</span><span class="token punctuation">;</span>
+        <span class="token comment">// t referenciar&#xE1; ahora a una cadena nueva que ser&#xE1; destruida</span>
+        <span class="token comment">// al finalizar este &#xE1;mbito de ejecuci&#xF3;n.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// texto ser&#xE1; una referencia a un objeto cadena.</span>
+        <span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Al pasar por valor hacemos una copia de la referencia.</span>
+        A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra &quot;Adios&quot; sin la !</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div></pre><p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="778pt" height="269pt" viewBox="0.00 0.00 778.00 268.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 264.8)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-264.8 774,-264.8 774,4 -4,4"/>
+<g id="clust3" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="transparent" points="384,-8 384,-252.8 762,-252.8 762,-8 384,-8"/>
+<text text-anchor="middle" x="573" y="-236.2" font-family="Arial" font-size="14.00" fill="#000000">Despu&#xE9;s de ... t = t + &quot;!!!!&quot;; tendremos...</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-243.3 371,-243.3 371,-8 8,-8"/>
+<text text-anchor="middle" x="189.5" y="-226.7" font-family="Arial" font-size="14.00" fill="#000000">Antes de ... t = t + &quot;!!!!&quot;; tendremos...</text>
+</g>
+<!-- r11 -->
+<g id="node1" class="node">
+<title>r11</title>
+<ellipse fill="none" stroke="#000000" cx="48" cy="-58" rx="31.9378" ry="31.9378"/>
+<text text-anchor="middle" x="48" y="-53.8" font-family="Arial" font-size="14.00" fill="#0000ff">texto</text>
+</g>
+<!-- o11 -->
+<g id="node2" class="node">
+<title>o11</title>
+<polygon fill="none" stroke="#000000" points="117,-58 117,-96 355,-96 355,-58 117,-58"/>
+<text text-anchor="start" x="127.8486" y="-72.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;t , texto : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="117,-20 117,-58 355,-58 355,-20 117,-20"/>
+<text text-anchor="start" x="213.5272" y="-34.4" font-family="Arial" font-size="14.00" fill="#000000">&quot;Adios&quot;</text>
+</g>
+<!-- r11&#45;&gt;o11 -->
+<g id="edge1" class="edge">
+<title>r11-&gt;o11</title>
+<path fill="none" stroke="#000000" d="M80.3125,-58C86.4162,-58 92.5199,-58 98.6236,-58"/>
+<polygon fill="#000000" stroke="#000000" points="98.8957,-61.4999 108.8958,-58 98.8958,-54.4999 98.8957,-61.4999"/>
+</g>
+<!-- r12 -->
+<g id="node3" class="node">
+<title>r12</title>
+<ellipse fill="none" stroke="#000000" cx="236" cy="-178" rx="32.5" ry="32.5"/>
+<text text-anchor="middle" x="236" y="-173.8" font-family="Arial" font-size="14.00" fill="#0000ff">t</text>
+</g>
+<!-- r12&#45;&gt;o11 -->
+<g id="edge2" class="edge">
+<title>r12-&gt;o11</title>
+<path fill="none" stroke="#000000" d="M236,-145.2095C236,-134.4751 236,-122.2665 236,-110.4544"/>
+<polygon fill="#000000" stroke="#000000" points="239.5001,-110.2231 236,-100.2231 232.5001,-110.2232 239.5001,-110.2231"/>
+</g>
+<!-- r21 -->
+<g id="node4" class="node">
+<title>r21</title>
+<ellipse fill="none" stroke="#000000" cx="425" cy="-58" rx="32.5" ry="32.5"/>
+<text text-anchor="middle" x="425" y="-53.8" font-family="Arial" font-size="14.00" fill="#0000ff">t</text>
+</g>
+<!-- o21 -->
+<g id="node5" class="node">
+<title>o21</title>
+<polygon fill="none" stroke="#000000" points="495,-58 495,-96 722,-96 722,-58 495,-58"/>
+<text text-anchor="start" x="505.7953" y="-72.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;t : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="495,-20 495,-58 722,-58 722,-20 495,-20"/>
+<text text-anchor="start" x="578.246" y="-34.4" font-family="Arial" font-size="14.00" fill="#000000">&quot;Adios!!!!&quot;</text>
+</g>
+<!-- r21&#45;&gt;o21 -->
+<g id="edge3" class="edge">
+<title>r21-&gt;o21</title>
+<path fill="none" stroke="#000000" d="M457.5254,-58C463.6758,-58 469.8262,-58 475.9765,-58"/>
+<polygon fill="#000000" stroke="#000000" points="476.3271,-61.4999 486.3272,-58 476.3272,-54.4999 476.3271,-61.4999"/>
+</g>
+<!-- r22 -->
+<g id="node6" class="node">
+<title>r22</title>
+<ellipse fill="none" stroke="#000000" cx="424" cy="-178" rx="31.9378" ry="31.9378"/>
+<text text-anchor="middle" x="424" y="-173.8" font-family="Arial" font-size="14.00" fill="#0000ff">texto</text>
+</g>
+<!-- r22&#45;&gt;r21 -->
+<g id="edge5" class="edge">
+<title>r22-&gt;r21</title>
+<path fill="none" stroke="transparent" d="M424.268,-145.8422C424.3825,-132.0994 424.5179,-115.8525 424.6409,-101.0922"/>
+<polygon fill="transparent" stroke="transparent" points="428.1443,-100.6931 424.7278,-90.6642 421.1445,-100.6347 428.1443,-100.6931"/>
+</g>
+<!-- o22 -->
+<g id="node7" class="node">
+<title>o22</title>
+<polygon fill="none" stroke="#000000" points="493,-178 493,-216 746,-216 746,-178 493,-178"/>
+<text text-anchor="start" x="503.5674" y="-192.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;texto : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="493,-140 493,-178 746,-178 746,-140 493,-140"/>
+<text text-anchor="start" x="597.0272" y="-154.4" font-family="Arial" font-size="14.00" fill="#000000">&quot;Adios&quot;</text>
+</g>
+<!-- r22&#45;&gt;o22 -->
+<g id="edge4" class="edge">
+<title>r22-&gt;o22</title>
+<path fill="none" stroke="#000000" d="M455.9922,-178C462.043,-178 468.0937,-178 474.1445,-178"/>
+<polygon fill="#000000" stroke="#000000" points="474.3276,-181.5001 484.3275,-178 474.3275,-174.5001 474.3276,-181.5001"/>
+</g>
+</g>
+</svg>
+</p></li>
+</ul>
+<h5 class="mume-header" id="paso-por-referencia-con-inhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsin-parameter-modifier">Paso por referencia con <a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/in-parameter-modifier">in</a></h5>
+
+<ul>
+<li>
+<p>Al poner el modificador o cl&#xE1;usula <strong><code>in</code></strong> (<em>l&#xED;nea 3</em>) al identificador del par&#xE1;metro formal. El paso ser&#xE1; <strong>por referencia</strong>, pero <mark><strong>no lo podremos modificar dentro del m&#xE9;todo</strong></mark>.</p>
+</li>
+<li>
+<p>Por tanto, si es un tipo valor ser&#xE1; una referencia al mismo objeto en memoria y si pasamos un tipo referencia, se tratar&#xE1; de una referencia a la referencia.</p>
+</li>
+<li>
+<p>En la llamada (<strong>l&#xED;nea 20</strong>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>in</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3, 20]}" class="language-csharp" data-line="3,20"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; es una referencia</span>
+        <span class="token comment">// a dato que se pas&#xF3; como par&#xE1;metro real.</span>
+
+        <span class="token comment">// Ya no podremos hacer --d; pues dar&#xE1; error.</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 5</span>
+
+    <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir y por tanto la referencia a dato.</span>
+      <span class="token comment">// pero dato sigue existiendo.</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Se pasa una referencia a la zona de memoria donde est&#xE1; dato.</span>
+        <span class="token comment">// Sabemos que nunca se modificar&#xE1; el valor internamente.</span>
+        <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">in</span> dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 5</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="20" data-start="20">
+</div></div></pre><p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="525pt" height="196pt" viewBox="0.00 0.00 525.00 196.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 192)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-192 521,-192 521,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-80 8,-180 485,-180 485,-80 8,-80"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="transparent" points="155,-8 155,-60 509,-60 509,-8 155,-8"/>
+</g>
+<!-- c1 -->
+<g id="node1" class="node">
+<title>c1</title>
+<text text-anchor="start" x="298.5986" y="-126.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;int </text>
+<text text-anchor="start" x="371.7374" y="-126.4" font-family="Arial" font-size="14.00" fill="#0000ff">dato</text>
+<text text-anchor="start" x="398.9758" y="-126.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;= 5; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+</g>
+<!-- o1 -->
+<g id="node2" class="node">
+<title>o1</title>
+<polygon fill="none" stroke="#000000" points="97,-130 97,-168 266,-168 266,-130 97,-130"/>
+<text text-anchor="start" x="107.9678" y="-144.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dato : int &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="97,-92 97,-130 266,-130 266,-92 97,-92"/>
+<text text-anchor="start" x="177.6087" y="-106.4" font-family="Arial" font-size="14.00" fill="#000000">5</text>
+</g>
+<!-- id2 -->
+<g id="node5" class="node">
+<title>id2</title>
+<ellipse fill="none" stroke="#000000" cx="181" cy="-34" rx="18" ry="18"/>
+<text text-anchor="middle" x="181" y="-29.8" font-family="Arial" font-size="14.00" fill="#0000ff">d</text>
+</g>
+<!-- o1&#45;&gt;id2 -->
+<g id="edge1" class="edge">
+<title>o1-&gt;id2</title>
+<path fill="none" stroke="#000000" d="M181,-77.8872C181,-68.6799 181,-59.676 181,-52.2439"/>
+<polygon fill="#000000" stroke="#000000" points="177.5001,-77.893 181,-87.893 184.5001,-77.893 177.5001,-77.893"/>
+</g>
+<!-- id1 -->
+<g id="node3" class="node">
+<title>id1</title>
+<text text-anchor="middle" x="43" y="-125.8" font-family="Arial" font-size="14.00" fill="#0000ff">dato</text>
+</g>
+<!-- c2 -->
+<g id="node4" class="node">
+<title>c2</title>
+<text text-anchor="start" x="224.8023" y="-30.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;static void RestaUno(int </text>
+<text text-anchor="start" x="427.0687" y="-30.4" font-family="Arial" font-size="14.00" fill="#0000ff">in d</text>
+<text text-anchor="start" x="449.6311" y="-30.4" font-family="Arial" font-size="14.00" fill="#000000">) &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+</g>
+</g>
+</svg>
+</p></li>
+</ul>
+<h4 class="mume-header" id="skull-definir-par%C3%A1metros-de-entradasalida">&#x1F480; Definir par&#xE1;metros de entrada/salida</h4>
+
+<p>Utilizaremos el modificador <strong><code>ref</code></strong> (<em>l&#xED;nea 3</em>) antes del tipo para indicar un paso por referencia.</p>
+<ul>
+<li>
+<p>Igual que <strong><code>in</code></strong> pero <strong>podremos modificar el valor del par&#xE1;metro formal</strong> por eso consideramos que es un par&#xE1;metro que &apos;<em>entra</em>&apos; con un valor y &apos;<em>sale</em>&apos; con otro.</p>
+</li>
+<li>
+<p><mark>Deberemos evitarlos en la medida de lo posible, pues <strong>dan lugar a efectos laterales</strong> y <strong>acoplamiento</strong>.</mark></p>
+</li>
+<li>
+<p>En la llamada (<strong>l&#xED;nea 20</strong>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>ref</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3, 20]}" class="language-csharp" data-line="3,20"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; es una referencia</span>
+        <span class="token comment">// a dato que se pas&#xF3; como par&#xE1;metro real.</span>
+
+        <span class="token operator">--</span>d<span class="token punctuation">;</span> <span class="token comment">// Ahora podemos modificar sin problema el valor del par&#xE1;metro.</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4</span>
+
+    <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir y por tanto la referencia a dato.</span>
+      <span class="token comment">// pero dato sigue existiendo.</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Se pasa una referencia a la zona de memoria donde est&#xE1; dato.</span>
+        <span class="token comment">// El valor podr&#xE1; modificarse internamente.</span>
+        <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">ref</span> dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="20" data-start="20">
+</div></div></pre></li>
+<li>
+<p><strong>&#xBF;Qu&#xE9; sucede si pasamos por <mark>referencia</mark> un Tipo-referencia en lugar de un Tipo-Valor?</strong><br>
+Veamos que pasa con el ejemplo que usamos en el paso por valor.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3, 16]}" class="language-csharp" data-line="3,16"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token keyword">string</span> t<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// t es una referencia a la referencia texto.</span>
+        t <span class="token operator">=</span> t <span class="token operator">+</span> <span class="token string">&quot;!!!!&quot;</span><span class="token punctuation">;</span>
+        <span class="token comment">// al cambiar ahora t estaremos cambiando el valor de la referencia texto.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// texto ser&#xE1; una referencia a un objeto cadena.</span>
+        <span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Al pasar por valor hacemos pasaremos una referencia a la referencia.</span>
+        A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">ref</span> texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra &quot;Adios!&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="16" data-start="16">
+</div></div></pre><p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="794pt" height="269pt" viewBox="0.00 0.00 794.00 268.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 264.8)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-264.8 790,-264.8 790,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-243.3 371,-243.3 371,-8 8,-8"/>
+<text text-anchor="middle" x="189.5" y="-226.7" font-family="Arial" font-size="14.00" fill="#000000">Antes de ... t = t + &quot;!!!!&quot;; tendremos...</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="transparent" points="382,-8 382,-252.8 778,-252.8 778,-8 382,-8"/>
+<text text-anchor="middle" x="580" y="-236.2" font-family="Arial" font-size="14.00" fill="#000000">Despu&#xE9;s de ... t = t + &quot;!!!!&quot;; tendremos...</text>
+</g>
+<!-- r11 -->
+<g id="node1" class="node">
+<title>r11</title>
+<ellipse fill="none" stroke="#000000" cx="48" cy="-58" rx="31.9378" ry="31.9378"/>
+<text text-anchor="middle" x="48" y="-53.8" font-family="Arial" font-size="14.00" fill="#0000ff">texto</text>
+</g>
+<!-- o11 -->
+<g id="node2" class="node">
+<title>o11</title>
+<polygon fill="none" stroke="#000000" points="117,-58 117,-96 355,-96 355,-58 117,-58"/>
+<text text-anchor="start" x="127.8486" y="-72.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;t , texto : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="117,-20 117,-58 355,-58 355,-20 117,-20"/>
+<text text-anchor="start" x="213.5272" y="-34.4" font-family="Arial" font-size="14.00" fill="#000000">&quot;Adios&quot;</text>
+</g>
+<!-- r11&#45;&gt;o11 -->
+<g id="edge1" class="edge">
+<title>r11-&gt;o11</title>
+<path fill="none" stroke="#000000" d="M80.3125,-58C86.4162,-58 92.5199,-58 98.6236,-58"/>
+<polygon fill="#000000" stroke="#000000" points="98.8957,-61.4999 108.8958,-58 98.8958,-54.4999 98.8957,-61.4999"/>
+</g>
+<!-- r12 -->
+<g id="node3" class="node">
+<title>r12</title>
+<ellipse fill="none" stroke="#000000" cx="49" cy="-178" rx="32.5" ry="32.5"/>
+<text text-anchor="middle" x="49" y="-173.8" font-family="Arial" font-size="14.00" fill="#0000ff">t</text>
+</g>
+<!-- r12&#45;&gt;r11 -->
+<g id="edge2" class="edge">
+<title>r12-&gt;r11</title>
+<path fill="none" stroke="#000000" d="M48.7267,-145.2095C48.6123,-131.4727 48.4777,-115.3218 48.3556,-100.6769"/>
+<polygon fill="#000000" stroke="#000000" points="51.8528,-100.3059 48.2695,-90.3354 44.853,-100.3643 51.8528,-100.3059"/>
+</g>
+<!-- r21 -->
+<g id="node4" class="node">
+<title>r21</title>
+<ellipse fill="none" stroke="#000000" cx="424" cy="-58" rx="31.9378" ry="31.9378"/>
+<text text-anchor="middle" x="424" y="-53.8" font-family="Arial" font-size="14.00" fill="#0000ff">texto</text>
+</g>
+<!-- o21 -->
+<g id="node5" class="node">
+<title>o21</title>
+<polygon fill="none" stroke="#000000" points="493,-58 493,-96 762,-96 762,-58 493,-58"/>
+<text text-anchor="start" x="503.7862" y="-72.4" font-family="Arial" font-size="14.00" fill="#000000"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;t , texto : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#000000" points="493,-20 493,-58 762,-58 762,-20 493,-20"/>
+<text text-anchor="start" x="597.246" y="-34.4" font-family="Arial" font-size="14.00" fill="#000000">&quot;Adios!!!!&quot;</text>
+</g>
+<!-- r21&#45;&gt;o21 -->
+<g id="edge3" class="edge">
+<title>r21-&gt;o21</title>
+<path fill="none" stroke="#000000" d="M456.1152,-58C462.1733,-58 468.2314,-58 474.2895,-58"/>
+<polygon fill="#000000" stroke="#000000" points="474.4847,-61.4999 484.4848,-58 474.4848,-54.4999 474.4847,-61.4999"/>
+</g>
+<!-- r22 -->
+<g id="node6" class="node">
+<title>r22</title>
+<ellipse fill="none" stroke="#000000" cx="423" cy="-178" rx="32.5" ry="32.5"/>
+<text text-anchor="middle" x="423" y="-173.8" font-family="Arial" font-size="14.00" fill="#0000ff">t</text>
+</g>
+<!-- r22&#45;&gt;r21 -->
+<g id="edge4" class="edge">
+<title>r22-&gt;r21</title>
+<path fill="none" stroke="#000000" d="M423.2733,-145.2095C423.3877,-131.4727 423.5223,-115.3218 423.6444,-100.6769"/>
+<polygon fill="#000000" stroke="#000000" points="427.147,-100.3643 423.7305,-90.3354 420.1472,-100.3059 427.147,-100.3643"/>
+</g>
+<!-- o22 -->
+<g id="node7" class="node">
+<title>o22</title>
+<polygon fill="none" stroke="#c0c0c0" points="493,-178 493,-216 762,-216 762,-178 493,-178"/>
+<text text-anchor="start" x="503.7862" y="-192.4" font-family="Arial" font-size="14.00" fill="#c0c0c0"> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;t , texto : string &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</text>
+<polygon fill="none" stroke="#c0c0c0" points="493,-140 493,-178 762,-178 762,-140 493,-140"/>
+<text text-anchor="start" x="605.0272" y="-154.4" font-family="Arial" font-size="14.00" fill="#c0c0c0">&quot;Adios&quot;</text>
+</g>
+<!-- o22&#45;&gt;o21 -->
+<g id="edge5" class="edge">
+<title>o22-&gt;o21</title>
+<path fill="none" stroke="transparent" d="M627,-135.6925C627,-127.5371 627,-118.9029 627,-110.4702"/>
+<polygon fill="transparent" stroke="transparent" points="630.5001,-110.3299 627,-100.3299 623.5001,-110.33 630.5001,-110.3299"/>
+</g>
+</g>
+</svg>
+</p></li>
+</ul>
+<h4 class="mume-header" id="definir-par%C3%A1metros-de-salida">Definir par&#xE1;metros de salida</h4>
+
+<p>Utilizaremos la palabra reservada <strong><code>out</code></strong> (<em>l&#xED;neas 6 y 7</em>) antes del tipo para indicar un par&#xE1;metro de salida.</p>
+<ul>
+<li>
+<p>Equivale al <strong>paso por referencia</strong>, pero <strong>solo de salida</strong>, es decir los par&#xE1;metros reales <strong>no tienen que estar inicializados</strong>.</p>
+</li>
+<li>
+<p>Su uso muy aclaratorio para el programador, cuando un m&#xE9;todo <strong>tiene m&#xE1;s de un par&#xE1;metro de salida</strong>, adem&#xE1;s la devoluci&#xF3;n por referencia es menos costosa.</p>
+</li>
+<li>
+<p>En la llamada (<em>l&#xED;nea 19</em>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>out</code></strong>. Adem&#xE1;s, <strong><code>out</code></strong> nos permite <strong>declarar el tipo</strong> del par&#xE1;metro en la misma llamada.</p>
+<blockquote>
+<p><strong>Nota</strong>: La sintaxis del lenguaje a mejorado con el tiempo, y actualmente disponemos de otros mecanismos para devolver m&#xE1;s de un par&#xE1;metro, como son las <strong>Tuplas</strong> y los <strong>Objetos An&#xF3;nimos</strong> que veremos m&#xE1;s adelante.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp {highlight=[6,7,19]}" class="language-csharp" data-line="6,7,19"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Es conveniente colocarlos al final del interfaz.</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Direccion</span><span class="token punctuation">(</span>
+        <span class="token keyword">double</span> anguloGr<span class="token punctuation">,</span>
+        <span class="token keyword">out</span> <span class="token keyword">double</span> sen<span class="token punctuation">,</span>
+        <span class="token keyword">out</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+        <span class="token comment">// Como est&#xE1;n marcados de salida si se quedan sin asignar</span>
+        <span class="token comment">// el compilador me dar&#xE1; un error.</span>
+        sen <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cos <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
+        <span class="token comment">// Se pueden declarar en la misma llamada a la funci&#xF3;n.</span>
+        <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Sen = {sen:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Cos = {cos:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="19" data-start="19">
+</div></div></pre></li>
+</ul>
+<h4 class="mume-header" id="cuadro-resumen-paso-de-par%C3%A1metros">Cuadro resumen paso de par&#xE1;metros</h4>
+
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="374px" preserveAspectRatio="none" style="width:621px;height:374px;" version="1.1" viewBox="0 0 621 374" width="621px" zoomAndPan="magnify"><defs><filter height="300%" id="f4vg74cj1cryv" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="102" x="10" y="163.2959"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="33.5" y="191.4277">Tipos de</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="25" y="207.5264">par&#xE1;metros</text><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="84" x="172" y="79.1479"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="187" y="107.2798">Entrada</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="87" x="316" y="25"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="331" y="53.1318">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="36" x="341.5" y="69.2305">valor</text><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,56.0986 306,56.0986 L316,56.0986 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="316" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="339" y="145.3291">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="331" y="161.4277">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="479" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="494" y="145.3291">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="512" y="161.4277">&apos;in&apos;</text><path d="M419,148.2959 L429,148.2959 C444,148.2959 454,148.2959 469,148.2959 L479,148.2959 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,148.2959 306,148.2959 L316,148.2959 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,102.1973 162,102.1973 L172,102.1973 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="72" x="172" y="217.4438"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="187" y="245.5757">Salida</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="304" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="327" y="237.5264">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="319" y="253.625">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="467" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="482" y="237.5264">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="495" y="253.625">&apos;out&apos;</text><path d="M407,240.4932 L417,240.4932 C432,240.4932 442,240.4932 457,240.4932 L467,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M244,240.4932 L254,240.4932 C269,240.4932 279,240.4932 294,240.4932 L304,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,240.4932 162,240.4932 L172,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#C0C0C0" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="130" x="172" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="187" y="329.7236">Entrada/Salida</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="208" y="345.8223">(no usar)</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="362" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="385" y="329.7236">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="377" y="345.8223">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="525" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="540" y="329.7236">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="26" x="554.5" y="345.8223">&apos;ref&apos;</text><path d="M465,332.6904 L475,332.6904 C490,332.6904 500,332.6904 515,332.6904 L525,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M302,332.6904 L312,332.6904 C327,332.6904 337,332.6904 352,332.6904 L362,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,332.6904 162,332.6904 L172,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[f77497f8bf067c2d968e789d4246ee0f]
+@startmindmap
+left to right direction
+scale 100 width
+<style>
+mindmapDiagram {
+  Linecolor black
+  FontName Arial
+  FontSize 14
+  node {
+    Padding 15
+    Margin 15
+    HorizontalAlignment center
+    BackGroundColor white
+  }
+}
+</style>
+
+* Tipos de\nparámetros
+** **Entrada**
+***[#whitesmoke] Paso por\n**valor**
+***[#whitesmoke] Paso por\n**referencia**
+****[#aliceblue] Cláusula\n**'in'**
+** **Salida**
+***[#whitesmoke] Paso por\n**referencia**
+****[#aliceblue] Cláusula\n**'out'**
+**[#silver] **Entrada/Salida**\n(no usar)
+***[#whitesmoke] Paso por\n**referencia**
+****[#aliceblue] Cláusula\n**'ref'**
+@endmindmap
+
+PlantUML version 1.2020.10(Sun May 17 11:35:57 CEST 2020)
+(MIT source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.8+10
+Operating System: Windows 10
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg></p><div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="bulb-tips-para-definir-un-interfaz">&#x1F4A1; &apos;<em>Tips</em>&apos; para definir un interfaz</h3>
+
+<h4 class="mume-header" id="determinar-el-nombre-o-identificador">Determinar el nombre o identificador</h4>
+
+<ol>
+<li>Usaremos <strong>PascalCasing</strong>. Ej: double CalculaDistancia(&#x2026;)</li>
+<li>Usaremos <strong>sustantivos</strong> o verbos conjugados en el caso de procedimientos.</li>
+<li>Si es una funci&#xF3;n que retorna algo me indicar&#xE1; lo que devuelve o calcula.</li>
+<li>No debe ser ambiguo, tiene que ser suficientemente descriptivo, as&#xED;  <strong>auto-documentamos el c&#xF3;digo</strong>. Solo con ver el nombre m&#xE1;s los par&#xE1;metros <strong>sabremos lo que hace el m&#xE9;todo sin conocer su implementaci&#xF3;n</strong>.</li>
+<li>Recuerda un m&#xE9;todo s&#xF3;lo hace una cosa. Por tanto, si al decidir el nombre usamos alguna conjunci&#xF3;n como &apos;y&apos; u &apos;o&apos; el m&#xE9;todo ser&#xE1; incorrecto.
+<ul>
+<li><strong><code>float PorcentajeDeDescuento(double tarifa, double precio) {...}</code></strong> &#x1F44D;</li>
+<li><strong><code>float Porcentaje(double tarifa, double precio) {...}</code></strong> <mark><strong>Es ambiguo</strong></mark> &#x1F44E;</li>
+</ul>
+</li>
+<li>Recuerda que <strong>identificador + par&#xE1;metros</strong> definen la <strong>signatura</strong>. Por tanto, evitaremos redundancias en el nombre, en relaci&#xF3;n con los par&#xE1;metros. Ya que estos tambi&#xE9;n me proporcionan informaci&#xF3;n de lo que hace el m&#xE9;todo.<br>
+Esto &#xFA;ltimo requiere de una reflexi&#xF3;n tras elegir un nombre.
+<ul>
+<li><strong><code>public static double Distancia(Punto2D p1, Punto2D p2) {...}</code></strong> &#x1F44D;</li>
+<li><strong><code>public static double CalculaDistanciaEntrePuntos(Punto2D p1, Punto2D p2) {...}</code></strong> <mark><strong>Redundante</strong></mark> &#x1F44E;</li>
+</ul>
+</li>
+</ol>
+<h4 class="mume-header" id="determinar-par%C3%A1metros-de-entrada">Determinar par&#xE1;metros de entrada</h4>
+
+<ol>
+<li>
+<p>Usaremos <strong>nombres descriptivos</strong> para los par&#xE1;metros formales.</p>
+</li>
+<li>
+<p>Aunque, comentamos que no deb&#xED;amos utilizar contracciones. En determinados contextos podremos usar una inicial para el nombre del par&#xE1;metro formal, pues no hay posibilidad de confusi&#xF3;n, ni ambig&#xFC;edad.</p>
+<ul>
+<li><strong><code>double Distancia(Punto2D i, Punto2D j) {...}</code></strong> <mark><strong>i, j son ids. usados para &#xED;ndices</strong></mark> &#x1F44E;</li>
+<li><strong><code>double Distancia(Punto2D punto1, Punto2D punto2) {...}</code></strong> &#x1F44D;</li>
+<li><strong><code>double Distancia(Punto2D p1, Punto2D p2) {...}</code></strong> &#x1F44D;&#x1F44D;</li>
+</ul>
+</li>
+<li>
+<p>El pasar los par&#xE1;metros <strong>sin agrupar</strong> en los m&#xF3;dulos o funciones b&#xE1;sicas o at&#xF3;micas nos proporcionar&#xE1; mayor reusabilidad. Ya que evitaremos acoplamientos y dependencias de tipos complejos.</p>
+<blockquote>
+<p><strong>Nota:</strong> Esto es dif&#xED;cil de valorar y objeto de discusi&#xF3;n, porque lo normal es hacer lo contr&#xE1;rio.</p>
+</blockquote>
+<p>En el siguiente ejemplo. Es m&#xE1;s posible que pueda usar el m&#xE9;todo en m&#xE1;s sitios, si utilizo coordenadas puesto que no necesito conocer la clase <strong><code>Punto2D</code></strong>.</p>
+<ul>
+<li><strong><code>double Distancia(Punto2D p1, Punto2D p2){...}</code></strong> &#x1F44D;</li>
+<li><strong><code>double Distancia(double x1, double y1, double x2, double y2){...}</code></strong> &#x1F44D;&#x1F44D;</li>
+</ul>
+</li>
+</ol>
+<h4 class="mume-header" id="determinar-par%C3%A1metros-de-salida">Determinar par&#xE1;metros de salida</h4>
+
+<ol>
+<li>
+<p>A la hora de asignarles un nombre, si fuera necesario, usaremos la mismas reglas que para los par&#xE1;metros de entrada.</p>
+</li>
+<li>
+<p>Si solo tenemos <strong>un par&#xE1;metro de salida</strong> lo podremos devolver con la misma funci&#xF3;n.</p>
+<ul>
+<li><strong><code>double AnguloEnRadianes(double x1, double y1, double x2, double y2)</code></strong> &#x1F44D;</li>
+</ul>
+</li>
+<li>
+<p>Si tenemos <strong>m&#xE1;s de un par&#xE1;metro de salida</strong>, tendremos <strong>2 posibilidades</strong>:</p>
+<ol>
+<li>
+<p>Est&#xE1;n relacionados entre s&#xED;, pero aparentemente uno est&#xE1; subordinado al otro.<br>
+Un ejemplo puede ser el m&#xE9;todo est&#xE1;tico <a href="https://docs.microsoft.com/es-es/dotnet/api/system.int32.tryparse?view=netcore-3.1#System_Int32_TryParse_System_String_System_Int32__">TryParse</a> del tipo <strong><code>int</code></strong><br>
+<strong><code>bool TryParse (string s, out int result) {...}</code></strong><br>
+Devuelve si ha podido o n&#xF3; transformar la cadena <strong><code>s</code></strong> a entero, y si lo ha podido hacer (<em>subordinaci&#xF3;n</em>) me devolver&#xE1; en <strong><code>result</code></strong> el valor entero resultado de la transformaci&#xF3;n.</p>
+</li>
+<li>
+<p>Si los par&#xE1;metros est&#xE1;n relacionados sin subordinaci&#xF3;n o jerarqu&#xED;a, los podremos devolver por referencia agrup&#xE1;ndolos al final <strong>despu&#xE9;s de los par&#xE1;metros de entrada</strong>.<br>
+<strong><code>void Direccion(double anguloGr, out double sen, out double cos) {...}</code></strong> &#x1F44D;<br>
+A partir de <mark><strong>C#7</strong></mark> podemos hacer la siguiente sintaxis mucho m&#xE1;s recomendable..<br>
+<strong><code>static (double sen, double cos) Direccion(double anguloGr) {...}</code></strong> &#x1F44D;&#x1F44D;</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3, 6, 11]}" class="language-csharp" data-line="3,6,11"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token keyword">double</span> anguloGr<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
+        <span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Sen = {sen:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Cos = {cos:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre></li>
+</ol>
+<h4 class="mume-header" id="otras-consideraciones-del-dise%C3%B1o">Otras consideraciones del dise&#xF1;o</h4>
+
+<ul>
+<li>
+<p>Los m&#xE9;todos deben ser cortos. Por tanto, intentaremos que su c&#xF3;digo no exceda de una pantalla. Si esto sucede, intentaremos modularizarlo o subdividirlo a&#xFA;n m&#xE1;s.</p>
+</li>
+<li>
+<p>Deberemos agrupar bloques de c&#xF3;digo relacionado en procedimientos que adem&#xE1;s de acortar la funci&#xF3;n nos auto-documentar&#xE1; el c&#xF3;digo.</p>
+</li>
+<li>
+<p>Si el m&#xE9;todo tiene excesiva carga l&#xF3;gica, salvo en casos muy simples, <strong>evitaremos usar retornos en medio de la l&#xF3;gica de la funci&#xF3;n</strong>.<br>
+Esta pr&#xE1;ctica adem&#xE1;s de liar puede llevar a errores por olvido cerrar flujos de datos, liberaci&#xF3;n de recursos en lenguajes no gestionados, etc&#x2026;</p>
+</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="ejemplo-pr%C3%A1ctico-de-modularizaci%C3%B3n">Ejemplo pr&#xE1;ctico de modularizaci&#xF3;n</h2>
+
+<blockquote>
+<p>Se propone hacer un una versi&#xF3;n extendida del programa de <strong>piedra-papel-tijera</strong>.<br>
+En este versi&#xF3;n se jugar&#xE1;n <strong>rondas</strong> contra la m&#xE1;quina de <strong>1 a 4</strong> jugadores. De tal manera que el programa nos pedir&#xE1; el n&#xFA;mero de jugadores para la ronda de juego y posteriormente para cada jugador, indicar&#xE1; que jugador juega y le pedir&#xE1; a este una jugada.<br>
+Acto seguido, la m&#xE1;quina har&#xE1; una jugada aleatoria y nos mostrar&#xE1; el resultado del juego de ese jugador en esa ronda.<br>
+Cuando hayan jugado todos los jugadores de la ronda, la m&#xE1;quina nos pedir&#xE1; que pulsemos una tecla para jugar otra ronda o ESC para salir.</p>
+<p><strong>Nota:</strong> Para repasar algunas de las estructuras vistas en el anterior tema. Vamos ha hacer que el ordenador filtre las entradas da datos del usuario, nos deber&#xE1; indicar si es incorrecta, y la volver&#xE1; a pedir en tal caso.</p>
+</blockquote>
+<p>Una posible descomposici&#xF3;n del problema en m&#xF3;dulos ser&#xED;a la siguiente...<br>
+F&#xED;jate que cada m&#xF3;dulo <strong>solo hace una cosa</strong>.<br>
+<strong>Nota:</strong> Aquellos m&#xF3;dulos a los que se les pasa el control m&#xE1;s de una vez en un bucle, lo indicaremos en la flecha con una etiqueta.</p>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="599pt" height="314pt" viewBox="0.00 0.00 599.12 313.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 309.8)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-309.8 595.1213,-309.8 595.1213,4 -4,4"/>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<text text-anchor="start" x="8" y="-280.6" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 0</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<text text-anchor="start" x="8" y="-187.8" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 1</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="transparent" d="M29.3878,-265.4657C29.3878,-252.3742 29.3878,-234.508 29.3878,-219.5573"/>
+<polygon fill="transparent" stroke="transparent" points="32.8879,-219.2962 29.3878,-209.2962 25.8879,-219.2962 32.8879,-219.2962"/>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<text text-anchor="start" x="8" y="-96.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 2</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1-&gt;n2</title>
+<path fill="none" stroke="transparent" d="M29.3878,-172.9028C29.3878,-159.9805 29.3878,-142.3454 29.3878,-127.5881"/>
+<polygon fill="transparent" stroke="transparent" points="32.8879,-127.4596 29.3878,-117.4596 25.8879,-127.4597 32.8879,-127.4596"/>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<text text-anchor="start" x="8" y="-17.6" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 3</text>
+</g>
+<!-- n2&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n2-&gt;n3</title>
+<path fill="none" stroke="transparent" d="M29.3878,-81.17C29.3878,-71.6465 29.3878,-59.7793 29.3878,-49.0931"/>
+<polygon fill="transparent" stroke="transparent" points="32.8879,-48.9311 29.3878,-38.9311 25.8879,-48.9312 32.8879,-48.9311"/>
+</g>
+<!-- P -->
+<g id="node5" class="node">
+<title>P</title>
+<polygon fill="none" stroke="#000000" points="271.0705,-301.8 201.7051,-301.8 201.7051,-265.8 271.0705,-265.8 271.0705,-301.8"/>
+<polygon fill="none" stroke="#000000" points="275.0533,-305.8 197.7223,-305.8 197.7223,-261.8 275.0533,-261.8 275.0533,-305.8"/>
+<text text-anchor="middle" x="236.3878" y="-279.6" font-family="Arial" font-size="14.00" fill="#000000">Principal</text>
+</g>
+<!-- JR -->
+<g id="node6" class="node">
+<title>JR</title>
+<polygon fill="none" stroke="#000000" points="286.1461,-209 186.6295,-209 186.6295,-173 286.1461,-173 286.1461,-209"/>
+<text text-anchor="middle" x="236.3878" y="-186.8" font-family="Arial" font-size="14.00" fill="#000000">Juega Ronda</text>
+</g>
+<!-- P&#45;&gt;JR -->
+<g id="edge4" class="edge">
+<title>P-&gt;JR</title>
+<path fill="none" stroke="#000000" d="M236.3878,-261.3357C236.3878,-248.7224 236.3878,-232.8595 236.3878,-219.3923"/>
+<polygon fill="#000000" stroke="#000000" points="239.8879,-219.2132 236.3878,-209.2132 232.8879,-219.2132 239.8879,-219.2132"/>
+<text text-anchor="middle" x="270.0123" y="-231.2" font-family="Times,serif" font-size="14.00" fill="#000000">1 a ? rondas</text>
+</g>
+<!-- PNJ -->
+<g id="node7" class="node">
+<title>PNJ</title>
+<polygon fill="none" stroke="#000000" points="251.1012,-120.0019 151.6744,-120.0019 151.6744,-78.7981 251.1012,-78.7981 251.1012,-120.0019"/>
+<text text-anchor="middle" x="201.3878" y="-103.6" font-family="Arial" font-size="14.00" fill="#000000">Pide N&#xFA;mero</text>
+<text text-anchor="middle" x="201.3878" y="-86.8" font-family="Arial" font-size="14.00" fill="#000000">Jugadores</text>
+</g>
+<!-- JR&#45;&gt;PNJ -->
+<g id="edge5" class="edge">
+<title>JR-&gt;PNJ</title>
+<path fill="none" stroke="#000000" d="M229.4729,-172.9028C224.7464,-160.5329 218.3698,-143.8443 212.8872,-129.4956"/>
+<polygon fill="#000000" stroke="#000000" points="216.1045,-128.1095 209.2657,-120.0175 209.5655,-130.6081 216.1045,-128.1095"/>
+</g>
+<!-- J -->
+<g id="node8" class="node">
+<title>J</title>
+<polygon fill="none" stroke="#000000" points="353.8505,-120.0019 268.9251,-120.0019 268.9251,-78.7981 353.8505,-78.7981 353.8505,-120.0019"/>
+<text text-anchor="middle" x="311.3878" y="-103.6" font-family="Arial" font-size="14.00" fill="#000000">Juega</text>
+<text text-anchor="middle" x="311.3878" y="-86.8" font-family="Arial" font-size="14.00" fill="#000000"> Jugador N</text>
+</g>
+<!-- JR&#45;&gt;J -->
+<g id="edge6" class="edge">
+<title>JR-&gt;J</title>
+<path fill="none" stroke="#000000" d="M251.2054,-172.9028C261.7231,-160.0571 276.0541,-142.5542 288.093,-127.8507"/>
+<polygon fill="#000000" stroke="#000000" points="290.8796,-129.9721 294.5067,-120.0175 285.4634,-125.5375 290.8796,-129.9721"/>
+<text text-anchor="middle" x="320.9576" y="-142.4" font-family="Times,serif" font-size="14.00" fill="#000000">1 a 4 jugadores</text>
+</g>
+<!-- PJ -->
+<g id="node9" class="node">
+<title>PJ</title>
+<polygon fill="none" stroke="#000000" points="170.2,-41.4019 76.5756,-41.4019 76.5756,-.1981 170.2,-.1981 170.2,-41.4019"/>
+<text text-anchor="middle" x="123.3878" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Pide Jugada</text>
+<text text-anchor="middle" x="123.3878" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">a Jugador N</text>
+</g>
+<!-- J&#45;&gt;PJ -->
+<g id="edge7" class="edge">
+<title>J-&gt;PJ</title>
+<path fill="none" stroke="#000000" d="M268.7277,-81.5644C242.4478,-70.5772 208.4452,-56.3612 179.9367,-44.4423"/>
+<polygon fill="#000000" stroke="#000000" points="181.0746,-41.1244 170.4984,-40.4962 178.3744,-47.5827 181.0746,-41.1244"/>
+</g>
+<!-- GJM -->
+<g id="node10" class="node">
+<title>GJM</title>
+<polygon fill="none" stroke="#000000" points="300.8741,-41.4019 187.9015,-41.4019 187.9015,-.1981 300.8741,-.1981 300.8741,-41.4019"/>
+<text text-anchor="middle" x="244.3878" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Genera Jugada</text>
+<text text-anchor="middle" x="244.3878" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Maquina</text>
+</g>
+<!-- J&#45;&gt;GJM -->
+<g id="edge8" class="edge">
+<title>J-&gt;GJM</title>
+<path fill="none" stroke="#000000" d="M293.7843,-78.7488C286.1512,-69.7941 277.0847,-59.1578 268.8157,-49.4572"/>
+<polygon fill="#000000" stroke="#000000" points="271.2571,-46.926 262.1063,-41.5862 265.9299,-51.467 271.2571,-46.926"/>
+</g>
+<!-- RJ -->
+<g id="node11" class="node">
+<title>RJ</title>
+<polygon fill="none" stroke="#000000" points="439.4755,-41.4019 319.3001,-41.4019 319.3001,-.1981 439.4755,-.1981 439.4755,-41.4019"/>
+<text text-anchor="middle" x="379.3878" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Obt&#xE9;n Resultado</text>
+<text text-anchor="middle" x="379.3878" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Jugadas</text>
+</g>
+<!-- J&#45;&gt;RJ -->
+<g id="edge9" class="edge">
+<title>J-&gt;RJ</title>
+<path fill="none" stroke="#000000" d="M329.254,-78.7488C337.0785,-69.7046 346.3871,-58.9449 354.8468,-49.1665"/>
+<polygon fill="#000000" stroke="#000000" points="357.509,-51.4388 361.4048,-41.5862 352.2152,-46.8589 357.509,-51.4388"/>
+</g>
+<!-- MRJ -->
+<g id="node12" class="node">
+<title>MRJ</title>
+<polygon fill="none" stroke="#000000" points="591.3556,-41.4019 457.42,-41.4019 457.42,-.1981 591.3556,-.1981 591.3556,-41.4019"/>
+<text text-anchor="middle" x="524.3878" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Muestra Resultado</text>
+<text text-anchor="middle" x="524.3878" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Jugadas</text>
+</g>
+<!-- J&#45;&gt;MRJ -->
+<g id="edge10" class="edge">
+<title>J-&gt;MRJ</title>
+<path fill="none" stroke="#000000" d="M353.7244,-83.7772C383.7774,-72.6872 424.6981,-57.5869 458.9361,-44.9526"/>
+<polygon fill="#000000" stroke="#000000" points="460.2312,-48.2054 468.4012,-41.4599 457.8078,-41.6383 460.2312,-48.2054"/>
+</g>
+</g>
+</svg>
+</p><p>Vamos seguir la modularizaci&#xF3;n propuesta teniendo en cuenta que:</p>
+<ul>
+<li>Empezaremos <strong>con los m&#xF3;dulos del nivel m&#xE1;s bajo</strong> y nos centraremos en lo que tienen que hacer, que par&#xE1;metros necesitan y que devuelven. Sin preocuparnos de quien los llama.</li>
+<li>No todos los m&#xF3;dulos puede que se sust&#xE1;ncien en un m&#xE9;todo, ya que puede que no tengan la entidad suficiente para hacerlo o ya est&#xE9;n implementados en el propio lenguaje.</li>
+<li>En este c&#xF3;digo hemos comentado lo que hacemos por ser un ejemplo aunque en la realidad <strong>no lo haremos</strong>.</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<ol>
+<li>
+<p>Partiremos del siguiente esqueleto del programa. F&#xED;jate que hemos definido 3 constantes de texto que nos ser&#xE1;n de utilidad durante la implementaci&#xF3;n del programa, al tener el modificador <strong><code>cosnt</code></strong> podr&#xE1;n ser usadas por cualquier m&#xE9;todo est&#xE1;tico de la clase.<br>
+<strong>Nota:</strong> Todos nuestros m&#xF3;dulos ir&#xE1;n dentro de la clase <strong><code>EjemploModularizacion</code></strong> junto con el Main().</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> System<span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> Ejemplo
+<span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">EjemploModularizacion</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token keyword">string</span> PIEDRA <span class="token operator">=</span> <span class="token string">&quot;PIEDRA&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token keyword">string</span> PAPEL <span class="token operator">=</span> <span class="token string">&quot;PAPEL&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token keyword">string</span> TIJERA <span class="token operator">=</span> <span class="token string">&quot;TIJERA&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Como hemos comentado empezamos por los <strong>m&#xF3;dulos de Nivel 3</strong> definiendo su interfaz.</p>
+<p><code>[Pide Jugada a Jugador N]</code> &#x2192; <strong><code>static string PideJugada(string jugador)</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>PideJugada</code></strong></li>
+<li><strong>Entrada</strong>: <strong><code>string jugador</code></strong> Nombre del jugador al que le voy a pedir la jugada.</li>
+<li><strong>Salida</strong>: <strong><code>string</code></strong> Texto con la jugada de ese jugador &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot;<em>TIJERA</em>&quot;.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">PideJugada</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugador<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Jugada a retornar por el jugador.</span>
+    <span class="token keyword">string</span> jugada<span class="token punctuation">;</span>
+
+    <span class="token comment">// Flag que me indicar&#xE1; si el Jugador N ha realizado una jugada correcta.</span>
+    <span class="token keyword">bool</span> jugadaCorrecta<span class="token punctuation">;</span>
+
+    <span class="token comment">// Establezco el texto de las jugadas para no tener que repetirlo.</span>
+    <span class="token keyword">string</span> opciones <span class="token operator">=</span> $<span class="token string">&quot;{PIEDRA}, {PAPEL}, {TIJERA}&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Bucle que me ir&#xE1; pidiendo una jugada mientras no sea correcta.</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Indico el jugador que tiene que jugar y que me llega como par&#xE1;metro.</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Jugando {jugador} ...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>$<span class="token string">&quot;\tIntroduce t&#xFA; jugada ({opciones}): &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jugada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jugadaCorrecta <span class="token operator">=</span> jugada <span class="token operator">==</span> PIEDRA <span class="token operator">||</span> jugada <span class="token operator">==</span> PAPEL <span class="token operator">||</span> jugada <span class="token operator">==</span> TIJERA<span class="token punctuation">;</span>
+
+        <span class="token comment">// Si voy a volver a pedir la entrada le indico al jugador su error.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>jugadaCorrecta<span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;\t{jugada} no es una jugada correcta. Debe ser {opciones}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>jugadaCorrecta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> jugada<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <div style="page-break-after:always;"></div>
+<p><code>[Genera Jugada M&#xE1;quina]</code> &#x2192; <strong><code>static string GeneraJugadaMaquina()</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>GeneraJugadaMaquina</code></strong></li>
+<li><strong>Entrada</strong>: Nada. Aunque en la mayor&#xED;a de ocasiones <strong>ser&#xED;a conveniente pasar la semilla con la que generar el n&#xFA;mero aleatorio</strong>. De esta manera, evitaremos valores repetidos.</li>
+<li><strong>Salida</strong>: <strong><code>string</code></strong> Texto con la jugada de la m&#xE1;quina &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot;<em>TIJERA</em>&quot;.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Habr&#xE1; muchas formas correctas de implementarlo. Pero por usar la nueva sintaxis de C#8</span>
+    <span class="token comment">// Podemos retornar el resultado de evaluar una expresi&#xF3;n switch.</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">switch</span>
+    <span class="token punctuation">{</span>
+        <span class="token number">0</span> <span class="token operator">=&gt;</span> PIEDRA<span class="token punctuation">,</span>
+        <span class="token number">1</span> <span class="token operator">=&gt;</span> PAPEL<span class="token punctuation">,</span>
+        <span class="token number">2</span> <span class="token operator">=&gt;</span> TIJERA<span class="token punctuation">,</span>
+        _ <span class="token operator">=&gt;</span> <span class="token string">&quot;Jugada no v&#xE1;lida&quot;</span> <span class="token comment">// Este caso no se podr&#xE1; dar, aqu&#xED; deber&#xED;amos generar un error.</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>    
+</pre><p><code>[Obt&#xE9;n Resultado Jugadas]</code> &#x2192; <strong><code>static string Resultado(string jugadaUsuario, string jugadaMaquina)</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>Resultado</code></strong> <s>Obten</s>Resultado<s>Jugadas</s> ser&#xED;a redundante.</li>
+<li><strong>Entrada</strong>:
+<ul>
+<li><strong><code>string jugadaUsuario</code></strong> Texto con la jugada del usuario.</li>
+<li><strong><code>string jugadaMaquina</code></strong> Texto con la jugada de la m&#xE1;quina.<br>
+Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot;<em>TIJERA</em>&quot;</li>
+</ul>
+</li>
+<li><strong>Salida</strong>: <strong><code>string</code></strong> Texto el resultado de la jugada a mostrar al usuario &quot;<em>Empate</em>&quot;, &quot;<em>He ganado</em>&quot; o &quot;<em>He perdido</em>&quot;.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">Resultado</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugadaUsuario<span class="token punctuation">,</span> <span class="token keyword">string</span> jugadaMaquina<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">string</span> resultado<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>jugadaMaquina <span class="token operator">==</span> jugadaUsuario<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        resultado <span class="token operator">=</span> <span class="token string">&quot;Empate&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">switch</span> <span class="token punctuation">(</span>jugadaMaquina<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token class-name">PIEDRA</span> when jugadaUsuario <span class="token operator">==</span> TIJERA<span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token class-name">PAPEL</span> when jugadaUsuario <span class="token operator">==</span> PIEDRA<span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token class-name">TIJERA</span> when jugadaUsuario <span class="token operator">==</span> PAPEL<span class="token punctuation">:</span>
+            resultado <span class="token operator">=</span> <span class="token string">&quot;He ganado&quot;</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span>
+            resultado <span class="token operator">=</span> <span class="token string">&quot;He perdido&quot;</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> resultado<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</pre><p><code>[Muestra Resultado Jugadas]</code> &#x2192; <strong><code>static void WriteLine(...)</code></strong></p>
+<p>No se sustanciar&#xE1; en un m&#xE9;todo pues mostrar por consola ya est&#xE1; definido en <strong><code>System.Console</code></strong></p>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<ol start="3">
+<li>
+<p>Como hemos comentado empezamos por el <strong>m&#xF3;dulos de Nivel 2</strong> definiendo su interfaz.</p>
+<p><code>[Pide N&#xFA;mero Jugadores]</code> &#x2192; <strong><code>static int PideNumeroJugadores()</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>PideNumeroJugadores</code></strong></li>
+<li><strong>Entrada</strong>: Nada.</li>
+<li><strong>Salida</strong>: <strong><code>int</code></strong> N&#xFA;mero de jugadores que disputan esa ronda introducida por el usuario.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// El esquema algor&#xED;tmico del m&#xE9;todo es an&#xE1;logo al de PideJugada</span>
+<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">bool</span> numeroCorrecto<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> jugadores<span class="token punctuation">;</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce cuantos jugadores van a participar (1 a 4): &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">string</span> entrada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        numeroCorrecto <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span>entrada<span class="token punctuation">,</span> <span class="token keyword">out</span> jugadores<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        numeroCorrecto <span class="token operator">=</span> numeroCorrecto <span class="token operator">&amp;&amp;</span> jugadores <span class="token operator">&gt;=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> jugadores <span class="token operator">&lt;=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>numeroCorrecto<span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;{entrada} no es correcto. Debe ser un valor entre 1 y 4.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>numeroCorrecto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> jugadores<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</pre><p><code>[Juega Jugador N]</code> &#x2192; <strong><code>static void Juega(string jugador)</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>Juega</code></strong></li>
+<li><strong>Entrada</strong>: <strong><code>string jugador</code></strong> Nombre del jugador que va a jugar.</li>
+<li><strong>Salida</strong>: Nada.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp {highlight=[11-14]}" class="language-csharp" data-line="11-14"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Juega</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugador<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Juega transfiere el control a los 4 m&#xF3;dulos en los que lo hemos subdividido</span>
+    <span class="token comment">// en el orden correcto (Izquierda a Derecha)</span>
+    <span class="token comment">// 1.- Pide Jugada a jugador N</span>
+    <span class="token comment">// 2.- Renera Jugada M&#xE1;quina</span>
+    <span class="token comment">// 3.- Obt&#xE9;n Resultado Jugadas</span>
+    <span class="token comment">// 4.- Muestra el resultado.</span>
+
+    <span class="token comment">// Al modularizar el m&#xF3;dulo queda legible, autodocumentado y ocupa menos de 10 l&#xED;neas.</span>
+    <span class="token keyword">string</span> jugadaUsuario <span class="token operator">=</span> <span class="token function">PideJugada</span><span class="token punctuation">(</span>jugador<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">string</span> jugadaMaquina <span class="token operator">=</span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">string</span> resultado <span class="token operator">=</span> <span class="token function">Resultado</span><span class="token punctuation">(</span>jugadaUsuario<span class="token punctuation">,</span> jugadaMaquina<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;\tYo he jugado {jugadaMaquina}\n&quot;</span>
+                    <span class="token operator">+</span> $<span class="token string">&quot;\t{jugador} ha jugado {jugadaUsuario}\n&quot;</span>
+                    <span class="token operator">+</span> $<span class="token string">&quot;\t{resultado}\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11-14" data-start="11" data-end="14">
+
+
+
+</div></div></pre></li>
+</ol>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="613pt" height="215pt" viewBox="0.00 0.00 612.73 215.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 211.2)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-211.2 608.7335,-211.2 608.7335,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-147.2 8,-199.2 78,-199.2 78,-147.2 8,-147.2"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="transparent" points="290,-147.2 290,-199.2 360,-199.2 360,-147.2 290,-147.2"/>
+</g>
+<!-- n1 -->
+<g id="node1" class="node">
+<title>n1</title>
+</g>
+<!-- n2 -->
+<g id="node2" class="node">
+<title>n2</title>
+<text text-anchor="start" x="21.6122" y="-95.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 2</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge1" class="edge">
+<title>n1-&gt;n2</title>
+<path fill="none" stroke="transparent" d="M43,-155.093C43,-146.6112 43,-136.3062 43,-126.8204"/>
+<polygon fill="transparent" stroke="transparent" points="46.5001,-126.5995 43,-116.5995 39.5001,-126.5995 46.5001,-126.5995"/>
+</g>
+<!-- n3 -->
+<g id="node3" class="node">
+<title>n3</title>
+<text text-anchor="start" x="21.6122" y="-17.6" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Nivel 3</text>
+</g>
+<!-- n2&#45;&gt;n3 -->
+<g id="edge2" class="edge">
+<title>n2-&gt;n3</title>
+<path fill="none" stroke="transparent" d="M43,-80.0099C43,-70.829 43,-59.5167 43,-49.2482"/>
+<polygon fill="transparent" stroke="transparent" points="46.5001,-49.0581 43,-39.0581 39.5001,-49.0581 46.5001,-49.0581"/>
+</g>
+<!-- P -->
+<g id="node4" class="node">
+<title>P</title>
+<text text-anchor="middle" x="325" y="-169" font-family="Arial" font-size="14.00" fill="#000000">...</text>
+</g>
+<!-- J -->
+<g id="node5" class="node">
+<title>J</title>
+<polygon fill="none" stroke="#000000" points="367.4627,-119.0019 282.5373,-119.0019 282.5373,-77.7981 367.4627,-77.7981 367.4627,-119.0019"/>
+<text text-anchor="middle" x="325" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">Juega</text>
+<text text-anchor="middle" x="325" y="-85.8" font-family="Arial" font-size="14.00" fill="#000000"> Jugador N</text>
+</g>
+<!-- P&#45;&gt;J -->
+<g id="edge3" class="edge">
+<title>P-&gt;J</title>
+<path fill="none" stroke="#000000" d="M325,-155.093C325,-147.4083 325,-138.2272 325,-129.5145"/>
+<polygon fill="#000000" stroke="#000000" points="328.5001,-129.2515 325,-119.2515 321.5001,-129.2515 328.5001,-129.2515"/>
+</g>
+<!-- PJ -->
+<g id="node6" class="node">
+<title>PJ</title>
+<polygon fill="none" stroke="#000000" points="183.8122,-41.4019 90.1878,-41.4019 90.1878,-.1981 183.8122,-.1981 183.8122,-41.4019"/>
+<text text-anchor="middle" x="137" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Pide Jugada</text>
+<text text-anchor="middle" x="137" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">a Jugador N</text>
+</g>
+<!-- J&#45;&gt;PJ -->
+<g id="edge4" class="edge">
+<title>J-&gt;PJ</title>
+<path fill="none" stroke="#000000" d="M282.3399,-80.7914C256.06,-69.9439 222.0574,-55.9088 193.5489,-44.1415"/>
+<polygon fill="#000000" stroke="#000000" points="194.6895,-40.8259 184.1106,-40.2456 192.0187,-47.2963 194.6895,-40.8259"/>
+</g>
+<!-- GJM -->
+<g id="node7" class="node">
+<title>GJM</title>
+<polygon fill="none" stroke="#000000" points="314.4863,-41.4019 201.5137,-41.4019 201.5137,-.1981 314.4863,-.1981 314.4863,-41.4019"/>
+<text text-anchor="middle" x="258" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Genera Jugada</text>
+<text text-anchor="middle" x="258" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Maquina</text>
+</g>
+<!-- J&#45;&gt;GJM -->
+<g id="edge5" class="edge">
+<title>J-&gt;GJM</title>
+<path fill="none" stroke="#000000" d="M307.0452,-77.6046C299.5351,-68.9063 290.6856,-58.6567 282.5859,-49.2756"/>
+<polygon fill="#000000" stroke="#000000" points="285.1887,-46.9346 276.0043,-41.6528 279.8904,-51.5092 285.1887,-46.9346"/>
+</g>
+<!-- RJ -->
+<g id="node8" class="node">
+<title>RJ</title>
+<polygon fill="none" stroke="#000000" points="453.0877,-41.4019 332.9123,-41.4019 332.9123,-.1981 453.0877,-.1981 453.0877,-41.4019"/>
+<text text-anchor="middle" x="393" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Obt&#xE9;n Resultado</text>
+<text text-anchor="middle" x="393" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Jugadas</text>
+</g>
+<!-- J&#45;&gt;RJ -->
+<g id="edge6" class="edge">
+<title>J-&gt;RJ</title>
+<path fill="none" stroke="#000000" d="M343.2228,-77.6046C350.845,-68.9063 359.8266,-58.6567 368.0472,-49.2756"/>
+<polygon fill="#000000" stroke="#000000" points="370.7687,-51.4805 374.7269,-41.6528 365.504,-46.8671 370.7687,-51.4805"/>
+</g>
+<!-- MRJ -->
+<g id="node9" class="node">
+<title>MRJ</title>
+<polygon fill="none" stroke="#000000" points="604.9678,-41.4019 471.0322,-41.4019 471.0322,-.1981 604.9678,-.1981 604.9678,-41.4019"/>
+<text text-anchor="middle" x="538" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Muestra Resultado</text>
+<text text-anchor="middle" x="538" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Jugadas</text>
+</g>
+<!-- J&#45;&gt;MRJ -->
+<g id="edge7" class="edge">
+<title>J-&gt;MRJ</title>
+<path fill="none" stroke="#000000" d="M367.3366,-82.976C397.1678,-72.1079 437.7069,-57.3387 471.7892,-44.9219"/>
+<polygon fill="#000000" stroke="#000000" points="473.0189,-48.199 481.2166,-41.4873 470.6227,-41.6219 473.0189,-48.199"/>
+</g>
+</g>
+</svg>
+</p><div style="page-break-after:always;"></div>
+<ol start="4">
+<li>
+<p>Por &#xFA;ltimo definimos los m&#xF3;dulos del <strong>Nivel 1</strong> y el <strong>Nivel 0</strong> donde estar&#xE1; el m&#xF3;dulo principal o Main.</p>
+<p><code>[Juega Ronda]</code> &#x2192; <strong><code>static void JuegaRonda()</code></strong></p>
+<p>Notemos que la signatura completa, incluido el identificador, me dice lo que va ha hacer:</p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>JuegaRonda</code></strong></li>
+<li><strong>Entrada</strong>: Nada.</li>
+<li><strong>Salida</strong>:  Nada.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp {highlight=[7, 9]}" class="language-csharp" data-line="7,9"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">JuegaRonda</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// JuegaRonda transfiere el control a los 2 m&#xF3;dulos en los que lo hemos subdividido...</span>
+    <span class="token comment">// 1.- Pide Numero Jugadores</span>
+    <span class="token comment">// 2.- Juega Jugador N</span>
+
+    <span class="token keyword">int</span> jugadores <span class="token operator">=</span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> jugadores<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">Juega</span><span class="token punctuation">(</span>$<span class="token string">&quot;Jugador_{i}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div></pre><p><code>[Principal]</code> &#x2192; <strong><code>static void Main()</code></strong></p>
+<ul>
+<li><strong>Identificador</strong>: <strong><code>Main</code></strong> Por la especificaci&#xF3;n del lenguaje C#</li>
+<li><strong>Entrada</strong>: Nada.</li>
+<li><strong>Salida</strong>:  Nada.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp {highlight=12}" class="language-csharp" data-line="12"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Podr&#xED;amos pensar que si incluimos el c&#xF3;digo de JuegaRonda aqu&#xED; dentro tampoco</span>
+        <span class="token comment">// quedar&#xED;a un m&#xE9;todo muy complejo.</span>
+        <span class="token comment">// Pero tendr&#xED;amos un bucle dentro de un bucle y eso nos est&#xE1; indicando que ese</span>
+        <span class="token comment">// segundo bucle est&#xE1; haciendo un proceso que a su ves se puede encapsular en </span>
+        <span class="token comment">// un m&#xF3;dulo.</span>
+        <span class="token function">JuegaRonda</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;&#xA1;&#xA1;&#xA1; FIN PARTIDA !!!.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Pulsa una tecla para jugar otra ronda. ESC para salir.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Escape<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="12" data-start="12">
+</div></div></pre></li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
