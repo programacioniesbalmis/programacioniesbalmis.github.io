@@ -1,2 +1,0 @@
-# programacioniesbalmis
-C# Programming Coruse
