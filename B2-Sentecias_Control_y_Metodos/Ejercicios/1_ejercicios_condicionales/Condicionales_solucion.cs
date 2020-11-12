@@ -10,7 +10,7 @@ using System.Diagnostics;
 #region Ejercicio 1
 
 /* 
-* Se piden dos n�meros, si el primero es mayor que el segundo
+* Se piden dos n?meros, si el primero es mayor que el segundo
 * se calcula la resta, 
 * en caso contrario se calcula la suma
 */
@@ -48,7 +48,7 @@ namespace Ejercicio1
 
 #region Ejercicio 2
 
-/*Pide dos n�meros enteros y di cual es el mayor. Realiza el ejercicio de dos formas
+/*Pide dos n?meros enteros y di cual es el mayor. Realiza el ejercicio de dos formas
  *diferentes: utilizando un IF y utilizando el operador ternario ?: 
  */
 
@@ -65,7 +65,7 @@ namespace Ejercicio2
 
             int numeroMayor, numeroMenor;
 
-            // Soluci�n 1 con if
+            // Soluci?n 1 con if
             if (numero1 > numero2)
             {
                 numeroMayor = numero1;
@@ -76,12 +76,12 @@ namespace Ejercicio2
                 numeroMayor = numero2;
                 numeroMenor = numero1;
             }
-            Console.Write("El n�mero {0} es mayor que el n�mero {1}\n", numeroMayor, numeroMenor);
+            Console.Write("El n?mero {0} es mayor que el n?mero {1}\n", numeroMayor, numeroMenor);
 
-            // Soluci�n 2 con ternarios
+            // Soluci?n 2 con ternarios
             numeroMayor = (numero1 > numero2) ? numero1 : numero2;
             numeroMenor = (numero1 > numero2) ? numero2 : numero1;
-            Console.Write("El n�mero {0} es mayor que el n�mero {1}\n", numeroMayor, numeroMenor);
+            Console.Write("El n?mero {0} es mayor que el n?mero {1}\n", numeroMayor, numeroMenor);
         }
     }
 }
@@ -91,10 +91,10 @@ namespace Ejercicio2
 #region Ejercicio 3
 
 /*Una agencia de viajes utiliza para calcular el coste de unas vacaciones, dos premisas: 
- *el tipo de vacaciones y la duraci�n en d�as.
- *Las vacaciones tipo A cuestan 250 Euros por d�a y las vacaciones tipo B cuestan 150 Euros por d�a. 
- *Las vacaciones incluyen el coste por d�a m�s un plus �nico por cargo de servicio de 50 Euros.**
- *Realiza un programa que solicite el tipo de vacaciones y el n�mero de d�as y visualice en pantalla el total a pagar.*/
+ *el tipo de vacaciones y la duraci?n en d?as.
+ *Las vacaciones tipo A cuestan 250 Euros por d?a y las vacaciones tipo B cuestan 150 Euros por d?a. 
+ *Las vacaciones incluyen el coste por d?a m?s un plus ?nico por cargo de servicio de 50 Euros.**
+ *Realiza un programa que solicite el tipo de vacaciones y el n?mero de d?as y visualice en pantalla el total a pagar.*/
 namespace Ejercicio3
 {
     class Program
@@ -108,21 +108,21 @@ namespace Ejercicio3
             Console.Write("Introducir el tipo de vacaciones A|B: ");
             tipoVacaciones = char.Parse(Console.ReadLine());
             tipoVacaciones=Char.ToUpper(tipoVacaciones);
-            Console.Write("Introducir los d�as de vacaciones: ");
+            Console.Write("Introducir los d?as de vacaciones: ");
             duracionDias = short.Parse(Console.ReadLine());
 
             string texto;
             if (tipoVacaciones == 'A')
 			{
                 costeVacaciones=duracionDias*250;
-				texto=$"El precio de tus vacaciones tipo A es de {costeVacaciones} m�s el plus de servicio de 50euros, en total {costeVacaciones+50}euros";
+				texto=$"El precio de tus vacaciones tipo A es de {costeVacaciones} m?s el plus de servicio de 50euros, en total {costeVacaciones+50}euros";
 			}
             else if (tipoVacaciones == 'B')
 			{
                costeVacaciones=duracionDias*150;
-			   texto=$"El precio de tus vacaciones tipo B es de {costeVacaciones} m�s el plus de servicio de 50euros, en total {costeVacaciones+50}euros";
+			   texto=$"El precio de tus vacaciones tipo B es de {costeVacaciones} m?s el plus de servicio de 50euros, en total {costeVacaciones+50}euros";
 			}
-		     else texto=$"Opci�n no valida de vacaciones";
+		     else texto=$"Opci?n no valida de vacaciones";
 
             Console.WriteLine(texto);
 		}
@@ -134,7 +134,7 @@ namespace Ejercicio3
 
 
 #region Ejercicio 4
-/*Se piden cuatro n�meros. Mostrar por pantalla cual es el mayor*/
+/*Se piden cuatro n?meros. Mostrar por pantalla cual es el mayor*/
 namespace Ejercicio4
 {
     class Program
@@ -144,25 +144,25 @@ namespace Ejercicio4
             
            short numero1, numero2, numero3, numero4;
 
-            Console.Write("Introducir el primer n�mero: ");
+            Console.Write("Introducir el primer n?mero: ");
             numero1 = short.Parse(Console.ReadLine());
-             Console.Write("Introducir el segundo n�mero: ");
+             Console.Write("Introducir el segundo n?mero: ");
             numero2 = short.Parse(Console.ReadLine());
-             Console.Write("Introducir el tercer n�mero: ");
+             Console.Write("Introducir el tercer n?mero: ");
             numero3 = short.Parse(Console.ReadLine());
-             Console.Write("Introducir el cuarto n�mero: ");
+             Console.Write("Introducir el cuarto n?mero: ");
             numero4 = short.Parse(Console.ReadLine());
 
             string texto;
             if(numero1==numero2 && numero2==numero3 && numero3==numero4)
-                texto=$"Los cuatro n�meros son iguales";
+                texto=$"Los cuatro n?meros son iguales";
             else if (numero1>numero2 && numero1>numero3 && numero1>numero4)
-                texto=$"El numero mayor es {numero1} que fu� el primero introducido";
+                texto=$"El numero mayor es {numero1} que fu? el primero introducido";
             else if (numero2>numero1 && numero2>numero3 && numero2>numero4)
-                texto=$"El numero mayor es {numero2} que fu� el segundo introducido";
+                texto=$"El numero mayor es {numero2} que fu? el segundo introducido";
             else if (numero3>numero1 && numero3>numero2 && numero3>numero4)
-                texto=$"El numero mayor es {numero3} que fu� el tercero introducido";
-            else texto=$"El numero mayor es {numero4} que fu� el cuarto introducido";
+                texto=$"El numero mayor es {numero3} que fu? el tercero introducido";
+            else texto=$"El numero mayor es {numero4} que fu? el cuarto introducido";
             Console.WriteLine(texto);
         }
     }
@@ -174,7 +174,7 @@ namespace Ejercicio4
 
 /* 
 * Se pide una cantidad y su precio. Hay que hallar el total aplicando un tanto por ciento de
-* descuento seg�n la cantidad comprada. 
+* descuento seg?n la cantidad comprada. 
 */
 
 namespace Ejercicio5
@@ -210,9 +210,9 @@ namespace Ejercicio5
 #endregion
 
 #region Ejercicio 6
-/*Se pide una letra, si la letra es d o D, se escribir� en la pantalla DESCUENTO, 
- *si la letra es I o i, se escribir� IVA en la pantalla, si la letra es P o p, se escribir�
- *PORCENTAJE  en otro caso se escribir� DATO ERR�NEO. Realiza el ejercicio con switch.*/
+/*Se pide una letra, si la letra es d o D, se escribir? en la pantalla DESCUENTO, 
+ *si la letra es I o i, se escribir? IVA en la pantalla, si la letra es P o p, se escribir?
+ *PORCENTAJE  en otro caso se escribir? DATO ERR?NEO. Realiza el ejercicio con switch.*/
 namespace Ejercicio6
 {
     class Program
@@ -249,11 +249,11 @@ namespace Ejercicio6
 #endregion
 
 #region Ejercicio 7
-/*Gestionamos un hotel. Se pide el n�mero de noches y si quieren habitaci�n 
- *individual (I) o habitaci�n doble (D).  Si el n�mero de noches es mayor de 2
- *y la habitaci�n es individual cobraremos 25� pero si la habitaci�n es doble 
- *cobraremos 40�. Si el n�mero de noches es menor o igual a 2 y la habitaci�n 
- *individual cobraremos 27�, pero si la habitaci�n es doble cobraremos 44�. 
+/*Gestionamos un hotel. Se pide el n?mero de noches y si quieren habitaci?n 
+ *individual (I) o habitaci?n doble (D).  Si el n?mero de noches es mayor de 2
+ *y la habitaci?n es individual cobraremos 25? pero si la habitaci?n es doble 
+ *cobraremos 40?. Si el n?mero de noches es menor o igual a 2 y la habitaci?n 
+ *individual cobraremos 27?, pero si la habitaci?n es doble cobraremos 44?. 
  *Realiza el ejercicio con switch-when
  */
 namespace Ejercicio7
@@ -267,9 +267,9 @@ namespace Ejercicio7
            short numeroNoches;
            int precioNoche=0;
 
-            Console.Write("Introducir el n�mero de noches:");
+            Console.Write("Introducir el n?mero de noches:");
             numeroNoches=short.Parse(Console.ReadLine());
-            Console.Write("Introducir tipo de habitaci�n individual o doble [I|D]:");
+            Console.Write("Introducir tipo de habitaci?n individual o doble [I|D]:");
             tipoHabitacion = Char.ToUpper(char.Parse(Console.ReadLine()));        
             string texto;
             switch(tipoHabitacion)
@@ -288,7 +288,7 @@ namespace Ejercicio7
                 break;
                 default:
                 precioNoche=0;
-                Console.WriteLine("Opci�n incorrecta");
+                Console.WriteLine("Opci?n incorrecta");
                 break;
             }
             Console.WriteLine($"El precio de su estancia en el hotel es: {precioNoche*numeroNoches}");
@@ -298,12 +298,12 @@ namespace Ejercicio7
 #region Ejercicio 8
 
 /*          
-* Una compa��a de videojuegos te ha contratado para escribir el programa de un videojuego
-* nuevo. Deber�s crear la parte del programa que calcula el n�mero total de puntos que un
-* jugador gana en el juego Galaxy. Los jugadores acumulan puntos mediante la recolecci�n
+* Una compa??a de videojuegos te ha contratado para escribir el programa de un videojuego
+* nuevo. Deber?s crear la parte del programa que calcula el n?mero total de puntos que un
+* jugador gana en el juego Galaxy. Los jugadores acumulan puntos mediante la recolecci?n
 * de objetos. Los objetos tienen asignados los siguientes puntos: estrella = 10 puntos,
 * planeta = 20 puntos, asteroide = 50 puntos y cometa = 100 puntos. Si un jugador
-* acumula m�s de 5.000 puntos, en una misma partida, ganar� un bono de 500 puntos.
+* acumula m?s de 5.000 puntos, en una misma partida, ganar? un bono de 500 puntos.
 * Hacer con switch. 
 */
 
@@ -317,8 +317,8 @@ namespace Ejercicio8
 
             Console.Write("Introduce el objeto: ");
             string objeto = Console.ReadLine();
-            Console.Write("N�mero de objetos acomulados: ");
-            int n�meroObjetosAcomunlados = int.Parse(Console.ReadLine());
+            Console.Write("N?mero de objetos acomulados: ");
+            int n?meroObjetosAcomunlados = int.Parse(Console.ReadLine());
 
             int puntosObjeto;
             switch (objeto)
@@ -350,7 +350,7 @@ namespace Ejercicio8
                     }
             }
 
-            int puntosAcomunladosEnEstajugada = puntosObjeto * n�meroObjetosAcomunlados;
+            int puntosAcomunladosEnEstajugada = puntosObjeto * n?meroObjetosAcomunlados;
 
             if (puntosAcomunladosEnEstajugada > 5000)
                 puntosAcomunladosEnEstajugada += 500;
@@ -366,10 +366,10 @@ namespace Ejercicio8
 
 #region Ejercicio 9
 
-/* Se pide una nota exacta. Si la nota es 5 se visualizar� el texto APROBADO,
- * Si la nota es 6 se visualizar� el texto BIEN, si la nota es 7 u 8 se visualizar� 
- * el texto NOTABLE, si la nota es 9 o 10 se visualizar� el texto SOBRESALIENTE, 
- * si la nota es 4 o menor se visualizar� el texto SUSPENSO, en otro caso visualizar� 
+/* Se pide una nota exacta. Si la nota es 5 se visualizar? el texto APROBADO,
+ * Si la nota es 6 se visualizar? el texto BIEN, si la nota es 7 u 8 se visualizar? 
+ * el texto NOTABLE, si la nota es 9 o 10 se visualizar? el texto SOBRESALIENTE, 
+ * si la nota es 4 o menor se visualizar? el texto SUSPENSO, en otro caso visualizar? 
  * el texto NOTA INCORRECTA.
  * Nota: Usaras el switch de C#8 para conseguir la cadena de salida.
 */
@@ -408,18 +408,18 @@ namespace Ejercicio9
 
 #region Ejercicio 10
 
-/*Modifica el programa anterior de forma que ahora adem�s, se deber� de tener en
-* cuenta la nota de pr�cticas para realizar la m�dia, siendo ambas exactas. Aunque 
-* ahora el resultado ser� una nota num�rica que puede tener decimales, adem�s tanto en 
-* las pr�cticas como en los examenes solo se podr� evaluar con tres notas (4, 7, 10). 
-* Con todo esto y las siguientes valoraciones, calcula la nota num�rica final:
-* (Para hacer este ejercicio deber�s usar switch c#8 de tupla)
-* � Si la nota del examen  es 4, la nota ser� la misma que la del examen independientemente de la de las pr�cticas.
-* � Si la nota del examen es 7 y la de pr�cticas es mayor o igual a 7 la nota ser� la media entre ambas
-* � Si la nota del examen es 7 y la de pr�cticas es 4 la nota final ser� 5
-* � Si la nota del examen es 10 y la de pr�cticas menor o igual a 7 la nota final ser� 9
-* � Si la nota del examen es 10 y la de pr�cticas es 10, la nota final ser� 11
-* Se indicar� nota incorrecta en caso de introducir una nota no permitida. Podemos usar una ternaria y la variable notaFinal nulable.
+/*Modifica el programa anterior de forma que ahora adem?s, se deber? de tener en
+* cuenta la nota de pr?cticas para realizar la m?dia, siendo ambas exactas. Aunque 
+* ahora el resultado ser? una nota num?rica que puede tener decimales, adem?s tanto en 
+* las pr?cticas como en los examenes solo se podr? evaluar con tres notas (4, 7, 10). 
+* Con todo esto y las siguientes valoraciones, calcula la nota num?rica final:
+* (Para hacer este ejercicio deber?s usar switch c#8 de tupla)
+* ? Si la nota del examen  es 4, la nota ser? la misma que la del examen independientemente de la de las pr?cticas.
+* ? Si la nota del examen es 7 y la de pr?cticas es mayor o igual a 7 la nota ser? la media entre ambas
+* ? Si la nota del examen es 7 y la de pr?cticas es 4 la nota final ser? 5
+* ? Si la nota del examen es 10 y la de pr?cticas menor o igual a 7 la nota final ser? 9
+* ? Si la nota del examen es 10 y la de pr?cticas es 10, la nota final ser? 11
+* Se indicar? nota incorrecta en caso de introducir una nota no permitida. Podemos usar una ternaria y la variable notaFinal nulable.
 */
 namespace Ejercicio10
 {
@@ -434,7 +434,7 @@ namespace Ejercicio10
             Console.Write("Introduce la nota del examen: ");
             nota = double.Parse(Console.ReadLine());
             notaRedondeadaExamen = (int)Math.Round(nota);
-            Console.Write("Introduce la nota de pr�ctica: ");
+            Console.Write("Introduce la nota de pr?ctica: ");
             nota = double.Parse(Console.ReadLine());
             notaRedondeadaPracticas = (int)Math.Round(nota);
             if (notaRedondeadaPracticas != 4 && notaRedondeadaPracticas != 7 && notaRedondeadaPracticas != 10
@@ -461,15 +461,15 @@ namespace Ejercicio10
 #endregion
 
 #region Ejercicio 11
-/* Una empresa factura a sus clientes el �ltimo d�a de cada mes. Si el cliente
+/* Una empresa factura a sus clientes el ?ltimo d?a de cada mes. Si el cliente
  * paga del 1 al 10 del mes siguiente se le hace un descuento de 50centimos o
- * del 10%, el que sea mayor ; si paga entre los d�as 11 y 20 no se le aplica
- * ning�n descuento, y si paga despu�s del d�a 20 se le penaliza con 1euro o el
+ * del 10%, el que sea mayor ; si paga entre los d?as 11 y 20 no se le aplica
+ * ning?n descuento, y si paga despu?s del d?a 20 se le penaliza con 1euro o el
  * 5%, lo que sea mayor. Se desea un programa que lea los datos del cliente:
- * nombre, direcci�n y CIF y el importe de la factura y confeccione una carta
- * dirigida al cliente inform�ndole que tiene una factura pendiente de ... euros
- * y lo que deber� pagar seg�n realice el pago del 1 al 10, del 11 al 20 o
- * despu�s del 20. 
+ * nombre, direcci?n y CIF y el importe de la factura y confeccione una carta
+ * dirigida al cliente inform?ndole que tiene una factura pendiente de ... euros
+ * y lo que deber? pagar seg?n realice el pago del 1 al 10, del 11 al 20 o
+ * despu?s del 20. 
  */
 
 namespace Ejercicio11
@@ -529,7 +529,7 @@ namespace Ejercicio11
 /* Prepara un programa que lea el cantidadEntregada de la venta y la cantidad entregada
 *  por el comprador y calcule los billetes de 100, 50, 20, 10 , 5 y las
 *  monedas de 2 y 1 euros y las de 50, 20, 10, 5, 2 y 1 centimo que se necesitan
-*  para efectuar la devoluci�n. 
+*  para efectuar la devoluci?n. 
 */
 
 namespace Ejercicio12
@@ -662,19 +662,19 @@ namespace Ejercicio12
             if (numeroMonedasDe1euro > 0)
                 textoDevolucion += numeroMonedasDe1euro + (numeroMonedasDe1euro > 1 ? " monedas" : " moneda") + " de 1 Euros\n";
 
-            //C�ntimos
+            //C?ntimos
             if (numeroMonedasDe50cent > 0)
-                textoDevolucion += numeroMonedasDe50cent + (numeroMonedasDe50cent > 1 ? " monedas" : " moneda") + " de 50 c�ntimos\n";
+                textoDevolucion += numeroMonedasDe50cent + (numeroMonedasDe50cent > 1 ? " monedas" : " moneda") + " de 50 c?ntimos\n";
             if (numeroMonedasDe20cent > 0)
-                textoDevolucion += numeroMonedasDe20cent + (numeroMonedasDe20cent > 1 ? " monedas" : " moneda") + " de 20 c�ntimos\n";
+                textoDevolucion += numeroMonedasDe20cent + (numeroMonedasDe20cent > 1 ? " monedas" : " moneda") + " de 20 c?ntimos\n";
             if (numeroMonedasDe10cent > 0)
-                textoDevolucion += numeroMonedasDe10cent + (numeroMonedasDe10cent > 1 ? " monedas" : " moneda") + " de 10 c�ntimos\n";
+                textoDevolucion += numeroMonedasDe10cent + (numeroMonedasDe10cent > 1 ? " monedas" : " moneda") + " de 10 c?ntimos\n";
             if (numeroMonedasDe5cent > 0)
-                textoDevolucion += numeroMonedasDe5cent + (numeroMonedasDe5cent > 1 ? " monedas" : " moneda") + " de 5 c�ntimos\n";
+                textoDevolucion += numeroMonedasDe5cent + (numeroMonedasDe5cent > 1 ? " monedas" : " moneda") + " de 5 c?ntimos\n";
             if (numeroMonedasDe2cent > 0)
-                textoDevolucion += numeroMonedasDe2cent + (numeroMonedasDe2cent > 1 ? " monedas" : " moneda") + " de 2 c�ntimos\n";
+                textoDevolucion += numeroMonedasDe2cent + (numeroMonedasDe2cent > 1 ? " monedas" : " moneda") + " de 2 c?ntimos\n";
             if (numeroMonedasDe1cent > 0)
-                textoDevolucion += numeroMonedasDe1cent + (numeroMonedasDe1cent > 1 ? " monedas" : " moneda") + " de 1 c�ntimo\n";
+                textoDevolucion += numeroMonedasDe1cent + (numeroMonedasDe1cent > 1 ? " monedas" : " moneda") + " de 1 c?ntimo\n";
 
             Console.WriteLine(textoDevolucion);
         }
