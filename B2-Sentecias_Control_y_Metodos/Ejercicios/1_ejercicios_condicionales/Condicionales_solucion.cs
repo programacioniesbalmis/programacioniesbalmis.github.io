@@ -181,30 +181,59 @@ namespace Ejercicio5
 {
     class Program
     {
-        static void Main(string[] args)
+        // Opción 1
+        static void Main()
         {
-            float cantidad, precio, precioTotal;
+            double cantidad_Unidades;
+            double precio_Eur, precioTotal_Eur;
 
-            Console.Write("Introduce la cantidad:");
-            cantidad = float.Parse(Console.ReadLine());
-            Console.Write("Introduce el precio:");
-            precio = float.Parse(Console.ReadLine());
+            Console.Write("Introduce la cantidad en unidades: ");
+            cantidad_Unidades = double.Parse(Console.ReadLine());
+            Console.Write("Introduce el precio en euros: ");
+            precio_Eur = double.Parse(Console.ReadLine());
 
-            precioTotal *= cantidad;
+            precioTotal_Eur = precio_Eur * cantidad_Unidades;
+            double descuento_tpu;
 
-            if (cantidad > 10 && cantidad < 31)
-                descuento = 0.05f;
-            else if (cantidad >= 31 && cantidad < 50)
-                descuento = 0.1f;
-            else if (cantidad >= 50)
-                descuento = 0.5f;
+            if (cantidad_Unidades <= 10)
+                descuento_tpu = 0f;
+            else if (cantidad_Unidades <= 30)
+                descuento_tpu = 0.05f;
+            else if (cantidad_Unidades < 50)
+                descuento_tpu = 0.1f;
             else
-                descuento = 0f;
+                descuento_tpu = 0.15f;
 
-            precioTotal -= precioTotal * descuento;
+            precioTotal_Eur -= precioTotal_Eur * descuento_tpu;
 
-            Console.WriteLine("El Precio total es: {0}", precioTotal);
+            Console.WriteLine($"El Precio total es: {precioTotal_Eur} E");
         }
+
+        // Opción 2
+        static void Main()
+        {
+            double cantidad_Unidades;
+            double precio_Eur, precioTotal_Eur;
+
+            Console.Write("Introduce la cantidad en unidades: ");
+            cantidad_Unidades = double.Parse(Console.ReadLine());
+            Console.Write("Introduce el precio en euros: ");
+            precio_Eur = double.Parse(Console.ReadLine());
+
+            precioTotal_Eur = precio_Eur * cantidad_Unidades;
+
+            ushort descuento_porcentaje = cantidad_Unidades switch
+            {
+                _ when cantidad_Unidades <= 10 => 0,
+                _ when cantidad_Unidades <= 30 => 5,
+                _ when cantidad_Unidades <= 50 => 10,
+                _ => 15 
+            };
+
+            precioTotal_Eur -= precioTotal_Eur * descuento_porcentaje / 100d;
+
+            Console.WriteLine($"El Precio total es: {precioTotal_Eur} E");
+        }        
     }   
 }
 #endregion
@@ -260,38 +289,36 @@ namespace Ejercicio7
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            
-           char tipoHabitacion;
-           short numeroNoches;
-           int precioNoche=0;
+            char tipoHabitacion;
+            short numeroNoches;
+            int? precioNoche_Eur;
 
-            Console.Write("Introducir el n?mero de noches:");
-            numeroNoches=short.Parse(Console.ReadLine());
-            Console.Write("Introducir tipo de habitaci?n individual o doble [I|D]:");
-            tipoHabitacion = Char.ToUpper(char.Parse(Console.ReadLine()));        
-            string texto;
-            switch(tipoHabitacion)
+            Console.Write("Introducir el número de noches:");
+            numeroNoches = short.Parse(Console.ReadLine());
+            Console.Write("Introducir tipo de habitación individual o doble [I|D]:");
+            tipoHabitacion = char.ToUpper(char.Parse(Console.ReadLine()));
+
+            switch (tipoHabitacion)
             {
-                case 'I' when numeroNoches>2:
-                precioNoche=25;
-                break;
+                case 'I' when numeroNoches > 2:
+                    precioNoche_Eur = 25;
+                    break;
                 case 'I':
-                precioNoche=27;
-                break;
-                case 'D' when numeroNoches>2:
-                precioNoche=40;
-                break;
+                    precioNoche_Eur = 27;
+                    break;
+                case 'D' when numeroNoches > 2:
+                    precioNoche_Eur = 40;
+                    break;
                 case 'D':
-                precioNoche=44;
-                break;
+                    precioNoche_Eur = 44;
+                    break;
                 default:
-                precioNoche=0;
-                Console.WriteLine("Opci?n incorrecta");
-                break;
+                    precioNoche_Eur = null;
+                    break;
             }
-            Console.WriteLine($"El precio de su estancia en el hotel es: {precioNoche*numeroNoches}");
+            Console.WriteLine (precioNoche_Eur != null ? $"El precio de su estancia en el hotel es: {precioNoche_Eur * numeroNoches}" : "Opción incorrecta");
         }
     }
 }
