@@ -317,9 +317,8 @@ namespace Ejercicio10
         static void Main()
         {
             int valor1, valor2;
-            int sumadivisores1 = 0;
-            int sumadivisores2 = 0;
-
+            int sumaDivisores1 = 0;
+            int sumaDivisores2 = 0;
             do
             {
                 Console.Write("Introduzca valor 1: ");
@@ -332,23 +331,21 @@ namespace Ejercicio10
             }
             while (valor1 <= 0 || valor2 <= 0);
 
-            for (int i = 1; i < valor1 - 1; i++)
+            for (int i = 1; i < valor1; i++)
             {
                 if (valor1 % i == 0) 
-                    sumadivisores1 = sumadivisores1 + i;
+                    sumaDivisores1 += i;
             }
 
-            for (int i = 1; i < valor2 - 1; i++)
+            for (int i = 1; i < valor2; i++)
             {
                 if (valor2 % i == 0) 
-                    sumadivisores2 = sumadivisores2 + i;
+                    sumaDivisores2 += i;
             }
 
-            if (sumadivisores1 == sumadivisores2)
-                Console.WriteLine("\nLos valores SON AMIGOS\n");
-            else
-                Console.WriteLine("\nLos valores NO SON AMIGOS\n");
-
+            bool amigos = sumaDivisores1 == valor2 && sumaDivisores2 == valor1;
+            string salida = $"\nLos valores {(!amigos ? "no":"")} son amigos\n";
+            Console.WriteLine(salida);
         }
     }
 }
