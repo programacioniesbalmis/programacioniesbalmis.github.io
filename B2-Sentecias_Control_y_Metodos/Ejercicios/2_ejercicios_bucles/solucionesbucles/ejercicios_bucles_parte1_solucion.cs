@@ -169,27 +169,26 @@ namespace Ehercicio6
     {
         static void Main()
         {
-            int mayor;
+            int? mayor = dafault;
 
-            Console.Write("Introduzca valor: ");
-            int valor = int.Parse(Console.ReadLine());
-            mayor = valor;
-
-            do
+            while (valor != 0)
             {
-                Console.Write("Introduzca valor: ");
+                Console.WriteLine("Introduzca valor: ");
                 valor = int.Parse(Console.ReadLine());
 
                 if (valor != 0)
                 {
-                    if (valor > mayor)
+                    if (mayor == null)
+                        mayor = valor;
+                    else if (valor > mayor)
                         mayor = valor;
                 }
-
             }
-            while (valor != 0);
+            string salida = mayor != null
+                            ? $"El mayor de los valores introducidos es: {mayor}"
+                            : "No has introducido ningún valor distinto de 0";
 
-            Console.WriteLine("\nEl mayor de los valores introducidos es: {0}\n", mayor);
+            Console.WriteLine(salida);
         }
     }
 }
