@@ -370,18 +370,28 @@ Escribe un m&#xE9;todo llamada <strong>PrecioAPagar</strong>, para calcular y de
 <h2 class="mume-header" id="white_check_mark-ejercicio-7">&#x2705; Ejercicio 7</h2>
 
 <blockquote>
-<p><em>El <strong>calendario Gregoriano actual</strong> obedece a la reforma del calendario juliano que orden&#xF3; el papa Gregorio XIII en 1582. Se decidi&#xF3;, despu&#xE9;s de algunas modificaciones, que en lo sucesivo fuesen bisiestos todos los a&#xF1;os m&#xFA;ltiplos de cuatro, pero que de los a&#xF1;os seculares (los acabados en dos ceros) s&#xF3;lo fuesen bisiestos aquellos que fuesen m&#xFA;ltiplos de cuatrocientos</em>.<br>
-En base a estos conceptos, construir un programa que dada una fecha (d&#xED;a, mes y a&#xF1;o), nos devuelva como resultado el correspondiente d&#xED;a de la semana en texto (Lunes, Martes, Mi&#xE9;rcoles, etc.). La estructura del programa estar&#xE1; formada, adem&#xE1;s de por el m&#xE9;todo main, las funciones: <strong>LeeFecha</strong>, <strong>EsFechaValida</strong>, <strong>EsA&#xF1;oBisiesto</strong>, <strong>DiaSemana</strong>.</p>
+<p><em>El <strong>calendario Gregoriano actual</strong> obedece a la reforma del calendario juliano que orden&#xF3; el papa Gregorio XIII en 1582. Se decidi&#xF3;, despu&#xE9;s de algunas modificaciones, que en lo sucesivo fuesen bisiestos todos los a&#xF1;os m&#xFA;ltiplos de cuatro, pero que de los a&#xF1;os seculares (los acabados en dos ceros) s&#xF3;lo fuesen bisiestos aquellos que fuesen m&#xFA;ltiplos de cuatrocientos</em>.</p>
+<p>En base a estos conceptos, deberemos construir un programa que dada una fecha (d&#xED;a, mes y a&#xF1;o), nos devuelva como resultado el correspondiente d&#xED;a de la semana en texto (Lunes, Martes, Mi&#xE9;rcoles, etc.).</p>
+<p>&#x270B; <strong>Importante:</strong> La estructura del programa estar&#xE1; formada, adem&#xE1;s de por el m&#xE9;todo main, los m&#xE9;todos est&#xE1;ticos (Piensa cual ser&#xED;a el DEM l&#xF3;gico para estas definiciones):</p>
+<ul>
+<li><strong><code>(int dia, int mes, int a&#xF1;o) LeeFecha()</code></strong></li>
+<li><strong><code>bool FechaValida(int dia, int mes, int a&#xF1;o)</code></strong></li>
+<li><strong><code>bool Bisiesto(int a&#xF1;o)</code></strong></li>
+<li><strong><code>string DiaSemana(int dia, int mes, int a&#xF1;o)</code></strong></li>
+</ul>
 <p><strong>Consideraciones:</strong></p>
 <ol>
-<li>La entrada ser&#xE1; v&#xE1;lida si...<br>
-a&#xF1;o &#x2192; Es mayor o igual que 1582.<br>
-d&#xED;a &#x2192; Cumple la condici&#xF3;n de ser mayor que 1 y menor que 28, 29, 30 o 31 seg&#xFA;n corresponda.<br>
-mes &#x2192; Est&#xE9; entre 1 y 12</li>
-<li>Antes de calcular el d&#xED;a de la semana, se tendr&#xE1;n que ajustar los datos de manera que: si mes &lt;= 2, tendremos que sumarle 12 al mes y restarle una unidad al a&#xF1;o. El d&#xED;a de la semana se calcular&#xE1; con la siguiente operaci&#xF3;n:</li>
+<li>La entrada ser&#xE1; v&#xE1;lida si...
+<ul>
+<li><strong>a&#xF1;o</strong> &#x2192; es mayor o igual que 1582.</li>
+<li><strong>d&#xED;a</strong> &#x2192; cumple la condici&#xF3;n de ser mayor que 1 y menor que 28, 29, 30 o 31 seg&#xFA;n corresponda.</li>
+<li><strong>mes</strong> &#x2192; est&#xE9; entre 1 y 12.</li>
+</ul>
+</li>
+<li>Antes de calcular el d&#xED;a de la semana, se tendr&#xE1;n que ajustar los datos de manera que: Si <strong><code>mes &lt;= 2</code></strong>, tendremos que <strong>sumarle 12 al mes</strong> y <strong>restarle uno al a&#xF1;o</strong>. El d&#xED;a de la semana se calcular&#xE1; con la siguiente operaci&#xF3;n:</li>
 </ol>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp">diaSemana <span class="token operator">=</span> <span class="token punctuation">(</span>dia<span class="token operator">+</span><span class="token number">2</span><span class="token operator">*</span>mes<span class="token operator">+</span><span class="token number">3</span><span class="token operator">*</span><span class="token punctuation">(</span>mes<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">5</span><span class="token operator">+</span>a&#xF1;o<span class="token operator">+</span>a&#xF1;o<span class="token operator">/</span><span class="token number">4</span><span class="token operator">-</span>a&#xF1;o<span class="token operator">/</span><span class="token number">100</span><span class="token operator">+</span>a&#xF1;o<span class="token operator">/</span><span class="token number">400</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token operator">%</span><span class="token number">7</span><span class="token punctuation">;</span>
-</pre><p><strong>&#x1F441; Nota:</strong> Si diaSemana = 1&#x2192; Domingo, = 2&#x2192; Lunes, = 3&#x2192; Martes, &#x2026; , = 0&#x2192; S&#xE1;bado..</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp">diaSemana <span class="token operator">=</span> <span class="token punctuation">(</span>dia <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">*</span> mes <span class="token operator">+</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>mes <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">5</span> <span class="token operator">+</span> a&#xF1;o <span class="token operator">+</span> a&#xF1;o <span class="token operator">/</span> <span class="token number">4</span> <span class="token operator">-</span> a&#xF1;o <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">+</span> a&#xF1;o <span class="token operator">/</span> <span class="token number">400</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">7</span><span class="token punctuation">;</span>
+</pre><p><strong>&#x1F441; Nota:</strong> Si diaSemana es 1 &#x2192; Domingo, 2 &#x2192; Lunes, 3 &#x2192; Martes, &#x2026; y 0 &#x2192; S&#xE1;bado..</p>
 </blockquote>
 
       </div>
