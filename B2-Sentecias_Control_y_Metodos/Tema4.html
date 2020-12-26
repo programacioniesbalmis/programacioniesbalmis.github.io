@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
       
       
       
@@ -317,7 +317,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ol>
 </li>
-<li><a href="#ejemplo-pr%C3%A1ctico-de-modularizaci%C3%B3n">Ejemplo pr&#xE1;ctico de modularizaci&#xF3;n</a></li>
+<li><a href="#ejemplo-pr%C3%A1ctico-de-dise%C3%B1o-modularizado">Ejemplo pr&#xE1;ctico de dise&#xF1;o modularizado</a></li>
 </ol>
 <div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="introducci%C3%B3n">Introducci&#xF3;n</h2>
@@ -573,15 +573,15 @@ En el diagrama de ejemplo ser&#xED;an las l&#xED;neas que salen. As&#xED; pues, 
 <li>
 <p><strong>Formales</strong><br>
 La forma en que se comunican el subprograma y el m&#xF3;dulo que lo llama.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">double</span> <span class="token function">Pow</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">,</span> <span class="token keyword">double</span> y<span class="token punctuation">)</span> <span class="token comment">// Par&#xE1;metro Formal</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">Pow</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> x<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> y<span class="token punctuation">)</span> <span class="token comment">// Par&#xE1;metro Formal</span>
 <span class="token punctuation">{</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span>
 </pre></li>
 <li>
 <p><strong>Reales o Actuales</strong><br>
 Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los par&#xE1;metros formales.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token function">Pow</span><span class="token punctuation">(</span><span class="token number">2</span>d<span class="token punctuation">,</span> <span class="token number">10</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Par&#xE1;metro Real o Actual</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token function">Pow</span><span class="token punctuation">(</span><span class="token number">2d</span><span class="token punctuation">,</span> <span class="token number">10d</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Par&#xE1;metro Real o Actual</span>
 </pre></li>
 </ul>
 <p>Tipo de par&#xE1;metros al flujo de datos</p>
@@ -621,9 +621,9 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
 
 <span class="token keyword">class</span> <span class="token class-name">Principal</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">string</span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>Fecha<span class="token punctuation">.</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>Fecha<span class="token punctuation">.</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -652,9 +652,9 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
         <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">bool</span><span class="token punctuation">)</span><span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>a&#xF1;o <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">||</span> a&#xF1;o <span class="token operator">%</span> <span class="token number">400</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">string</span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> salida <span class="token operator">=</span> <span class="token punctuation">(</span>A&#xF1;<span class="token function">oBisiesto</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token string">&quot;Es&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;No es&quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; bisiesto&quot;</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -679,7 +679,7 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
 </li>
 <li>
 <p>Su sintaxis suponiendo que es un m&#xE9;todo est&#xE1;tico dentro de una misma clase ser&#xE1;:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">IdProcedimiento</span><span class="token punctuation">(</span>par&#xE1;metros_formales<span class="token punctuation">)</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">IdProcedimiento</span><span class="token punctuation">(</span>par&#xE1;metros_formales<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token comment">// Cuerpo del m&#xE9;todo</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token comment">// Podemos obviarlo</span>
@@ -689,14 +689,14 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
 <p>Ejemplo ...</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[3-5]}" class="language-csharp" data-line="3-5"><span class="token keyword">class</span> <span class="token class-name">Datos</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
-        <span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
-        <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
-        <span class="token keyword">ushort</span> edad<span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">ushort</span></span> edad<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;   Nombre: {nombre}\n&quot;</span> <span class="token operator">+</span>
-                          $<span class="token string">&quot; Apellido: {apellido}\n&quot;</span> <span class="token operator">+</span>
-                          $<span class="token string">&quot;     Edad: {edad}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;   Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nombre</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+                          <span class="token interpolation-string"><span class="token string">$&quot; Apellido: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">apellido</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+                          <span class="token interpolation-string"><span class="token string">$&quot;     Edad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">edad</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> M&#xE9;<span class="token function">todoSinRetorno</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -723,7 +723,7 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
 <p>Ejemplo ...</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[5, 6]}" class="language-csharp" data-line="5,6"><span class="token keyword">class</span> <span class="token class-name">Principal</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         Datos<span class="token punctuation">.</span><span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token string">&quot;Juanjo&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Guarinos&quot;</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Datos<span class="token punctuation">.</span>M&#xE9;<span class="token function">todoSinRetorno</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -750,21 +750,21 @@ Podemos decir que es un valor concreto en un momento de la ejecuci&#xF3;n de los
 </li>
 <li>
 <p>Cuando tenemos pocos par&#xE1;metros pueden ir en la misma l&#xED;nea de la definici&#xF3;n.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token keyword">string</span> nombre<span class="token punctuation">,</span> <span class="token keyword">string</span> apellido<span class="token punctuation">,</span> <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span> <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">ushort</span></span> edad<span class="token punctuation">,</span> <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span> 
 </pre><p>Si no est&#xE1;n as&#xED;, esto se consigue en el editor, coloc&#xE1;ndose sobre un par&#xE1;metro y pulsando <strong><code>Ctrl+.</code></strong> A continuaci&#xF3;n nos ofrecer&#xE1; la opci&#xF3;n <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Desajustar todos los par&#xE1;metros&apos;</code></p>
 </li>
 <li>
 <p>Si tenemos 4 o m&#xE1;s par&#xE1;metros, nuestra recomendaci&#xF3;n es que se haga una sangria de par&#xE1;metros.<br>
 Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a continuaci&#xF3;n seleccionar <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Alinear par&#xE1;metros ajustados&apos;</code> obteniendo as&#xED;...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
-                           <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
-                           <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span>
+                           <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span>
+                           <span class="token class-name"><span class="token keyword">ushort</span></span> edad<span class="token punctuation">,</span>
                            <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span>   
 </pre><p>Posteriormente otra vez <strong><code>Ctrl+.</code></strong> y a continuaci&#xF3;n seleccionar <code>&apos;Ajustar todos los par&#xE1;metros &#x2192; Aplicar sangr&#xED;a a todos los par&#xE1;metros&apos;</code> obteniendo as&#xED;...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
-    <span class="token keyword">string</span> nombre<span class="token punctuation">,</span>
-    <span class="token keyword">string</span> apellido<span class="token punctuation">,</span>
-    <span class="token keyword">ushort</span> edad<span class="token punctuation">,</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span>
+    <span class="token class-name"><span class="token keyword">ushort</span></span> edad<span class="token punctuation">,</span>
     <span class="token keyword">string</span> direcci&#xF3;n<span class="token punctuation">)</span> 
 </pre><p><strong>De esta forma ser&#xE1; m&#xE1;s f&#xE1;cil...</strong></p>
 <ol>
@@ -788,7 +788,7 @@ Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a co
 <p>Por tanto, si es un tipo valor el objeto se duplica en memoria y si pasamos un tipo referencia, se duplicar&#xE1; la referencia al objeto.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> d<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; solo existe en este</span>
         <span class="token comment">// &#xE1;mbito y es una copia en el Heap del tipo valor dato</span>
@@ -799,9 +799,9 @@ Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a co
 
     <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir al finalizar el m&#xE9;todo. </span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Se pasa una copia de dato por que es un Tipo-valor.</span>
         <span class="token function">RestaUno</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -877,7 +877,7 @@ Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a co
 </svg>
 </p><pre data-role="codeBlock" data-info="csharp {highlight=3}" class="language-csharp" data-line="3"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> d<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token operator">--</span>d<span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 4 </span>
@@ -887,9 +887,9 @@ Para ello: <strong><code>Ctrl+.</code></strong> sobre los par&#xE1;metros y a co
         <span class="token keyword">return</span> d<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Sobrescribimos el Tipo-valor dato con lo que devuelve la funci&#xF3;n.</span>
         dato <span class="token operator">=</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span>dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -906,7 +906,7 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
 (<em>Este tipo lo veremos en m&#xE1;s profundidad m&#xE1;s adelante.</em>)</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=3}" class="language-csharp" data-line="3"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">string</span> t<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> t<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// t es una copia de la referencia texto.</span>
         t <span class="token operator">=</span> t <span class="token operator">+</span> <span class="token string">&quot;!!!!&quot;</span><span class="token punctuation">;</span>
@@ -914,10 +914,10 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
         <span class="token comment">// al finalizar este &#xE1;mbito de ejecuci&#xF3;n.</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// texto ser&#xE1; una referencia a un objeto cadena.</span>
-        <span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Al pasar por valor hacemos una copia de la referencia.</span>
         A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1041,7 +1041,7 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
 <p>En la llamada (<strong>l&#xED;nea 20</strong>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>in</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[3, 20]}" class="language-csharp" data-line="3,20"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">int</span></span> d<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; es una referencia</span>
         <span class="token comment">// a dato que se pas&#xF3; como par&#xE1;metro real.</span>
@@ -1052,9 +1052,9 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
     <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir y por tanto la referencia a dato.</span>
       <span class="token comment">// pero dato sigue existiendo.</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Se pasa una referencia a la zona de memoria donde est&#xE1; dato.</span>
         <span class="token comment">// Sabemos que nunca se modificar&#xE1; el valor internamente.</span>
@@ -1159,7 +1159,7 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
 <p>En la llamada (<strong>l&#xED;nea 20</strong>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>ref</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[3, 20]}" class="language-csharp" data-line="3,20"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token keyword">int</span> d<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">RestaUno</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token class-name"><span class="token keyword">int</span></span> d<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// El par&#xE1;metro formal con id. &apos;d&apos; es una referencia</span>
         <span class="token comment">// a dato que se pas&#xF3; como par&#xE1;metro real.</span>
@@ -1170,9 +1170,9 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
     <span class="token punctuation">}</span> <span class="token comment">// el par&#xE1;metro de entrada &apos;d&apos; deja de existir y por tanto la referencia a dato.</span>
       <span class="token comment">// pero dato sigue existiendo.</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> dato <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Se pasa una referencia a la zona de memoria donde est&#xE1; dato.</span>
         <span class="token comment">// El valor podr&#xE1; modificarse internamente.</span>
@@ -1209,17 +1209,17 @@ En el siguiente ejemplo vamos a ver que pasa usando el tipo referencia b&#xE1;si
 Veamos que pasa con el ejemplo que usamos en el paso por valor.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[3, 16]}" class="language-csharp" data-line="3,16"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token keyword">string</span> t<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token class-name"><span class="token keyword">string</span></span> t<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// t es una referencia a la referencia texto.</span>
         t <span class="token operator">=</span> t <span class="token operator">+</span> <span class="token string">&quot;!!!!&quot;</span><span class="token punctuation">;</span>
         <span class="token comment">// al cambiar ahora t estaremos cambiando el valor de la referencia texto.</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// texto ser&#xE1; una referencia a un objeto cadena.</span>
-        <span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;Adios&quot;</span><span class="token punctuation">;</span>
 
         <span class="token comment">// Al pasar por valor hacemos pasaremos una referencia a la referencia.</span>
         A&#xF1;adeExclamaci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token keyword">ref</span> texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1254,15 +1254,15 @@ Veamos que pasa con el ejemplo que usamos en el paso por valor.</p>
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 264.8)">
 <title>G</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-264.8 790,-264.8 790,4 -4,4"/>
-<g id="clust1" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="transparent" points="8,-8 8,-243.3 371,-243.3 371,-8 8,-8"/>
-<text text-anchor="middle" x="189.5" y="-226.7" font-family="Arial" font-size="14.00" fill="#000000">Antes de ... t = t + &quot;!!!!&quot;; tendremos...</text>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster2</title>
 <polygon fill="none" stroke="transparent" points="382,-8 382,-252.8 778,-252.8 778,-8 382,-8"/>
 <text text-anchor="middle" x="580" y="-236.2" font-family="Arial" font-size="14.00" fill="#000000">Despu&#xE9;s de ... t = t + &quot;!!!!&quot;; tendremos...</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-243.3 371,-243.3 371,-8 8,-8"/>
+<text text-anchor="middle" x="189.5" y="-226.7" font-family="Arial" font-size="14.00" fill="#000000">Antes de ... t = t + &quot;!!!!&quot;; tendremos...</text>
 </g>
 <!-- r11 -->
 <g id="node1" class="node">
@@ -1359,29 +1359,29 @@ Veamos que pasa con el ejemplo que usamos en el paso por valor.</p>
 <li>
 <p>En la llamada (<em>l&#xED;nea 19</em>) deberemos anteponer al par&#xE1;metro real la cl&#xE1;usula <strong><code>out</code></strong>. Adem&#xE1;s, <strong><code>out</code></strong> nos permite <strong>declarar el tipo</strong> del par&#xE1;metro en la misma llamada.</p>
 <blockquote>
-<p><strong>Nota</strong>: La sintaxis del lenguaje a mejorado con el tiempo, y actualmente disponemos de otros mecanismos para devolver m&#xE1;s de un par&#xE1;metro, como son las <strong>Tuplas</strong> y los <strong>Objetos An&#xF3;nimos</strong> que veremos m&#xE1;s adelante.</p>
+<p><strong>Nota</strong>: La sintaxis del lenguaje a mejorado con el tiempo, y actualmente disponemos de otros mecanismos para devolver m&#xE1;s de un par&#xE1;metro, como son las <strong>Tuplas</strong> de las que hablaremos <a href="#tuplas">m&#xE1;s adelante en el tema</a> y los <strong>Objetos An&#xF3;nimos</strong> que veremos m&#xE1;s adelante en el curso.</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="csharp {highlight=[6,7,19]}" class="language-csharp" data-line="6,7,19"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Es conveniente colocarlos al final del interfaz.</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Direccion</span><span class="token punctuation">(</span>
-        <span class="token keyword">double</span> anguloGr<span class="token punctuation">,</span>
-        <span class="token keyword">out</span> <span class="token keyword">double</span> sen<span class="token punctuation">,</span>
-        <span class="token keyword">out</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloGr<span class="token punctuation">,</span>
+        <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">double</span></span> sen<span class="token punctuation">,</span>
+        <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">double</span></span> cos<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">double</span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
         <span class="token comment">// Como est&#xE1;n marcados de salida si se quedan sin asignar</span>
         <span class="token comment">// el compilador me dar&#xE1; un error.</span>
         sen <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">;</span>
         cos <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">double</span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
         <span class="token comment">// Se pueden declarar en la misma llamada a la funci&#xF3;n.</span>
-        <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Sen = {sen:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Cos = {cos:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">double</span></span> sen<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">double</span></span> cos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Sen = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sen</span><span class="token format-string"><span class="token punctuation">:</span>F3</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Cos = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cos</span><span class="token format-string"><span class="token punctuation">:</span>F3</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
@@ -1418,9 +1418,10 @@ Veamos que pasa con el ejemplo que usamos en el paso por valor.</p>
 <div aria-hidden="true" class="line-highlight" data-range="19" data-start="19">
 </div></div></pre></li>
 </ul>
+<div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="cuadro-resumen-paso-de-par%C3%A1metros">Cuadro resumen paso de par&#xE1;metros</h4>
 
-<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="374px" preserveAspectRatio="none" style="width:621px;height:374px;" version="1.1" viewBox="0 0 621 374" width="621px" zoomAndPan="magnify"><defs><filter height="300%" id="f4vg74cj1cryv" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="102" x="10" y="163.2959"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="33.5" y="191.4277">Tipos de</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="25" y="207.5264">par&#xE1;metros</text><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="84" x="172" y="79.1479"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="187" y="107.2798">Entrada</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="87" x="316" y="25"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="331" y="53.1318">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="36" x="341.5" y="69.2305">valor</text><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,56.0986 306,56.0986 L316,56.0986 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="316" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="339" y="145.3291">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="331" y="161.4277">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="479" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="494" y="145.3291">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="512" y="161.4277">&apos;in&apos;</text><path d="M419,148.2959 L429,148.2959 C444,148.2959 454,148.2959 469,148.2959 L479,148.2959 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,148.2959 306,148.2959 L316,148.2959 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,102.1973 162,102.1973 L172,102.1973 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="72" x="172" y="217.4438"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="187" y="245.5757">Salida</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="304" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="327" y="237.5264">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="319" y="253.625">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="467" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="482" y="237.5264">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="495" y="253.625">&apos;out&apos;</text><path d="M407,240.4932 L417,240.4932 C432,240.4932 442,240.4932 457,240.4932 L467,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M244,240.4932 L254,240.4932 C269,240.4932 279,240.4932 294,240.4932 L304,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,240.4932 162,240.4932 L172,240.4932 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="#C0C0C0" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="130" x="172" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="187" y="329.7236">Entrada/Salida</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="208" y="345.8223">(no usar)</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="103" x="362" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="385" y="329.7236">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="377" y="345.8223">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke: #000000; stroke-width: 1.5;" width="85" x="525" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="540" y="329.7236">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="26" x="554.5" y="345.8223">&apos;ref&apos;</text><path d="M465,332.6904 L475,332.6904 C490,332.6904 500,332.6904 515,332.6904 L525,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M302,332.6904 L312,332.6904 C327,332.6904 337,332.6904 352,332.6904 L362,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,332.6904 162,332.6904 L172,332.6904 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[f77497f8bf067c2d968e789d4246ee0f]
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="390px" preserveAspectRatio="none" style="width:629px;height:390px;" version="1.1" viewBox="0 0 629 390" width="629px" zoomAndPan="magnify"><defs><filter height="300%" id="f4vg74cj1cryv" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="102" x="10" y="163.2959"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="33.5" y="191.4277">Tipos de</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="25" y="207.5264">par&#xE1;metros</text><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="84" x="172" y="79.1479"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="187" y="107.2798">Entrada</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="87" x="316" y="25"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="331" y="53.1318">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="36" x="341.5" y="69.2305">valor</text><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,56.0986 306,56.0986 L316,56.0986 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="103" x="316" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="339" y="145.3291">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="331" y="161.4277">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="479" y="117.1973"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="494" y="145.3291">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="512" y="161.4277">&apos;in&apos;</text><path d="M419,148.2959 L429,148.2959 C444,148.2959 454,148.2959 469,148.2959 L479,148.2959 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M256,102.1973 L266,102.1973 C281,102.1973 291,148.2959 306,148.2959 L316,148.2959 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,102.1973 162,102.1973 L172,102.1973 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#FFFFFF" filter="url(#f4vg74cj1cryv)" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="72" x="172" y="217.4438"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="42" x="187" y="245.5757">Salida</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="103" x="304" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="327" y="237.5264">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="319" y="253.625">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="467" y="209.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="482" y="237.5264">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="495" y="253.625">&apos;out&apos;</text><path d="M407,240.4932 L417,240.4932 C432,240.4932 442,240.4932 457,240.4932 L467,240.4932 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M244,240.4932 L254,240.4932 C269,240.4932 279,240.4932 294,240.4932 L304,240.4932 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,240.4932 162,240.4932 L172,240.4932 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#C0C0C0" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="130" x="172" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="187" y="329.7236">Entrada/Salida</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="208" y="345.8223">(no usar)</text><rect fill="#F5F5F5" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="103" x="362" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="385" y="329.7236">Paso por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="377" y="345.8223">referencia</text><rect fill="#F0F8FF" filter="url(#f4vg74cj1cryv)" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="525" y="301.5918"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="540" y="329.7236">Cl&#xE1;usula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="26" x="554.5" y="345.8223">&apos;ref&apos;</text><path d="M465,332.6904 L475,332.6904 C490,332.6904 500,332.6904 515,332.6904 L525,332.6904 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M302,332.6904 L312,332.6904 C327,332.6904 337,332.6904 352,332.6904 L362,332.6904 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M112,194.3945 L122,194.3945 C137,194.3945 147,332.6904 162,332.6904 L172,332.6904 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[002f689fc7098715b35c62ec4cc2f5c3]
 @startmindmap
 left to right direction
 scale 100 width
@@ -1451,12 +1452,10 @@ mindmapDiagram {
 ****[#aliceblue] Cláusula\n**'ref'**
 @endmindmap
 
-PlantUML version 1.2020.10(Sun May 17 11:35:57 CEST 2020)
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
 (MIT source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.8+10
-Operating System: Windows 10
 Default Encoding: UTF-8
 Language: en
 Country: GB
@@ -1534,23 +1533,23 @@ Devuelve si ha podido o n&#xF3; transformar la cadena <strong><code>s</code></st
 <li>
 <p>Si los par&#xE1;metros est&#xE1;n relacionados sin subordinaci&#xF3;n o jerarqu&#xED;a, los podremos devolver por referencia agrup&#xE1;ndolos al final <strong>despu&#xE9;s de los par&#xE1;metros de entrada</strong>.<br>
 <strong><code>void Direccion(double anguloGr, out double sen, out double cos) {...}</code></strong> &#x1F44D;<br>
-A partir de <mark><strong>C#7</strong></mark> podemos hacer la siguiente sintaxis mucho m&#xE1;s recomendable..<br>
+A partir de <mark><strong>C#7</strong></mark> podemos hacer la siguiente sintaxis mucho m&#xE1;s recomendable usando <a name="tuplas" href></a><strong>tuplas</strong>.<br>
 <strong><code>static (double sen, double cos) Direccion(double anguloGr) {...}</code></strong> &#x1F44D;&#x1F44D;</p>
 </li>
 </ol>
 <pre data-role="codeBlock" data-info="csharp {highlight=[3, 6, 11]}" class="language-csharp" data-line="3,6,11"><span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token keyword">double</span> anguloGr<span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> anguloGr<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">double</span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">double</span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
-        <span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Sen = {sen:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Cos = {cos:F3}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloGr <span class="token operator">=</span> <span class="token number">75</span><span class="token punctuation">;</span>
+        <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> sen<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> cos<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">Direccion</span><span class="token punctuation">(</span>anguloGr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Sen = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sen</span><span class="token format-string"><span class="token punctuation">:</span>F3</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Cos = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cos</span><span class="token format-string"><span class="token punctuation">:</span>F3</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
@@ -1573,7 +1572,12 @@ A partir de <mark><strong>C#7</strong></mark> podemos hacer la siguiente sintaxi
 
 
 <div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
-</div></div></pre></li>
+</div></div></pre><p>Formalmente una tupla, ser&#xED;a un objeto que contiene otros objetos <strong>ordenados</strong> en su interior (a1, a2, a3, a4, ..., an) que puedn ser o no de diferente tipo. Por ejemplo una coordenada 2D de 2 valores reales (x, y) como (2.5d, 6d) es una tupla de dobles.<br>
+A nosotros ahora mismo solo las usaremos para el retorno de valores agrupados en un orden como se muestra en el ejemplo.</p>
+<blockquote>
+<p>&#x1F441; <strong>Nota:</strong> Si tienes curiosidad y quieres saber algo m&#xE1;s sobre el concepto matem&#xE1;tico de tupla, puedes consultar la <a href="https://es.wikipedia.org/wiki/Tupla#Definiciones_formales">Wikipedia</a>.</p>
+</blockquote>
+</li>
 </ol>
 <h4 class="mume-header" id="otras-consideraciones-del-dise%C3%B1o">Otras consideraciones del dise&#xF1;o</h4>
 
@@ -1590,10 +1594,11 @@ Esta pr&#xE1;ctica adem&#xE1;s de liar puede llevar a errores por olvido cerrar 
 </li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejemplo-pr%C3%A1ctico-de-modularizaci%C3%B3n">Ejemplo pr&#xE1;ctico de modularizaci&#xF3;n</h2>
+<h2 class="mume-header" id="ejemplo-pr%C3%A1ctico-de-dise%C3%B1o-modularizado">Ejemplo pr&#xE1;ctico de dise&#xF1;o modularizado</h2>
 
 <blockquote>
-<p>Se propone hacer un una versi&#xF3;n extendida del programa de <strong>piedra-papel-tijera</strong>.<br>
+<p>&#x1F393; <strong>Caso de estudio:</strong><br>
+Se propone hacer un una versi&#xF3;n extendida del programa de <strong>piedra-papel-tijera</strong>.<br>
 En este versi&#xF3;n se jugar&#xE1;n <strong>rondas</strong> contra la m&#xE1;quina de <strong>1 a 4</strong> jugadores. De tal manera que el programa nos pedir&#xE1; el n&#xFA;mero de jugadores para la ronda de juego y posteriormente para cada jugador, indicar&#xE1; que jugador juega y le pedir&#xE1; a este una jugada.<br>
 Acto seguido, la m&#xE1;quina har&#xE1; una jugada aleatoria y nos mostrar&#xE1; el resultado del juego de ese jugador en esa ronda.<br>
 Cuando hayan jugado todos los jugadores de la ronda, la m&#xE1;quina nos pedir&#xE1; que pulsemos una tecla para jugar otra ronda o ESC para salir.</p>
@@ -1761,17 +1766,17 @@ F&#xED;jate que cada m&#xF3;dulo <strong>solo hace una cosa</strong>.<br>
 <li>
 <p>Partiremos del siguiente esqueleto del programa. F&#xED;jate que hemos definido 3 constantes de texto que nos ser&#xE1;n de utilidad durante la implementaci&#xF3;n del programa, al tener el modificador <strong><code>cosnt</code></strong> podr&#xE1;n ser usadas por cualquier m&#xE9;todo est&#xE1;tico de la clase.<br>
 <strong>Nota:</strong> Todos nuestros m&#xF3;dulos ir&#xE1;n dentro de la clase <strong><code>EjemploModularizacion</code></strong> junto con el Main().</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> System<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
 
-<span class="token keyword">namespace</span> Ejemplo
+<span class="token keyword">namespace</span> <span class="token namespace">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">class</span> <span class="token class-name">EjemploModularizacion</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> <span class="token keyword">string</span> PIEDRA <span class="token operator">=</span> <span class="token string">&quot;PIEDRA&quot;</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token keyword">string</span> PAPEL <span class="token operator">=</span> <span class="token string">&quot;PAPEL&quot;</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token keyword">string</span> TIJERA <span class="token operator">=</span> <span class="token string">&quot;TIJERA&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> PIEDRA <span class="token operator">=</span> <span class="token string">&quot;PIEDRA&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> PAPEL <span class="token operator">=</span> <span class="token string">&quot;PAPEL&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> TIJERA <span class="token operator">=</span> <span class="token string">&quot;TIJERA&quot;</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             
         <span class="token punctuation">}</span>
@@ -1790,29 +1795,29 @@ F&#xED;jate que cada m&#xF3;dulo <strong>solo hace una cosa</strong>.<br>
 <li><strong>Entrada</strong>: <strong><code>string jugador</code></strong> Nombre del jugador al que le voy a pedir la jugada.</li>
 <li><strong>Salida</strong>: <strong><code>string</code></strong> Texto con la jugada de ese jugador &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot;<em>TIJERA</em>&quot;.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">PideJugada</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugador<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">PideJugada</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> jugador<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Jugada a retornar por el jugador.</span>
-    <span class="token keyword">string</span> jugada<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> jugada<span class="token punctuation">;</span>
 
     <span class="token comment">// Flag que me indicar&#xE1; si el Jugador N ha realizado una jugada correcta.</span>
-    <span class="token keyword">bool</span> jugadaCorrecta<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> jugadaCorrecta<span class="token punctuation">;</span>
 
     <span class="token comment">// Establezco el texto de las jugadas para no tener que repetirlo.</span>
-    <span class="token keyword">string</span> opciones <span class="token operator">=</span> $<span class="token string">&quot;{PIEDRA}, {PAPEL}, {TIJERA}&quot;</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> opciones <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">PIEDRA</span><span class="token punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">PAPEL</span><span class="token punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">TIJERA</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
 
     <span class="token comment">// Bucle que me ir&#xE1; pidiendo una jugada mientras no sea correcta.</span>
     <span class="token keyword">do</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Indico el jugador que tiene que jugar y que me llega como par&#xE1;metro.</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;Jugando {jugador} ...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>$<span class="token string">&quot;\tIntroduce t&#xFA; jugada ({opciones}): &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Jugando </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugador</span><span class="token punctuation">}</span></span><span class="token string"> ...&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;\tIntroduce t&#xFA; jugada (</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">opciones</span><span class="token punctuation">}</span></span><span class="token string">): &quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         jugada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         jugadaCorrecta <span class="token operator">=</span> jugada <span class="token operator">==</span> PIEDRA <span class="token operator">||</span> jugada <span class="token operator">==</span> PAPEL <span class="token operator">||</span> jugada <span class="token operator">==</span> TIJERA<span class="token punctuation">;</span>
 
         <span class="token comment">// Si voy a volver a pedir la entrada le indico al jugador su error.</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>jugadaCorrecta<span class="token punctuation">)</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;\t{jugada} no es una jugada correcta. Debe ser {opciones}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugada</span><span class="token punctuation">}</span></span><span class="token string"> no es una jugada correcta. Debe ser </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">opciones</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>jugadaCorrecta<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> jugada<span class="token punctuation">;</span>
@@ -1825,11 +1830,11 @@ F&#xED;jate que cada m&#xF3;dulo <strong>solo hace una cosa</strong>.<br>
 <li><strong>Entrada</strong>: Nada. Aunque en la mayor&#xED;a de ocasiones <strong>ser&#xED;a conveniente pasar la semilla con la que generar el n&#xFA;mero aleatorio</strong>. De esta manera, evitaremos valores repetidos.</li>
 <li><strong>Salida</strong>: <strong><code>string</code></strong> Texto con la jugada de la m&#xE1;quina &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot;<em>TIJERA</em>&quot;.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Habr&#xE1; muchas formas correctas de implementarlo. Pero por usar la nueva sintaxis de C#8</span>
     <span class="token comment">// Podemos retornar el resultado de evaluar una expresi&#xF3;n switch.</span>
-    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">switch</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">switch</span>
     <span class="token punctuation">{</span>
         <span class="token number">0</span> <span class="token operator">=&gt;</span> PIEDRA<span class="token punctuation">,</span>
         <span class="token number">1</span> <span class="token operator">=&gt;</span> PAPEL<span class="token punctuation">,</span>
@@ -1850,18 +1855,18 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 </li>
 <li><strong>Salida</strong>: <strong><code>string</code></strong> Texto el resultado de la jugada a mostrar al usuario &quot;<em>Empate</em>&quot;, &quot;<em>He ganado</em>&quot; o &quot;<em>He perdido</em>&quot;.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">string</span> <span class="token function">Resultado</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugadaUsuario<span class="token punctuation">,</span> <span class="token keyword">string</span> jugadaMaquina<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">Resultado</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> jugadaUsuario<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> jugadaMaquina<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">string</span> resultado<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> resultado<span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>jugadaMaquina <span class="token operator">==</span> jugadaUsuario<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         resultado <span class="token operator">=</span> <span class="token string">&quot;Empate&quot;</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">else</span> <span class="token keyword">switch</span> <span class="token punctuation">(</span>jugadaMaquina<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">case</span> <span class="token class-name">PIEDRA</span> when jugadaUsuario <span class="token operator">==</span> TIJERA<span class="token punctuation">:</span>
-        <span class="token keyword">case</span> <span class="token class-name">PAPEL</span> when jugadaUsuario <span class="token operator">==</span> PIEDRA<span class="token punctuation">:</span>
-        <span class="token keyword">case</span> <span class="token class-name">TIJERA</span> when jugadaUsuario <span class="token operator">==</span> PAPEL<span class="token punctuation">:</span>
+        <span class="token keyword">case</span> PIEDRA <span class="token keyword">when</span> jugadaUsuario <span class="token operator">==</span> TIJERA<span class="token punctuation">:</span>
+        <span class="token keyword">case</span> PAPEL <span class="token keyword">when</span> jugadaUsuario <span class="token operator">==</span> PIEDRA<span class="token punctuation">:</span>
+        <span class="token keyword">case</span> TIJERA <span class="token keyword">when</span> jugadaUsuario <span class="token operator">==</span> PAPEL<span class="token punctuation">:</span>
             resultado <span class="token operator">=</span> <span class="token string">&quot;He ganado&quot;</span><span class="token punctuation">;</span>
             <span class="token keyword">break</span><span class="token punctuation">;</span>
         <span class="token keyword">default</span><span class="token punctuation">:</span>
@@ -1887,18 +1892,18 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 <li><strong>Salida</strong>: <strong><code>int</code></strong> N&#xFA;mero de jugadores que disputan esa ronda introducida por el usuario.</li>
 </ul>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// El esquema algor&#xED;tmico del m&#xE9;todo es an&#xE1;logo al de PideJugada</span>
-<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">bool</span> numeroCorrecto<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> jugadores<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> numeroCorrecto<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> jugadores<span class="token punctuation">;</span>
     <span class="token keyword">do</span>
     <span class="token punctuation">{</span>
         Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce cuantos jugadores van a participar (1 a 4): &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">string</span> entrada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> entrada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         numeroCorrecto <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span>entrada<span class="token punctuation">,</span> <span class="token keyword">out</span> jugadores<span class="token punctuation">)</span><span class="token punctuation">;</span>
         numeroCorrecto <span class="token operator">=</span> numeroCorrecto <span class="token operator">&amp;&amp;</span> jugadores <span class="token operator">&gt;=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> jugadores <span class="token operator">&lt;=</span> <span class="token number">4</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>numeroCorrecto<span class="token punctuation">)</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;{entrada} no es correcto. Debe ser un valor entre 1 y 4.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">entrada</span><span class="token punctuation">}</span></span><span class="token string"> no es correcto. Debe ser un valor entre 1 y 4.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>numeroCorrecto<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> jugadores<span class="token punctuation">;</span>
 <span class="token punctuation">}</span> 
@@ -1909,7 +1914,7 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 <li><strong>Entrada</strong>: <strong><code>string jugador</code></strong> Nombre del jugador que va a jugar.</li>
 <li><strong>Salida</strong>: Nada.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp {highlight=[11-14]}" class="language-csharp" data-line="11-14"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Juega</span><span class="token punctuation">(</span><span class="token keyword">string</span> jugador<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[11-14]}" class="language-csharp" data-line="11-14"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Juega</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> jugador<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Juega transfiere el control a los 4 m&#xF3;dulos en los que lo hemos subdividido</span>
     <span class="token comment">// en el orden correcto (Izquierda a Derecha)</span>
@@ -1919,12 +1924,12 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
     <span class="token comment">// 4.- Muestra el resultado.</span>
 
     <span class="token comment">// Al modularizar el m&#xF3;dulo queda legible, autodocumentado y ocupa menos de 10 l&#xED;neas.</span>
-    <span class="token keyword">string</span> jugadaUsuario <span class="token operator">=</span> <span class="token function">PideJugada</span><span class="token punctuation">(</span>jugador<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">string</span> jugadaMaquina <span class="token operator">=</span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">string</span> resultado <span class="token operator">=</span> <span class="token function">Resultado</span><span class="token punctuation">(</span>jugadaUsuario<span class="token punctuation">,</span> jugadaMaquina<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;\tYo he jugado {jugadaMaquina}\n&quot;</span>
-                    <span class="token operator">+</span> $<span class="token string">&quot;\t{jugador} ha jugado {jugadaUsuario}\n&quot;</span>
-                    <span class="token operator">+</span> $<span class="token string">&quot;\t{resultado}\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> jugadaUsuario <span class="token operator">=</span> <span class="token function">PideJugada</span><span class="token punctuation">(</span>jugador<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> jugadaMaquina <span class="token operator">=</span> <span class="token function">GeneraJugadaMaquina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> resultado <span class="token operator">=</span> <span class="token function">Resultado</span><span class="token punctuation">(</span>jugadaUsuario<span class="token punctuation">,</span> jugadaMaquina<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;\tYo he jugado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugadaMaquina</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span>
+                    <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugador</span><span class="token punctuation">}</span></span><span class="token string"> ha jugado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugadaUsuario</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span>
+                    <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">resultado</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
 
@@ -2068,15 +2073,15 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 <li><strong>Entrada</strong>: Nada.</li>
 <li><strong>Salida</strong>:  Nada.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp {highlight=[7, 9]}" class="language-csharp" data-line="7,9"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">JuegaRonda</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[7, 9]}" class="language-csharp" data-line="7,9"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">JuegaRonda</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// JuegaRonda transfiere el control a los 2 m&#xF3;dulos en los que lo hemos subdividido...</span>
     <span class="token comment">// 1.- Pide Numero Jugadores</span>
     <span class="token comment">// 2.- Juega Jugador N</span>
 
-    <span class="token keyword">int</span> jugadores <span class="token operator">=</span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> jugadores<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token function">Juega</span><span class="token punctuation">(</span>$<span class="token string">&quot;Jugador_{i}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> jugadores <span class="token operator">=</span> <span class="token function">PideNumeroJugadores</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> jugadores<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">Juega</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Jugador_</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
 
@@ -2100,7 +2105,7 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 <li><strong>Entrada</strong>: Nada.</li>
 <li><strong>Salida</strong>:  Nada.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp {highlight=12}" class="language-csharp" data-line="12"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=12}" class="language-csharp" data-line="12"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">do</span>
     <span class="token punctuation">{</span>
@@ -2131,6 +2136,7 @@ Ambos ser&#xE1;n &quot;<em>PIEDRA</em>&quot;, &quot;<em>PAPEL</em>&quot; o &quot
 <div aria-hidden="true" class="line-highlight" data-range="12" data-start="12">
 </div></div></pre></li>
 </ol>
+<div style="page-break-after:always;"></div>
 
       </div>
       

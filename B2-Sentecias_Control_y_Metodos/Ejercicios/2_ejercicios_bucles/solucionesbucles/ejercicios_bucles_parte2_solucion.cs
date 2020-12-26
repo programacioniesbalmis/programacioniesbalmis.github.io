@@ -10,8 +10,6 @@ namespace ejercicioBuclesAvanzados
         {
             static void Main()
             {
-                // Muestra Tablero
-
                 for (int i = 1; i <= 8; i++)
                 {
                     Console.SetCursorPosition(i, 0);
@@ -27,9 +25,9 @@ namespace ejercicioBuclesAvanzados
                         bool esCasillaNegra;
 
                         if (fila % 2 == 0)
-                            esCasillaNegra = (columna % 2 == 0) ? false : true;
+                            esCasillaNegra = columna % 2 != 0;
                         else
-                            esCasillaNegra = (columna % 2 == 0) ? true : false;
+                            esCasillaNegra = columna % 2 == 0;
 
                         if (esCasillaNegra)
                             Console.BackgroundColor = ConsoleColor.DarkGray;
@@ -42,7 +40,6 @@ namespace ejercicioBuclesAvanzados
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Write("\n");
 
-                // Pide Posición Alfil
                 int columnaAlfil;
                 int filaAlfil;
 
@@ -54,7 +51,6 @@ namespace ejercicioBuclesAvanzados
                 Console.Write("Introduce columna: ");
                 columnaAlfil = int.Parse(Console.ReadLine());
 
-                // Mustra posición alfil
                 for (int fila = 1; fila <= 8; fila++)
                 {
                     for (int columna = 1; columna <= 8; columna++)
@@ -66,9 +62,9 @@ namespace ejercicioBuclesAvanzados
                             Console.SetCursorPosition(columna, fila);
 
                             if (fila % 2 == 0)
-                                esCasillaNegra = (columna % 2 == 0) ? false : true;
+                                esCasillaNegra = columna % 2 != 0;
                             else
-                                esCasillaNegra = (columna % 2 == 0) ? true : false;
+                                esCasillaNegra = columna % 2 == 0;
 
                             if (esCasillaNegra)
                             {
