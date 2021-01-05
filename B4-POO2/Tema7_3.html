@@ -275,14 +275,33 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#%C3%ADndice">&#xCD;ndice</a></li>
 <li><a href="#gesti%C3%B3n-de-errores-en-poo">Gesti&#xF3;n de errores en POO</a>
 <ol>
-<li><a href="#programaci%C3%B3n-defensiva">Programaci&#xF3;n defensiva</a></li>
-<li><a href="#excepciones">Excepciones</a>
-<ol>
+<li><a href="#excepciones-conceptos-previos">Excepciones Conceptos Previos</a></li>
 <li><a href="#excepciones-en-c">Excepciones en C#</a>
 <ol>
-<li><a href="#generaci%C3%B3n-de-excepciones">Generaci&#xF3;n de excepciones</a></li>
+<li><a href="#generaci%C3%B3n-de-excepciones">Generaci&#xF3;n de excepciones</a>
+<ol>
 <li><a href="#captura-y-control-de-excepciones">Captura y control de excepciones</a></li>
-<li><a href="#liberando-recursos-con-finally">Liberando recursos con finally</a></li>
+<li><a href="#capturando-excepciones-diferentes">Capturando excepciones diferentes</a></li>
+</ol>
+</li>
+<li><a href="#liberando-recursos-con-finally">Liberando recursos con finally</a>
+<ol>
+<li><a href="#ejemplo-pr%C3%A1ctico-de-uso-de-finally">Ejemplo pr&#xE1;ctico de uso de finally</a></li>
+</ol>
+</li>
+<li><a href="#creando-nuestras-propias-excepciones">Creando nuestras propias excepciones</a>
+<ol>
+<li><a href="#ejemplo-de-creaci%C3%B3n-de-una-excepci%C3%B3n-propia">Ejemplo de creaci&#xF3;n de una excepci&#xF3;n propia</a></li>
+</ol>
+</li>
+<li><a href="#encadenamiento-de-excepciones-avanzado">Encadenamiento de excepciones (Avanzado)</a>
+<ol>
+<li><a href="#caso-de-uso-de-encadenamiento-de-excepciones">Caso de uso de encadenamiento de excepciones</a></li>
+</ol>
+</li>
+<li><a href="#bulb-tips-de-uso-de-excepciones-en-net">&#x1F4A1; Tips de uso de excepciones en .NET</a>
+<ol>
+<li><a href="#excepciones-est%C3%A1ndar-en-net">Excepciones est&#xE1;ndar en .NET</a></li>
 </ol>
 </li>
 </ol>
@@ -293,15 +312,7 @@ pre[data-line] .line-highlight[data-end]:after {
 <div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="gesti%C3%B3n-de-errores-en-poo">Gesti&#xF3;n de errores en POO</h2>
 
-<h3 class="mume-header" id="programaci%C3%B3n-defensiva">Programaci&#xF3;n defensiva</h3>
-
-<ul>
-<li>En este tema vamos a explicar el</li>
-</ul>
-<p><a href="https://es.wikipedia.org/wiki/Steve_McConnell" target="_blank">Steve McConell</a><br>
-<a href="https://es.wikipedia.org/wiki/Steve_McConnell">Steve McConell</a></p>
-<div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="excepciones">Excepciones</h3>
+<h3 class="mume-header" id="excepciones-conceptos-previos">Excepciones Conceptos Previos</h3>
 
 <ul>
 <li>
@@ -580,14 +591,14 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h4 class="mume-header" id="excepciones-en-c">Excepciones en C#</h4>
+<h3 class="mume-header" id="excepciones-en-c">Excepciones en C#</h3>
 
 <ul>
 <li>Todas derivan de la clase <strong><code>System.Exception</code></strong></li>
 <li>Existen algunas ya muchas <strong><a href="https://docs.microsoft.com/es-es/dotnet/standard/exceptions/?redirectedfrom=MSDN#common-exceptions" target="_blank">predefinidas</a></strong>.</li>
 <li>Podemos definir <strong>excepciones propias</strong> mediante el mecanismo de herencia.</li>
 </ul>
-<h5 class="mume-header" id="generaci%C3%B3n-de-excepciones">Generaci&#xF3;n de excepciones</h5>
+<h4 class="mume-header" id="generaci%C3%B3n-de-excepciones">Generaci&#xF3;n de excepciones</h4>
 
 <p>Utilizaremos la instrucci&#xF3;n <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/throw" target="_blank">throw</a></strong> &#x2192; <strong><code>throw new &lt;TipoExcepci&#xF3;n&gt;(...);</code></strong></p>
 <p>Veamos un <strong>ejemplo</strong> en el que vamos a usar la excepci&#xF3;n ya predefinida <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.argumentnullexception?view=netcore-3.1" target="_blank">ArgumentNullException</a></strong> que me servir&#xE1; para detectar aquellos tipos referencia que sean <strong><code>null</code></strong> antes de usarlos.<br>
@@ -754,12 +765,12 @@ Input string was not <span class="token keyword">in</span> a correct format.
 <p>&#x270B; <strong>Importante:</strong> Al especificar que capturamos solo la excepci&#xF3;n <strong><code>FormatException</code></strong> solo se entrar&#xE1; en este bloque catch si se produce la misma. Por tanto, cualquier otro error/excepci&#xF3;n ser&#xE1; capturado por el Runtime.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
-<h6 class="mume-header" id="capturando-excepciones-diferentes">Capturando excepciones diferentes</h6>
+<h5 class="mume-header" id="capturando-excepciones-diferentes">Capturando excepciones diferentes</h5>
 
 <p>Si <strong><code>catch (FormatException e)</code></strong> solo captura las excepciones de formato de entrada incorrecto.<br>
 <strong>&#xBF;C&#xF3;mo haremos para controlar diferentes tipos errores/excepciones?</strong></p>
 <p>Supongamos el siguiente <strong>ejemplo</strong> donde hemos creado un m&#xE9;todo <strong><code>Divide</code></strong> que genera una excepci&#xF3;n <strong><code>DivideByZeroException</code></strong> al intentar dividir por cero. Pero si nos fijamos en el <strong><code>Main</code></strong> solo gestionamos <strong><code>FormatException</code></strong>.<br>
-El programa ser&#xE1; un bucle infinito que siempre nos pedir&#xE1; 2 n&#xFA;meros e intentar&#xE1; dividirlos.</p>
+El programa principal nos pedir&#xE1; 2 n&#xFA;meros e intentar&#xE1; dividirlos y si no puede finaliza.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[6,12,19,21]}" class="language-csharp" data-line="6,12,19,21"><span class="token keyword">class</span> <span class="token class-name">EjemploExcepciones</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">Divide</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> numerador<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> divisor<span class="token punctuation">)</span>
@@ -771,20 +782,17 @@ El programa ser&#xE1; un bucle infinito que siempre nos pedir&#xE1; 2 n&#xFA;mer
 
     <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token keyword">try</span>
         <span class="token punctuation">{</span>
-            <span class="token keyword">try</span>
-            <span class="token punctuation">{</span>
-                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">Divide</span><span class="token punctuation">(</span>numerador<span class="token punctuation">,</span> divisor<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FormatException</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Has introducido un valor que no es un n&#xFA;mero real.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">Divide</span><span class="token punctuation">(</span>numerador<span class="token punctuation">,</span> divisor<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FormatException</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Has introducido un valor que no es un n&#xFA;mero real.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -866,31 +874,39 @@ Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.
 <span class="token punctuation">{</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;No se puede dividir por cero.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Al ejecutar ahora con la misma entrada obtendremos...</p>
-<pre data-role="codeBlock" data-info="bash {highlight=[3,6]}" class="language-bash" data-line="3,6">Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: <span class="token number">0</span>
-No se puede dividir por cero.
-Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: cero
-Has introducido un valor que no es un n&#xFA;mero real.
-Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: <span class="token number">2</span>
-La divisi&#xF3;n es <span class="token number">2</span>
-Introduce el numerador: <span class="token punctuation">..</span>.
+</pre><div style="page-break-after:always;"></div>
+<p>Al ejecutar ahora con la misma entrada obtendremos...</p>
+<pre data-role="codeBlock" data-info="bash {highlight=[4,9]}" class="language-bash" data-line="4,9">Ejecuci&#xF3;n <span class="token number">1</span>: 
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: <span class="token number">0</span>
+    No se puede dividir por cero.
+
+Ejecuci&#xF3;n <span class="token number">2</span>: 
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: cero
+    Has introducido un valor que no es un n&#xFA;mero real.
+
+Ejecuci&#xF3;n <span class="token number">3</span>: 
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: <span class="token number">2</span>
+    La divisi&#xF3;n es <span class="token number">2</span>
 <div class="line-highlight-wrapper">
 
-<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
 </div></div><div class="line-highlight-wrapper">
 
 
 
 
-<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
 </div></div></pre><p>F&#xED;jate que ahora capturamos &apos;<em>nosotros</em>&apos; los 2 errores y adem&#xE1;s nos &apos;<em>recuperamos</em>&apos; porque estamos en un bucle infinito.</p>
 <blockquote>
 <p>&#x270B; Importante: Si el <strong>tipo</strong> del primer bloque <strong><code>catch</code></strong> es una <strong>superclase</strong> del tipo del segundo. <strong>El segundo bloque catch nunca se ejecutar&#xE1;</strong> y adem&#xE1;s nos avisar&#xE1; con un <strong>error de compilaci&#xF3;n</strong>.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
 <p>Por ejemplo el siguiente c&#xF3;digo ...</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=5}" class="language-csharp" data-line="5"><span class="token keyword">try</span>
 <span class="token punctuation">{</span>
@@ -929,20 +945,17 @@ Introduce el numerador: <span class="token punctuation">..</span>.
 <p>Por tanto, si probamos el siguiente c&#xF3;digo....</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=5}" class="language-csharp" data-line="5"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">try</span>
-        <span class="token punctuation">{</span>
-            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">Divide</span><span class="token punctuation">(</span>numerador<span class="token punctuation">,</span> divisor<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">Divide</span><span class="token punctuation">(</span>numerador<span class="token punctuation">,</span> divisor<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
@@ -950,27 +963,35 @@ Introduce el numerador: <span class="token punctuation">..</span>.
 
 
 <div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
-</div></div></pre><pre data-role="codeBlock" data-info="bash {highlight=[3,6]}" class="language-bash" data-line="3,6">Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: <span class="token number">0</span>
-Attempted to divide by zero.
-Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: cero
-Input string was not <span class="token keyword">in</span> a correct format.
-Introduce el numerador: <span class="token number">4</span>
-Introduce el divisor: <span class="token number">2</span>
-La divisi&#xF3;n es <span class="token number">2</span>
-Introduce el numerador: <span class="token punctuation">..</span>.
+</div></div></pre><pre data-role="codeBlock" data-info="bash {highlight=[4,9]}" class="language-bash" data-line="4,9">Ejecuci&#xF3;n <span class="token number">1</span>:
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: <span class="token number">0</span>
+    Attempted to divide by zero.
+
+Ejecuci&#xF3;n <span class="token number">2</span>:
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: cero
+    Input string was not <span class="token keyword">in</span> a correct format.
+
+Ejecuci&#xF3;n <span class="token number">3</span>:
+    Introduce el numerador: <span class="token number">4</span>
+    Introduce el divisor: <span class="token number">2</span>
+    La divisi&#xF3;n es <span class="token number">2</span>
 <div class="line-highlight-wrapper">
 
-<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
 </div></div><div class="line-highlight-wrapper">
 
 
 
 
-<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
 </div></div></pre><div style="page-break-after:always;"></div>
-<h5 class="mume-header" id="liberando-recursos-con-finally">Liberando recursos con finally</h5>
+<h4 class="mume-header" id="liberando-recursos-con-finally">Liberando recursos con finally</h4>
 
 <p>En ocasiones se pueden dar casos en los que queramos, <strong>independientemente de si ha producido un error o no</strong>, hacer algo siempre despu&#xE9;s de un bloque de instrucciones. Por ejemplo:</p>
 <ul>
@@ -1016,7 +1037,7 @@ Introduce el numerador: <span class="token punctuation">..</span>.
 </pre></li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h6 class="mume-header" id="ejemplo-pr%C3%A1ctico-de-uso-de-finally">Ejemplo pr&#xE1;ctico de uso de finally</h6>
+<h5 class="mume-header" id="ejemplo-pr%C3%A1ctico-de-uso-de-finally">Ejemplo pr&#xE1;ctico de uso de finally</h5>
 
 <p>Vemos un ejemplo t&#xED;pico de &#xFA;so de <strong><code>finally</code></strong> que se nos va a dar en en el futuro.</p>
 <blockquote>
@@ -1060,7 +1081,934 @@ Introduce el numerador: <span class="token punctuation">..</span>.
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="creando-nuestras-propias-excepciones">Creando nuestras propias excepciones</h4>
 
+<p>En ocasiones nos interesar&#xE1; crear nuestras propias excepciones para <strong>capturar errores de tipos de excepciones espec&#xED;ficos</strong> en nuestras clases a la hora de pasar test por ejemplo.</p>
+<p>En este caso las definiremos el tipo de la excepci&#xF3;n nosotros y heredando de una excepci&#xF3;n ya creada si queremos concertarla m&#xE1;s o de la clase base para excepciones <strong><code>System.Exception</code></strong>.</p>
+<h5 class="mume-header" id="ejemplo-de-creaci%C3%B3n-de-una-excepci%C3%B3n-propia">Ejemplo de creaci&#xF3;n de una excepci&#xF3;n propia</h5>
+
+<p>El convenio en C# es acabar el nombre del tipo de nuestra excepci&#xF3;n con el sufijo <em><code>Exception</code></em> y en este ejemplo lo hemos hecho.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">DepartamentoException</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">DepartamentoException</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> message<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span> <span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><ul>
+<li>En el c&#xF3;digo de arriba hemos creado una excepci&#xF3;n <strong><code>ExcepcionDepartamento</code></strong> que usar&#xE9; para saber cuando no he controlado algo en los departamentos de mi compa&#xF1;&#xED;a.</li>
+<li>Ahora supongamos un m&#xE9;todo para imprimir n&#xF3;minas de un departamento, donde no hemos contemplado uno de reciente creaci&#xF3;n como en el siguiente c&#xF3;digo.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp {highlight=15}" class="language-csharp" data-line="15"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Departamento</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">enum</span> <span class="token class-name">Departamentos</span> <span class="token punctuation">{</span> Contable<span class="token punctuation">,</span> Desarrollo<span class="token punctuation">,</span> Marketing <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ImprimeNominas</span><span class="token punctuation">(</span><span class="token class-name">Departamentos</span> departamento<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>departamento<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> Departamentos<span class="token punctuation">.</span>Contable<span class="token punctuation">:</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Imprimiendo n&#xF3;minas contabilidad.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> Departamentos<span class="token punctuation">.</span>Desarrollo<span class="token punctuation">:</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Imprimiendo n&#xF3;minas Desarrollo.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ExcepcionDepartamento</span><span class="token punctuation">(</span>
+                        <span class="token interpolation-string"><span class="token string">$&quot;No se pueden imprimir n&#xF3;minas de este departamento de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">departamento</span><span class="token punctuation">}</span></span><span class="token string">.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+</div></div></pre><p>Otra posibilidad es crear excepciones personalizadas para una clase podr&#xED;a ser definir la excepci&#xF3;n de forma anidada dentro de la clase.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3-6, 17]}" class="language-csharp" data-line="3-6,17"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Departamento</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NoGetionadoException</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token function">NoGetionadoException</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> message<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">enum</span> <span class="token class-name">Departamentos</span> <span class="token punctuation">{</span> Contable<span class="token punctuation">,</span> Desarrollo<span class="token punctuation">,</span> Marketing <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ImprimeNominas</span><span class="token punctuation">(</span><span class="token class-name">Departamentos</span> departamento<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>departamento<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> Departamentos<span class="token punctuation">.</span>Contable<span class="token punctuation">:</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Imprimiendo n&#xF3;minas contabilidad.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> Departamentos<span class="token punctuation">.</span>Desarrollo<span class="token punctuation">:</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Imprimiendo n&#xF3;minas contabilidad.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token punctuation">:</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Departamento<span class="token punctuation">.</span>NoGetionadoException</span><span class="token punctuation">(</span>
+                        <span class="token interpolation-string"><span class="token string">$&quot;No se pueden imprimir n&#xF3;minas de este departamento de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">departamento</span><span class="token punctuation">}</span></span><span class="token string">.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3-6" data-start="3" data-end="6">
+
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div></pre><p>F&#xED;jate que al estar anidada en el tipo <strong><code>Departamento.NoGetionadoException</code></strong> queda claro que es una excepci&#xF3;n relacionada con la clase <strong><code>Departamento</code></strong>.</p>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="encadenamiento-de-excepciones-avanzado">Encadenamiento de excepciones (Avanzado)</h4>
+
+<p>En ocasiones, puedo tener la necesidad de crear un bloque <strong><code>catch</code></strong> para capturar una excepci&#xF3;n en un &#xE1;mbito, a&#xF1;adir un <strong>mensaje espec&#xED;fico para ese &#xE1;mbito</strong> y posteriormente <strong>relanzarla</strong> para ser capturada en otro &#xE1;mbito superior. Adem&#xE1;s, este proceso se puede repetir de forma sucesiva.</p>
+<p>La mayor&#xED;a de constructores de excepciones de las BCL, admiten una sobrecarga con el par&#xE1;metro <strong>Exception <a href="https://docs.microsoft.com/es-es/dotnet/api/system.exception.innerexception?view=net-5.0">innerException</a></strong>. (a NULL por defecto).</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">try</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// &#xC1;mbito del try</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ExcepcionTipoA</span> e<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// En este punto de control de excepciones capturamos la excepci&#xF3;n</span>
+    <span class="token comment">// del tipo ExcepcionTipoA y a&#xF1;adimos un mensaje espec&#xED;fico de lo</span>
+    <span class="token comment">// que estamos haciendo en el &#xE1;mbito del try y la relanzamos a un</span>
+    <span class="token comment">// catch en un &#xE1;mbito superior donde puede haber otro punto</span>
+    <span class="token comment">// de control o de recuperaci&#xF3;n de excepciones.</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ExcepcionTipoA</span><span class="token punctuation">(</span><span class="token string">&quot;mensaje espec&#xED;fico en &#xE1;mbito del try&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>F&#xED;jate que en al hacer <strong><code>throw new ExcepcionTipoA(&quot;mensaje espec&#xED;fico en &#xE1;mbito del try&quot;, e);</code></strong> estamos creando otro objeto <strong><code>ExcepcionTipoA</code></strong> al que le pasamos una referencia al objeto <strong><code>ExcepcionTipoA e</code></strong> donde nos llegaba la informaci&#xF3;n del error.</p>
+<p>Esto me permitir&#xE1; recorrer todos los objetos excepci&#xF3;n encadenados en el orden que se han ido relanzando y as&#xED; acceder a mensajes espec&#xED;ficos en cada &#xE1;mbito.</p>
+<h5 class="mume-header" id="caso-de-uso-de-encadenamiento-de-excepciones">Caso de uso de encadenamiento de excepciones</h5>
+
+<p>Veamos un caso de uso de encadenamiento de excepciones a trav&#xE9;s del siguiente esquema donde desde el Main se ir&#xED;a llamando a m&#xE9;todos de diferentes objetos para realizar una tarea y tenemos un <strong><code>M&#xE9;todo_D</code></strong> que es usado en <strong>dos ramas diferentes de la pila de llamadas</strong> y que puede generar la excepci&#xF3;n/error <strong><code>E</code></strong></p>
+<p align="center" style="zoom:0.65"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="840pt" height="722pt" viewBox="0.00 0.00 840.00 722.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 718)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-718 836,-718 836,4 -4,4"/>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="#fffafa" stroke="#c0c0c0" points="362.5816,-710.0924 249.4184,-710.0924 249.4184,-614.7076 362.5816,-614.7076 362.5816,-710.0924"/>
+<polygon fill="none" stroke="#c0c0c0" points="366.5674,-714.1002 245.4326,-714.1002 245.4326,-610.6998 366.5674,-610.6998 366.5674,-714.1002"/>
+<text text-anchor="middle" x="306" y="-683.4" font-family="Arial" font-size="14.00" fill="#ff0000">Main</text>
+<text text-anchor="middle" x="306" y="-666.6" font-family="Arial" font-size="14.00" fill="#ff0000">Punto de</text>
+<text text-anchor="middle" x="306" y="-649.8" font-family="Arial" font-size="14.00" fill="#ff0000">recuperaci&#xF3;n</text>
+<text text-anchor="middle" x="306" y="-633" font-family="Arial" font-size="14.00" fill="#ff0000">catch E</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="214,-559.4 160,-559.4 160,-523.4 214,-523.4 214,-559.4"/>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="#d3d3d3" d="M255.1881,-610.7341C238.7892,-594.0596 221.4904,-576.47 208.4199,-563.1799"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="209.6034,-561.8875 204.8497,-559.5497 207.108,-564.3417 209.6034,-561.8875"/>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="286,-559.4 232,-559.4 232,-523.4 286,-523.4 286,-559.4"/>
+</g>
+<!-- n0&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n0-&gt;n2</title>
+<path fill="none" stroke="#c0c0c0" stroke-width="2" d="M285.9314,-610.7341C279.6206,-594.4871 272.9724,-577.3715 267.8603,-564.2106"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" stroke-width="2" points="269.4916,-563.5768 266.0499,-559.5497 266.2291,-564.8441 269.4916,-563.5768"/>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="495,-559.4 441,-559.4 441,-523.4 495,-523.4 495,-559.4"/>
+</g>
+<!-- n0&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n0-&gt;n3</title>
+<path fill="none" stroke="#d3d3d3" d="M366.7837,-616.9998C391.7619,-598.3432 419.4802,-577.6401 439.5855,-562.6231"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="440.7978,-563.902 443.7565,-559.5078 438.7034,-561.0978 440.7978,-563.902"/>
+</g>
+<!-- n21 -->
+<g id="node8" class="node">
+<title>n21</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="126,-442.4 72,-442.4 72,-406.4 126,-406.4 126,-442.4"/>
+</g>
+<!-- n2&#45;&gt;n21 -->
+<g id="edge4" class="edge">
+<title>n2-&gt;n21</title>
+<path fill="none" stroke="#d3d3d3" d="M239.6069,-523.084C234.3402,-518.3507 228.5548,-513.3626 223,-509 192.7757,-485.2622 156.2255,-460.7996 130.6668,-444.3243"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="131.4972,-442.7777 126.3448,-441.5468 129.605,-445.7222 131.4972,-442.7777"/>
+</g>
+<!-- n22 -->
+<g id="node9" class="node">
+<title>n22</title>
+<polygon fill="#fffafa" stroke="#c0c0c0" points="376.5868,-472.1002 235.4132,-472.1002 235.4132,-376.6998 376.5868,-376.6998 376.5868,-472.1002"/>
+<text text-anchor="middle" x="306" y="-445.4" font-family="Arial" font-size="14.00" fill="#ff0000">M&#xE9;todo_A</text>
+<text text-anchor="middle" x="306" y="-428.6" font-family="Arial" font-size="14.00" fill="#ff0000">Punto de</text>
+<text text-anchor="middle" x="306" y="-411.8" font-family="Arial" font-size="14.00" fill="#ff0000">control</text>
+<text text-anchor="middle" x="306" y="-395" font-family="Arial" font-size="14.00" fill="#ff0000">catch E &#x2192; thorw E</text>
+</g>
+<!-- n2&#45;&gt;n22 -->
+<g id="edge5" class="edge">
+<title>n2-&gt;n22</title>
+<path fill="none" stroke="#c0c0c0" stroke-width="2" d="M266.2407,-523.3752C271.2776,-510.8365 278.2692,-493.432 284.9866,-476.7099"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" stroke-width="2" points="286.6322,-477.3081 286.8722,-472.0161 283.3845,-476.0034 286.6322,-477.3081"/>
+</g>
+<!-- n31 -->
+<g id="node5" class="node">
+<title>n31</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="466,-442.4 412,-442.4 412,-406.4 466,-406.4 466,-442.4"/>
+</g>
+<!-- n3&#45;&gt;n31 -->
+<g id="edge6" class="edge">
+<title>n3-&gt;n31</title>
+<path fill="none" stroke="#d3d3d3" d="M463.5323,-523.3752C458.4806,-502.9942 450.2424,-469.7573 444.7235,-447.4914"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="446.4221,-447.0702 443.5206,-442.6381 443.0249,-447.9123 446.4221,-447.0702"/>
+</g>
+<!-- n32 -->
+<g id="node6" class="node">
+<title>n32</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="538,-442.4 484,-442.4 484,-406.4 538,-406.4 538,-442.4"/>
+</g>
+<!-- n3&#45;&gt;n32 -->
+<g id="edge7" class="edge">
+<title>n3-&gt;n32</title>
+<path fill="none" stroke="#d3d3d3" d="M474.6245,-523.3752C482.1149,-502.9942 494.3302,-469.7573 502.5134,-447.4914"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="504.2148,-447.9349 504.2971,-442.6381 500.9297,-446.7275 504.2148,-447.9349"/>
+</g>
+<!-- n33 -->
+<g id="node7" class="node">
+<title>n33</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="611,-442.4 557,-442.4 557,-406.4 611,-406.4 611,-442.4"/>
+</g>
+<!-- n3&#45;&gt;n33 -->
+<g id="edge8" class="edge">
+<title>n3-&gt;n33</title>
+<path fill="none" stroke="#d3d3d3" d="M490.8198,-523.313C507.1799,-509.8896 529.3531,-490.7397 547,-472 554.2654,-464.2847 561.5715,-455.2265 567.7496,-447.0944"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="569.4564,-447.7357 571.0585,-442.6863 566.6572,-445.6345 569.4564,-447.7357"/>
+</g>
+<!-- n331 -->
+<g id="node15" class="node">
+<title>n331</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="724,-339.8 670,-339.8 670,-303.8 724,-303.8 724,-339.8"/>
+</g>
+<!-- n33&#45;&gt;n331 -->
+<g id="edge14" class="edge">
+<title>n33-&gt;n331</title>
+<path fill="none" stroke="#d3d3d3" d="M603.942,-406.2934C623.2677,-388.7464 652.5936,-362.1195 673.1461,-343.4585"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="674.3518,-344.7275 676.8772,-340.0707 671.9991,-342.1362 674.3518,-344.7275"/>
+</g>
+<!-- n332 -->
+<g id="node16" class="node">
+<title>n332</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="611,-339.8 557,-339.8 557,-303.8 611,-303.8 611,-339.8"/>
+</g>
+<!-- n33&#45;&gt;n332 -->
+<g id="edge15" class="edge">
+<title>n33-&gt;n332</title>
+<path fill="none" stroke="#d3d3d3" d="M584,-406.0572C584,-388.9869 584,-363.4737 584,-344.9962"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="585.7501,-344.984 584,-339.984 582.2501,-344.9841 585.7501,-344.984"/>
+</g>
+<!-- n211 -->
+<g id="node10" class="node">
+<title>n211</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="126,-339.8 72,-339.8 72,-303.8 126,-303.8 126,-339.8"/>
+</g>
+<!-- n21&#45;&gt;n211 -->
+<g id="edge9" class="edge">
+<title>n21-&gt;n211</title>
+<path fill="none" stroke="#d3d3d3" d="M99,-406.0572C99,-388.9869 99,-363.4737 99,-344.9962"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="100.7501,-344.984 99,-339.984 97.2501,-344.9841 100.7501,-344.984"/>
+</g>
+<!-- n212 -->
+<g id="node11" class="node">
+<title>n212</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="54,-339.8 0,-339.8 0,-303.8 54,-303.8 54,-339.8"/>
+</g>
+<!-- n21&#45;&gt;n212 -->
+<g id="edge10" class="edge">
+<title>n21-&gt;n212</title>
+<path fill="none" stroke="#d3d3d3" d="M86.1278,-406.0572C74.0463,-388.841 55.9382,-363.0369 42.9466,-344.524"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="44.0654,-343.0716 39.7607,-339.984 41.2004,-345.0821 44.0654,-343.0716"/>
+</g>
+<!-- n22&#45;&gt;n0 -->
+<g id="edge30" class="edge">
+<title>n22-&gt;n0</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M306,-472.2967C306,-509.2181 306,-560.559 306,-600.5804"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="302.5001,-600.7575 306,-610.7575 309.5001,-600.7576 302.5001,-600.7575"/>
+<text text-anchor="middle" x="343.5138" y="-557.6" font-family="Arial" font-size="18.00" fill="#ff0000">E(a+b+d)</text>
+<text text-anchor="middle" x="343.5138" y="-536" font-family="Arial" font-size="18.00" fill="#ff0000">o</text>
+<text text-anchor="start" x="306" y="-514.4" font-family="Arial" font-size="18.00" fill="#ff0000">E(a+c+d)</text>
+</g>
+<!-- n221 -->
+<g id="node12" class="node">
+<title>n221</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="270,-339.8 216,-339.8 216,-303.8 270,-303.8 270,-339.8"/>
+</g>
+<!-- n22&#45;&gt;n221 -->
+<g id="edge11" class="edge">
+<title>n22-&gt;n221</title>
+<path fill="none" stroke="#63b8ff" stroke-width="2" d="M276.7132,-376.7044C269.8649,-365.5514 262.8764,-354.1701 257.051,-344.683"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" stroke-width="2" points="258.3981,-343.5324 254.2904,-340.1872 255.4155,-345.3638 258.3981,-343.5324"/>
+</g>
+<!-- n222 -->
+<g id="node13" class="node">
+<title>n222</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="534,-339.8 480,-339.8 480,-303.8 534,-303.8 534,-339.8"/>
+</g>
+<!-- n22&#45;&gt;n222 -->
+<g id="edge12" class="edge">
+<title>n22-&gt;n222</title>
+<path fill="none" stroke="#36648b" stroke-width="2" d="M376.8651,-388.2271C410.382,-371.1184 448.7284,-351.5446 475.0665,-338.1004"/>
+<polygon fill="#36648b" stroke="#36648b" stroke-width="2" points="476.1831,-339.4953 479.8408,-335.6633 474.5918,-336.3779 476.1831,-339.4953"/>
+</g>
+<!-- n223 -->
+<g id="node14" class="node">
+<title>n223</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="198,-339.8 144,-339.8 144,-303.8 198,-303.8 198,-339.8"/>
+</g>
+<!-- n22&#45;&gt;n223 -->
+<g id="edge13" class="edge">
+<title>n22-&gt;n223</title>
+<path fill="none" stroke="#d3d3d3" d="M243.2426,-376.7044C227.7769,-364.9504 211.9774,-352.9428 199.1135,-343.1662"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="199.9079,-341.572 194.8681,-339.9398 197.7901,-344.3585 199.9079,-341.572"/>
+</g>
+<!-- n2211 -->
+<g id="node17" class="node">
+<title>n2211</title>
+<polygon fill="#fffafa" stroke="#c0c0c0" points="311.5868,-266.9002 170.4132,-266.9002 170.4132,-171.4998 311.5868,-171.4998 311.5868,-266.9002"/>
+<text text-anchor="middle" x="241" y="-240.2" font-family="Arial" font-size="14.00" fill="#ff0000">M&#xE9;todo_B</text>
+<text text-anchor="middle" x="241" y="-223.4" font-family="Arial" font-size="14.00" fill="#ff0000">Punto de</text>
+<text text-anchor="middle" x="241" y="-206.6" font-family="Arial" font-size="14.00" fill="#ff0000">control</text>
+<text text-anchor="middle" x="241" y="-189.8" font-family="Arial" font-size="14.00" fill="#ff0000">catch E &#x2192; thorw E</text>
+</g>
+<!-- n221&#45;&gt;n2211 -->
+<g id="edge16" class="edge">
+<title>n221-&gt;n2211</title>
+<path fill="none" stroke="#63b8ff" stroke-width="2" d="M242.6424,-303.4572C242.469,-294.56 242.2509,-283.3692 242.0307,-272.0764"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" stroke-width="2" points="243.7768,-271.8535 241.9296,-266.8886 240.2775,-271.9218 243.7768,-271.8535"/>
+</g>
+<!-- n2212 -->
+<g id="node18" class="node">
+<title>n2212</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="152,-237.2 98,-237.2 98,-201.2 152,-201.2 152,-237.2"/>
+</g>
+<!-- n221&#45;&gt;n2212 -->
+<g id="edge17" class="edge">
+<title>n221-&gt;n2212</title>
+<path fill="none" stroke="#d3d3d3" d="M215.8778,-306.7541C199.0572,-296.6911 177.5717,-282.4575 161,-266.8 153.2475,-259.4752 145.909,-250.3448 139.9049,-242.0452"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="141.0301,-240.6059 136.7124,-237.5365 138.1736,-242.6285 141.0301,-240.6059"/>
+</g>
+<!-- n2221 -->
+<g id="node19" class="node">
+<title>n2221</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="544,-237.2 490,-237.2 490,-201.2 544,-201.2 544,-237.2"/>
+</g>
+<!-- n222&#45;&gt;n2221 -->
+<g id="edge18" class="edge">
+<title>n222-&gt;n2221</title>
+<path fill="none" stroke="#d3d3d3" d="M508.7878,-303.4572C510.4516,-286.3869 512.9382,-260.8737 514.7392,-242.3962"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="516.4843,-242.5302 515.2277,-237.384 513.0008,-242.1906 516.4843,-242.5302"/>
+</g>
+<!-- n2222 -->
+<g id="node20" class="node">
+<title>n2222</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="616,-237.2 562,-237.2 562,-201.2 616,-201.2 616,-237.2"/>
+</g>
+<!-- n222&#45;&gt;n2222 -->
+<g id="edge19" class="edge">
+<title>n222-&gt;n2222</title>
+<path fill="none" stroke="#d3d3d3" d="M522.5602,-303.6517C531.5803,-293.019 543.0803,-279.269 553,-266.8 559.4224,-258.7272 566.2944,-249.7339 572.2949,-241.7572"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="573.9308,-242.4926 575.5305,-237.4425 571.1306,-240.3928 573.9308,-242.4926"/>
+</g>
+<!-- n2223 -->
+<g id="node21" class="node">
+<title>n2223</title>
+<polygon fill="#fffafa" stroke="#c0c0c0" points="471.5868,-266.9002 330.4132,-266.9002 330.4132,-171.4998 471.5868,-171.4998 471.5868,-266.9002"/>
+<text text-anchor="middle" x="401" y="-240.2" font-family="Arial" font-size="14.00" fill="#ff0000">M&#xE9;todo_C</text>
+<text text-anchor="middle" x="401" y="-223.4" font-family="Arial" font-size="14.00" fill="#ff0000">Punto de</text>
+<text text-anchor="middle" x="401" y="-206.6" font-family="Arial" font-size="14.00" fill="#ff0000">control</text>
+<text text-anchor="middle" x="401" y="-189.8" font-family="Arial" font-size="14.00" fill="#ff0000">catch E &#x2192; thorw E</text>
+</g>
+<!-- n222&#45;&gt;n2223 -->
+<g id="edge20" class="edge">
+<title>n222-&gt;n2223</title>
+<path fill="none" stroke="#36648b" stroke-width="2" d="M488.0493,-303.4572C478.4432,-294.1592 466.2493,-282.3564 454.0516,-270.55"/>
+<polygon fill="#36648b" stroke="#36648b" stroke-width="2" points="455.0787,-269.1086 450.2689,-266.8886 452.6445,-271.6235 455.0787,-269.1086"/>
+</g>
+<!-- n3311 -->
+<g id="node23" class="node">
+<title>n3311</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="832,-237.2 778,-237.2 778,-201.2 832,-201.2 832,-237.2"/>
+</g>
+<!-- n331&#45;&gt;n3311 -->
+<g id="edge21" class="edge">
+<title>n331-&gt;n3311</title>
+<path fill="none" stroke="#d3d3d3" d="M724.0571,-303.794C738.1978,-293.7461 755.3521,-280.5137 769,-266.8 776.5235,-259.2402 783.8173,-250.0638 789.8496,-241.7932"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="791.5741,-242.3911 793.0645,-237.3076 788.7293,-240.3521 791.5741,-242.3911"/>
+</g>
+<!-- n3312 -->
+<g id="node24" class="node">
+<title>n3312</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="688,-237.2 634,-237.2 634,-201.2 688,-201.2 688,-237.2"/>
+</g>
+<!-- n331&#45;&gt;n3312 -->
+<g id="edge22" class="edge">
+<title>n331-&gt;n3312</title>
+<path fill="none" stroke="#d3d3d3" d="M690.5639,-303.4572C684.5743,-286.3869 675.6223,-260.8737 669.139,-242.3962"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="670.6872,-241.5226 667.3804,-237.384 667.3846,-242.6815 670.6872,-241.5226"/>
+</g>
+<!-- n3313 -->
+<g id="node25" class="node">
+<title>n3313</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="760,-237.2 706,-237.2 706,-201.2 760,-201.2 760,-237.2"/>
+</g>
+<!-- n331&#45;&gt;n3313 -->
+<g id="edge23" class="edge">
+<title>n331-&gt;n3313</title>
+<path fill="none" stroke="#d3d3d3" d="M703.4361,-303.4572C709.4257,-286.3869 718.3777,-260.8737 724.861,-242.3962"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="726.6154,-242.6815 726.6196,-237.384 723.3128,-241.5226 726.6154,-242.6815"/>
+</g>
+<!-- n2211&#45;&gt;n22 -->
+<g id="edge31" class="edge">
+<title>n2211-&gt;n22</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M264.4201,-266.8479C269.6974,-278.7329 274.9333,-291.5779 279,-303.8 285.693,-323.9155 291.2417,-346.4688 295.5322,-366.5816"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="292.1404,-367.4626 297.5986,-376.5432 298.9945,-366.0407 292.1404,-367.4626"/>
+<text text-anchor="middle" x="316.2556" y="-316.4" font-family="Arial" font-size="18.00" fill="#ff0000">E(b+d)</text>
+</g>
+<!-- n22111 -->
+<g id="node22" class="node">
+<title>n22111</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="276,-134.6 222,-134.6 222,-98.6 276,-98.6 276,-134.6"/>
+</g>
+<!-- n2211&#45;&gt;n22111 -->
+<g id="edge24" class="edge">
+<title>n2211-&gt;n22111</title>
+<path fill="none" stroke="#63b8ff" stroke-width="2" d="M244.719,-171.5044C245.5728,-160.5542 246.4438,-149.3839 247.1753,-140.0024"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" stroke-width="2" points="248.9222,-140.1082 247.5663,-134.9872 245.4328,-139.836 248.9222,-140.1082"/>
+</g>
+<!-- n2223&#45;&gt;n22 -->
+<g id="edge32" class="edge">
+<title>n2223-&gt;n22</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M380.6164,-266.9728C370.9682,-289.2193 359.1414,-315.9757 348,-339.8 343.78,-348.8237 339.1978,-358.3289 334.6627,-367.5787"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="331.4407,-366.1992 330.1586,-376.7162 337.7193,-369.2942 331.4407,-366.1992"/>
+<text text-anchor="middle" x="390.7525" y="-316.4" font-family="Arial" font-size="18.00" fill="#ff0000">E(c+d)</text>
+</g>
+<!-- n22231 -->
+<g id="node26" class="node">
+<title>n22231</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="492,-134.6 438,-134.6 438,-98.6 492,-98.6 492,-134.6"/>
+</g>
+<!-- n2223&#45;&gt;n22231 -->
+<g id="edge25" class="edge">
+<title>n2223-&gt;n22231</title>
+<path fill="none" stroke="#36648b" stroke-width="2" d="M430.7516,-171.5044C437.7087,-160.3514 444.8081,-148.9701 450.726,-139.483"/>
+<polygon fill="#36648b" stroke="#36648b" stroke-width="2" points="452.3689,-140.1558 453.5304,-134.9872 449.3992,-138.3033 452.3689,-140.1558"/>
+</g>
+<!-- n22232 -->
+<g id="node27" class="node">
+<title>n22232</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="348,-134.6 294,-134.6 294,-98.6 348,-98.6 348,-134.6"/>
+</g>
+<!-- n2223&#45;&gt;n22232 -->
+<g id="edge26" class="edge">
+<title>n2223-&gt;n22232</title>
+<path fill="none" stroke="#d3d3d3" d="M363.8104,-171.5044C354.956,-160.1486 345.9171,-148.5561 338.4405,-138.9675"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="339.7916,-137.8542 335.337,-134.9872 337.0315,-140.0064 339.7916,-137.8542"/>
+</g>
+<!-- n22233 -->
+<g id="node28" class="node">
+<title>n22233</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="420,-134.6 366,-134.6 366,-98.6 420,-98.6 420,-134.6"/>
+</g>
+<!-- n2223&#45;&gt;n22233 -->
+<g id="edge27" class="edge">
+<title>n2223-&gt;n22233</title>
+<path fill="none" stroke="#d3d3d3" d="M397.281,-171.5044C396.4272,-160.5542 395.5562,-149.3839 394.8247,-140.0024"/>
+<polygon fill="#d3d3d3" stroke="#d3d3d3" points="396.5672,-139.836 394.4337,-134.9872 393.0778,-140.1082 396.5672,-139.836"/>
+</g>
+<!-- n222311 -->
+<g id="node29" class="node">
+<title>n222311</title>
+<polygon fill="#fffafa" stroke="#c0c0c0" points="430.1215,-61.4013 337.8785,-61.4013 337.8785,-.1987 430.1215,-.1987 430.1215,-61.4013"/>
+<text text-anchor="middle" x="384" y="-35" font-family="Arial" font-size="14.00" fill="#ff0000">M&#xE9;todo_D</text>
+<text text-anchor="middle" x="384" y="-18.2" font-family="Arial" font-size="14.00" fill="#ff0000">throw E</text>
+</g>
+<!-- n22111&#45;&gt;n222311 -->
+<g id="edge28" class="edge">
+<title>n22111-&gt;n222311</title>
+<path fill="none" stroke="#63b8ff" stroke-width="2" d="M276.3193,-99.2371C292.7222,-88.8121 314.1023,-75.2239 333.4843,-62.9056"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" stroke-width="2" points="334.5634,-64.2933 337.8445,-60.1344 332.686,-61.3394 334.5634,-64.2933"/>
+</g>
+<!-- n22231&#45;&gt;n222311 -->
+<g id="edge29" class="edge">
+<title>n22231-&gt;n222311</title>
+<path fill="none" stroke="#36648b" stroke-width="2" d="M447.822,-98.404C438.7265,-88.7695 427.2503,-76.6133 416.5459,-65.2745"/>
+<polygon fill="#36648b" stroke="#36648b" stroke-width="2" points="417.6547,-63.8998 412.9498,-61.4653 415.1097,-66.3025 417.6547,-63.8998"/>
+</g>
+<!-- n222311&#45;&gt;n2211 -->
+<g id="edge33" class="edge">
+<title>n222311-&gt;n2211</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M337.8939,-39.5682C283.4335,-50.9717 197.8304,-72.5456 179.0052,-98.6 164.6425,-118.4782 172.2342,-142.1482 186.2911,-163.2326"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="183.5271,-165.3843 192.1945,-171.4774 189.2186,-161.3091 183.5271,-165.3843"/>
+<text text-anchor="middle" x="196.9974" y="-111.2" font-family="Arial" font-size="18.00" fill="#ff0000">E(d)</text>
+</g>
+<!-- n222311&#45;&gt;n2223 -->
+<g id="edge34" class="edge">
+<title>n222311-&gt;n2223</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M430.352,-44.8085C456.0583,-55.2179 485.82,-72.2588 501,-98.6 515.2146,-123.266 501.0891,-147.9223 479.4215,-168.4536"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="476.9381,-165.9789 471.8142,-175.2523 481.6028,-171.1983 476.9381,-165.9789"/>
+<text text-anchor="middle" x="523.9974" y="-111.2" font-family="Arial" font-size="18.00" fill="#ff0000">E(d)</text>
+</g>
+<!-- n222312 -->
+<g id="node30" class="node">
+<title>n222312</title>
+<polygon fill="#f5f5f5" stroke="#c0c0c0" points="439,-680.4 385,-680.4 385,-644.4 439,-644.4 439,-680.4"/>
+</g>
+</g>
+</svg>
+</p><div style="page-break-after:always;"></div>
+<p>Si s&#xF3;lo tuviera un punto de recuperaci&#xF3;n de errores (catch) en el <strong><code>Main</code></strong> al producirse el la excepci&#xF3;n <strong><code>E(d)</code></strong> en <strong><code>M&#xE9;todo_D</code></strong>, no sabr&#xED;a por donde se ha producido.</p>
+<p>Sin embargo si vamos a&#xF1;adiendo <em>&apos;<strong><code>catch</code></strong> de contol&apos;</em> donde relanzamos la misma excepci&#xF3;n a&#xF1;adiendo una capa de informaci&#xF3;n de que proceso estamos haciendo en ese momento. El <em>&apos;<strong><code>catch</code></strong> de contol&apos;</em> en el <strong><code>M&#xE9;todo_A</code></strong>, si nos fijamos, puede relanzar la excepci&#xF3;n a&#xF1;adiendo informaci&#xF3;n de cada uno de los <em>&apos;<strong><code>catch</code></strong> de contol&apos;</em> por donde ha pasado <strong><code>E(a+b+d) o E(a+c+d)</code></strong> y saber de forma m&#xE1;s espec&#xED;fica en un <em>&apos;<strong><code>catch</code></strong> de menaje o recuperaci&#xF3;n&apos;</em> del <strong><code>Main</code></strong> por donde se ha producido el error.</p>
+<p>Una posible implementaci&#xF3;n esquem&#xE1;tica del la situaci&#xF3;n descrita en el diagrama podr&#xED;a ser la siguiente:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">namespace</span> <span class="token namespace">EsquemaExcepcionesEncadenadas</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">E</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token function">E</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> message<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token function">E</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> message<span class="token punctuation">,</span> <span class="token class-name">Exception</span> innerException<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> innerException<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">class</span> <span class="token class-name">JerarquiaDeLlamadas</span> <span class="token punctuation">{</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo_D</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// En alg&#xFA;n punto de pude lanzar la excepci&#xF3;n</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">E</span><span class="token punctuation">(</span><span class="token string">&quot;D&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo_C</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// En alg&#xFA;n punto de este c&#xF3;digo en su jerarqu&#xED;a de llamadas,</span>
+                <span class="token comment">// se llamar&#xE1; a Metodo_D()</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token comment">// Catch de control en C</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">E</span><span class="token punctuation">(</span><span class="token string">&quot;C&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo_B</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// En alg&#xFA;n punto de este c&#xF3;digo en su jerarqu&#xED;a de llamadas,</span>
+                <span class="token comment">// se llamar&#xE1; a Metodo_D()</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token comment">// Catch de control en B</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">E</span><span class="token punctuation">(</span><span class="token string">&quot;B&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo_A</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// En alg&#xFA;n punto de este c&#xF3;digo en su jerarqu&#xED;a de llamadas,</span>
+                <span class="token comment">// o bien se llemar&#xE1; a Metodo_B() o a Metodo_C()</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token comment">// Catch de control en A</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">E</span><span class="token punctuation">(</span><span class="token string">&quot;A&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// En alg&#xFA;n punto de este c&#xF3;digo en su jerarqu&#xED;a de llamadas,</span>
+                <span class="token comment">// se llamar&#xE1; a Metodo_A()</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token comment">// Catch de mensaje o recuperaci&#xF3;n en Main</span>
+            <span class="token punctuation">{</span>
+                <span class="token class-name">StringBuilder</span> mensaje <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    mensaje<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    e <span class="token operator">=</span> e<span class="token punctuation">.</span>InnerException <span class="token keyword">as</span> <span class="token class-name">E</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                        mensaje<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token string">&quot;+&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="bulb-tips-de-uso-de-excepciones-en-net">&#x1F4A1; Tips de uso de excepciones en .NET</h4>
+
+<p>En ocasiones usar adecuadamente las excepciones es complicado incluso para programadores <strong>experimentados</strong> y se han de establecer convenios y patrones en los equipos de desarrollo.</p>
+<p>Aunque en este curso no vamos tratar m&#xE1;s que los conceptos b&#xE1;sicos. Si deseas profundizar, en el siguiente enlace puedes encontrar una serie de instrucciones para la correcta generaci&#xF3;n generaci&#xF3;n de excepciones descritas en la documentaci&#xF3;n de Microsoft y que adem&#xE1;s de una lectura complementaria interesante. Puede ser extrapolable a otros lenguajes.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/exception-throwing">Instrucciones para la correcta generaci&#xF3;n generaci&#xF3;n de excepciones</a>.</li>
+</ul>
+<p>De entre los tips del enlace anterior, destacaremos un uso incorrecto muy com&#xFA;n en programadores noveles.</p>
+<blockquote>
+<p>&#x274C; <strong>No utilice excepciones para el flujo de control normal, si es posible.</strong></p>
+</blockquote>
+<p>Ve&#xE1;moslo a trav&#xE9;s de con <strong>un ejemplo similar al del inicio</strong> del tema donde quer&#xED;amos pedir dos n&#xFA;meros y mostrar su divisi&#xF3;n.<br>
+Un c&#xF3;digo algo m&#xE1;s modularizado, pero sin gesti&#xF3;n de excepciones ser&#xED;a el siguiente:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Consola</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> etiqueta<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">etiqueta</span><span class="token punctuation">}</span></span><span class="token string">: &quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">numerador <span class="token operator">/</span> divisor</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Si ahora nos piden filtrar la entrada de datos, para que no se generase error al producirse una entrada correcta.<br>
+&#x274C;&#x1F480; Una tentaci&#xF3;n ser&#xED;a hacer la siguiente implementaci&#xF3;n...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> etiqueta<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> textoEntrada <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">double</span><span class="token punctuation">?</span></span> valor <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">try</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">etiqueta</span><span class="token punctuation">}</span></span><span class="token string">: &quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            textoEntrada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            valor <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>textoEntrada<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FormatException</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El valor introducido </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">textoEntrada</span><span class="token punctuation">}</span></span><span class="token string"> no es un valor real v&#xE1;lido.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>valor <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>valor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>En esta implementaci&#xF3;n, utilizamos excepciones para el <strong>control del flujo de c&#xF3;digo</strong> y no para una situaci&#xF3;n de error.</p>
+<div style="page-break-after:always;"></div>
+<p><strong>&#xBF;Cual ser&#xED;a la implementaci&#xF3;n correcta del c&#xF3;digo anterior para no hacerlo?</strong></p>
+<p>&#x2714;&#xFE0F; &#x1F44D; Microsoft nos propone usar el <strong><a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/exceptions-and-performance#try-parse-pattern">patr&#xF3;n try-parse</a></strong> en su lugar, de la siguiente forma...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> etiqueta<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> valor<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> error<span class="token punctuation">;</span>
+
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">etiqueta</span><span class="token punctuation">}</span></span><span class="token string">: &quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> textoEntrada <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        error <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span>textoEntrada<span class="token punctuation">,</span> <span class="token keyword">out</span> valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El valor introducido </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">textoEntrada</span><span class="token punctuation">}</span></span><span class="token string"> no es un valor real v&#xE1;lido.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> valor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x274C;&#x1F480; De forma similar suceder&#xED;a si intent&#xE1;semos controlar la divisi&#xF3;n por cero en el programa principal de la siguiente forma ....</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[11, 15]}" class="language-csharp" data-line="11,15"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">double</span><span class="token punctuation">?</span></span> division <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">try</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>divisor <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DivideByZeroException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            division <span class="token operator">=</span> numerador <span class="token operator">/</span> divisor<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">division</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">DivideByZeroException</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;No se puede dividir por cero.\nIntroduzca de nuevo los valores.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>division <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+</div></div></pre><p>En esta implementaci&#xF3;n, estamos cometiendo un doble mal uso</p>
+<ul>
+<li>&#x274C; Utilizamos excepciones para el <strong>control del flujo de c&#xF3;digo</strong>.</li>
+<li>&#x274C; En <strong>el mismo &#xE1;mbito</strong> est&#xE1;mos lanzando una excepci&#xF3;n (<strong><code>L&#xED;nea 11</code></strong>) y captur&#xE1;ndola (<strong><code>L&#xED;nea 15</code></strong>) y esto, <mark><strong>nunca se debe producir</strong></mark>.</li>
+</ul>
+<p><strong>&#xBF;Cual ser&#xED;a la implementaci&#xF3;n correcta del c&#xF3;digo anterior para no hacerlo?</strong></p>
+<p>&#x2714;&#xFE0F; &#x1F44D; Usar&#xED;amos estructuras condicionales tradicionales.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> errorDivisionPorCero<span class="token punctuation">;</span>
+    <span class="token keyword">do</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> numerador <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el numerador&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> divisor <span class="token operator">=</span> Consola<span class="token punctuation">.</span><span class="token function">Lee</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce el divisor&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        errorDivisionPorCero <span class="token operator">=</span> divisor <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>errorDivisionPorCero<span class="token punctuation">)</span>                    
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;No se puede dividir por cero.\nIntroduzca de nuevo los valores.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La divisi&#xF3;n es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">numerador <span class="token operator">/</span> divisor</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>errorDivisionPorCero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h5 class="mume-header" id="excepciones-est%C3%A1ndar-en-net">Excepciones est&#xE1;ndar en .NET</h5>
+
+<p>Adem&#xE1;s, Microsoft nos proporciona unas recomendaciones de uso de excepciones est&#xE1;ndar ya definidas por las propias BCL.<br>
+F&#xED;jate que algunas <strong>no</strong> son recomendables capturarlas, lanzarlas o derivarlas.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/using-standard-exception-types">Recomendaciones de uso de excepciones est&#xE1;ndar</a></li>
+</ul>
+<p>Aunque cuando necesitemos lanzar alg&#xFA;n tipo de excepci&#xF3;n est&#xE1;ndar se te indicar&#xE1; en el enunciado. En el siguiente diagram&#xE1; tienes un resumen <strong>simplificado</strong> de las principales excepciones en .NET y las recomendaciones de uso del cuadro anterior.</p>
+<p align="center" style="zoom:0.5"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="1558pt" height="540pt" viewBox="0.00 0.00 1557.50 540.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 536)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-536 1553.5,-536 1553.5,4 -4,4"/>
+<!-- Exception -->
+<g id="node1" class="node">
+<title>Exception</title>
+<polygon fill="none" stroke="#000000" points="812,-430 812,-528 1000,-528 1000,-430 812,-430"/>
+<text text-anchor="start" x="875.2679" y="-495.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">Exception</text>
+<text text-anchor="start" x="870.993" y="-481.4" font-family="Arial" font-size="14.00" fill="#000000">No generar</text>
+<text text-anchor="start" x="855.0505" y="-467.4" font-family="Arial" font-size="14.00" fill="#000000">Evitar capturarla</text>
+<text text-anchor="start" x="832.871" y="-453.4" font-family="Arial" font-size="14.00" fill="#000000">Regenerar si capturada</text>
+</g>
+<!-- SystemException -->
+<g id="node2" class="node">
+<title>SystemException</title>
+<polygon fill="none" stroke="#000000" points="706,-288 706,-386 894,-386 894,-288 706,-288"/>
+<text text-anchor="start" x="745.9327" y="-353.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">SystemException</text>
+<text text-anchor="start" x="764.993" y="-339.4" font-family="Arial" font-size="14.00" fill="#000000">No generar</text>
+<text text-anchor="start" x="749.0505" y="-325.4" font-family="Arial" font-size="14.00" fill="#000000">Evitar capturarla</text>
+<text text-anchor="start" x="726.871" y="-311.4" font-family="Arial" font-size="14.00" fill="#000000">Regenerar si capturada</text>
+</g>
+<!-- SystemException&#45;&gt;Exception -->
+<g id="edge1" class="edge">
+<title>SystemException-&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M839.7721,-390.2796C846.4287,-399.197 853.3828,-408.5128 860.1766,-417.6139"/>
+<polygon fill="none" stroke="#000000" points="857.5709,-419.9742 866.3576,-425.8941 863.1803,-415.7869 857.5709,-419.9742"/>
+</g>
+<!-- ApplicationException -->
+<g id="node3" class="node">
+<title>ApplicationException</title>
+<polygon fill="none" stroke="#000000" points="928,-295 928,-379 1099,-379 1099,-295 928,-295"/>
+<text text-anchor="start" x="948.5379" y="-346.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">ApplicationException</text>
+<text text-anchor="start" x="978.493" y="-332.4" font-family="Arial" font-size="14.00" fill="#000000">No generar</text>
+<text text-anchor="start" x="978.493" y="-318.4" font-family="Arial" font-size="14.00" fill="#000000">No heredar</text>
+</g>
+<!-- ApplicationException&#45;&gt;Exception -->
+<g id="edge2" class="edge">
+<title>ApplicationException-&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M978.2602,-383.1033C970.0107,-394.0512 961.0799,-405.9032 952.4027,-417.4188"/>
+<polygon fill="none" stroke="#000000" points="949.3653,-415.6339 946.1425,-425.7268 954.9558,-419.8466 949.3653,-415.6339"/>
+</g>
+<!-- ArgumentException -->
+<g id="node4" class="node">
+<title>ArgumentException</title>
+<polygon fill="none" stroke="#000000" points="269,-146 269,-244 433,-244 433,-146 269,-146"/>
+<text text-anchor="start" x="289.9285" y="-211.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">ArgumentException</text>
+<text text-anchor="start" x="318.3233" y="-197.4" font-family="Arial" font-size="14.00" fill="#000000">Generable</text>
+<text text-anchor="start" x="295.0021" y="-183.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="328.4425" y="-183.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">ParamName</text>
+<text text-anchor="start" x="317.5526" y="-169.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="350.993" y="-169.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">value</text>
+</g>
+<!-- ArgumentException&#45;&gt;SystemException -->
+<g id="edge3" class="edge">
+<title>ArgumentException-&gt;SystemException</title>
+<path fill="none" stroke="#000000" d="M441.1862,-235.2354C452.4816,-239.7737 463.9472,-244.1448 475,-248 544.7349,-272.3236 624.7291,-294.3013 687.9046,-310.3315"/>
+<polygon fill="none" stroke="#000000" points="687.3429,-313.7994 697.8953,-312.8526 689.0556,-307.0121 687.3429,-313.7994"/>
+</g>
+<!-- ArithmeticException -->
+<g id="node5" class="node">
+<title>ArithmeticException</title>
+<polygon fill="none" stroke="#000000" points="493,-166 493,-224 658,-224 658,-166 493,-166"/>
+<text text-anchor="start" x="513.6592" y="-191.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">ArithmeticException</text>
+</g>
+<!-- ArithmeticException&#45;&gt;SystemException -->
+<g id="edge4" class="edge">
+<title>ArithmeticException-&gt;SystemException</title>
+<path fill="none" stroke="#000000" d="M627.4685,-228.1135C651.1376,-243.0513 679.8205,-261.1534 706.9475,-278.2735"/>
+<polygon fill="none" stroke="#000000" points="705.3673,-281.415 715.692,-283.7923 709.1033,-275.4953 705.3673,-281.415"/>
+</g>
+<!-- IndexOutOfRangeException -->
+<g id="node6" class="node">
+<title>IndexOutOfRangeException</title>
+<polygon fill="none" stroke="#000000" points="692,-160 692,-230 908,-230 908,-160 692,-160"/>
+<text text-anchor="start" x="712.8577" y="-197.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">IndexOutOfRangeException</text>
+<text text-anchor="start" x="764.993" y="-183.4" font-family="Arial" font-size="14.00" fill="#000000">No generar</text>
+</g>
+<!-- IndexOutOfRangeException&#45;&gt;SystemException -->
+<g id="edge5" class="edge">
+<title>IndexOutOfRangeException-&gt;SystemException</title>
+<path fill="none" stroke="#000000" d="M800,-234.178C800,-246.411 800,-260.2331 800,-273.6831"/>
+<polygon fill="none" stroke="#000000" points="796.5001,-273.8633 800,-283.8633 803.5001,-273.8634 796.5001,-273.8633"/>
+</g>
+<!-- NullReferenceException -->
+<g id="node7" class="node">
+<title>NullReferenceException</title>
+<polygon fill="none" stroke="#000000" points="942,-160 942,-230 1134,-230 1134,-160 942,-160"/>
+<text text-anchor="start" x="962.9313" y="-197.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">NullReferenceException</text>
+<text text-anchor="start" x="1002.993" y="-183.4" font-family="Arial" font-size="14.00" fill="#000000">No generar</text>
+</g>
+<!-- NullReferenceException&#45;&gt;SystemException -->
+<g id="edge6" class="edge">
+<title>NullReferenceException-&gt;SystemException</title>
+<path fill="none" stroke="#000000" d="M972.3354,-234.178C949.3196,-247.9102 922.9475,-263.6448 897.869,-278.6075"/>
+<polygon fill="none" stroke="#000000" points="895.8544,-275.7339 889.0601,-283.8633 899.441,-281.7452 895.8544,-275.7339"/>
+</g>
+<!-- IOException -->
+<g id="node8" class="node">
+<title>IOException</title>
+<polygon fill="none" stroke="#000000" points="1168,-166 1168,-224 1286,-224 1286,-166 1168,-166"/>
+<text text-anchor="start" x="1188.8773" y="-191.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">IOException</text>
+</g>
+<!-- IOException&#45;&gt;SystemException -->
+<g id="edge7" class="edge">
+<title>IOException-&gt;SystemException</title>
+<path fill="none" stroke="#000000" d="M1186.7829,-228.1375C1175.7561,-235.7586 1163.4058,-243.0648 1151,-248 1053.3188,-286.8588 1015.7207,-254.1742 911.6651,-283.7373"/>
+<polygon fill="none" stroke="#000000" points="910.6497,-280.3877 902.0585,-286.5878 912.641,-287.0985 910.6497,-280.3877"/>
+</g>
+<!-- ArgumentNullException -->
+<g id="node9" class="node">
+<title>ArgumentNullException</title>
+<polygon fill="none" stroke="#000000" points="8,-4 8,-102 196,-102 196,-4 8,-4"/>
+<text text-anchor="start" x="28.8773" y="-69.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">ArgumentNullException</text>
+<text text-anchor="start" x="69.3233" y="-55.4" font-family="Arial" font-size="14.00" fill="#000000">Generable</text>
+<text text-anchor="start" x="46.0021" y="-41.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="79.4425" y="-41.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">ParamName</text>
+<text text-anchor="start" x="68.5526" y="-27.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="101.993" y="-27.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">value</text>
+</g>
+<!-- ArgumentNullException&#45;&gt;ArgumentException -->
+<g id="edge8" class="edge">
+<title>ArgumentNullException-&gt;ArgumentException</title>
+<path fill="none" stroke="#000000" d="M195.0725,-106.0775C213.6753,-116.6863 233.2798,-127.8664 252.072,-138.5832"/>
+<polygon fill="none" stroke="#000000" points="250.5114,-141.7224 260.932,-143.6359 253.9792,-135.6417 250.5114,-141.7224"/>
+</g>
+<!-- ArgumentOutOfRangeException -->
+<g id="node10" class="node">
+<title>ArgumentOutOfRangeException</title>
+<polygon fill="none" stroke="#000000" points="230,-4 230,-102 472,-102 472,-4 230,-4"/>
+<text text-anchor="start" x="250.6375" y="-69.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">ArgumentOutOfRangeException</text>
+<text text-anchor="start" x="318.3233" y="-55.4" font-family="Arial" font-size="14.00" fill="#000000">Generable</text>
+<text text-anchor="start" x="295.0021" y="-41.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="328.4425" y="-41.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">ParamName</text>
+<text text-anchor="start" x="317.5526" y="-27.4" font-family="Arial" font-size="14.00" fill="#000000">Usar </text>
+<text text-anchor="start" x="350.993" y="-27.4" font-family="Arial" font-style="italic" font-size="14.00" fill="#000000">value</text>
+</g>
+<!-- ArgumentOutOfRangeException&#45;&gt;ArgumentException -->
+<g id="edge9" class="edge">
+<title>ArgumentOutOfRangeException-&gt;ArgumentException</title>
+<path fill="none" stroke="#000000" d="M351,-106.2796C351,-114.56 351,-123.184 351,-131.6606"/>
+<polygon fill="none" stroke="#000000" points="347.5001,-131.8941 351,-141.8941 354.5001,-131.8941 347.5001,-131.8941"/>
+</g>
+<!-- DivideByZeroException -->
+<g id="node11" class="node">
+<title>DivideByZeroException</title>
+<polygon fill="none" stroke="#000000" points="507,-24 507,-82 694,-82 694,-24 507,-24"/>
+<text text-anchor="start" x="527.7679" y="-49.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">DivideByZeroException</text>
+</g>
+<!-- DivideByZeroException&#45;&gt;ArithmeticException -->
+<g id="edge10" class="edge">
+<title>DivideByZeroException-&gt;ArithmeticException</title>
+<path fill="none" stroke="#000000" d="M594.1386,-86.2927C590.6907,-105.8769 586.2934,-130.8533 582.5835,-151.9256"/>
+<polygon fill="none" stroke="#000000" points="579.1117,-151.4605 580.8247,-161.9159 586.0056,-152.6743 579.1117,-151.4605"/>
+</g>
+<!-- EndOfStremException -->
+<g id="node12" class="node">
+<title>EndOfStremException</title>
+<polygon fill="none" stroke="#000000" points="920,-24 920,-82 1100,-82 1100,-24 920,-24"/>
+<text text-anchor="start" x="940.7609" y="-49.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">EndOfStremException</text>
+</g>
+<!-- EndOfStremException&#45;&gt;IOException -->
+<g id="edge11" class="edge">
+<title>EndOfStremException-&gt;IOException</title>
+<path fill="none" stroke="#000000" d="M1063.5995,-86.0265C1090.0872,-102.5513 1122.4201,-123.0291 1151,-142 1157.6906,-146.4411 1164.6619,-151.1656 1171.55,-155.8941"/>
+<polygon fill="none" stroke="#000000" points="1169.9844,-159.0661 1180.203,-161.8645 1173.9598,-153.3045 1169.9844,-159.0661"/>
+</g>
+<!-- FileNotFoundException -->
+<g id="node13" class="node">
+<title>FileNotFoundException</title>
+<polygon fill="none" stroke="#000000" points="1134,-24 1134,-82 1321,-82 1321,-24 1134,-24"/>
+<text text-anchor="start" x="1154.7623" y="-49.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">FileNotFoundException</text>
+</g>
+<!-- FileNotFoundException&#45;&gt;IOException -->
+<g id="edge12" class="edge">
+<title>FileNotFoundException-&gt;IOException</title>
+<path fill="none" stroke="#000000" d="M1227,-86.2927C1227,-105.7879 1227,-130.6263 1227,-151.638"/>
+<polygon fill="none" stroke="#000000" points="1223.5001,-151.9159 1227,-161.9159 1230.5001,-151.9159 1223.5001,-151.9159"/>
+</g>
+<!-- FileLoadException -->
+<g id="node14" class="node">
+<title>FileLoadException</title>
+<polygon fill="none" stroke="#000000" points="1355,-24 1355,-82 1542,-82 1542,-24 1355,-24"/>
+<text text-anchor="start" x="1375.7623" y="-49.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#000000">FileNotFoundException</text>
+</g>
+<!-- FileLoadException&#45;&gt;IOException -->
+<g id="edge13" class="edge">
+<title>FileLoadException-&gt;IOException</title>
+<path fill="none" stroke="#000000" d="M1396.4642,-86.1135C1363.7765,-107.1165 1321.3532,-134.3749 1287.1305,-156.3641"/>
+<polygon fill="none" stroke="#000000" points="1285.1385,-153.4838 1278.6174,-161.834 1288.9225,-159.3729 1285.1385,-153.4838"/>
+</g>
+</g>
+</svg>
+</p>
       </div>
       
       
