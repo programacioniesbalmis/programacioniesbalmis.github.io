@@ -272,11 +272,490 @@ pre[data-line] .line-highlight[data-end]:after {
 <h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
 
 <ol>
-<li><a href="#gesti%C3%B3n-de-errores-en-poo">Gesti&#xF3;n de errores en POO</a></li>
+<li><a href="#definiciones-b%C3%A1sicas">Definiciones b&#xE1;sicas</a></li>
+<li><a href="#gesti%C3%B3n-de-rutas-en-net">Gesti&#xF3;n de rutas en .NET</a>
+<ol>
+<li><a href="#clase-path">Clase Path</a>
+<ol>
+<li><a href="#operaciones-con-rutas">Operaciones con rutas</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#gesti%C3%B3n-de-archivos-y-directorios">Gesti&#xF3;n de archivos y directorios</a>
+<ol>
+<li><a href="#clases-de-utilidad-file-y-directory">Clases de utilidad File y Directory</a>
+<ol>
+<li><a href="#ejemplo-de-uso-de-file-y-directory">Ejemplo de uso de File y Directory</a></li>
+</ol>
+</li>
+<li><a href="#clases-fileinfo-y-directoryinfo">Clases FileInfo y DirectoryInfo</a>
+<ol>
+<li><a href="#ejemplos-de-uso-de-fileinfo-y-directoryinfo">Ejemplos de uso de FileInfo y DirectoryInfo</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="gesti%C3%B3n-de-errores-en-poo">Gesti&#xF3;n de errores en POO</h2>
+<h2 class="mume-header" id="definiciones-b%C3%A1sicas">Definiciones b&#xE1;sicas</h2>
 
+<p>El siguiente <em>&apos;pre-conocimiento&apos;</em> ser&#xE1; necesario tenerlo presente para abordar el siguiente tema. Por pertenecer los siguiente conceptos al curr&#xED;culo del m&#xF3;dulo de <strong>&apos;<em>Sistemas Inform&#xE1;ticos</em>&apos;</strong>, &#xFA;nicamente vamos a enumerar los conceptos que vamos a necesitar.</p>
+<ul>
+<li>
+<p>Un <strong>archivo o fichero</strong> inform&#xE1;tico es un conjunto de bytes que son almacenados en un dispositivo.<br>
+(<em>Fuente Wikipedia</em>)</p>
+</li>
+<li>
+<p>En inform&#xE1;tica, <strong>una ruta (path, en ingl&#xE9;s)</strong> es la forma de referenciar un archivo inform&#xE1;tico o directorio en un sistema de archivos de un sistema operativo determinado.<br>
+(<em>Fuente Wikipedia</em>)</p>
+</li>
+<li>
+<p>Las <strong>rutas absolutas</strong> se&#xF1;alan la ubicaci&#xF3;n de un archivo o directorio desde el <strong>directorio ra&#xED;z</strong> del sistema de archivos.<br>
+(<em>Fuente Wikipedia</em>)</p>
+</li>
+<li>
+<p>Las <strong>rutas relativas</strong> se&#xF1;alan la ubicaci&#xF3;n de un archivo o directorio a partir de nuestra <strong>posici&#xF3;n actual</strong> en el sistema de archivos.<br>
+(<em>Fuente Wikipedia</em>)</p>
+</li>
+</ul>
+<h2 class="mume-header" id="gesti%C3%B3n-de-rutas-en-net">Gesti&#xF3;n de rutas en .NET</h2>
+
+<p>Al tratarse .NET de un Framework <strong>multiplataforma</strong>, dispondr&#xE1; de una serie de <strong>clases de utilidad para el manejo de rutas</strong> de forma &apos;<em>transparente</em>&apos; al <strong>Sistema Operativo (SO)</strong> en el que estemos ejecutando.</p>
+<h3 class="mume-header" id="clase-path">Clase Path</h3>
+
+<p>Esta clase nos proporcionar&#xE1; de forma abstracta los siguientes propiedades que pueden tomar valores diferentes dependiendo del SO donde estemos ejecutando.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Campo</th>
+<th style="text-align:left">Parte de la ruta que su valor representa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>DirectorySeparatorChar</code></strong></td>
+<td style="text-align:left">Separador de directorios. En Windows es <code>\</code>, en Unix es <code>/</code> y Macintosh es <code>:</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>AltDirectorySeparatorChar</code></strong></td>
+<td style="text-align:left">Car&#xE1;cter alternativo usable como separador de directorios. En Windows y Macintosh es <code>/</code>, - mientras que en Unix es <code>\</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>PathSeparator</code></strong></td>
+<td style="text-align:left">Separador entre rutas. Aunque en los sistemas operativos m&#xE1;s comunes es ; podr&#xED;a variar en otros.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>VolumeSeparatorChar</code></strong></td>
+<td style="text-align:left">Separador de unidades l&#xF3;gicas. En Windows y Macintosh es : (por ejemplo <code>C:\datos</code>) y en Unix <code>/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo:</strong> Si en lugar de asignar el siguiente literal en en el c&#xF3;digo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> ruta <span class="token operator">=</span> <span class="token string">@&quot;\datos\fichero.txt&quot;</span><span class="token punctuation">;</span>
+</pre><p>escribimos...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">char</span></span> s <span class="token operator">=</span> Path<span class="token punctuation">.</span>DirectorySeparatorChar<span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> ruta <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s</span><span class="token punctuation">}</span></span><span class="token string">datos</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s</span><span class="token punctuation">}</span></span><span class="token string">fichero.txt&quot;</span></span><span class="token punctuation">;</span>
+</pre><p>Conseguiremos que la variable <strong><code>ruta</code></strong> almacene el formato de la misma seg&#xFA;n corresponda al sistema operativo sobre el que se ejecute el c&#xF3;digo anterior. Es decir, mientras que en <strong>Windows</strong> contendr&#xED;a <strong><code>\datos\fichero.txt</code></strong>, en <strong>Linux o Mac OSX</strong> contendr&#xED;a <strong><code>/datos/fichero.txt</code></strong></p>
+<h4 class="mume-header" id="operaciones-con-rutas">Operaciones con rutas</h4>
+
+<p>Si te fijas en el ejemplo anterior, ocurre que en Windows el car&#xE1;cter usado como separador de directorios <strong><code>\</code></strong> coincide con el que C# usa como indicador de secuencias de escape. Por eso es incorrecto indicar literales de cadena para rutas como <strong><code>&quot;C:\datos&quot;</code></strong> ya que C# entender&#xED;a que estamos intentando escapar el caracter <strong><code>d</code></strong>.</p>
+<p>En su lugar hay tres alternativas:</p>
+<ol>
+<li>
+<p>Usar el campo independiente del sistema operativo <strong><code>$&quot;C:{Path.DirectorySeparatorChar}datos&quot;</code></strong></p>
+</li>
+<li>
+<p>Duplicar los caracteres de los literales para que dejen de considerarse<br>
+secuencias de escape. As&#xED;, la ruta de ejemplo anterior quedar&#xED;a... <strong><code>&quot;C:\\datos&quot;</code></strong></p>
+</li>
+<li>
+<p>Lo que hemos hecho en nuestro ejemplo que consiste en especificar la ruta mediante un literal de cadena plano, pues en ellos no se tienen en cuenta las secuencias de escape. As&#xED;, ahora la ruta del ejemplo quedar&#xED;a ... como <strong><code>@&quot;C:\datos&quot;</code></strong>.<br>
+Esta opci&#xF3;n es la m&#xE1;s simple, si sabemos cual es el SO donde vamos a ejecutar.</p>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<ul>
+<li>
+<p>Obtener la ruta con el <strong>directorio <em>&apos;padre&apos;</em></strong> o <strong>null</strong> si es ra&#xED;z.</p>
+<p><strong>string Path.<a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.path.getdirectoryname?view=net-5.0#System_IO_Path_GetDirectoryName_System_String_">GetDirectoryName</a>(string path)</strong></p>
+<ul>
+<li><strong><code>GetDirectoryName(@&quot;C:\MyDir\MySubDir\myfile.ext&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir\MySubDir&quot;</code></strong></li>
+<li><strong><code>GetDirectoryName(@&quot;C:\MyDir\MySubDir&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir&quot;</code></strong></li>
+<li><strong><code>GetDirectoryName(@&quot;C:\MyDir\&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir&quot;</code></strong></li>
+<li><strong><code>GetDirectoryName(@&quot;C:\MyDir&quot;)</code></strong> devuelve <strong><code>&quot;C:\&quot;</code></strong></li>
+<li><strong><code>GetDirectoryName(@&quot;C:\&quot;)</code></strong> devuelve <strong><code>null</code></strong></li>
+</ul>
+</li>
+<li>
+<p>Obtener el archivo o directorio del final de la ruta. (vaci&#xF3; si acaba en separador)</p>
+<p><strong>string Path.<a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.path.getfilename?view=net-5.0#System_IO_Path_GetFileName_System_String_">GetFileName</a>(string path)</strong></p>
+<ul>
+<li><strong><code>GetFileName(@&quot;C:\MyDir\MySubDir\myfile.ext&quot;)</code></strong> devuelve <strong><code>&quot;myfile.ext&quot;</code></strong></li>
+<li><strong><code>GetFileName(@&quot;C:\MyDir\MySubDir&quot;)</code></strong> devuelve <strong><code>&quot;MySubDir&quot;</code></strong></li>
+<li><strong><code>GetFileName(@&quot;C:\MyDir\&quot;)</code></strong> devuelve <strong><code>&quot;&quot;</code></strong> (Cadena vac&#xED;a)</li>
+</ul>
+</li>
+<li>
+<p>Combinar un <strong>DirectoryName path1</strong> y un <strong>FileName path2</strong> para formar <strong>una nueva ruta</strong>.</p>
+<blockquote>
+<p>&#x26A0;&#xFE0F; <strong>Nota:</strong> Siempre que <strong>path2</strong> no empiece por el car&#xE1;cter separador de directorio o de volumen.</p>
+</blockquote>
+<p><strong>string <a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.path.combine?view=net-5.0#System_IO_Path_Combine_System_String_System_String_">Combine</a>(string path1, string path2);</strong></p>
+<ul>
+<li><strong><code>Combine(@&quot;C:\MyDir&quot;, @&quot;myfile.ext&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir\myfile.ext&quot;</code></strong></li>
+<li><strong><code>Combine(@&quot;C:\MyDir\&quot;, @&quot;myfile.ext&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir\myfile.ext&quot;</code></strong></li>
+<li><strong><code>Combine(@&quot;C:\MyDir&quot;, @&quot;MySubDir\myfile.ext&quot;)</code></strong>  devuelve <strong><code>&quot;C:\MyDir\MySubDir\myfile.ext&quot;</code></strong></li>
+<li><strong><code>Combine(@&quot;C:\MyDir\&quot;, @&quot;MySubDir\myfile.ext&quot;)</code></strong> devuelve <strong><code>&quot;C:\MyDir\MySubDir\myfile.ext&quot;</code></strong></li>
+<li>&#x274C; <strong><code>Combine(@&quot;C:\MyDir\&quot;, @&quot;\MySubDir\myfile.ext&quot;)</code></strong></li>
+<li>&#x274C; <strong><code>Combine(@&quot;C:\MyDir\&quot;, @&quot;C:\MySubDir\myfile.ext&quot;)</code></strong></li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="gesti%C3%B3n-de-archivos-y-directorios">Gesti&#xF3;n de archivos y directorios</h2>
+
+<h3 class="mume-header" id="clases-de-utilidad-file-y-directory">Clases de utilidad File y Directory</h3>
+
+<p>Ambas clases contienen gran cantidad de <strong>m&#xE9;todos est&#xE1;ticos de utilidad</strong> para hacer <strong>operaciones</strong> con ficheros/archivos y directorios/carpetas del estilo de las que se hacen desde la <strong>l&#xED;nea de comandos</strong>.</p>
+<p>L&#xF3;gicamente los m&#xE9;todos definidos en <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.directory?view=net-5.0">Directory</a></strong> realizan operaciones sobre <strong>directorios</strong> y los definidos en <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.file?view=net-5.0">FIle</a></strong> sobre <strong>archivos</strong>.</p>
+<blockquote>
+<p><strong>Nota:</strong> C&#xF3;mo no es idea de estos temas copiar la documentaci&#xF3;n de Microsoft en castellano. Es recomendable que le eches un vistazo a los enlaces del anterior p&#xE1;rrafo para hacerte una idea de las operaciones definidas en estas clases.</p>
+</blockquote>
+<h4 class="mume-header" id="ejemplo-de-uso-de-file-y-directory">Ejemplo de uso de File y Directory</h4>
+
+<p>Veamos alguno de estos m&#xE9;todos a trav&#xE9;s del siguiente <strong>ejemplo comentado</strong>:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">char</span></span> s <span class="token operator">=</span> Path<span class="token punctuation">.</span>DirectorySeparatorChar<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> ruta <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;.</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s</span><span class="token punctuation">}</span></span><span class="token string">datos</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s</span><span class="token punctuation">}</span></span><span class="token string">datos.txt&quot;</span></span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Si no existe el directorio datos en la ruta relativa actual lo crear&#xE9;.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetDirectoryName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+        Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span><span class="token string">&quot;datos&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Creo el fichero datos.txt vac&#xED;o. M&#xE1;s adelante en el tema</span>
+    <span class="token comment">// veremos que llamar al Close() es importante para que no</span>
+    <span class="token comment">// se quede abierto.</span>
+    File<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Me sit&#xFA;o en el directorio datos.</span>
+    Directory<span class="token punctuation">.</span><span class="token function">SetCurrentDirectory</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetDirectoryName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;El fichero &quot;</span> <span class="token operator">+</span> ruta <span class="token operator">+</span> <span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Compruebo si se ha creado el fichero correctamente viendo si </span>
+    <span class="token comment">// existe o no en el directorio datos (donde me acabo de situar).</span>
+    <span class="token comment">// Mostrar&#xE9; si existe o no por pantalla.</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>File<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetFileName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">?</span><span class="token string">&quot;existe&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;no exite&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="clases-fileinfo-y-directoryinfo">Clases FileInfo y DirectoryInfo</h3>
+
+<p>Adem&#xE1;s de las clases con m&#xE9;todos de operaciones sobre directorios y ficheros. Tambi&#xE9;n dispondremos de objetos que contendr&#xE1;n informaci&#xF3;n sobre los mismos adem&#xE1;s de permitirnos tambi&#xE9;n hacer ciertas operaciones.<br>
+Dichos objetos se instanciar&#xE1;n en memoria a trav&#xE9;s de las clases...</p>
+<p><strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.directoryinfo?view=net-5.0">DirectoryInfo</a></strong> y <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.fileinfo?view=net-5.0">FileInfo</a></strong> pues ...</p>
+<ul>
+<li>
+<p>Me devolver&#xE1;n informaci&#xF3;n sobre <strong>carpetas</strong> y <strong>archivos</strong> respectivamente.</p>
+</li>
+<li>
+<p>Adem&#xE1;s de permitirme <em>&apos;navega&apos;r</em> por el sistema de ficheros, movi&#xE9;ndome entre las diferentes carpetas. Me permitir&#xE1;n <strong>realizar acciones con m&#xE1;s precisas y con m&#xE1;s detalle</strong> sobre el sistema de ficheros.</p>
+</li>
+<li>
+<p><strong>Ambas clases heredar&#xE1;n de la clases abstracta</strong> <code>FileSystemInfo</code> que contendr&#xE1; la informaci&#xF3;n com&#xFA;n a archivos y carpetas. Un ejemplo ser&#xED;a la fecha de creaci&#xF3;n y otras propiedades comunes.</p>
+</li>
+<li>
+<p>La abstracci&#xF3;n de elemento el sistema de ficheros almacenada la clase <strong><code>FileSystemInfo</code></strong>:</p>
+<ul>
+<li>Se acceder&#xE1; a trav&#xE9;s de la sustituci&#xF3;n de Liskov de objetos de tipo <strong><code>DirectoryInfo</code></strong> o <strong><code>FileInfo</code></strong>.</li>
+</ul>
+<p align="center" style="zoom:0.8"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="335px" preserveAspectRatio="none" style="width:496px;height:335px;" version="1.1" viewBox="0 0 496 335" width="496px" zoomAndPan="magnify"><defs><filter height="300%" id="f16zo7l63bh4vn" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFAFA" filter="url(#f16zo7l63bh4vn)" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="214" x="263" y="111.3452"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="318.5" y="139.4771">FileSystemInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="372" y="155.5757"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="166" x="287" y="171.6743">Informaci&#xF3;n y operaciones</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="184" x="278" y="187.7729">comunes a ambos elementos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="149" x="295.5" y="203.8716">del sistema de ficheros.</text><rect fill="#F0F8FF" filter="url(#f16zo7l63bh4vn)" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="25"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="91" x="61" y="53.1318">DirectoryInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="108.5" y="69.2305"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="134" x="39.5" y="85.3291">Contiene informaci&#xF3;n</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="35.5" y="101.4277">especifica de carpetas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="163" x="25" y="117.5264">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="50" y="133.625">sobre las mismas.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,88.2959 213,88.2959 L203,88.2959 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F0F8FF" filter="url(#f16zo7l63bh4vn)" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="181.5918"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="80" y="209.7236">FileInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="108.5" y="225.8223"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="134" x="39.5" y="241.9209">Contiene informaci&#xF3;n</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="140" x="36.5" y="258.0195">especifica de archivos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="163" x="25" y="274.1182">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="70" y="290.2168">sobre ellos.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,244.8877 213,244.8877 L203,244.8877 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[bddca615d59f9415a876261b1904fb17]
+@startmindmap
+right to left direction
+<style>
+mindmapDiagram {
+  Linecolor black
+  FontName Arial
+  FontSize 14
+  node {
+    Padding 15
+    Margin 15
+    HorizontalAlignment center
+    BackGroundColor white
+  }
+}
+</style>
+
+*[#snow] **FileSystemInfo**\n\nInformación y operaciones\ncomunes a ambos elementos\ndel sistema de ficheros.
+
+**[#aliceblue] **DirectoryInfo**\n\nContiene información\nespecifica de carpetas\ny operaciones especificas\nsobre las mismas.
+**[#aliceblue] **FileInfo**\n\nContiene información\nespecifica de archivos\ny operaciones especificas\nsobre ellos.
+
+@endmindmap
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><ul>
+<li>Una ejemplo de esta informaci&#xF3;n com&#xFA;n detallada. Es el campo <strong><code>Attributes</code></strong> del sistema de ficheros.<br>
+El campo <strong><code>Attributes</code></strong> es una m&#xE1;scara creada a partir del <strong>Enum <a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.fileattributes?view=net-5.0">FileAttributes</a></strong>. Con informaci&#xF3;n com&#xFA;n a ficheros y directorios.
+<blockquote>
+<p><strong>Nota:</strong> &#xC9;chale un vistazo a los bits de la m&#xE1;scara al enlace del tipo.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>Aunque ser&#xED;a inabordable tratar todas los casos de uso de estos objetos. Vamos a ver un par ejemplos y un caso de uso.</p>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="ejemplos-de-uso-de-fileinfo-y-directoryinfo">Ejemplos de uso de FileInfo y DirectoryInfo</h4>
+
+<p><strong>Ejemplo 1:</strong></p>
+<p>Supongamos una funci&#xF3;n que recibe la ruta al fichero del sistema Windows 10 <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la informaci&#xF3;n com&#xFA;n almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre &#xE9;l.</p>
+<pre data-role="codeBlock" data-info="csharp  {highlight=[7, 15-21]}" class="language-csharp" data-line="7,15-21"><span class="token keyword">class</span> <span class="token class-name">EjemploFileInfo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ObtenInformacion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> rutaAFichero<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Obtenemos la informaci&#xF3;n del fichero y </span>
+        <span class="token comment">// hacemos una sustituci&#xF3;n a la superclase.</span>
+        <span class="token class-name">FileSystemInfo</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileInfo</span><span class="token punctuation">(</span>rutaAFichero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">StringBuilder</span> informacion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// A&#xF1;adimos informaci&#xF3;n del fichero.</span>
+        <span class="token comment">// F&#xED;jate que f.Attributes muestra todos </span>
+        <span class="token comment">// los valores dele enum a&#xF1;adidos a la m&#xE1;scara.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>f<span class="token punctuation">.</span>Exists<span class="token punctuation">)</span>
+            informacion<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Nombre completo: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>FullName</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Nombre : </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Name</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Extensi&#xF3;n : </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Extension</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Fecha creaci&#xF3;n: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>CreationTime</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Fecha &#xFA;ltimo acceso: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>LastAccessTime</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Fecha &#xFA;ltima modificaci&#xF3;n: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>LastWriteTime</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span>
+                       <span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Atributos: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Attributes</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> 
+            informacion<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token string">&quot;Archivo no encontrado&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> informacion<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ObtenInformacion</span><span class="token punctuation">(</span><span class="token string">@&quot;C:\Windows\write.exe&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15-21" data-start="15" data-end="21">
+
+
+
+
+
+
+</div></div></pre><div style="page-break-after:always;"></div>
+<p><strong>Ejemplo 2:</strong></p>
+<p>Supongamos una funci&#xF3;n que recibe la ruta al fichero del sistema <strong>Windows 10</strong> <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la informaci&#xF3;n com&#xFA;n almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre &#xE9;l.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ConvierteEnOcultoDeSoloLectura</span><span class="token punctuation">(</span><span class="token class-name">FileSystemInfo</span> f<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  f<span class="token punctuation">.</span>Attributes <span class="token operator">=</span> FileAttributes<span class="token punctuation">.</span>Hidden <span class="token operator">|</span> FileAttributes<span class="token punctuation">.</span>ReadOnly<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+<p>Supongamos un programa que me liste lo que contiene el directorio &apos;<em>HOME</em>&apos; de un usuario para diferentes SO, indic&#xE1;ndome si lo encontrado es un archivo o una carpeta.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[17,22,25,27,34]}" class="language-csharp" data-line="17,22,25,27,34"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//La siguiente expresi&#xF3;n est&#xE1; fuera del alcance de este curso pero por resumir</span>
+    <span class="token comment">// lo que hace diremod que ...</span>
+    <span class="token comment">// Si me estoy ejecutando en Unix, Linux y MacOS X tomo el valor de la</span>
+    <span class="token comment">// carpeta de usuario de la variable HOME, en caso contr&#xE1;rio de la</span>
+    <span class="token comment">// ubicaci&#xF3;n que indique Windows en su variable de ambiente.</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> home <span class="token operator">=</span> Environment<span class="token punctuation">.</span>OSVersion<span class="token punctuation">.</span>Platform <span class="token operator">==</span> <span class="token return-type class-name">PlatformID<span class="token punctuation">.</span>Unix          
+                  <span class="token punctuation">?</span></span> Environment<span class="token punctuation">.</span><span class="token function">GetEnvironmentVariable</span><span class="token punctuation">(</span><span class="token string">&quot;HOME&quot;</span><span class="token punctuation">)</span>
+                  <span class="token punctuation">:</span> Environment<span class="token punctuation">.</span><span class="token function">ExpandEnvironmentVariables</span><span class="token punctuation">(</span><span class="token string">&quot;%HOMEDRIVE%%HOMEPATH%&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Compruebo si existe la ruta devuelta por el entorno.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Me sit&#xFA;o en el directorio home.</span>
+        Directory<span class="token punctuation">.</span><span class="token function">SetCurrentDirectory</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Instancio el objeto de tipo DirectoryInfo con la informaci&#xF3;n de la carpeta.</span>
+        <span class="token class-name">DirectoryInfo</span> infoCarpeta <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DirectoryInfo</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Obtengo informaci&#xF3;n de todos los objetos que hay en dicha carpeta ya sean</span>
+        <span class="token comment">// otras capetas o archivos. Para eso llamo a GetFileSystemInfos() que me</span>
+        <span class="token comment">// devuelve un array de FileSystemInfo con dicha informaci&#xF3;n.</span>
+        <span class="token class-name">FileSystemInfo<span class="token punctuation">[</span><span class="token punctuation">]</span></span> infosEnFS <span class="token operator">=</span> infoCarpeta<span class="token punctuation">.</span><span class="token function">GetFileSystemInfos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Si hubiera querido ver si hay otras carpetas hubiera hecho...</span>
+        <span class="token comment">// -&gt; DirectoryInfo[] infoCarpetas = infoCarpeta.GetDirectories();</span>
+        <span class="token comment">// De forma an&#xE1;loga si hubiera querido coger solo informaci&#xF3;n de archivos...</span>
+        <span class="token comment">// -&gt; FileInfo[] infoArchivos = infoCarpeta.GetFiles();</span>
+
+        <span class="token comment">// Recorro el array.</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name">FileSystemInfo</span> infoEnFS <span class="token keyword">in</span> infosEnFS<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Compruebo si en la m&#xE1;scara el item que estoy recorriendo </span>
+            <span class="token comment">// me indica que es una carpeta.</span>
+            <span class="token class-name"><span class="token keyword">bool</span></span> esCarpeta <span class="token operator">=</span> <span class="token punctuation">(</span>infoEnFS<span class="token punctuation">.</span>Attributes <span class="token operator">&amp;</span> FileAttributes<span class="token punctuation">.</span>Directory<span class="token punctuation">)</span> 
+                              <span class="token operator">==</span> FileAttributes<span class="token punctuation">.</span>Directory<span class="token punctuation">;</span>
+            <span class="token comment">// Muestro el nombre completo indicando si es un archivo o una carpeta.</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> info <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>esCarpeta <span class="token punctuation">?</span> <span class="token string">&quot;Carpeta&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;Archivo&quot;</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">-&gt;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">infoEnFS<span class="token punctuation">.</span>FullName</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;No se ha podido encontrar la carpeta home.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="22" data-start="22">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="25" data-start="25">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="27" data-start="27">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="34" data-start="34">
+</div></div></pre></blockquote>
 
       </div>
       
