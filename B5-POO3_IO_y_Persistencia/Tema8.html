@@ -578,14 +578,6 @@ El campo <strong><code>Attributes</code></strong> es una m&#xE1;scara creada a p
 
 </div></div></pre><div style="page-break-after:always;"></div>
 <p><strong>Ejemplo 2:</strong></p>
-<p>Supongamos una funci&#xF3;n que recibe la ruta al fichero del sistema <strong>Windows 10</strong> <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la informaci&#xF3;n com&#xFA;n almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre &#xE9;l.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ConvierteEnOcultoDeSoloLectura</span><span class="token punctuation">(</span><span class="token class-name">FileSystemInfo</span> f<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  f<span class="token punctuation">.</span>Attributes <span class="token operator">=</span> FileAttributes<span class="token punctuation">.</span>Hidden <span class="token operator">|</span> FileAttributes<span class="token punctuation">.</span>ReadOnly<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</pre><div style="page-break-after:always;"></div>
-<blockquote>
-<p>&#x1F393; <strong>Caso de estudio:</strong></p>
 <p>Supongamos un programa que me liste lo que contiene el directorio &apos;<em>HOME</em>&apos; de un usuario para diferentes SO, indic&#xE1;ndome si lo encontrado es un archivo o una carpeta.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=[17,22,25,27,34]}" class="language-csharp" data-line="17,22,25,27,34"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -755,8 +747,46 @@ El campo <strong><code>Attributes</code></strong> es una m&#xE1;scara creada a p
 
 
 <div aria-hidden="true" class="line-highlight" data-range="34" data-start="34">
-</div></div></pre></blockquote>
-
+</div></div></pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+<p>Supongamos una funci&#xF3;n que recibe la ruta al fichero del sistema <strong>Windows 10</strong> <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la informaci&#xF3;n com&#xFA;n almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre &#xE9;l.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OcultaDirectorio</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> ruta<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> log <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Ocultando el directorio </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    Debug<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mensaje para la consola de depuraci&#xF3;n.</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">FileSystemInfo</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DirectoryInfo</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>d<span class="token punctuation">.</span>Exists<span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileNotFoundException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> 
+                  <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileNotFoundException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El directorio </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string"> no existe&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        d<span class="token punctuation">.</span>Attributes <span class="token operator">|=</span> FileAttributes<span class="token punctuation">.</span>Hidden<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">System<span class="token punctuation">.</span>Security<span class="token punctuation">.</span>SecurityException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">System<span class="token punctuation">.</span>Security<span class="token punctuation">.</span>SecurityException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">PathTooLongException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">PathTooLongException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token class-name">DirectoryInfo</span> d <span class="token operator">=</span> Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span><span class="token string">&quot;prueba&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">OcultaDirectorio</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>FullName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            e <span class="token operator">=</span> e<span class="token punctuation">.</span>InnerException<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
       </div>
       
       
