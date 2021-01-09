@@ -296,6 +296,27 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ol>
 </li>
+<li><a href="#flujos-de-datos-en-serie-o-streams">Flujos de datos en serie o streams</a>
+<ol>
+<li><a href="#conceptos-generales-sobre-streams">Conceptos generales sobre Streams</a>
+<ol>
+<li><a href="#operaciones-y-nomenclatura-relacionada-con-streams">Operaciones y nomenclatura relacionada con Streams</a>
+<ol>
+<li><a href="#apertura-open">Apertura (Open)</a></li>
+<li><a href="#cierre-close">Cierre (Close)</a></li>
+<li><a href="#lectura-read-y-escritura-write">Lectura (Read) y Escritura (Write)</a></li>
+<li><a href="#volcado-flush">Volcado (Flush)</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#streams-en-chttpsdocsmicrosoftcomes-esdotnetstandardio">Streams en C#</a>
+<ol>
+<li><a href="#lectura-y-escritura-de-ficheros-sin-transformar">Lectura y escritura de ficheros sin transformar</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="definiciones-b%C3%A1sicas">Definiciones b&#xE1;sicas</h2>
@@ -750,43 +771,503 @@ El campo <strong><code>Attributes</code></strong> es una m&#xE1;scara creada a p
 </div></div></pre><div style="page-break-after:always;"></div>
 <blockquote>
 <p>&#x1F393; <strong>Caso de estudio:</strong></p>
-<p>Supongamos una funci&#xF3;n que recibe la ruta al fichero del sistema <strong>Windows 10</strong> <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la informaci&#xF3;n com&#xFA;n almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre &#xE9;l.</p>
-</blockquote>
+<p>En el siguiente caso de estudio, vamos a crear un m&#xE9;todo llamado <strong>void OcultaDirectorio(string ruta)</strong> que reciba una ruta a una carpeta y la marque como oculta.<br>
+Adem&#xE1;s, vamos a controlar las posibles excepciones que se generen y las vamos a relanzar al <strong><code>Main</code></strong>. Para ello, si hacemos <strong><code>Ctrl + Click</code></strong> sobre el constructor de <strong><code>DirectoryInfo</code></strong> podemos ver que genera las excepciones:</p>
+<ul>
+<li><strong><code>UnauthorizedAccessException</code></strong>: Si no tenemos permiso de acceso a la carpeta.</li>
+<li><strong><code>ArgumentException</code></strong>: Si la ruta contiene alg&#xFA;n caracter inv&#xE1;lido.</li>
+<li><strong><code>PathTooLongException</code></strong>: Si la ruta es demasiado larga para el SO.</li>
+</ul>
+<p>Adem&#xE1;s de las anteriores, generar&#xE9; yo la excepci&#xF3;n <strong><code>FileNotFoundException</code></strong> si no existe la ruta que recibe el m&#xE9;todo por par&#xE1;metro.</p>
+<p>Una <strong>propuesta de soluci&#xF3;n</strong> podr&#xED;a ser la siguiente ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OcultaDirectorio</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> ruta<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword">string</span></span> log <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Ocultando el directorio </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
-    Debug<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mensaje para la consola de depuraci&#xF3;n.</span>
-    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> log <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Ocultando el directorio &apos;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string">&apos;&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token comment">// Mensaje para la consola de depuraci&#xF3;n.</span>
+    Debug<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> 
+    <span class="token punctuation">{</span>
         <span class="token class-name">FileSystemInfo</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DirectoryInfo</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Genero la excepci&#xF3;n indic&#xE1;ndo lo que estoy haciendo y adem&#xE1;s le a&#xF1;ado</span>
+        <span class="token comment">// como innerException otra inst&#xE1;ncia donde indico realmente el error.</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>d<span class="token punctuation">.</span>Exists<span class="token punctuation">)</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileNotFoundException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> 
-                  <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileNotFoundException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El directorio </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string"> no existe&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileNotFoundException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El directorio &apos;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ruta</span><span class="token punctuation">}</span></span><span class="token string">&apos; no existe&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// A&#xF1;ado con un OR de bit el atributo Hidden (Oculto) a la m&#xE1;scara de </span>
+        <span class="token comment">// atributos del FileSystemInfo del directorio.</span>
         d<span class="token punctuation">.</span>Attributes <span class="token operator">|=</span> FileAttributes<span class="token punctuation">.</span>Hidden<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">System<span class="token punctuation">.</span>Security<span class="token punctuation">.</span>SecurityException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">System<span class="token punctuation">.</span>Security<span class="token punctuation">.</span>SecurityException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">UnauthorizedAccessException</span> e<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">UnauthorizedAccessException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ArgumentException</span> e<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
         <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">PathTooLongException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">PathTooLongException</span> e<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
         <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">PathTooLongException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>continuaci&#xF3;n ...</strong></p>
+<p>Ahora defino un <strong><code>Main</code></strong> donde voy a usar el m&#xE9;todo definido de tal manera que:</p>
+<ol>
+<li>Primero creo un directorio llamado <strong><code>&apos;oculto&apos;</code></strong> donde estoy ejecutando la aplicaci&#xF3;n.</li>
+<li>Posteriormente lo ocultar&#xE9; llamando al m&#xE9;todo <strong><code>OcultaDirectorio</code></strong>.<br>
+Adem&#xE1;s, capturo cualquier excepci&#xF3;n que se pueda producir, tanto creando el directorio prueba, como llam&#xE1;ndo al m&#xE9;todo para ocultarlo,</li>
+</ol>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">try</span> <span class="token punctuation">{</span>
-        <span class="token class-name">DirectoryInfo</span> d <span class="token operator">=</span> Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span><span class="token string">&quot;prueba&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> 
+    <span class="token punctuation">{</span>
+        <span class="token class-name">DirectoryInfo</span> d <span class="token operator">=</span> Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span><span class="token string">&quot;oculto&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// F&#xED;jate que Directory.CreateDirectory(..) devuelve un DirectoryInfo con la</span>
+        <span class="token comment">// informaci&#xF3;n del directorio que acabo de crear y que aprovecho para </span>
+        <span class="token comment">// pasar la informaci&#xF3;n de la ruta completa a OcultaDirectorio(...)</span>
         <span class="token function">OcultaDirectorio</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>FullName<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
         <span class="token keyword">while</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
             e <span class="token operator">=</span> e<span class="token punctuation">.</span>InnerException<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre>
+</pre><p>En este caso de estudio, se propone hacer las siguientes modificaciones...</p>
+<ol>
+<li>Ejecutal&#xF3; y comprueba si se ha creado un directorio oculto llamado <em>&apos;oculto&apos;</em>.</li>
+<li>Intenta ocultar un directorio inexistente.</li>
+<li>Revoca todos los permisos a tu usuario para esa carpeta y prueba a ocultarla.<br>
+<strong>Nota:</strong> En el <strong><a href="https://answers.microsoft.com/es-es/windows/forum/all/windows-10-como-quito-los-permisos-de/86863693-988f-4546-b516-2e4298e2586f">siguiente enlace</a></strong> puede ver somo se quitan los permisos al Administrador en Windows 10. <strong>Haz lo mismo pero solo para tu usuario</strong>.</li>
+</ol>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="flujos-de-datos-en-serie-o-streams">Flujos de datos en serie o streams</h2>
+
+<h3 class="mume-header" id="conceptos-generales-sobre-streams">Conceptos generales sobre Streams</h3>
+
+<p>La lectura y escritura de un archivo son hechas usando un concepto gen&#xE9;rico llamado <strong>stream</strong>.</p>
+<p>Los <strong>stream</strong> son <strong>flujos de datos</strong> <strong>secuenciales</strong> que se utilizan para la <strong>transferencia de informaci&#xF3;n de un punto a otro</strong>.</p>
+<p>Los datos del stream se agrupan de forma b&#xE1;sica en una <strong>secuencia de bytes</strong>....</p>
+<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="474pt" height="140pt" viewBox="0.00 0.00 474.00 140.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 136)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-136 470,-136 470,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-124 458,-124 458,-8 8,-8"/>
+</g>
+<!-- cluster0_stream -->
+<g id="node1" class="node">
+<title>cluster0_stream</title>
+<polygon fill="none" stroke="#000000" points="24,-20 24,-54 80,-54 80,-20 24,-20"/>
+<text text-anchor="start" x="32.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 0</text>
+<polygon fill="none" stroke="#000000" points="80,-20 80,-54 136,-54 136,-20 80,-20"/>
+<text text-anchor="start" x="88.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 1</text>
+<polygon fill="none" stroke="#000000" points="136,-20 136,-54 192,-54 192,-20 136,-20"/>
+<text text-anchor="start" x="144.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 2</text>
+<polygon fill="none" stroke="#000000" points="192,-20 192,-54 248,-54 248,-20 192,-20"/>
+<text text-anchor="start" x="200.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 3</text>
+<polygon fill="none" stroke="#000000" points="248,-20 248,-54 304,-54 304,-20 248,-20"/>
+<text text-anchor="start" x="256.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 4</text>
+<polygon fill="none" stroke="#000000" points="304,-20 304,-54 360,-54 360,-20 304,-20"/>
+<text text-anchor="start" x="312.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 5</text>
+<polygon fill="none" stroke="#000000" points="360,-20 360,-54 416,-54 416,-20 360,-20"/>
+<text text-anchor="start" x="368.9355" y="-32.4" font-family="Arial" font-size="14.00" fill="#000000">byte 6</text>
+<text text-anchor="start" x="423.6641" y="-32.8" font-family="Arial" font-size="14.00" fill="#000000">...</text>
+</g>
+<!-- posición -->
+<g id="node2" class="node">
+<title>posici&#xF3;n</title>
+<text text-anchor="middle" x="192" y="-93.8" font-family="Arial" font-size="14.00" fill="#000000">posici&#xF3;n</text>
+</g>
+<!-- posición&#45;&gt;cluster0_stream -->
+<g id="edge1" class="edge">
+<title>posici&#xF3;n-&gt;cluster0_stream:ne</title>
+<path fill="none" stroke="#000000" d="M192,-79.8495C192,-79.8495 192,-64 192,-64"/>
+<polygon fill="#000000" stroke="#000000" points="195.5001,-64 192,-54 188.5001,-64 195.5001,-64"/>
+</g>
+</g>
+</svg>
+</p><p>Los stream pueden ser transferidos en <strong>dos posibles direcciones</strong>:</p>
+<ol>
+<li>Si los datos son transferidos desde una fuente externa al programa, entonces se habla de <strong>&apos;<em>leer desde el stream</em>&apos;</strong>.</li>
+<li>Si los datos son transferidos desde el programa a alguna fuente externa, entonces se habla de <strong>&apos;<em>escribir al stream</em>&apos;</strong>.</li>
+</ol>
+<p>Frecuentemente, la fuente externa ser&#xE1; un <strong>archivo</strong>, pero no es absolutamente necesario. Las fuentes de informaci&#xF3;n externas  pueden ser de diversos tipos. Algunas posibilidades incluyen:</p>
+<ul>
+<li>Leer o escribir datos a una red utilizando alg&#xFA;n protocolo de red, donde la intenci&#xF3;n es que estos datos sean recibidos o enviados por otro computador.</li>
+<li>Lectura o escritura a un &#xE1;rea de memoria.</li>
+<li>La Consola.</li>
+<li>La Impresora.</li>
+<li>Otros ...</li>
+</ul>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong> Por tanto, podemos considerar un <strong>flujo</strong> o <strong>stream</strong> como una <strong>secuencia bytes</strong> sobre la que podemos leer o escribir. Un fichero es un tipo espec&#xED;fico de <strong>stream</strong>.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="operaciones-y-nomenclatura-relacionada-con-streams">Operaciones y nomenclatura relacionada con Streams</h4>
+
+<h5 class="mume-header" id="apertura-open">Apertura (Open)</h5>
+
+<p>Adem&#xE1;s de memoria, muchos flujos necesitan recursos extra. Por ejemplo, las conexiones de red crean sockets y los ficheros crean descriptores de ficheros en el sistema operativo.</p>
+<p>En ocasiones, este proceso de apertura puede devolver errores o excepciones normalmente generadas por el SO como podr&#xED;an ser:</p>
+<ul>
+<li>Falta de permisos de acceso.</li>
+<li>Bloqueo o uso por parte de otro programa.</li>
+<li>El SO no puede crear m&#xE1;s descriptores o &apos;<em>manejadores</em>&apos; de ficheros.</li>
+<li>Otros ...</li>
+</ul>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong> Por tanto, al proceso de reservar, adquirir o bloquear estos recursos se denomina <strong>&apos;<em>apertura</em>&apos;</strong> y tras crear un flujo de datos diremos que lo estamos <strong>&apos;<em>abriendo</em>&apos;</strong>.</p>
+</blockquote>
+<h5 class="mume-header" id="cierre-close">Cierre (Close)</h5>
+
+<p>C&#xF3;mo hemos comentado, si en el proceso de apertura necesitamos reservar, adquirir o bloquear recursos. Necesitaremos realizar el proceso opuesto de <strong>&apos;<em>liberaci&#xF3;n</em>&apos;</strong> de los mismos.</p>
+<p>Deberemos llevar especial cuidado que este proceso de cierre se haga tambi&#xE9;n si se ha producido alg&#xFA;n error. Por tanto, si usamos excepciones, el <strong>&apos;<em>cierre</em>&apos;</strong> de un flujo deber&#xED;a ir en un bloque <strong><code>finally</code></strong>.</p>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong> Por tanto, tras finalizar el trabajo con el flujo de datos deberemos <strong>&apos;<em>cerrarlo</em>&apos;</strong>.</p>
+</blockquote>
+<h5 class="mume-header" id="lectura-read-y-escritura-write">Lectura (Read) y Escritura (Write)</h5>
+
+<p>Son las operaciones b&#xE1;sicas sobre flujos y por tanto en su forma m&#xE1;s b&#xE1;sica transferir&#xE1;n bytes. Sin embargo en ocasiones estos bytes se pueden &apos;<em>agrupar</em>&apos; en la lectura para obtener tipos m&#xE1;s manejables y por tanto tambi&#xE9;n puede suceder el proceso inverso en el proceso de escritura.</p>
+<h5 class="mume-header" id="volcado-flush">Volcado (Flush)</h5>
+
+<p>Muchos flujos, en especial los que manejan ficheros, trabajan internamente con buffers donde se almacena temporalmente los bytes que se solicita <strong>escribir</strong>, hasta que su n&#xFA;mero alcance una cierta cantidad, momento en que son verdaderamente escritos todos a la vez en el flujo.<br>
+Esto se hace porque las <strong>escrituras</strong> en flujos suelen ser <strong>operaciones lentas</strong>, e interesa que se hagan el menor n&#xFA;mero de veces posible.<br>
+Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto instante se haya realizado el <strong>&apos;<em>volcado</em>&apos;</strong> real de los bytes en un flujo. En esos casos puede forzarse el volcado mediante la operaci&#xF3;n <strong>Flush</strong>, que vac&#xED;a por completo su buffer interno en el flujo.</p>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong> Por tanto, la operaci&#xF3;n de <strong>escritura</strong> en ficheros se realiza sobre un buffer de memoria RAM el cual se <strong>&apos;<em>volcar&#xE1;</em>&apos;</strong> en el soporte de almacenamiento por bloques para optimizar, ya sea de forma transparente o forzada.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="streams-en-chttpsdocsmicrosoftcomes-esdotnetstandardio"><a href="https://docs.microsoft.com/es-es/dotnet/standard/io/">Streams en C#</a></h3>
+
+<p>En C# los archivos, directorios y flujos con ficheros, se manejan con clases del las BCL definidas en el namespace: <strong><code>System.IO</code></strong></p>
+<p><strong>Todos los flujos de datos</strong> en C# heredan de la clase <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.stream?view=net-5.0">Stream</a></strong> que implementa las operaciones b&#xE1;sicas antes descritas.</p>
+<p>En el diagrama siguiente podemos ver de forma <strong>resumida</strong> c&#xF3;mo ha dise&#xF1;ado .NET sus clases para manejo de flujos.</p>
+<blockquote>
+<p><strong>Nota:</strong> Estos patrones de dise&#xF1;o y clases son an&#xE1;logos en otros lenguajes OO.</p>
+</blockquote>
+<p align="center" style="zoom:0.4"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="1639pt" height="510pt" viewBox="0.00 0.00 1639.30 510.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 506)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-506 1635.2953,-506 1635.2953,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-404 168,-404 168,-8 8,-8"/>
+<text text-anchor="middle" x="88" y="-373" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
+</g>
+<g id="clust2" class="cluster">
+<title>clusterG</title>
+<polygon fill="none" stroke="#104e8b" points="339.891,-32 339.891,-494 1345.891,-494 1345.891,-32 339.891,-32"/>
+<text text-anchor="middle" x="842.891" y="-463" font-family="Arial" font-size="30.00" fill="#104e8b">Cuadro resumen de clases para manejo de streams</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster1</title>
+<polygon fill="#e0eeee" stroke="#e0eeee" points="359.891,-72 359.891,-430 543.891,-430 543.891,-72 359.891,-72"/>
+<text text-anchor="middle" x="451.891" y="-408" font-family="Arial" font-size="20.00" fill="#104e8b">Stream Adapters</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster2</title>
+<polygon fill="#e0eeee" stroke="#e0eeee" points="722.891,-72 722.891,-430 906.891,-430 906.891,-72 722.891,-72"/>
+<text text-anchor="middle" x="814.891" y="-408" font-family="Arial" font-size="20.00" fill="#104e8b">Decorator Streams</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster3</title>
+<polygon fill="#e0eeee" stroke="#e0eeee" points="1105.891,-148 1105.891,-430 1325.891,-430 1325.891,-148 1105.891,-148"/>
+<text text-anchor="middle" x="1215.891" y="-408" font-family="Arial" font-size="20.00" fill="#104e8b">Backing Store Streams</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster4</title>
+<polygon fill="none" stroke="transparent" points="1439.2953,-145 1439.2953,-445 1623.2953,-445 1623.2953,-145 1439.2953,-145"/>
+<text text-anchor="middle" x="1531.2953" y="-414" font-family="Arial" font-size="30.00" fill="#000000">Dispositivos</text>
+</g>
+<!-- Texto -->
+<g id="node1" class="node">
+<title>Texto</title>
+<polygon fill="none" stroke="#000000" points="154,-352 16,-352 16,-268 160,-268 160,-346 154,-352"/>
+<polyline fill="none" stroke="#000000" points="154,-352 154,-346 "/>
+<polyline fill="none" stroke="#000000" points="160,-346 154,-346 "/>
+<text text-anchor="middle" x="88" y="-316" font-family="Arial" font-size="20.00" fill="#000000">Texto en</text>
+<text text-anchor="middle" x="88" y="-292" font-family="Arial" font-size="20.00" fill="#000000">UTF-8</text>
+</g>
+<!-- StreamWriter -->
+<g id="node4" class="node">
+<title>StreamWriter</title>
+<polygon fill="#36648b" stroke="#36648b" points="523.891,-378 379.891,-378 379.891,-320 523.891,-320 523.891,-378"/>
+<text text-anchor="middle" x="451.891" y="-344.2" font-family="Arial" font-size="16.00" fill="#ffffff">StreamWriter</text>
+</g>
+<!-- Texto&#45;&gt;StreamWriter -->
+<g id="edge1" class="edge">
+<title>Texto-&gt;StreamWriter</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M160.3282,-336C160.3282,-336 369.6997,-336 369.6997,-336"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="369.6997,-339.5001 379.6997,-336 369.6996,-332.5001 369.6997,-339.5001"/>
+</g>
+<!-- Tipos -->
+<g id="node2" class="node">
+<title>Tipos</title>
+<polygon fill="none" stroke="#000000" points="154,-250 16,-250 16,-118 160,-118 160,-244 154,-250"/>
+<polyline fill="none" stroke="#000000" points="154,-250 154,-244 "/>
+<polyline fill="none" stroke="#000000" points="160,-244 154,-244 "/>
+<text text-anchor="start" x="34" y="-214" font-family="Arial" font-size="20.00" fill="#000000">int</text>
+<text text-anchor="start" x="34" y="-190" font-family="Arial" font-size="20.00" fill="#000000">double</text>
+<text text-anchor="start" x="34" y="-166" font-family="Arial" font-size="20.00" fill="#000000">string</text>
+<text text-anchor="start" x="34" y="-142" font-family="Arial" font-size="20.00" fill="#000000">...</text>
+</g>
+<!-- BinaryWriter -->
+<g id="node6" class="node">
+<title>BinaryWriter</title>
+<polygon fill="#36648b" stroke="#36648b" points="523.891,-150 379.891,-150 379.891,-92 523.891,-92 523.891,-150"/>
+<text text-anchor="middle" x="451.891" y="-116.2" font-family="Arial" font-size="16.00" fill="#ffffff">BinaryWriter</text>
+</g>
+<!-- Tipos&#45;&gt;BinaryWriter -->
+<g id="edge2" class="edge">
+<title>Tipos-&gt;BinaryWriter</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M160.3282,-134C160.3282,-134 369.6997,-134 369.6997,-134"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="369.6997,-137.5001 379.6997,-134 369.6996,-130.5001 369.6997,-137.5001"/>
+</g>
+<!-- Bytes -->
+<g id="node3" class="node">
+<title>Bytes</title>
+<polygon fill="none" stroke="#000000" points="154,-100 16,-100 16,-16 160,-16 160,-94 154,-100"/>
+<polyline fill="none" stroke="#000000" points="154,-100 154,-94 "/>
+<polyline fill="none" stroke="#000000" points="160,-94 154,-94 "/>
+<text text-anchor="middle" x="88" y="-64" font-family="Arial" font-size="20.00" fill="#000000">Bytes sin</text>
+<text text-anchor="middle" x="88" y="-40" font-family="Arial" font-size="20.00" fill="#000000">transformar</text>
+</g>
+<!-- DeflateStream -->
+<g id="node8" class="node">
+<title>DeflateStream</title>
+<polygon fill="#4f94cd" stroke="#4f94cd" points="886.891,-378 742.891,-378 742.891,-320 886.891,-320 886.891,-378"/>
+<text text-anchor="middle" x="814.891" y="-344.2" font-family="Arial" font-size="16.00" fill="#ffffff">DeflateStream</text>
+</g>
+<!-- StreamWriter&#45;&gt;DeflateStream -->
+<g id="edge5" class="edge">
+<title>StreamWriter-&gt;DeflateStream</title>
+<path fill="none" stroke="transparent" stroke-width="3" d="M524.0421,-349C524.0421,-349 732.8764,-349 732.8764,-349"/>
+<polygon fill="transparent" stroke="transparent" stroke-width="3" points="732.8765,-352.5001 742.8764,-349 732.8764,-345.5001 732.8765,-352.5001"/>
+</g>
+<!-- StreamReader -->
+<g id="node5" class="node">
+<title>StreamReader</title>
+<polygon fill="#36648b" stroke="#36648b" points="523.891,-302 379.891,-302 379.891,-244 523.891,-244 523.891,-302"/>
+<text text-anchor="middle" x="451.891" y="-268.2" font-family="Arial" font-size="16.00" fill="#ffffff">StreamReader</text>
+</g>
+<!-- StreamReader&#45;&gt;Texto -->
+<g id="edge3" class="edge">
+<title>StreamReader-&gt;Texto</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M379.5628,-285C379.5628,-285 170.1913,-285 170.1913,-285"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="170.1914,-281.5001 160.1913,-285 170.1913,-288.5001 170.1914,-281.5001"/>
+<text text-anchor="middle" x="269.9455" y="-282.7" font-family="Arial" font-size="19.00" fill="#1874cd">string</text>
+</g>
+<!-- BinaryReader -->
+<g id="node7" class="node">
+<title>BinaryReader</title>
+<polygon fill="#36648b" stroke="#36648b" points="523.891,-226 379.891,-226 379.891,-168 523.891,-168 523.891,-226"/>
+<text text-anchor="middle" x="451.891" y="-192.2" font-family="Arial" font-size="16.00" fill="#ffffff">BinaryReader</text>
+</g>
+<!-- BinaryReader&#45;&gt;Tipos -->
+<g id="edge4" class="edge">
+<title>BinaryReader-&gt;Tipos</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M379.5628,-197C379.5628,-197 170.1913,-197 170.1913,-197"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="170.1914,-193.5001 160.1913,-197 170.1913,-200.5001 170.1914,-193.5001"/>
+<text text-anchor="middle" x="269.9455" y="-197.7" font-family="Arial" font-size="19.00" fill="#1874cd">tipos b&#xE1;sicos</text>
+</g>
+<!-- FileStream -->
+<g id="node13" class="node">
+<title>FileStream</title>
+<polygon fill="#5cacee" stroke="#5cacee" points="1287.891,-378 1143.891,-378 1143.891,-320 1287.891,-320 1287.891,-378"/>
+<text text-anchor="middle" x="1215.891" y="-344.2" font-family="Arial" font-size="16.00" fill="#ffffff">FileStream</text>
+</g>
+<!-- DeflateStream&#45;&gt;FileStream -->
+<g id="edge6" class="edge">
+<title>DeflateStream-&gt;FileStream</title>
+<path fill="none" stroke="transparent" stroke-width="3" d="M887.0449,-349C887.0449,-349 1133.6411,-349 1133.6411,-349"/>
+<polygon fill="transparent" stroke="transparent" stroke-width="3" points="1133.6411,-352.5001 1143.6411,-349 1133.6411,-345.5001 1133.6411,-352.5001"/>
+</g>
+<!-- GZipStream -->
+<g id="node9" class="node">
+<title>GZipStream</title>
+<polygon fill="#4f94cd" stroke="#4f94cd" points="886.891,-302 742.891,-302 742.891,-244 886.891,-244 886.891,-302"/>
+<text text-anchor="middle" x="814.891" y="-268.2" font-family="Arial" font-size="16.00" fill="#ffffff">GZipStream</text>
+</g>
+<!-- CryptoStream -->
+<g id="node10" class="node">
+<title>CryptoStream</title>
+<polygon fill="#4f94cd" stroke="#4f94cd" points="886.891,-226 742.891,-226 742.891,-168 886.891,-168 886.891,-226"/>
+<text text-anchor="middle" x="814.891" y="-192.2" font-family="Arial" font-size="16.00" fill="#ffffff">CryptoStream</text>
+</g>
+<!-- BufferedStream -->
+<g id="node11" class="node">
+<title>BufferedStream</title>
+<polygon fill="#4f94cd" stroke="#4f94cd" points="886.891,-150 742.891,-150 742.891,-92 886.891,-92 886.891,-150"/>
+<text text-anchor="middle" x="814.891" y="-116.2" font-family="Arial" font-size="16.00" fill="#ffffff">BufferedStream</text>
+</g>
+<!-- c1 -->
+<g id="node12" class="node">
+<title>c1</title>
+<ellipse fill="#000000" stroke="#000000" cx="451.891" cy="-52" rx=".36" ry=".36"/>
+</g>
+<!-- Fichero -->
+<g id="node16" class="node">
+<title>Fichero</title>
+<polygon fill="none" stroke="#000000" points="1603.2953,-381 1463.2953,-381 1459.2953,-377 1459.2953,-321 1599.2953,-321 1603.2953,-325 1603.2953,-381"/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-377 1459.2953,-377 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-377 1599.2953,-321 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-377 1603.2953,-381 "/>
+<text text-anchor="middle" x="1531.2953" y="-345" font-family="Arial" font-size="20.00" fill="#000000">Fichero</text>
+</g>
+<!-- FileStream&#45;&gt;Fichero -->
+<g id="edge7" class="edge">
+<title>FileStream-&gt;Fichero</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M1298.2511,-349.5C1298.2511,-349.5 1449.2719,-349.5 1449.2719,-349.5"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1449.2719,-353 1459.2719,-349.5 1449.2719,-346 1449.2719,-353"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1298.2511,-346 1288.2511,-349.5 1298.2511,-353 1298.2511,-346"/>
+<text text-anchor="middle" x="1382.5932" y="-355.7" font-family="Arial" font-size="19.00" fill="#1874cd">bytes</text>
+</g>
+<!-- MemoryStream -->
+<g id="node14" class="node">
+<title>MemoryStream</title>
+<polygon fill="#5cacee" stroke="#5cacee" points="1287.891,-302 1143.891,-302 1143.891,-244 1287.891,-244 1287.891,-302"/>
+<text text-anchor="middle" x="1215.891" y="-268.2" font-family="Arial" font-size="16.00" fill="#ffffff">MemoryStream</text>
+</g>
+<!-- Memoria -->
+<g id="node17" class="node">
+<title>Memoria</title>
+<polygon fill="none" stroke="#000000" points="1603.2953,-303 1463.2953,-303 1459.2953,-299 1459.2953,-243 1599.2953,-243 1603.2953,-247 1603.2953,-303"/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-299 1459.2953,-299 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-299 1599.2953,-243 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-299 1603.2953,-303 "/>
+<text text-anchor="middle" x="1531.2953" y="-267" font-family="Arial" font-size="20.00" fill="#000000">Memoria</text>
+</g>
+<!-- MemoryStream&#45;&gt;Memoria -->
+<g id="edge8" class="edge">
+<title>MemoryStream-&gt;Memoria</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M1298.2511,-273C1298.2511,-273 1449.2719,-273 1449.2719,-273"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1449.2719,-276.5 1459.2719,-273 1449.2719,-269.5 1449.2719,-276.5"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1298.2511,-269.5 1288.2511,-273 1298.2511,-276.5 1298.2511,-269.5"/>
+<text text-anchor="middle" x="1382.5932" y="-278.7" font-family="Arial" font-size="19.00" fill="#1874cd">bytes</text>
+</g>
+<!-- NetworkStream -->
+<g id="node15" class="node">
+<title>NetworkStream</title>
+<polygon fill="#5cacee" stroke="#5cacee" points="1287.891,-226 1143.891,-226 1143.891,-168 1287.891,-168 1287.891,-226"/>
+<text text-anchor="middle" x="1215.891" y="-192.2" font-family="Arial" font-size="16.00" fill="#ffffff">NetworkStream</text>
+</g>
+<!-- Red -->
+<g id="node18" class="node">
+<title>Red</title>
+<polygon fill="none" stroke="#000000" points="1603.2953,-225 1463.2953,-225 1459.2953,-221 1459.2953,-165 1599.2953,-165 1603.2953,-169 1603.2953,-225"/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-221 1459.2953,-221 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-221 1599.2953,-165 "/>
+<polyline fill="none" stroke="#000000" points="1599.2953,-221 1603.2953,-225 "/>
+<text text-anchor="middle" x="1531.2953" y="-189" font-family="Arial" font-size="20.00" fill="#000000">Red</text>
+</g>
+<!-- NetworkStream&#45;&gt;Red -->
+<g id="edge9" class="edge">
+<title>NetworkStream-&gt;Red</title>
+<path fill="none" stroke="#1874cd" stroke-width="3" d="M1298.2511,-196.5C1298.2511,-196.5 1449.2719,-196.5 1449.2719,-196.5"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1449.2719,-200 1459.2719,-196.5 1449.2719,-193 1449.2719,-200"/>
+<polygon fill="#1874cd" stroke="#1874cd" stroke-width="3" points="1298.2511,-193 1288.2511,-196.5 1298.2511,-200 1298.2511,-193"/>
+<text text-anchor="middle" x="1382.5932" y="-201.7" font-family="Arial" font-size="19.00" fill="#1874cd">bytes</text>
+</g>
+</g>
+</svg>
+</p><p>Si nos fijamos, tendremos de derecha a izquierda ...</p>
+<ul>
+<li>Una serie de <strong>dispositivos</strong> donde vamos a realizar las operaciones de lectura y escritura.</li>
+<li>Una serie de clases denominadas <strong>Backing Store Streams</strong> que ser&#xE1;n las que hereden de <strong><code>Stream</code></strong> y hagan las operaciones del lectura y escritura en los dispositivos. En concreto, <strong>para ficheros usaremos</strong> la subclase de stream <strong><code>FileStream</code></strong>.</li>
+<li>Una serie de clases denominadas <strong>Decorator Streams</strong> que transformar&#xE1;n una secuencia de <strong>bytes</strong> en otra secuencia de <strong>bytes</strong> y cuyo uso ser&#xE1; opcional si queremos hacer operaciones como compresi&#xF3;n, cifrado, etc. En este, tema veremos un case de uso <strong><code>BufferedStream</code></strong> pero no profundizaremos en su uso.</li>
+<li>&#x270B; <strong>Importante:</strong> Una serie de clases denominadas <strong>Stream Adapters</strong> adapter que adaptar&#xE1;n, en ambos sentidos, <strong>tipos de datos b&#xE1;sicos</strong> manejables por los programas a secuencias de <strong>bytes</strong> manejables por los streams.<br>
+<strong>Nota:</strong> Si los datos que manejamos en el programa son directamente <strong>bytes sin transformar</strong> nos saltaremos estas clases para manejar directamente &apos;<em>Decorator Streams</em>&apos; o &apos;<em>Backing Store Streams</em>&apos;</li>
+</ul>
+<p>Podremos realizar correspondencias, entre los diferentes bloques de clases, dependiendo de flujo de datos que queramos manejar y lo que queramos hacer teniendo en cuenta los datos.</p>
+<p>El <strong>caso m&#xE1;s com&#xFA;n manejando ficheros</strong>, ser&#xE1; la siguiente correspondencia....</p>
+<p align="center" style="zoom:0.6"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="1025pt" height="71pt" viewBox="0.00 0.00 1025.46 70.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 66.6)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-66.6 1021.4586,-66.6 1021.4586,4 -4,4"/>
+<!-- Datos -->
+<g id="node1" class="node">
+<title>Datos</title>
+<polygon fill="none" stroke="#000000" points="144,-58 0,-58 0,0 144,0 144,-58"/>
+<text text-anchor="middle" x="72" y="-24.2" font-family="Arial" font-size="16.00" fill="#000000">Datos</text>
+</g>
+<!-- Stream\nAdapters -->
+<g id="node2" class="node">
+<title>Stream\nAdapters</title>
+<polygon fill="none" stroke="#000000" points="446.547,-58 302.547,-58 302.547,0 446.547,0 446.547,-58"/>
+<text text-anchor="middle" x="374.547" y="-33.8" font-family="Arial" font-size="16.00" fill="#000000">Stream</text>
+<text text-anchor="middle" x="374.547" y="-14.6" font-family="Arial" font-size="16.00" fill="#000000">Adapters</text>
+</g>
+<!-- Datos&#45;&gt;Stream\nAdapters -->
+<g id="edge1" class="edge">
+<title>Datos-&gt;Stream\nAdapters</title>
+<path fill="none" stroke="#000000" d="M154.0832,-29C154.0832,-29 292.4923,-29 292.4923,-29"/>
+<polygon fill="#000000" stroke="#000000" points="292.4923,-32.5 302.4923,-29 292.4923,-25.5 292.4923,-32.5"/>
+<polygon fill="#000000" stroke="#000000" points="154.0832,-25.5 144.0832,-29 154.0832,-32.5 154.0832,-25.5"/>
+<text text-anchor="middle" x="223.2735" y="-50" font-family="Arial" font-size="14.00" fill="#000000">Tipos</text>
+<text text-anchor="middle" x="223.2735" y="-33.2" font-family="Arial" font-size="14.00" fill="#000000">B&#xE1;sicos</text>
+</g>
+<!-- FileStream -->
+<g id="node3" class="node">
+<title>FileStream</title>
+<polygon fill="none" stroke="#000000" points="732.0028,-58 588.0028,-58 588.0028,0 732.0028,0 732.0028,-58"/>
+<text text-anchor="middle" x="660.0028" y="-24.2" font-family="Arial" font-size="16.00" fill="#000000">FileStream</text>
+</g>
+<!-- Stream\nAdapters&#45;&gt;FileStream -->
+<g id="edge2" class="edge">
+<title>Stream\nAdapters-&gt;FileStream</title>
+<path fill="none" stroke="#000000" d="M456.5796,-29C456.5796,-29 577.9933,-29 577.9933,-29"/>
+<polygon fill="#000000" stroke="#000000" points="577.9933,-32.5 587.9933,-29 577.9933,-25.5 577.9933,-32.5"/>
+<polygon fill="#000000" stroke="#000000" points="456.5796,-25.5 446.5796,-29 456.5795,-32.5 456.5796,-25.5"/>
+<text text-anchor="middle" x="517.2749" y="-33.2" font-family="Arial" font-size="14.00" fill="#000000">bytes</text>
+</g>
+<!-- Fichero -->
+<g id="node4" class="node">
+<title>Fichero</title>
+<polygon fill="none" stroke="#000000" points="1017.4586,-58 873.4586,-58 873.4586,0 1017.4586,0 1017.4586,-58"/>
+<text text-anchor="middle" x="945.4586" y="-24.2" font-family="Arial" font-size="16.00" fill="#000000">Fichero</text>
+</g>
+<!-- FileStream&#45;&gt;Fichero -->
+<g id="edge3" class="edge">
+<title>FileStream-&gt;Fichero</title>
+<path fill="none" stroke="#000000" d="M742.0354,-29C742.0354,-29 863.4491,-29 863.4491,-29"/>
+<polygon fill="#000000" stroke="#000000" points="863.4491,-32.5 873.4491,-29 863.4491,-25.5 863.4491,-32.5"/>
+<polygon fill="#000000" stroke="#000000" points="742.0354,-25.5 732.0354,-29 742.0353,-32.5 742.0354,-25.5"/>
+<text text-anchor="middle" x="802.7307" y="-33.2" font-family="Arial" font-size="14.00" fill="#000000">bytes</text>
+</g>
+</g>
+</svg>
+</p><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="lectura-y-escritura-de-ficheros-sin-transformar">Lectura y escritura de ficheros sin transformar</h4>
+
+<ul>
+<li>Escribiremos y leeremos flujos de <strong>bytes</strong> (Como <strong>unidad b&#xE1;sica</strong>).</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<p>En el lenguaje C#, esta tarea la hace el m&#xE9;todo <strong><code>Dispose()</code></strong> con el que todo flujo cuenta como <strong>est&#xE1;ndar recomendado</strong> para liberar recursos de manera determinista. Sin embargo, por analog&#xED;a con otros lenguajes a la clase <strong>Stream</strong> tambi&#xE9;n dispone de un m&#xE9;todo <strong><code>Close()</code></strong> que hace lo mismo.</p>
+
       </div>
       
       
