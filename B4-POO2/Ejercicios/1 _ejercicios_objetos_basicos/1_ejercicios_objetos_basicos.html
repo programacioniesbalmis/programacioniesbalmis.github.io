@@ -1,0 +1,489 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Objetos B&#xE1;sicos y Objetos Valor</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  background-color: #FFFF;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="ejercicios-objetos-b%C3%A1sicos-y-objetos-valor">Ejercicios Objetos B&#xE1;sicos y Objetos Valor</h1>
+
+<p><a href="./1_ejercicios_objetos_basicos.pdf">Descargar estos ejercicios</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#ejercicio-1">Ejercicio 1</a></li>
+<li><a href="#ejercicio-2">Ejercicio 2</a></li>
+<li><a href="#white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</a></li>
+<li><a href="#ejercicio-4">Ejercicio 4</a></li>
+<li><a href="#ejercicio-5">Ejercicio 5</a></li>
+<li><a href="#white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</a></li>
+<li><a href="#ejercicio-7">Ejercicio 7</a></li>
+</ol>
+<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
+
+<blockquote>
+<p>A partir del siguiente diagrama de clases, crea las clases necesarias  que permitan reflejar los elementos que ves representados en &#xE9;l, y la aplicaci&#xF3;n para probarlas. Las categor&#xED;as de los trabajadores pueden ser:<br>
+Subalternos=10, Administrativos=20, JefesDepartamento=40, Gerente=60.</p>
+<p><strong>Nota:</strong> El salario del empleado se calcular&#xE1; a partir de la categor&#xED;a de trabajo que desempe&#xF1;e, las categor&#xED;as tienen asociadas el incremento en porcentaje que se tiene que hacer al salario base, que ser&#xE1; una constante con el valor de 1200.</p>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="421.4373px" preserveAspectRatio="none" style="width:1015px;height:421px;" version="1.1" viewBox="0 0 1015 421" width="1015.8343px" zoomAndPan="magnify"><defs><filter height="300%" id="ffu1ffbe8h3s8" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.43605359317905"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.8721071863581" dy="4.8721071863581" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[267282629f1778b9c75091f9d8fe6097]
+class Empleado--><rect codeline="9" fill="#FFFAFA" filter="url(#ffu1ffbe8h3s8)" height="277.5483" id="Empleado" style="stroke:#000000;stroke-width:1.8270401948842876;" width="377.5883" x="621.1937" y="25.5786"/><ellipse cx="770.0974" cy="45.067" fill="#ADD1B2" rx="13.3983" ry="13.3983" style="stroke:#000000;stroke-width:1.218026796589525;"/><path d="M773.466,40.0426 Q773.6564,39.7762 773.8847,39.643 Q774.1131,39.5097 774.3796,39.5097 Q774.8363,39.5097 775.1218,39.8238 Q775.4073,40.1378 775.4073,40.88 L775.4073,42.65 Q775.4073,43.3922 775.1218,43.7157 Q774.8363,44.0393 774.3796,44.0393 Q773.9609,44.0393 773.7135,43.7919 Q773.466,43.5635 773.3328,42.9354 Q773.2757,42.4977 773.0474,42.2693 Q772.6477,41.8126 771.9055,41.5461 Q771.1632,41.2797 770.4019,41.2797 Q769.4694,41.2797 768.6986,41.6794 Q767.9278,42.079 767.3283,42.9925 Q766.7288,43.9061 766.7288,45.1621 L766.7288,46.4944 Q766.7288,47.9979 767.8136,48.997 Q768.8984,49.9962 770.8397,49.9962 Q771.9816,49.9962 772.7809,49.6917 Q773.2567,49.5014 773.7706,48.9685 Q774.0941,48.6449 774.2749,48.5498 Q774.4557,48.4546 774.7031,48.4546 Q775.1028,48.4546 775.4168,48.7687 Q775.7308,49.0827 775.7308,49.5014 Q775.7308,49.9201 775.3121,50.4149 Q774.7031,51.1191 773.7325,51.5187 Q772.4193,52.0706 770.8397,52.0706 Q768.9936,52.0706 767.5282,51.3094 Q766.3292,50.7004 765.4918,49.3967 Q764.6544,48.093 764.6544,46.5324 L764.6544,45.1241 Q764.6544,43.5064 765.4061,42.1076 Q766.1579,40.7087 767.4901,39.957 Q768.8223,39.2052 770.3258,39.2052 Q771.2203,39.2052 772.0101,39.4051 Q772.7999,39.6049 773.466,40.0426 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.6163" lengthAdjust="spacingAndGlyphs" textLength="69.4275" x="795.067" y="51.0477">Empleado</text><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="622.4117" x2="997.5639" y1="64.5554" y2="64.5554"/><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="132.7649" x="628.5018" y="83.3361">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="159.5615" x="628.5018" y="100.1887">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="181.486" x="628.5018" y="117.0412">-a&#xF1;oNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="99.8782" x="628.5018" y="133.8937">-categoria: string</text><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="622.4117" x2="997.5639" y1="141.7098" y2="141.7098"/><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="362.972" x="628.5018" y="160.4905">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="160.7795" x="628.5018" y="177.343">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="126.6748" x="628.5018" y="194.1956">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="149.8173" x="628.5018" y="211.0481">+GetA&#xF1;oNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="99.8782" x="628.5018" y="227.9007">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="239.9513" x="628.5018" y="244.7532">+SetCategoria(in categoria : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="107.1864" x="628.5018" y="261.6057">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="151.0353" x="628.5018" y="278.4583">+DatosEmpleado() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="110.8404" x="628.5018" y="295.3108">+Acadena(): string</text><!--MD5=[7d0e5ddd73bd8fec86b8967827845935]
+class Empresa--><rect codeline="27" fill="#FFFAFA" filter="url(#ffu1ffbe8h3s8)" height="311.2534" id="Empresa" style="stroke:#000000;stroke-width:1.8270401948842876;" width="539.5859" x="8.5262" y="8.5262"/><ellipse cx="242.0828" cy="28.0146" fill="#ADD1B2" rx="13.3983" ry="13.3983" style="stroke:#000000;stroke-width:1.218026796589525;"/><path d="M245.4514,22.9903 Q245.6417,22.7238 245.8701,22.5906 Q246.0985,22.4574 246.365,22.4574 Q246.8217,22.4574 247.1072,22.7714 Q247.3927,23.0854 247.3927,23.8276 L247.3927,25.5976 Q247.3927,26.3398 247.1072,26.6634 Q246.8217,26.9869 246.365,26.9869 Q245.9463,26.9869 245.6988,26.7395 Q245.4514,26.5111 245.3182,25.8831 Q245.2611,25.4453 245.0327,25.217 Q244.6331,24.7602 243.8908,24.4938 Q243.1486,24.2273 242.3873,24.2273 Q241.4548,24.2273 240.684,24.627 Q239.9132,25.0266 239.3137,25.9402 Q238.7142,26.8537 238.7142,28.1098 L238.7142,29.442 Q238.7142,30.9455 239.799,31.9447 Q240.8838,32.9438 242.8251,32.9438 Q243.967,32.9438 244.7663,32.6393 Q245.2421,32.449 245.7559,31.9161 Q246.0795,31.5926 246.2603,31.4974 Q246.4411,31.4023 246.6885,31.4023 Q247.0882,31.4023 247.4022,31.7163 Q247.7162,32.0303 247.7162,32.449 Q247.7162,32.8677 247.2975,33.3625 Q246.6885,34.0667 245.7179,34.4664 Q244.4047,35.0183 242.8251,35.0183 Q240.979,35.0183 239.5136,34.257 Q238.3146,33.648 237.4772,32.3443 Q236.6398,31.0407 236.6398,29.4801 L236.6398,28.0717 Q236.6398,26.454 237.3915,25.0552 Q238.1433,23.6564 239.4755,22.9046 Q240.8077,22.1529 242.3112,22.1529 Q243.2057,22.1529 243.9955,22.3527 Q244.7853,22.5525 245.4514,22.9903 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.6163" lengthAdjust="spacingAndGlyphs" textLength="62.1194" x="267.0524" y="33.9953">Empresa</text><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="9.7442" x2="546.894" y1="47.503" y2="47.503"/><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="130.3289" x="15.8343" y="66.2837">-cif : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="185.1401" x="15.8343" y="83.1363">-razonSocial : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="102.3143" x="15.8343" y="99.9888">-direccion : string</text><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="9.7442" x2="546.894" y1="107.8049" y2="107.8049"/><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="524.9695" x="15.8343" y="126.5856">+Empresa(in cif : string, in razonSocial : string, in gerente : Empleado, in direccion : string)</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="151.0353" x="15.8343" y="143.4381">+Empresa(in e : Empresa)</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="153.4714" x="15.8343" y="160.2907">+NombreGerente() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="154.6894" x="15.8343" y="177.1432">+GetRazonSocial() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="136.419" x="15.8343" y="193.9957">+GetDireccion() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="97.4421" x="15.8343" y="210.8483">+GetCif() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="244.8234" x="15.8343" y="227.7008">+SetGerente(in gerente : Empleado) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="237.5152" x="15.8343" y="244.5534">+SetDireccion(in direccion : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="146.1632" x="15.8343" y="261.4059">+DatosEmpresa() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="175.3959" x="15.8343" y="278.2585">+GetEmpleados() : Empleado[]</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="358.0999" x="15.8343" y="295.111">+Contrata(in empleado : Empleado, in categoria : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.3983" lengthAdjust="spacingAndGlyphs" textLength="110.8404" x="15.8343" y="311.9635">+Acadena(): string</text><!--MD5=[7e1ce8ab2bf669717f28e918f4971b9a]
+class Categoria--><rect codeline="46" fill="#FFFAFA" filter="url(#ffu1ffbe8h3s8)" height="58.4653" id="Categoria" style="stroke:#000000;stroke-width:1.8270401948842876;" width="104.7503" x="757.6127" y="345.9196"/><ellipse cx="775.8831" cy="365.408" fill="#EB937F" rx="13.3983" ry="13.3983" style="stroke:#000000;stroke-width:1.218026796589525;"/><path d="M774.4938,366.3787 L774.4938,369.4237 L779.7655,369.4237 L779.7655,368.3009 Q779.7655,367.5586 780.0605,367.2351 Q780.3555,366.9115 780.8123,366.9115 Q781.269,366.9115 781.5545,367.2351 Q781.84,367.5586 781.84,368.3009 L781.84,371.4982 L772.0958,371.4982 Q771.3345,371.4982 771.0205,371.2127 Q770.7065,370.9272 770.7065,370.4514 Q770.7065,369.9947 771.03,369.7092 Q771.3535,369.4237 772.0958,369.4237 L772.4193,369.4237 L772.4193,361.3162 L772.0958,361.3162 Q771.3345,361.3162 771.0205,361.0308 Q770.7065,360.7453 770.7065,360.2695 Q770.7065,359.8127 771.0205,359.5273 Q771.3345,359.2418 772.0958,359.2418 L781.3832,359.2418 L781.3832,362.401 Q781.3832,363.1433 781.1073,363.4573 Q780.8313,363.7713 780.3555,363.7713 Q779.8988,363.7713 779.6133,363.4573 Q779.3278,363.1433 779.3278,362.401 L779.3278,361.3162 L774.4938,361.3162 L774.4938,364.3042 L776.3018,364.3042 Q776.3018,363.5049 776.454,363.2765 Q776.7776,362.7817 777.3485,362.7817 Q777.8053,362.7817 778.0907,363.0957 Q778.3762,363.4097 778.3762,364.1519 L778.3762,366.5499 Q778.3762,367.216 778.224,367.4444 Q777.9004,367.9202 777.3485,367.9202 Q776.7776,367.9202 776.454,367.4254 Q776.3018,367.197 776.3018,366.3787 L774.4938,366.3787 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.6163" lengthAdjust="spacingAndGlyphs" textLength="65.7734" x="792.9354" y="371.3887">Categoria</text><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="758.8307" x2="861.1449" y1="384.8965" y2="384.8965"/><line style="stroke:#000000;stroke-width:1.8270401948842876;" x1="758.8307" x2="861.1449" y1="394.6407" y2="394.6407"/><!--MD5=[4c0d8c6dc72817c2e26b80705e19b643]
+reverse link Empresa to Empleado--><path codeline="49" d="M564.5067,164.4336 C583.6297,164.4336 602.6066,164.4336 621.0475,164.4336 " fill="none" id="Empresa-backto-Empleado" style="stroke:#000000;stroke-width:1.218026796589525;"/><polygon fill="#000000" points="548.4166,164.4336,555.7247,169.3057,563.0329,164.4336,555.7247,159.5615,548.4166,164.4336" style="stroke:#000000;stroke-width:1.218026796589525;"/><text fill="#000000" font-family="sans-serif" font-size="15.8343" lengthAdjust="spacingAndGlyphs" textLength="8.5262" x="558.2764" y="181.239">1</text><text fill="#000000" font-family="sans-serif" font-size="15.8343" lengthAdjust="spacingAndGlyphs" textLength="26.7966" x="584.4501" y="181.3573">1..n</text><!--MD5=[26e9fc1e267e578bb7af05bfe7c81018]
+reverse link Empleado to Categoria--><path codeline="50" d="M809.9878,321.8392 C809.9878,329.732 809.9878,337.6248 809.9878,345.5177 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:1.218026796589525;"/><ellipse cx="809.9878" cy="313.179" fill="#FFFFFF" rx="9.7442" ry="9.7442" style="stroke:#000000;stroke-width:1.218026796589525;"/><line style="stroke:#000000;stroke-width:1.218026796589525;" x1="809.9878" x2="809.9878" y1="322.9233" y2="303.4348"/><line style="stroke:#000000;stroke-width:1.218026796589525;" x1="800.2436" x2="819.732" y1="313.179" y2="313.179"/><!--MD5=[5e1a3a40c3630e5375b976cd22995b97]
+@startuml
+
+left to right direction
+scale 1000 width
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+class Empleado
+{
+    - dni : string {readOnly} 
+    - nombre : string {readOnly}
+    - añoNacimiento : int {readOnly}
+    - categoria: string
+
+    + Empleado(in dni : string, in nombre : string, in nacimiento : int)
+    + Empleado(in e : Empleado)
+    + GetNombre() : string
+    + GetAñoNacimiento() : int
+    + GetDni() : string
+    + SetCategoria(in categoria : string) : void
+    + Salario() : double
+    + DatosEmpleado() : string
+    + Acadena(): string 
+}
+
+class Empresa
+{
+    - cif : string {readOnly} 
+    - razonSocial : string {readOnly}
+    - direccion : string 
+   
+    + Empresa(in cif : string, in razonSocial : string, in gerente : Empleado, in direccion : string)
+    + Empresa(in e : Empresa)
+    + NombreGerente() : string
+    + GetRazonSocial() : string
+    + GetDireccion() : string
+    + GetCif() : string
+    + SetGerente(in gerente : Empleado) : void
+    + SetDireccion(in direccion : string) : void
+    + DatosEmpresa() : string
+    + GetEmpleados() : Empleado[]
+    + Contrata(in empleado : Empleado, in categoria : string) : void
+    + Acadena(): string 
+}
+enum Categoria
+{
+}
+Empresa "1" *- - "1..n" Empleado
+Empleado +- Categoria
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p></blockquote>
+<blockquote>
+<p>Una posible salida ser&#xED;a:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">La Empresa S.L
+Mar&#xED;a Soto del Rio
+Calle el Pozo, <span class="token number">34</span> Bajo
+El empleado Mar&#xED;a Soto del Rio con dni: 23453456L tiene un salario <span class="token number">1920</span> y <span class="token function">su</span> categoria es: Gerente
+El empleado Juanma Perez Ortiz con dni: 14568712G tiene un salario <span class="token number">1440</span> y <span class="token function">su</span> categoria es: Administrativos
+El empleado Pedro Martinez Sancho con dni: 12346123K tiene un salario <span class="token number">1440</span> y <span class="token function">su</span> categoria es: Administrativos
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
+
+<blockquote>
+<p>Crea un programa que permita guardar informaci&#xF3;n sobre las caracter&#xED;sticas gr&#xE1;ficas de un equipo inform&#xE1;tico. La informaci&#xF3;n relevante es:</p>
+<ul>
+<li>N&#xFA;mero de pulgadas (short)</li>
+<li>Controlador gr&#xE1;fico (string)</li>
+<li>N&#xFA;mero de colores (short)</li>
+<li>Pixeles eje x (int)</li>
+<li>Pixeles eje y (int)</li>
+</ul>
+<p>Debe ser posible cambiar el n&#xFA;mero de colores, la resoluci&#xF3;n de la pantalla y el controlador en cualquier momento, as&#xED; como consultar toda la informaci&#xF3;n concerniente a las caracter&#xED;sticas gr&#xE1;ficas. <em><strong>Crea alguna instancia de pantalla y prueba el funcionamiento.</strong></em><br>
+<strong>Nota</strong>: todos los campos ser&#xE1;n privados, y deberemos crear <strong>solo</strong> los m&#xE9;todos y accesores o modificadores necesarios para poder hacer funcional la aplicaci&#xF3;n.</p>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</h2>
+
+<blockquote>
+<p>Crea un proyecto con <strong>los TAD necesarios</strong> para que el siguiente c&#xF3;digo perteneciente a la Main, pueda ser ejecutado sin problemas:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Compas</span> compas <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Compas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Circulo</span> circulo <span class="token operator">=</span> compas<span class="token punctuation">.</span><span class="token function">DibujaCirculo</span><span class="token punctuation">(</span><span class="token number">3.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Rotulador</span> rotulador <span class="token operator">=</span> Estuche<span class="token punctuation">.</span><span class="token function">GetRotuladores</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token operator">??</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">Rotulador</span><span class="token punctuation">(</span><span class="token string">&quot;Negro&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+rotulador<span class="token punctuation">.</span><span class="token function">Rotula</span><span class="token punctuation">(</span>circulo<span class="token punctuation">.</span><span class="token function">Perimetro</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Pincel</span> pincel<span class="token operator">=</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pincel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+pincel<span class="token punctuation">.</span><span class="token function">SetColor</span><span class="token punctuation">(</span>Color<span class="token punctuation">.</span>Verde<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pincel<span class="token punctuation">.</span><span class="token function">Pinta</span><span class="token punctuation">(</span>circulo<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+</pre><p>&#x1F449;<strong>Pista:</strong> El circulo tendr&#xE1; un atributo r&#xE1;dio.El rotulador tendr&#xE1; un atributo color de tipo enumerado. Habr&#xE1; una clase est&#xE1;tica Estuche con un solo m&#xE9;todo tambi&#xE9;n est&#xE1;tico que devolver&#xE1; un array de rotuladores. El pincel tambi&#xE9;n tiene un atributo color.<br>
+La salida por pantalla del programa podr&#xED;a ser algo como lo siguiente:</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">Dibujado un c&#xED;rculo de r&#xE1;dio <span class="token number">3,5</span>
+Rotulado el perimetro de  <span class="token number">38,48</span> cm. de color Azul.
+Pintada el area de  <span class="token number">21,99</span> cm. de color Verde.
+</pre><hr>
+<h2 class="mume-header" id="ejercicio-4">Ejercicio 4</h2>
+
+<blockquote>
+<p>A partir del siguiente texto:<br>
+<em>Una cadena de muebles a nivel nacional tiene tiendas ubicadas por toda la geograf&#xED;a espa&#xF1;ola.<br>
+Cada una de estas tiendas de muebles almacena informaci&#xF3;n sobre: sof&#xE1;s, sillas y mesas. De todos ellos es com&#xFA;n, como m&#xED;nimo, color(enumeraci&#xF3;n), peso, dimensiones (estructura), fabricante y precio. En cambio los sof&#xE1;s incluye informaci&#xF3;n de la tela con el que est&#xE1; tapizado y si es abatible o no, las sillas la longitud del respaldo y las mesas el tipo de madera que est&#xE1; hecho.</em></p>
+<p>Crea <strong>una clase Mueble</strong> que contenga los campos, constructores y m&#xE9;todos necesarios para recoger la informaci&#xF3;n de un mueble y devolver mediante un m&#xE9;todo ACadena esa informaci&#xF3;n. <strong>Importante que al recoger los valores de color pertenezcan a la enumeraci&#xF3;n</strong>.</p>
+<p><strong>Nota:</strong> Debes de fijarte que el ejercicio pide que hagas <strong>solo la clase Mueble</strong>, con las caracter&#xED;sticas comunes a todos los muebles, el resto de texto se usar&#xE1; en ejercicios posteriores.</p>
+</blockquote>
+<hr>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
+
+<blockquote>
+<p>Crea una clase Humano con los campos, como m&#xED;nimo: nombre, edad, peso, sexo, inteligencia, fuerza, destreza y energ&#xED;a.<br>
+Los m&#xE9;todos MostrarInformaci&#xF3;n, SetNombre, SetEdad,...y los constructores que creas necesarios.</p>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</h2>
+
+<blockquote>
+<p>Debes definir un <strong>tipo valor</strong> que represente un <strong>Naipe</strong> de la baraja Espa&#xF1;ola de 48 cartas. El tipo estar&#xE1; compuesto por dos miembros: un valor y un palo, este &#xFA;ltimo sera de tipo enumerado con los siguientes valores posibles: Oros, Copas, Bastos, Espada.<br>
+Crea un m&#xE9;todo en la clase principal que utilizando el tipo Naipe nos devuelva una baraja con las 48 cartas, usa una matriz <strong><code>Naipe[,] baraja= new Naipe[4,12]</code></strong> e inicial&#xED;zala suponiendo que cada fila representa un palo.<br>
+Crea un m&#xE9;todo que nos mezcle la baraja para que queden sus cartas desordenadas.<br>
+Crea un programa que muestre el resultado de la utilizaci&#xF3;n de los m&#xE9;todos anteriores.</p>
+<p><strong>Nota:</strong> Vuelve a repasar los apuntes donde se explica la creaci&#xF3;n del tipo Valor y sigue las normas que se explican para este tipo.</p>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="ejercicio-7">Ejercicio 7</h2>
+
+<blockquote>
+<p>Utilizando el tipo valor Punto definido en los apuntes, vamos a crear otro tipo valor <strong>Estrella</strong> formado por un punto, el caracter <strong>*</strong> y un color aleatorio de la enumeraci&#xF3;n ConsoleColor.<br>
+En el programa principal seguiremos los siguientes pasos:</p>
+<ul>
+<li>Deberemos introducir por teclado la cantidad de estrellas a dibujar.</li>
+<li>Adem&#xE1;s almacenaremos los datos en una tabla definida de la siguiente manera <strong><code>Estrella[] estrellas = new Estrella[NumEstrellas];</code></strong></li>
+<li>Generaremos la posici&#xF3;n del Punto y el Color de  cada estrella de forma aleatoria.</li>
+<li>Borraremos la pantalla con el m&#xE9;todo Clear() de la clase Console.</li>
+<li>Dibujaremos todo el array de estrellas en cada una de las coordenadas introducidas y con el color generado aleatorio.</li>
+</ul>
+<p><strong>Nota:</strong> para posicionar la estrella en la pantalla usaremos el m&#xE9;todo de la clase Console <strong><code>void SetCursorPosition(int letf, int top);</code></strong> que situar&#xE1; el cursor en una coordenada dentro de las 24 filas y 80 columnas que puede tener una consola con origen en la esquina superior izquierda (para generar los puntos, utilizaremos en Next de la clase Random con el rango entre 24 y 80 ). Para pintar el color utilizaremos la propiedad, de la clase Console, ForegroundColor.</p>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="148.248px" preserveAspectRatio="none" style="width:517px;height:148px;" version="1.1" viewBox="0 0 517 148" width="517.5202px" zoomAndPan="magnify"><defs><filter height="300%" id="fz52svcf6z1vq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.6954177897574123"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.390835579514825" dy="5.390835579514825" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4188b287b597d910fa9f45f2dbe415c5]
+class Punto2D--><rect codeline="10" fill="#FFFAFA" filter="url(#fz52svcf6z1vq)" height="102.2364" id="Punto2D" style="stroke:#000000;stroke-width:2.0215633423180592;" width="164.4205" x="334.2318" y="18.8679"/><ellipse cx="372.035" cy="45.9485" fill="#FF7700" rx="14.8248" ry="14.8248" style="stroke:#000000;stroke-width:1.3477088948787062;"/><path d="M368.7289,50.3917 L368.7289,41.421 Q367.9919,41.3999 367.6445,41.0841 Q367.297,40.7682 367.297,40.2628 Q367.297,39.7574 367.655,39.4415 Q368.013,39.1257 368.8342,39.1257 L373.6354,39.1257 Q374.7515,39.1257 375.8255,39.5363 Q376.8994,39.9469 377.5522,40.5997 Q378.0366,41.0841 378.563,41.9159 Q379.0895,42.7476 379.3632,43.5794 Q379.637,44.4112 379.637,45.6115 L379.637,46.7065 Q379.637,48.1595 379.1421,49.2861 Q378.6472,50.4127 377.847,51.1182 Q377.0468,51.8236 376.3519,52.1605 Q375.2358,52.687 373.4459,52.687 L368.8342,52.687 Q368.013,52.687 367.655,52.3711 Q367.297,52.0553 367.297,51.5288 Q367.297,51.0234 367.655,50.7075 Q368.013,50.3917 368.7289,50.3917 Z M371.0243,50.3917 L373.467,50.3917 Q374.8147,50.3917 375.5096,49.9916 Q376.4151,49.4862 376.8784,48.6965 Q377.3416,47.9068 377.3416,46.6434 L377.3416,45.5483 Q377.3416,44.4744 376.9205,43.6531 Q376.2677,42.3686 375.457,41.8948 Q374.6462,41.421 373.4459,41.421 L371.0243,41.421 L371.0243,50.3917 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="16.1725" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="87.6011" x="392.1159" y="42.3949">&#xAB;dataType&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="16.1725" lengthAdjust="spacingAndGlyphs" textLength="64.69" x="403.5714" y="62.7369">Punto2D</text><line style="stroke:#000000;stroke-width:2.0215633423180592;" x1="335.5795" x2="497.3046" y1="73.029" y2="73.029"/><text fill="#000000" font-family="sans-serif" font-size="14.8248" lengthAdjust="spacingAndGlyphs" textLength="146.9003" x="342.3181" y="93.8092">+X : double {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.8248" lengthAdjust="spacingAndGlyphs" textLength="148.248" x="342.3181" y="112.456">+Y : double {readOnly}</text><!--MD5=[2f5897d57f8f629ea11c6dca59b36640]
+class Estrella--><rect codeline="16" fill="#FFFAFA" filter="url(#fz52svcf6z1vq)" height="120.8832" id="Estrella" style="stroke:#000000;stroke-width:2.0215633423180592;" width="243.9353" x="9.434" y="9.434"/><ellipse cx="84.5687" cy="36.5145" fill="#FF7700" rx="14.8248" ry="14.8248" style="stroke:#000000;stroke-width:1.3477088948787062;"/><path d="M81.2626,40.9577 L81.2626,31.987 Q80.5256,31.966 80.1782,31.6501 Q79.8307,31.3342 79.8307,30.8288 Q79.8307,30.3235 80.1887,30.0076 Q80.5467,29.6917 81.3679,29.6917 L86.1691,29.6917 Q87.2852,29.6917 88.3592,30.1023 Q89.4331,30.513 90.0859,31.1658 Q90.5702,31.6501 91.0967,32.4819 Q91.6231,33.3137 91.8969,34.1455 Q92.1707,34.9773 92.1707,36.1776 L92.1707,37.2726 Q92.1707,38.7256 91.6758,39.8522 Q91.1809,40.9788 90.3807,41.6842 Q89.5805,42.3897 88.8856,42.7266 Q87.7695,43.253 85.9796,43.253 L81.3679,43.253 Q80.5467,43.253 80.1887,42.9372 Q79.8307,42.6213 79.8307,42.0948 Q79.8307,41.5895 80.1887,41.2736 Q80.5467,40.9577 81.2626,40.9577 Z M83.558,40.9577 L86.0007,40.9577 Q87.3484,40.9577 88.0433,40.5576 Q88.9488,40.0522 89.4121,39.2626 Q89.8753,38.4729 89.8753,37.2094 L89.8753,36.1144 Q89.8753,35.0404 89.4542,34.2192 Q88.8014,32.9346 87.9907,32.4608 Q87.1799,31.987 85.9796,31.987 L83.558,31.987 L83.558,40.9577 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="16.1725" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="87.6011" x="109.5013" y="32.961">&#xAB;dataType&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="16.1725" lengthAdjust="spacingAndGlyphs" textLength="56.6038" x="125" y="53.3029">Estrella</text><line style="stroke:#000000;stroke-width:2.0215633423180592;" x1="10.7817" x2="252.0216" y1="63.595" y2="63.595"/><text fill="#000000" font-family="sans-serif" font-size="14.8248" lengthAdjust="spacingAndGlyphs" textLength="227.7628" x="17.5202" y="84.3753">+Coordenada : Punto2D {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.8248" lengthAdjust="spacingAndGlyphs" textLength="214.2857" x="17.5202" y="103.0221">+Color : ConsoleColor {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.8248" lengthAdjust="spacingAndGlyphs" textLength="180.593" x="17.5202" y="121.6689">+Caracter : char {readOnly}</text><!--MD5=[aad911e382751fa18fd3448d9586d663]
+reverse link Estrella to Punto2D--><path codeline="22" d="M271.6038,70.0809 C292.9515,70.0809 314.3801,70.0809 333.9353,70.0809 " fill="none" id="Estrella-backto-Punto2D" style="stroke:#000000;stroke-width:1.3477088948787062;"/><polygon fill="#000000" points="253.7197,70.0809,261.8059,75.4717,269.8922,70.0809,261.8059,64.69,253.7197,70.0809" style="stroke:#000000;stroke-width:1.3477088948787062;"/><!--MD5=[ff86c11a13b40573adfc5811edf94dbe]
+@startuml
+left to right direction
+scale 500 width
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide methods
+class Punto2D <<(D,#FF7700) dataType>>
+{
+   + X : double {readOnly}
+   + Y : double {readOnly}
+}
+hide methods
+class Estrella <<(D,#FF7700) dataType>>
+{
+   + Coordenada : Punto2D {readOnly}
+   + Color : ConsoleColor {readOnly}
+   + Caracter : char {readOnly}
+}
+Estrella *- - Punto2D
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p></blockquote>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
