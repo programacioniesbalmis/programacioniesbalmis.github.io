@@ -340,7 +340,7 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#manejo-de-excepciones-con-ficheros">Manejo de excepciones con ficheros</a></li>
 <li><a href="#serializaci%C3%B3n">Serializaci&#xF3;n</a>
 <ol>
-<li><a href="#conceptos-gnerales">Conceptos Gnerales</a>
+<li><a href="#conceptos-generales">Conceptos Generales</a>
 <ol>
 <li><a href="#persistencia">Persistencia</a></li>
 <li><a href="#atributos-en-net">Atributos en .NET</a></li>
@@ -348,7 +348,10 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 <li><a href="#serializaci%C3%B3n-a-binario">Serializaci&#xF3;n a binario</a>
 <ol>
+<li><a href="#saber-si-una-clase-es-serializable">Saber si una clase es serializable</a></li>
+<li><a href="#excluir-campos-o-propiedades-de-la-serializaci%C3%B3n">Excluir campos o propiedades de la serializaci&#xF3;n</a></li>
 <li><a href="#deifiniendo-la-serializaci%C3%B3n-como-operaciones-de-la-clase">Deifiniendo la Serializaci&#xF3;n como operaciones de la clase</a></li>
+<li><a href="#versiones-de-un-objeto-serializado">Versiones de un objeto serializado</a></li>
 </ol>
 </li>
 </ol>
@@ -504,7 +507,7 @@ Esta opci&#xF3;n es la m&#xE1;s simple, si sabemos cual es el SO donde vamos a e
     <span class="token comment">// Compruebo si se ha creado el fichero correctamente viendo si </span>
     <span class="token comment">// existe o no en el directorio datos (donde me acabo de situar).</span>
     <span class="token comment">// Mostrar&#xE9; si existe o no por pantalla.</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>File<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetFileName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">?</span><span class="token string">&quot;existe&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;no exite&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>File<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetFileName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">?</span><span class="token string">&quot;existe&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;no existe&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="clases-fileinfo-y-directoryinfo">Clases FileInfo y DirectoryInfo</h3>
@@ -517,7 +520,7 @@ Dichos objetos se instanciar&#xE1;n en memoria a trav&#xE9;s de las clases...</p
 <p>Me devolver&#xE1;n informaci&#xF3;n sobre <strong>carpetas</strong> y <strong>archivos</strong> respectivamente.</p>
 </li>
 <li>
-<p>Adem&#xE1;s de permitirme <em>&apos;navega&apos;r</em> por el sistema de ficheros, movi&#xE9;ndome entre las diferentes carpetas. Me permitir&#xE1;n <strong>realizar acciones con m&#xE1;s precisas y con m&#xE1;s detalle</strong> sobre el sistema de ficheros.</p>
+<p>Adem&#xE1;s de permitirme <em>&apos;navegar</em> por el sistema de ficheros, movi&#xE9;ndome entre las diferentes carpetas. Me permitir&#xE1;n <strong>realizar acciones con m&#xE1;s precisas y con m&#xE1;s detalle</strong> sobre el sistema de ficheros.</p>
 </li>
 <li>
 <p><strong>Ambas clases heredar&#xE1;n de la clases abstracta</strong> <code>FileSystemInfo</code> que contendr&#xE1; la informaci&#xF3;n com&#xFA;n a archivos y carpetas. Un ejemplo ser&#xED;a la fecha de creaci&#xF3;n y otras propiedades comunes.</p>
@@ -1003,6 +1006,11 @@ Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 492)">
 <title>G</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-492 1620.2953,-492 1620.2953,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-8 8,-404 168,-404 168,-8 8,-8"/>
+<text text-anchor="middle" x="88" y="-373" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
+</g>
 <g id="clust2" class="cluster">
 <title>clusterG</title>
 <polygon fill="none" stroke="#104e8b" points="354.891,-48 354.891,-480 1315.891,-480 1315.891,-48 354.891,-48"/>
@@ -1022,11 +1030,6 @@ Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto
 <title>cluster3</title>
 <polygon fill="#e0eeee" stroke="#e0eeee" points="1090.891,-149 1090.891,-431 1310.891,-431 1310.891,-149 1090.891,-149"/>
 <text text-anchor="middle" x="1200.891" y="-409" font-family="Arial" font-size="20.00" fill="#104e8b">Backing Store Streams</text>
-</g>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="transparent" points="8,-8 8,-404 168,-404 168,-8 8,-8"/>
-<text text-anchor="middle" x="88" y="-373" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster4</title>
@@ -1246,10 +1249,10 @@ Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 204)">
 <title>G</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-204 1073.8086,-204 1073.8086,4 -4,4"/>
-<g id="clust4" class="cluster">
-<title>cluster4</title>
-<polygon fill="none" stroke="transparent" points="877.8086,-12 877.8086,-156 1061.8086,-156 1061.8086,-12 877.8086,-12"/>
-<text text-anchor="middle" x="969.8086" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Dispositivos</text>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-12 8,-156 168,-156 168,-12 8,-12"/>
+<text text-anchor="middle" x="88" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
 </g>
 <g id="clust2" class="cluster">
 <title>clusterG</title>
@@ -1261,10 +1264,10 @@ Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto
 <polygon fill="#e0eeee" stroke="#e0eeee" points="418.4043,-13 418.4043,-143 638.4043,-143 638.4043,-13 418.4043,-13"/>
 <text text-anchor="middle" x="528.4043" y="-121" font-family="Arial" font-size="20.00" fill="#104e8b">Backing Store Streams</text>
 </g>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="transparent" points="8,-12 8,-156 168,-156 168,-12 8,-12"/>
-<text text-anchor="middle" x="88" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
+<g id="clust4" class="cluster">
+<title>cluster4</title>
+<polygon fill="none" stroke="transparent" points="877.8086,-12 877.8086,-156 1061.8086,-156 1061.8086,-12 877.8086,-12"/>
+<text text-anchor="middle" x="969.8086" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Dispositivos</text>
 </g>
 <!-- Bytes -->
 <g id="node1" class="node">
@@ -1350,13 +1353,13 @@ Sin embargo, hay ocasiones en que puede interesar asegurarse de que en un cierto
 <span class="token punctuation">{</span>
     <span class="token keyword">class</span> <span class="token class-name">Program</span>
     <span class="token punctuation">{</span>
-        <span class="token comment">// El siguiente programa crea o sobreescribe el archivo ejemplo.txt en el</span>
+        <span class="token comment">// El siguiente programa crea o sobrescribe el archivo ejemplo.txt en el</span>
         <span class="token comment">// directorio donde me estoy ejecutando.</span>
         <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             <span class="token class-name">FileStream</span> fichero <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span>
                                         <span class="token string">&quot;ejemplo.txt&quot;</span><span class="token punctuation">,</span>      <span class="token comment">// Nombre del fichero</span>
-                                        FileMode<span class="token punctuation">.</span>Create<span class="token punctuation">,</span>    <span class="token comment">// Lo creo o sobreescribo si exite</span>
+                                        FileMode<span class="token punctuation">.</span>Create<span class="token punctuation">,</span>    <span class="token comment">// Lo creo o sobrescribo si exite</span>
                                         FileAccess<span class="token punctuation">.</span>Write<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Solo puedo escribir en &#xE9;l.</span>
             fichero<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
@@ -1650,7 +1653,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 </g>
 </svg>
 </p><pre data-role="codeBlock" data-info="csharp {highlight=2}" class="language-csharp" data-line="2"><span class="token class-name"><span class="token keyword">char</span></span> c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>fs<span class="token punctuation">.</span><span class="token function">ReadByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = &apos;L&apos;</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Posicion descriptor lectura: &quot;</span> <span class="token operator">+</span> fs<span class="token punctuation">.</span>Position<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Devolver&#xE1; un 1</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Posici&#xF3;n descriptor lectura: &quot;</span> <span class="token operator">+</span> fs<span class="token punctuation">.</span>Position<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Devolver&#xE1; un 1</span>
 <div class="line-highlight-wrapper">
 <div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
 </div></div></pre><p align="center" style="zoom:0.5"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
@@ -1766,7 +1769,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 </p><pre data-role="codeBlock" data-info="csharp" class="language-csharp">c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>fs<span class="token punctuation">.</span><span class="token function">ReadByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = &apos;o&apos;</span>
 c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>fs<span class="token punctuation">.</span><span class="token function">ReadByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = &apos;r&apos;</span>
 c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>fs<span class="token punctuation">.</span><span class="token function">ReadByte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = &apos;e&apos;</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Posicion descriptor lectura: &quot;</span> <span class="token operator">+</span> fs<span class="token punctuation">.</span>Position<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Devolver&#xE1; un 4</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Posici&#xF3;n descriptor lectura: &quot;</span> <span class="token operator">+</span> fs<span class="token punctuation">.</span>Position<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Devolver&#xE1; un 4</span>
 fs<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p align="center" style="zoom:0.5"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
@@ -1913,7 +1916,7 @@ Estos valores pueden ser: <strong><code>Begin</code></strong>, <strong><code>Cur
 fichero<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p><strong>Caso de desplazamiento 1</strong>:</p>
 <p><strong><code>fichero.Seek(-1, SeekOrigin.End);</code></strong></p>
-<p>Me situo al <strong>final</strong> y me desplazo <strong>1 byte a la izquierda</strong>, de tal manera que me quedo para escribir o leer sobre el &#xFA;ltimo byte el <strong>byte n</strong>.</p>
+<p>Me sit&#xFA;o al <strong>final</strong> y me desplazo <strong>1 byte a la izquierda</strong>, de tal manera que me quedo para escribir o leer sobre el &#xFA;ltimo byte el <strong>byte n</strong>.</p>
 <p align="left" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
@@ -2226,7 +2229,7 @@ fichero<span class="token punctuation">.</span><span class="token function">Clos
 
 <p>La funcionalidad que agrega una capa de almacenamiento en buffer a las operaciones de lectura y escritura para otra secuencia (la cual &apos;<em>envuelve</em>&apos;).</p>
 <blockquote>
-<p><strong>Nota:</strong> Aunque <strong><code>FileStream</code></strong> ya tiene un buffer de escritura intermedio por defecto, nosotros <strong>podremos ampliarlo o reducilo</strong> mediante esta capa de abstracci&#xF3;n.</p>
+<p><strong>Nota:</strong> Aunque <strong><code>FileStream</code></strong> ya tiene un buffer de escritura intermedio por defecto, nosotros <strong>podremos ampliarlo o reducirlo</strong> mediante esta capa de abstracci&#xF3;n.</p>
 </blockquote>
 <p align="center" style="zoom:0.6"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
@@ -2237,30 +2240,30 @@ fichero<span class="token punctuation">.</span><span class="token function">Clos
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 204)">
 <title>G</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-204 1235.2129,-204 1235.2129,4 -4,4"/>
-<g id="clust5" class="cluster">
-<title>cluster4</title>
-<polygon fill="none" stroke="transparent" points="1039.2129,-12 1039.2129,-156 1223.2129,-156 1223.2129,-12 1039.2129,-12"/>
-<text text-anchor="middle" x="1131.2129" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Dispositivos</text>
-</g>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="transparent" points="8,-12 8,-156 168,-156 168,-12 8,-12"/>
-<text text-anchor="middle" x="88" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
-</g>
 <g id="clust2" class="cluster">
 <title>clusterG</title>
 <polygon fill="none" stroke="#104e8b" points="288.4043,-8 288.4043,-192 930.8086,-192 930.8086,-8 288.4043,-8"/>
 <text text-anchor="middle" x="609.6065" y="-161" font-family="Arial" font-size="30.00" fill="#104e8b">Clases para el manejo de streams</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster3</title>
+<polygon fill="#e0eeee" stroke="#e0eeee" points="705.8086,-13 705.8086,-143 925.8086,-143 925.8086,-13 705.8086,-13"/>
+<text text-anchor="middle" x="815.8086" y="-121" font-family="Arial" font-size="20.00" fill="#104e8b">Backing Store Streams</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster2</title>
 <polygon fill="#e0eeee" stroke="#e0eeee" points="293.4043,-13 293.4043,-143 477.4043,-143 477.4043,-13 293.4043,-13"/>
 <text text-anchor="middle" x="385.4043" y="-121" font-family="Arial" font-size="20.00" fill="#104e8b">Decorator Streams</text>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster3</title>
-<polygon fill="#e0eeee" stroke="#e0eeee" points="705.8086,-13 705.8086,-143 925.8086,-143 925.8086,-13 705.8086,-13"/>
-<text text-anchor="middle" x="815.8086" y="-121" font-family="Arial" font-size="20.00" fill="#104e8b">Backing Store Streams</text>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-12 8,-156 168,-156 168,-12 8,-12"/>
+<text text-anchor="middle" x="88" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Datos</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster4</title>
+<polygon fill="none" stroke="transparent" points="1039.2129,-12 1039.2129,-156 1223.2129,-156 1223.2129,-12 1039.2129,-12"/>
+<text text-anchor="middle" x="1131.2129" y="-125" font-family="Arial" font-size="30.00" fill="#000000">Dispositivos</text>
 </g>
 <!-- Bytes -->
 <g id="node1" class="node">
@@ -2850,6 +2853,10 @@ br<span class="token punctuation">.</span><span class="token function">Close</sp
 
 <div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
 </div></div></pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+</blockquote>
+<div style="page-break-after:always;"></div>
 <h5 class="mume-header" id="stream-adapters-streamwriter-y-streamreader">Stream Adapters StreamWriter y StreamReader</h5>
 
 <p align="center" style="zoom:0.6"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
@@ -3286,7 +3293,7 @@ El c&#xF3;digo del anterior de <strong><code>EscribeFichero()</code></strong> se
 </div></div></pre><div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="serializaci%C3%B3n">Serializaci&#xF3;n</h2>
 
-<h3 class="mume-header" id="conceptos-gnerales">Conceptos Gnerales</h3>
+<h3 class="mume-header" id="conceptos-generales">Conceptos Generales</h3>
 
 <h4 class="mume-header" id="persistencia">Persistencia</h4>
 
@@ -3329,6 +3336,7 @@ Hacer <strong>streaming</strong> de v&#xED;deo serializando objetos con informac
 Muchos lenguajes como Java o C# solucionan la serializaci&#xF3;n de forma sencilla, ya que al serializar un objeto contenedor, este a su vez serializa mediante un mecanismo de <strong><a href="https://es.wikipedia.org/wiki/Reflexi%C3%B3n_(inform%C3%A1tica)">&apos;<em>reflexi&#xF3;n</em>&apos;</a></strong> y de forma trasparente aquellas referencias a objetos que contiene. Lo mismo sucede al cargar o deserializar un objeto.</p>
 <p>Durante este proceso, los campos p&#xFA;blico y privado del objeto y el nombre de la clase, incluido el ensamblado que contiene la clase, se convierten en una secuencia de bytes que, a continuaci&#xF3;n, se escribe en una secuencia de datos. Cuando, despu&#xE9;s, el objeto se deserializa, se crea una copia exacta del objeto original.</p>
 <p>Con este fin C# me ofrece el marcar mis clases como serializables a trav&#xE9;s de un <strong>&apos;<em>atributo</em>&apos;</strong>.</p>
+<div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="atributos-en-net">Atributos en .NET</h4>
 
 <p>Un <strong>Atributo</strong> en .NET es una etiqueta de la sintaxis <strong><code>[nombre]</code></strong> que podremos aplicar a un ensamblado, clase, constructor, enumeraci&#xF3;n, campo, interfaz, m&#xE9;todo, etc&#x2026; y que <strong>genera informaci&#xF3;n en el ensamblado</strong> en forma de metadatos heredando de la clase <strong><code>Attribute</code></strong>.</p>
@@ -3373,26 +3381,23 @@ f<span class="token punctuation">.</span><span class="token function">Serialize<
 
 
 <div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
-</div></div></pre><p>De forma an&#xE1;loga realizaremos la <strong>deserializaci&#xF3;n</strong>.</p>
+</div></div></pre><p>Si examinamos en Hexadecimal el fichero serilaizado nos habr&#xE1; generado algo similar a esto...</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt"><code>00000000: 00 01 00 00 00 FF FF FF FF 01 00 00 00 00 00 00    ................
+00000010: 00 0C 02 00 00 00 3E 45 6A 65 6D 70 6C 6F 2C 20    ......&gt;Ejemplo,.
+00000020: 56 65 72 73 69 6F 6E 3D 31 2E 30 2E 30 2E 30 2C    Version=1.0.0.0,
+00000030: 20 43 75 6C 74 75 72 65 3D 6E 65 75 74 72 61 6C    .Culture=neutral
+00000040: 2C 20 50 75 62 6C 69 63 4B 65 79 54 6F 6B 65 6E    ,.PublicKeyToken
+00000050: 3D 6E 75 6C 6C 05 01 00 00 00 06 41 6C 75 6D 6E    =null......Alumn
+00000060: 6F 03 00 00 00 06 6E 6F 6D 62 72 65 08 61 70 65    o.....nombre.ape
+00000070: 6C 6C 69 64 6F 04 65 64 61 64 01 01 00 08 02 00    llido.edad......
+00000080: 00 00 06 03 00 00 00 04 50 65 70 61 06 04 00 00    ........Pepa....
+00000090: 00 06 50 C3 A9 72 65 7A 19 00 00 00 0B             ..PC)rez.....
+</code></pre><p>De forma an&#xE1;loga realizaremos la <strong>deserializaci&#xF3;n</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp  {highlight=[4-6]}" class="language-csharp" data-line="4-6"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword">using</span> <span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;Dato.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">IFormatter</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">BinaryFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Alumno</span> a <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token class-name">Alumno</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>a <span class="token operator">??</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Desconocido&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<div class="line-highlight-wrapper">
-
-
-<div aria-hidden="true" class="line-highlight" data-range="4-6" data-start="4" data-end="6">
-
-
-</div></div></pre><p>Una <strong>implementaci&#xF3;n alternativa</strong> del cd&#xF3;digo anterior podr&#xED;a ser ...</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[4-6]}" class="language-csharp" data-line="4-6"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>
-    <span class="token keyword">using</span> <span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;Dato.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Alumno</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">BinaryFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token class-name">Alumno 
-               <span class="token punctuation">?</span></span><span class="token punctuation">?</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Desconocido&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Alumno</span> a <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token class-name">Alumno <span class="token punctuation">?</span></span><span class="token punctuation">?</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Desconocido&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
@@ -3401,24 +3406,29 @@ f<span class="token punctuation">.</span><span class="token function">Serialize<
 <div aria-hidden="true" class="line-highlight" data-range="4-6" data-start="4" data-end="6">
 
 
-</div></div></pre><p><strong>&#xBF;C&#xF3;mo podemos saber si una clase es serializable o no?</strong></p>
+</div></div></pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="saber-si-una-clase-es-serializable">Saber si una clase es serializable</h4>
+
 <p>Podemos utilizar el API de Reflexi&#xF3;n para consultar los atributos de un tipo. Una posible forma ser&#xED;a:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">bool</span></span> esSerializable <span class="token operator">=</span> <span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Alumno</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Attributes<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">IndexOf</span><span class="token punctuation">(</span><span class="token string">&quot;Serializable&quot;</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
-</pre><p>Una clase a menudo contiene <strong>campos que no se deben serializar</strong>. Por ejemplo, campos espec&#xED;ficos que almacenen datos confidenciales. Si no se excluye estos campos de la serializaci&#xF3;n, los datos que almacenan dichos campos estar&#xE1;n expuestos a cualquier c&#xF3;digo que tenga permiso de serializaci&#xF3;n. Para que un campo no se serialize, deberemos aplicarle el atributo <strong><code>[NonSerialized]</code></strong>.</p>
+</pre><h4 class="mume-header" id="excluir-campos-o-propiedades-de-la-serializaci%C3%B3n">Excluir campos o propiedades de la serializaci&#xF3;n</h4>
+
+<p>Una clase a menudo contiene <strong>campos que no se quieran serializar</strong>. Por ejemplo, <strong>campos calculados</strong> o campos con informacion que no queremos guardar. Para que un campo no se serialize, deberemos aplicarle el atributo <strong><code>[NonSerialized]</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp {highlight=7}" class="language-csharp" data-line="7"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Serializable</span></span><span class="token punctuation">]</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Alumno</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> edad<span class="token punctuation">;</span>
-    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">NonSerialized</span></span><span class="token punctuation">]</span> <span class="token comment">// Excluir&#xE1; el campo contrase&#xF1;a de la serializaci&#xF3;n.</span>
-    <span class="token keyword">private</span> <span class="token keyword">string</span> constrase&#xF1;a<span class="token punctuation">;</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">NonSerialized</span></span><span class="token punctuation">]</span> <span class="token comment">// Excluir&#xE1; el campo nombreCompleto de la serializaci&#xF3;n y deserializaci&#xF3;n.</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> nombreCompleto<span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> edad<span class="token punctuation">)</span> 
+    <span class="token keyword">public</span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> edad<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>apellido <span class="token operator">=</span> apellido<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+        nombreCompleto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nombre</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">apellido</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
@@ -3430,9 +3440,9 @@ f<span class="token punctuation">.</span><span class="token function">Serialize<
 <div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
 </div></div></pre><h4 class="mume-header" id="deifiniendo-la-serializaci%C3%B3n-como-operaciones-de-la-clase">Deifiniendo la Serializaci&#xF3;n como operaciones de la clase</h4>
 
-<p>Si quisieramos refactorizar el c&#xF3;digo para pasar la <strong>&apos;<em>responsabilidad</em>&apos;</strong> de la serializaci&#xF3;n a la clase <strong><code>Alumno</code></strong>. Tendr&#xED;amos que implementar las operaciones que definimos al principio dentro de la propia clase.</p>
+<p>Si quisi&#xE9;ramos refactorizar el c&#xF3;digo para pasar la <strong>&apos;<em>responsabilidad</em>&apos;</strong> de la serializaci&#xF3;n a la clase <strong><code>Alumno</code></strong>. Tendr&#xED;amos que implementar las operaciones que definimos al principio dentro de la propia clase.</p>
 <p><strong>Ejemplo</strong> m&#xE1;s completo de serializaci&#xF3;n para ver esto &#xFA;ltimo:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Serializable</span></span><span class="token punctuation">]</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[15-18,20-23]}" class="language-csharp" data-line="15-18,20-23"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Serializable</span></span><span class="token punctuation">]</span>
 <span class="token keyword">class</span> <span class="token class-name">Alumno</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
@@ -3445,10 +3455,12 @@ f<span class="token punctuation">.</span><span class="token function">Serialize<
         <span class="token keyword">this</span><span class="token punctuation">.</span>apellido <span class="token operator">=</span> apellido<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+
     <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SerializaABinario</span><span class="token punctuation">(</span><span class="token class-name">Stream</span> s<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">new</span> <span class="token constructor-invocation class-name">BinaryFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Serialize</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">Alumno<span class="token punctuation">?</span></span> <span class="token function">DeserializaDeBinario</span><span class="token punctuation">(</span><span class="token class-name">Stream</span> s<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">BinaryFormatter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token class-name">Alumno</span><span class="token punctuation">;</span>
@@ -3459,36 +3471,294 @@ f<span class="token punctuation">.</span><span class="token function">Serialize<
         <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nombre</span><span class="token punctuation">}</span></span><span class="token string">\nApellido: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">apellido</span><span class="token punctuation">}</span></span><span class="token string">\nEdad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">edad</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
 
-<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Programa</span>
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15-18" data-start="15" data-end="18">
+
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="20-23" data-start="20" data-end="23">
+
+
+
+</div></div></pre><div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp {highlight=[8, 24-26]}" class="language-csharp" data-line="8,24-26"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Programa</span>
 <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MuestraAlumnos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">using</span> <span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;alumnos.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token punctuation">.</span>Position <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">var</span></span> a <span class="token operator">=</span> Alumno<span class="token punctuation">.</span><span class="token function">DeserializaDeBinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Error leyendo alumnos/as.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
     <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Serializamos datos de tres alumnos.</span>
-        <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;alumnos.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Create<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Write<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;alumnos.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Append<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Write<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Pepa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;P&#xE9;rez&quot;</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SerializaABinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Mar&#xED;a&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Pel&#xE1;ez&quot;</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SerializaABinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Rosa&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;L&#xF3;pez&quot;</span><span class="token punctuation">,</span> <span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SerializaABinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token comment">// A continuaci&#xF3;n deserializamos uno a uno los objetos.</span>
-        <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;alumnos.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token punctuation">.</span>Position <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token class-name"><span class="token keyword">var</span></span> a <span class="token operator">=</span> Alumno<span class="token punctuation">.</span><span class="token function">DeserializaDeBinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
-                <span class="token punctuation">{</span>
-                    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Error leyendo alumnos/as.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token keyword">break</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">else</span>
-                    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+        <span class="token function">MuestraAlumnos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="24-26" data-start="24" data-end="26">
+
+
+</div></div></pre><h4 class="mume-header" id="versiones-de-un-objeto-serializado">Versiones de un objeto serializado</h4>
+
+<p>En muchas ocasiones el programa evoluciona y <strong>nuevos requerimientos</strong> hacen que a&#xF1;adamos nuevos campos. Esto hace necesaria la posibilidad de mantener diferentes versiones de un objeto y <strong>asegurar la compatibilidad hacia atr&#xE1;s</strong> del mismo.<br>
+Esta posibilidad est&#xE1; contemplada en C# a trav&#xE9;s de marcar ciertos campos con <strong>atributos</strong> espec&#xED;ficos.</p>
+<p>Por ejemplo, supongamos que queremos guardar un nuevo objeto <strong><code>Direccion</code></strong> junto con los datos del <strong><code>Alumno</code></strong>.</p>
+<p>Podemos crear una clase direcci&#xF3;n <strong><code>[Serializable]</code></strong> de forma an&#xE1;loga a como hicimos la de alumno...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1-3}" class="language-csharp" data-line="1-3"><span class="token comment">// Puesto que tambi&#xE9;n se va a serializar por ser una agregaci&#xF3;n de Alumno tambi&#xE9;n deberemos </span>
+<span class="token comment">// marcarla como serializable aunque no a&#xF1;adamos opciones de serializaci&#xF3;n por separado.</span>
+<span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Serializable</span></span><span class="token punctuation">]</span>
+<span class="token keyword">class</span> <span class="token class-name">Direccion</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> calle<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> numero<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> ciudad<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> codigoPostal<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        calle <span class="token operator">=</span> <span class="token string">&quot;Desconocida&quot;</span><span class="token punctuation">;</span>
+        numero <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        ciudad <span class="token operator">=</span> <span class="token string">&quot;Desconocida&quot;</span><span class="token punctuation">;</span>
+        codigoPostal <span class="token operator">=</span> <span class="token string">&quot;0000&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> calle<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> numero<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> ciudad<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> codigoPostal<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>calle <span class="token operator">=</span> calle<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>numero <span class="token operator">=</span> numero<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>ciudad <span class="token operator">=</span> ciudad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>codigoPostal <span class="token operator">=</span> codigoPostal<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">calle</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">numero</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ciudad</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">codigoPostal</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1-3" data-start="1" data-end="3">
+
+
+</div></div></pre><div style="page-break-after:always;"></div>
+<p>A continuaci&#xF3;n, a&#xF1;adimos el nuevo campo direcci&#xF3;n a la clase <strong><code>Alumno</code></strong>. Indicando con el atributo <strong><code>[OptionalField(VersionAdded = 2)]</code></strong> que se tratar&#xE1; de un campo opcional que solo estar&#xE1; a partir de la <strong>versi&#xF3;n 2</strong> del la misma.</p>
+<p>Adem&#xE1;s, podemos marcar con el atributo <strong><code>[OnDeserializing]</code></strong> un m&#xE9;todo que se ejecutar&#xE1; durante el proceso de &apos;<em>deserializaci&#xF3;n</em>&apos; y inicializar&#xE1; el campo a una <strong>inst&#xE1;ncia por defecto</strong> por si acaso el mismo no existe en la versi&#xF3;n del objeto que estamos deserializando.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">OnDeserializing</span></span><span class="token punctuation">]</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> SetDirecci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token class-name">StreamingContext</span> sc<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    direccion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Direccion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Por tanto, la clase alumno modificada podr&#xED;a quedar as&#xED; ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[8,9,19-23,29]}" class="language-csharp" data-line="8,9,19-23,29"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Serializable</span></span><span class="token punctuation">]</span>
+<span class="token keyword">class</span> <span class="token class-name">Alumno</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> edad<span class="token punctuation">;</span>
+
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">OptionalField</span><span class="token attribute-arguments"><span class="token punctuation">(</span>VersionAdded <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword">private</span> <span class="token class-name">Direccion</span> direccion<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> apellido<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> edad<span class="token punctuation">,</span> <span class="token class-name">Direccion</span> direccion<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>apellido <span class="token operator">=</span> apellido<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>direccion <span class="token operator">=</span> direccion<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">OnDeserializing</span></span><span class="token punctuation">]</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> SetDirecci&#xF3;<span class="token function">n</span><span class="token punctuation">(</span><span class="token class-name">StreamingContext</span> sc<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        direccion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Direccion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// M&#xE9;todos de seriralizaci&#xF3;n omitidos para abreviar ...</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nombre</span><span class="token punctuation">}</span></span><span class="token string">\nApellido: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">apellido</span><span class="token punctuation">}</span></span><span class="token string">\nEdad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">edad</span><span class="token punctuation">}</span></span><span class="token string">\nDirecci&#xF3;n: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">direccion</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="19-23" data-start="19" data-end="23">
+
+
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="29" data-start="29">
+</div></div></pre><p>Imaginemos que ahora modificamos el <strong><code>Main</code></strong> de tal manera que a&#xF1;adimos objetos <strong><code>Alumno</code></strong> con el nuevo dato al fichero <strong><code>alumnos.bin</code></strong> y posteriormente &apos;<em>deserializamos</em>&apos; todos los objetos <strong><code>Alumno</code></strong>, mostr&#xE1;ndolos con la mismo m&#xE9;todo <strong><code>MuestraAlumnos()</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Serializamos datos de tres alumnos.</span>
+    <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">&quot;alumnos.bin&quot;</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Append<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Write<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Juani&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Ortiz&quot;</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Direccion</span><span class="token punctuation">(</span><span class="token string">&quot;Marqu&#xE9;s de Molins&quot;</span><span class="token punctuation">,</span> <span class="token number">58</span><span class="token punctuation">,</span> <span class="token string">&quot;Alicante&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;03004&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SerializaABinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Alumno</span><span class="token punctuation">(</span><span class="token string">&quot;Marcos&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Jim&#xE9;nez&quot;</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Direccion</span><span class="token punctuation">(</span><span class="token string">&quot;Cer&#xE1;mica&quot;</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token string">&quot;Alicante&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;03010&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SerializaABinario</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">MuestraAlumnos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>EL programa sabr&#xE1; recuperar versiones anteriores del objeto <strong><code>Alumno</code></strong> mostrando instanci&#xE1;ndolo a la informaci&#xF3;n por defecto que hemos definido.</p>
+<pre data-role="codeBlock" data-info="txt {highlight=[4, 8]}" class="language-txt" data-line="4,8"><code>Nombre: Rosa
+Apellido: L&#xF3;pez
+Edad: 26
+Direcci&#xF3;n: Desconocida 0 Desconocida 0000
+Nombre: Juani
+Apellido: Ortiz
+Edad: 21
+Direcci&#xF3;n: Marqu&#xE9;s de Molins 58 Alicante 03004
+</code><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div></pre>
       </div>
       
       
