@@ -287,8 +287,8 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#alternancia-de-expresiones">Alternancia de expresiones</a></li>
 <li><a href="#aserciones-at%C3%B3micas-de-ancho-cero">Aserciones at&#xF3;micas de ancho cero</a></li>
 <li><a href="#construcciones-de-agrupamiento-o-grupos">Construcciones de agrupamiento o grupos</a></li>
-<li><a href="#construcciones-de-referencia-inversa">Construcciones de referencia inversa</a></li>
 <li><a href="#cuantificadores">Cuantificadores</a></li>
+<li><a href="#construcciones-de-referencia-inversa">Construcciones de referencia inversa</a></li>
 </ol>
 </li>
 <li><a href="#uso-de-expresiones-regulares-en-el-lenguaje">Uso de expresiones regulares en el lenguaje</a>
@@ -476,10 +476,60 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>al (norte|sur) de</code></strong> &#x2192; Permite crear un grupo sin captura para norte y sur representando las cadenas <em>&#x2026;al <strong>norte</strong> de&#x2026;</em> y <em>&#x2026;al <strong>sur</strong> de&#x2026;</em><br>
-<img src="assets/norte_sur.png" alt></li>
+<img src="assets\norte_sur.png?0.40101660815029017" alt></li>
 <li><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;a&#xF1;o&gt;\d\d\d\d)$</code></strong> &#x2192; Busca la coincidencia exacta con una fecha. Pero <strong>adem&#xE1;s tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y a&#xF1;o.</li>
 </ol>
 </blockquote>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="cuantificadores">Cuantificadores</h4>
+
+<p>Los cuantificadores agregan datos de cantidades opcionales a una expresi&#xF3;n regular. Una expresi&#xF3;n de cuantificador se aplica al car&#xE1;cter, grupo o clase de caracteres que lo precede inmediatamente.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metacaracter</th>
+<th style="text-align:left">Descripci&#xF3;n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>e*</code></strong></td>
+<td style="text-align:left">Especifica 0 o m&#xE1;s coincidencias</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>e+</code></strong></td>
+<td style="text-align:left">Especifica 1 o m&#xE1;s coincidencias</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>e?</code></strong></td>
+<td style="text-align:left">Especifica 0 o 1 coincidencias</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>e{n}</code></strong></td>
+<td style="text-align:left">Especifica exactamente n coincidencias</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>e{n,}</code></strong></td>
+<td style="text-align:left">Especifica n coincidencias como m&#xED;nimo.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>e{n,m}</code></strong></td>
+<td style="text-align:left">Especifica n coincidencias como m&#xED;nimo y m como m&#xE1;ximo.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ejemplos:</strong></p>
+<ol>
+<li><strong><code>^bo+m{1,4}$</code></strong> &#x2192; Onomatopeya de explosi&#xF3;n.<br>
+<img src="assets\boom.png?0.7430235718174925" height="100"></li>
+<li><strong><code>^\d{1,2}\/\d{1,2}\/\d{4}$</code></strong> &#x2192; Fecha.<br>
+<img src="assets\fecha.png?0.4503430113897269" height="90"></li>
+<li><strong><code>\b(?&lt;usuario&gt;[\w._%-]+)@(?&lt;dominio&gt;[\w._]+\.[a-zA-Z]{2,4})\b</code></strong> &#x2192; Correo electr&#xF3;nico (Simplificado).<br>
+<img src="assets\correo.png?0.47891879456701636" height="200"></li>
+</ol>
+</blockquote>
+<div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="construcciones-de-referencia-inversa">Construcciones de referencia inversa</h4>
 
 <p>Una <a href="https://docs.microsoft.com/es-es/dotnet/standard/base-types/backreference-constructs-in-regular-expressions" target="_blank">construcci&#xF3;n referencia inversa</a> permite identificar una sub-expresi&#xF3;n coincidente previamente m&#xE1;s adelante en la misma expresi&#xF3;n regular.</p>
@@ -506,55 +556,15 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <ol>
 <li><strong><code>(\w)\1</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
 <li><strong><code>(?&lt;letra&gt;\w)\k&lt;letra&gt;</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
-</ol>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<h4 class="mume-header" id="cuantificadores">Cuantificadores</h4>
-
-<p>Los cuantificadores agregan datos de cantidades opcionales a una expresi&#xF3;n regular. Una expresi&#xF3;n de cuantificador se aplica al car&#xE1;cter, grupo o clase de caracteres que lo precede inmediatamente.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Metacaracter</th>
-<th style="text-align:left">Descripci&#xF3;n</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong><code>e*</code></strong></td>
-<td style="text-align:left">Especifica 0 o m&#xE1;s coincidencias</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>e+3</code></strong></td>
-<td style="text-align:left">Especifica 1 o m&#xE1;s coincidencias</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>e?</code></strong></td>
-<td style="text-align:left">Especifica 0 o 1 coincidencias</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>e{n}</code></strong></td>
-<td style="text-align:left">Especifica exactamente n coincidencias</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>e{n,}</code></strong></td>
-<td style="text-align:left">Especifica n coincidencias como m&#xED;nimo.</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong><code>e{n,m}</code></strong></td>
-<td style="text-align:left">Especifica n coincidencias como m&#xED;nimo y m como m&#xE1;ximo.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>Ejemplos:</strong></p>
-<ol>
-<li><strong><code>^bo+m{1,4}$</code></strong> &#x2192; Onomatopeya de explosi&#xF3;n.<br>
-<img src="assets/boom.png" alt="boom"></li>
-<li><strong><code>^\d{1,2}\/\d{1,2}\/\d{4}$</code></strong> &#x2192; Fecha.<br>
-<img src="assets/fecha.png" alt="fecha"></li>
-<li><strong><code>\b(?&lt;usuario&gt;[\w._%-]+)@(?&lt;dominio&gt;[\w._]+\.[a-zA-Z]{2,4})\b</code></strong> &#x2192; Correo electr&#xF3;nico (Simplificado).<br>
-<img src="assets/correo.png" alt="correo"></li>
+<li>Su pongamos esta expresi&#xF3;n para detectar fechas:<br>
+<strong><code>^\d{1,2}[/-\s]\d{1,2}[/-\s](\d{2}\d{4})$</code></strong> Si nos fijamos la separaci&#xF3;n entre los valores de d&#xED;a, mes y a&#xF1;o pueden ser diferentes por lo que podr&#xED;an ser v&#xE1;lidas entradas como: <strong>22/03-2021</strong> y <strong>3-12 2021</strong> pero... <strong>&#xBF;C&#xF3;mo hacernos para asegurarnos que el separador que se ponga entre mes y a&#xF1;o sea el mismo que se consumi&#xF3; entre d&#xED;a y mes?</strong>
+<ul>
+<li>Lo que quiero ver si se repite o no m&#xE1;s adelante, lo pondr&#xE9; en un grupo.</li>
+<li>Her&#xE9; referencia al grupo con los ejemplos que hemos visto m&#xE1;s adelante.<br>
+Tendremos pues la espresi&#xF3;n <strong><code>^\d{1,2}([/-\s])\d{1,2}\1(\d{2}\d{4})$</code></strong><br>
+<img src="assets\fecha2.png?0.31684112748015747" height="150"></li>
+</ul>
+</li>
 </ol>
 </blockquote>
 <div style="page-break-after:always;"></div>
