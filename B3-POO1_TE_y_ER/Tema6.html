@@ -390,10 +390,13 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 </table>
 <h5 class="mume-header" id="alternancia-de-car%C3%A1cter">Alternancia de car&#xE1;cter</h5>
 
-<p>La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&gt;...]</code></strong></p>
+<p>C# los denomina tambi&#xE9;n <a href="https://docs.microsoft.com/es-es/dotnet/standard/base-types/character-classes-in-regular-expressions#positive-character-group--">&apos;grupo de caracteres positivos&apos;</a>.<br>
+La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&gt;...]</code></strong></p>
 <blockquote>
 <p><strong>Nota:</strong> Los metacaracteres en el corchete no ser&#xE1; interpretados como tales sino como los caracteres tal cual <strong><code>*, $, +, ?, |</code></strong> &#x2026; salvo el caso de algunas clases de car&#xE1;cter como <strong><code>\d, \D, \w, \W, \s, \S</code></strong> y por tanto la barra de escape <strong><code>\</code></strong> deberemos escaparla si queremos que se interpreta tal cual.</p>
+<p>&#x270B; <strong>Importante:</strong> En C# si queremos definir alternancia de caracteres o un grupo de caracteres positivos donde tengamos clases de caracter estas <strong>deber&#xE1;n ir al principio del grupo</strong>. Por ejemplo, <strong><code>@&quot;[\sa-z]&quot;</code></strong> ser&#xED;a alternancia de un caracter de espacio o una letra min&#xFA;scula. Sin embargo, <strong><code>@&quot;[a-z\s]&quot;</code></strong> que funcionar&#xED;a en otros lenguajes no ser&#xED;a v&#xE1;lido &#x1F480;</p>
 </blockquote>
+<div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="alternancia-de-expresiones">Alternancia de expresiones</h4>
 
 <p>Nos sirve para indicar una de varias opciones entre varias expresiones regulares, separadas por el metacaracter barra vertical <strong><code>|</code></strong> (<code>Alt + 124</code> o <code>Alt Gr + 4 y espacio</code>).</p>
@@ -404,41 +407,40 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <li><strong><code>\b(mi|[ts]u)\b</code></strong> &#x2192; Permitir&#xE1; encontrar pronombres posesivos.</li>
 </ol>
 </blockquote>
-<div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="aserciones-at%C3%B3micas-de-ancho-cero">Aserciones at&#xF3;micas de ancho cero</h4>
 
 <p>No hacen avanzar el motor a trav&#xE9;s de la cadena de consumo. Simplemente producen coincidencia o error en funci&#xF3;n de la posici&#xF3;n actual en la cadena.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left" rowspan="2">Metacaracter</th>
-<th style="text-align:left">Descripci&#xF3;n</th>
+<th>Metacaracter</th>
+<th>Descripci&#xF3;n</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-
-<td style="text-align:left">Especifica que la coincidencia debe producirse al principio de la cadena o de la l&#xED;nea.</td>
+<td><strong><code>^</code></strong></td>
+<td>Especifica que la coincidencia debe producirse al principio de la cadena o de la l&#xED;nea.</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong><code>$</code></strong></td>
-<td style="text-align:left">Especifica que la coincidencia debe producirse al final de la cadena, antes de <strong><code>\n</code></strong> o al final de la l&#xED;nea.</td>
+<td><strong><code>$</code></strong></td>
+<td>Especifica que la coincidencia debe producirse al final de la cadena, antes de <strong><code>\n</code></strong> o al final de la l&#xED;nea.</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong><code>\A</code></strong></td>
-<td style="text-align:left">La coincidencia se debe producir al principio de la cadena.</td>
+<td><strong><code>\A</code></strong></td>
+<td>La coincidencia se debe producir al principio de la cadena.</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong><code>\Z</code></strong></td>
-<td style="text-align:left">La coincidencia se debe producir al final de la cadena.</td>
+<td><strong><code>\Z</code></strong></td>
+<td>La coincidencia se debe producir al final de la cadena.</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong><code>\b</code></strong></td>
-<td style="text-align:left">La coincidencia debe producirse en l&#xED;mites de palabras separadas por caracteres no alfanum&#xE9;rico (letras y n&#xFA;meros).</td>
+<td><strong><code>\b</code></strong></td>
+<td>La coincidencia debe producirse en l&#xED;mites de palabras separadas por caracteres no alfanum&#xE9;rico (letras y n&#xFA;meros).</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong><code>\B</code></strong></td>
-<td style="text-align:left">Especifica que la coincidencia <strong>no</strong> se debe producir en un l&#xED;mite <strong><code>\b</code></strong>.</td>
+<td><strong><code>\B</code></strong></td>
+<td>Especifica que la coincidencia <strong>no</strong> se debe producir en un l&#xED;mite <strong><code>\b</code></strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -476,7 +478,7 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>al (norte|sur) de</code></strong> &#x2192; Permite crear un grupo sin captura para norte y sur representando las cadenas <em>&#x2026;al <strong>norte</strong> de&#x2026;</em> y <em>&#x2026;al <strong>sur</strong> de&#x2026;</em><br>
-<img src="assets\norte_sur.png?0.40101660815029017" alt></li>
+<img src="assets\norte_sur.png?0.6521215084868526" alt></li>
 <li><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;a&#xF1;o&gt;\d\d\d\d)$</code></strong> &#x2192; Busca la coincidencia exacta con una fecha. Pero <strong>adem&#xE1;s tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y a&#xF1;o.</li>
 </ol>
 </blockquote>
@@ -522,11 +524,11 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>^bo+m{1,4}$</code></strong> &#x2192; Onomatopeya de explosi&#xF3;n.<br>
-<img src="assets\boom.png?0.7430235718174925" height="100"></li>
+<img src="assets\boom.png?0.1528347012252611" height="100"></li>
 <li><strong><code>^\d{1,2}\/\d{1,2}\/\d{4}$</code></strong> &#x2192; Fecha.<br>
-<img src="assets\fecha.png?0.4503430113897269" height="90"></li>
+<img src="assets\fecha.png?0.8790048811778599" height="90"></li>
 <li><strong><code>\b(?&lt;usuario&gt;[\w._%-]+)@(?&lt;dominio&gt;[\w._]+\.[a-zA-Z]{2,4})\b</code></strong> &#x2192; Correo electr&#xF3;nico (Simplificado).<br>
-<img src="assets\correo.png?0.47891879456701636" height="200"></li>
+<img src="assets\correo.png?0.8219665383410233" height="200"></li>
 </ol>
 </blockquote>
 <div style="page-break-after:always;"></div>
@@ -557,12 +559,12 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 <li><strong><code>(\w)\1</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
 <li><strong><code>(?&lt;letra&gt;\w)\k&lt;letra&gt;</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
 <li>Su pongamos esta expresi&#xF3;n para detectar fechas:<br>
-<strong><code>^\d{1,2}[/-\s]\d{1,2}[/-\s](\d{2}\d{4})$</code></strong> Si nos fijamos la separaci&#xF3;n entre los valores de d&#xED;a, mes y a&#xF1;o pueden ser diferentes por lo que podr&#xED;an ser v&#xE1;lidas entradas como: <strong>22/03-2021</strong> y <strong>3-12 2021</strong> pero... <strong>&#xBF;C&#xF3;mo hacernos para asegurarnos que el separador que se ponga entre mes y a&#xF1;o sea el mismo que se consumi&#xF3; entre d&#xED;a y mes?</strong>
+<strong><code>^\d{1,2}[\s\/-]\d{1,2}[\s\/-](\d{2}|\d{4})$</code></strong> Si nos fijamos la separaci&#xF3;n entre los valores de d&#xED;a, mes y a&#xF1;o pueden ser diferentes por lo que podr&#xED;an ser v&#xE1;lidas entradas como: <strong>22/03-2021</strong> y <strong>3-12 2021</strong> pero... <strong>&#xBF;C&#xF3;mo hacernos para asegurarnos que el separador que se ponga entre mes y a&#xF1;o sea el mismo que se consumi&#xF3; entre d&#xED;a y mes?</strong>
 <ul>
 <li>Lo que quiero ver si se repite o no m&#xE1;s adelante, lo pondr&#xE9; en un grupo.</li>
 <li>Her&#xE9; referencia al grupo con los ejemplos que hemos visto m&#xE1;s adelante.<br>
-Tendremos pues la espresi&#xF3;n <strong><code>^\d{1,2}([/-\s])\d{1,2}\1(\d{2}\d{4})$</code></strong><br>
-<img src="assets\fecha2.png?0.31684112748015747" height="150"></li>
+Tendremos pues la espresi&#xF3;n <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1(\d{2}|\d{4})$</code></strong><br>
+<img src="assets\fecha2.png?0.7019456032880698" height="150"></li>
 </ul>
 </li>
 </ol>
