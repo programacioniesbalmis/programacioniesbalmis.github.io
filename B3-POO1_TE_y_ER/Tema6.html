@@ -394,7 +394,7 @@ A trav&#xE9;s de la expresi&#xF3;n regular es posible interpretar r&#xE1;pidamen
 La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&gt;...]</code></strong></p>
 <blockquote>
 <p><strong>Nota:</strong> Los metacaracteres en el corchete no ser&#xE1; interpretados como tales sino como los caracteres tal cual <strong><code>*, $, +, ?, |</code></strong> &#x2026; salvo el caso de algunas clases de car&#xE1;cter como <strong><code>\d, \D, \w, \W, \s, \S</code></strong> y por tanto la barra de escape <strong><code>\</code></strong> deberemos escaparla si queremos que se interpreta tal cual.</p>
-<p>&#x270B; <strong>Importante:</strong> En C# si queremos definir alternancia de caracteres o un grupo de caracteres positivos donde tengamos clases de caracter estas <strong>deber&#xE1;n ir al principio del grupo</strong>. Por ejemplo, <strong><code>@&quot;[\sa-z]&quot;</code></strong> ser&#xED;a alternancia de un caracter de espacio o una letra min&#xFA;scula. Sin embargo, <strong><code>@&quot;[a-z\s]&quot;</code></strong> que funcionar&#xED;a en otros lenguajes no ser&#xED;a v&#xE1;lido &#x1F480;</p>
+<p>&#x270B; <strong>Importante:</strong> En ocasiones en C# si queremos definir alternancia de caracteres o un grupo de caracteres positivos donde tengamos clases de caracter estas <strong>deber&#xE1;n ir al principio del grupo</strong>. Por ejemplo, <strong><code>@&quot;[\sa-z]&quot;</code></strong> ser&#xED;a alternancia de un caracter de espacio o una letra min&#xFA;scula. Sin embargo, <strong><code>@&quot;[a-z\s]&quot;</code></strong> que funcionar&#xED;a en otros lenguajes podr&#xED;a generarnos errores en ejecuci&#xF3;n &#x1F480;</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="alternancia-de-expresiones">Alternancia de expresiones</h4>
@@ -478,8 +478,9 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>al (norte|sur) de</code></strong> &#x2192; Permite crear un grupo sin captura para norte y sur representando las cadenas <em>&#x2026;al <strong>norte</strong> de&#x2026;</em> y <em>&#x2026;al <strong>sur</strong> de&#x2026;</em><br>
-<img src="assets\norte_sur.png?0.6521215084868526" alt></li>
-<li><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;a&#xF1;o&gt;\d\d\d\d)$</code></strong> &#x2192; Busca la coincidencia exacta con una fecha. Pero <strong>adem&#xE1;s tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y a&#xF1;o.</li>
+<img src="assets\norte_sur.png?0.6458673237368595" alt></li>
+<li><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;a&#xF1;o&gt;\d\d\d\d)$</code></strong> &#x2192; Busca la coincidencia exacta con una fecha. Pero <strong>adem&#xE1;s tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y a&#xF1;o.<br>
+&#x270B; <strong>Importante:</strong> En C# en el momento que etiquetamos un grupo, <strong>deberemos etiquetar el resto tambi&#xE9;n</strong> o la expresi&#xF3;n no ser&#xE1; v&#xE1;lida.</li>
 </ol>
 </blockquote>
 <div style="page-break-after:always;"></div>
@@ -524,11 +525,11 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>^bo+m{1,4}$</code></strong> &#x2192; Onomatopeya de explosi&#xF3;n.<br>
-<img src="assets\boom.png?0.1528347012252611" height="100"></li>
+<img src="assets\boom.png?0.9427980957888644" height="100"></li>
 <li><strong><code>^\d{1,2}\/\d{1,2}\/\d{4}$</code></strong> &#x2192; Fecha.<br>
-<img src="assets\fecha.png?0.8790048811778599" height="90"></li>
+<img src="assets\fecha.png?0.48588790392333236" height="90"></li>
 <li><strong><code>\b(?&lt;usuario&gt;[\w._%-]+)@(?&lt;dominio&gt;[\w._]+\.[a-zA-Z]{2,4})\b</code></strong> &#x2192; Correo electr&#xF3;nico (Simplificado).<br>
-<img src="assets\correo.png?0.8219665383410233" height="200"></li>
+<img src="assets\correo.png?0.8675893932268168" height="200"></li>
 </ol>
 </blockquote>
 <div style="page-break-after:always;"></div>
@@ -559,12 +560,12 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 <li><strong><code>(\w)\1</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
 <li><strong><code>(?&lt;letra&gt;\w)\k&lt;letra&gt;</code></strong> &#x2192; Devolver&#xE1; &apos;<em>aa</em>&apos; en <em>&apos;<strong>aa</strong>ron&apos;</em></li>
 <li>Su pongamos esta expresi&#xF3;n para detectar fechas:<br>
-<strong><code>^\d{1,2}[\s\/-]\d{1,2}[\s\/-](\d{2}|\d{4})$</code></strong> Si nos fijamos la separaci&#xF3;n entre los valores de d&#xED;a, mes y a&#xF1;o pueden ser diferentes por lo que podr&#xED;an ser v&#xE1;lidas entradas como: <strong>22/03-2021</strong> y <strong>3-12 2021</strong> pero... <strong>&#xBF;C&#xF3;mo hacernos para asegurarnos que el separador que se ponga entre mes y a&#xF1;o sea el mismo que se consumi&#xF3; entre d&#xED;a y mes?</strong>
+<strong><code>^\d{1,2}[\s\/-]\d{1,2}[\s\/-]\d{2,4}$</code></strong> Si nos fijamos la separaci&#xF3;n entre los valores de d&#xED;a, mes y a&#xF1;o pueden ser diferentes por lo que podr&#xED;an ser v&#xE1;lidas entradas como: <strong>22/03-2021</strong> y <strong>3-12 2021</strong> pero... <strong>&#xBF;C&#xF3;mo hacernos para asegurarnos que el separador que se ponga entre mes y a&#xF1;o sea el mismo que se consumi&#xF3; entre d&#xED;a y mes?</strong>
 <ul>
 <li>Lo que quiero ver si se repite o no m&#xE1;s adelante, lo pondr&#xE9; en un grupo.</li>
 <li>Her&#xE9; referencia al grupo con los ejemplos que hemos visto m&#xE1;s adelante.<br>
-Tendremos pues la espresi&#xF3;n <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1(\d{2}|\d{4})$</code></strong><br>
-<img src="assets\fecha2.png?0.7019456032880698" height="150"></li>
+Tendremos pues la espresi&#xF3;n <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1\d{2,4}$</code></strong><br>
+<img src="assets\fecha2.png?0.26683245888489315" height="150"></li>
 </ul>
 </li>
 </ol>
@@ -724,30 +725,32 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <h5 class="mume-header" id="buscar-una-ocurrencia-concreta-con-un-patr%C3%B3n">Buscar una ocurrencia concreta con un patr&#xF3;n</h5>
 
 <p>Vamos a modificar lig&#xE9;ramente el ejemplo anterior, para que a partir de la cadena <strong>&quot;<em>El 11/9/2001 fueron derribadas las torres gemelas de NY y el 20/7/1969 lleg&#xF3; el hombre a la luna</em>&quot;</strong> me diga si en la misma se encuentra la fecha de la llegada del hombre a la luna con formato <strong><code>dd/mm/aaaa</code></strong> pero esta vez <strong><code>dd</code></strong> y <strong><code>mm</code></strong> pueden estar formados tambi&#xE9;n por una solo d&#xED;gito y <strong>los grupos NO estar&#xE1;n etiquetados</strong>.</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[9,16-18, 22]}" class="language-csharp" data-line="9,16-18,22"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[10,17-19, 23]}" class="language-csharp" data-line="10,17-19,23"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword">string</span></span> texto  <span class="token operator">=</span> <span class="token string">&quot;El 11/9/2001 fueron derribadas las torres gemelas de NY y el 20/7/1969 lleg&#xF3; el ombre a la luna&quot;</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> texto  <span class="token operator">=</span> <span class="token string">&quot;El 11/9/2001 fueron derribadas las torres gemelas &quot;</span> <span class="token operator">+</span> 
+                    <span class="token string">&quot;de NY y el 20/7/1969 lleg&#xF3; el ombre a la luna&quot;</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword">string</span></span> patron <span class="token operator">=</span> <span class="token string">@&quot;(\d{1,2})\/(\d{1,2})\/(\d{4})&quot;</span><span class="token punctuation">;</span>
     <span class="token class-name">Match</span> coincidencia    <span class="token operator">=</span> Regex<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>texto<span class="token punctuation">,</span> patron<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword">bool</span></span>  fechaEncontrada <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// Mientras no encuentre lo que busco y haya coincidencias con el patr&#xF3;n que busco en la cadena.</span>
+    <span class="token comment">// Mientras no encuentre lo que busco y </span>
+    <span class="token comment">// haya coincidencias con el patr&#xF3;n que busco en la cadena.</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>fechaEncontrada <span class="token operator">&amp;&amp;</span> coincidencia<span class="token punctuation">.</span>Success<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword">string</span></span> fecha <span class="token operator">=</span> coincidencia<span class="token punctuation">.</span>Value<span class="token punctuation">;</span>  <span class="token comment">// Equivale a coincidencia.Groups[0].Value</span>
-        <span class="token comment">// Cada par&#xE9;ntesis en la expresi&#xF3;n para definir un grupo se numerar&#xE1;n de izquierda a derecha</span>
-        <span class="token comment">// empezando por 1 ya que el &#xED;ndice 0 es toda la expresi&#xF3;n.</span>
-        <span class="token comment">// Puede ser una opci&#xF3;n si tenemos pocos grupos pero no anidados, aunque ser&#xE1; menos legible</span>
-        <span class="token comment">// que la anterior.</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> fecha <span class="token operator">=</span> coincidencia<span class="token punctuation">.</span>Value<span class="token punctuation">;</span> <span class="token comment">// Equivale a coincidencia.Groups[0].Value</span>
+        <span class="token comment">// Cada par&#xE9;ntesis en la expresi&#xF3;n para definir un grupo se numerar&#xE1;n </span>
+        <span class="token comment">// de izquierda a derecha empezando por 1 ya que el &#xED;ndice 0 es toda la expresi&#xF3;n.</span>
+        <span class="token comment">// Puede ser una opci&#xF3;n si tenemos pocos grupos pero no anidados, </span>
+        <span class="token comment">// aunque ser&#xE1; menos legible que la anterior.</span>
         <span class="token class-name"><span class="token keyword">ushort</span></span> dia <span class="token operator">=</span> <span class="token keyword">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword">ushort</span></span> mes <span class="token operator">=</span> <span class="token keyword">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">ushort</span> a&#xF1;o <span class="token operator">=</span> <span class="token keyword">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
         fechaEncontrada <span class="token operator">=</span> dia <span class="token operator">==</span> <span class="token number">20</span> <span class="token operator">&amp;&amp;</span> mes <span class="token operator">==</span> <span class="token number">7</span> <span class="token operator">&amp;&amp;</span> a&#xF1;o <span class="token operator">==</span> <span class="token number">1969</span><span class="token punctuation">;</span>
-        <span class="token comment">// NextMatch busca la siguiente coincid&#xE9;ncia si la hay a partir de la la &#xFA;ltima que encontr&#xF3;.</span>
+        <span class="token comment">// NextMatch busca la siguiente coincid&#xE9;ncia si la hay </span>
+        <span class="token comment">// a partir de la la &#xFA;ltima que encontr&#xF3;.</span>
         coincidencia <span class="token operator">=</span> coincidencia<span class="token punctuation">.</span><span class="token function">NextMatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La fecha de la llegada a la luna </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>fechaEncontrada<span class="token punctuation">?</span><span class="token string">&quot;no se&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;se&quot;</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> encuentra en el texto&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La fecha de la llegada a la luna </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>fechaEncontrada<span class="token punctuation">?</span><span class="token string">&quot;no se&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;se&quot;</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> &quot;</span></span> <span class="token operator">+</span>
+                       <span class="token string">&quot;encuentra en el texto&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <div class="line-highlight-wrapper">
 
@@ -757,25 +760,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 
 
 
-<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
-</div></div><div class="line-highlight-wrapper">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="16-18" data-start="16" data-end="18">
-
-
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
 </div></div><div class="line-highlight-wrapper">
 
 
@@ -792,20 +778,39 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 
 
 
+<div aria-hidden="true" class="line-highlight" data-range="17-19" data-start="17" data-end="19">
+
+
+</div></div><div class="line-highlight-wrapper">
 
 
 
 
 
-<div aria-hidden="true" class="line-highlight" data-range="22" data-start="22">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="23" data-start="23">
 </div></div></pre><h5 class="mume-header" id="buscar-todas-las-ocurrencias-de-un-patr%C3%B3n">Buscar todas las ocurrencias de un patr&#xF3;n</h5>
 
 <ul>
 <li>Usaremos el m&#xE9;todo <strong><code>Regex.Matches(cadena, patr&#xF3;n, ...)</code></strong> que me devolver&#xE1; una colecci&#xF3;n indexable y recorrible con <strong><code>foreach</code></strong> con todas las coincidencias.</li>
 <li>Este caso ser&#xE1; &#xFA;til, si queremos obtener <strong>todas</strong> las coincidencias, y no una en concreto que puede que la encontremos justo al principio, con lo cual esta opci&#xF3;n ser&#xED;a m&#xE1;s costosa.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp {highlight=2}" class="language-csharp" data-line="2"><span class="token range operator">..</span><span class="token punctuation">.</span>
-    <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token class-name">Match</span> coincidencia <span class="token keyword">in</span> Regex<span class="token punctuation">.</span><span class="token function">Matches</span><span class="token punctuation">(</span>texto<span class="token punctuation">,</span> patron<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=1}" class="language-csharp" data-line="1">    <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token class-name">Match</span> coincidencia <span class="token keyword">in</span> Regex<span class="token punctuation">.</span><span class="token function">Matches</span><span class="token punctuation">(</span>texto<span class="token punctuation">,</span> patron<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name"><span class="token keyword">string</span></span> fecha <span class="token operator">=</span> coincidencia<span class="token punctuation">.</span>Value<span class="token punctuation">;</span> <span class="token comment">// Equivale a coincidencia.Groups[0].Value</span>
         <span class="token class-name"><span class="token keyword">ushort</span></span> dia <span class="token operator">=</span> <span class="token keyword">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -814,8 +819,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Fecha encontrada </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">fecha</span><span class="token punctuation">}</span></span><span class="token string"> Dia = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dia</span><span class="token punctuation">}</span></span><span class="token string">, Mes = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mes</span><span class="token punctuation">}</span></span><span class="token string"> y A&#xF1;o = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a&#xF1;o</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<div class="line-highlight-wrapper">
-<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
 </div></div></pre><div style="page-break-after:always;"></div>
 <blockquote>
 <p><strong>&#x1F393; Caso de estudio</strong></p>
@@ -883,7 +887,10 @@ Una vez hemos decidido la expresi&#xF3;n regular nuestro c&#xF3;digo podr&#xED;a
                     <span class="token operator">+</span> patronByteIP <span class="token operator">+</span> <span class="token string">&quot;){3}$&quot;</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> Regex<span class="token punctuation">.</span><span class="token function">IsMatch</span><span class="token punctuation">(</span>entrada<span class="token punctuation">,</span> patronIP<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Pero... <strong>&#xBF;Ser&#xED;a posible obtener los bytes de la IP?</strong></p>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>Pero... <strong>&#xBF;Ser&#xED;a posible obtener los bytes de la IP?</strong></p>
 <p>Supongamos que los vamos a devolver en un array de bytes subordinado a si es correcta o no. Por tanto nuestro interfaz quedar&#xED;a as&#xED;:<br>
 <strong><code>static bool IPCorrecta(string entrada, out byte[] bytes)</code></strong><br>
 y si quisi&#xE9;ramos ver si la IP es correcta sin obtener los bytes, podr&#xED;amos llamar a la funci&#xF3;n de siguiente manera:<br>
@@ -910,7 +917,6 @@ En este caso ser&#xED;a m&#xE1;s simple hacer un Split de la cadena correcta por
 
     <span class="token keyword">return</span> ipCorrecta<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
 <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">LeeIP</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> mensaje<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> bytes<span class="token punctuation">;</span>
@@ -926,13 +932,15 @@ En este caso ser&#xED;a m&#xE1;s simple hacer un Split de la cadena correcta por
 
     <span class="token keyword">return</span> bytes<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
 <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> ip <span class="token operator">=</span> <span class="token function">LeeIP</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce la IP&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La IP introducida es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string character">&apos;.&apos;</span><span class="token punctuation">,</span> ip<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Pero... <strong>&#xBF;Ser&#xED;a posible hacerlo definido grupos en la expresi&#xF3;n?</strong></p>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>Pero... <strong>&#xBF;Ser&#xED;a posible hacerlo definido grupos en la expresi&#xF3;n?</strong></p>
 <p>Tendr&#xED;amos que etiquetar cada grupo y con la expresi&#xF3;n actual donde agrupamos los 3 &#xFA;ltimos grupos no ser&#xED;a posible. Por lo tanto deber&#xED;amos desagrupar la ER y el c&#xF3;digo podr&#xED;a quedar ....</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> bytes<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -956,7 +964,10 @@ En este caso ser&#xED;a m&#xE1;s simple hacer un Split de la cadena correcta por
 
     <span class="token keyword">return</span> m<span class="token punctuation">.</span>Success<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Pero... ya que vamos a sacar grupos, <strong>la comprobaci&#xF3;n de que el byte esta entre 0 y 255 la podr&#xED;amos hacer al extraer el byte, y as&#xED; simplificar bastante la ER haci&#xE9;ndola m&#xE1;s legible</strong>.</p>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>Pero... ya que vamos a sacar grupos, <strong>la comprobaci&#xF3;n de que el byte esta entre 0 y 255 la podr&#xED;amos hacer al extraer el byte, y as&#xED; simplificar bastante la ER haci&#xE9;ndola m&#xE1;s legible</strong>.</p>
 <p>El c&#xF3;digo quedar&#xED;a m&#xE1;s legible, pues no tendr&#xED;amos que pensar tanto la ER. Una posible propuesta podr&#xED;a ser la siguiente:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> bytes<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -988,7 +999,10 @@ En este caso ser&#xED;a m&#xE1;s simple hacer un Split de la cadena correcta por
 
     <span class="token keyword">return</span> ipCorrecta<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p><strong>&#xBF;Podr&#xED;amos llevar este &#xFA;ltimo planteamiento a la expresi&#xF3;n anterior con el Split?</strong></p>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p><strong>&#xBF;Podr&#xED;amos llevar este &#xFA;ltimo planteamiento a la expresi&#xF3;n anterior con el Split?</strong></p>
 <p>Por supuesto y el c&#xF3;digo tambi&#xE9;n quedar&#xED;a simple y legible.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> bytes<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
