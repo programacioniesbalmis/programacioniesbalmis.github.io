@@ -272,12 +272,615 @@ pre[data-line] .line-highlight[data-end]:after {
 <h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
 
 <ol>
-<li><a href="#serializaci%C3%B3n-de-objetos-definiciones">Serializaci&#xF3;n de Objetos (Definiciones)</a></li>
+<li><a href="#organizando-nuestras-clases">Organizando nuestras clases</a>
+<ol>
+<li><a href="#empaquetando-clases">Empaquetando clases</a></li>
+<li><a href="#accediendo-las-clases-definidas-en-un-paquete">Accediendo las clases definidas en un paquete</a></li>
+<li><a href="#separando-en-librer%C3%ADas">Separando en &apos;<em>librer&#xED;as</em>&apos;</a>
+<ol>
+<li><a href="#archivos-generados">Archivos generados</a></li>
+<li><a href="#gestores-de-paquetes">Gestores de paquetes</a></li>
+</ol>
+</li>
+<li><a href="#concepto-de-dependencia">Concepto de dependencia</a></li>
+<li><a href="#usando-librer%C3%ADas-de-terceros">Usando librer&#xED;as de terceros</a>
+<ol>
+<li><a href="#ejemplo-de-uso-de-nuget-como-consumidor-o-cliente">Ejemplo de uso de nuget como consumidor o cliente</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="serializaci%C3%B3n-de-objetos-definiciones">Serializaci&#xF3;n de Objetos (Definiciones)</h2>
+<h2 class="mume-header" id="organizando-nuestras-clases">Organizando nuestras clases</h2>
+
+<h3 class="mume-header" id="empaquetando-clases">Empaquetando clases</h3>
+
+<p>Ya hemos visto que clases relacionadas se pueden agrupar bajo un espacio de nombres (namespace) al que podremos denominar tambi&#xE9;n &quot;<em>Paquete de clases</em>&quot;.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=1}" class="language-csharp" data-line="1"><span class="token keyword">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div></pre><p>Tambi&#xE9;n podemos hacer <em>subagrupaciones</em> anidando definiciones de espacios de nombres.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,6]}" class="language-csharp" data-line="1,6"><span class="token keyword">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+
+    <span class="token keyword">namespace</span> <span class="token namespace">IdSubPaquete</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
 
 
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre><p>Una <strong>sintaxis m&#xE1;s conveniente</strong> y equivalente a la anterior podr&#xED;a ser:</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,7]}" class="language-csharp" data-line="1,7"><span class="token keyword">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>IdSubPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><p>Adem&#xE1;s, una de las principales ventajas de los namespaces, es que <strong>podremos repetir el identificador o nombre de una clase</strong> en paquetes diferentes.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,6]}" class="language-csharp" data-line="1,6"><span class="token keyword">namespace</span> <span class="token namespace">IdPaquete1</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete2</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre><h3 class="mume-header" id="accediendo-las-clases-definidas-en-un-paquete">Accediendo las clases definidas en un paquete</h3>
+
+<p>Para acceder a las clases &apos;<em>p&#xFA;blicas</em>&apos; de un paquete, desde otro paquete podremos usar el <strong>nombre completamente cualificado (<code>CCN</code>)</strong>, esto es, indicando la ruta separada por puntos.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,22,23]}" class="language-csharp" data-line="1,2,22,23"><span class="token comment">// Supongamos que queremos usar alguna de las clases definidas anteriormente y </span>
+<span class="token comment">// que estar&#xED;an en otro fichero fuente e incluso en otro ensamblado.</span>
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>IdSubPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Clase definida en MiClase.cs ------------------------------------------</span>
+<span class="token keyword">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">IdPaquete<span class="token punctuation">.</span>ClaseA</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">IdPaquete<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">IdPaquete<span class="token punctuation">.</span>SubPaquete<span class="token punctuation">.</span>ClaseD</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">IdPaquete<span class="token punctuation">.</span>SubPaquete<span class="token punctuation">.</span>ClaseD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="22" data-start="22">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="23" data-start="23">
+</div></div></pre><p>O podremos usar la cl&#xE1;usula <strong><code>using &lt;NombreDelPaquete&gt;;</code></strong> normalmente al principio del fuente y donde indicaremos aquellos espacios de nombres o paquetes de los que queramos utilizar sus clases &apos;<em>p&#xFA;blicas</em>&apos;.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,10,11]}" class="language-csharp" data-line="1,2,10,11"><span class="token keyword">using</span> <span class="token namespace">IdPaquete</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>SubPaquete</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">ClaseA</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">ClaseD</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>    
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre><p>Otra caracter&#xED;stica del <strong><code>using</code></strong>, es que <strong>me permite crear alias</strong> que nos facilitas el acceso a espacios de nombres o a tipos sobre todo <strong>cuando hay un nombre de clase repetido</strong>.</p>
+<blockquote>
+<p><strong>Nota:</strong> Es uso de alias es menos frecuente.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,16,17,25,26]}" class="language-csharp" data-line="1,2,16,17,25,26"><span class="token comment">// Supongamos que queremos usar alguna de las dos ClassA definidas anteriormente y </span>
+<span class="token comment">// que estar&#xED;an en otro ficheros fuentes o ensamblados diferentes</span>
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete1</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">namespace</span> <span class="token namespace">IdPaquete2</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> &#x2026; <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Clase definida en MiClase.cs ------------------------------------------</span>
+<span class="token comment">// Accedo directamente al tipo del paquete y con el using le doy</span>
+<span class="token comment">// otro nombre directamente.</span>
+<span class="token keyword">using</span> <span class="token class-name">ClaseA1</span> <span class="token operator">=</span> <span class="token class-name">IdPaquete1<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token class-name">ClaseA2</span> <span class="token operator">=</span> <span class="token class-name">IdPaquete2<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">ClaseA1</span> a1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Clasea2</span> a2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="16" data-start="16">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="25" data-start="25">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="26" data-start="26">
+</div></div></pre><h3 class="mume-header" id="separando-en-librer%C3%ADas">Separando en &apos;<em>librer&#xED;as</em>&apos;</h3>
+
+<p>Adem&#xE1;s de por espacios de nombres, tambi&#xE9;n podremos separar nuestras clases en unidades mayores denominadas <strong>librer&#xED;as</strong>, tambi&#xE9;n se les conoce como <strong>artefactos</strong> en el mundo Java. Sin embargo, esta nomenclatura se ha generalizado.</p>
+<p>En el caso de C# son ficheros que contendr&#xE1;n <strong>IL</strong> de clases organizadas en uno o m&#xE1;s espacios de nombres o paquetes.</p>
+<h4 class="mume-header" id="archivos-generados">Archivos generados</h4>
+
+<p>En lenguajes compilados a <strong>bytecode</strong>. Est&#xE1;s librer&#xED;as podr&#xE1;n ser archivos aunque normalmente se publicar&#xE1;n e instalar&#xE1;n a trav&#xE9;s de alg&#xFA;n <strong><a href="https://es.wikipedia.org/wiki/Interfaz_de_l%C3%ADnea_de_comandos">CLI</a></strong>:</p>
+<ul>
+<li><strong>Ensamblados</strong> con extensi&#xF3;n <strong>.dll</strong> en para <strong>C#</strong> y F# en Windows.</li>
+<li><strong>Artefactos</strong> con extensi&#xF3;n <strong>.jar</strong> en el caso de <strong>Java</strong>, Kotlin, Sacala o Groovy.</li>
+</ul>
+<p>En lenguajes interpretados normalmente, los generaremos e instalaremos directamente desde un CLI:</p>
+<ul>
+<li><strong>Librer&#xED;as</strong> con extensi&#xF3;n <strong>.tar.ar</strong> o <strong>.whl</strong> en el caso de <strong>Python</strong> en el caso de querer instalarlas <strong>offline</strong>.</li>
+</ul>
+<h4 class="mume-header" id="gestores-de-paquetes">Gestores de paquetes</h4>
+
+<p>Podr&#xE9; <strong>publicar mis librer&#xED;as opensource</strong> y usar <strong>librer&#xED;as de terceros</strong> a trav&#xE9;s de gestores de paquetes como:</p>
+<ul>
+<li><strong><a href="https://www.nuget.org/">nuget</a></strong> para ensamblados de <strong>C#</strong> y F#.</li>
+<li><strong><a href="https://search.maven.org/">maven</a></strong> para artefactos de <strong>Java</strong>, Kotlin, Scala o Groovy.</li>
+<li><strong><a href="https://pypi.org/">pypi</a></strong> para librer&#xED;as/artefactos de <strong>Python</strong>.</li>
+<li><strong><a href="https://www.npmjs.com/">npm</a></strong> para librer&#xED;as de <strong>JavaScript</strong> y TypeScript.</li>
+</ul>
+<blockquote>
+<p>&#x1F4E3; <strong>Nota:</strong> En la practica todos los lenguajes dispondr&#xE1;n de un <strong>gestor de paquetes</strong> que se encargar&#xE1; de publicar y descargar los paquetes online. Esto es as&#xED; porque normalmente existan <strong>dependencias</strong> con otros paquetes y el gestor se encargar&#xE1; tambi&#xE9;n de descargarlas.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="concepto-de-dependencia">Concepto de dependencia</h3>
+
+<p>Hasta ahora en un programa sencillo en C# como el del ejemplo <strong>hemos usados librer&#xED;as de clases definidas ya en las BCL</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>IO</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">Program</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Program</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> 
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Borrando carpeta datos...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Directory<span class="token punctuation">.</span><span class="token function">Delete</span><span class="token punctuation">(</span><span class="token string">&quot;datos&quot;</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Carpeta borrada&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FileNotFoundException</span> e<span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Del ejemplo anterior, se nos habr&#xE1; generado una dependencia entre clases ya que nuestra clase <strong><code>Program</code></strong> usa otras clases como <strong><code>Console</code></strong>, <strong><code>Directory</code></strong> y <strong><code>FileNotFoundException</code></strong> estas clases si estamos usando el <strong>FrameWork</strong> o (Marco de trabajo) de <strong><code>Microsoft.NETCore.App (3.1.5)</code></strong> estar&#xE1;n definidas donde se haya instalado el mismo y se encuentren sus ensamblados para usar. En el caso de Windows 10 ser&#xED;a la ruta <strong><code>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\3.1.5</code></strong></p>
+<div style="page-break-after:always;"></div>
+<p>Si vemos la <strong>definici&#xF3;n</strong> de cada una de las clases anteriores tendremos que ...</p>
+<ul>
+<li>
+<p>Para el caso de <strong><code>Console.cs</code></strong> podemos observar forma parte del paquete <strong><code>System</code> (l&#xED;nea 8)</strong> y que est&#xE9;, est&#xE1; <strong>parcialmente</strong> definido en el ensamblado  <strong><code>System.Console.dll</code> (l&#xED;nea 2)</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[2,8]}" class="language-csharp" data-line="2,8"><span class="token preprocessor property">#<span class="token directive keyword">region</span> ensamblado System.Console, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</span>
+<span class="token comment">// System.Console.dll</span>
+<span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>IO</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">System</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Console</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div></pre></li>
+<li>
+<p>Para el caso de <strong><code>Directory.cs</code></strong> podemos observar forma parte del paquete <strong><code>System.IO</code> (l&#xED;nea 7)</strong> y que est&#xE9;, est&#xE1; <strong>parcialmente</strong> definido en el ensamblado <strong><code>System.IO.FileSystem.dll</code> (l&#xED;nea 2)</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[2,7]}" class="language-csharp" data-line="2,7"><span class="token preprocessor property">#<span class="token directive keyword">region</span> ensamblado System.IO.FileSystem, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</span>
+<span class="token comment">// System.IO.FileSystem.dll</span>
+<span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Collections<span class="token punctuation">.</span>Generic</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">System<span class="token punctuation">.</span>IO</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Directory</span>
+<div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre></li>
+<li>
+<p>Para el caso de <strong><code>FileNotFoundException.cs</code></strong> podemos observar forma parte del paquete <strong><code>System.IO</code> (l&#xED;nea 9)</strong> y que est&#xE9;, est&#xE1; <strong>parcialmente</strong> definido en el ensamblado <strong><code>System.Runtime.dll</code> (l&#xED;nea 2)</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[2,9]}" class="language-csharp" data-line="2,9"><span class="token preprocessor property">#<span class="token directive keyword">region</span> ensamblado System.Runtime, Version=4.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</span>
+<span class="token comment">// System.Runtime.dll</span>
+<span class="token preprocessor property">#<span class="token directive keyword">endregion</span></span>
+
+<span class="token preprocessor property">#nullable enable</span>
+
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Runtime<span class="token punctuation">.</span>Serialization</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">System<span class="token punctuation">.</span>IO</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileNotFoundException</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IOException</span></span>
+<div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div></pre></li>
+</ul>
+<div style="page-break-after:always;"></div>
+<p>De lo anterior, vemos que nuestro programa depende de 3 ensamblados o &apos;<em>librer&#xED;as</em>&apos; del Framework que forman parte de las BCL. Adem&#xE1;s, podemos ver que un mismo paquete de clases en este caso <strong><code>System.IO</code></strong> no tiene porque estar todo definido en el mismo ensamblado o dll sino que parte de las clases que lo componen pueden estar en uno y parte en otro.</p>
+<p>En el siguiente diagrama podemos observar las dependencias de ejecuci&#xF3;n <strong>en un primer nivel</strong>, extra&#xED;das de los fuentes anteriores, para nuestro programa.</p>
+<blockquote>
+<p>&#x270B; <strong>Importante:</strong> estas dependencias son en un <strong>primer nivel</strong> puesto que si no fijamos a su vez hay otros using de otros paquetes de las BCL en dichas clases lo que a su vez generar&#xED;a otras dependencias. Esto significa que no bastar&#xED;a copiar solo esas 3 dll&apos;s del Framework para que nuestro programa funcione, ya que asu vez ellas necesitan de otras para ejecutarse.</p>
+</blockquote>
+<p align="center" style="zoom:0.7"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="608px" preserveAspectRatio="none" style="width:943px;height:608px;" version="1.1" viewBox="0 0 943 608" width="943px" zoomAndPan="magnify"><defs><filter height="300%" id="f2est9y0qkwn0" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[6048da62e3222d4e882fb11991cb4173]
+cluster Program.exe--><polygon fill="#F5F5F5" filter="url(#f2est9y0qkwn0)" points="311,6,406,6,413,29.6094,522,29.6094,522,238,311,238,311,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="311" x2="413" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="315" y="22.5332">Program.exe</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="84" x="378.5" y="46.1426">&#xAB;executable&#xBB;</text><!--MD5=[c51be47e211a9edb689bdcaea21e3370]
+cluster Program--><polygon fill="#FFFFFF" filter="url(#f2est9y0qkwn0)" points="343,76,408,76,415,99.6094,490,99.6094,490,206,343,206,343,76" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="343" x2="415" y1="99.6094" y2="99.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="347" y="92.5332">Program</text><!--MD5=[43e60659000aaa9ee53b0b09c0351177]
+cluster Microsoft.NETCore.App (3.1.5)--><rect fill="#FFFFFF" filter="url(#f2est9y0qkwn0)" height="308" style="stroke:#000000;stroke-width:1.5;" width="924" x="7" y="288"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="209" x="364.5" y="304.5332">Microsoft.NETCore.App (3.1.5)</text><!--MD5=[3e53907bf20639c202f6d25e0031c2cc]
+cluster System.Runtime.dll--><polygon fill="#F5F5F5" filter="url(#f2est9y0qkwn0)" points="39,344,178,344,185,367.6094,303,367.6094,303,560,39,560,39,344" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="39" x2="185" y1="367.6094" y2="367.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="43" y="360.5332">System.Runtime.dll</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="55" x="147.5" y="384.1426">&#xAB;library&#xBB;</text><!--MD5=[bc05589327670fa61dc8eab8f6abef92]
+cluster System_IO_Parte1--><polygon fill="#FFFFFF" filter="url(#f2est9y0qkwn0)" points="79,414,211,414,218,437.6094,271,437.6094,271,528,79,528,79,414" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="79" x2="218" y1="437.6094" y2="437.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="126" x="83" y="430.5332">System_IO_Parte1</text><!--MD5=[f510306e5b28b2f3af744e0edcb3f808]
+cluster System.IO.FileSystem.dll--><polygon fill="#F5F5F5" filter="url(#f2est9y0qkwn0)" points="343,340,519,340,526,363.6094,591,363.6094,591,564,343,564,343,340" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="343" x2="526" y1="363.6094" y2="363.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="347" y="356.5332">System.IO.FileSystem.dll</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="55" x="443.5" y="380.1426">&#xAB;library&#xBB;</text><!--MD5=[d208809b432b29b6794a6c872c38ee4b]
+cluster System_IO_Parte2--><polygon fill="#FFFFFF" filter="url(#f2est9y0qkwn0)" points="383,410,515,410,522,433.6094,559,433.6094,559,532,383,532,383,410" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="383" x2="522" y1="433.6094" y2="433.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="126" x="387" y="426.5332">System_IO_Parte2</text><!--MD5=[4d4b2e22bfbbb61d12bc3e12aeea78f1]
+cluster System.Console.dll--><polygon fill="#F5F5F5" filter="url(#f2est9y0qkwn0)" points="631,340,770,340,777,363.6094,899,363.6094,899,564,631,564,631,340" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="631" x2="777" y1="363.6094" y2="363.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="635" y="356.5332">System.Console.dll</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="55" x="741.5" y="380.1426">&#xAB;library&#xBB;</text><!--MD5=[99b31deea5d7419a569cd5090bf83263]
+cluster System--><polygon fill="#FFFFFF" filter="url(#f2est9y0qkwn0)" points="671,410,727,410,734,433.6094,867,433.6094,867,532,671,532,671,410" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="671" x2="734" y1="433.6094" y2="433.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="675" y="426.5332">System</text><!--MD5=[985fe12e825232ab20721798a273e50e]
+class Program.Program--><rect codeline="10" fill="#FFFAFA" filter="url(#f2est9y0qkwn0)" height="61.8359" id="Program.Program" style="stroke:#000000;stroke-width:1.5;" width="80" x="386" y="120"/><ellipse cx="401" cy="136" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M403.7656,131.875 Q403.9219,131.6563 404.1094,131.5469 Q404.2969,131.4375 404.5156,131.4375 Q404.8906,131.4375 405.125,131.7031 Q405.3594,131.9531 405.3594,132.5625 L405.3594,134.0156 Q405.3594,134.625 405.125,134.8906 Q404.8906,135.1563 404.5156,135.1563 Q404.1719,135.1563 403.9688,134.9531 Q403.7656,134.7656 403.6563,134.25 Q403.6094,133.8906 403.4219,133.7031 Q403.0938,133.3281 402.4844,133.1094 Q401.875,132.8906 401.25,132.8906 Q400.4844,132.8906 399.8438,133.2188 Q399.2188,133.5469 398.7188,134.2969 Q398.2344,135.0469 398.2344,136.0781 L398.2344,137.1719 Q398.2344,138.4063 399.125,139.2344 Q400.0156,140.0469 401.6094,140.0469 Q402.5469,140.0469 403.2031,139.7969 Q403.5938,139.6406 404.0156,139.2031 Q404.2813,138.9375 404.4219,138.8594 Q404.5781,138.7813 404.7813,138.7813 Q405.1094,138.7813 405.3594,139.0469 Q405.625,139.2969 405.625,139.6406 Q405.625,139.9844 405.2813,140.3906 Q404.7813,140.9688 403.9844,141.2969 Q402.9063,141.75 401.6094,141.75 Q400.0938,141.75 398.8906,141.125 Q397.9063,140.625 397.2188,139.5625 Q396.5313,138.4844 396.5313,137.2031 L396.5313,136.0469 Q396.5313,134.7188 397.1406,133.5781 Q397.7656,132.4219 398.8594,131.8125 Q399.9531,131.1875 401.1875,131.1875 Q401.9219,131.1875 402.5625,131.3594 Q403.2188,131.5156 403.7656,131.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="415" y="140.9102">Program</text><line style="stroke:#000000;stroke-width:1.5;" x1="387" x2="465" y1="152" y2="152"/><line style="stroke:#000000;stroke-width:1.5;" x1="387" x2="465" y1="160" y2="160"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="63" x="392" y="175.4189">-Main() : void</text><!--MD5=[8e5da58e3131617fd3245dd05b2729fc]
+class System_IO_Parte1.FileNotFoundException--><rect codeline="20" fill="#FFFAFA" filter="url(#f2est9y0qkwn0)" height="61.8359" id="System_IO_Parte1.FileNotFoundException" style="stroke:#000000;stroke-width:1.5;" width="159" x="95.5" y="450"/><ellipse cx="110.5" cy="466" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M113.2656,461.875 Q113.4219,461.6563 113.6094,461.5469 Q113.7969,461.4375 114.0156,461.4375 Q114.3906,461.4375 114.625,461.7031 Q114.8594,461.9531 114.8594,462.5625 L114.8594,464.0156 Q114.8594,464.625 114.625,464.8906 Q114.3906,465.1563 114.0156,465.1563 Q113.6719,465.1563 113.4688,464.9531 Q113.2656,464.7656 113.1563,464.25 Q113.1094,463.8906 112.9219,463.7031 Q112.5938,463.3281 111.9844,463.1094 Q111.375,462.8906 110.75,462.8906 Q109.9844,462.8906 109.3438,463.2188 Q108.7188,463.5469 108.2188,464.2969 Q107.7344,465.0469 107.7344,466.0781 L107.7344,467.1719 Q107.7344,468.4063 108.625,469.2344 Q109.5156,470.0469 111.1094,470.0469 Q112.0469,470.0469 112.7031,469.7969 Q113.0938,469.6406 113.5156,469.2031 Q113.7813,468.9375 113.9219,468.8594 Q114.0781,468.7813 114.2813,468.7813 Q114.6094,468.7813 114.8594,469.0469 Q115.125,469.2969 115.125,469.6406 Q115.125,469.9844 114.7813,470.3906 Q114.2813,470.9688 113.4844,471.2969 Q112.4063,471.75 111.1094,471.75 Q109.5938,471.75 108.3906,471.125 Q107.4063,470.625 106.7188,469.5625 Q106.0313,468.4844 106.0313,467.2031 L106.0313,466.0469 Q106.0313,464.7188 106.6406,463.5781 Q107.2656,462.4219 108.3594,461.8125 Q109.4531,461.1875 110.6875,461.1875 Q111.4219,461.1875 112.0625,461.3594 Q112.7188,461.5156 113.2656,461.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="127" x="124.5" y="470.9102">FileNotFoundException</text><line style="stroke:#000000;stroke-width:1.5;" x1="96.5" x2="253.5" y1="482" y2="482"/><line style="stroke:#000000;stroke-width:1.5;" x1="96.5" x2="253.5" y1="490" y2="490"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="112" x="101.5" y="505.4189">+GetMessage() : String</text><!--MD5=[791047f55a6089b71916f8af155e9990]
+class System_IO_Parte2.Directory--><rect codeline="27" fill="#FFFAFA" filter="url(#f2est9y0qkwn0)" height="70.0234" id="System_IO_Parte2.Directory" style="stroke:#000000;stroke-width:1.5;" width="143" x="399.5" y="446"/><ellipse cx="442.85" cy="466.0938" fill="#ADFF2F" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M447.3344,463.4844 L447.3344,468.3125 Q447.3344,469.8906 446.1938,471 Q445.0688,472.0938 443.475,472.0938 Q442.6938,472.0938 441.9906,471.8125 Q441.3031,471.5313 440.7406,471 Q440.1938,470.4531 439.8813,469.875 Q439.5844,469.2813 439.5844,468.3125 L439.5844,463.4844 Q439.0531,463.4844 438.7875,463.25 Q438.5375,463 438.5375,462.625 Q438.5375,462.25 438.7875,462.0156 Q439.0531,461.7813 439.6625,461.7813 L441.8969,461.7813 Q442.5219,461.7813 442.7719,462.0156 Q443.0375,462.25 443.0375,462.625 Q443.0375,463.0156 442.7719,463.25 Q442.5219,463.4844 441.8969,463.4844 L441.2875,463.4844 L441.2875,468.4531 Q441.2875,469.2188 441.9125,469.8125 Q442.5531,470.3906 443.4594,470.3906 Q444.0531,470.3906 444.5688,470.1094 Q445.1,469.8281 445.4281,469.2813 Q445.6313,468.9531 445.6313,468.4531 L445.6313,463.4844 L445.0219,463.4844 Q444.4125,463.4844 444.1469,463.25 Q443.8813,463.0156 443.8813,462.625 Q443.8813,462.25 444.1469,462.0156 Q444.4125,461.7813 445.0219,461.7813 L447.2563,461.7813 Q447.8656,461.7813 448.1313,462.0156 Q448.3969,462.25 448.3969,462.625 Q448.3969,463 448.1313,463.25 Q447.8813,463.4844 447.3344,463.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="42" x="466.15" y="463.457">&#xAB;utility&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="463.15" y="478.5508">Directory</text><line style="stroke:#000000;stroke-width:1.5;" x1="400.5" x2="541.5" y1="486.1875" y2="486.1875"/><line style="stroke:#000000;stroke-width:1.5;" x1="400.5" x2="541.5" y1="494.1875" y2="494.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="131" x="405.5" y="509.6064">+Delete( path: String) : void</text><!--MD5=[62c09328624fd92b958af7ee99a86f73]
+class System.Console--><rect codeline="34" fill="#FFFAFA" filter="url(#f2est9y0qkwn0)" height="70.0234" id="System.Console" style="stroke:#000000;stroke-width:1.5;" width="163" x="687.5" y="446"/><ellipse cx="741.25" cy="466.0938" fill="#ADFF2F" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M745.7344,463.4844 L745.7344,468.3125 Q745.7344,469.8906 744.5938,471 Q743.4688,472.0938 741.875,472.0938 Q741.0938,472.0938 740.3906,471.8125 Q739.7031,471.5313 739.1406,471 Q738.5938,470.4531 738.2813,469.875 Q737.9844,469.2813 737.9844,468.3125 L737.9844,463.4844 Q737.4531,463.4844 737.1875,463.25 Q736.9375,463 736.9375,462.625 Q736.9375,462.25 737.1875,462.0156 Q737.4531,461.7813 738.0625,461.7813 L740.2969,461.7813 Q740.9219,461.7813 741.1719,462.0156 Q741.4375,462.25 741.4375,462.625 Q741.4375,463.0156 741.1719,463.25 Q740.9219,463.4844 740.2969,463.4844 L739.6875,463.4844 L739.6875,468.4531 Q739.6875,469.2188 740.3125,469.8125 Q740.9531,470.3906 741.8594,470.3906 Q742.4531,470.3906 742.9688,470.1094 Q743.5,469.8281 743.8281,469.2813 Q744.0313,468.9531 744.0313,468.4531 L744.0313,463.4844 L743.4219,463.4844 Q742.8125,463.4844 742.5469,463.25 Q742.2813,463.0156 742.2813,462.625 Q742.2813,462.25 742.5469,462.0156 Q742.8125,461.7813 743.4219,461.7813 L745.6563,461.7813 Q746.2656,461.7813 746.5313,462.0156 Q746.7969,462.25 746.7969,462.625 Q746.7969,463 746.5313,463.25 Q746.2813,463.4844 745.7344,463.4844 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="42" x="764.25" y="463.457">&#xAB;utility&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="47" x="761.75" y="478.5508">Console</text><line style="stroke:#000000;stroke-width:1.5;" x1="688.5" x2="849.5" y1="486.1875" y2="486.1875"/><line style="stroke:#000000;stroke-width:1.5;" x1="688.5" x2="849.5" y1="494.1875" y2="494.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="151" x="693.5" y="509.6064">+WriteLine(value : String) : void</text><!--MD5=[95564c3e901202a51f7ff90e63dfdd1c]
+link Program to System.Console.dll--><path d="M351.0751,206.362 C351.1045,206.5227 351.1343,206.6835 351.1644,206.8442 C351.2247,207.1657 351.2863,207.4872 351.3494,207.8086 C351.6016,209.0942 351.8766,210.3787 352.1758,211.6592 C352.7743,214.2203 353.4698,216.7654 354.275,219.2716 C357.4956,229.2963 362.47,238.6975 370,246 C377.61,253.38 406.57,252.16 417,254 C480.18,265.16 509.34,239.37 559,280 C595.47,309.835 615.42,358.75 626.2775,400.7363 C627.6347,405.9845 628.8498,411.1246 629.9374,416.1055 C630.2092,417.3508 630.4732,418.586 630.7293,419.8106 C630.7934,420.1168 630.8569,420.4222 630.92,420.727 " fill="none" id="Program-to-System.Console.dll" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="630.92,420.727,633.013,411.1031,629.9067,415.8308,625.1791,412.7244,630.92,420.727" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="548" y="268.4951">&#xAB;access&#xBB;</text><!--MD5=[3b891ca27f5787ab85f7fcd20077c99a]
+link Program to System.Runtime.dll--><path d="M342.8266,153.0902 C342.1705,153.1857 341.4779,153.288 340.7498,153.3975 C334.9254,154.2732 326.8349,155.6055 317.043,157.5142 C297.4591,161.3316 271.0694,167.4544 242.3913,176.8413 C185.035,195.615 118.525,227.445 79,280 C65.685,297.705 56.9856,318.8081 51.4364,340.5647 C51.263,341.2446 51.0927,341.9251 50.9254,342.6062 C50.8417,342.9467 50.7588,343.2874 50.6767,343.6282 " fill="none" id="Program-to-System.Runtime.dll" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="50.6767,343.6282,56.6741,335.816,51.8482,338.7674,48.8968,333.9415,50.6767,343.6282" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="102" y="268.4951">&#xAB;access&#xBB;</text><!--MD5=[74256794f96a692d01899a47a4cffde7]
+link Program to System.IO.FileSystem.dll--><path d="M351,206.1467 C351,206.6294 351,207.1144 351,207.6017 C351,208.5762 351,209.5601 351,210.5529 C351,212.5385 351,214.5598 351,216.6146 C351,220.7242 351,224.9675 351,229.3254 C351,238.041 351,247.215 351,256.6945 C351,275.6534 351,295.8344 351,316.015 C351,321.0602 351,326.1053 351,331.1313 C351,333.6443 351,336.1526 351,338.6536 C351,338.9662 351,339.2788 351,339.5912 " fill="none" id="Program-to-System.IO.FileSystem.dll" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="351,339.5912,355,330.5912,351,334.5912,347,330.5912,351,339.5912" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="352" y="268.4951">&#xAB;access&#xBB;</text><!--MD5=[14ea6747cc859c767e8a972b1ad686e4]
+@startuml paquetes
+
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+skinparam ClassAttributeIconSize 0
+
+package Program.exe <<executable>> {
+  namespace Program  #DDDDD {
+    class Program {
+      - {static} Main() : void
+    }
+  }
+}
+
+package "Microsoft.NETCore.App (3.1.5)" <<Rectangle>> #0000
+{
+    package System.Runtime.dll <<library>> {
+        namespace System_IO_Parte1 #DDDDD {
+            class FileNotFoundException { 
+            + GetMessage() : String
+            }    
+        }
+    }
+    package System.IO.FileSystem.dll <<library>> {
+        namespace System_IO_Parte2 #DDDDD {
+            class Directory <<U, GreenYellow>><<utility>> { 
+            + {static} Delete( path: String) : void
+            }    
+        }
+    }
+    package System.Console.dll <<library>> {
+        namespace System #DDDDD {
+            class Console <<U, GreenYellow>><<utility>>{ 
+            + {static} WriteLine(value : String) : void
+            }
+        }
+    }
+}
+
+Program ..> System.Console.dll : <<access>>
+Program ..> System.Runtime.dll : <<access>>
+Program ..> System.IO.FileSystem.dll : <<access>>
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="usando-librer%C3%ADas-de-terceros">Usando librer&#xED;as de terceros</h3>
+
+<p><strong><a href="https://docs.microsoft.com/es-es/nuget/what-is-nuget">Seg&#xFA;n Microsoft</a></strong> <strong>nuget</strong> es un repositorio de artefactos/paquetes de .NET.<br>
+Proporciona su propia su propia <strong><a href="https://www.nuget.org/downloads">herramienta de gesti&#xF3;n de paquetes CLI</a></strong> denominada tambi&#xE9;n <strong>nuget</strong>.</p>
+<p>B&#xE1;sicamente, como indica la ilustraci&#xF3;n, nos permitir&#xE1;:</p>
+<ol>
+<li>
+<p>C&#xF3;mo desarrolladores crear un artefacto formado por uno o m&#xE1;s ensamblados y publicarlo en un repositorio p&#xFA;blico como <a href="nuget.org">nuget.org</a> o bien en uno privado como por ejemplo Azure DevOps. Seg&#xFA;n la documentaci&#xF3;n de microsoft...</p>
+<blockquote>
+<p>&quot;<em>Con independencia de su naturaleza, un host act&#xFA;a como un punto de conexi&#xF3;n entre los creadores y los consumidores de paquetes. Los creadores compilan paquetes NuGet &#xFA;tiles y los publican en un host. Despu&#xE9;s, los consumidores buscan paquetes &#xFA;tiles y compatibles en hosts accesibles, los descargan y los incluyen en sus proyectos. Una vez instalados en un proyecto, las API de los paquetes est&#xE1;n disponibles para el resto del c&#xF3;digo del proyecto.</em>&quot;</p>
+</blockquote>
+</li>
+<li>
+<p>Posteriormente usar el mismo en otros desarrollos o proyectos de .NET de forma &apos;<em>automatizada</em>&apos; y con control de versionado.</p>
+</li>
+</ol>
+<div align="center">
+    <img height="200" src="assets/nuget/nuget-roles.png">
+</div>
+<p>Es importante que los paquetes que descargamos sean <strong>compatibles</strong> con el FrameWork que estamos usando para realizar nuestra aplicaci&#xF3;n. Seg&#xFA;n la documentaci&#xF3;n de microsoft...</p>
+<blockquote>
+<p>&quot;<em>Un paquete &quot;compatible&quot; implica que contiene ensamblados compilados para al menos una plataforma .NET de destino que es compatible con la plataforma de destino del proyecto de consumo.</em>&quot;</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="ejemplo-de-uso-de-nuget-como-consumidor-o-cliente">Ejemplo de uso de nuget como consumidor o cliente</h4>
+
+<p>Vamos a <strong>verlo a trav&#xE9;s de un ejemplo</strong>. En nuestro caso queremos comprobar ortogr&#xE1;ficamente una palabra introducida por teclado y vamos a <a href="https://docs.microsoft.com/es-es/nuget/consume-packages/finding-and-choosing-packages">buscar si hay alg&#xFA;n tipo de liber&#xED;a de terceros</a> que nos ofrezca esta funcionalidad.</p>
+<ol>
+<li>
+<p>Iremos a <a href="nuget.org">nuget.org</a> y buscaremos por ejemplo por la palabra <strong>&apos;<em>spell</em>&apos;</strong></p>
+ <div align="center">
+     <img height="200" src="assets/nuget/nuget1.png">
+ </div>
+</li>
+<li>
+<p>Nos filtrar&#xE1; por orden de m&#xE1;s usado y la primera entrada es <strong>WeCantSpell.Hunspell</strong> y si nos fijamos podemos ver que hay una versi&#xF3;n para <strong>.NET Core</strong> en otro caso el paquete <strong>no ser&#xED;a compatible</strong> con nuestro FrameWork.</p>
+ <div align="center">
+     <img width="500" src="assets/nuget/nuget2.png">
+ </div>
+</li>
+<li>
+<p>La mejor opci&#xF3;n es <a href="https://docs.microsoft.com/es-es/nuget/consume-packages/install-use-packages-dotnet-cli">descargar el paquete desde la l&#xED;nea de comandos con el CLI</a> de .NET <strong><code>dotnet</code></strong> para ello como vemos en 1&#xFE0F;&#x20E3; seleccionaremos la pesta&#xF1;a <strong><code>.NET CLI</code></strong> y copiaremos el comando para instalarlo.</p>
+<blockquote>
+<p><strong>Nota:</strong> Otra opci&#xF3;n es descargar el paquete para instalarlo de forma offline con el enlace de 2&#xFE0F;&#x20E3;. Esto nos descargar&#xE1; un fichero con la extensi&#xF3;n <strong><code>.nupkg</code></strong> por si queremos tener una copia para hacer nuestro propio repositorio. Aunque <strong>esta opci&#xF3;n no la vamos a ver aqu&#xED;</strong>.</p>
+</blockquote>
+ <div align="center">
+     <img width="500" src="assets/nuget/nuget3.png">
+ </div>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\&gt;dotnet nuget list source
+Or&#xED;genes registrados:
+  1.  nuget.org [Habilitado]
+      https://api.nuget.org/v3/index.json
+  2.  Microsoft Visual Studio Offline Packages [Habilitado]
+      C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+</code></pre><p><a href="https://docs.microsoft.com/es-es/nuget/concepts/package-versioning">https://docs.microsoft.com/es-es/nuget/concepts/package-versioning</a></p>
+<p>WeCantSpell.Hunspell</p>
+<p>dotnet add package WeCantSpell.Hunspell --version 3.0.1</p>
+<p>dotnet list package</p>
+<p>dotnet remove package &lt;PACKAGE_NAME&gt;</p>
+<p>dotnet restore</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1&gt;dotnet add package WeCantSpell.Hunspell --version 3.0.1
+  Determinando los proyectos que se van a restaurar...
+  Writing C:\Users\m1n1max\AppData\Local\Temp\tmpAD69.tmp
+info : Agregando PackageReference para el paquete &quot;WeCantSpell.Hunspell&quot; al proyecto &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
+info : Restaurando paquetes para C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj...
+info : El paquete &quot;WeCantSpell.Hunspell&quot; es compatible con todos los marcos de trabajo especificados del proyecto &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
+info : Se agreg&#xF3; PackageReference para la versi&#xF3;n &quot;3.0.1&quot; del paquete &quot;WeCantSpell.Hunspell&quot; al archivo &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
+info : Ejecutando restauraci&#xF3;n...
+info : Generaci&#xF3;n de archivo MSBuild C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\obj\ejemplo1.csproj.nuget.g.props.
+info : Escribiendo el archivo de recursos en el disco. Ruta de acceso: C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\obj\project.assets.json
+log  : Se ha restaurado C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj (en 187 ms).
+</code></pre>
       </div>
       
       
