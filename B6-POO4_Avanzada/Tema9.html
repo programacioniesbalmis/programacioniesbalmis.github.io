@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
       
       
       
@@ -282,12 +282,18 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#gestores-de-paquetes">Gestores de paquetes</a></li>
 </ol>
 </li>
-<li><a href="#concepto-de-dependencia">Concepto de dependencia</a></li>
+<li><a href="#concepto-de-dependencia-de-ensamblados">Concepto de dependencia de ensamblados</a></li>
 <li><a href="#usando-librer%C3%ADas-de-terceros">Usando librer&#xED;as de terceros</a>
 <ol>
-<li><a href="#ejemplo-de-uso-de-nuget-como-consumidor-o-cliente">Ejemplo de uso de nuget como consumidor o cliente</a></li>
+<li><a href="#resumen-del-versionado-de-artefactos-para-subir-al-repositorio">Resumen del versionado de artefactos para subir al repositorio</a></li>
+<li><a href="#ejemplo-de-uso-de-nuget-como-consumidor-o-cliente">Ejemplo de uso de nuget como consumidor o cliente</a>
+<ol>
+<li><a href="#otros-comandos-de-utilidad-del-cli-dotnet-relacionados-con-librer%C3%ADas">Otros comandos de utilidad del CLI dotnet relacionados con librer&#xED;as</a></li>
 </ol>
 </li>
+</ol>
+</li>
+<li><a href="#creando-nuestras-propias-librer%C3%ADas">Creando nuestras propias librer&#xED;as</a></li>
 </ol>
 </li>
 </ol>
@@ -629,9 +635,50 @@ pre[data-line] .line-highlight[data-end]:after {
 <p>&#x1F4E3; <strong>Nota:</strong> En la practica todos los lenguajes dispondr&#xE1;n de un <strong>gestor de paquetes</strong> que se encargar&#xE1; de publicar y descargar los paquetes online. Esto es as&#xED; porque normalmente existan <strong>dependencias</strong> con otros paquetes y el gestor se encargar&#xE1; tambi&#xE9;n de descargarlas.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="concepto-de-dependencia">Concepto de dependencia</h3>
+<h3 class="mume-header" id="concepto-de-dependencia-de-ensamblados">Concepto de dependencia de ensamblados</h3>
 
-<p>Hasta ahora en un programa sencillo en C# como el del ejemplo <strong>hemos usados librer&#xED;as de clases definidas ya en las BCL</strong>.</p>
+<p>En general, siempre que usemos una clase, tendremos una dependencia de uso sobre la misma. Esto es, necesitaremos su definici&#xF3;n. Pero esta puede estar definida:</p>
+<p align="center" style="zoom:0.6"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="368px" preserveAspectRatio="none" style="width:1539px;height:368px;" version="1.1" viewBox="0 0 1539 368" width="1539px" zoomAndPan="magnify"><defs><filter height="300%" id="f1qq643ujelwp4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#D3D3D3" filter="url(#f1qq643ujelwp4)" height="78.2959" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="218" x="343" y="143.9069"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="60" x="422" y="172.0387">Casos de</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="92" x="358" y="188.1373">dependencia</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="454" y="188.1373">seg&#xFA;n usemos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="24" x="367" y="204.236">una</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="37" x="395" y="204.236">clase</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="436" y="204.236">o tipo definido...</text><rect fill="#F5F5F5" filter="url(#f1qq643ujelwp4)" height="94.3945" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="249" x="621" y="25"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="16" x="649.5" y="53.1318">en</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="172" x="669.5" y="53.1318">el mismo ensamblado/dll</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="685.5" y="69.2305">(o liber&#xED;a/artefacto)</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="703.5" y="85.3291">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="215" x="636" y="101.4277">podremos usarla directamente</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="851" y="101.4277">.</text><path d="M561,183.0548 L571,183.0548 C586,183.0548 596,72.1973 611,72.1973 L621,72.1973 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F5F5F5" filter="url(#f1qq643ujelwp4)" height="94.3945" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="246" x="621" y="149.3945"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="16" x="664.5" y="177.5264">en</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="684.5" y="177.5264">otro ensamblado/dll</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="684" y="193.625">(o liber&#xED;a/artefacto)</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="702" y="209.7236">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="216" x="636" y="225.8223">tendremos dos posibilidades...</text><rect fill="#FFFFFF" filter="url(#f1qq643ujelwp4)" height="94.3945" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="263" x="927" y="52.074"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="942" y="80.2058">Es un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="193" x="982" y="80.2058">ensamblado del Framework</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="201" x="960" y="96.3044">y por tanto pertenece a las BCL</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="1016.5" y="112.4031">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="184" x="964.5" y="128.5017">no deberemos hacer nada</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="1148.5" y="128.5017">.</text><path d="M867,196.5918 L877,196.5918 C892,196.5918 902,99.2712 917,99.2712 L927,99.2712 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#FFFFFF" filter="url(#f1qq643ujelwp4)" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="273" x="927" y="176.4685"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="958" y="204.6003">Es un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="171" x="998" y="204.6003">ensamblado de terceros</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="1021.5" y="220.699">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="71" x="949.5" y="236.7976">deberemos</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="149" x="1024.5" y="236.7976">indicar en e proyecto</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="1173.5" y="236.7976">,</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="243" x="942" y="252.8962">la dependencia con dicho ensamblado</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="143" x="990" y="268.9949">el cual podr&#xE1; estar...</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="1137" y="268.9949"/><rect fill="#F0F8FF" filter="url(#f1qq643ujelwp4)" height="78.2959" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="232" x="1260" y="122.3206"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="1275" y="150.4524">en un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="162" x="1315" y="150.4524">repositorio de librer&#xED;as</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="1333.5" y="166.551">(o artefactos)</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="1277.5" y="182.6497">que ser&#xE1;</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="133" x="1337.5" y="182.6497">el caso m&#xE1;s com&#xFA;n</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="1470.5" y="182.6497">.</text><path d="M1200,231.7151 L1210,231.7151 C1225,231.7151 1235,161.4685 1250,161.4685 L1260,161.4685 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F0F8FF" filter="url(#f1qq643ujelwp4)" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="260" x="1260" y="230.6165"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="1307" y="258.7483">en un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="122" x="1347" y="258.7483">ensamblado local</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="1469" y="258.7483">.</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="156" x="1312" y="274.8469">Esta opci&#xF3;n no suele ser</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="226" x="1275" y="290.9456">com&#xFA;n, a no ser que el ensamblado</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="180" x="1300" y="307.0442">no forme pare de la soluci&#xF3;n</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="158" x="1311" y="323.1428">junto a nuestro proyecto.</text><path d="M1200,231.7151 L1210,231.7151 C1225,231.7151 1235,285.863 1250,285.863 L1260,285.863 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M867,196.5918 L877,196.5918 C892,196.5918 902,231.7151 917,231.7151 L927,231.7151 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><path d="M561,183.0548 L571,183.0548 C586,183.0548 596,196.5918 611,196.5918 L621,196.5918 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F5F5F5" filter="url(#f1qq643ujelwp4)" height="94.3945" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="249" x="34" y="65.611"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="16" x="75.5" y="93.7428">en</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="95.5" y="93.7428">el mismo namespace</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="89.5" y="109.8414">(o paquete de clases)</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="116.5" y="125.9401">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="215" x="49" y="142.0387">podremos usarla directamente</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="4" x="264" y="142.0387">.</text><path d="M343,183.0548 L333,183.0548 C318,183.0548 308,112.8082 293,112.8082 L283,112.8082 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><rect fill="#F5F5F5" filter="url(#f1qq643ujelwp4)" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="273" x="10" y="190.0055"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="16" x="80" y="218.1373">en</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="113" x="100" y="218.1373">otro namespace</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="77.5" y="234.236">(o paquete de clases)</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="104.5" y="250.3346">en cuyo caso</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="25" y="266.4332">realizaremos un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="129" y="266.4332">using &lt;namespace&gt;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="117" x="88" y="282.5319">como hemos visto.</text><path d="M343,183.0548 L333,183.0548 C318,183.0548 308,245.2521 293,245.2521 L283,245.2521 " fill="none" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[4c1ca13869c178d09768e7629e7469ac]
+@startmindmap
+left to right direction
+<style>
+mindmapDiagram {
+  Linecolor black
+  FontName Arial
+  FontSize 14
+  node {
+    Padding 15
+    Margin 15
+    HorizontalAlignment center
+    BackGroundColor white
+  }
+}
+</style>
+
+*[#lightgray] Casos de\n**dependencia** según usemos\nuna **clase** o tipo definido...
+
+**[#whitesmoke] en **el mismo ensamblado/dll**\n(o libería/artefacto)\nen cuyo caso\n**podremos usarla directamente**.
+**[#whitesmoke] en **otro ensamblado/dll**\n(o libería/artefacto)\nen cuyo caso\n**tendremos dos posibilidades...**
+*** Es un **ensamblado del Framework**\n y por tanto pertenece a las BCL\nen cuyo caso\n**no deberemos hacer nada**.
+*** Es un **ensamblado de terceros**\nen cuyo caso\ndeberemos **indicar en e proyecto**,\nla dependencia con dicho ensamblado\n**el cual podrá estar...** 
+****[#aliceblue] en un **repositorio de librerías**\n(o artefactos)\nque será **el caso más común**.
+****[#aliceblue] en un **ensamblado local**.\nEsta opción no suele ser\ncomún, a no ser que el ensamblado \nno forme pare de la solución\njunto a nuestro proyecto.
+
+left
+
+**[#whitesmoke] en **el mismo namespace**\n(o paquete de clases)\nen cuyo caso\n**podremos usarla directamente**.
+**[#whitesmoke] en **otro namespace**\n(o paquete de clases)\nen cuyo caso\nrealizaremos un **using <namespace>**\ncomo hemos visto.
+
+@endmindmap
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p>Hasta ahora en un programa sencillo en C# como el del ejemplo <strong>hemos usados librer&#xED;as de clases definidas ya en las BCL</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
 <span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>IO</span><span class="token punctuation">;</span>
 
@@ -829,9 +876,32 @@ Proporciona su propia su propia <strong><a href="https://www.nuget.org/downloads
 <blockquote>
 <p>&quot;<em>Un paquete &quot;compatible&quot; implica que contiene ensamblados compilados para al menos una plataforma .NET de destino que es compatible con la plataforma de destino del proyecto de consumo.</em>&quot;</p>
 </blockquote>
+<h4 class="mume-header" id="resumen-del-versionado-de-artefactos-para-subir-al-repositorio">Resumen del versionado de artefactos para subir al repositorio</h4>
+
+<p>Usaremos una sintaxis similar a la siguiente: <strong><code>&lt;Versi&#xF3;nPrincipal&gt;.&lt;Versi&#xF3;nSecundaria&gt;.&lt;Revisi&#xF3;n&gt;[-&lt;Sufijo&gt;[.&lt;Revisi&#xF3;n&gt;]]</code></strong> donde ...</p>
+<ul>
+<li><strong>Versi&#xF3;nPrincipal</strong>: Cambios importantes. (Puede no haber compatibilidad hacia atr&#xE1;s)</li>
+<li><strong>Versi&#xF3;nSecundaria</strong>: Nuevas caracter&#xED;sticas, <strong>compatibles</strong> con versiones anteriores</li>
+<li><strong>Revisi&#xF3;n</strong>: Solo correcciones de errores <strong>compatibles</strong> con versiones anteriores</li>
+<li><strong>Sufijo</strong>(opcional): Un gui&#xF3;n seguido de una cadena que denota una versi&#xF3;n preliminar (seg&#xFA;n la convenci&#xF3;n de <a href="https://semver.org/lang/es/#versionado-sem%C3%A1ntico-200-rc2">Versionamiento Sem&#xE1;ntico</a>).<br>
+<strong>Ejemplo de orden de versiones para una misma revisi&#xF3;n:</strong>
+<ol>
+<li><strong><code>1.0.0-alpha</code></strong> Versi&#xF3;n de pruebas completa para verificadores.</li>
+<li><strong><code>1.0.0-alpha.1</code></strong></li>
+<li><strong><code>1.0.0-beta.2</code></strong> Versi&#xF3;n de pruebas completa p&#xFA;blica revisi&#xF3;n 2.</li>
+<li><strong><code>1.0.0-beta.11</code></strong></li>
+<li><strong><code>1.0.0-rc.1</code></strong> Versi&#xF3;n completa p&#xFA;blica candidata a ser liberada revisi&#xF3;n 1.</li>
+<li><strong><code>1.0.0</code></strong> Versi&#xF3;n completa p&#xFA;blica liberada.</li>
+</ol>
+</li>
+</ul>
+<p>Si tienes curiosidad de c&#xF3;mo generar versiones para usar en NuGet puedes consultar <strong><a href="https://docs.microsoft.com/es-es/nuget/concepts/package-versioning">este enlace</a></strong>.</p>
 <div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="ejemplo-de-uso-de-nuget-como-consumidor-o-cliente">Ejemplo de uso de nuget como consumidor o cliente</h4>
 
+<blockquote>
+<p>&#x3299;&#xFE0F; <strong>Notaci&#xF3;n:</strong> A partir de ahora, vamos a usar el acr&#xF3;nimo <strong>PW</strong> (Project Workspace) para denotar la <strong>carpeta &#x1F4C1;</strong> donde est&#xE1; ubicado el <strong>espacio de trabajo de nuestro proyecto</strong>.</p>
+</blockquote>
 <p>Vamos a <strong>verlo a trav&#xE9;s de un ejemplo</strong>. En nuestro caso queremos comprobar ortogr&#xE1;ficamente una palabra introducida por teclado y vamos a <a href="https://docs.microsoft.com/es-es/nuget/consume-packages/finding-and-choosing-packages">buscar si hay alg&#xFA;n tipo de liber&#xED;a de terceros</a> que nos ofrezca esta funcionalidad.</p>
 <ol>
 <li>
@@ -855,32 +925,214 @@ Proporciona su propia su propia <strong><a href="https://www.nuget.org/downloads
      <img width="500" src="assets/nuget/nuget3.png">
  </div>
 </li>
+<li>
+<p>Desde nuestro <strong>PW</strong> ejecutaremos el siguiente comando indicado en el paso 3.</p>
+<p><strong><code>dotnet add package WeCantSpell.Hunspell --version 3.0.1</code></strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>PW&gt;dotnet add package WeCantSpell.Hunspell --version 3.0.1
+Determinando los proyectos que se van a restaurar...
+info : Agregando PackageReference para el paquete &quot;WeCantSpell.Hunspell&quot; al proyecto &quot;PW\MiProyectoNET.csproj&quot;.
+info : Restaurando paquetes para PW\MiProyectoNET.csproj...
+info : El paquete &quot;WeCantSpell.Hunspell&quot; es compatible con todos los marcos de trabajo especificados del proyecto &quot;PW\MiProyectoNET.csproj&quot;.
+info : Se agreg&#xF3; PackageReference para la versi&#xF3;n &quot;3.0.1&quot; del paquete &quot;WeCantSpell.Hunspell&quot; al archivo &quot;PW\MiProyectoNET.csproj&quot;.
+info : Ejecutando restauraci&#xF3;n...
+info : Generaci&#xF3;n de archivo MSBuild PW\obj\MiProyectoNET.csproj.nuget.g.props.
+info : Escribiendo el archivo de recursos en el disco. Ruta de acceso: PW\obj\project.assets.json
+log  : Se ha restaurado PW\MiProyectoNET.csproj (en 187 ms).
+</code></pre></li>
 </ol>
 <div style="page-break-after:always;"></div>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\&gt;dotnet nuget list source
+<p>Tras instalar el paquete se abr&#xE1; a&#xF1;adido la dependencia en el fichero de configuraci&#xF3;n de nuestro proyecto, que en el ejemplo se llamaba <strong><code>MiProyectoNET.csproj</code></strong></p>
+<pre data-role="codeBlock" data-info="xml {highlight=4}" class="language-xml" data-line="4"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ItemGroup</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PackageReference</span> <span class="token attr-name">Include</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>WeCantSpell.Hunspell<span class="token punctuation">&quot;</span></span> <span class="token attr-name">Version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>3.0.1<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ItemGroup</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
+<div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div></pre><p>Adem&#xE1;s, habr&#xE1; descargado en ensamblado <strong><code>WeCantSpell.Hunspell.dll</code></strong> junto al del proyecto ya que lo necesitaremos para ejecutar.</p>
+<p>Bueno ya podemos usar las clases definidas en la librer&#xED;a que hemos instalado para ello vamos a necesitar bajarnos el diccionario en castellano a usar por la liberia siguiendo los siguientes pasos:</p>
+<ol>
+<li>
+<p>B&#xE1;jate el zip spanish_caso_de_estudio.zip de el <strong><a href="https://programacioniesbalmis.github.io/B6-POO4_Avanzada/spanish_caso_de_estudio.zip">siguiente enlace</a></strong>.</p>
+</li>
+<li>
+<p>Extrae los archivos <strong><code>Spanish.dic</code></strong> y <strong><code>Spanish.aff</code></strong> que forman el diccionario en el &#xE1;rea de trabajo del proyecto  (junto al archivo <strong><code>.csproj</code></strong>).</p>
+</li>
+<li>
+<p>Copia en el Program.cs el siguiente c&#xF3;digo de proba del que puedes leer los comentarios para entender lo que hace.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Linq</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token namespace">WeCantSpell<span class="token punctuation">.</span>Hunspell</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Program</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Cargando diccionario...\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Creo un objeto diccionario a partir del fichero donde se encuentra el mismo.</span>
+        <span class="token class-name">WordList</span> diccionario <span class="token operator">=</span> WordList<span class="token punctuation">.</span><span class="token function">CreateFromFiles</span><span class="token punctuation">(</span><span class="token string">&quot;Spanish.dic&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> palabra<span class="token punctuation">;</span>
+        <span class="token keyword">do</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce una palabra: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            palabra <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         
+
+            <span class="token class-name"><span class="token keyword">string</span></span> mensaje<span class="token punctuation">;</span>
+            <span class="token comment">// Si la palabra no est&#xE1; en el diccionario en espa&#xF1;ol.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>diccionario<span class="token punctuation">.</span><span class="token function">Check</span><span class="token punctuation">(</span>palabra<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                mensaje <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">palabra</span><span class="token punctuation">}</span></span><span class="token string"> no es correcta.\n&quot;</span></span><span class="token punctuation">;</span>
+                <span class="token comment">// Le pido al objeto diccionario en castellano que me devuelva</span>
+                <span class="token comment">// un array de sugerencias posibles a partir de la palabra introducida.</span>
+                <span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> sugerencias <span class="token operator">=</span> diccionario<span class="token punctuation">.</span><span class="token function">Suggest</span><span class="token punctuation">(</span>palabra<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>sugerencias<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    mensaje <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;&#xBF;Quisiste decir </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> sugerencias<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">?\n&quot;</span></span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">else</span>
+                mensaje <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">palabra</span><span class="token punctuation">}</span></span><span class="token string"> es correcta.\n&quot;</span></span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>palabra <span class="token operator">!=</span> <span class="token string">&quot;adios&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Puedes probar el programa, escribiendo parlabas a las que le falte alguna letra.</p>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h5 class="mume-header" id="otros-comandos-de-utilidad-del-cli-dotnet-relacionados-con-librer%C3%ADas">Otros comandos de utilidad del CLI dotnet relacionados con librer&#xED;as</h5>
+
+<ul>
+<li>
+<p>Si quisi&#xE9;ramos dejar de usar la librer&#xED;a en nuestro proyecto ejecutar&#xED;amos...</p>
+<p><strong><code>C:\PW&gt;dotnet remove package WeCantSpell.Hunspell</code></strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\PW&gt;dotnet remove package WeCantSpell.Hunspell
+info : Quitando PackageReference para el paquete &quot;WeCantSpell.Hunspell&quot; del proyecto &quot;C:\PW\MiProyectoNET.csproj&quot;.
+</code></pre></li>
+<li>
+<p>Si quisi&#xE9;ramos, actualizar o bajarnos las dependencias de un proyecto ejecutaremos...</p>
+<p><strong><code>C:\PW&gt;dotnet restore</code></strong></p>
+</li>
+<li>
+<p>Si quisi&#xE9;ramos saber las dependencias de nuestro proyecto...</p>
+<p><strong><code>C:\PW&gt;dotnet list package</code></strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\PW&gt;dotnet list package
+El proyecto &quot;ejemplo1&quot; tiene las referencias de paquete siguientes
+[&lt;framewor usado&gt;]: 
+Paquete de nivel superior      Solicitado   Resuelto
+&gt; WeCantSpell.Hunspell         3.0.1        3.0.1
+</code></pre></li>
+<li>
+<p>Si quisi&#xE9;ramos saber los repositorios de los que nos estamos bajando los paquetes...</p>
+<blockquote>
+<p><strong>Nota:</strong> Podr&#xED;amos cambiar los repositorios mediante otros comandos del CLI.</p>
+</blockquote>
+<p><strong><code>C:\PW&gt;dotnet nuget list source</code></strong></p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\PW&gt;dotnet nuget list source
 Or&#xED;genes registrados:
-  1.  nuget.org [Habilitado]
-      https://api.nuget.org/v3/index.json
-  2.  Microsoft Visual Studio Offline Packages [Habilitado]
-      C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
-</code></pre><p><a href="https://docs.microsoft.com/es-es/nuget/concepts/package-versioning">https://docs.microsoft.com/es-es/nuget/concepts/package-versioning</a></p>
-<p>WeCantSpell.Hunspell</p>
-<p>dotnet add package WeCantSpell.Hunspell --version 3.0.1</p>
-<p>dotnet list package</p>
-<p>dotnet remove package &lt;PACKAGE_NAME&gt;</p>
-<p>dotnet restore</p>
-<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1&gt;dotnet add package WeCantSpell.Hunspell --version 3.0.1
-  Determinando los proyectos que se van a restaurar...
-  Writing C:\Users\m1n1max\AppData\Local\Temp\tmpAD69.tmp
-info : Agregando PackageReference para el paquete &quot;WeCantSpell.Hunspell&quot; al proyecto &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
-info : Restaurando paquetes para C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj...
-info : El paquete &quot;WeCantSpell.Hunspell&quot; es compatible con todos los marcos de trabajo especificados del proyecto &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
-info : Se agreg&#xF3; PackageReference para la versi&#xF3;n &quot;3.0.1&quot; del paquete &quot;WeCantSpell.Hunspell&quot; al archivo &quot;C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj&quot;.
-info : Ejecutando restauraci&#xF3;n...
-info : Generaci&#xF3;n de archivo MSBuild C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\obj\ejemplo1.csproj.nuget.g.props.
-info : Escribiendo el archivo de recursos en el disco. Ruta de acceso: C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\obj\project.assets.json
-log  : Se ha restaurado C:\Users\m1n1max\Desktop\Ejemplo\ejemplo1\ejemplo1.csproj (en 187 ms).
-</code></pre>
+1.  nuget.org [Habilitado]
+    https://api.nuget.org/v3/index.json
+2.  Microsoft Visual Studio Offline Packages [Habilitado]
+    C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+</code></pre></li>
+</ul>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="creando-nuestras-propias-librer%C3%ADas">Creando nuestras propias librer&#xED;as</h3>
+
+<blockquote>
+<p>&#x3299;&#xFE0F; <strong>Notaci&#xF3;n:</strong><br>
+<strong>PW</strong> (Project Workspace) para denotar la <strong>carpeta &#x1F4C1;</strong> donde est&#xE1; ubicado el <strong>espacio de trabajo de nuestro proyecto</strong>.<br>
+<strong>SW</strong> (Solution Workspace) para denotar la <strong>carpeta &#x1F4C1;</strong> donde est&#xE1; ubicado el <strong>espacio de trabajo de nuestra soluci&#xF3;n</strong>.</p>
+</blockquote>
+<p>Vemos loa pasos para hacerlo con el CLI <strong><code>dotnet</code></strong>:</p>
+<p>Imaginemos que queremos crear una librer&#xED;a llamada <strong><code>MiLibreria.dll</code></strong> donde definiremos diferentes clases o tipos a usar en nuestro programa y que adem&#xE1;s podr&#xE1;n ser reusables por otros programas.</p>
+<ol>
+<li>
+<p>Vamos a la carpeta donde est&#xE9; ubicada nuestra soluci&#xF3;n y creamos un proyecto de librer&#xED;a de clases con ...</p>
+<p><strong><code>C:\SW&gt;dotnet new classlib -n MiLibreria</code></strong></p>
+</li>
+<li>
+<p>Con la misma sint&#xE1;xis que vimos en temas anteriores, agregaremos un nuevo proyecto a nuestra soluci&#xF3;n con...</p>
+<p><strong><code>C:\SW&gt;dotnet sln add .\MiLibreria\MiLibreria.csproj</code></strong></p>
+</li>
+</ol>
+<p><mark><strong>CAPTURAR IM&#xC1;GENES PARA INDICAR C&#xD3;MO SE HAR&#xCD;A CON EL SOLUTION EXPLORER</strong></mark></p>
+<ol start="3">
+<li>
+<p>Dentro del proyecto de la librer&#xED;a de clases, el espacio de nombres por defecto para empaquetar nuestras clases ser&#xE1; el mismo nombre de la librer&#xED;a en este caso <strong><code>MiLibreria</code></strong>.</p>
+<ul>
+<li><strong>No deberemos tener ning&#xFA;n m&#xE9;todo Main()</strong> pues no se trata de un ejecutable.</li>
+<li>Podremos definir otros <strong>subespacios de nombres</strong> para agrupar nuestras clases en paquetes m&#xE1;s espec&#xED;ficos.
+<blockquote>
+<p><strong>Nota:</strong> En alg&#xFA;n momento alg&#xFA;no de estos subpaquetes podr&#xED;a ir a una nueva librer&#xED;a.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Vamos a&#xF1;adir una clase de utilidad en la librer&#xED;a para ampliar las funcionalidades desde la entrada por la consola. Para ello copia el c&#xF3;digo siguiente&#x2026;.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token namespace">MiLibreria</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConsolaAmpliada</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> label<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>label <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">label</span><span class="token punctuation">}</span></span><span class="token string">: &quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">LeeLinea</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">bool</span></span> hidden <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> text <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+            <span class="token keyword">do</span>
+            <span class="token punctuation">{</span>
+                <span class="token class-name">ConsoleKeyInfo</span> key <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>key<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Backspace <span class="token operator">&amp;&amp;</span> key<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    text <span class="token operator">+=</span> key<span class="token punctuation">.</span>KeyChar<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>hidden <span class="token punctuation">?</span> <span class="token string">&quot;*&quot;</span> <span class="token punctuation">:</span> key<span class="token punctuation">.</span>KeyChar<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>key<span class="token punctuation">.</span>Key <span class="token operator">==</span> ConsoleKey<span class="token punctuation">.</span>Backspace <span class="token operator">&amp;&amp;</span> text<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">{</span>
+                        text <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">Substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>text<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;\b \b&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key<span class="token punctuation">.</span>Key <span class="token operator">==</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span>
+                    <span class="token punctuation">{</span>
+                        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> text<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">LeePassword</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">bool</span></span> hidden <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">LeePassword</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> hidden<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">LeePassword</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> label<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">bool</span></span> hidden <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> passWord<span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">bool</span></span> valid<span class="token punctuation">;</span>                
+            <span class="token keyword">do</span>
+            <span class="token punctuation">{</span>
+                <span class="token function">Muestra</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                passWord <span class="token operator">=</span> <span class="token function">LeeLinea</span><span class="token punctuation">(</span>hidden<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                valid <span class="token operator">=</span> passWord<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>valid<span class="token punctuation">)</span>
+                    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;El password debe tener una al menos un car&#xE1;cter.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>valid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> passWord<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ol>
+
       </div>
       
       
