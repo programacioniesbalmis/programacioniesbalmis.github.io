@@ -344,11 +344,351 @@ justo después del front matter
 <h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
 
 <ol>
-<li><a href="#pppppp">PPPPPP</a></li>
+<li><a href="#profundizando-en-la-programaci%C3%B3n-orientada-a-objetos">Profundizando en la Programaci&#xF3;n Orientada a Objetos</a>
+<ol>
+<li><a href="#diferentes-polimorfismos-diferentes-formas">Diferentes Polimorfismos Diferentes Formas</a>
+<ol>
+<li><a href="#definiciones-de-polimorfismo">Definiciones de polimorfismo</a></li>
+<li><a href="#par%C3%A1metros-opcionales-o-por-defecto">Par&#xE1;metros opcionales o por defecto</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="pppppp">PPPPPP</h2>
+<h2 class="mume-header" id="profundizando-en-la-programaci%C3%B3n-orientada-a-objetos">Profundizando en la Programaci&#xF3;n Orientada a Objetos</h2>
 
+<h3 class="mume-header" id="diferentes-polimorfismos-diferentes-formas">Diferentes Polimorfismos Diferentes Formas</h3>
+
+<h4 class="mume-header" id="definiciones-de-polimorfismo">Definiciones de polimorfismo</h4>
+
+<ol>
+<li>
+<p><strong>Polimorfismo datos o inclusi&#xF3;n</strong></p>
+<ul>
+<li><strong>Ya lo hemos visto</strong> cuando estudiamos el concepto de herencia y downcasting. Se basa en el Upcasting o <strong>Principio de Sustituci&#xF3;n de Liskov</strong></li>
+<li>Es de datos porque, tenemos un objeto o dato con diferentes formas dependiendo del tipo con que lo referenciemos.</li>
+<li>Adem&#xE1;s de este, tendremos otras formas de polimorfismo...</li>
+</ul>
+</li>
+<li>
+<p><strong>Polimorfismo param&#xE9;trico o tipos gen&#xE9;ricos</strong></p>
+<ul>
+<li>Lo vamos a tratar m&#xE1;s adelante en este tema 9.</li>
+</ul>
+</li>
+<li>
+<p><strong>Polimorfismo funcional o sobrecarga</strong></p>
+<ul>
+<li>
+<p>Al igual que el de datos, <strong>ya lo hemos visto</strong> y usado con anterioridad. Pero ahora es cuando lo definiremos formalmente como una caracter&#xED;stica de los lenguajes OO.</p>
+</li>
+<li>
+<p>Es la <strong>capacidad de definir operaciones o m&#xE9;todos con el mismo identificador</strong> o nombre. Siempre y cuando, la signatura cambie.</p>
+</li>
+<li>
+<p>Recuerda que en C# dos m&#xE9;todos tienen diferente signatura si:</p>
+<ul>
+<li>Tienen diferente tipo de retorno.</li>
+<li>Tienen diferente n&#xFA;mero de par&#xE1;metros.</li>
+<li>Teniendo el mismo n&#xFA;mero de par&#xE1;metros y alg&#xFA;n tipo es diferente.</li>
+<li>Teniendo el mismo n&#xFA;mero de par&#xE1;metros y el mismo tipo alguno tiene el modificador ref o out.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name">Class</span> SobrecargaValida 
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoA</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoA</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token class-name"><span class="token keyword">int</span></span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name">Class</span> SobrecargaInvalida 
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoA</span><span class="token punctuation">(</span><span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">int</span></span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoA</span><span class="token punctuation">(</span><span class="token keyword">ref</span> <span class="token class-name"><span class="token keyword">int</span></span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ul>
+ <div style="page-break-after:always;"></div>
+<ul>
+<li>
+<p><strong>&#xBF;Para qu&#xE9; se usa el polimorfismo funcional?</strong></p>
+<ul>
+<li>Por ejemplo, lo venimos cuando tuvimos que <strong>definir varios constructores</strong> en una clase.</li>
+<li>Para <strong>evitar el uso de par&#xE1;metros opcionales o por defecto</strong> en los m&#xE9;todos.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 class="mume-header" id="par%C3%A1metros-opcionales-o-por-defecto">Par&#xE1;metros opcionales o por defecto</h4>
+
+<p>Una llamada a un m&#xE9;todo debe proporcionar los argumentos reales para todos los par&#xE1;metros, sin embargo <strong>se pueden omitir aquellos argumentos</strong> de <a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments">par&#xE1;metros opcionales</a>.</p>
+<p>&#x270B; Los par&#xE1;metros opcionales <strong>se definen al final de la lista de par&#xE1;metros</strong> despu&#xE9;s de los par&#xE1;metros necesarios. Si el autor de la llamada proporciona un argumento para alg&#xFA;n par&#xE1;metro de una sucesi&#xF3;n de par&#xE1;metros opcionales, <strong>debe proporcionar argumentos para todos los par&#xE1;metros opcionales anteriores</strong> o en su lugar indicar el identificador del par&#xE1;metro formal.</p>
+<p>Veamos esto &#xFA;ltimo a trav&#xE9;s de un <strong>ejemplo</strong>, de sintaxis:</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5,15]}" class="language-csharp" data-line="5,15"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Ejemplo</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> cadenaRequerida<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> enteroRequerido<span class="token punctuation">,</span>    <span class="token comment">// No puedo definir ning&#xFA;n opcional antes del &#xFA;ltimo requerido.</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> cadenaOpcional <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> enteroOpcional <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span> 
+            <span class="token punctuation">{</span> <span class="token range operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&quot;Cadena Opcional&quot;</span><span class="token punctuation">,</span> <span class="token number">33</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Correcto</span>
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">&quot;Cadena Opcional&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Correcto enteroOpcional = 10</span>
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                        <span class="token comment">// Correcto cadenaOpcional = &quot;&quot; y enteroOpcional = 10</span>
+        <span class="token comment">// Si sabemos el nombre del identificador del par&#xE1;metro en el m&#xE9;todo...</span>
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">enteroOpcional</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// Correcto cadenaOpcional = &quot;&quot;</span>
+
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                    <span class="token comment">// Incorrecto</span>
+        <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token string">&quot;Cadena obligatoria&quot;</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// Incorrecto</span>
+    <span class="token punctuation">}</span>   
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+</div></div></pre><p>Se pueden definir en multitud de lenguajes como C#, Python, PHP, Javascript, Kotlin, etc. Sin embargo <strong>Java no los permite</strong> porque tienen inconvenientes:</p>
+<ul>
+<li>&#x1F480; Mal usados, <strong>pueden dar lugar a baja cohesi&#xF3;n</strong> (m&#xE9;todos &apos;<em>navaja suiza</em>&apos; o que hacen muchas cosas seg&#xFA;n los par&#xE1;metros que le lleguen).</li>
+<li>Ralentizan la ejecuci&#xF3;n.</li>
+<li>Lleva a confusi&#xF3;n a los usuarios de una clase.</li>
+</ul>
+<blockquote>
+<p>&#x270B; <strong>Importante:</strong> Por las razones anteriores. <strong>No deber&#xED;amos usarlos en m&#xE9;todos <mark>p&#xFA;blicos</mark></strong>. (<em>&#x1F441; f&#xED;jate que Microsoft apenas los usa en sus BCL y s&#xED; la sobrecarga</em>)</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+<p>Vamos a tratar un ejemplo de como evitar par&#xE1;metros opcionales en los m&#xE9;todos p&#xFA;blicos o <strong>en lenguajes que no nos los permitan como Java</strong> a trav&#xE9;s de C#.</p>
+<p>Si recordamos de temas anteriores, definimos una estructura <strong><code>Punto2D</code></strong> que ahora va a tener ahora el m&#xE9;todo <strong><code>Desplaza</code></strong> con el valor del &#xE1;ngulo a 0 de forma opcional.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=8}" class="language-csharp" data-line="8"><span class="token keyword">struct</span> <span class="token class-name">Punto2D</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">double</span></span> X<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">double</span></span> Y<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Punto2D</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">double</span></span> x<span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">double</span></span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span> Y <span class="token operator">=</span> y<span class="token punctuation">;</span> X <span class="token operator">=</span> x<span class="token punctuation">;</span> <span class="token punctuation">}</span> 
+   
+    <span class="token keyword">public</span> <span class="token return-type class-name">Punto2D</span> <span class="token function">Desplaza</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">double</span></span> distancia<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> anguloGrados <span class="token operator">=</span> <span class="token number">0D</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloRadianes <span class="token operator">=</span> anguloGrados <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180d</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> fila <span class="token operator">=</span> Y <span class="token operator">+</span> distancia <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRadianes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> columna <span class="token operator">=</span> X <span class="token operator">+</span> distancia <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRadianes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Punto2D</span><span class="token punctuation">(</span>fila<span class="token punctuation">,</span> columna<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">X</span><span class="token format-string"><span class="token punctuation">:</span>G2</span><span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Y</span><span class="token format-string"><span class="token punctuation">:</span>G2</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">;</span> <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div></pre><p>Ahora en un programa podr&#xED;amos instancias un objeto valor Punto2D<br>
+<strong><code>Punto2D p = new Punto2D(2D, 4D);</code></strong><br>
+y continuaci&#xF3;n hacer ...<br>
+<strong><code>p.Desplaza(4D);</code></strong><br>
+Como el par&#xE1;metro formal <strong><code>anguloGrados</code></strong> es opcional, podremos llamar al m&#xE9;todo <strong><code>Desplaza</code></strong> sin especificarlo y en ese caso caso tomar&#xE1; su valor por defecto <strong><code>0D</code></strong> grados, desplazando el punto 4 unidades a la derecha.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio (continuaci&#xF3;n...)</strong></p>
+<p>&#x1F4A1; &#xBF;C&#xF3;mo deber&#xED;amos refactorizar el c&#xF3;digo anterior <strong>usando polimorfismo funcional</strong> o sobrecarga?</p>
+<p>La forma m&#xE1;s com&#xFA;n ser&#xED;a la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5, 13-23]}" class="language-csharp" data-line="5,13-23"><span class="token keyword">struct</span> <span class="token class-name">Punto2D</span>
+<span class="token punctuation">{</span>    
+    <span class="token comment">// Definimos como privado el m&#xE9;todo a sobrecargar para no repetir el c&#xF3;digo</span>
+    <span class="token comment">// adem&#xE1;s para que no haya conflicto de nombres le ponemos un _</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name">Punto2D</span> <span class="token function">_Desplaza</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">double</span></span> distancia<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> anguloGrados<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> anguloRadianes <span class="token operator">=</span> anguloGrados <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180d</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> fila <span class="token operator">=</span> Y <span class="token operator">+</span> distancia <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRadianes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> columna <span class="token operator">=</span> X <span class="token operator">+</span> distancia <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRadianes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Punto2D</span><span class="token punctuation">(</span>fila<span class="token punctuation">,</span> columna<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Definimos las sobrecargas p&#xFA;blicas, con los par&#xE1;metros posibles.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">Punto2D</span> <span class="token function">Desplaza</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">ushort</span></span> numPosiciones<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Aqu&#xED; decidiremos el valor por defecto.</span>
+        <span class="token keyword">return</span> <span class="token function">_Desplaza</span><span class="token punctuation">(</span>numPosiciones<span class="token punctuation">,</span> <span class="token number">0d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name">Punto2D</span> <span class="token function">Desplaza</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">ushort</span></span> numPosiciones<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> angulo<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">_Desplaza</span><span class="token punctuation">(</span>numPosiciones<span class="token punctuation">,</span> angulo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13-23" data-start="13" data-end="23">
+
+
+
+
+
+
+
+
+
+
+</div></div></pre></blockquote>
+<div style="page-break-after:always;"></div>
+<hr>
+<p><mark><strong>EN CONSTRUCCION PROPIEDADES</strong></mark></p>
+<p><mark><strong>DE LA PRESENTACION</strong></mark></p>
+<p>Encapsulaci&#xF3;n<br>
+Objetivos<br>
+&#x2022; Evitar que un cliente de mis clases puedan dejar objetos instanciados de las mismas en un estado inadecuado.<br>
+&#x2022; Ocultar detalles de la implementaci&#xF3;n de una clase.<br>
+&#x2022; Realizar cambios o actualizaciones en la clases sin preocuparnos c&#xF3;mo est&#xE1;n siendo usadas.<br>
+&#x2022; Ya hemos usado la encapsulaci&#xF3;n, marcando los atributos como privados y a trav&#xE9;s del uso de accesores y mutadores.</p>
+<p>Encapsulaci&#xF3;n<br>
+Recordemos los modificadores de acceso que hay para clases, tipos, atributos y m&#xE9;todos.<br>
+&#x2022; private: Accesible solo desde la clase. Es lo que debemos poner por defecto.<br>
+&#x2022; public: Accesible por todos.<br>
+&#x2022; protected:  Accesible solo desde la clase o las subclases.<br>
+&#x2022; internal: Accesible solo desde clases del ensamblado o paquete actual.<br>
+&#x2022; protected internal: Accesible solo desde clases del paquete actual y adem&#xE1;s sean subclases de la clase donde se ha definido.<br>
+Encapsulaci&#xF3;n<br>
+Propiedades en C# - I<br>
+&#x2022; Hasta ahora hemos utilizado la sintaxis de otros lenguajes como Java, C++ , php, etc&#x2026; para definir los accesores y mutadores.</p>
+<p><tipo> get<idatributo>() {<br>
+return <idatributo><br>
+}<br>
+void set<idatributo>(<tipo> <idatributo>) {<br>
+this.<idatributo>  = <idatributo><br>
+}</idatributo></idatributo></idatributo></tipo></idatributo></idatributo></idatributo></tipo></p>
+<pre class="language-text">&#x2022; Las propiedades son un &quot;azucar sint&#xE1;ctico&quot; incluido por el lenguaje C# para usarlos y de esta manera implementar la encapsulaci&#xF3;n.
+</pre>
+<p><tipo> <idatributo> {<br>
+set {<br>
+<idatributo> = value;<br>
+}<br>
+get {<br>
+return <idatributo>;<br>
+}<br>
+}<br>
+Encapsulaci&#xF3;n<br>
+Propiedades en C# - II<br>
+&#x2022; Por ejemplo, para nuestro atributo fila en la clase PuntoConsola hac&#xED;amos&#x2026;.<br>
+public void SetFila(ushort fila) {<br>
+if (fila &gt; 24)<br>
+throw new ArgumentException(&quot;fila &gt; columna 24&quot;);<br>
+this.fila = fila;<br>
+}<br>
+private ushort getFila() {<br>
+return fila;<br>
+}<br>
+&#x2022; Si los definimos como una propiedad en C# haremos&#x2026;<br>
+public ushort Fila {<br>
+set {<br>
+if (value &gt; 24)<br>
+throw new ArgumentException(&quot;fila &gt; columna 24&quot;);<br>
+fila = value;<br>
+}<br>
+private get {<br>
+return fila;<br>
+}<br>
+}<br>
+Encapsulaci&#xF3;n<br>
+Propiedades en C# - III<br>
+&#x2022; Podremos definir solo uno de los dos, set o get y estar&#xE1;n afectadas por los modificadores de accesibilidad como el resto de m&#xE9;todos.<br>
+&#xBF; C&#xF3;mo usaremos la propiedad cuando instanciemos un objeto de la clase PuntoConsola ?<br>
+&#x2022; Para nosotros sint&#xE1;cticamente, es como si estuvieramos accediendo directamente al atributo.</idatributo></idatributo></idatributo></tipo></p>
+<p>PuntoConsola punto = new PuntoConsola(2, 4);</p>
+<p>Console.WriteLine(punto.Fila); // Solo se podr&#xE1; acceder a la<br>
+// propiedad Fila dentro de la clase.<br>
+// Por estar marcado el set como private.</p>
+<p>punto.Fila = 12; // Cambiaremos el valor de la fila a 12.<br>
+// Internamente se llama al set</p>
+<p>punto.Fila = 25; // Generar&#xE1; un ArgumentException</p>
+<p>Encapsulaci&#xF3;n<br>
+Propiedades autoimplementadas a partir de C# 3.0 - IV<br>
+&#x2022; A partir de C# 3.0 , aparecen las propiedades autoimplementadas que hacen que la declaraci&#xF3;n de propiedad sea m&#xE1;s concisa cuando no se requiere ninguna l&#xF3;gica adicional en los descriptores de acceso de la propiedad.<br>
+&#x2022; <a href="https://msdn.microsoft.com/es-es/library/bb384054.aspx">https://msdn.microsoft.com/es-es/library/bb384054.aspx</a></p>
+<p><mark><strong>DE LOS APUNTES DE XUSA</strong></mark></p>
+<p>Una propiedad es una mezcla entre el concepto de campo y el concepto de m&#xE9;todo. Externamente es accedida como si de un campo normal se tratase, pero internamente es posible asociar c&#xF3;digo a ejecutar en cada asignaci&#xF3;n o lectura de su valor. Es la forma de implementar los m&#xE9;todos de acceso (accesores) y actualizaci&#xF3;n (mutadores), que permiten trabajar de forma segura con los atributos privados en c#.</p>
+<pre class="language-text">         Su sintaxis es la siguiente: 
+</pre>
+<p><tipopropiedad> <nombrepropiedad><br>
+{<br>
+set<br>
+{<br>
+Atributo = value;<br>
+}<br>
+get<br>
+{<br>
+return Atributo;<br>
+}<br>
+}<br>
+set Es un m&#xE9;todo de actualizaci&#xF3;n y el valor del atributo nos llega en un par&#xE1;metro especial denominado value. get Es un m&#xE9;todo de acceso. En una propiedad al menos uno de los dos debe estar definido. Es decir, podremos definir solo uno de los dos, set o get y estar&#xE1;n afectadas por los modificadores de accesibilidad como el resto de m&#xE9;todos.</nombrepropiedad></tipopropiedad></p>
+<p>NOMENCLATURA: Si el nombre del atributo coincide con la propiedad, el atributo ir&#xE1; en camel Casing y puede ir precedido del car&#xE1;cter &apos;_&apos; y la propiedad toma el nombre del atributo en Pascal Casing.</p>
+<p>Ejemplo:<br>
+Para acceder o cambiar el atributo Fila de nuestra clase PuntoConsola con una propiedad, en primer lugar cambiaremos el nombre del atributo Fila por fila o por _fila. Despu&#xE9;s a&#xF1;adiremos la siguiente propiedad:</p>
+<p>public ushort Fila<br>
+{<br>
+set { if(value &lt;= 24) fila = value;}<br>
+get { return fila;  }<br>
+}</p>
+<p>Si en el Main() ponemos:<br>
+Console.WriteLine(punto.Fila); // Veremos el valor de la fila.  Internamente se llama al get<br>
+punto.Fila = 12; // Cambiaremos el valor de la fila a 12.  Internamente se llama al set</p>
+<p>En C# 3.0 y versiones posteriores, aparecen las propiedades autoimplementadas que hacen que la declaraci&#xF3;n de propiedad sea m&#xE1;s concisa cuando no se requiere ninguna l&#xF3;gica adicional en los descriptores de acceso de la propiedad. Al declarar una propiedad tal y como se muestra en el ejemplo siguiente, el compilador crea un campo de respaldo privado y an&#xF3;nimo al que solamente puede obtenerse acceso a trav&#xE9;s de los descriptores de acceso get y set de la propiedad.<br>
+class Trabajo<br>
+{<br>
+// Propiedades autoimplementables<br>
+public double SueldoTotal { get; set; }<br>
+public string Nombre { get; set; }<br>
+public int Identificador { get; set; }</p>
+<pre class="language-text">    // Constructor
+    public Trabajo(double sueldo, string nombre, int id)
+    {       
+       this.SueldoTotal= sueldo;
+       Nombre = nombre;
+       this.Identificador = id;
+    }
+</pre>
+<p>}</p>
+<p>class Program<br>
+{</p>
+<pre class="language-text">    static void Main()
+    {
+        Trabajo trabajador = new Trabajo(4987.63, &quot;Alicante&quot;, 
+                                         90108);
+        trabajador.SueldoTotal += 499.99; 
+    }
+}
+</pre>
 
       </div>
       

@@ -372,6 +372,7 @@ justo después del front matter
 </ol>
 </li>
 <li><a href="#creando-nuestras-propias-librer%C3%ADas">Creando nuestras propias librer&#xED;as</a></li>
+<li><a href="#encapsulaci%C3%B3n-en-paquetes-de-librer%C3%ADas">Encapsulaci&#xF3;n en paquetes de librer&#xED;as</a></li>
 <li><a href="#gestionando-dependencias-entre-librer%C3%ADas">Gestionando dependencias entre librer&#xED;as</a>
 <ol>
 <li><a href="#evitar-dependencias-circulares">Evitar dependencias circulares</a></li>
@@ -706,7 +707,7 @@ Country: ES
         <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             <span class="token class-name">ClaseA1</span> a1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">Clasea2</span> a2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">ClaseA2</span> a2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ClaseA2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token range operator">..</span><span class="token punctuation">.</span>
         <span class="token punctuation">}</span>
         <span class="token range operator">..</span><span class="token punctuation">.</span>
@@ -1426,7 +1427,78 @@ En clase varemos con m&#xE1;s detenimiento c&#xF3;mo usarla.</p>
 <div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
 </div></div></pre></li>
 </ol>
-<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="encapsulaci%C3%B3n-en-paquetes-de-librer%C3%ADas">Encapsulaci&#xF3;n en paquetes de librer&#xED;as</h3>
+
+<p>Posiblemente ya te hayas fijado pero en todos nuestros ejemplos hemos antepuesto el modificador de acceso <strong><code>public</code></strong> a la definici&#xF3;n de nuestras clases. Esto sucede porque, al igual que en nuestras clases, podemos definir cierto grado de <em>&apos;<strong>encapsulaci&#xF3;n</strong>&apos;</em> para la definici&#xF3;n de los tipos y clases en los paquetes.</p>
+<blockquote>
+<p>&#x270B; <strong>Importante:</strong> De esta manera evitaremos el uso inapropiado por parte de terceros de nuestras clases auxiliares o tipos internos y as&#xED; generar <strong>dependencias innecesarias</strong>.</p>
+</blockquote>
+<p>Para ellos usaremos los siguiente modificadores de acceso antepuestos a la definici&#xF3;n de nuestros tipos:</p>
+<ol>
+<li>
+<p><strong>private</strong>: El tipo o la clase solo puede ser usada <strong>dentro del paquete</strong> o namespace donde se define.</p>
+</li>
+<li>
+<p><strong>internal</strong>: El tipo o la clase solo puede ser usada <strong>dentro del ensamblado</strong> o librer&#xED;a donde se define. Pero s&#xED; se puede usar en cualquier paquete dentro ensamblado.</p>
+</li>
+<li>
+<p><strong>public</strong>: El tipo o la clase se podr&#xE1; usar en cualquier &#xE1;mbito.</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3, 11, 17]}" class="language-csharp" data-line="3,11,17"><span class="token keyword">namespace</span> <span class="token namespace">MiLibreria</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClasePublica</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Se podr&#xE1; usar en cualquier sitio que hagamos un using del namespace.</span>
+        <span class="token comment">// tanto fuera como dentro del ensamblado.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">namespace</span> <span class="token namespace">MisTipos</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">internal</span> <span class="token keyword">struct</span> <span class="token class-name">ClaseValorInmutableDelEnsamblado</span> 
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Se podr&#xE1; usar SOLO dentro de este ensamblado siempre que hagamos un</span>
+            <span class="token comment">// using MiLibreria.MisTipos si estamos fuera del paquete MiLibreria.</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">private</span> <span class="token keyword">enum</span> <span class="token class-name">EnumDelPaquete</span> 
+        <span class="token punctuation">{</span> 
+            <span class="token comment">// Solo se puede usar dentro de MisTipos</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div></pre><div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="gestionando-dependencias-entre-librer%C3%ADas">Gestionando dependencias entre librer&#xED;as</h3>
 
 <h4 class="mume-header" id="evitar-dependencias-circulares">Evitar dependencias circulares</h4>
