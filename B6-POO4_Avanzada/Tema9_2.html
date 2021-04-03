@@ -352,6 +352,25 @@ justo después del front matter
 <li><a href="#par%C3%A1metros-opcionales-o-por-defecto">Par&#xE1;metros opcionales o por defecto</a></li>
 </ol>
 </li>
+<li><a href="#propiedades-en-c">Propiedades en C#</a>
+<ol>
+<li><a href="#recordando-que-era-la-encapsulaci%C3%B3n">Recordando que era la encapsulaci&#xF3;n</a></li>
+<li><a href="#encapsulaci%C3%B3n-a-trav%C3%A9s-de-propiedades">Encapsulaci&#xF3;n a trav&#xE9;s de propiedades</a>
+<ol>
+<li><a href="#usando-las-propiedades-definidas">Usando las propiedades definidas</a></li>
+<li><a href="#evoluci%C3%B3n-del-uso-de-propiedades-a-lo-largo-del-tiempo">Evoluci&#xF3;n del uso de propiedades a lo largo del tiempo</a></li>
+<li><a href="#miembros-con-cuerpo-de-expresi%C3%B3n">Miembros con cuerpo de expresi&#xF3;n</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#sobrecarga-o-redefinici%C3%B3n-de-operadores">Sobrecarga o redefinici&#xF3;n de operadores</a>
+<ol>
+<li><a href="#operadores-binarios">Operadores binarios</a></li>
+<li><a href="#operadores-cast">Operadores cast</a></li>
+<li><a href="#caso-espec%C3%ADfico-del-operador-unario-de-pre-y-post-incremetodecremento">Caso espec&#xED;fico del operador unario de pre y post incremeto/Decremento</a></li>
+</ol>
+</li>
 </ol>
 </li>
 </ol>
@@ -423,7 +442,7 @@ justo después del front matter
 <p>Una llamada a un m&#xE9;todo debe proporcionar los argumentos reales para todos los par&#xE1;metros, sin embargo <strong>se pueden omitir aquellos argumentos</strong> de <a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments">par&#xE1;metros opcionales</a>.</p>
 <p>&#x270B; Los par&#xE1;metros opcionales <strong>se definen al final de la lista de par&#xE1;metros</strong> despu&#xE9;s de los par&#xE1;metros necesarios. Si el autor de la llamada proporciona un argumento para alg&#xFA;n par&#xE1;metro de una sucesi&#xF3;n de par&#xE1;metros opcionales, <strong>debe proporcionar argumentos para todos los par&#xE1;metros opcionales anteriores</strong> o en su lugar indicar el identificador del par&#xE1;metro formal.</p>
 <p>Veamos esto &#xFA;ltimo a trav&#xE9;s de un <strong>ejemplo</strong>, de sintaxis:</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[5,15]}" class="language-csharp" data-line="5,15"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Ejemplo</span> <span class="token punctuation">{</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5,13]}" class="language-csharp" data-line="5,13"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Ejemplo</span> <span class="token punctuation">{</span>
     <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span>
             <span class="token class-name"><span class="token keyword">string</span></span> cadenaRequerida<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> enteroRequerido<span class="token punctuation">,</span>    <span class="token comment">// No puedo definir ning&#xFA;n opcional antes del &#xFA;ltimo requerido.</span>
             <span class="token class-name"><span class="token keyword">string</span></span> cadenaOpcional <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> enteroOpcional <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span> 
@@ -456,9 +475,7 @@ justo después del front matter
 
 
 
-
-
-<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
 </div></div></pre><p>Se pueden definir en multitud de lenguajes como C#, Python, PHP, Javascript, Kotlin, etc. Sin embargo <strong>Java no los permite</strong> porque tienen inconvenientes:</p>
 <ul>
 <li>&#x1F480; Mal usados, <strong>pueden dar lugar a baja cohesi&#xF3;n</strong> (m&#xE9;todos &apos;<em>navaja suiza</em>&apos; o que hacen muchas cosas seg&#xFA;n los par&#xE1;metros que le lleguen).</li>
@@ -562,133 +579,618 @@ Como el par&#xE1;metro formal <strong><code>anguloGrados</code></strong> es opci
 
 
 </div></div></pre></blockquote>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">&quot;</div>
+        <div class="cierra_comilla">&quot;</div>
+        <div class="cita">Controlling complexity is the essence of computer programming.</div>
+        <div class="autor">- Brian Kernighan.</div>
+    </div>
+</div>
 <div style="page-break-after:always;"></div>
-<hr>
-<p><mark><strong>EN CONSTRUCCION PROPIEDADES</strong></mark></p>
-<p><mark><strong>DE LA PRESENTACION</strong></mark></p>
-<p>Encapsulaci&#xF3;n<br>
-Objetivos<br>
-&#x2022; Evitar que un cliente de mis clases puedan dejar objetos instanciados de las mismas en un estado inadecuado.<br>
-&#x2022; Ocultar detalles de la implementaci&#xF3;n de una clase.<br>
-&#x2022; Realizar cambios o actualizaciones en la clases sin preocuparnos c&#xF3;mo est&#xE1;n siendo usadas.<br>
-&#x2022; Ya hemos usado la encapsulaci&#xF3;n, marcando los atributos como privados y a trav&#xE9;s del uso de accesores y mutadores.</p>
-<p>Encapsulaci&#xF3;n<br>
-Recordemos los modificadores de acceso que hay para clases, tipos, atributos y m&#xE9;todos.<br>
-&#x2022; private: Accesible solo desde la clase. Es lo que debemos poner por defecto.<br>
-&#x2022; public: Accesible por todos.<br>
-&#x2022; protected:  Accesible solo desde la clase o las subclases.<br>
-&#x2022; internal: Accesible solo desde clases del ensamblado o paquete actual.<br>
-&#x2022; protected internal: Accesible solo desde clases del paquete actual y adem&#xE1;s sean subclases de la clase donde se ha definido.<br>
-Encapsulaci&#xF3;n<br>
-Propiedades en C# - I<br>
-&#x2022; Hasta ahora hemos utilizado la sintaxis de otros lenguajes como Java, C++ , php, etc&#x2026; para definir los accesores y mutadores.</p>
-<p><tipo> get<idatributo>() {<br>
-return <idatributo><br>
-}<br>
-void set<idatributo>(<tipo> <idatributo>) {<br>
-this.<idatributo>  = <idatributo><br>
-}</idatributo></idatributo></idatributo></tipo></idatributo></idatributo></idatributo></tipo></p>
-<pre class="language-text">&#x2022; Las propiedades son un &quot;azucar sint&#xE1;ctico&quot; incluido por el lenguaje C# para usarlos y de esta manera implementar la encapsulaci&#xF3;n.
-</pre>
-<p><tipo> <idatributo> {<br>
-set {<br>
-<idatributo> = value;<br>
-}<br>
-get {<br>
-return <idatributo>;<br>
-}<br>
-}<br>
-Encapsulaci&#xF3;n<br>
-Propiedades en C# - II<br>
-&#x2022; Por ejemplo, para nuestro atributo fila en la clase PuntoConsola hac&#xED;amos&#x2026;.<br>
-public void SetFila(ushort fila) {<br>
-if (fila &gt; 24)<br>
-throw new ArgumentException(&quot;fila &gt; columna 24&quot;);<br>
-this.fila = fila;<br>
-}<br>
-private ushort getFila() {<br>
-return fila;<br>
-}<br>
-&#x2022; Si los definimos como una propiedad en C# haremos&#x2026;<br>
-public ushort Fila {<br>
-set {<br>
-if (value &gt; 24)<br>
-throw new ArgumentException(&quot;fila &gt; columna 24&quot;);<br>
-fila = value;<br>
-}<br>
-private get {<br>
-return fila;<br>
-}<br>
-}<br>
-Encapsulaci&#xF3;n<br>
-Propiedades en C# - III<br>
-&#x2022; Podremos definir solo uno de los dos, set o get y estar&#xE1;n afectadas por los modificadores de accesibilidad como el resto de m&#xE9;todos.<br>
-&#xBF; C&#xF3;mo usaremos la propiedad cuando instanciemos un objeto de la clase PuntoConsola ?<br>
-&#x2022; Para nosotros sint&#xE1;cticamente, es como si estuvieramos accediendo directamente al atributo.</idatributo></idatributo></idatributo></tipo></p>
-<p>PuntoConsola punto = new PuntoConsola(2, 4);</p>
-<p>Console.WriteLine(punto.Fila); // Solo se podr&#xE1; acceder a la<br>
-// propiedad Fila dentro de la clase.<br>
-// Por estar marcado el set como private.</p>
-<p>punto.Fila = 12; // Cambiaremos el valor de la fila a 12.<br>
-// Internamente se llama al set</p>
-<p>punto.Fila = 25; // Generar&#xE1; un ArgumentException</p>
-<p>Encapsulaci&#xF3;n<br>
-Propiedades autoimplementadas a partir de C# 3.0 - IV<br>
-&#x2022; A partir de C# 3.0 , aparecen las propiedades autoimplementadas que hacen que la declaraci&#xF3;n de propiedad sea m&#xE1;s concisa cuando no se requiere ninguna l&#xF3;gica adicional en los descriptores de acceso de la propiedad.<br>
-&#x2022; <a href="https://msdn.microsoft.com/es-es/library/bb384054.aspx">https://msdn.microsoft.com/es-es/library/bb384054.aspx</a></p>
-<p><mark><strong>DE LOS APUNTES DE XUSA</strong></mark></p>
-<p>Una propiedad es una mezcla entre el concepto de campo y el concepto de m&#xE9;todo. Externamente es accedida como si de un campo normal se tratase, pero internamente es posible asociar c&#xF3;digo a ejecutar en cada asignaci&#xF3;n o lectura de su valor. Es la forma de implementar los m&#xE9;todos de acceso (accesores) y actualizaci&#xF3;n (mutadores), que permiten trabajar de forma segura con los atributos privados en c#.</p>
-<pre class="language-text">         Su sintaxis es la siguiente: 
-</pre>
-<p><tipopropiedad> <nombrepropiedad><br>
-{<br>
-set<br>
-{<br>
-Atributo = value;<br>
-}<br>
-get<br>
-{<br>
-return Atributo;<br>
-}<br>
-}<br>
-set Es un m&#xE9;todo de actualizaci&#xF3;n y el valor del atributo nos llega en un par&#xE1;metro especial denominado value. get Es un m&#xE9;todo de acceso. En una propiedad al menos uno de los dos debe estar definido. Es decir, podremos definir solo uno de los dos, set o get y estar&#xE1;n afectadas por los modificadores de accesibilidad como el resto de m&#xE9;todos.</nombrepropiedad></tipopropiedad></p>
-<p>NOMENCLATURA: Si el nombre del atributo coincide con la propiedad, el atributo ir&#xE1; en camel Casing y puede ir precedido del car&#xE1;cter &apos;_&apos; y la propiedad toma el nombre del atributo en Pascal Casing.</p>
-<p>Ejemplo:<br>
-Para acceder o cambiar el atributo Fila de nuestra clase PuntoConsola con una propiedad, en primer lugar cambiaremos el nombre del atributo Fila por fila o por _fila. Despu&#xE9;s a&#xF1;adiremos la siguiente propiedad:</p>
-<p>public ushort Fila<br>
-{<br>
-set { if(value &lt;= 24) fila = value;}<br>
-get { return fila;  }<br>
-}</p>
-<p>Si en el Main() ponemos:<br>
-Console.WriteLine(punto.Fila); // Veremos el valor de la fila.  Internamente se llama al get<br>
-punto.Fila = 12; // Cambiaremos el valor de la fila a 12.  Internamente se llama al set</p>
-<p>En C# 3.0 y versiones posteriores, aparecen las propiedades autoimplementadas que hacen que la declaraci&#xF3;n de propiedad sea m&#xE1;s concisa cuando no se requiere ninguna l&#xF3;gica adicional en los descriptores de acceso de la propiedad. Al declarar una propiedad tal y como se muestra en el ejemplo siguiente, el compilador crea un campo de respaldo privado y an&#xF3;nimo al que solamente puede obtenerse acceso a trav&#xE9;s de los descriptores de acceso get y set de la propiedad.<br>
-class Trabajo<br>
-{<br>
-// Propiedades autoimplementables<br>
-public double SueldoTotal { get; set; }<br>
-public string Nombre { get; set; }<br>
-public int Identificador { get; set; }</p>
-<pre class="language-text">    // Constructor
-    public Trabajo(double sueldo, string nombre, int id)
-    {       
-       this.SueldoTotal= sueldo;
-       Nombre = nombre;
-       this.Identificador = id;
-    }
-</pre>
-<p>}</p>
-<p>class Program<br>
-{</p>
-<pre class="language-text">    static void Main()
-    {
-        Trabajo trabajador = new Trabajo(4987.63, &quot;Alicante&quot;, 
-                                         90108);
-        trabajador.SueldoTotal += 499.99; 
-    }
-}
-</pre>
+<h3 class="mume-header" id="propiedades-en-c">Propiedades en C#</h3>
+
+<p>Una propiedad es una mezcla entre el concepto de campo y el concepto de m&#xE9;todo. Externamente <strong>es accedida como un campo</strong>, pero internamente es posible <strong>asociar c&#xF3;digo a ejecutar</strong> en cada asignaci&#xF3;n o lectura de su valor.</p>
+<blockquote>
+<p>&#x270B; Pero la idea principal es que ...<em>&apos;<strong>es la forma de implementar de C# los m&#xE9;todos accesores y mutadores.</strong>&apos;</em></p>
+</blockquote>
+<h4 class="mume-header" id="recordando-que-era-la-encapsulaci%C3%B3n">Recordando que era la encapsulaci&#xF3;n</h4>
+
+<p>Antes de hablar de las propiedades <strong>vamos a repasar el concepto de encapsulaci&#xF3;n</strong> que vimos en temas anteriores y que <strong>va asociado al uso de propiedades</strong>.</p>
+<p>&#x1F4E3; Recapitulaci&#xF3;n de los <strong>Objetivos</strong>:</p>
+<ul>
+<li>Evitar que un cliente de mis clases puedan dejar objetos instanciados de las mismas en un estado inadecuado.</li>
+<li><strong>Ocultar detalles de la implementaci&#xF3;n</strong> de una clase.</li>
+<li><strong>Disminuir el acoplamiento</strong>, esto es, realizar cambios o actualizaciones en la clases sin preocuparnos c&#xF3;mo est&#xE1;n siendo usadas.</li>
+</ul>
+<p>&#x1F4E3; Recapitulaci&#xF3;n de <strong>modificadores de acceso</strong> que hay para clases, tipos, campos y m&#xE9;todos:</p>
+<ul>
+<li><strong><code>private</code></strong>: Accesible solo desde la clase. Es lo que deber&#xED;amos poner por defecto a los mutadores y si tenemos alguna duda.</li>
+<li><strong><code>public</code></strong>: Accesible por todos. Puede ser una accesibilidad por defecto para nuestros accesores.</li>
+<li><strong><code>protected</code></strong>: Accesible solo desde la clase o las subclases.</li>
+<li><strong><code>internal</code></strong>: Accesible solo desde clases del artefacto actual.</li>
+<li><strong><code>protected internal</code></strong> <mark><strong>new</strong></mark>: Accesible solo desde clases del artefacto actual y adem&#xE1;s sean subclases de la clase donde se ha definido.</li>
+</ul>
+<p>&#x1F4E3; Recapitulaci&#xF3;n de c&#xF3;mo la hemos implementado hasta ahora:</p>
+<ul>
+<li>
+<p>Hemos utilizado la sintaxis de otros lenguajes como <strong>Java</strong> o <strong>C++</strong> para definir los accesores y mutadores que era b&#xE1;sicamente usar m&#xE9;todos con una notaci&#xF3;n especial.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Clase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> idCampo<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> <span class="token generic-method"><span class="token function">Get</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>IdCampo<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+            <span class="token keyword">return</span> <span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span> 
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token generic-method"><span class="token function">Set</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>idCampo<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span>  <span class="token operator">=</span> <span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></li>
+</ul>
+<h4 class="mume-header" id="encapsulaci%C3%B3n-a-trav%C3%A9s-de-propiedades">Encapsulaci&#xF3;n a trav&#xE9;s de propiedades</h4>
+
+<p>Como ya hemos comentado, <strong>las propiedades son</strong> un &apos;<em><a href="https://es.wikipedia.org/wiki/Az%C3%BAcar_sint%C3%A1ctico#:~:text=En%20inform%C3%A1tica%2C%20el%20az%C3%BAcar%20sint%C3%A1ctico,f%C3%A1ciles%20de%20leer%20o%20expresar.">az&#xFA;car sint&#xE1;ctico</a></em>&apos; incluido por el lenguaje C# para abreviar la manera implementar la encapsulaci&#xF3;n. De tal manera que la forma b&#xE1;sica de implementar los getter y los setter en C# ser&#xE1;...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Clase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> idCampo<span class="token punctuation">;</span>
+
+    <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>IdCampo<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">set</span> 
+        <span class="token punctuation">{</span>
+            <span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">&lt;</span>idCampo<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x1F4E3; <strong>Nota:</strong> La sintaxis anterior tiene adaptaciones conforme ha ido evolucionando en lenguaje para <strong>simplificar la m&#xE1;ximo su uso</strong> seg&#xFA;n casos de uso. M&#xE1;s adelante, una vez tratemos el concepto de propiedad, abordaremos dichas simplificaciones.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<p>Veamos c&#xF3;mo aplicar y usar la nueva sint&#xE1;xis a traves de la clase <strong><code>Escritor</code></strong> que implementamos en el tema 5 y a la que hemos a&#xF1;adido ciertas actualizaciones f&#xE1;ciles de apreciar a primera vista.</p>
+<p>A trav&#xE9;s de ella vamos a ver la forma de usar propiedades y c&#xF3;mo llevar el concepto a las versiones m&#xE1;s modernas del lenguaje. Para ello, recordemos pues el c&#xF3;digo implementando los <em>Getters</em> y <em>Setters</em> como m&#xE9;todos.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Escritor</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name">DateTime</span> nacimiento<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> publicaciones<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">GetNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> nombre<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> <span class="token function">GetNacimiento</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> nacimiento<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span>Year <span class="token operator">-</span> nacimiento<span class="token punctuation">.</span>Year<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetPublicaciones</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> publicaciones<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SetPublicaciones</span><span class="token punctuation">(</span><span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">int</span></span> publicaciones<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>publicaciones <span class="token operator">=</span> publicaciones<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Escritor</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token class-name">DateTime</span> nacimiento<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nacimiento <span class="token operator">=</span> nacimiento<span class="token punctuation">;</span>
+        <span class="token function">SetPublicaciones</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">GetNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Nacimiento: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">GetNacimiento</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Edad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">GetEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Publicaciones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">GetPublicaciones</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<p>La sintaxis equivalente <strong>comentada</strong> usando propiedades ser&#xED;a la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp {.line-numbers}" class="language-csharp line-numbers"><span class="token keyword">class</span> <span class="token class-name">Escritor</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name">DateTime</span> nacimiento<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">int</span></span> publicaciones<span class="token punctuation">;</span>
+
+    <span class="token comment">// F&#xED;jate que de la l&#xED;nea 9 a la 19 hemos implementado las propiedades </span>
+    <span class="token comment">// solo con el get porque los campos asociados son readonly.</span>
+    <span class="token keyword">public</span> <span class="token keyword">string</span> Nombre        <span class="token comment">// El id de la propiedad debe ser el del campo pero en</span>
+    <span class="token punctuation">{</span>                           <span class="token comment">// PascalCasing. Siendo el tipo es el mismo que el campo.</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nombre<span class="token punctuation">;</span>      <span class="token comment">// Como es un getter hacemos un return.</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> DateTime Nacimiento  <span class="token comment">// Estamos haciendo public los definido en la </span>
+    <span class="token punctuation">{</span>                           <span class="token comment">// propiedad. En este caso &#xFA;nicamente el getter</span>
+        <span class="token keyword">get</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nacimiento<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> Edad             <span class="token comment">// Propiedad calculada a partir de otras.</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span>                     <span class="token comment">// F&#xED;jate que es este getter estamos ya accediendo </span>
+        <span class="token punctuation">{</span>                       <span class="token comment">// a la propiedad del campo nacimiento (su get).</span>
+            <span class="token keyword">return</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span>Year <span class="token operator">-</span> Nacimiento<span class="token punctuation">.</span>Year<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Dentro de la propiedad Publicaciones definiremos tanto el get como el set.</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> Publicaciones    <span class="token comment">// Son public get y set en principio, </span>
+    <span class="token punctuation">{</span>                           <span class="token comment">// aunque luego concretaremos el set.</span>
+        <span class="token keyword">get</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> publicaciones<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span>             <span class="token comment">// Concretamos la accesibilidad general de la        </span>
+        <span class="token punctuation">{</span>                       <span class="token comment">// propiedad para el set, pero siempre debe ser m&#xE1;s</span>
+                                <span class="token comment">// restrictiva que la general para la propiedad.</span>
+            publicaciones <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+<p>Del c&#xF3;digo anterior podemos resumir que:</p>
+<ul>
+<li>
+<p>Podremos definir solo uno de los dos, <strong><code>set</code></strong> o <strong><code>get</code></strong> y podr&#xE1;n estar afectados por los modificadores de accesibilidad como el resto de m&#xE9;todos.</p>
+</li>
+<li>
+<p>Puedo especificar un modificador de accesibilidad m&#xE1;s restrictivo que el de la propiedad a una de las definiciones de <strong><code>get</code></strong> y <strong><code>set</code></strong>.</p>
+</li>
+</ul>
+<h5 class="mume-header" id="usando-las-propiedades-definidas">Usando las propiedades definidas</h5>
+
+<p>Para nosotros sint&#xE1;cticamente ser&#xE1; como si estuvi&#xE9;ramos accediendo directamente al campo, pero con el nombre en PascalCasing. Sin embargo, se estar&#xE1; ejecutando el c&#xF3;digo definido en el cuerpo de la propiedad, como suced&#xED;a en al definir los m&#xE9;todos.</p>
+<p>Por ejemplo, si completamos el c&#xF3;digo de la clase escritor usando la propiedades definidas. Tendremos el siguiente c&#xF3;digo...</p>
+<pre data-role="codeBlock" data-info="csharp {.line-numbers}" class="language-csharp line-numbers"><span class="token keyword">class</span> <span class="token class-name">Escritor</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ... c&#xF3;digo omitido por abreviar</span>
+
+    <span class="token keyword">public</span> <span class="token function">Escritor</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token class-name">DateTime</span> nacimiento<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nacimiento <span class="token operator">=</span> nacimiento<span class="token punctuation">;</span>
+        Publicaciones <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>              <span class="token comment">// Se estar&#xE1; ejecutando el el set de </span>
+                                        <span class="token comment">// la propiedad Publicaciones</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Estaremos accediendo al get de cada una de las propiedades definidas.</span>
+        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Nacimiento: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nacimiento<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Edad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Edad</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Publicaciones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Publicaciones</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+<h5 class="mume-header" id="evoluci%C3%B3n-del-uso-de-propiedades-a-lo-largo-del-tiempo">Evoluci&#xF3;n del uso de propiedades a lo largo del tiempo</h5>
+
+<h6 class="mume-header" id="propiedades-autoimplementadas">Propiedades &apos;<em>autoimplementadas</em>&apos;</h6>
+
+<p>En <strong>C# 3.0</strong> y versiones posteriores, aparecen las <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/auto-implemented-properties">propiedades autoimplementadas</a></strong> que hacen que la declaraci&#xF3;n de propiedad sea m&#xE1;s concisa <strong>cuando no se requiere ninguna l&#xF3;gica adicional</strong> en los descriptores de acceso de la propiedad o estemos creando <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/how-to-implement-a-lightweight-class-with-auto-implemented-properties">clases &apos;<em>ligeras</em>&apos;</a></strong>.</p>
+<p>Al declarar una propiedad, el compilador <strong>crea un campo de respaldo privado y <mark>an&#xF3;nimo</mark></strong> al que solamente puede obtenerse acceso a trav&#xE9;s de los descriptores de acceso get y set de la propiedad.</p>
+<p>Veamos a trav&#xE9;s de un ejemplo de definici&#xF3;n de una clase <strong><code>Persona</code></strong> simple, c&#xF3;mo este &apos;<em>syntactic sugar</em>&apos; hace que la definici&#xF3;n nuestra clase sea m&#xE1;s conciso. Supongamos pues el siguiente c&#xF3;digo ...</p>
+<pre data-role="codeBlock" data-info="csharp {.line-numbers}" class="language-csharp line-numbers"><span class="token keyword">class</span> <span class="token class-name">Persona</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">string</span></span> dni<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Dni
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span> 
+            <span class="token keyword">return</span> dni<span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Nombre
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span> 
+            <span class="token keyword">return</span> nombre<span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span> 
+        <span class="token punctuation">{</span> 
+            nombre <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>el c&#xF3;digo anterior con las propiedades <strong>autoimplemenradas</strong> pasar&#xED;a <strong>de 25 a 5 l&#xED;neas</strong> y tedndr&#xED;a la <strong>misma funcionalidad</strong>...</p>
+<pre data-role="codeBlock" data-info="csharp {.line-numbers}" class="language-csharp line-numbers"><span class="token keyword">class</span> <span class="token class-name">Persona</span>                   <span class="token comment">// Estar&#xE1; creando un campo de llamado supongamos _dni</span>
+<span class="token punctuation">{</span>                               <span class="token comment">// que es privado y readonly como en el caso de arriba</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Dni <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>  <span class="token comment">// y del que solo vemos su propiedad Dni.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></pre><p>Vamos ahora la implementaci&#xF3;n de nuestra clase escritor usando estas propiedades autoimplementadas.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3-5,7,17-19}" class="language-csharp" data-line="3-5,7,17-19"><span class="token keyword">class</span> <span class="token class-name">Escritor</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> Nacimiento <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Publicaciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> Edad <span class="token comment">// La propiedad calculada no se puede autoimplementar.</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span>Year <span class="token operator">-</span> Nacimiento<span class="token punctuation">.</span>Year<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Escritor</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token class-name">DateTime</span> nacimiento<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>            <span class="token comment">// Las propiedades autoimplementadas con solo get</span>
+        Nacimiento <span class="token operator">=</span> nacimiento<span class="token punctuation">;</span>    <span class="token comment">// el constructor ser&#xE1; el &#xFA;nico sitio donde se </span>
+        Publicaciones <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>          <span class="token comment">// puedan asignar.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Nacimiento: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nacimiento<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Edad: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Edad</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span> <span class="token operator">+</span>
+               <span class="token interpolation-string"><span class="token string">$&quot;Publicaciones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Publicaciones</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3-5" data-start="3" data-end="5">
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17-19" data-start="17" data-end="19">
+
+
+</div></div></pre><blockquote>
+<p>&#x270B; Esta sint&#xE1;xis ser&#xE1; la m&#xE1;s concisa, si no vamos ha realizar comprobaciones o transformaciones en el los setter y getters.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h5 class="mume-header" id="miembros-con-cuerpo-de-expresi%C3%B3n">Miembros con cuerpo de expresi&#xF3;n</h5>
+
+<p>En el caso de que no usemos propiedades autoimplementadas. Otra forma de realizar un &apos;<em>syntactic sugar</em>&apos; al definir las propiedades son los <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members">miembros con cuerpo de expresi&#xF3;n</a></strong> se introdujeron en <strong>C# 7.0</strong>. No vamos a profundizar mucho en ellos (usos y significados) hasta el final del curso. Pero son una caracter&#xED;stica que tambi&#xE9;n podemos encontrar en otros lenguajes como JavaScript y Kotlin.</p>
+<blockquote>
+<p><strong>Seg&#xFA;n la documentaci&#xF3;n de Microsoft:</strong></p>
+<p>&#x1F4E3; &apos;<em>permiten proporcionar la implementaci&#xF3;n de un miembro de una forma muy concisa y legible. Se puede usar una definici&#xF3;n de cuerpo de expresi&#xF3;n <strong>siempre que la l&#xF3;gica</strong> de cualquier miembro compatible, como un m&#xE9;todo o propiedad, <strong>se componga de una <mark>expresi&#xF3;n &#xFA;nica</mark></strong></em>&apos;</p>
+</blockquote>
+<p>Podemos simplificar que un m&#xE9;todo que tenga una &#xFA;nico <strong><code>return</code></strong> con <strong>una sola expresi&#xF3;n</strong> como el siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Dni: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Dni</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>se puede representar de una forma m&#xE1;s abreviada como la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;Dni: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Dni</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+</pre><p>Si nos fijamos, eliminaremos el cuerpo del m&#xE9;todo y dejaremos la expresi&#xF3;n <strong>sin el <code>return</code></strong> precedida del operador <code>=&gt;</code></p>
+<blockquote>
+<p><strong>Nota:</strong> A partir de este momento lo iremos usando en futuros ejemplos para ir qued&#xE1;ndonos con este nuevo &apos;<em>az&#xFA;car sint&#xE1;ctico</em>&apos;.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<p>Veamos c&#xF3;mo ser&#xED;a la sintaxis <strong>si el miembro es una propiedad</strong>. Para ello, vamos a partir de una clase que tiene dos campos y sus respectivas propiedades de acceso que no usan <em>&apos;cuerpo de expresi&#xF3;n&apos;</em>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">MiClase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">int</span></span> campo1<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> campo2<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Campo1
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span> 
+            <span class="token keyword">return</span> campo1<span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Campo2
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> 
+        <span class="token punctuation">{</span> 
+            <span class="token keyword">return</span> campo2<span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span> 
+        <span class="token punctuation">{</span> 
+            campo2 <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Si usamos <strong>cuerpos de expresi&#xF3;n</strong> en el c&#xF3;digo anterior quedar&#xE1;...</p>
+<pre data-role="codeBlock" data-info="csharp  {highlight=[6, 7-11]}" class="language-csharp" data-line="6,7-11"><span class="token keyword">class</span> <span class="token class-name">MiClase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name"><span class="token keyword">int</span></span> campo1<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">string</span></span> campo2<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Campo1 <span class="token operator">=&gt;</span> campo1<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Campo2
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> <span class="token operator">=&gt;</span> campo2<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token keyword">set</span> <span class="token operator">=&gt;</span> campo2 <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7-11" data-start="7" data-end="11">
+
+
+
+
+</div></div></pre><blockquote>
+<p>&#x270B; F&#xED;jate que la sintaxis es m&#xE1;s simple a&#xFA;n si usamos cuerpos de expresi&#xF3;n para la propiedad de un campo de <strong>solo lectura</strong> (<strong><code>l&#xED;nea 6</code></strong>) que si lo usamos para implementar la propiedad de un campo con su getter y setter (<strong><code>l&#xED;neas 7 a 11</code></strong>).</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<p>Si refactorizamos la &#xFA;ltima versi&#xF3;n de <strong><code>Escritor</code></strong> para usar un cuerpo de expresi&#xF3;n en la propiedad <strong><code>Edad</code></strong>. Podremos refactorizarla as&#xED; por <strong>tratarse unicamente de una expresi&#xF3;n</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=7}" class="language-csharp" data-line="7"><span class="token keyword">class</span> <span class="token class-name">Escritor</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> Nacimiento <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Publicaciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Edad <span class="token operator">=&gt;</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span>Year <span class="token operator">-</span> Nacimiento<span class="token punctuation">.</span>Year<span class="token punctuation">;</span>
+
+    <span class="token comment">// ... c&#xF3;digo omitido por abreviar.</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><blockquote>
+<p>&#x1F4E3; <strong>Resumen de casos de uso de propiedades:</strong></p>
+<ol>
+<li><strong>Autoimplementadas:</strong> No vamos a necesitar conocer el campo ni vamos a a&#xF1;adir ning&#xFA;n control en los mutadores o accesores.</li>
+<li><strong>Cuerpos de expresi&#xF3;n:</strong><br>
+Es una propiedad calculada que se puede codificar en una &#xFA;nica expresi&#xF3;n.<br>
+Necesitamos un identificador accesible para el campo.<br>
+Vamos a realizar una trasnformaci&#xF3;n o comprobaci&#xF3;n del campo que se puede codificar en una &#xFA;nica expresi&#xF3;n.</li>
+<li><strong>&apos;<em>Tradicionales</em>&apos;:</strong> Adem&#xE1;s de necesitar acceder al identificador del campo, el cuerpo del getter o setter est&#xE1; formado por m&#xE1;s de una instrucci&#xF3;n.</li>
+</ol>
+</blockquote>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">&quot;</div>
+        <div class="cierra_comilla">&quot;</div>
+        <div class="cita">Most papers in computer science describe how their author learned what someone else already knew.</div>
+        <div class="autor">- Peter Landin. (He coined &apos;<em>Syntactic Sugar</em>&apos; term.)</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="sobrecarga-o-redefinici%C3%B3n-de-operadores">Sobrecarga o redefinici&#xF3;n de operadores</h3>
+
+<p>En los primeros temas ya hemos vimos los operadores unarios, binarios, de cast, etc&#x2026; usados con tipos simples.</p>
+<p>Para dos enteros la suma binaria <strong><code>+</code></strong> los sumaba <strong><code>2 + 3 &#x2192; 5</code></strong> y para el caso del tipo cadena esta suma significaba <strong>concatenaci&#xF3;n</strong>, por ejemplo <strong><code>&quot;Hola &quot; + &quot;Caracola&quot; &#x2192; &quot;Hola Caracola&quot;</code></strong>.</p>
+<p>Entonces... <strong>&#xBF;Podemos cambiar el sentido de la suma seg&#xFA;n el tipo?</strong></p>
+<p>La respuesta es <strong>s&#xED;</strong>. En algunos lenguajes orientados a objetos como <strong>C++</strong>, <strong>C#</strong>, <strong>Python</strong> o <strong>Kotlin</strong> podremos darle el significado que queramos a cualquiera de los operadores existentes cuando lo apliquemos a dos objetos de una clase definida por nosotros (<strong>siempre y cuando la operaci&#xF3;n tenga sentido</strong>).</p>
+<blockquote>
+<p>&#x270B; <strong>Nota:</strong> Los operadores aritm&#xE9;ticos, l&#xF3;gicos y de comparaci&#xF3;n son redefinibles pero, no todos los operadores se pueden redefinir como (<strong><code>new, =</code></strong>). Adem&#xE1;s, algunos como <strong><code>[ ]</code></strong> no lo son con esta sintaxis.</p>
+</blockquote>
+<p>Usaremos la siguiente sintaxis general...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>tipoDevuelto<span class="token operator">&gt;</span> <span class="token generic-method"><span class="token function">operator</span> <span class="token generic class-name"><span class="token punctuation">&lt;</span>simboloOperacion<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">(</span><span class="token operator">&lt;</span>operandos<span class="token operator">&gt;</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token operator">&lt;</span>cuerpo de m&#xE9;todo de clase<span class="token operator">&gt;</span> 
+<span class="token punctuation">}</span>
+</pre><p>Vamos a ver c&#xF3;mo aplicar esta sintaxis a trav&#xE9;s de un ejemplo que nos mostrar&#xE1; c&#xF3;mo ampliar las capacidades del lenguaje a trav&#xE9;s de la sobrecarga de operadores.</p>
+<p>Supongamos que queremos ampliar nuestros tipos num&#xE9;ricos en el lenguaje, para poder manejar <a href="https://es.wikipedia.org/wiki/N%C3%BAmero_complejo#Representaci%C3%B3n_bin%C3%B3mica">n&#xFA;meros complejos en su forma bin&#xF3;mica</a>.</p>
+<p>Para ello podr&#xED;amos definir un nuevo tipo valor de la siguiente manera ...</p>
+<blockquote>
+<p>&#x1F4E3; <strong>Nota:</strong> Aunque nosotros hemos definido la clase como <strong><code>struct</code></strong> porque el lenguaje nos lo permite. Si la definici&#xF3;n la hici&#xE9;semos con una clase (tipo referencia) ser&#xED;a tambi&#xE9;n perf&#xE9;ctamente v&#xE1;lido.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">struct</span> <span class="token class-name">Complejo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> ParteReal <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> ParteImaginaria <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Complejo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> parteReal<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> parteImaginaria<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        ParteReal <span class="token operator">=</span> parteReal<span class="token punctuation">;</span>
+        ParteImaginaria <span class="token operator">=</span> parteImaginaria<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ParteReal</span><span class="token format-string"><span class="token punctuation">:</span>G</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+        texto <span class="token operator">+=</span> ParteImaginaria <span class="token operator">&gt;</span> <span class="token number">0D</span> <span class="token punctuation">?</span> <span class="token string">&quot; + &quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot; - &quot;</span><span class="token punctuation">;</span>
+        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>ParteImaginaria<span class="token punctuation">)</span></span><span class="token format-string"><span class="token punctuation">:</span>G</span><span class="token punctuation">}</span></span><span class="token string">i&quot;</span></span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> texto<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><h4 class="mume-header" id="operadores-binarios">Operadores binarios</h4>
+
+<p>Vamos ahora a implementar el operador binario <strong><code>+</code></strong> que sumar&#xE1; dos n&#xFA;meros complejos.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> Complejo <span class="token keyword">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c1<span class="token punctuation">,</span> <span class="token class-name">Complejo</span> c2<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> pR <span class="token operator">=</span> c1<span class="token punctuation">.</span>ParteReal <span class="token operator">+</span> c2<span class="token punctuation">.</span>ParteReal<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> pI <span class="token operator">=</span> c1<span class="token punctuation">.</span>ParteImaginaria <span class="token operator">+</span> c2<span class="token punctuation">.</span>ParteImaginaria<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span>pR<span class="token punctuation">,</span> pI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x270B; <strong>Importante:</strong> f&#xED;jate que la operaci&#xF3;n dar&#xE1; como resultado un inst&#xE1;ncia nueva del tipo (<strong><code>return new Complejo(pR, pI)</code></strong>). Esto no sucede solo porque el tipo sea valor. Si estuvi&#xE9;ramos implement&#xE1;ndolo a trav&#xE9;s de una clase <strong>suceder&#xED;a lo mismo</strong>.</p>
+</blockquote>
+<p>Si queremos <a href="https://www.fisicalab.com/apartado/operaciones-complejos-binomica#suma-numeros-complejos">sumar 2 complejos</a> ahora podremos hacerlo con esta &apos;<em>extensi&#xF3;n del lenguaje</em>&apos; de forma m&#xE1;s intuitiva de la siguiente manera...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=3}" class="language-csharp" data-line="3"><span class="token class-name">Complejo</span> c1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Complejo</span> c2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Complejo</span> c3 <span class="token operator">=</span> c1 <span class="token operator">+</span> c2<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>c3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrar&#xE1; 8 + 4i</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div></pre><p>El resto de operadores binarios se implementar&#xED;an de forma an&#xE1;loga.</p>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="operadores-cast">Operadores cast</h4>
+
+<ol>
+<li>
+<p>Operador de <strong>cast expl&#xED;cito</strong>:</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,7]}" class="language-csharp" data-line="1,7"><span class="token comment">// Definici&#xF3;n del cast expl&#xED;cito a float</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">explicit</span> <span class="token keyword">operator</span> <span class="token keyword">float</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Convert<span class="token punctuation">.</span><span class="token function">ToSingle</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>ParteReal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Uso</span>
+<span class="token class-name">Complejo</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">3.7</span><span class="token punctuation">,</span> <span class="token number">2.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token class-name"><span class="token keyword">float</span></span> f <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>c<span class="token punctuation">;</span>     <span class="token comment">// Asignar&#xE1; 3.7 a f</span>
+<span class="token class-name"><span class="token keyword">double</span></span> d <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>c<span class="token punctuation">;</span>	<span class="token comment">// Dar&#xED;a error porque no est&#xE1; definido</span>
+                        <span class="token comment">// el operador de cast expl&#xED;cito a double.</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre></li>
+<li>
+<p>Operador de <strong>cast impl&#xED;cito</strong>.</p>
+<blockquote>
+<p>&#x1F480; <strong>Cuidado:</strong> No es recomendable su implementaci&#xF3;n pues puede dar lugar a confusi&#xF3;n y errores en tiempo de ejecuci&#xF3;n.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,7]}" class="language-csharp" data-line="1,7"><span class="token comment">// Definici&#xF3;n del cast impl&#xED;cito a double</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">implicit</span> <span class="token keyword">operator</span> <span class="token keyword">double</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Convert<span class="token punctuation">.</span><span class="token function">ToDouble</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>ParteReal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Uso</span>
+<span class="token class-name">Complejo</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">3.7</span><span class="token punctuation">,</span> <span class="token number">2.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token class-name"><span class="token keyword">double</span></span> d <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment">// Asignar&#xE1; 3.7 a d</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre></li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="caso-espec%C3%ADfico-del-operador-unario-de-pre-y-post-incremetodecremento">Caso espec&#xED;fico del operador unario de pre y post incremeto/Decremento</h4>
+
+<p>Cuando se usen de forma <strong>prefija</strong> se evaluar&#xE1; el nuevo objeto creado, y cuando se usen de forma <strong>postifja</strong> el compilador lo que har&#xE1; ser&#xE1; evaluar el objeto original que se les pas&#xF3; como par&#xE1;metro en lugar del creado en el return.</p>
+<p><strong>Nota:</strong> En ambos casos tras la evaluaci&#xF3;n c pasar&#xE1; a referenciar al objeto creado en el return.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Definici&#xF3;n del operador unario ++ (pre y post incremeto)</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> Complejo <span class="token keyword">operator</span> <span class="token operator">++</span> <span class="token punctuation">(</span><span class="token class-name">Complejo</span> c<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>ParteReal <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>ParteImaginaria<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Uso</span>
+<span class="token class-name">Complejo</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token number">1d</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// cAux ser&#xE1; una copia de c y despu&#xE9;s c ser&#xE1; el nuevo objeto incrementado.</span>
+<span class="token class-name">Complejo</span> cAux <span class="token operator">=</span> c<span class="token operator">++</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// c ser&#xE1; el nuevo objeto incrementado y cAux ser&#xE1; una copia del nuevo c.</span>
+<span class="token class-name">Complejo</span> cAux <span class="token operator">=</span> <span class="token operator">++</span>c<span class="token punctuation">;</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+<p>Vamos a crear las <strong>clases</strong> <strong><code>Cent&#xED;metros</code></strong> y <strong><code>Metros</code></strong>. Ambas poseer&#xE1;n una <strong>propiedad double de solo lectura</strong> denominada <strong><code>Valor</code></strong>. Vamos a redefinir los siguiente operadores:</p>
+<ol>
+<li>Operadores <strong>binarios - y +</strong> que permitan desde ambas clases sumar o restar<br>
+cent&#xED;metros con metros y viceversa.</li>
+<li>Operadores <strong>de cast expl&#xED;citos</strong>:
+<ul>
+<li>En la clase <strong><code>Cent&#xED;metros</code></strong>: <code>(Metros)tipoCm;</code> y <code>(double)tipoCm;</code></li>
+<li>En la clase <strong><code>Metros</code></strong>: <code>(Cent&#xED;metros)tipoM;</code> y <code>(double)tipoM;</code></li>
+</ul>
+</li>
+<li>Implementa un peque&#xF1;o programa de test para probar todos los operadores implementados.</li>
+</ol>
+<p><strong>Nota:</strong> Intenta <strong>no repetir c&#xF3;digo</strong>, <strong>reutilizar</strong> la mayor funcionalidad posible y utilizar <strong>cuerpo de expresiones</strong> si lo crees conveniente.</p>
+<p>En primer lugar como sucede cuando sumamos <strong><code>int + double &#x2192; double</code></strong> debemos decidir a qu&#xE9; se eval&#xFA;a la suma de <strong><code>Cent&#xED;metros + Metros</code></strong> y viceversa. En nuestro caso, vamos a evaluar tanto la suma y como la resta a <strong><code>Cent&#xED;metros</code></strong>. Esto es importante tenerlo en cuanta para ver en que clase implementamos la sobrecarga y porque una misma operaci&#xF3;n no se puede evaluar a dos tipos diferentes.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Metros</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Valor <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Metros</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> metros<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Valor <span class="token operator">=</span> metros<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// O</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">explicit</span> <span class="token keyword">operator</span> Cent&#xED;<span class="token function">metros</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">new</span> Cent&#xED;<span class="token function">metros</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>Valor <span class="token operator">*</span> <span class="token number">100d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">explicit</span> <span class="token keyword">operator</span> <span class="token keyword">double</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">return</span> m<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token punctuation">}</span></span><span class="token string"> m&quot;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio (Continuaci&#xF3;n)</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Cent</span>&#xED;metros
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Valor <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Cent&#xED;<span class="token function">metros</span><span class="token punctuation">(</span><span class="token keyword">double</span> cent&#xED;metros<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Valor <span class="token operator">=</span> cent&#xED;metros<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">explicit</span> <span class="token keyword">operator</span> <span class="token function">Metros</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Valor <span class="token operator">/</span> <span class="token number">100d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">explicit</span> <span class="token keyword">operator</span> <span class="token keyword">double</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Cent&#xED;<span class="token class-name">metros</span> c2<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> resultado <span class="token operator">=</span> c1<span class="token punctuation">.</span>Valor <span class="token operator">+</span> c2<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> Cent&#xED;<span class="token function">metros</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Cent&#xED;<span class="token class-name">metros</span> c2<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> resultado <span class="token operator">=</span> c1<span class="token punctuation">.</span>Valor <span class="token operator">-</span> c2<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> Cent&#xED;<span class="token function">metros</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c <span class="token operator">+</span> <span class="token punctuation">(</span>Cent&#xED;metros<span class="token punctuation">)</span>m<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c <span class="token operator">+</span> <span class="token punctuation">(</span>Cent&#xED;metros<span class="token punctuation">)</span>m<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span>Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c <span class="token operator">-</span> <span class="token punctuation">(</span>Cent&#xED;metros<span class="token punctuation">)</span>m<span class="token punctuation">;</span>     
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Cent&#xED;metros <span class="token keyword">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Cent&#xED;<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>Cent&#xED;metros<span class="token punctuation">)</span>m <span class="token operator">-</span> c<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token punctuation">}</span></span><span class="token string"> cm&quot;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
 
       </div>
       
