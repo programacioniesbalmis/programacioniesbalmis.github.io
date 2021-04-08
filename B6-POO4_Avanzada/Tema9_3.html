@@ -1,0 +1,905 @@
+<!DOCTYPE html><html><head>
+      <title>Programaci&#xF3;n 1&#xBA; DAM Tema 9.3</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <style>/* 
+Añade 
+
+@import "../EstilosPersonalizadosMarkdownEnhanced.less"
+
+justo después del front matter 
+*/
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v8/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+</style>
+<h1 class="mume-header undefined" id="tema-93">Tema 9.3</h1>
+
+<p><a href="./Tema9_3.pdf">Descargar estos apuntes</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#profundizando-en-la-programaci%C3%B3n-orientada-a-objetos">Profundizando en la Programaci&#xF3;n Orientada a Objetos</a>
+<ol>
+<li><a href="#interfaces">Interfaces</a>
+<ol>
+<li><a href="#interfaces-en-los-diagramas-de-clases-uml">Interfaces en los diagramas de clases UML</a></li>
+<li><a href="#interfaces-en-c">Interfaces en C#</a></li>
+<li><a href="#interfaces-de-utilidad-predefinidos-en-las-bcl">Interfaces de utilidad predefinidos en las BCL</a>
+<ol>
+<li><a href="#ienumerable">IEnumerable</a></li>
+<li><a href="#icloneablehttpsdocsmicrosoftcomes-esdotnetapisystemicloneable">ICloneable</a></li>
+<li><a href="#icomparablehttpsdocsmicrosoftcomes-esdotnetapisystemicomparable">IComparable</a></li>
+<li><a href="#idisposablehttpsdocsmicrosoftcomes-esdotnetapisystemidisposable">IDisposable</a></li>
+<li><a href="#repasando-la-instrucci%C3%B3n-usinghttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsusing-statement">Repasando la instrucci&#xF3;n using</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="profundizando-en-la-programaci%C3%B3n-orientada-a-objetos">Profundizando en la Programaci&#xF3;n Orientada a Objetos</h2>
+
+<h3 class="mume-header" id="interfaces">Interfaces</h3>
+
+<p>B&#xE1;sicamente un Interfaz es la definici&#xF3;n de un conjunto de interfaces de m&#xE9;todos, accesores o mutadores (como <strong>Propiedades</strong>), indizadores, etc. Es muy parecido a definir una <strong>clase abstracta pura</strong>, pero <strong>sin ning&#xFA;n tipo de atributo</strong> o campo,<br>
+constructor, ni modificador de acceso (public, private, etc&#x2026;). Como en las clases abstractas, las interfaces son tipos referencia, no puede crearse objetos de ellas sino s&#xF3;lo de tipos que deriven de ellas, y participan del polimorfismo.</p>
+<p>Pueden implementarse en muchos lenguajes OO con id&#xE9;nticas caracter&#xED;sticas:</p>
+<ul>
+<li>Es posible la <strong>herencia m&#xFA;ltiple</strong> de interfaces.</li>
+<li>No pueden definir atributos pero s&#xED; propiedades.</li>
+<li>Un interfaz <strong>puede heredar de otro interfaz</strong>.</li>
+<li>Si una clase hereda de un interfaz. Esta, deber&#xE1; invalidar todo lo que hayamos definido en el mismo.</li>
+</ul>
+<p>Podemos resumir diciendo que es la forma m&#xE1;s recomendable y com&#xFA;n de <strong>definir la abstracci&#xF3;n de un comportamiento</strong>.</p>
+<h4 class="mume-header" id="interfaces-en-los-diagramas-de-clases-uml">Interfaces en los diagramas de clases UML</h4>
+
+<p>Para expresar que la clase <strong><code>MiClase</code></strong> <strong>implementa</strong> el interfaz <strong><code>ICloneable</code></strong>.</p>
+<blockquote>
+<p>&#x270B; <strong>Nota:</strong> Usamos la palabra <strong>implementa</strong> en lugar de &quot;<em>hereda de</em>&quot; ya que, como hemos comentado, m&#xE1;s que responder <strong><code>MiClase</code></strong> a la pregunta &quot;<em>es un</em>&quot;, un interfaz define un comportamiento abstracto que <strong><code>MiClase</code></strong> deber&#xE1; implementar.</p>
+</blockquote>
+<p>Podremos expresarlo de las forma siguientes formas ...</p>
+<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="175px" preserveAspectRatio="none" style="width:218px;height:175px;" version="1.1" viewBox="0 0 218 175" width="218px" zoomAndPan="magnify"><defs><filter height="300%" id="f349t3awexc8p" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[cca651f3000d8bfa5cc03fe1235fc747]
+class ICloneable--><rect codeline="12" fill="#FFFAFA" filter="url(#f349t3awexc8p)" height="62.0234" id="ICloneable" style="stroke:#000000;stroke-width:1.5;" width="94" x="7" y="7"/><ellipse cx="22" cy="27.0938" fill="#B4A7E5" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M22.9531,23.7344 L22.9531,30.3906 L24.6719,30.3906 Q25.2813,30.3906 25.5469,30.625 Q25.8125,30.8594 25.8125,31.25 Q25.8125,31.625 25.5469,31.8594 Q25.2813,32.0938 24.6719,32.0938 L19.5313,32.0938 Q18.9219,32.0938 18.6563,31.8594 Q18.3906,31.625 18.3906,31.2344 Q18.3906,30.8594 18.6563,30.625 Q18.9219,30.3906 19.5313,30.3906 L21.25,30.3906 L21.25,23.7344 L19.5313,23.7344 Q18.9219,23.7344 18.6563,23.5 Q18.3906,23.2656 18.3906,22.875 Q18.3906,22.5 18.6563,22.2656 Q18.9219,22.0313 19.5313,22.0313 L24.6719,22.0313 Q25.2813,22.0313 25.5469,22.2656 Q25.8125,22.5 25.8125,22.875 Q25.8125,23.2656 25.5469,23.5 Q25.2813,23.7344 24.6719,23.7344 L22.9531,23.7344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="36" y="24.457">&#xAB;Interface&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="36" y="39.5508">ICloneable</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="100" y1="47.1875" y2="47.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="73" x="13" y="62.6064">Clone() : object</text><!--MD5=[a933c8d99fdb1311156fb2c9bee4d1c6]
+class m1--><rect codeline="16" fill="#FFFAFA" filter="url(#f349t3awexc8p)" height="32" id="m1" style="stroke:#000000;stroke-width:1.5;" width="77" x="15.5" y="129"/><ellipse cx="30.5" cy="145" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M33.2656,140.875 Q33.4219,140.6563 33.6094,140.5469 Q33.7969,140.4375 34.0156,140.4375 Q34.3906,140.4375 34.625,140.7031 Q34.8594,140.9531 34.8594,141.5625 L34.8594,143.0156 Q34.8594,143.625 34.625,143.8906 Q34.3906,144.1563 34.0156,144.1563 Q33.6719,144.1563 33.4688,143.9531 Q33.2656,143.7656 33.1563,143.25 Q33.1094,142.8906 32.9219,142.7031 Q32.5938,142.3281 31.9844,142.1094 Q31.375,141.8906 30.75,141.8906 Q29.9844,141.8906 29.3438,142.2188 Q28.7188,142.5469 28.2188,143.2969 Q27.7344,144.0469 27.7344,145.0781 L27.7344,146.1719 Q27.7344,147.4063 28.625,148.2344 Q29.5156,149.0469 31.1094,149.0469 Q32.0469,149.0469 32.7031,148.7969 Q33.0938,148.6406 33.5156,148.2031 Q33.7813,147.9375 33.9219,147.8594 Q34.0781,147.7813 34.2813,147.7813 Q34.6094,147.7813 34.8594,148.0469 Q35.125,148.2969 35.125,148.6406 Q35.125,148.9844 34.7813,149.3906 Q34.2813,149.9688 33.4844,150.2969 Q32.4063,150.75 31.1094,150.75 Q29.5938,150.75 28.3906,150.125 Q27.4063,149.625 26.7188,148.5625 Q26.0313,147.4844 26.0313,146.2031 L26.0313,145.0469 Q26.0313,143.7188 26.6406,142.5781 Q27.2656,141.4219 28.3594,140.8125 Q29.4531,140.1875 30.6875,140.1875 Q31.4219,140.1875 32.0625,140.3594 Q32.7188,140.5156 33.2656,140.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="44.5" y="149.9102">MiClase</text><!--MD5=[86876059c66ad2db30b8a35114234ab7]
+class m2--><rect codeline="17" fill="#FFFAFA" filter="url(#f349t3awexc8p)" height="32" id="m2" style="stroke:#000000;stroke-width:1.5;" width="77" x="127.5" y="129"/><ellipse cx="142.5" cy="145" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M145.2656,140.875 Q145.4219,140.6563 145.6094,140.5469 Q145.7969,140.4375 146.0156,140.4375 Q146.3906,140.4375 146.625,140.7031 Q146.8594,140.9531 146.8594,141.5625 L146.8594,143.0156 Q146.8594,143.625 146.625,143.8906 Q146.3906,144.1563 146.0156,144.1563 Q145.6719,144.1563 145.4688,143.9531 Q145.2656,143.7656 145.1563,143.25 Q145.1094,142.8906 144.9219,142.7031 Q144.5938,142.3281 143.9844,142.1094 Q143.375,141.8906 142.75,141.8906 Q141.9844,141.8906 141.3438,142.2188 Q140.7188,142.5469 140.2188,143.2969 Q139.7344,144.0469 139.7344,145.0781 L139.7344,146.1719 Q139.7344,147.4063 140.625,148.2344 Q141.5156,149.0469 143.1094,149.0469 Q144.0469,149.0469 144.7031,148.7969 Q145.0938,148.6406 145.5156,148.2031 Q145.7813,147.9375 145.9219,147.8594 Q146.0781,147.7813 146.2813,147.7813 Q146.6094,147.7813 146.8594,148.0469 Q147.125,148.2969 147.125,148.6406 Q147.125,148.9844 146.7813,149.3906 Q146.2813,149.9688 145.4844,150.2969 Q144.4063,150.75 143.1094,150.75 Q141.5938,150.75 140.3906,150.125 Q139.4063,149.625 138.7188,148.5625 Q138.0313,147.4844 138.0313,146.2031 L138.0313,145.0469 Q138.0313,143.7188 138.6406,142.5781 Q139.2656,141.4219 140.3594,140.8125 Q141.4531,140.1875 142.6875,140.1875 Q143.4219,140.1875 144.0625,140.3594 Q144.7188,140.5156 145.2656,140.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="156.5" y="149.9102">MiClase</text><ellipse cx="166" cy="38" fill="#FFFAFA" filter="url(#f349t3awexc8p)" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="60" x="136" y="55.457">ICloneable</text><!--MD5=[f0b3b2a806d10571eb523a9fe8182f04]
+reverse link ICloneable to m1--><path codeline="19" d="M54,89.44 C54,103.77 54,118.31 54,128.77 " fill="none" id="ICloneable-backto-m1" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="47,89.09,54,69.09,61,89.09,47,89.09" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[0fd6fcc925717f06da637bed31bf755d]
+link m2lol6 to m2--><path d="M166,43.51 C166,58.11 166,104.54 166,128.84 " fill="none" id="m2lol6-m2" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[ea48cb592ff85b8f5f130aa32d745730]
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide attributes
+hide methods
+
+show ICloneable methods
+interface ICloneable <<Interface>> {
+Clone() : object
+}
+
+class "MiClase" as m1
+class "MiClase" as m2
+
+ICloneable <|.. m1
+ICloneable ().. m2
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p><strong><code>MiClase</code></strong> ahora est&#xE1; obligada a <strong>implementar</strong> el m&#xE9;todo p&#xFA;blico <strong><code>Clone</code></strong> con <strong>id&#xE9;ntica signatura</strong>.</p>
+<p>Podremos hacer que una clase <strong>implemente</strong> o &quot;<em>herede</em>&quot; de m&#xE1;s de un interfaz.</p>
+<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="175px" preserveAspectRatio="none" style="width:249px;height:175px;" version="1.1" viewBox="0 0 249 175" width="249px" zoomAndPan="magnify"><defs><filter height="300%" id="f1b9ddsfwrczn2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[cca651f3000d8bfa5cc03fe1235fc747]
+class ICloneable--><rect codeline="12" fill="#FFFAFA" filter="url(#f1b9ddsfwrczn2)" height="62.0234" id="ICloneable" style="stroke:#000000;stroke-width:1.5;" width="94" x="7" y="7"/><ellipse cx="22" cy="27.0938" fill="#B4A7E5" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M22.9531,23.7344 L22.9531,30.3906 L24.6719,30.3906 Q25.2813,30.3906 25.5469,30.625 Q25.8125,30.8594 25.8125,31.25 Q25.8125,31.625 25.5469,31.8594 Q25.2813,32.0938 24.6719,32.0938 L19.5313,32.0938 Q18.9219,32.0938 18.6563,31.8594 Q18.3906,31.625 18.3906,31.2344 Q18.3906,30.8594 18.6563,30.625 Q18.9219,30.3906 19.5313,30.3906 L21.25,30.3906 L21.25,23.7344 L19.5313,23.7344 Q18.9219,23.7344 18.6563,23.5 Q18.3906,23.2656 18.3906,22.875 Q18.3906,22.5 18.6563,22.2656 Q18.9219,22.0313 19.5313,22.0313 L24.6719,22.0313 Q25.2813,22.0313 25.5469,22.2656 Q25.8125,22.5 25.8125,22.875 Q25.8125,23.2656 25.5469,23.5 Q25.2813,23.7344 24.6719,23.7344 L22.9531,23.7344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="36" y="24.457">&#xAB;Interface&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="36" y="39.5508">ICloneable</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="100" y1="47.1875" y2="47.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="73" x="13" y="62.6064">Clone() : object</text><!--MD5=[fe50a4f6767356ff4dcdadb85ef8cbdd]
+class IDisposable--><rect codeline="17" fill="#FFFAFA" filter="url(#f1b9ddsfwrczn2)" height="62.0234" id="IDisposable" style="stroke:#000000;stroke-width:1.5;" width="99" x="136.5" y="7"/><ellipse cx="151.5" cy="27.0938" fill="#B4A7E5" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M152.4531,23.7344 L152.4531,30.3906 L154.1719,30.3906 Q154.7813,30.3906 155.0469,30.625 Q155.3125,30.8594 155.3125,31.25 Q155.3125,31.625 155.0469,31.8594 Q154.7813,32.0938 154.1719,32.0938 L149.0313,32.0938 Q148.4219,32.0938 148.1563,31.8594 Q147.8906,31.625 147.8906,31.2344 Q147.8906,30.8594 148.1563,30.625 Q148.4219,30.3906 149.0313,30.3906 L150.75,30.3906 L150.75,23.7344 L149.0313,23.7344 Q148.4219,23.7344 148.1563,23.5 Q147.8906,23.2656 147.8906,22.875 Q147.8906,22.5 148.1563,22.2656 Q148.4219,22.0313 149.0313,22.0313 L154.1719,22.0313 Q154.7813,22.0313 155.0469,22.2656 Q155.3125,22.5 155.3125,22.875 Q155.3125,23.2656 155.0469,23.5 Q154.7813,23.7344 154.1719,23.7344 L152.4531,23.7344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="168" y="24.457">&#xAB;Interface&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="67" x="165.5" y="39.5508">IDisposable</text><line style="stroke:#000000;stroke-width:1.5;" x1="137.5" x2="234.5" y1="47.1875" y2="47.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="76" x="142.5" y="62.6064">Dispose() : void</text><!--MD5=[a933c8d99fdb1311156fb2c9bee4d1c6]
+class m1--><rect codeline="21" fill="#FFFAFA" filter="url(#f1b9ddsfwrczn2)" height="32" id="m1" style="stroke:#000000;stroke-width:1.5;" width="77" x="81.5" y="129"/><ellipse cx="96.5" cy="145" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M99.2656,140.875 Q99.4219,140.6563 99.6094,140.5469 Q99.7969,140.4375 100.0156,140.4375 Q100.3906,140.4375 100.625,140.7031 Q100.8594,140.9531 100.8594,141.5625 L100.8594,143.0156 Q100.8594,143.625 100.625,143.8906 Q100.3906,144.1563 100.0156,144.1563 Q99.6719,144.1563 99.4688,143.9531 Q99.2656,143.7656 99.1563,143.25 Q99.1094,142.8906 98.9219,142.7031 Q98.5938,142.3281 97.9844,142.1094 Q97.375,141.8906 96.75,141.8906 Q95.9844,141.8906 95.3438,142.2188 Q94.7188,142.5469 94.2188,143.2969 Q93.7344,144.0469 93.7344,145.0781 L93.7344,146.1719 Q93.7344,147.4063 94.625,148.2344 Q95.5156,149.0469 97.1094,149.0469 Q98.0469,149.0469 98.7031,148.7969 Q99.0938,148.6406 99.5156,148.2031 Q99.7813,147.9375 99.9219,147.8594 Q100.0781,147.7813 100.2813,147.7813 Q100.6094,147.7813 100.8594,148.0469 Q101.125,148.2969 101.125,148.6406 Q101.125,148.9844 100.7813,149.3906 Q100.2813,149.9688 99.4844,150.2969 Q98.4063,150.75 97.1094,150.75 Q95.5938,150.75 94.3906,150.125 Q93.4063,149.625 92.7188,148.5625 Q92.0313,147.4844 92.0313,146.2031 L92.0313,145.0469 Q92.0313,143.7188 92.6406,142.5781 Q93.2656,141.4219 94.3594,140.8125 Q95.4531,140.1875 96.6875,140.1875 Q97.4219,140.1875 98.0625,140.3594 Q98.7188,140.5156 99.2656,140.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="110.5" y="149.9102">MiClase</text><!--MD5=[f0b3b2a806d10571eb523a9fe8182f04]
+reverse link ICloneable to m1--><path codeline="23" d="M83.82,86.45 C93.43,101.72 103.39,117.58 110.43,128.77 " fill="none" id="ICloneable-backto-m1" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="77.63,89.75,72.91,69.09,89.48,82.3,77.63,89.75" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[beccdad48192ca2f07b448126bd3b7d0]
+reverse link IDisposable to m1--><path codeline="24" d="M156.18,86.45 C146.57,101.72 136.61,117.58 129.57,128.77 " fill="none" id="IDisposable-backto-m1" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="150.52,82.3,167.09,69.09,162.37,89.75,150.52,82.3" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[0fb942554e3e0deb4edbedd703761ec6]
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide attributes
+hide methods
+
+show ICloneable methods
+interface ICloneable <<Interface>> {
+Clone() : object
+}
+
+show IDisposable methods
+interface IDisposable <<Interface>> {
+Dispose() : void
+}
+
+class "MiClase" as m1
+
+ICloneable <|.. m1
+IDisposable <|.. m1
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><h4 class="mume-header" id="interfaces-en-c">Interfaces en C#</h4>
+
+<p>Como ya habr&#xE1;s podido apreciar en el diagrama anterior, seg&#xFA;n el convenio de nomenclatura de C#, el identificador o nombre de la clase ir&#xE1; siempre precedido por la letra may&#xFA;scula <strong><code>I</code></strong> (<strong><code>I</code></strong><code>nterface</code>) para distinguirlo de otro tipo de clases.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token operator">&lt;</span>modificadores<span class="token operator">&gt;</span> <span class="token keyword">interface</span> <span class="token class-name">I<span class="token punctuation">&lt;</span>identificador<span class="token punctuation">&gt;</span></span> <span class="token punctuation">:</span> <span class="token operator">&lt;</span>interfacesBase<span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token operator">&lt;</span>interfaces de m&#xE9;todos<span class="token punctuation">,</span> propiedades o indizadores<span class="token operator">&gt;</span>
+<span class="token punctuation">}</span>
+</pre><p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="217px" preserveAspectRatio="none" style="width:182px;height:217px;" version="1.1" viewBox="0 0 182 217" width="182px" zoomAndPan="magnify"><defs><filter height="300%" id="f13v2gmwut8kl2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[cb3f03693061190acba88dceaaa724a7]
+class IMedia--><rect codeline="12" fill="#FFFAFA" filter="url(#f13v2gmwut8kl2)" height="103.5313" id="IMedia" style="stroke:#000000;stroke-width:1.5;" width="100" x="37.5" y="7"/><ellipse cx="57" cy="27.0938" fill="#B4A7E5" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M57.9531,23.7344 L57.9531,30.3906 L59.6719,30.3906 Q60.2813,30.3906 60.5469,30.625 Q60.8125,30.8594 60.8125,31.25 Q60.8125,31.625 60.5469,31.8594 Q60.2813,32.0938 59.6719,32.0938 L54.5313,32.0938 Q53.9219,32.0938 53.6563,31.8594 Q53.3906,31.625 53.3906,31.2344 Q53.3906,30.8594 53.6563,30.625 Q53.9219,30.3906 54.5313,30.3906 L56.25,30.3906 L56.25,23.7344 L54.5313,23.7344 Q53.9219,23.7344 53.6563,23.5 Q53.3906,23.2656 53.3906,22.875 Q53.3906,22.5 53.6563,22.2656 Q53.9219,22.0313 54.5313,22.0313 L59.6719,22.0313 Q60.2813,22.0313 60.5469,22.2656 Q60.8125,22.5 60.8125,22.875 Q60.8125,23.2656 60.5469,23.5 Q60.2813,23.7344 59.6719,23.7344 L57.9531,23.7344 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="62" x="70" y="24.457">&#xAB;Interface&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="37" x="82.5" y="39.5508">IMedia</text><line style="stroke:#000000;stroke-width:1.5;" x1="38.5" x2="136.5" y1="47.1875" y2="47.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="57" x="43.5" y="62.6064">Play() : void</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="59" x="43.5" y="76.4424">Stop() : void</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="67" x="43.5" y="90.2783">Pause() : void</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="43.5" y="104.1143">GetDuraci&#xF3;n() : int</text><!--MD5=[166247bf81aba95c770c3b8fd8e3cb19]
+class Video--><rect fill="#FFFAFA" filter="url(#f13v2gmwut8kl2)" height="32" id="Video" style="stroke:#000000;stroke-width:1.5;" width="63" x="7" y="171"/><ellipse cx="22" cy="187" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M24.7656,182.875 Q24.9219,182.6563 25.1094,182.5469 Q25.2969,182.4375 25.5156,182.4375 Q25.8906,182.4375 26.125,182.7031 Q26.3594,182.9531 26.3594,183.5625 L26.3594,185.0156 Q26.3594,185.625 26.125,185.8906 Q25.8906,186.1563 25.5156,186.1563 Q25.1719,186.1563 24.9688,185.9531 Q24.7656,185.7656 24.6563,185.25 Q24.6094,184.8906 24.4219,184.7031 Q24.0938,184.3281 23.4844,184.1094 Q22.875,183.8906 22.25,183.8906 Q21.4844,183.8906 20.8438,184.2188 Q20.2188,184.5469 19.7188,185.2969 Q19.2344,186.0469 19.2344,187.0781 L19.2344,188.1719 Q19.2344,189.4063 20.125,190.2344 Q21.0156,191.0469 22.6094,191.0469 Q23.5469,191.0469 24.2031,190.7969 Q24.5938,190.6406 25.0156,190.2031 Q25.2813,189.9375 25.4219,189.8594 Q25.5781,189.7813 25.7813,189.7813 Q26.1094,189.7813 26.3594,190.0469 Q26.625,190.2969 26.625,190.6406 Q26.625,190.9844 26.2813,191.3906 Q25.7813,191.9688 24.9844,192.2969 Q23.9063,192.75 22.6094,192.75 Q21.0938,192.75 19.8906,192.125 Q18.9063,191.625 18.2188,190.5625 Q17.5313,189.4844 17.5313,188.2031 L17.5313,187.0469 Q17.5313,185.7188 18.1406,184.5781 Q18.7656,183.4219 19.8594,182.8125 Q20.9531,182.1875 22.1875,182.1875 Q22.9219,182.1875 23.5625,182.3594 Q24.2188,182.5156 24.7656,182.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="31" x="36" y="191.9102">Video</text><!--MD5=[4e8cc7bbb60dc5d148cf8b942067baf3]
+class Audio--><rect fill="#FFFAFA" filter="url(#f13v2gmwut8kl2)" height="32" id="Audio" style="stroke:#000000;stroke-width:1.5;" width="63" x="105" y="171"/><ellipse cx="120" cy="187" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M122.7656,182.875 Q122.9219,182.6563 123.1094,182.5469 Q123.2969,182.4375 123.5156,182.4375 Q123.8906,182.4375 124.125,182.7031 Q124.3594,182.9531 124.3594,183.5625 L124.3594,185.0156 Q124.3594,185.625 124.125,185.8906 Q123.8906,186.1563 123.5156,186.1563 Q123.1719,186.1563 122.9688,185.9531 Q122.7656,185.7656 122.6563,185.25 Q122.6094,184.8906 122.4219,184.7031 Q122.0938,184.3281 121.4844,184.1094 Q120.875,183.8906 120.25,183.8906 Q119.4844,183.8906 118.8438,184.2188 Q118.2188,184.5469 117.7188,185.2969 Q117.2344,186.0469 117.2344,187.0781 L117.2344,188.1719 Q117.2344,189.4063 118.125,190.2344 Q119.0156,191.0469 120.6094,191.0469 Q121.5469,191.0469 122.2031,190.7969 Q122.5938,190.6406 123.0156,190.2031 Q123.2813,189.9375 123.4219,189.8594 Q123.5781,189.7813 123.7813,189.7813 Q124.1094,189.7813 124.3594,190.0469 Q124.625,190.2969 124.625,190.6406 Q124.625,190.9844 124.2813,191.3906 Q123.7813,191.9688 122.9844,192.2969 Q121.9063,192.75 120.6094,192.75 Q119.0938,192.75 117.8906,192.125 Q116.9063,191.625 116.2188,190.5625 Q115.5313,189.4844 115.5313,188.2031 L115.5313,187.0469 Q115.5313,185.7188 116.1406,184.5781 Q116.7656,183.4219 117.8594,182.8125 Q118.9531,182.1875 120.1875,182.1875 Q120.9219,182.1875 121.5625,182.3594 Q122.2188,182.5156 122.7656,182.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="31" x="134" y="191.9102">Audio</text><!--MD5=[ecb36d124cba7ebe6d0ada77030570d1]
+reverse link IMedia to Video--><path codeline="19" d="M60.22,130.14 C54.21,145.6 48.42,160.48 44.34,170.99 " fill="none" id="IMedia-backto-Video" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="53.8,127.35,67.57,111.25,66.84,132.43,53.8,127.35" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[ad5189b90d4bc18550032fcc08acfc65]
+reverse link IMedia to Audio--><path codeline="20" d="M114.78,130.14 C120.79,145.6 126.58,160.48 130.66,170.99 " fill="none" id="IMedia-backto-Audio" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="108.16,132.43,107.43,111.25,121.2,127.35,108.16,132.43" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[0d8dd3fa1672784d0709146313d72ac8]
+@startuml
+
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide attributes
+hide methods
+
+show IMedia methods
+interface IMedia <<Interface>> {
+    Play() : void
+    Stop() : void
+    Pause() : void
+    GetDuración() : int
+}
+
+IMedia <|.. Video
+IMedia <|.. Audio
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">interface</span> <span class="token class-name">IMedia</span>
+<span class="token punctuation">{</span>
+    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> Duraci&#xF3;n <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Para aplicar un interfaz a una clase. Haremos que esta herede del interfaz con la sintaxis de herencia que hemos usado hasta ahora.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Video</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IMedia</span></span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> Duraci&#xF3;n <span class="token operator">=&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Pausando el v&#xED;deo.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Play</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Reproduciendo el v&#xED;deo.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Parando el v&#xED;deo.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h4 class="mume-header" id="interfaces-de-utilidad-predefinidos-en-las-bcl">Interfaces de utilidad predefinidos en las BCL</h4>
+
+<p>Podemos decir que me permiten definir comportamientos para mi pr&#xF3;pios tipos que ser&#xE1;n reconocidos por otras clases o tipos ya implementadas en las BCL.</p>
+<blockquote>
+<p><strong>Nota:</strong> Podr&#xED;amos utilizar interfaces pr&#xF3;pios para hacer lo mismo, <strong>pero perder&#xED;amos interoperabilidad con el resto de clases de las BCL</strong>.</p>
+</blockquote>
+<h5 class="mume-header" id="ienumerable">IEnumerable</h5>
+
+<p>Lo veremos m&#xE1;s adelante, al usar o definir colecciones.</p>
+<h5 class="mume-header" id="icloneablehttpsdocsmicrosoftcomes-esdotnetapisystemicloneable"><a href="https://docs.microsoft.com/es-es/dotnet/api/system.icloneable">ICloneable</a></h5>
+
+<p>Me indicar&#xE1; que puedo crear copias del objeto, puesto que me obliga a implementar un &quot;<em>constructor copia</em>&quot; con el interfaz <strong><code>object Clone()</code></strong> el cual me permitir&#xE1; hacer <strong>copias en profundidad</strong> de objetos de tipo referencia.</p>
+<h5 class="mume-header" id="icomparablehttpsdocsmicrosoftcomes-esdotnetapisystemicomparable"><a href="https://docs.microsoft.com/es-es/dotnet/api/system.icomparable">IComparable</a></h5>
+
+<p>Me indicar&#xE1; que el objeto debe implementar el m&#xE9;todo <strong><code>int CompareTo(Object otro)</code></strong> que me servir&#xE1; para comparar dos objetos de la misma clase y que ya usamos en el <strong>tema 7</strong> para comparar cadenas.</p>
+<blockquote>
+<p><strong>Nota:</strong> Recordemos brevemente que...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Tipo</span> o1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Tipo</span><span class="token punctuation">(</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Tipo</span> o2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Tipo</span><span class="token punctuation">(</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Si Tipo es IComparable entonces ...</span>
+<span class="token class-name"><span class="token keyword">int</span></span> comparacion <span class="token operator">=</span> o1<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// comparacion = 0 si o1 y o2 son iguales.</span>
+<span class="token comment">// comparacion &gt; 0 si o1 &gt; o2.</span>
+<span class="token comment">// comparacion &lt; 0 si o1 &lt; o2.</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<p>Veamos un ejemplo &quot;<em>gen&#xE9;rico</em>&quot; comentado de uso de este tipo de interfaces. Para ello, supongamos la siguiente agregaci&#xF3;n con tipos definidos por el usuario, donde ambos implementan los interfaces <strong><code>ICloneable</code></strong> e <strong><code>IComparable</code></strong>.</p>
+<p align="center" style="zoom:0.8"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="176px" preserveAspectRatio="none" style="width:446px;height:176px;" version="1.1" viewBox="0 0 446 176" width="446px" zoomAndPan="magnify"><defs><filter height="300%" id="f1vljqogixelb5" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[dd93b3d5ef2fd2bb3ff74cb50b7c2871]
+class MiTipo--><rect codeline="9" fill="#FFFAFA" filter="url(#f1vljqogixelb5)" height="131.0156" id="MiTipo" style="stroke:#000000;stroke-width:1.5;" width="181" x="7" y="7"/><ellipse cx="75.25" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M78.0156,18.875 Q78.1719,18.6563 78.3594,18.5469 Q78.5469,18.4375 78.7656,18.4375 Q79.1406,18.4375 79.375,18.7031 Q79.6094,18.9531 79.6094,19.5625 L79.6094,21.0156 Q79.6094,21.625 79.375,21.8906 Q79.1406,22.1563 78.7656,22.1563 Q78.4219,22.1563 78.2188,21.9531 Q78.0156,21.7656 77.9063,21.25 Q77.8594,20.8906 77.6719,20.7031 Q77.3438,20.3281 76.7344,20.1094 Q76.125,19.8906 75.5,19.8906 Q74.7344,19.8906 74.0938,20.2188 Q73.4688,20.5469 72.9688,21.2969 Q72.4844,22.0469 72.4844,23.0781 L72.4844,24.1719 Q72.4844,25.4063 73.375,26.2344 Q74.2656,27.0469 75.8594,27.0469 Q76.7969,27.0469 77.4531,26.7969 Q77.8438,26.6406 78.2656,26.2031 Q78.5313,25.9375 78.6719,25.8594 Q78.8281,25.7813 79.0313,25.7813 Q79.3594,25.7813 79.6094,26.0469 Q79.875,26.2969 79.875,26.6406 Q79.875,26.9844 79.5313,27.3906 Q79.0313,27.9688 78.2344,28.2969 Q77.1563,28.75 75.8594,28.75 Q74.3438,28.75 73.1406,28.125 Q72.1563,27.625 71.4688,26.5625 Q70.7813,25.4844 70.7813,24.2031 L70.7813,23.0469 Q70.7813,21.7188 71.3906,20.5781 Q72.0156,19.4219 73.1094,18.8125 Q74.2031,18.1875 75.4375,18.1875 Q76.1719,18.1875 76.8125,18.3594 Q77.4688,18.5156 78.0156,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="95.75" y="27.9102">MiTipo</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="187" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="64" x="13" y="54.4189">-texto : string</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="187" y1="60.8359" y2="60.8359"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="13" y="76.2549">-MiTipo(in t : MiTipo)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="155" x="13" y="90.0908">+GetMiAgregacion() : MiSubTipo</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="169" x="13" y="103.9268">-SetMiAgregacion(in a : MiSubTipo)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="95" x="13" y="117.7627">+GetTexto() : String</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="106" x="13" y="131.5986">-SetTexto(in t : String)</text><ellipse cx="293" cy="27.5" fill="#FFFAFA" filter="url(#f1vljqogixelb5)" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="60" x="263" y="44.957">ICloneable</text><ellipse cx="293" cy="72.5" fill="#FFFAFA" filter="url(#f1vljqogixelb5)" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="257" y="89.957">IComparable</text><!--MD5=[8727cc77827dd9b74dbcc1bd778a6953]
+class MiSubTipo--><rect fill="#FFFAFA" filter="url(#f1vljqogixelb5)" height="32" id="MiSubTipo" style="stroke:#000000;stroke-width:1.5;" width="90" x="248" y="112.5"/><ellipse cx="263" cy="128.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M265.7656,124.375 Q265.9219,124.1563 266.1094,124.0469 Q266.2969,123.9375 266.5156,123.9375 Q266.8906,123.9375 267.125,124.2031 Q267.3594,124.4531 267.3594,125.0625 L267.3594,126.5156 Q267.3594,127.125 267.125,127.3906 Q266.8906,127.6563 266.5156,127.6563 Q266.1719,127.6563 265.9688,127.4531 Q265.7656,127.2656 265.6563,126.75 Q265.6094,126.3906 265.4219,126.2031 Q265.0938,125.8281 264.4844,125.6094 Q263.875,125.3906 263.25,125.3906 Q262.4844,125.3906 261.8438,125.7188 Q261.2188,126.0469 260.7188,126.7969 Q260.2344,127.5469 260.2344,128.5781 L260.2344,129.6719 Q260.2344,130.9063 261.125,131.7344 Q262.0156,132.5469 263.6094,132.5469 Q264.5469,132.5469 265.2031,132.2969 Q265.5938,132.1406 266.0156,131.7031 Q266.2813,131.4375 266.4219,131.3594 Q266.5781,131.2813 266.7813,131.2813 Q267.1094,131.2813 267.3594,131.5469 Q267.625,131.7969 267.625,132.1406 Q267.625,132.4844 267.2813,132.8906 Q266.7813,133.4688 265.9844,133.7969 Q264.9063,134.25 263.6094,134.25 Q262.0938,134.25 260.8906,133.625 Q259.9063,133.125 259.2188,132.0625 Q258.5313,130.9844 258.5313,129.7031 L258.5313,128.5469 Q258.5313,127.2188 259.1406,126.0781 Q259.7656,124.9219 260.8594,124.3125 Q261.9531,123.6875 263.1875,123.6875 Q263.9219,123.6875 264.5625,123.8594 Q265.2188,124.0156 265.7656,124.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="58" x="277" y="133.4102">MiSubTipo</text><ellipse cx="403" cy="105.5" fill="#FFFAFA" filter="url(#f1vljqogixelb5)" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="60" x="373" y="122.957">ICloneable</text><ellipse cx="403" cy="150.5" fill="#FFFAFA" filter="url(#f1vljqogixelb5)" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="367" y="167.957">IComparable</text><!--MD5=[2885e15d9ee0522bfdd938db9b95f2a5]
+link MiTipo to MiTipolol20--><path d="M188.17,51.65 C230.48,41.81 274.61,31.54 287.95,28.44 " fill="none" id="MiTipo-MiTipolol20" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[e35ee4ed4739b086eff39aa1ef0439b9]
+link MiTipo to MiTipolol23--><path d="M188.17,72.5 C230.48,72.5 274.61,72.5 287.95,72.5 " fill="none" id="MiTipo-MiTipolol23" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[aad8452b14a34c1f8c87da9ba13e45f5]
+link MiSubTipo to MiSubTipolol27--><path d="M338.24,119.08 C361.77,114.07 387.87,108.51 397.83,106.39 " fill="none" id="MiSubTipo-MiSubTipolol27" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[c6461f4ecf8e8a93d0e6b26971bf3b31]
+link MiSubTipo to MiSubTipolol30--><path d="M338.24,137.51 C361.77,142.31 387.87,147.62 397.83,149.65 " fill="none" id="MiSubTipo-MiSubTipolol30" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[076b7cf687150e3bd365c90fc194d3de]
+reverse link MiTipo to MiSubTipo--><path codeline="27" d="M200.84,102.12 C217.4,106.91 233.74,111.64 247.91,115.74 " fill="none" id="MiTipo-backto-MiSubTipo" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="188.17,98.45,192.8228,103.9592,199.6978,101.7832,195.045,96.274,188.17,98.45" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="7" x="195.9685" y="114.7705">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="7" x="232.8623" y="128.4759">1</text><!--MD5=[e1f583fe11e5376eb5b7f3f4bb27c64e]
+@startuml
+
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+class MiTipo
+{
+    - texto : string
+    - MiTipo(in t : MiTipo)
+    + GetMiAgregacion() : MiSubTipo
+    - SetMiAgregacion(in a : MiSubTipo)
+    + GetTexto() : String
+    - SetTexto(in t : String)
+}
+  
+MiTipo - -() ICloneable
+MiTipo - -() IComparable
+
+hide MiSubTipo attributes
+hide MiSubTipo methods
+MiSubTipo - -() ICloneable
+MiSubTipo - -() IComparable
+
+MiTipo "1" o- - "1" MiSubTipo
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p>Vamos a suponer la clase <strong><code>MiSubTipo</code></strong> ya la hemos definido e implementa ambos interfaces. Una implementaci&#xF3;n &apos;<em>gen&#xE9;rica</em>&apos; posible para <strong><code>MiTipo</code></strong> podr&#xED;a ser ...</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[13,14,21,30,31]}" class="language-csharp" data-line="13,14,21,30,31"><span class="token keyword">class</span> <span class="token class-name">MiTipo</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ICloneable</span><span class="token punctuation">,</span> <span class="token class-name">IComparable</span></span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Propiedad autoimplementada que representa la agregaci&#xF3;n del UML.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name">MiSubTipo</span> MiAgregacion <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token comment">// Propiedad autoimplementada que representa el atributo texto con su</span>
+    <span class="token comment">// accesor y mutador</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Texto <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token comment">// Constructor copia privado que usaremos para hacer el clonado</span>
+    <span class="token comment">// en profundidad.</span>
+    <span class="token keyword">private</span> <span class="token function">MiTipo</span><span class="token punctuation">(</span><span class="token class-name">MiTipo</span> t<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Debo hacer un downcasting porque Clone() me devuelve un object.</span>
+        MiAgregacion <span class="token operator">=</span> t<span class="token punctuation">.</span>MiAgregacion<span class="token punctuation">.</span><span class="token function">Clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token class-name">MiSubTipo</span><span class="token punctuation">;</span>
+        <span class="token comment">// No hay problema en igualar los string porque es inmutable.</span>
+        Texto <span class="token operator">=</span> t<span class="token punctuation">.</span>Texto<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Estoy forzado a implementarlo por ser ICloneable</span>
+    <span class="token comment">// Llamamos al constructor copia mediante un cuerpo de expresi&#xF3;n.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">object</span></span> <span class="token function">Clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">MiTipo</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Estoy forzado a implementarlo por ser IComparable</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">CompareTo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span></span> obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Si obj de es de MiTipo genero una excepci&#xF3;n.</span>
+        <span class="token class-name">MiTipo</span> t <span class="token operator">=</span> obj <span class="token keyword">as</span> <span class="token class-name">MiTipo 
+        <span class="token punctuation">?</span></span><span class="token punctuation">?</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;No es del tipo MiClase&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;obj&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+        <span class="token comment">// Para realizar la comparaci&#xF3;n voy llamando a los CompareTo de cada</span>
+        <span class="token comment">// tipo en el orden adecuado.</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> comparacion <span class="token operator">=</span> MiAgregacion<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>MiAgregacion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>comparacion <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> 
+            comparacion <span class="token operator">=</span> Texto<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>Texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> comparacion<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="14" data-start="14">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="21" data-start="21">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="30" data-start="30">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="31" data-start="31">
+</div></div></pre><div style="page-break-after:always;"></div>
+<h5 class="mume-header" id="idisposablehttpsdocsmicrosoftcomes-esdotnetapisystemidisposable"><a href="https://docs.microsoft.com/es-es/dotnet/api/system.idisposable">IDisposable</a></h5>
+
+<p>Me indicar&#xE1; que el objeto debe implementar el m&#xE9;todo <strong><code>void Dispose()</code></strong> que <strong>se encargar&#xE1; de liberar los recursos usados por el objeto.</strong> No confundir con el destructor <strong><code>~&lt;Tipo&gt;()</code></strong>.<br>
+Indicaremos a las BCL que nuestro objeto tiene el comportamiento de liberar recursos y lo utilizaremos junto a la <strong>instrucci&#xF3;n</strong> <strong><code>using</code></strong> la cual ya hemos usado para cerrar autom&#xE1;ticamente los flujos al producirse una excepci&#xF3;n cuando vimos la entrada y salida de datos. Esto es, porque en el fondo lo &#xFA;nico que espera el <strong><code>using</code></strong> es que las clases marcadas con est&#xE1; instrucci&#xF3;n o cl&#xE1;usula implementen este interfaz. En el fondo la clase base <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.stream">Stream</a></strong> lo implementa y por tanto tiene un m&#xE9;todo <strong><code>Dispose()</code></strong> que es llamado en el <strong><code>finally</code></strong>.</p>
+<h5 class="mume-header" id="repasando-la-instrucci%C3%B3n-usinghttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsusing-statement">Repasando la instrucci&#xF3;n <a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/using-statement">using</a></h5>
+
+<ul>
+<li>
+<p>Se utiliza para instanciar objetos que contiene recursos no gestionados, esto es, que no son liberados por el recolector de basura.</p>
+</li>
+<li>
+<p>Como acabamos de comentar, estos objetos deben implementar el interfaz <strong><code>IDisposable</code></strong> y por tanto el m&#xE9;todo de liberaci&#xF3;n <strong><code>Dispose()</code></strong>.</p>
+</li>
+<li>
+<p><strong><code>using</code></strong> garantiza que se llama a  <strong><code>Dispose()</code></strong> <strong>aunque se produzca una excepci&#xF3;n</strong>.</p>
+<blockquote>
+<p>&#x270B; <strong>Importante:</strong> Dentro del bloque using, el objeto es de solo lectura y no se puede modificar ni reasignar puesto que dejar&#xED;a de tener una referencia y no se liberar&#xED;a.</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>Sintaxis b&#xE1;sica:</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Podemos usar varios recursos liberables en el mismo &#xE1;mbito as&#xED; ...</span>
+<span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> r1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> r2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> rN <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// &#xC1;mbito de uso de solo lectura de r1, r2, &#x2026; , rN</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Tambi&#xE9;n podremos anidarlos.</span>
+</pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">&quot;</div>
+        <div class="cierra_comilla">&quot;</div>
+        <div class="cita">The road to programming hell is paved with global variables.</div>
+        <div class="autor">- Steve McConnell.</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<p>En <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/proposals/csharp-8.0/using">C#8.0</a></strong> evolucion&#xF3; el uso de esta instrucci&#xF3;n. De tal manera que como comentamos con los flujos, <strong>podemos aprovechar un <mark>bloque ya definido</mark> para decidir cuando va a estar disponible un recurso</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[1,8]}" class="language-csharp" data-line="1,8"><span class="token comment">// Est&#xE9; c&#xF3;digo desde C#8 </span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">using</span> <span class="token class-name"><span class="token keyword">var</span></span> r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Bloque... </span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Equivale al siguiente en versiones anteriores...</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">var</span></span> r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token comment">// Bloque...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div></pre><p><strong>Interpretaci&#xF3;n real de la instrucci&#xF3;n <code>using</code>:</strong></p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[1,8]}" class="language-csharp" data-line="1,8"><span class="token comment">// Cuando instanciemos un objeto disposable de la siguiente manera en un m&#xE9;todo...</span>
+<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">using</span> <span class="token class-name"><span class="token keyword">var</span></span> r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Cuerpo del m&#xE9;todo ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Realmente ser&#xE1; un &apos;syntactic sugar&apos; del siguiente c&#xF3;digo.</span>
+<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">TipoIDisposabe</span> r<span class="token punctuation">;</span>				
+    <span class="token keyword">try</span> 
+    <span class="token punctuation">{</span>
+        r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">TipoIDisposabe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Cuerpo del m&#xE9;todo ...</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">finally</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>IDisposable<span class="token punctuation">)</span>r<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div></pre><div style="page-break-after:always;"></div>
+<p>Recordemos su uso a trav&#xE9;s de un <strong>ejemplo</strong>...</p>
+<p>En el ejemplo siguiente creamos una clase de utilidad para generar <strong><a href="https://es.wikipedia.org/wiki/Log_(inform%C3%A1tica)">logs</a></strong> de nuestros programas a un determinado fichero y visualizarlos.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5,11]}" class="language-csharp" data-line="5,11"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Log</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Escribe</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> fichero<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> texto<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">using</span> <span class="token class-name">TextWriter</span> w <span class="token operator">=</span> File<span class="token punctuation">.</span><span class="token function">AppendText</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">fichero</span><span class="token punctuation">}</span></span><span class="token string">.log&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        w<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">&quot;dd/MM/yyy HH:mm:ss &quot;</span><span class="token punctuation">)</span> <span class="token operator">+</span> texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> fichero<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">using</span> <span class="token class-name">TextReader</span> r <span class="token operator">=</span> File<span class="token punctuation">.</span><span class="token function">OpenText</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">fichero</span><span class="token punctuation">}</span></span><span class="token string">.log&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> s<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>s <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Log<span class="token punctuation">.</span><span class="token function">Escribe</span><span class="token punctuation">(</span><span class="token string">&quot;DEBUG&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Empieza Main&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Log<span class="token punctuation">.</span><span class="token function">Escribe</span><span class="token punctuation">(</span><span class="token string">&quot;DEBUG&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Finaliza Main&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Log<span class="token punctuation">.</span><span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token string">&quot;DEBUG&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre><p>Dado que las clases <strong><code>TextWriter</code></strong> y <strong><code>TextReader</code></strong> implementan la interfaz <strong><code>IDisposable</code></strong>, podremos usar la instrucci&#xF3;n <strong><code>using</code></strong> que nos garantiza que el archivo subyacente se cierre correctamente despu&#xE9;s de las operaciones de lectura o escritura.</p>
+<div style="page-break-after:always;"></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

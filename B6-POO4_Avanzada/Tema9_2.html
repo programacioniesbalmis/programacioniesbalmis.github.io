@@ -372,7 +372,7 @@ justo después del front matter
 <li><a href="#operador-unario-de-pre-y-post-incremetodecremento">Operador unario de pre y post incremeto/decremento</a></li>
 </ol>
 </li>
-<li><a href="#caso-especial-del-operador-de-indizaci%C3%B3n">Caso especial del operador de indizaci&#xF3;n</a></li>
+<li><a href="#caso-especial-del-operador-de-indizaci%C3%B3n-indizadores">Caso especial del operador de indizaci&#xF3;n (Indizadores)</a></li>
 </ol>
 </li>
 </ol>
@@ -887,19 +887,24 @@ Como el par&#xE1;metro formal <strong><code>anguloGrados</code></strong> es opci
 <div style="page-break-after:always;"></div>
 <h5 class="mume-header" id="miembros-con-cuerpo-de-expresi%C3%B3n">Miembros con cuerpo de expresi&#xF3;n</h5>
 
-<p>En el caso de que no usemos propiedades autoimplementadas. Otra forma de realizar un &apos;<em>syntactic sugar</em>&apos; al definir las propiedades son los <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members">miembros con cuerpo de expresi&#xF3;n</a></strong> se introdujeron en <strong>C# 7.0</strong>. No vamos a profundizar mucho en ellos (usos y significados) hasta el final del curso. Pero son una caracter&#xED;stica que tambi&#xE9;n podemos encontrar en otros lenguajes como JavaScript y Kotlin.</p>
+<p>En el caso de que no usemos propiedades autoimplementadas. Otra forma de realizar un &apos;<em>syntactic sugar</em>&apos; al definir las propiedades son los <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members">miembros con cuerpo de expresi&#xF3;n</a></strong> se introdujeron en <strong>C# 6 y 7</strong>. No vamos a profundizar mucho en ellos (usos y significados) hasta el final del curso. Pero son una caracter&#xED;stica que tambi&#xE9;n podemos encontrar en otros lenguajes como JavaScript, Kotlin, etc.</p>
 <blockquote>
-<p><strong>Seg&#xFA;n la documentaci&#xF3;n de Microsoft:</strong></p>
-<p>&#x1F4E3; &apos;<em>permiten proporcionar la implementaci&#xF3;n de un miembro de una forma muy concisa y legible. Se puede usar una definici&#xF3;n de cuerpo de expresi&#xF3;n <strong>siempre que la l&#xF3;gica</strong> de cualquier miembro compatible, como un m&#xE9;todo o propiedad, <strong>se componga de una <mark>expresi&#xF3;n &#xFA;nica</mark></strong></em>&apos;, ya que si tenemos m&#xE1;s de una instrucci&#xF3;n realmente no nos aportar&#xE1; nada.</p>
+<p>&#x1F4E3; <strong>Definici&#xF3;n:</strong> Podemos simplificar diciendo que son aplicables en aquellos m&#xE9;todos que est&#xE9;n formados por una &#xFA;nica expresi&#xF3;n o instrucci&#xF3;n en forma de expresi&#xF3;n independientemente de si se eval&#xFA;an algo o a void.</p>
 </blockquote>
-<p>Podemos simplificar que un m&#xE9;todo que tenga una &#xFA;nico <strong><code>return</code></strong> con <strong>una sola expresi&#xF3;n</strong> como el siguiente...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>Veamos un ejemplo con dos m&#xE9;todos donde se cumple la definici&#xF3;n anterior.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SetNombre</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Dni: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Dni</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>se puede representar de una forma m&#xE1;s abreviada como la siguiente...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;Dni: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Dni</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
-</pre><p>Si nos fijamos, eliminaremos el cuerpo del m&#xE9;todo y dejaremos la expresi&#xF3;n <strong>sin el <code>return</code></strong> precedida del operador <strong><code>=&gt;</code></strong></p>
+</pre><p>se pueden representar de una forma m&#xE1;s abreviada como la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SetNombre</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;Dni: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Dni</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Nombre: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+</pre><p>Si nos fijamos, eliminaremos el cuerpo del m&#xE9;todo y dejaremos la expresi&#xF3;n precedida del operador <strong><code>=&gt;</code></strong> y quitando <strong><code>return</code></strong> si hubiera.</p>
 <blockquote>
 <p><strong>Nota:</strong> A partir de este momento lo iremos usando en los ejemplos para ir qued&#xE1;ndonos con este nuevo &apos;<em>az&#xFA;car sint&#xE1;ctico</em>&apos;.</p>
 </blockquote>
@@ -1355,64 +1360,278 @@ Podr&#xED;amos usar el <strong><code>ToString()</code></strong> pero es mejor us
 <span class="token number">25</span> cm <span class="token operator">=</span> <span class="token number">25</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></blockquote>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="caso-especial-del-operador-de-indizaci%C3%B3n">Caso especial del operador de indizaci&#xF3;n</h3>
+<h3 class="mume-header" id="caso-especial-del-operador-de-indizaci%C3%B3n-indizadores">Caso especial del operador de indizaci&#xF3;n (Indizadores)</h3>
 
-<p>Es un concepto muy parecido al de las propiedades.<br>
-Me permiten mapear o indexar datos de un determinado tipo dentro de una clase utilizando el doble corchete [] como en los arrays.<br>
-Este operador lo aplicaremos a los objetos instanciados de dicha clase.<br>
-Para indexar no necesariamente utilizaremos un entero, tambi&#xE9;n podremos utilizar otros tipos como cadenas, tipos enumerados, etc&#x2026;</p>
+<p>Me permiten mapear o indexar datos de un determinado tipo dentro de una clase utilizando el doble corchete <strong><code>[]</code></strong> como en las tablas. Es un concepto muy parecido al de las <strong>propiedades</strong> ya que podremos establecer (set) u obtener (get) un valor con el operador.</p>
+<p>Una vez definido, este operador lo aplicaremos a los <strong>objetos instanciados</strong> de dicha clase. Adem&#xE1;s, para indexar <strong>no utilizaremos necesariamente un entero como &#xED;ndice</strong>, sino que tambi&#xE9;n podremos utilizar otros tipos como: <strong>cadenas</strong>, <strong>tipos enumerados</strong>, etc.</p>
+<p>Como hemos comentado la sintaxis b&#xE1;sica es muy similar a la de las propiedades. Adem&#xE1;s, tambi&#xE9;n podremos usar la sint&#xE1;xis de cuerpos de expresi&#xF3;n de forma an&#xE1;loga...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token operator">&lt;</span>tipoDelIndizador<span class="token operator">&gt;</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token operator">&lt;</span>par&#xE1;metrosQueServir&#xE1;nDe&#xCD;ndice<span class="token operator">&gt;</span><span class="token punctuation">]</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword">set</span> 
     <span class="token punctuation">{</span>
-        <span class="token comment">// C&#xF3;digo para cambiar un &quot;dato&quot; del objeto seg&#xFA;n los &#xED;ndices.</span>
+        <span class="token comment">// Instrucciones para cambiar un &quot;dato&quot; del objeto seg&#xFA;n el &#xED;ndice o &#xED;ndices.</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">get</span> 
     <span class="token punctuation">{</span>
-        <span class="token comment">// C&#xF3;digo para acceder a un &quot;dato&quot; del objeto seg&#xFA;n los &#xED;ndices.</span>
+        <span class="token comment">// Instrucciones para acceder a un &quot;dato&quot; del objeto seg&#xFA;n el &#xED;ndice o &#xED;ndices.</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><p>Ejemplo</p>
-<p>Supongamos la siguiente clase que contendr&#xE1; valores de habilidades de Humano de tal manera que cada una estar&#xE1; descrita por un tipo enumerado.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">HabilidadesHunamo</span>
+
+<span class="token operator">&lt;</span>tipoDelIndizador<span class="token operator">&gt;</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token operator">&lt;</span>par&#xE1;metrosQueServir&#xE1;nDe&#xCD;ndice<span class="token operator">&gt;</span><span class="token punctuation">]</span> 
 <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Habilidad</span> <span class="token punctuation">{</span> Inteligencia<span class="token punctuation">,</span> Fuerza<span class="token punctuation">,</span> Destreza<span class="token punctuation">,</span> Energia <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token class-name"><span class="token keyword">ushort</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> valores<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token function">HabilidadesHunamo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">set</span> <span class="token operator">=&gt;</span> <span class="token comment">// Expresi&#xF3;n para cambiar un &quot;dato&quot;. Se evaluar&#xE1; a void.</span>
+    <span class="token keyword">get</span> <span class="token operator">=&gt;</span> <span class="token comment">// Expresi&#xF3;n para acceder a un &quot;dato&quot;. Se evaluar&#xE1; a &lt;tipoDelIndizador&gt;.</span>
+<span class="token punctuation">}</span>
+</pre><p>Un posible uso podr&#xED;a ser encapsular o envolver el acceso a una tabla de datos dentro de una clase.</p>
+<p>Por ejemplo, supongamos una clase simplificada <strong><code>Mago</code></strong> que contenga su <strong>nombre</strong> y una serie de habilidades adquiridas, de tal manera que cada una estar&#xE1; descrita por un tipo enumerado <strong><code>Habilidad</code></strong> definido de forma anidada en <strong><code>Mago</code></strong>.<br>
+Adem&#xE1;s, querremos definir un indizador para los objetos <strong><code>Mago</code></strong> que me permita acceder o modificar dicha habilidad utilizando como &#xED;ndice el propio enumerado y de esta manera evitar excepciones del tipo <a href="https://docs.microsoft.com/es-es/dotnet/api/system.indexoutofrangeexception">IndexOutOfRangeException</a>.</p>
+<p>Una posible implementaci&#xF3;n de la clase <strong><code>Mago</code></strong> podr&#xED;a ser ...</p>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp {highlight=[13-19, 27]}" class="language-csharp" data-line="13-19,27"><span class="token keyword">class</span> <span class="token class-name">Mago</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Habilidad</span> <span class="token punctuation">{</span> Sabidur&#xED;a<span class="token punctuation">,</span> Poder<span class="token punctuation">,</span> Destreza<span class="token punctuation">,</span> Energ&#xED;a <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">ushort</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> Valores <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">Mago</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> nombre<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        valores <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">ushort</span></span><span class="token punctuation">[</span>Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Habilidad</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token comment">// Dimensionamos el array a los valores del enumerado.</span>
+        Valores <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">ushort</span></span><span class="token punctuation">[</span>Enum<span class="token punctuation">.</span><span class="token function">GetValues</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Habilidad</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// F&#xED;jate que el &#xED;ndice en este caso no ser&#xE1; un entero sino el</span>
+    <span class="token comment">// del tipo enumerado de la habilidad.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">ushort</span></span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token class-name">Habilidad</span> habilidad<span class="token punctuation">]</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">get</span> <span class="token operator">=&gt;</span> Valores<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>habilidad<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">set</span> <span class="token operator">=&gt;</span> Valores<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>habilidad<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
-        <span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> habilidades <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Habilidad</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> habilidades<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-            texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">habilidades<span class="token punctuation">[</span>i<span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">valores<span class="token punctuation">[</span>i<span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Habilidades de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string">:\n&quot;</span></span><span class="token punctuation">;</span>        
+        <span class="token comment">// F&#xED;jate que con this[habilidad] estamos usando el indizador que</span>
+        <span class="token comment">// acabamos de definir sobre objeto this para acceder al valor de la habilidad.</span>
+        <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token class-name">Habilidad</span> habilidad <span class="token keyword">in</span> Enum<span class="token punctuation">.</span><span class="token function">GetValues</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Habilidad</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">habilidad</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword">this</span><span class="token punctuation">[</span>habilidad<span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">;</span>
+        <span class="token comment">// Nos mostrar&#xE1; siempre las habilidades de forma correcta aunque cambiemos </span>
+        <span class="token comment">// los identificadores en el enumerado.</span>
         <span class="token keyword">return</span> texto<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><p>Vamos a definirle un indizador que me va a permitir cambiar el valor de la habilidad a trav&#xE9;s del tipo enumerado con la habilidad.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">HabilidadesHunamo</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13-19" data-start="13" data-end="19">
+
+
+
+
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="27" data-start="27">
+</div></div></pre><p>Podemos testear nuestra definici&#xF3;n de <strong><code>Mago</code></strong> con indizador con este sencillo <strong><code>Main()</code></strong>...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=6}" class="language-csharp" data-line="6"><span class="token keyword">class</span> <span class="token class-name">Program</span>
 <span class="token punctuation">{</span>
-    &#x2026; 
-    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">ushort</span></span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token class-name">Habilidad</span> habilidad<span class="token punctuation">]</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">get</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> valores<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>habilidad<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span>
-        <span class="token keyword">set</span> <span class="token punctuation">{</span> valores<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>habilidad<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token class-name"><span class="token keyword">var</span></span> m <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Mago</span><span class="token punctuation">(</span><span class="token string">&quot;Gandalf&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        m<span class="token punctuation">[</span>Mago<span class="token punctuation">.</span>Habilidad<span class="token punctuation">.</span>Energ&#xED;a<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">7</span><span class="token punctuation">;</span> <span class="token comment">// Llamamos al get y despu&#xE9;s al set</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><p>Aunque este esquema no es muy &quot;ortodoxo&quot;. &#xBF;Qu&#xE9; piensas que hemos ganado con la definici&#xF3;n esta clase respecto a una colecci&#xF3;n normal?</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre><p>Supongamos ahora que queremos usar como &#xED;ndice un texto con el nombre de la habilidad. Podr&#xED;amos sobrecargar el operador de indizaci&#xF3;n para que aceptase tambi&#xE9;n una cadena con el nombre de la misma. Una posible implementaci&#xF3;n de esta ampliaci&#xF3;n ser&#xED;a...</p>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp {highlight=[16-22]}" class="language-csharp" data-line="16-22"><span class="token keyword">class</span> <span class="token class-name">Mago</span>
 <span class="token punctuation">{</span>
-    <span class="token class-name">HabilidadesHunamo</span> habilidadesHunamo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">HabilidadesHunamo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    habilidadesHunamo<span class="token punctuation">[</span>HabilidadesHunamo<span class="token punctuation">.</span>Habilidad<span class="token punctuation">.</span>Destreza<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-    habilidadesHunamo<span class="token punctuation">[</span>HabilidadesHunamo<span class="token punctuation">.</span>Habilidad<span class="token punctuation">.</span>Energia<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">5</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>habilidadesHunamo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ... c&#xF3;digo anterior del ejemplo omitido para abreviar</span>
+    <span class="token comment">// La comprobaci&#xF3;n del &#xED;ndice lo metemos en este m&#xE9;todo de clase privado</span>
+    <span class="token comment">// para no repetirlo en e set y el get y as&#xED; poder una cuerpos de expresi&#xF3;n.</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token return-type class-name">Habilidad</span> <span class="token function">PasaAEnum</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> habilidad<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Enum<span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span>habilidad<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name">Habilidad</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> m <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">habilidad</span><span class="token punctuation">}</span></span><span class="token string"> no es un &#xED;ndice v&#xE1;lido para Mago.\n&quot;</span></span> 
+            <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;Valores posibles: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Habilidad</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">IndexOutOfRangeException</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> h<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">ushort</span></span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token class-name"><span class="token keyword">string</span></span> habilidad<span class="token punctuation">]</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Podemos usar el indizador de enumerados ya implementado que se encargar&#xE1;</span>
+        <span class="token comment">// ya de hacer la transformaci&#xF3;n a entero y as&#xED; no la repetimos.</span>
+        <span class="token keyword">get</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token function">PasaAEnum</span><span class="token punctuation">(</span>habilidad<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">set</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token function">PasaAEnum</span><span class="token punctuation">(</span>habilidad<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">value</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="16-22" data-start="16" data-end="22">
+
+
+
+
+
+
+</div></div></pre><p>Si modificamos ahora el programa de test de nuestra clase de la siguiente manara ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5,7]}" class="language-csharp" data-line="5,7"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">var</span></span> m <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Mago</span><span class="token punctuation">(</span><span class="token string">&quot;Gandalf&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span>Mago<span class="token punctuation">.</span>Habilidad<span class="token punctuation">.</span>Energ&#xED;a<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">7</span><span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span><span class="token string">&quot;Poder&quot;</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>    <span class="token comment">// Llamamos al get y despu&#xE9;s al set del nuevo indizador</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    m<span class="token punctuation">[</span><span class="token string">&quot;Fuerza&quot;</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">;</span>   <span class="token comment">// Generar&#xE1; una excepci&#xF3;n de IndexOutOfRangeException</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><p>Al ejecutarlo obtendremos la siguiente salida ...</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd"><code>Habilidades de Gandalf:
+        Sabidur&#xED;a = 0
+        Poder = 2
+        Destreza = 0
+        Energ&#xED;a = 7
+
+Unhandled exception. System.IndexOutOfRangeException: Fuerza no es un &#xED;ndice v&#xE1;lido para Mago.
+Valores posibles: Sabidur&#xED;a, Poder, Destreza, Energ&#xED;a
+   at Indizadores.Mago.PasaAEnum(String habilidad) in C:\WD\Program.cs:line 29
+   at Indizadores.Mago.get_Item(String habilidad) in C:\WD\Program.cs:line 33
+   at Indizadores.Program.Main() in C:\WD\Program.cs:line 54
+</code></pre><div style="page-break-after:always;"></div>
+<p>En el ejemplo anterior hemos visto el uso de indizadores para encapsular y controlar el acceso a una tabla dentro de la clase. Pero no siempre es necesario tener siempre una tabla para usar un indizador.</p>
+<p>En el siguiente ejemplo podemos indizar un objeto <strong><code>GYM</code></strong> de tal manera que dado un d&#xED;a de la semana y un tipo de clase me diga a la hora que se imparte.</p>
+<blockquote>
+<p><strong>Nota:</strong> Seguramente habr&#xE1; <strong>formas m&#xE1;s simples y sem&#xE1;nticas</strong> de solucionar la propuesta del ejemplo. Pero solo se trata de ver un ejemplo de sintaxis donde definamos un indizador que <strong>use dos &#xED;ndices</strong> y cuyos objetos <strong>no contengan ning&#xFA;n tipo de tabla</strong>. Adem&#xE1;s de otras caracter&#xED;sticas nuevas de C#.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp {highlight=[5-29]}" class="language-csharp" data-line="5-29"><span class="token keyword">class</span> <span class="token class-name">GYM</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">DiaSemana</span> <span class="token punctuation">{</span> Lunes<span class="token punctuation">,</span> Martes<span class="token punctuation">,</span> Jueves <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Clase</span> <span class="token punctuation">{</span> Yoga<span class="token punctuation">,</span> Pilates<span class="token punctuation">,</span> GAP <span class="token punctuation">}</span>
+    <span class="token comment">// C&#xF3;mo solo definimos get podemos usar la sintaxis abreviada de </span>
+    <span class="token comment">// cuerpo de expresi&#xF3;n an&#xE1;loga a las propiedades, usando un doble switch de expresi&#xF3;n.</span>
+    <span class="token comment">// En este caso usaremos dos &#xED;ndices.</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token class-name">DiaSemana</span> d<span class="token punctuation">,</span> <span class="token class-name">Clase</span> c<span class="token punctuation">]</span> <span class="token operator">=&gt;</span> d <span class="token keyword">switch</span>
+    <span class="token punctuation">{</span>
+        DiaSemana<span class="token punctuation">.</span>Lunes <span class="token operator">=&gt;</span> c <span class="token keyword">switch</span>
+        <span class="token punctuation">{</span>
+            Clase<span class="token punctuation">.</span>Pilates <span class="token operator">=&gt;</span> <span class="token string">&quot;12:00&quot;</span><span class="token punctuation">,</span>
+            Clase<span class="token punctuation">.</span>GAP <span class="token operator">=&gt;</span> <span class="token string">&quot;8:00&quot;</span><span class="token punctuation">,</span>
+            _ <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;El </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">d</span><span class="token punctuation">}</span></span><span class="token string"> no hay </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        DiaSemana<span class="token punctuation">.</span>Martes <span class="token operator">=&gt;</span> c <span class="token keyword">switch</span>
+        <span class="token punctuation">{</span>
+            Clase<span class="token punctuation">.</span>Yoga <span class="token operator">=&gt;</span> <span class="token string">&quot;21:00&quot;</span><span class="token punctuation">,</span>
+            Clase<span class="token punctuation">.</span>GAP <span class="token operator">=&gt;</span> <span class="token string">&quot;16:00&quot;</span><span class="token punctuation">,</span>
+            _ <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;El </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">d</span><span class="token punctuation">}</span></span><span class="token string"> no hay </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        DiaSemana<span class="token punctuation">.</span>Jueves <span class="token operator">=&gt;</span> c <span class="token keyword">switch</span>
+        <span class="token punctuation">{</span>
+            Clase<span class="token punctuation">.</span>Yoga <span class="token operator">=&gt;</span> <span class="token string">&quot;7:00&quot;</span><span class="token punctuation">,</span>
+            Clase<span class="token punctuation">.</span>Pilates <span class="token operator">=&gt;</span> <span class="token string">&quot;20:00&quot;</span><span class="token punctuation">,</span>
+            _ <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$&quot;El </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">d</span><span class="token punctuation">}</span></span><span class="token string"> no hay </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        _ <span class="token operator">=&gt;</span> <span class="token string">&quot;Cerrado&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name"><span class="token keyword">var</span></span> gym <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">GYM</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gym<span class="token punctuation">[</span>GYM<span class="token punctuation">.</span>DiaSemana<span class="token punctuation">.</span>Lunes<span class="token punctuation">,</span> GYM<span class="token punctuation">.</span>Clase<span class="token punctuation">.</span>Pilates<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gym<span class="token punctuation">[</span>GYM<span class="token punctuation">.</span>DiaSemana<span class="token punctuation">.</span>Martes<span class="token punctuation">,</span> GYM<span class="token punctuation">.</span>Clase<span class="token punctuation">.</span>Pilates<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gym<span class="token punctuation">[</span>GYM<span class="token punctuation">.</span>DiaSemana<span class="token punctuation">.</span>Jueves<span class="token punctuation">,</span> GYM<span class="token punctuation">.</span>Clase<span class="token punctuation">.</span>Pilates<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5-29" data-start="5" data-end="29">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div></pre>
       </div>
       
       
