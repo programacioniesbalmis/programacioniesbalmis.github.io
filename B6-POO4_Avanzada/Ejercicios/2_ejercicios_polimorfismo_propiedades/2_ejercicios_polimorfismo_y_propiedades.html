@@ -1,0 +1,960 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Polimorfismo y Propiedades</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  background-color: #FFFF;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="ejercicios-polimorfismo-y-propiedadesignoretrue">Ejercicios Polimorfismo y Propiedades{ignore=true}</h1>
+
+<p><a href="./2_ejercicios_polimorfismo_y_propiedades.pdf">Descargar estos ejercicios</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#ejercicios-polimorfismo-y-propiedadesignoretrue">Ejercicios Polimorfismo y Propiedades{ignore=true}</a><br>
+1. <a href="#white_check_mark-ejercicio-1">&#x2705; Ejercicio 1</a><br>
+1. <a href="#ejercicio-2">Ejercicio 2</a><br>
+2. <a href="#white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</a><br>
+3. <a href="#ejercicio-4">Ejercicio 4</a></li>
+</ol>
+<h3 class="mume-header" id="white_check_mark-ejercicio-1">&#x2705; Ejercicio 1</h3>
+
+<blockquote>
+<p>Para practicar el concepto de <strong>polimorfismo funcional o sobrecarga</strong>, vamos a suponer que tenemos un m&#xE9;todo de utilidad que nos permite calcular el coste de la carrera de un taxi. Hay cuatro conceptos b&#xE1;sicos que conforman el precio de la carrera. Dos de ellos fijos, que son la bajada de bandera y la carrera m&#xED;nima, y dos conceptos variables en cada trayecto: los kil&#xF3;metros recorridos y el tiempo de espera.<br>
+Adem&#xE1;s de los cuatro conceptos b&#xE1;sicos, existen algunos recargos o suplementos que deben pagarse en determinadas circunstancias: por d&#xED;a festivo o domingo, por horario nocturno, por mascotas u otros conceptos de ocupaci&#xF3;n extra.<br>
+A partir del m&#xE9;todo <strong>CosteCarrera</strong> con par&#xE1;metros opcionales que se muestra a continuaci&#xF3;n, refactor&#xED;za el c&#xF3;digo lo necesario para conseguir baja cohesi&#xF3;n y c&#xF3;digo m&#xE1;s claro.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Taxi</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">float</span></span> BAJADABANDER <span class="token operator">=</span> <span class="token number">1.82F</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">float</span></span> CARRERAMINIMA <span class="token operator">=</span> <span class="token number">3.63F</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">float</span></span> COSTEKILOMETRO <span class="token operator">=</span> <span class="token number">0.9F</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">float</span></span> ESPERAPORHORA <span class="token operator">=</span> <span class="token number">18.77F</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">float</span></span> PORCENTAJENOCTURNO <span class="token operator">=</span> <span class="token number">0.3F</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> <span class="token function">CosteCarrera</span><span class="token punctuation">(</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> kilometrosRecorridos<span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> minutosEspera<span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">bool</span></span> nocturno <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> porcentajeFestivo <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> ocupacionExtra <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> costeCarrera <span class="token operator">=</span> BAJADABANDER <span class="token operator">+</span> kilometrosRecorridos <span class="token operator">*</span> COSTEKILOMETRO
+                             <span class="token operator">+</span> minutosEspera <span class="token operator">*</span> <span class="token punctuation">(</span>ESPERAPORHORA <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        costeCarrera <span class="token operator">=</span> costeCarrera <span class="token operator">&lt;</span> <span class="token class-name">CARRERAMINIMA <span class="token punctuation">?</span></span> CARRERAMINIMA <span class="token punctuation">:</span> costeCarrera<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> incrementoNocturno <span class="token operator">=</span> nocturno <span class="token punctuation">?</span> costeCarrera <span class="token operator">*</span> PORCENTAJENOCTURNO <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> incrementoFestivo <span class="token operator">=</span> porcentajeFestivo <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">?</span> costeCarrera <span class="token operator">*</span> porcentajeFestivo <span class="token operator">/</span> <span class="token number">100</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        costeCarrera <span class="token operator">+=</span> incrementoFestivo <span class="token operator">&gt;=</span> <span class="token class-name">incrementoNocturno <span class="token punctuation">?</span></span> incrementoFestivo <span class="token punctuation">:</span> incrementoNocturno<span class="token punctuation">;</span>
+        costeCarrera <span class="token operator">+=</span> ocupacionExtra<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> costeCarrera<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera lunes ma&#xF1;ana -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Taxi<span class="token punctuation">.</span><span class="token function">CosteCarrera</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span></span><span class="token format-string"><span class="token punctuation">:</span>f2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera lunes noche -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Taxi<span class="token punctuation">.</span><span class="token function">CosteCarrera</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span></span><span class="token format-string"><span class="token punctuation">:</span>f2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera lunes con mi mascota Dogo -&gt;&quot;</span></span> <span class="token operator">+</span>
+                          <span class="token string">&quot;{Taxi.CosteCarrera(20, 5, ocupacionExtra: 2):f2}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera Domingo de Ramos -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Taxi<span class="token punctuation">.</span><span class="token function">CosteCarrera</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span></span><span class="token format-string"><span class="token punctuation">:</span>f2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera Domingo noche -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Taxi<span class="token punctuation">.</span><span class="token function">CosteCarrera</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span></span><span class="token format-string"><span class="token punctuation">:</span>f2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Coste carrera Domingo de Ramos noche con Dogo y Minina-&gt;&quot;</span></span> <span class="token operator">+</span>
+                          <span class="token string">&quot;{Taxi.CosteCarrera(20, 5, true, 40, 3):f2}&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p><strong>Nota:</strong> se pasa el c&#xF3;digo completo para que puedas probar el/los m&#xE9;todos m&#xE1;s f&#xE1;cilmente.</p>
+</blockquote>
+<h3 class="mume-header" id="ejercicio-2">Ejercicio 2</h3>
+
+<blockquote>
+<p>A partir del ejercicio 1 de objetos b&#xE1;sicos (Bloque 4), vas a sustituir los m&#xE9;todos accesores y mutadores por las propiedades propias de C#. Adjuntamos el UML del ejercicio anterior para que puedas guiarte.</p>
+<p align="center" style="zoom:0.7"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="314.7381px" preserveAspectRatio="none" style="width:812px;height:314px;" version="1.1" viewBox="0 0 812 314" width="812.6675px" zoomAndPan="magnify"><defs><filter height="300%" id="fob12e64i92hz" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.94884287454324"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="3.89768574908648" dy="3.89768574908648" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[267282629f1778b9c75091f9d8fe6097]
+class Empleado--><rect codeline="9" fill="#FFFAFA" filter="url(#fob12e64i92hz)" height="208.5566" id="Empleado" style="stroke:#000000;stroke-width:1.46163215590743;" width="302.0706" x="496.9549" y="27.2838"/><ellipse cx="616.078" cy="42.8745" fill="#ADD1B2" rx="10.7186" ry="10.7186" style="stroke:#000000;stroke-width:0.97442143727162;"/><path d="M618.7728,38.8551 Q618.9251,38.6419 619.1078,38.5353 Q619.2905,38.4287 619.5037,38.4287 Q619.8691,38.4287 620.0974,38.68 Q620.3258,38.9312 620.3258,39.525 L620.3258,40.9409 Q620.3258,41.5347 620.0974,41.7935 Q619.8691,42.0524 619.5037,42.0524 Q619.1687,42.0524 618.9708,41.8544 Q618.7728,41.6717 618.6663,41.1693 Q618.6206,40.8191 618.4379,40.6364 Q618.1181,40.271 617.5244,40.0579 Q616.9306,39.8447 616.3216,39.8447 Q615.5755,39.8447 614.9589,40.1644 Q614.3423,40.4842 613.8627,41.215 Q613.3831,41.9458 613.3831,42.9507 L613.3831,44.0164 Q613.3831,45.2192 614.2509,46.0186 Q615.1188,46.8179 616.6717,46.8179 Q617.5853,46.8179 618.2247,46.5743 Q618.6054,46.422 619.0164,45.9957 Q619.2753,45.7369 619.4199,45.6608 Q619.5646,45.5847 619.7625,45.5847 Q620.0822,45.5847 620.3334,45.8359 Q620.5847,46.0871 620.5847,46.422 Q620.5847,46.757 620.2497,47.1529 Q619.7625,47.7162 618.986,48.0359 Q617.9354,48.4775 616.6717,48.4775 Q615.1949,48.4775 614.0225,47.8685 Q613.0633,47.3812 612.3934,46.3383 Q611.7235,45.2954 611.7235,44.0469 L611.7235,42.9202 Q611.7235,41.6261 612.3249,40.507 Q612.9263,39.3879 613.9921,38.7865 Q615.0579,38.1851 616.2607,38.1851 Q616.9762,38.1851 617.6081,38.345 Q618.24,38.5049 618.7728,38.8551 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.6931" lengthAdjust="spacingAndGlyphs" textLength="55.542" x="636.0536" y="47.6591">Empleado</text><line style="stroke:#000000;stroke-width:1.46163215590743;" x1="497.9294" x2="798.0512" y1="58.4653" y2="58.4653"/><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="106.2119" x="502.8015" y="73.4898">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="127.6492" x="502.8015" y="86.9719">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="145.1888" x="502.8015" y="100.4539">-a&#xF1;oNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="100.3654" x="502.8015" y="113.9359">+categoria: Categoria</text><line style="stroke:#000000;stroke-width:1.46163215590743;" x1="497.9294" x2="798.0512" y1="120.1888" y2="120.1888"/><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="290.3776" x="502.8015" y="135.2133">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="128.6236" x="502.8015" y="148.6954">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="101.3398" x="502.8015" y="162.1774">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="119.8538" x="502.8015" y="175.6594">+GetA&#xF1;oNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="79.9026" x="502.8015" y="189.1415">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="210.475" x="502.8015" y="202.6235">+SetCategoria(in categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="85.7491" x="502.8015" y="216.1055">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="88.6724" x="502.8015" y="229.5876">+Acadena(): string</text><!--MD5=[7d0e5ddd73bd8fec86b8967827845935]
+class Empresa--><rect codeline="26" fill="#FFFAFA" filter="url(#fob12e64i92hz)" height="249.0027" id="Empresa" style="stroke:#000000;stroke-width:1.46163215590743;" width="431.6687" x="6.821" y="6.821"/><ellipse cx="193.6663" cy="22.4117" fill="#ADD1B2" rx="10.7186" ry="10.7186" style="stroke:#000000;stroke-width:0.97442143727162;"/><path d="M196.3611,18.3922 Q196.5134,18.179 196.6961,18.0725 Q196.8788,17.9659 197.092,17.9659 Q197.4574,17.9659 197.6857,18.2171 Q197.9141,18.4683 197.9141,19.0621 L197.9141,20.4781 Q197.9141,21.0719 197.6857,21.3307 Q197.4574,21.5895 197.092,21.5895 Q196.757,21.5895 196.5591,21.3916 Q196.3611,21.2089 196.2546,20.7065 Q196.2089,20.3563 196.0262,20.1736 Q195.7065,19.8082 195.1127,19.595 Q194.5189,19.3819 193.9099,19.3819 Q193.1638,19.3819 192.5472,19.7016 Q191.9306,20.0213 191.451,20.7521 Q190.9714,21.4829 190.9714,22.4878 L190.9714,23.5536 Q190.9714,24.7564 191.8392,25.5557 Q192.7071,26.3551 194.26,26.3551 Q195.1736,26.3551 195.813,26.1114 Q196.1937,25.9592 196.6048,25.5329 Q196.8636,25.2741 197.0082,25.1979 Q197.1529,25.1218 197.3508,25.1218 Q197.6705,25.1218 197.9217,25.373 Q198.173,25.6242 198.173,25.9592 Q198.173,26.2942 197.838,26.69 Q197.3508,27.2533 196.5743,27.5731 Q195.5238,28.0146 194.26,28.0146 Q192.7832,28.0146 191.6108,27.4056 Q190.6516,26.9184 189.9817,25.8755 Q189.3118,24.8325 189.3118,23.584 L189.3118,22.4574 Q189.3118,21.1632 189.9132,20.0442 Q190.5146,18.9251 191.5804,18.3237 Q192.6462,17.7223 193.849,17.7223 Q194.5646,17.7223 195.1964,17.8822 Q195.8283,18.042 196.3611,18.3922 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.6931" lengthAdjust="spacingAndGlyphs" textLength="49.6955" x="213.6419" y="27.1963">Empresa</text><line style="stroke:#000000;stroke-width:1.46163215590743;" x1="7.7954" x2="437.5152" y1="38.0024" y2="38.0024"/><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="104.2631" x="12.6675" y="53.027">-cif : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="148.1121" x="12.6675" y="66.509">-razonSocial : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="81.8514" x="12.6675" y="79.9911">-direccion : string</text><line style="stroke:#000000;stroke-width:1.46163215590743;" x1="7.7954" x2="437.5152" y1="86.2439" y2="86.2439"/><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="419.9756" x="12.6675" y="101.2685">+Empresa(in cif : string, in razonSocial : string, in gerente : Empleado, in direccion : string)</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="120.8283" x="12.6675" y="114.7505">+Empresa(in e : Empresa)</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="122.7771" x="12.6675" y="128.2325">+NombreGerente() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="123.7515" x="12.6675" y="141.7146">+GetRazonSocial() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="109.1352" x="12.6675" y="155.1966">+GetDireccion() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="77.9537" x="12.6675" y="168.6786">+GetCif() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="195.8587" x="12.6675" y="182.1607">+SetGerente(in gerente : Empleado) : void</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="190.0122" x="12.6675" y="195.6427">+SetDireccion(in direccion : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="116.9306" x="12.6675" y="209.1247">+DatosEmpresa() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="140.3167" x="12.6675" y="222.6068">+GetEmpleados() : Empleado[]</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="286.4799" x="12.6675" y="236.0888">+Contrata(in empleado : Empleado, in categoria : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="10.7186" lengthAdjust="spacingAndGlyphs" textLength="88.6724" x="12.6675" y="249.5708">+Acadena(): string</text><!--MD5=[7e1ce8ab2bf669717f28e918f4971b9a]
+class Categoria--><rect codeline="46" fill="#FFFAFA" filter="url(#fob12e64i92hz)" height="31.1815" id="Categoria" style="stroke:#000000;stroke-width:1.46163215590743;" width="83.8002" x="606.0901" y="269.9147"/><ellipse cx="620.7065" cy="285.5055" fill="#EB937F" rx="10.7186" ry="10.7186" style="stroke:#000000;stroke-width:0.97442143727162;"/><path d="M619.595,286.282 L619.595,288.718 L623.8124,288.718 L623.8124,287.8197 Q623.8124,287.2259 624.0484,286.9671 Q624.2844,286.7083 624.6498,286.7083 Q625.0152,286.7083 625.2436,286.9671 Q625.472,287.2259 625.472,287.8197 L625.472,290.3776 L617.6766,290.3776 Q617.0676,290.3776 616.8164,290.1492 Q616.5652,289.9208 616.5652,289.5402 Q616.5652,289.1748 616.824,288.9464 Q617.0828,288.718 617.6766,288.718 L617.9354,288.718 L617.9354,282.232 L617.6766,282.232 Q617.0676,282.232 616.8164,282.0037 Q616.5652,281.7753 616.5652,281.3946 Q616.5652,281.0292 616.8164,280.8009 Q617.0676,280.5725 617.6766,280.5725 L625.1066,280.5725 L625.1066,283.0999 Q625.1066,283.6937 624.8858,283.9449 Q624.665,284.1961 624.2844,284.1961 Q623.919,284.1961 623.6906,283.9449 Q623.4622,283.6937 623.4622,283.0999 L623.4622,282.232 L619.595,282.232 L619.595,284.6224 L621.0414,284.6224 Q621.0414,283.9829 621.1632,283.8002 Q621.422,283.4044 621.8788,283.4044 Q622.2442,283.4044 622.4726,283.6556 Q622.701,283.9068 622.701,284.5006 L622.701,286.419 Q622.701,286.9519 622.5792,287.1346 Q622.3203,287.5152 621.8788,287.5152 Q621.422,287.5152 621.1632,287.1194 Q621.0414,286.9367 621.0414,286.282 L619.595,286.282 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.6931" lengthAdjust="spacingAndGlyphs" textLength="52.6188" x="634.3484" y="290.29">Categoria</text><!--MD5=[4c0d8c6dc72817c2e26b80705e19b643]
+reverse link Empresa to Empleado--><path codeline="51" d="M451.6054,131.5469 C466.9038,131.5469 482.0853,131.5469 496.838,131.5469 " fill="none" id="Empresa-backto-Empleado" style="stroke:#000000;stroke-width:0.97442143727162;"/><polygon fill="#000000" points="438.7333,131.5469,444.5798,135.4446,450.4263,131.5469,444.5798,127.6492,438.7333,131.5469" style="stroke:#000000;stroke-width:0.97442143727162;"/><text fill="#000000" font-family="sans-serif" font-size="12.6675" lengthAdjust="spacingAndGlyphs" textLength="6.821" x="446.6211" y="144.9912">1</text><text fill="#000000" font-family="sans-serif" font-size="12.6675" lengthAdjust="spacingAndGlyphs" textLength="21.4373" x="467.5601" y="145.082">1..n</text><!--MD5=[26e9fc1e267e578bb7af05bfe7c81018]
+reverse link Empleado to Categoria--><path codeline="52" d="M647.9903,250.4555 C647.9903,256.9257 647.9903,263.3959 647.9903,269.866 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:0.97442143727162;"/><ellipse cx="647.9903" cy="243.6248" fill="#FFFFFF" rx="7.7954" ry="7.7954" style="stroke:#000000;stroke-width:0.97442143727162;"/><line style="stroke:#000000;stroke-width:0.97442143727162;" x1="647.9903" x2="647.9903" y1="251.4202" y2="235.8295"/><line style="stroke:#000000;stroke-width:0.97442143727162;" x1="640.1949" x2="655.7856" y1="243.6248" y2="243.6248"/><!--MD5=[1ddacd680ecca1b808eac2da383539ec]
+@startuml
+
+left to right direction
+scale 800 width
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+class Empleado
+{
+    - dni : string {readOnly} 
+    - nombre : string {readOnly}
+    - añoNacimiento : int {readOnly}
+    + categoria: Categoria
+
+    + Empleado(in dni : string, in nombre : string, in nacimiento : int)
+    + Empleado(in e : Empleado)
+    + GetNombre() : string
+    + GetAñoNacimiento() : int
+    + GetDni() : string
+    + SetCategoria(in categoria : Categoria) : void
+    + Salario() : double
+    + Acadena(): string 
+}
+
+class Empresa
+{
+    - cif : string {readOnly} 
+    - razonSocial : string {readOnly}
+    - direccion : string 
+    + Empresa(in cif : string, in razonSocial : string, in gerente : Empleado, in direccion : string)
+    + Empresa(in e : Empresa)
+    + NombreGerente() : string
+    + GetRazonSocial() : string
+    + GetDireccion() : string
+    + GetCif() : string
+    + SetGerente(in gerente : Empleado) : void
+    + SetDireccion(in direccion : string) : void
+    + DatosEmpresa() : string
+    + GetEmpleados() : Empleado[]
+    + Contrata(in empleado : Empleado, in categoria : string) : void
+    + Acadena(): string 
+}
+hide empty methods
+hide empty attributes
+ enum Categoria
+{
+
+
+}
+Empresa "1" *- - "1..n" Empleado
+Empleado +- Categoria
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p></blockquote>
+<h3 class="mume-header" id="white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</h3>
+
+<blockquote>
+<p>Vamos a ampliar el ejercicio de la cuenta corriente que hicimos en excepciones, modificando ligeramente su definici&#xF3;n inicial, para modelar los tipos de cuenta de un banco algo usurero.<br>
+De tal manera que cuenta va a simbolizar un tipo de cuenta gen&#xE9;rico del que s&#xF3;lo podremos ingresar, retirar fondos y tener unos datos de usuario.<br>
+Adem&#xE1;s, a&#xF1;adiremos una propiedad autodefinida Saldo donde el get ser&#xE1; p&#xFA;blico para poder verlo y el set protegido.</p>
+<p><strong>Adem&#xE1;s, tendremos varias especificaciones nuevas para cuenta:</strong></p>
+<h4>Cuenta de ahorros</h4>
+<ul>
+<li>Se especializa respecto a la gen&#xE9;rica mediante la aplicaci&#xF3;n de intereses al saldo actual, cuando se le indique.<br>
+Por ejemplo, si una cuenta tiene un saldo de 1000&#x20AC; y la tasa de inter&#xE9;s es del 2%, despu&#xE9;s del pago de intereses el nuevo saldo ser&#xE1; de 1020&#x20AC;.</li>
+<li>Este tipo de cuentas <strong>no permitir&#xE1; cr&#xE9;dito</strong> y los intereses se sumar&#xE1;n al finalizar el mes sobre el saldo en ese momento.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp">saldo <span class="token operator">=</span> saldo <span class="token operator">+</span> <span class="token punctuation">(</span>saldo <span class="token operator">*</span> interes_tpu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><ul>
+<li>Redefiniremos el m&#xE9;todo ToString para que indique el tipo de cuenta antes de llamar al de la clase base para que muestre sus datos b&#xE1;sicos.</li>
+</ul>
+<h4>Cuenta de dep&#xF3;sito</h4>
+<ul>
+<li>Tambi&#xE9;n aplica intereses al saldo actual, por lo cual hereda de cuenta de ahorros. Pero si el titular realiza un reintegro de parte del capital antes del vencimiento del plazo fijo, el banco deducir&#xE1; un porcentaje sobre el reintegro.<br>
+Por ejemplo, si el titular retira 1000&#x20AC; antes del vencimiento del plazo y hay un recargo del 5% sobre el reintegro, el saldo disminuir&#xE1; en 1000&#x20AC; pero el titular s&#xF3;lo recibir&#xE1; 950&#x20AC;.</li>
+<li>Si el plazo de la cuenta venci&#xF3;, no se cobrar&#xE1; recargo por el reintegro.</li>
+<li>Este tipo de cuenta no permite cr&#xE9;dito y los intereses se abonar&#xE1;n al finalizar el mes sobre el saldo en ese momento.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">this</span><span class="token punctuation">.</span>Saldo <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>Saldo <span class="token operator">-</span> cantidad<span class="token punctuation">;</span>
+<span class="token comment">// Si el dep&#xF3;sito a&#xFA;n no venci&#xF3;.</span>
+cantidad <span class="token operator">=</span> cantidad <span class="token operator">-</span> <span class="token punctuation">(</span>cantidad <span class="token operator">*</span> recargo_tpu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><ul>
+<li>Anularemos el m&#xE9;todo ToString para que indique el tipo de cuenta antes de llamar al de la clase base para que muestre sus datos b&#xE1;sicos como en la salida mostrada m&#xE1;s abajo.</li>
+</ul>
+<p><strong>Nota:</strong> Para poder probar la clase, el vencimiento se controlar&#xE1; desde fuera de la clase y en esta quedar&#xE1; reflejado mediante un valor booleano.</p>
+<h4>Cuenta corriente</h4>
+<ul>
+<li>No aplica intereses al saldo, pero permite al titular girar cheques y realizar reintegros a trav&#xE9;s del cajero autom&#xE1;tico. No obstante, el banco restringe el n&#xFA;mero de transacciones mensuales a una determinada cantidad y si el titular excede las transacciones; el banco le cobrar&#xE1; un recargo por transacci&#xF3;n.</li>
+<li>Este tipo de cuentas no permite cr&#xE9;dito y los posibles recargos se aplicar&#xE1;n mensualmente.<br>
+Por ejemplo si tenemos 5 transacciones y realizamos 8 y el recargo por transacci&#xF3;n adicional es de 1&#x20AC;, el banco nos cobrar&#xE1; 3&#x20AC;.</li>
+<li>Este recargo por pasar el n&#xFA;mero de transacciones, se realizara al finalizar el mes. Momento en el cual, se reiniciar&#xE1; el n&#xFA;mero de transacciones a cero.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp">Saldo <span class="token operator">=</span> Saldo <span class="token operator">-</span> <span class="token punctuation">(</span>numeroTrasaccionesMesActual <span class="token operator">-</span> maximoTrasaccionesGratuitasPorMes<span class="token punctuation">)</span> <span class="token operator">*</span> recargoXTransaccionAdicional_Euros<span class="token punctuation">;</span>
+</pre><ul>
+<li>Redefiniremos el m&#xE9;todo ToString para que indique el tipo de cuenta antes de llamar al de la clase base para que muestre sus datos b&#xE1;sicos.</li>
+</ul>
+<h4>Cuenta cr&#xE9;dito</h4>
+<ul>
+<li>Permite al titular retirar dinero adicional al que indica su saldo, hasta un l&#xED;mite de cr&#xE9;dito. Pero esto no es gratuito; al finalizar el mes, el banco aplicar&#xE1; una tasa de inter&#xE9;s al saldo negativo o descubierto en ese momento.<br>
+Por ejemplo, si nuestro saldo es -1000&#x20AC; al 20%, pagaremos un recargo de 200&#x20AC;, de tal manera que el nuevo saldo ser&#xE1; de -1200&#x20AC;.</li>
+<li>A diferencia de la cuenta corriente, la cuenta de cr&#xE9;dito no tiene l&#xED;mite para la cantidad de transacciones que se pueden realizar sobre ella. Pues al banco le interesa que nos quedemos sin dinero para poder <em>&quot;chuparnos la sangre&quot;</em>.</li>
+<li>En todos los casos el control de tiempo se realizar&#xE1; de forma externa a las clases y los intereses, recargos, etc&#x2026; se gestionar&#xE1;n a trav&#xE9;s de operaciones sobre los diferentes objetos de cuenta.</li>
+<li>Definiremos una excepci&#xF3;n personaliza da <strong>CreditoMaximoExcedidoException</strong>, como clase anidada p&#xFA;blica. Esta excepci&#xF3;n se generar&#xE1; si el usuario al intentar realizar un reintegro superase el l&#xED;mite de cr&#xE9;dito establecido para la cuenta.</li>
+<li>Anularemos el m&#xE9;todo ToString para que indique el tipo de cuenta antes de llamar al de la clase base para que muestre sus datos b&#xE1;sicos.</li>
+</ul>
+<h4>Programa principal</h4>
+<ul>
+<li>Deberemos dise&#xF1;ar la jerarqu&#xED;a de clases que creamos m&#xE1;s conveniente y probar el siguiente c&#xF3;digo&#x2026;</li>
+</ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Ejercicio3</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token class-name">CuentaAhorro</span> ca <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CuentaAhorro</span><span class="token punctuation">(</span><span class="token string">&quot;2085 0103 92 0300731702&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Nicolas&quot;</span><span class="token punctuation">,</span> <span class="token number">.02d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token class-name">CuentaDeposito</span> cd <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CuentaDeposito</span><span class="token punctuation">(</span><span class="token string">&quot;2100 1162 43 0200084482&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Juan&quot;</span><span class="token punctuation">,</span> <span class="token number">.06d</span><span class="token punctuation">,</span> <span class="token number">.05d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token class-name">CuentaCorriente</span> cc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CuentaCorriente</span><span class="token punctuation">(</span><span class="token string">&quot;2100 0721 09 0200601249&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Jhon&quot;</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token class-name">CuentaCredito</span> cr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">CuentaCredito</span><span class="token punctuation">(</span><span class="token string">&quot;0049 0345 31 2710611698&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Jose&quot;</span><span class="token punctuation">,</span> <span class="token number">.18d</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SaldoActual</span><span class="token punctuation">(</span><span class="token class-name">Cuenta</span> cuenta<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Saldo tras operaci&#xF3;n </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cuenta<span class="token punctuation">.</span>Saldo</span><span class="token format-string"><span class="token punctuation">:</span>C</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Ingresa</span><span class="token punctuation">(</span><span class="token class-name">Cuenta</span> cuenta<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> cantidades<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> cantidad <span class="token keyword">in</span> cantidades<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Ingresando </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cantidad</span><span class="token format-string"><span class="token punctuation">:</span>C</span><span class="token punctuation">}</span></span><span class="token string"> en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cuenta</span><span class="token punctuation">}</span></span><span class="token string">.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cuenta<span class="token punctuation">.</span><span class="token function">Ingreso</span><span class="token punctuation">(</span>cantidad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">SaldoActual</span><span class="token punctuation">(</span>cuenta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Retira</span><span class="token punctuation">(</span><span class="token class-name">Cuenta</span> cuenta<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> cantidades<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> cantidad <span class="token keyword">in</span> cantidades<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">try</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Retirando </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cantidad</span><span class="token format-string"><span class="token punctuation">:</span>C</span><span class="token punctuation">}</span></span><span class="token string"> en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cuenta</span><span class="token punctuation">}</span></span><span class="token string">.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cuenta<span class="token punctuation">.</span><span class="token function">Reintegro</span><span class="token punctuation">(</span>cantidad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SaldoInsuficException</span> e<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">CuentaCredito<span class="token punctuation">.</span>CreditoMaximoExcedidoException</span> e<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">SaldoActual</span><span class="token punctuation">(</span>cuenta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">FinalizaMes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Finalizando mes actual ...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Aplicando intereses en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ca</span><span class="token punctuation">}</span></span><span class="token string">...&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ca<span class="token punctuation">.</span><span class="token function">SumaInteres</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SaldoActual</span><span class="token punctuation">(</span>ca<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Aplicando intereses en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cd</span><span class="token punctuation">}</span></span><span class="token string">...&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cd<span class="token punctuation">.</span><span class="token function">SumaInteres</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SaldoActual</span><span class="token punctuation">(</span>cd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Aplicando recargos en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cc</span><span class="token punctuation">}</span></span><span class="token string">...&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cc<span class="token punctuation">.</span><span class="token function">AplicaRecargosMes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SaldoActual</span><span class="token punctuation">(</span>cc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Revisando cargo sobre saldo negativo en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cr</span><span class="token punctuation">}</span></span><span class="token string">...&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> cargo <span class="token operator">=</span> cr<span class="token punctuation">.</span><span class="token function">CargaInteresesMes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cargo <span class="token operator">&gt;</span> <span class="token number">0d</span><span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Has tenido un cargo de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">cargo</span><span class="token format-string"><span class="token punctuation">:</span>C</span><span class="token punctuation">}</span></span><span class="token string"> por saldo negativo.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">SaldoActual</span><span class="token punctuation">(</span>cr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>ca<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>cd<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">10000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>ca<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">10000000</span><span class="token punctuation">,</span> <span class="token number">500</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">2000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">2000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">10000000</span><span class="token punctuation">,</span> <span class="token number">500</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>cr<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cr<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">500</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cd<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">10000000</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">FinalizaMes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cd<span class="token punctuation">.</span>Vencimiento <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>ca<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>ca<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">500</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Ingresa</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cr<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cd<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">1000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">FinalizaMes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Retira</span><span class="token punctuation">(</span>cr<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token number">11000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>El resultado por consola de ejecutar el programa ser&#xE1; parecido al siguiente&#x2026;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta AhorroPresione una tecla para continuar <span class="token builtin class-name">.</span> <span class="token builtin class-name">.</span> <span class="token builtin class-name">.</span>
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">0,00</span> &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">1.000</span>,00 &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">1.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">2.000</span>,00 &#x20AC;
+
+Ingresando <span class="token number">10.000</span>,00 &#x20AC; en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">0,00</span> &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">10.000</span>,00 &#x20AC;
+
+Retirando <span class="token number">10.000</span>.000,00 &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">2.000</span>,00 &#x20AC;.
+Saldo <span class="token number">2.000</span>,00 &#x20AC; insuficiente para reintegro de <span class="token number">10.000</span>.000,00 &#x20AC;.
+En cuenta: <span class="token number">2085</span>-0103-92-0300731702.
+Saldo tras operaci&#xF3;n <span class="token number">2.000</span>,00 &#x20AC;
+
+Retirando <span class="token number">500,00</span> &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">2.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">1.500</span>,00 &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">0,00</span> &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">1.000</span>,00 &#x20AC;
+
+Ingresando <span class="token number">2.000</span>,00 &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">1.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">3.000</span>,00 &#x20AC;
+</pre><pre data-role="codeBlock" data-info="bash" class="language-bash">Ingresando <span class="token number">2.000</span>,00 &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">3.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">5.000</span>,00 &#x20AC;
+
+Retirando <span class="token number">500,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">5.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.500</span>,00 &#x20AC;
+
+Retirando <span class="token number">10.000</span>.000,00 &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.500</span>,00 &#x20AC;.
+Saldo <span class="token number">4.500</span>,00 &#x20AC; insuficiente para reintegro de <span class="token number">10.000</span>.000,00 &#x20AC;.
+En cuenta: <span class="token number">2100</span>-0721-09-0200601249.
+Saldo tras operaci&#xF3;n <span class="token number">4.500</span>,00 &#x20AC;
+
+Retirando <span class="token number">500,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.500</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.000</span>,00 &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: <span class="token number">0,00</span> &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">1.000</span>,00 &#x20AC;
+
+Retirando <span class="token number">500,00</span> &#x20AC; en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: <span class="token number">1.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">500,00</span> &#x20AC;
+
+Retirando <span class="token number">10.000</span>.000,00 &#x20AC; en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">10.000</span>,00 &#x20AC;.
+Saldo <span class="token number">10.000</span>,00 &#x20AC; insuficiente para reintegro de <span class="token number">10.000</span>.000,00 &#x20AC;.
+En cuenta: <span class="token number">2100</span>-1162-43-0200084482.
+Saldo tras operaci&#xF3;n <span class="token number">10.000</span>,00 &#x20AC;
+
+Retirando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">10.000</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">9.050</span>,00 &#x20AC;
+
+Finalizando mes actual <span class="token punctuation">..</span>.
+Aplicando intereses en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">1.500</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">1.530</span>,00 &#x20AC;
+
+Aplicando intereses en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">9.050</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">9.593</span>,00 &#x20AC;
+
+Aplicando recargos en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.000</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">3.988</span>,00 &#x20AC;
+
+Revisando cargo sobre saldo negativo en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: <span class="token number">500,00</span> &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">500,00</span> &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">1.530</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">2.530</span>,00 &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">2.530</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">3.530</span>,00 &#x20AC;
+
+Retirando <span class="token number">500,00</span> &#x20AC; en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">3.530</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">3.030</span>,00 &#x20AC;
+
+Ingresando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">3.988</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.988</span>,00 &#x20AC;
+
+Retirando <span class="token number">100,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.988</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.888</span>,00 &#x20AC;
+
+Retirando <span class="token number">200,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.888</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.688</span>,00 &#x20AC;
+
+Retirando <span class="token number">100,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.688</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.588</span>,00 &#x20AC;
+
+Retirando <span class="token number">100,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.588</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.488</span>,00 &#x20AC;
+
+Retirando <span class="token number">100,00</span> &#x20AC; en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.488</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">4.388</span>,00 &#x20AC;
+
+Retirando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: <span class="token number">500,00</span> &#x20AC;.
+Saldo tras operaci&#xF3;n -500,00 &#x20AC;
+
+Retirando <span class="token number">1.000</span>,00 &#x20AC; en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">9.593</span>,00 &#x20AC;.
+Saldo tras operaci&#xF3;n <span class="token number">8.593</span>,00 &#x20AC;
+
+Finalizando mes actual <span class="token punctuation">..</span>.
+Aplicando intereses en Cuenta Ahorro
+Numero de cuenta: <span class="token number">2085</span>-0103-92-0300731702
+Titular: Nicolas
+Saldo: <span class="token number">3.030</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">3.090</span>,60 &#x20AC;
+
+Aplicando intereses en Cuenta Dep&#xF3;sito
+Cuenta Ahorro
+Numero de cuenta: <span class="token number">2100</span>-1162-43-0200084482
+Titular: Juan
+Saldo: <span class="token number">8.593</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">9.108</span>,58 &#x20AC;
+
+Aplicando recargos en Cuenta Corriente
+Numero de cuenta: <span class="token number">2100</span>-0721-09-0200601249
+Titular: Jhon
+Saldo: <span class="token number">4.388</span>,00 &#x20AC;<span class="token punctuation">..</span>.
+Saldo tras operaci&#xF3;n <span class="token number">4.376</span>,00 &#x20AC;
+
+Revisando cargo sobre saldo negativo en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: -500,00 &#x20AC;<span class="token punctuation">..</span>.
+Has tenido un cargo de <span class="token number">90,00</span> &#x20AC; por saldo negativo.
+Saldo tras operaci&#xF3;n -590,00 &#x20AC;
+
+Retirando <span class="token number">11.000</span>,00 &#x20AC; en Cuenta Cr&#xE9;dito
+Numero de cuenta: 0049-0345-31-2710611698
+Titular: Jose
+Saldo: -590,00 &#x20AC;.
+No puedes retirar <span class="token number">11.000</span>,00 &#x20AC;.
+Tu cr&#xE9;dito m&#xE1;ximo es de <span class="token number">2.000</span>,00 &#x20AC; del cual se te ha concedido ya <span class="token number">590,00</span> &#x20AC;
+Saldo tras operaci&#xF3;n -590,00 &#x20AC;
+
+</pre><blockquote>
+<p><strong>Nota:</strong> La siguiente imagen es un UML orientativo para las clases y m&#xE9;todos propuestos en el ejercicio. Solo &#xFA;salo si tienes dudas con el enunciado pues posiblemente en un examen no dispongas de &#xE9;l y debes saber si tu interpretaci&#xF3;n del enunciado te da un resultado parecido.</p>
+</blockquote>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="259.8692px" preserveAspectRatio="none" style="width:1005px;height:259px;" version="1.1" viewBox="0 0 1005 259" width="1005.6395px" zoomAndPan="magnify"><defs><filter height="300%" id="fbwr9n68gzbfi" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="0.9023234829686443"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="1.8046469659372886" dy="1.8046469659372886" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[f2685546802bf452595a6a473f2e9d3d]
+class NumeroCuenta--><rect codeline="9" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="77.836" id="NumeroCuenta" style="stroke:#000000;stroke-width:0.6767426122264832;" width="156.5531" x="3.1581" y="95.6463"/><ellipse cx="60.3429" cy="102.8649" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M61.5906,101.0038 Q61.6611,100.9051 61.7457,100.8558 Q61.8303,100.8065 61.929,100.8065 Q62.0982,100.8065 62.2039,100.9228 Q62.3097,101.0391 62.3097,101.314 L62.3097,101.9696 Q62.3097,102.2445 62.2039,102.3644 Q62.0982,102.4842 61.929,102.4842 Q61.7739,102.4842 61.6823,102.3926 Q61.5906,102.308 61.5413,102.0753 Q61.5201,101.9132 61.4355,101.8286 Q61.2875,101.6594 61.0126,101.5607 Q60.7376,101.462 60.4557,101.462 Q60.1103,101.462 59.8248,101.6101 Q59.5393,101.7581 59.3172,102.0965 Q59.0951,102.4349 59.0951,102.9001 L59.0951,103.3936 Q59.0951,103.9505 59.497,104.3206 Q59.8988,104.6907 60.6178,104.6907 Q61.0408,104.6907 61.3368,104.5779 Q61.5131,104.5074 61.7034,104.31 Q61.8233,104.1902 61.8902,104.1549 Q61.9572,104.1197 62.0488,104.1197 Q62.1969,104.1197 62.3132,104.236 Q62.4295,104.3523 62.4295,104.5074 Q62.4295,104.6625 62.2744,104.8458 Q62.0488,105.1066 61.6893,105.2546 Q61.2029,105.4591 60.6178,105.4591 Q59.934,105.4591 59.3912,105.1771 Q58.9471,104.9515 58.6369,104.4686 Q58.3268,103.9857 58.3268,103.4077 L58.3268,102.886 Q58.3268,102.2868 58.6052,101.7687 Q58.8837,101.2506 59.3771,100.9721 Q59.8706,100.6937 60.4275,100.6937 Q60.7588,100.6937 61.0513,100.7677 Q61.3439,100.8417 61.5906,101.0038 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="38.3487" x="69.5917" y="105.0802">NumeroCuenta</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="3.6093" x2="159.2601" y1="110.0835" y2="110.0835"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="33.8371" x="5.8651" y="117.0399">-entidad : string</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="36.9953" x="5.8651" y="123.2821">-sucursal : string</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="39.2511" x="5.8651" y="129.5244">-dCEntSuc : string</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="40.6046" x="5.8651" y="135.7666">-dCNumero : string</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="32.9348" x="5.8651" y="142.0089">-cuenta : string</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="3.6093" x2="159.2601" y1="144.904" y2="144.904"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="73.0882" x="5.8651" y="151.8604">+NumeroCuenta(in numero:string)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="151.1392" x="5.8651" y="158.1027">-dcCorrecto(in dc:string, in digitos:string, in ponderaciones:int[]) : bool</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="88.8789" x="5.8651" y="164.3449">-formatoCorrecto(in numero:string) : bool</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="44.2139" x="5.8651" y="170.5872">+^ ToString() : string</text><!--MD5=[96f0d8a76804d87c4f63821ffd2c7d3b]
+class Cuenta--><rect codeline="20" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="65.3515" id="Cuenta" style="stroke:#000000;stroke-width:0.6767426122264832;" width="102.8649" x="321.4527" y="3.1581"/><ellipse cx="361.9445" cy="10.3767" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M363.1923,8.5157 Q363.2627,8.417 363.3473,8.3676 Q363.4319,8.3183 363.5306,8.3183 Q363.6998,8.3183 363.8055,8.4346 Q363.9113,8.5509 363.9113,8.8259 L363.9113,9.4814 Q363.9113,9.7564 363.8055,9.8762 Q363.6998,9.9961 363.5306,9.9961 Q363.3755,9.9961 363.2839,9.9044 Q363.1923,9.8198 363.1429,9.5872 Q363.1218,9.4251 363.0372,9.3405 Q362.8891,9.1713 362.6142,9.0726 Q362.3393,8.9739 362.0573,8.9739 Q361.7119,8.9739 361.4264,9.1219 Q361.1409,9.27 360.9188,9.6083 Q360.6968,9.9467 360.6968,10.412 L360.6968,10.9054 Q360.6968,11.4623 361.0986,11.8324 Q361.5004,12.2025 362.2194,12.2025 Q362.6424,12.2025 362.9385,12.0897 Q363.1147,12.0192 363.305,11.8218 Q363.4249,11.702 363.4919,11.6668 Q363.5588,11.6315 363.6505,11.6315 Q363.7985,11.6315 363.9148,11.7478 Q364.0311,11.8641 364.0311,12.0192 Q364.0311,12.1743 363.876,12.3576 Q363.6505,12.6184 363.2909,12.7665 Q362.8045,12.9709 362.2194,12.9709 Q361.5356,12.9709 360.9928,12.6889 Q360.5487,12.4633 360.2386,11.9805 Q359.9284,11.4976 359.9284,10.9195 L359.9284,10.3979 Q359.9284,9.7987 360.2068,9.2805 Q360.4853,8.7624 360.9787,8.484 Q361.4722,8.2055 362.0291,8.2055 Q362.3604,8.2055 362.653,8.2795 Q362.9455,8.3535 363.1923,8.5157 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="18.0465" x="371.1933" y="12.592">Cuenta</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="321.9039" x2="423.8665" y1="17.5953" y2="17.5953"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="68.5766" x="324.1597" y="24.5517">#numero : NumeroCuenta &#xAB;get&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="29.7767" x="324.1597" y="30.794">-titular : string</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="82.5626" x="324.1597" y="37.0362">+Saldo : double &#xAB;get&#xBB; &#xAB;protected set&#xBB;</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="321.9039" x2="423.8665" y1="39.9313" y2="39.9313"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="90.6835" x="324.1597" y="46.8878">+Cuenta(in  numero:string, in titular:string)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="92.9393" x="324.1597" y="53.13">+Ingreso(in cantidad:double) : void {virtual}</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="97.4509" x="324.1597" y="59.3723">+Reintegro(in cantidad:double) : void {virtual}</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="44.2139" x="324.1597" y="65.6145">+^ ToString() : string</text><!--MD5=[14871e95b021a986948f289de9c012bd]
+class CuentaAhorro--><rect codeline="29" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="46.6247" id="CuentaAhorro" style="stroke:#000000;stroke-width:0.6767426122264832;" width="157.9066" x="175.7275" y="111.437"/><ellipse cx="235.6192" cy="118.6555" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M236.867,116.7945 Q236.9375,116.6958 237.0221,116.6465 Q237.1066,116.5971 237.2053,116.5971 Q237.3745,116.5971 237.4803,116.7134 Q237.586,116.8297 237.586,117.1047 L237.586,117.7603 Q237.586,118.0352 237.4803,118.155 Q237.3745,118.2749 237.2053,118.2749 Q237.0502,118.2749 236.9586,118.1832 Q236.867,118.0986 236.8176,117.866 Q236.7965,117.7039 236.7119,117.6193 Q236.5638,117.4501 236.2889,117.3514 Q236.014,117.2527 235.732,117.2527 Q235.3866,117.2527 235.1011,117.4007 Q234.8156,117.5488 234.5935,117.8872 Q234.3715,118.2255 234.3715,118.6908 L234.3715,119.1842 Q234.3715,119.7411 234.7733,120.1112 Q235.1751,120.4813 235.8941,120.4813 Q236.3171,120.4813 236.6132,120.3685 Q236.7894,120.298 236.9798,120.1007 Q237.0996,119.9808 237.1666,119.9456 Q237.2335,119.9103 237.3252,119.9103 Q237.4732,119.9103 237.5895,120.0266 Q237.7058,120.143 237.7058,120.298 Q237.7058,120.4531 237.5508,120.6364 Q237.3252,120.8972 236.9657,121.0453 Q236.4792,121.2497 235.8941,121.2497 Q235.2104,121.2497 234.6676,120.9677 Q234.2234,120.7422 233.9133,120.2593 Q233.6031,119.7764 233.6031,119.1983 L233.6031,118.6767 Q233.6031,118.0775 233.8815,117.5594 Q234.16,117.0412 234.6535,116.7628 Q235.1469,116.4843 235.7038,116.4843 Q236.0351,116.4843 236.3277,116.5583 Q236.6202,116.6324 236.867,116.7945 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="34.2883" x="244.868" y="120.8708">CuentaAhorro</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="176.1787" x2="333.1829" y1="125.8741" y2="125.8741"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="44.665" x="178.4345" y="132.8306">-interes_tpu : double</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="176.1787" x2="333.1829" y1="135.7257" y2="135.7257"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="152.4927" x="178.4345" y="142.6821">+CuentaAhorro(in numero:string, in titular:string, in interes_tpu:double)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="46.4697" x="178.4345" y="148.9243">+SumaInteres() : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="42.8604" x="178.4345" y="155.1666">+^ToString() : string</text><!--MD5=[8db9801877c68c20bb894a7d86f4ca8e]
+class CuentaDeposito--><rect codeline="35" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="52.867" id="CuentaDeposito" style="stroke:#000000;stroke-width:0.6767426122264832;" width="211.5949" x="148.8834" y="200.767"/><ellipse cx="232.4611" cy="207.9856" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M233.7088,206.1245 Q233.7793,206.0258 233.8639,205.9765 Q233.9485,205.9271 234.0472,205.9271 Q234.2164,205.9271 234.3221,206.0435 Q234.4279,206.1598 234.4279,206.4347 L234.4279,207.0903 Q234.4279,207.3652 234.3221,207.4851 Q234.2164,207.6049 234.0472,207.6049 Q233.8921,207.6049 233.8005,207.5133 Q233.7088,207.4287 233.6595,207.196 Q233.6383,207.0339 233.5537,206.9493 Q233.4057,206.7801 233.1308,206.6814 Q232.8559,206.5827 232.5739,206.5827 Q232.2285,206.5827 231.943,206.7308 Q231.6575,206.8788 231.4354,207.2172 Q231.2133,207.5555 231.2133,208.0208 L231.2133,208.5143 Q231.2133,209.0712 231.6152,209.4413 Q232.017,209.8114 232.736,209.8114 Q233.159,209.8114 233.4551,209.6986 Q233.6313,209.6281 233.8216,209.4307 Q233.9415,209.3109 234.0084,209.2756 Q234.0754,209.2404 234.167,209.2404 Q234.3151,209.2404 234.4314,209.3567 Q234.5477,209.473 234.5477,209.6281 Q234.5477,209.7832 234.3926,209.9664 Q234.167,210.2273 233.8075,210.3753 Q233.3211,210.5797 232.736,210.5797 Q232.0522,210.5797 231.5094,210.2978 Q231.0653,210.0722 230.7551,209.5893 Q230.445,209.1064 230.445,208.5284 L230.445,208.0067 Q230.445,207.4075 230.7234,206.8894 Q231.0019,206.3712 231.4953,206.0928 Q231.9888,205.8143 232.5457,205.8143 Q232.877,205.8143 233.1696,205.8884 Q233.4621,205.9624 233.7088,206.1245 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="40.6046" x="241.7099" y="210.2008">CuentaDeposito</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="149.3345" x2="360.0271" y1="215.2042" y2="215.2042"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="46.9208" x="151.5903" y="222.1606">-recargo_tpu : double</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="55.9441" x="151.5903" y="228.4028">+Vencimiento : bool &#xAB;set&#xBB;</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="149.3345" x2="360.0271" y1="231.2979" y2="231.2979"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="206.1809" x="151.5903" y="238.2544">+CuentaDeposito(in numero:string, in titular:string, in interes_tpu:double, in recargo_tpu:double)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="76.6975" x="151.5903" y="244.4966">+^Reintegro(cantidad:double) : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="42.8604" x="151.5903" y="250.7389">+^ToString() : string</text><!--MD5=[093875edb040243213823fda1f604a96]
+class CuentaCorriente--><rect codeline="42" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="77.836" id="CuentaCorriente" style="stroke:#000000;stroke-width:0.6767426122264832;" width="283.3296" x="349.4248" y="95.6463"/><ellipse cx="468.6443" cy="102.8649" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M469.892,101.0038 Q469.9625,100.9051 470.0471,100.8558 Q470.1317,100.8065 470.2304,100.8065 Q470.3996,100.8065 470.5053,100.9228 Q470.611,101.0391 470.611,101.314 L470.611,101.9696 Q470.611,102.2445 470.5053,102.3644 Q470.3996,102.4842 470.2304,102.4842 Q470.0753,102.4842 469.9836,102.3926 Q469.892,102.308 469.8427,102.0753 Q469.8215,101.9132 469.7369,101.8286 Q469.5889,101.6594 469.314,101.5607 Q469.039,101.462 468.757,101.462 Q468.4116,101.462 468.1261,101.6101 Q467.8406,101.7581 467.6186,102.0965 Q467.3965,102.4349 467.3965,102.9001 L467.3965,103.3936 Q467.3965,103.9505 467.7983,104.3206 Q468.2001,104.6907 468.9192,104.6907 Q469.3421,104.6907 469.6382,104.5779 Q469.8145,104.5074 470.0048,104.31 Q470.1246,104.1902 470.1916,104.1549 Q470.2586,104.1197 470.3502,104.1197 Q470.4983,104.1197 470.6146,104.236 Q470.7309,104.3523 470.7309,104.5074 Q470.7309,104.6625 470.5758,104.8458 Q470.3502,105.1066 469.9907,105.2546 Q469.5043,105.4591 468.9192,105.4591 Q468.2354,105.4591 467.6926,105.1771 Q467.2485,104.9515 466.9383,104.4686 Q466.6281,103.9857 466.6281,103.4077 L466.6281,102.886 Q466.6281,102.2868 466.9066,101.7687 Q467.185,101.2506 467.6785,100.9721 Q468.1719,100.6937 468.7289,100.6937 Q469.0602,100.6937 469.3527,100.7677 Q469.6453,100.8417 469.892,101.0038 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="41.0557" x="477.8931" y="105.0802">CuentaCorriente</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="349.8759" x2="632.3032" y1="110.0835" y2="110.0835"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="92.9393" x="352.1317" y="117.0399">-maximoTrasaccionesGratuitasPorMes : int</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="102.8649" x="352.1317" y="123.2821">-recargoXTransaccionAdicional_Euros : double</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="79.8556" x="352.1317" y="129.5244">-numeroTrasaccionesMesActual : int</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="349.8759" x2="632.3032" y1="132.4195" y2="132.4195"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="277.9156" x="352.1317" y="139.3759">+CuentaCorriente(in numero:string, in titular:string, in maximoTransacciones:int, in recargoXTransaccionAdicional_Euros:double)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="66.3208" x="352.1317" y="145.6182">-reiniciaTransacciones() : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="72.1859" x="352.1317" y="151.8604">+^Ingreso(cantidad:double) : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="76.6975" x="352.1317" y="158.1027">+^Reintegro(cantidad:double) : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="63.1626" x="352.1317" y="164.3449">+AplicaRecargosMes() : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="42.8604" x="352.1317" y="170.5872">+^ToString() : string</text><!--MD5=[ff04df5a67228e79b665becc3d5ba926]
+class CuentaCredito--><rect codeline="53" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="59.1092" id="CuentaCredito" style="stroke:#000000;stroke-width:0.6767426122264832;" width="229.1902" x="648.545" y="105.1207"/><ellipse cx="743.1762" cy="112.3393" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M744.4239,110.4782 Q744.4944,110.3795 744.579,110.3302 Q744.6636,110.2808 744.7623,110.2808 Q744.9315,110.2808 745.0372,110.3972 Q745.143,110.5135 745.143,110.7884 L745.143,111.444 Q745.143,111.7189 745.0372,111.8388 Q744.9315,111.9586 744.7623,111.9586 Q744.6072,111.9586 744.5156,111.867 Q744.4239,111.7824 744.3746,111.5497 Q744.3534,111.3876 744.2688,111.303 Q744.1208,111.1338 743.8459,111.0351 Q743.5709,110.9364 743.289,110.9364 Q742.9435,110.9364 742.658,111.0845 Q742.3725,111.2325 742.1505,111.5709 Q741.9284,111.9093 741.9284,112.3745 L741.9284,112.868 Q741.9284,113.4249 742.3303,113.795 Q742.7321,114.1651 743.4511,114.1651 Q743.8741,114.1651 744.1701,114.0523 Q744.3464,113.9818 744.5367,113.7844 Q744.6566,113.6646 744.7235,113.6293 Q744.7905,113.5941 744.8821,113.5941 Q745.0302,113.5941 745.1465,113.7104 Q745.2628,113.8267 745.2628,113.9818 Q745.2628,114.1369 745.1077,114.3202 Q744.8821,114.581 744.5226,114.729 Q744.0362,114.9335 743.4511,114.9335 Q742.7673,114.9335 742.2245,114.6515 Q741.7804,114.4259 741.4702,113.943 Q741.16,113.4601 741.16,112.8821 L741.16,112.3604 Q741.16,111.7612 741.4385,111.2431 Q741.717,110.725 742.2104,110.4465 Q742.7039,110.1681 743.2608,110.1681 Q743.5921,110.1681 743.8846,110.2421 Q744.1772,110.3161 744.4239,110.4782 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="36.0929" x="752.425" y="114.5545">CuentaCredito</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="648.9962" x2="877.284" y1="119.5579" y2="119.5579"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="44.665" x="651.252" y="126.5143">-interes_tpu : double</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="66.7719" x="651.252" y="132.7565">-creditoMaximo_Euros : double</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="648.9962" x2="877.284" y1="135.6516" y2="135.6516"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="223.7762" x="651.252" y="142.6081">+CuentaCredito(in numero:string, in titular:string, in  interes_tpu:double, in creditoMaximo_Euros:double)</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="76.6975" x="651.252" y="148.8503">+^Reintegro(cantidad:double) : void</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="67.2231" x="651.252" y="155.0926">+CargaInteresesMes() : double</text><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="42.8604" x="651.252" y="161.3348">+^ToString() : string</text><!--MD5=[530f1e373da13207888fb16f81ad416b]
+class CreditoMaximoExcedidoException--><rect codeline="62" fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="27.898" id="CreditoMaximoExcedidoException" style="stroke:#000000;stroke-width:0.6767426122264832;" width="323.0318" x="676.517" y="213.1739"/><ellipse cx="794.383" cy="220.3925" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M795.6308,218.5315 Q795.7013,218.4328 795.7859,218.3834 Q795.8705,218.3341 795.9692,218.3341 Q796.1383,218.3341 796.2441,218.4504 Q796.3498,218.5667 796.3498,218.8416 L796.3498,219.4972 Q796.3498,219.7722 796.2441,219.892 Q796.1383,220.0118 795.9692,220.0118 Q795.8141,220.0118 795.7224,219.9202 Q795.6308,219.8356 795.5814,219.603 Q795.5603,219.4408 795.4757,219.3562 Q795.3277,219.1871 795.0527,219.0884 Q794.7778,218.9897 794.4958,218.9897 Q794.1504,218.9897 793.8649,219.1377 Q793.5794,219.2858 793.3573,219.6241 Q793.1353,219.9625 793.1353,220.4278 L793.1353,220.9212 Q793.1353,221.4781 793.5371,221.8482 Q793.9389,222.2183 794.658,222.2183 Q795.0809,222.2183 795.377,222.1055 Q795.5532,222.035 795.7436,221.8376 Q795.8634,221.7178 795.9304,221.6826 Q795.9973,221.6473 796.089,221.6473 Q796.237,221.6473 796.3533,221.7636 Q796.4697,221.8799 796.4697,222.035 Q796.4697,222.1901 796.3146,222.3734 Q796.089,222.6342 795.7295,222.7823 Q795.2431,222.9867 794.658,222.9867 Q793.9742,222.9867 793.4314,222.7047 Q792.9873,222.4791 792.6771,221.9962 Q792.3669,221.5134 792.3669,220.9353 L792.3669,220.4137 Q792.3669,219.8145 792.6454,219.2963 Q792.9238,218.7782 793.4173,218.4997 Q793.9107,218.2213 794.4676,218.2213 Q794.799,218.2213 795.0915,218.2953 Q795.3841,218.3693 795.6308,218.5315 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="83.4649" x="803.6319" y="222.6078">CreditoMaximoExcedidoException</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="676.9682" x2="999.0977" y1="227.6111" y2="227.6111"/><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="676.9682" x2="999.0977" y1="231.2204" y2="231.2204"/><text fill="#000000" font-family="sans-serif" font-size="4.9628" lengthAdjust="spacingAndGlyphs" textLength="317.6179" x="679.224" y="238.1768">+CreditoMaximoExcedidoException(creditoMaximo_Euros:double, creditoConcedidoHastaAhora_Euros:double, cantidadAReintegrar_Euros:double)</text><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
+class Exception--><rect fill="#FFFAFA" filter="url(#fbwr9n68gzbfi)" height="21.6558" id="Exception" style="stroke:#000000;stroke-width:0.6767426122264832;" width="38.3487" x="893.7514" y="123.8439"/><ellipse cx="900.5188" cy="131.0625" fill="#ADD1B2" rx="4.9628" ry="4.9628" style="stroke:#000000;stroke-width:0.45116174148432214;"/><path d="M901.7666,129.2014 Q901.8371,129.1028 901.9217,129.0534 Q902.0063,129.0041 902.105,129.0041 Q902.2741,129.0041 902.3799,129.1204 Q902.4856,129.2367 902.4856,129.5116 L902.4856,130.1672 Q902.4856,130.4421 902.3799,130.562 Q902.2741,130.6818 902.105,130.6818 Q901.9499,130.6818 901.8582,130.5902 Q901.7666,130.5056 901.7172,130.273 Q901.6961,130.1108 901.6115,130.0262 Q901.4635,129.857 901.1885,129.7583 Q900.9136,129.6597 900.6316,129.6597 Q900.2862,129.6597 900.0007,129.8077 Q899.7152,129.9557 899.4931,130.2941 Q899.2711,130.6325 899.2711,131.0977 L899.2711,131.5912 Q899.2711,132.1481 899.6729,132.5182 Q900.0747,132.8883 900.7938,132.8883 Q901.2167,132.8883 901.5128,132.7755 Q901.689,132.705 901.8794,132.5076 Q901.9992,132.3878 902.0662,132.3525 Q902.1331,132.3173 902.2248,132.3173 Q902.3728,132.3173 902.4891,132.4336 Q902.6055,132.5499 902.6055,132.705 Q902.6055,132.8601 902.4504,133.0434 Q902.2248,133.3042 901.8653,133.4522 Q901.3789,133.6567 900.7938,133.6567 Q900.11,133.6567 899.5672,133.3747 Q899.1231,133.1491 898.8129,132.6662 Q898.5027,132.1833 898.5027,131.6053 L898.5027,131.0836 Q898.5027,130.4844 898.7812,129.9663 Q899.0596,129.4482 899.5531,129.1697 Q900.0465,128.8913 900.6034,128.8913 Q900.9348,128.8913 901.2273,128.9653 Q901.5199,129.0393 901.7666,129.2014 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="5.4139" lengthAdjust="spacingAndGlyphs" textLength="23.9116" x="906.8351" y="133.2778">Exception</text><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="894.2026" x2="931.649" y1="138.2811" y2="138.2811"/><line style="stroke:#000000;stroke-width:0.6767426122264832;" x1="894.2026" x2="931.649" y1="141.8904" y2="141.8904"/><!--MD5=[8361c8f74b262ec42e490d91b975cd6a]
+link Cuenta to NumeroCuenta--><path codeline="65" d="M316.1832,50.4283 C316.1832,50.4283 216.7607,77.6404 167.6066,95.6463 C166.8396,95.926 166.0726,96.2102 165.3012,96.499 " fill="none" id="Cuenta-NumeroCuenta" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="#000000" points="159.7925,98.5924,164.2294,98.8324,161.9003,97.7889,162.9439,95.4598,159.7925,98.5924" style="stroke:#000000;stroke-width:0.45116174148432214;"/><line style="stroke:#000000;stroke-width:0.45116174148432214;" x1="161.9003" x2="165.2741" y1="97.7889" y2="96.508"/><polygon fill="#000000" points="321.4212,49.0593,318.3458,47.9978,316.1832,50.4283,319.2585,51.4898,321.4212,49.0593" style="stroke:#000000;stroke-width:0.45116174148432214;"/><text fill="#000000" font-family="sans-serif" font-size="5.8651" lengthAdjust="spacingAndGlyphs" textLength="3.1581" x="163.4146" y="95.6723">1</text><!--MD5=[6f28e65fa103fc3dd5fe542cc413e7db]
+reverse link Cuenta to CuentaAhorro--><path codeline="66" d="M326.808,74.4823 C311.7573,86.9479 295.52,100.397 282.2693,111.3738 " fill="none" id="Cuenta-backto-CuentaAhorro" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="none" points="324.8906,71.9693,333.8552,68.6488,328.9195,76.8328,324.8906,71.9693" style="stroke:#000000;stroke-width:0.45116174148432214;"/><!--MD5=[5e61472f5b1a7cb87b57e037622d4317]
+reverse link CuentaAhorro to CuentaDeposito--><path codeline="67" d="M254.6808,167.0923 C254.6808,178.0916 254.6808,190.2684 254.6808,200.7309 " fill="none" id="CuentaAhorro-backto-CuentaDeposito" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="none" points="251.5227,167.0201,254.6808,157.9968,257.8389,167.0201,251.5227,167.0201" style="stroke:#000000;stroke-width:0.45116174148432214;"/><!--MD5=[c4b1b349a18795f20cf7fbd773d78cdd]
+reverse link Cuenta to CuentaCorriente--><path codeline="68" d="M418.8766,74.4101 C427.2863,81.376 436.0704,88.6488 444.4936,95.6282 " fill="none" id="Cuenta-backto-CuentaCorriente" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="none" points="416.8509,76.8328,411.9152,68.6488,420.8798,71.9693,416.8509,76.8328" style="stroke:#000000;stroke-width:0.45116174148432214;"/><!--MD5=[55219b91e5bc66f7ffde880f42588f0e]
+reverse link Cuenta to CuentaCredito--><path codeline="69" d="M433.3679,48.1751 C487.8322,59.224 569.912,76.7832 640.4241,95.6463 C651.2114,98.5337 662.4679,101.764 673.5935,105.0936 " fill="none" id="Cuenta-backto-CuentaCredito" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="none" points="432.5874,51.243,424.3672,46.3614,433.8371,45.0485,432.5874,51.243" style="stroke:#000000;stroke-width:0.45116174148432214;"/><!--MD5=[5c1a3a93403596dc4d19ee2b242dc68a]
+reverse link CuentaCredito to CreditoMaximoExcedidoException--><path codeline="70" d="M791.261,169.515 C803.6815,184.7011 817.5637,201.6738 826.9524,213.1604 " fill="none" id="CuentaCredito-backto-CreditoMaximoExcedidoException" style="stroke:#000000;stroke-width:0.45116174148432214;"/><ellipse cx="789.222" cy="167.0228" fill="#FFFFFF" rx="3.6093" ry="3.6093" style="stroke:#000000;stroke-width:0.45116174148432214;"/><line style="stroke:#000000;stroke-width:0.45116174148432214;" x1="791.5051" x2="786.9389" y1="169.8182" y2="164.2274"/><line style="stroke:#000000;stroke-width:0.45116174148432214;" x1="786.4265" x2="792.0174" y1="169.3059" y2="164.7397"/><!--MD5=[29c86f29b557f4a9aed6f02eee99058a]
+reverse link Exception to CreditoMaximoExcedidoException--><path codeline="71" d="M901.0196,153.0476 C896.4494,159.6661 891.076,167.1464 885.8561,173.6973 C874.7304,187.6562 860.988,202.6844 851.0941,213.1604 " fill="none" id="Exception-backto-CreditoMaximoExcedidoException" style="stroke:#000000;stroke-width:0.45116174148432214;"/><polygon fill="none" points="898.448,151.2114,906.1313,145.5222,903.677,154.762,898.448,151.2114" style="stroke:#000000;stroke-width:0.45116174148432214;"/><!--MD5=[4dff272cdd230268bbdf8548e7e252f5]
+@startuml
+scale 1000 width
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+class NumeroCuenta {
+    - entidad : string
+    - sucursal : string
+    - dCEntSuc : string
+    - dCNumero : string
+    - cuenta : string
+    + NumeroCuenta(in numero:string)
+    {static} - dcCorrecto(in dc:string, in digitos:string, in ponderaciones:int[]) : bool
+    - formatoCorrecto(in numero:string) : bool
+    + ^ ToString() : string
+}
+class Cuenta {
+    # numero : NumeroCuenta <<get>>
+    - titular : string
+    + Saldo : double <<get>> <<protected set>>
+    + Cuenta(in  numero:string, in titular:string)
+    + Ingreso(in cantidad:double) : void {virtual}
+    + Reintegro(in cantidad:double) : void {virtual}
+    +^ ToString() : string
+}
+class CuentaAhorro {
+    - interes_tpu : double
+    + CuentaAhorro(in numero:string, in titular:string, in interes_tpu:double)
+    + SumaInteres() : void
+    + ^ToString() : string
+}
+class CuentaDeposito {
+    - recargo_tpu : double
+    + Vencimiento : bool <<set>>
+    + CuentaDeposito(in numero:string, in titular:string, in interes_tpu:double, in recargo_tpu:double)
+    + ^Reintegro(cantidad:double) : void
+    + ^ToString() : string
+}
+class CuentaCorriente {
+    - maximoTrasaccionesGratuitasPorMes : int
+    - recargoXTransaccionAdicional_Euros : double
+    - numeroTrasaccionesMesActual : int
+    + CuentaCorriente(in numero:string, in titular:string, in maximoTransacciones:int, in recargoXTransaccionAdicional_Euros:double)
+    - reiniciaTransacciones() : void
+    + ^Ingreso(cantidad:double) : void
+    + ^Reintegro(cantidad:double) : void
+    + AplicaRecargosMes() : void
+    + ^ToString() : string
+}
+class CuentaCredito {
+    - interes_tpu : double
+    - creditoMaximo_Euros : double
+    + CuentaCredito(in numero:string, in titular:string, in  interes_tpu:double, in creditoMaximo_Euros:double)
+    + ^Reintegro(cantidad:double) : void
+    + CargaInteresesMes() : double
+    + ^ToString() : string
+}
+
+class CreditoMaximoExcedidoException {
+    + CreditoMaximoExcedidoException(creditoMaximo_Euros:double, creditoConcedidoHastaAhora_Euros:double, cantidadAReintegrar_Euros:double)
+}
+Cuenta *- ->"1"   NumeroCuenta
+Cuenta <|- - CuentaAhorro
+CuentaAhorro <|- - CuentaDeposito
+Cuenta <|- - CuentaCorriente
+Cuenta <|- - CuentaCredito
+CuentaCredito +- - CreditoMaximoExcedidoException
+Exception <|- - CreditoMaximoExcedidoException
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><h3 class="mume-header" id="ejercicio-4">Ejercicio 4</h3>
+
+<blockquote>
+<p>Crea una clase denominada Alarma cuyos objetos activen un objeto de tipo Timbre cuando el valor medido por un Sensor supere un umbral preestablecido.<br>
+Implementa en C# todo el c&#xF3;digo necesario para el funcionamiento de la alarma, la alarma comprobar&#xE1; si debe activar o desactivar el timbre mediante el m&#xE9;todo Comprobar(). Al Encender la alarma, se pasar&#xE1; (mediante un bucle) a llamar a comprobar hasta que decidamos apagar la alarma.<br>
+Crea una subclase de Alarma denominada AlarmaLuminosa que, adem&#xE1;s de activar el timbre, encienda una luz (que representaremos con un objeto de tipo Bombilla).<br>
+&#x1F4A1;<strong>Pista:</strong> los m&#xE9;todos Activar/Desactivar se encargar&#xE1;n de hacer lo propio con el timbre y en su caso con la se&#xF1;al luminosa. Mientras que Encender/Apagar enciende la alarma para que comience con la comprobaci&#xF3;n sensor-umbral. La propiedad ValorActual del sensor, devolver&#xE1; un n&#xFA;mero aleatorio.<br>
+Como al Encender la alarma, lo mejor es crear un bucle que haga la comprobaci&#xF3;n, podemos acabar el bucle al pulsar una tecla, para ello puedes usar <a href="https://docs.microsoft.com/es-es/dotnet/api/system.console.keyavailable?view=net-5.0">Console.KeyAvailable</a><br>
+El siguiente UML te puede ayudar a entender lo que se pide.</p>
+</blockquote>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="348.1305px" preserveAspectRatio="none" style="width:407px;height:348px;" version="1.1" viewBox="0 0 407 348" width="407.9554px" zoomAndPan="magnify"><defs><filter height="300%" id="f7c5xl5mas3v4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.2728719172633254"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="2.5457438345266508" dy="2.5457438345266508" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[97d46ae094d28e0d28828e4b8046fed1]
+class Sensor--><rect codeline="7" fill="#FFFAFA" filter="url(#f7c5xl5mas3v4)" height="56.966" id="Sensor" style="stroke:#000000;stroke-width:0.9546539379474941;" width="79.5545" x="4.4551" y="182.9753"/><ellipse cx="29.1806" cy="193.1583" fill="#ADD1B2" rx="7.0008" ry="7.0008" style="stroke:#000000;stroke-width:0.6364359586316627;"/><path d="M30.9407,190.533 Q31.0402,190.3938 31.1595,190.3242 Q31.2788,190.2546 31.4181,190.2546 Q31.6567,190.2546 31.8059,190.4187 Q31.9551,190.5827 31.9551,190.9706 L31.9551,191.8954 Q31.9551,192.2832 31.8059,192.4523 Q31.6567,192.6213 31.4181,192.6213 Q31.1993,192.6213 31.07,192.492 Q30.9407,192.3727 30.8711,192.0446 Q30.8413,191.8158 30.722,191.6965 Q30.5131,191.4578 30.1253,191.3186 Q29.7375,191.1794 29.3397,191.1794 Q28.8524,191.1794 28.4497,191.3882 Q28.0469,191.5971 27.7337,192.0744 Q27.4204,192.5517 27.4204,193.208 L27.4204,193.9041 Q27.4204,194.6897 27.9873,195.2118 Q28.5541,195.7339 29.5684,195.7339 Q30.1651,195.7339 30.5827,195.5748 Q30.8313,195.4753 31.0998,195.1969 Q31.2689,195.0278 31.3634,194.9781 Q31.4578,194.9284 31.5871,194.9284 Q31.7959,194.9284 31.96,195.0925 Q32.1241,195.2566 32.1241,195.4753 Q32.1241,195.6941 31.9053,195.9527 Q31.5871,196.3206 31.08,196.5294 Q30.3938,196.8178 29.5684,196.8178 Q28.6038,196.8178 27.8381,196.42 Q27.2116,196.1018 26.7741,195.4206 Q26.3365,194.7395 26.3365,193.924 L26.3365,193.1881 Q26.3365,192.3429 26.7293,191.612 Q27.1221,190.8811 27.8182,190.4883 Q28.5143,190.0955 29.2999,190.0955 Q29.7673,190.0955 30.18,190.1999 Q30.5927,190.3043 30.9407,190.533 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="7.6372" lengthAdjust="spacingAndGlyphs" textLength="25.4574" x="41.4638" y="196.2833">Sensor</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="5.0915" x2="83.3731" y1="203.3413" y2="203.3413"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="56.0064" x="8.2737" y="213.1545">-random : Random</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="71.9173" x="8.2737" y="221.9601">+ValorActual : int &#xAB;get&#xBB;</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="5.0915" x2="83.3731" y1="226.0442" y2="226.0442"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="31.1854" x="8.2737" y="235.8573">+Sensor()</text><!--MD5=[d21357412f611acedefc7b2b895db3f4]
+class Timbre--><rect codeline="12" fill="#FFFAFA" filter="url(#f7c5xl5mas3v4)" height="65.7717" id="Timbre" style="stroke:#000000;stroke-width:0.9546539379474941;" width="99.9204" x="106.2848" y="178.8385"/><ellipse cx="141.1297" cy="189.0215" fill="#ADD1B2" rx="7.0008" ry="7.0008" style="stroke:#000000;stroke-width:0.6364359586316627;"/><path d="M142.8898,186.3962 Q142.9893,186.257 143.1086,186.1874 Q143.2279,186.1177 143.3671,186.1177 Q143.6058,186.1177 143.755,186.2818 Q143.9041,186.4459 143.9041,186.8337 L143.9041,187.7586 Q143.9041,188.1464 143.755,188.3154 Q143.6058,188.4845 143.3671,188.4845 Q143.1484,188.4845 143.0191,188.3552 Q142.8898,188.2359 142.8202,187.9077 Q142.7904,187.679 142.671,187.5597 Q142.4622,187.321 142.0744,187.1818 Q141.6866,187.0426 141.2888,187.0426 Q140.8015,187.0426 140.3988,187.2514 Q139.996,187.4602 139.6828,187.9375 Q139.3695,188.4149 139.3695,189.0712 L139.3695,189.7673 Q139.3695,190.5529 139.9364,191.075 Q140.5032,191.5971 141.5175,191.5971 Q142.1142,191.5971 142.5318,191.4379 Q142.7804,191.3385 143.0489,191.0601 Q143.218,190.891 143.3125,190.8413 Q143.4069,190.7916 143.5362,190.7916 Q143.745,190.7916 143.9091,190.9556 Q144.0732,191.1197 144.0732,191.3385 Q144.0732,191.5573 143.8544,191.8158 Q143.5362,192.1838 143.029,192.3926 Q142.3429,192.681 141.5175,192.681 Q140.5529,192.681 139.7872,192.2832 Q139.1607,191.965 138.7232,191.2838 Q138.2856,190.6026 138.2856,189.7872 L138.2856,189.0513 Q138.2856,188.206 138.6784,187.4751 Q139.0712,186.7442 139.7673,186.3514 Q140.4634,185.9586 141.249,185.9586 Q141.7164,185.9586 142.1291,186.063 Q142.5418,186.1675 142.8898,186.3962 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="7.6372" lengthAdjust="spacingAndGlyphs" textLength="24.821" x="154.1766" y="192.1465">Timbre</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="106.9212" x2="205.5688" y1="199.2045" y2="199.2045"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="83.3731" x="110.1034" y="209.0176">+DuracionTimbre : int &#xAB;get&#xBB;</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="106.9212" x2="205.5688" y1="213.1016" y2="213.1016"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="92.2832" x="110.1034" y="222.9148">+Timbre(in duracionTimbre:int)</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="49.642" x="110.1034" y="231.7205">+Activar() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="60.4614" x="110.1034" y="240.5262">+Desactivar() : void</text><!--MD5=[32fe19945a9ea0662ca6e5969aefed2b]
+class Alarma--><rect codeline="18" fill="#FFFAFA" filter="url(#f7c5xl5mas3v4)" height="136.2172" id="Alarma" style="stroke:#000000;stroke-width:0.9546539379474941;" width="141.2888" x="85.6006" y="4.4551"/><ellipse cx="141.1297" cy="14.638" fill="#ADD1B2" rx="7.0008" ry="7.0008" style="stroke:#000000;stroke-width:0.6364359586316627;"/><path d="M142.8898,12.0127 Q142.9893,11.8735 143.1086,11.8039 Q143.2279,11.7343 143.3671,11.7343 Q143.6058,11.7343 143.755,11.8984 Q143.9041,12.0625 143.9041,12.4503 L143.9041,13.3751 Q143.9041,13.7629 143.755,13.932 Q143.6058,14.101 143.3671,14.101 Q143.1484,14.101 143.0191,13.9718 Q142.8898,13.8524 142.8202,13.5243 Q142.7904,13.2955 142.671,13.1762 Q142.4622,12.9375 142.0744,12.7983 Q141.6866,12.6591 141.2888,12.6591 Q140.8015,12.6591 140.3988,12.8679 Q139.996,13.0768 139.6828,13.5541 Q139.3695,14.0314 139.3695,14.6877 L139.3695,15.3839 Q139.3695,16.1695 139.9364,16.6915 Q140.5032,17.2136 141.5175,17.2136 Q142.1142,17.2136 142.5318,17.0545 Q142.7804,16.9551 143.0489,16.6766 Q143.218,16.5076 143.3125,16.4578 Q143.4069,16.4081 143.5362,16.4081 Q143.745,16.4081 143.9091,16.5722 Q144.0732,16.7363 144.0732,16.9551 Q144.0732,17.1738 143.8544,17.4324 Q143.5362,17.8003 143.029,18.0091 Q142.3429,18.2975 141.5175,18.2975 Q140.5529,18.2975 139.7872,17.8998 Q139.1607,17.5815 138.7232,16.9004 Q138.2856,16.2192 138.2856,15.4037 L138.2856,14.6679 Q138.2856,13.8226 138.6784,13.0917 Q139.0712,12.3608 139.7673,11.968 Q140.4634,11.5752 141.249,11.5752 Q141.7164,11.5752 142.1291,11.6796 Q142.5418,11.784 142.8898,12.0127 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="7.6372" lengthAdjust="spacingAndGlyphs" textLength="24.821" x="154.1766" y="17.763">Alarma</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="86.2371" x2="226.253" y1="24.821" y2="24.821"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="56.6428" x="89.4193" y="34.6342">+Umbral : int &#xAB;get&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="47.0963" x="89.4193" y="43.4399">-timbre : Timbre</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="52.1877" x="89.4193" y="52.2455">-sensor : Sensor</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="47.0963" x="89.4193" y="61.0512">-activada : bool</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="52.8242" x="89.4193" y="69.8569">-encendida : bool</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="86.2371" x2="226.253" y1="73.9409" y2="73.9409"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="133.6516" x="89.4193" y="83.7541">+Alarma(in umbral:int, in duracionTimbre:int)</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="56.6428" x="89.4193" y="92.5598">+Encender() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="50.2784" x="89.4193" y="101.3655">+Apagar() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="61.0979" x="89.4193" y="110.1712">+Comprobar() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="75.0994" x="89.4193" y="118.9769">+Activar() : void {virtual}</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="85.9189" x="89.4193" y="127.7825">+Desactivar() : void {virtual}</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="60.4614" x="89.4193" y="136.5882">+^ToString() : string</text><!--MD5=[5c0519f33451913f5d1f6cd4b9e4460e]
+class Bombilla--><rect codeline="32" fill="#FFFAFA" filter="url(#f7c5xl5mas3v4)" height="56.966" id="Bombilla" style="stroke:#000000;stroke-width:0.9546539379474941;" width="64.28" x="281.9411" y="282.5776"/><ellipse cx="297.2156" cy="292.7605" fill="#ADD1B2" rx="7.0008" ry="7.0008" style="stroke:#000000;stroke-width:0.6364359586316627;"/><path d="M298.9757,290.1352 Q299.0752,289.996 299.1945,289.9264 Q299.3138,289.8568 299.4531,289.8568 Q299.6917,289.8568 299.8409,290.0209 Q299.9901,290.185 299.9901,290.5728 L299.9901,291.4976 Q299.9901,291.8854 299.8409,292.0545 Q299.6917,292.2235 299.4531,292.2235 Q299.2343,292.2235 299.105,292.0943 Q298.9757,291.9749 298.9061,291.6468 Q298.8763,291.4181 298.757,291.2987 Q298.5481,291.0601 298.1603,290.9208 Q297.7725,290.7816 297.3747,290.7816 Q296.8874,290.7816 296.4847,290.9905 Q296.0819,291.1993 295.7687,291.6766 Q295.4554,292.1539 295.4554,292.8103 L295.4554,293.5064 Q295.4554,294.292 296.0223,294.814 Q296.5891,295.3361 297.6034,295.3361 Q298.2001,295.3361 298.6177,295.177 Q298.8663,295.0776 299.1348,294.7991 Q299.3039,294.6301 299.3984,294.5804 Q299.4928,294.5306 299.6221,294.5306 Q299.8309,294.5306 299.995,294.6947 Q300.1591,294.8588 300.1591,295.0776 Q300.1591,295.2963 299.9403,295.5549 Q299.6221,295.9228 299.115,296.1317 Q298.4288,296.42 297.6034,296.42 Q296.6388,296.42 295.8731,296.0223 Q295.2466,295.7041 294.8091,295.0229 Q294.3715,294.3417 294.3715,293.5263 L294.3715,292.7904 Q294.3715,291.9451 294.7643,291.2142 Q295.1571,290.4833 295.8532,290.0905 Q296.5493,289.6977 297.3349,289.6977 Q297.8023,289.6977 298.215,289.8021 Q298.6277,289.9065 298.9757,290.1352 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="7.6372" lengthAdjust="spacingAndGlyphs" textLength="31.1854" x="307.3986" y="295.8855">Bombilla</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="282.5776" x2="345.5847" y1="302.9435" y2="302.9435"/><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="282.5776" x2="345.5847" y1="308.035" y2="308.035"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="33.7311" x="285.7597" y="317.8482">+Bombilla()</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="56.6428" x="285.7597" y="326.6539">+Encender() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="50.2784" x="285.7597" y="335.4596">+Apagar() : void</text><!--MD5=[6dbc558df84756f3cbb50194469b51a9]
+class AlarmaLuminosa--><rect codeline="37" fill="#FFFAFA" filter="url(#f7c5xl5mas3v4)" height="65.7717" id="AlarmaLuminosa" style="stroke:#000000;stroke-width:0.9546539379474941;" width="170.5648" x="228.7987" y="178.8385"/><ellipse cx="281.1456" cy="189.0215" fill="#ADD1B2" rx="7.0008" ry="7.0008" style="stroke:#000000;stroke-width:0.6364359586316627;"/><path d="M282.9057,186.3962 Q283.0052,186.257 283.1245,186.1874 Q283.2438,186.1177 283.3831,186.1177 Q283.6217,186.1177 283.7709,186.2818 Q283.92,186.4459 283.92,186.8337 L283.92,187.7586 Q283.92,188.1464 283.7709,188.3154 Q283.6217,188.4845 283.3831,188.4845 Q283.1643,188.4845 283.035,188.3552 Q282.9057,188.2359 282.8361,187.9077 Q282.8063,187.679 282.687,187.5597 Q282.4781,187.321 282.0903,187.1818 Q281.7025,187.0426 281.3047,187.0426 Q280.8174,187.0426 280.4147,187.2514 Q280.0119,187.4602 279.6987,187.9375 Q279.3854,188.4149 279.3854,189.0712 L279.3854,189.7673 Q279.3854,190.5529 279.9523,191.075 Q280.5191,191.5971 281.5334,191.5971 Q282.1301,191.5971 282.5477,191.4379 Q282.7963,191.3385 283.0648,191.0601 Q283.2339,190.891 283.3284,190.8413 Q283.4228,190.7916 283.5521,190.7916 Q283.7609,190.7916 283.925,190.9556 Q284.0891,191.1197 284.0891,191.3385 Q284.0891,191.5573 283.8703,191.8158 Q283.5521,192.1838 283.0449,192.3926 Q282.3588,192.681 281.5334,192.681 Q280.5688,192.681 279.8031,192.2832 Q279.1766,191.965 278.7391,191.2838 Q278.3015,190.6026 278.3015,189.7872 L278.3015,189.0513 Q278.3015,188.206 278.6943,187.4751 Q279.0871,186.7442 279.7832,186.3514 Q280.4793,185.9586 281.2649,185.9586 Q281.7323,185.9586 282.145,186.063 Q282.5577,186.1675 282.9057,186.3962 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="7.6372" lengthAdjust="spacingAndGlyphs" textLength="60.4614" x="294.1925" y="192.1465">AlarmaLuminosa</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="229.4352" x2="398.7271" y1="199.2045" y2="199.2045"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="57.2792" x="232.6173" y="209.0176">-bombilla : Bombilla</text><line style="stroke:#000000;stroke-width:0.9546539379474941;" x1="229.4352" x2="398.7271" y1="213.1016" y2="213.1016"/><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="162.9276" x="232.6173" y="222.9148">+AlarmaLuminosa(in umbral:int, in duracionTimbre:int)</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="52.8242" x="232.6173" y="231.7205">+^Activar() : void</text><text fill="#000000" font-family="sans-serif" font-size="7.0008" lengthAdjust="spacingAndGlyphs" textLength="63.6436" x="232.6173" y="240.5262">+^Desactivar() : void</text><!--MD5=[9519089a0391492c86d4f1fc40b92932]
+reverse link Alarma to AlarmaLuminosa--><path codeline="44" d="M236.8433,143.5481 C250.9531,155.8695 264.9992,168.1273 277.1615,178.7494 " fill="none" id="Alarma-backto-AlarmaLuminosa" style="stroke:#000000;stroke-width:0.6364359586316627;"/><polygon fill="none" points="233.7438,146.7558,227.0804,135.0326,239.6054,140.0477,233.7438,146.7558" style="stroke:#000000;stroke-width:0.6364359586316627;"/><!--MD5=[f1b33cb927c5cb4a5a26a402ac4b1a15]
+reverse link Alarma to Timbre--><path codeline="45" d="M156.245,149.0788 C156.245,159.5227 156.245,169.7502 156.245,178.7876 " fill="none" id="Alarma-backto-Timbre" style="stroke:#000000;stroke-width:0.6364359586316627;"/><polygon fill="#000000" points="156.245,140.6714,153.6993,144.4901,156.245,148.3087,158.7908,144.4901,156.245,140.6714" style="stroke:#000000;stroke-width:0.6364359586316627;"/><text fill="#000000" font-family="sans-serif" font-size="8.2737" lengthAdjust="spacingAndGlyphs" textLength="4.4551" x="151.4767" y="171.8614">1</text><!--MD5=[1da99f7d0bc2d25aa1756390465a336b]
+reverse link Alarma to Sensor--><path codeline="46" d="M96.1273,147.144 C85.7661,159.8918 75.5895,172.4041 67.0358,182.9308 " fill="none" id="Alarma-backto-Sensor" style="stroke:#000000;stroke-width:0.6364359586316627;"/><polygon fill="#000000" points="101.3842,140.6714,97,142.0284,96.5664,146.5973,100.9506,145.2403,101.3842,140.6714" style="stroke:#000000;stroke-width:0.6364359586316627;"/><text fill="#000000" font-family="sans-serif" font-size="8.2737" lengthAdjust="spacingAndGlyphs" textLength="4.4551" x="65.86" y="175.9964">1</text><!--MD5=[2b706104b505e54f0b25b66f1c1b90aa]
+reverse link AlarmaLuminosa to Bombilla--><path codeline="47" d="M314.0811,252.9897 C314.0811,262.899 314.0811,273.2729 314.0811,282.4439 " fill="none" id="AlarmaLuminosa-backto-Bombilla" style="stroke:#000000;stroke-width:0.6364359586316627;"/><polygon fill="#000000" points="314.0811,244.4487,311.5354,248.2673,314.0811,252.0859,316.6269,248.2673,314.0811,244.4487" style="stroke:#000000;stroke-width:0.6364359586316627;"/><text fill="#000000" font-family="sans-serif" font-size="8.2737" lengthAdjust="spacingAndGlyphs" textLength="4.4551" x="309.285" y="275.7053">1</text><!--MD5=[8ec2d6e83d94013037965f8db3532e0b]
+@startuml
+scale 400 width
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+class Sensor {
+    - random : Random
+    + ValorActual : int <<get>>
+    + Sensor()
+}
+class Timbre {
+    + DuracionTimbre : int <<get>>
+    + Timbre(in duracionTimbre:int)
+    + Activar() : void
+    + Desactivar() : void
+}
+class Alarma {
+    + Umbral : int <<get>>
+    - timbre : Timbre
+    - sensor : Sensor
+    - activada : bool
+    - encendida : bool
+    + Alarma(in umbral:int, in duracionTimbre:int)
+    + Encender() : void
+    + Apagar() : void
+    + Comprobar() : void
+    + Activar() : void {virtual}
+    + Desactivar() : void {virtual}
+    + ^ToString() : string
+}
+class Bombilla {
+    + Bombilla()
+    + Encender() : void
+    + Apagar() : void
+}
+class AlarmaLuminosa {
+    - bombilla : Bombilla
+    + AlarmaLuminosa(in umbral:int, in duracionTimbre:int)
+    + ^Activar() : void
+    + ^Desactivar() : void
+}
+
+Alarma <|- - AlarmaLuminosa
+Alarma *- - "1" Timbre
+Alarma *- - "1" Sensor
+AlarmaLuminosa *- - "1" Bombilla
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><blockquote>
+<p><strong>Nota:</strong> Procura eliminar la aparici&#xF3;n de c&#xF3;digo duplicado al crear la subclase de Alarma y aseg&#xFA;rate de que, cuando se activa la alarma luminosa se enciende la luz de alarma y tambi&#xE9;n suena la se&#xF1;al sonora asociada al timbre (puedes usar mensajes o investigar para obtener un mejor resultado).</p>
+</blockquote>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
