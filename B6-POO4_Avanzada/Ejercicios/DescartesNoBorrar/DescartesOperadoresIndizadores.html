@@ -1,0 +1,548 @@
+<!DOCTYPE html><html><head>
+      <title>Descartes Operadores e Indizadores</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  background-color: #FFFF;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="descarter-redefinici%C3%B3n-de-operadores-e-indizadores">Descarter Redefinici&#xF3;n de Operadores e Indizadores</h1>
+
+<style>/* 
+Añade 
+
+@import "../EstilosPersonalizadosMarkdownEnhanced.less"
+
+justo después del front matter 
+*/
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v8/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+</style>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#ejercicio-1">Ejercicio 1</a></li>
+<li><a href="#ejercicio2">Ejercicio2</a></li>
+<li><a href="#ejercicio3">Ejercicio3</a></li>
+</ol>
+<h3 class="mume-header" id="ejercicio-1">Ejercicio 1</h3>
+
+<blockquote>
+<p>Dise&#xF1;ar la clase <strong>Fraccion</strong>, que representa el conjunto de los n&#xFA;meros racionales.<br>
+Un n&#xFA;mero racional se representa por un numerador, que es un n&#xFA;mero entero y un denominador, que es un n&#xFA;mero natural.<br>
+Esta clase debe ofrecer como m&#xED;nimo los siguientes m&#xE9;todos p&#xFA;blicos:</p>
+<ol>
+<li>Constructor que recibe el numerado y el denominador y los simplifica.</li>
+<li>Sobrescribe el m&#xE9;todo ToString(), para que devuelva una cadena con formato<br>
+&quot;num/den&quot;.</li>
+<li>Redefinici&#xF3;n del operador de cast implicito y explicito, para que devulevan el valor<br>
+real de la fracci&#xF3;n como double.</li>
+<li>Propiedades para acceder y modificar el numerador y numerador simplificando la<br>
+franci&#xF3;n en caso que se modifique.</li>
+<li>En todos los casos cuando el denominador al construir, al usar las propiedades,<br>
+etc. sea cero. Generaremos una excepci&#xF3;n DivideByZeroException con un mensaje<br>
+indic&#xE1;ndolo.</li>
+<li>Redefiniremos las operaciones aritm&#xE9;ticas simples, cuyo resultado ser&#xE1; otra fracci&#xF3;n en su forma simplificada:</li>
+</ol>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mi>u</mi><mi>m</mi><mi>a</mi><mspace width="0.5em"></mspace><mi>y</mi><mspace width="0.5em"></mspace><mi>r</mi><mi>e</mi><mi>s</mi><mi>t</mi><mi>a</mi><mo>=</mo><mo>&gt;</mo><mfrac><msub><mi>r</mi><mi>n</mi></msub><msub><mi>r</mi><mi>d</mi></msub></mfrac><mo>=</mo><mfrac><mrow><msub><mi>a</mi><mi>n</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>d</mi></msub><mo>+</mo><msub><mi>a</mi><mi>d</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>n</mi></msub></mrow><mrow><msub><mi>a</mi><mi>d</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>d</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">Suma\enspace y\enspace resta=&gt; \frac{r_n}{r_d}= \frac{a_n&#x2217;b_d+a_d&#x2217;b_n}{a_d&#x2217;b_d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">u</span><span class="mord mathnormal">ma</span><span class="mspace" style="margin-right:0.5em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.5em;"></span><span class="mord mathnormal">res</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.94356em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.20744em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mi>u</mi><mi>l</mi><mi>t</mi><mi>i</mi><mi>p</mi><mi>l</mi><mi>i</mi><mi>c</mi><mi>a</mi><mi>c</mi><mi>i</mi><mover accent="true"><mi>o</mi><mo>&#x2CA;</mo></mover><mi>n</mi><mo>=</mo><mo>&gt;</mo><mfrac><msub><mi>r</mi><mi>n</mi></msub><msub><mi>r</mi><mi>d</mi></msub></mfrac><mo>=</mo><mfrac><mrow><msub><mi>a</mi><mi>n</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>n</mi></msub></mrow><mrow><msub><mi>a</mi><mi>d</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>d</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">Multiplicaci&#xF3;n=&gt; \frac{r_n}{r_d}= \frac{a_n&#x2217;b_n}{a_d&#x2217;b_d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">u</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.01968em;">pl</span><span class="mord mathnormal">i</span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal">i</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">o</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.94356em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.20744em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>s</mi><mi>i</mi><mover accent="true"><mi>o</mi><mo>&#x2CA;</mo></mover><mi>n</mi><mo>=</mo><mo>&gt;</mo><mfrac><msub><mi>r</mi><mi>n</mi></msub><msub><mi>r</mi><mi>d</mi></msub></mfrac><mo>=</mo><mfrac><mrow><msub><mi>a</mi><mi>n</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>d</mi></msub></mrow><mrow><msub><mi>a</mi><mi>d</mi></msub><mtext>&#x2217;</mtext><msub><mi>b</mi><mi>n</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">Divisi&#xF3;n=&gt; \frac{r_n}{r_d}= \frac{a_n&#x2217;b_d}{a_d&#x2217;b_n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">o</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">&#x2CA;</span></span></span></span></span></span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.94356em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.20744em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2217;</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><br>
+7. Aplicaci&#xF3;n para probar el programa.<br>
+<strong>&#xBF;C&#xF3;mo realizar la simplificaci&#xF3;n?</strong><br>
+Para simplificar una fracci&#xF3;n primero hay que hallar el m&#xE1;ximo com&#xFA;n divisor del<br>
+numerador y del denominador.<br>
+Crearemos el m&#xE9;todo &#x2026; private void simplifica()<br>
+Crearemos el m&#xE9;todo de clase privado private static int mcd(uint n, uint d) que se<br>
+encargar&#xE1; de esta tarea y para ello, emplear&#xE1; el algoritmo de Euclides, cuyo<br>
+funcionamiento se muestra en el siguiente ejemplo:<br>
+<strong><code>Sea n = -1260 y d = 231</code></strong></p>
+<ol>
+<li>Tomaremos el valor absoluto de <strong><code>n = Math.Abs(n)</code></strong></li>
+<li>En la primera iteraci&#xF3;n, se halla el resto <strong><code>r</code></strong> de dividir el primero <strong><code>n</code></strong> entre <strong><code>d</code></strong>. Se asigna<br>
+a <strong><code>n</code></strong> el divisor <strong><code>d</code></strong>, y se asigna a <strong><code>d</code></strong> el resto <strong><code>r</code></strong>.</li>
+<li>En la segunda iteraci&#xF3;n, se halla el resto <strong>r</strong> de dividir <strong><code>n</code></strong> entre <strong><code>d</code></strong>. Se asigna a <strong><code>n</code></strong> el<br>
+divisor <strong><code>d</code></strong>, y se asigna a <strong><code>d</code></strong> el resto <strong><code>r</code></strong>.</li>
+<li>Se repite el proceso hasta que el resto <strong><code>r</code></strong> sea cero.</li>
+<li>El m&#xE1;ximo com&#xFA;n divisor ser&#xE1; el &#xFA;ltimo valor de <strong><code>d</code></strong>.<br>
+<strong><code>1260 = 231 * 5 + 105</code></strong><br>
+<strong><code>231 = 105 * 2 + 21</code></strong><br>
+<strong><code>105 = 21 * 5 + 0</code></strong></li>
+<li>El m&#xE1;ximo com&#xFA;n divisor es 21.<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mtext>&#x2212;</mtext><mn>1260</mn></mrow><mn>231</mn></mfrac><mo>=</mo><mfrac><mfrac><mn>1260</mn><mn>21</mn></mfrac><mfrac><mn>231</mn><mn>21</mn></mfrac></mfrac><mo>=</mo><mfrac><mrow><mo>&#x2212;</mo><mn>60</mn></mrow><mn>11</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{&#x2212;1260}{231}=\frac{\frac{1260}{21}}{\frac{231}{21}}=\frac{-60}{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">231</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">&#x2212;1260</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.660216em;vertical-align:-1.080108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.580108em;"><span style="top:-2.2648919999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">21</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">231</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7350000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">21</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1260</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:1.080108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">11</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">&#x2212;</span><span class="mord">60</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ol>
+</blockquote>
+<h3 class="mume-header" id="ejercicio2">Ejercicio2</h3>
+
+<blockquote>
+<p>Crea una clase <strong>Hora</strong> que a partir de una cadena del tipo &quot;HH:MM&quot; que llegar&#xE1; al constructor y usando expresiones regulares, descompondr&#xE1; la informaci&#xF3;n para almacenar los atributos hora y minutos.<br>
+Adem&#xE1;s, deberemos crear la clase <strong>Horario</strong> que implemente un indizador que reciba un objeto <strong>Hora</strong> que ir&#xE1; desde las 8:00 a las 13:00 horas y un valor enumerado con un d&#xED;a de la semana de Lunes a Viernes.<br>
+Ambos datos se solicitar&#xE1;n al usuario por teclado para mostrar una actividad usando el indizador. Ejemplo:<br>
+<strong><code>string actividad = horario[new Hora(&quot;9:45&quot;), Dia.Lunes]</code></strong><br>
+Tambi&#xE9;n redefiniremos el m&#xE9;todo ToString para mostrar todo un horario por pantalla. El horario se inicializar&#xE1; en un constructor por defecto con dicho indizador.</p>
+</blockquote>
+<h3 class="mume-header" id="ejercicio3">Ejercicio3</h3>
+
+<blockquote>
+<p>Vamos a practicar indizadores creando un tablero de ajedrez b&#xE1;sico.<br>
+Para ello comenzaremos creando la clase <strong>Pieza</strong> con dos atributos enumerados, definidos en la clase: <strong>Tipo</strong> pieza con los valores {Peon, Caballo, Alfil, Torre, Dama, Rey}, <strong>Color</strong> con los valores {Bl, Nr}. Esta clase adem&#xE1;s tendr&#xE1; el constructor para iniciar una pieza y el ToString que nos muestre la salida parecida a la siguiente:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">Alfil-Bl
+</pre><p>Cada pieza podr&#xE1; estar posicionada en una casilla del tablero, por lo que tendremos que crear la clase <strong>Casilla</strong> formada por un <strong>Color</strong> y una Pieza. Crea el constructor necesario para asignar un color a la casilla, anula el ToString para mostrar la salida como la siguiente:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash"><span class="token punctuation">[</span>  Alfil-Bl<span class="token punctuation">]</span>
+</pre><p>Crea las dos propiedades p&#xFA;blicas para Pieza, de forma que el set controlar&#xE1; si la casilla est&#xE1; desocupada, en caso contrario lanzar&#xE1; excepci&#xF3;n.<br>
+Por &#xFA;ltimo crea la clase <strong>Tablero</strong> que estar&#xE1; formado por una matriz de Casillas, ser&#xE1; inicializada en el constructor, aprovechando para asignar el color a las casillas.<br>
+Un indizador al que le llegue un string con la informaci&#xF3;n de la casilla formato LetraNumero, ejemplo <strong><code>A8</code></strong> y se encargara de asignar la pieza o devolver la pieza en su caso (usar&#xE1;s expresiones regulares para decodificar la casilla a filas y columnas).<br>
+Otro indizado al que le llegar&#xE1;, directamente, la coordenada columna, fila para asignar o devolver la pieza.<br>
+Redefinici&#xF3;n del ToString para que muestre el tablero.</p>
+<p>Programa para inicializar un tablero, a&#xF1;adir algunas fichas y mostrar el tablero resultante.<br>
+<strong>Nota:</strong> si quieres obtener un resultado m&#xE1;s vistoso, puedes usar los m&#xE9;todos que se pasan m&#xE1;s abajo y que permitir&#xE1;n mostrar un tablero semejante al siguiente. Tambi&#xE9;n se pasa el c&#xF3;digo de la main para inicializar el tablero y posicionar las fichas.</p>
+</blockquote>
+<div align="center">
+<img height="200" src="img\ajedrez.png">
+</div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">//En la clase Pieza</span>
+<span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">PintaPieza</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">Encoding</span> originalOutputEncoding <span class="token operator">=</span> Console<span class="token punctuation">.</span>OutputEncoding<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>OutputEncoding <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">UnicodeEncoding</span><span class="token punctuation">(</span><span class="token operator">!</span>BitConverter<span class="token punctuation">.</span>IsLittleEndian<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">string</span></span> caracterPieza <span class="token operator">=</span> tipo <span class="token keyword">switch</span>
+            <span class="token punctuation">{</span>
+                Tipo<span class="token punctuation">.</span>Peon <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;c30&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                Tipo<span class="token punctuation">.</span>Alfil <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;d89&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                Tipo<span class="token punctuation">.</span>Rey <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;d85&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                Tipo<span class="token punctuation">.</span>Dama <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span><span class="token punctuation">(</span>
+                    <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;d87&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                Tipo<span class="token punctuation">.</span>Torre <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;c97&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                Tipo<span class="token punctuation">.</span>Caballo <span class="token operator">=&gt;</span> Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span>
+                    <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token string">&quot;db9&quot;</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> color <span class="token operator">==</span> Color<span class="token punctuation">.</span>Bl <span class="token punctuation">?</span> ConsoleColor<span class="token punctuation">.</span>DarkBlue 
+                                                        <span class="token punctuation">:</span> ConsoleColor<span class="token punctuation">.</span>DarkRed<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>caracterPieza<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>OutputEncoding <span class="token operator">=</span> originalOutputEncoding<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">PintaPistaPiezas</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> codigoPiezas <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token string">&quot;c30&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;d89&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;d85&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;d87&quot;</span><span class="token punctuation">,</span>
+                                                   <span class="token string">&quot;c97&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;db9&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword">int</span></span> fila <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>DarkGreen<span class="token punctuation">;</span>
+            <span class="token class-name">Encoding</span> originalOutputEncoding <span class="token operator">=</span> Console<span class="token punctuation">.</span>OutputEncoding<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>OutputEncoding <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">UnicodeEncoding</span><span class="token punctuation">(</span><span class="token operator">!</span>BitConverter<span class="token punctuation">.</span>IsLittleEndian<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> codigoPiezas<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">37</span><span class="token punctuation">,</span> fila <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Tipo<span class="token punctuation">)</span>i <span class="token operator">+</span> <span class="token string">&quot; --&gt; &quot;</span> <span class="token operator">+</span>
+                 Char<span class="token punctuation">.</span><span class="token function">ConvertFromUtf32</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token keyword">uint</span><span class="token punctuation">.</span>Parse
+                                        <span class="token punctuation">(</span>codigoPiezas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> NumberStyles<span class="token punctuation">.</span>HexNumber<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>OutputEncoding <span class="token operator">=</span> originalOutputEncoding<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//En la clase Tablero</span>
+         <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">StringBuilder</span> cadena <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">&quot;\n\n      &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">char</span></span> i <span class="token operator">=</span> <span class="token string character">&apos;A&apos;</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token string character">&apos;A&apos;</span> <span class="token operator">+</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cadena<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">3</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            cadena<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token string">&quot;\n\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>cadena<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> Casillas<span class="token punctuation">.</span><span class="token function">GetLength</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>DarkGreen<span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;  &quot;</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;  &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> Casillas<span class="token punctuation">.</span><span class="token function">GetLength</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> Casillas<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>Color <span class="token operator">==</span> Color<span class="token punctuation">.</span>Bl <span class="token punctuation">?</span> 
+                                              ConsoleColor<span class="token punctuation">.</span>White <span class="token punctuation">:</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>Casillas<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>Pieza <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> Casillas<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">.</span>Pieza<span class="token punctuation">.</span><span class="token function">PintaPieza</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">else</span> Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            Pieza<span class="token punctuation">.</span><span class="token function">PintaPistaPiezas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//Main</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>DarkGreen<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Tablero</span> tablero <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Tablero</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;A1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Torre<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;B1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Caballo<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;C1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Alfil<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string character">&apos;d&apos;</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Dama<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;E1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Rey<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;F1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Alfil<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;G1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Caballo<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string character">&apos;h&apos;</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Torre<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;A2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;b2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;C2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;D2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;e2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;f2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;g2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;h2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Nr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;A8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Torre<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;B8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Caballo<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;C8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Alfil<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string character">&apos;d&apos;</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Dama<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;E8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Rey<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;F8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Alfil<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;G8&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Caballo<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string character">&apos;h&apos;</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Torre<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;A7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;b7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;C7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;D7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;e7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;f7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;g7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">[</span><span class="token string">&quot;h7&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Pieza</span><span class="token punctuation">(</span>Pieza<span class="token punctuation">.</span>Tipo<span class="token punctuation">.</span>Peon<span class="token punctuation">,</span> Color<span class="token punctuation">.</span>Bl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            tablero<span class="token punctuation">.</span><span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
