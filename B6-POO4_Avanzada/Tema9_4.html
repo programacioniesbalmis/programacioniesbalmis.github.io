@@ -980,6 +980,304 @@ Country: ES
 --></g></svg></p><div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="d-principio-de-inversi%C3%B3n-de-dependencias-dip">D &#x2192; Principio de Inversi&#xF3;n de Dependencias (DIP)</h3>
 
+<p>Es uno de los m&#xE1;s importantes y muy a tener en cuenta en nuestros dise&#xF1;os. El hacerlo, nos <strong>facilitar&#xE1; la labor de creaci&#xF3;n de test unitarios</strong>.</p>
+<blockquote>
+<p><strong>Definici&#xF3;n:</strong> Este principio establece que:</p>
+<ol>
+<li>Las clases de alto nivel <strong>no deber&#xED;an depender</strong> de las clases de bajo nivel. Ambas deber&#xED;an depender de las abstracciones.</li>
+<li>Las abstracciones <strong>no deber&#xED;an depender</strong> de los detalles. Los detalles deber&#xED;an depender de las abstracciones.</li>
+</ol>
+</blockquote>
+<p>En otras palabras, podemos decir que el objetivo de este principio es el uso de interfaces para conseguir que una clase interact&#xFA;e con otras clases, sin que las conozca directamente. De esta manera conseguiremos desacoplar las clases lo m&#xE1;ximo posible.<br>
+Existen diferentes patrones muy usados en frameworks actuales tales como la <strong>inyecci&#xF3;n de dependencias</strong> o <strong>service locator</strong> que nos permitir&#xE1;n invertir el control.</p>
+<p>Supongamos la siguiente relaci&#xF3;n todo parte en la que un <strong><code>Vehiculo</code></strong> est&#xE1; <strong>compuesto por</strong> un <strong><code>Motor</code></strong>.</p>
+<blockquote>
+<p><strong>Nota:</strong> El siguiente ejemplo es un modelo super simplificado para que entendamos el concepto de <strong>DIP</strong>.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp{highlight=17}" class="language-csharp" data-line="17"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Motor</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Inyecta combustible&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Revoluciones <span class="token operator">+=</span> RELACION_INYECCION_MARCHA_CILINDRADA_ETC<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Vehiculo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name">Motor</span> Motor <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Vehiculo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+        Motor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Motor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span><span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span>Revoluciones<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div></pre><p>Tenemos claramente una clase de alto nivel <strong><code>Vehiculo</code></strong> que <strong>depende</strong> de otra de Bajo nivel <strong><code>Motor</code></strong>. Esto significa que <strong><code>Vehiculo</code></strong> tiene que <strong>&apos;<em>conocer</em>&apos;</strong> una clase <strong><code>Motor</code></strong> &apos;<em>espec&#xED;fica</em>&apos; por la relaci&#xF3;n de composici&#xF3;n (<strong><code>l&#xED;nea 17</code></strong>).</p>
+<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="54px" preserveAspectRatio="none" style="width:270px;height:54px;" version="1.1" viewBox="0 0 270 54" width="270px" zoomAndPan="magnify"><defs><filter height="300%" id="f132buxca3vfdj" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[1d6438b19b75334de94d74596f8416e5]
+class Vehiculo--><rect fill="#FFFAFA" filter="url(#f132buxca3vfdj)" height="32" id="Vehiculo" style="stroke:#000000;stroke-width:1.5;" width="79" x="7" y="8.3564"/><ellipse cx="22" cy="24.3564" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M24.7656,20.2314 Q24.9219,20.0127 25.1094,19.9033 Q25.2969,19.7939 25.5156,19.7939 Q25.8906,19.7939 26.125,20.0596 Q26.3594,20.3096 26.3594,20.9189 L26.3594,22.3721 Q26.3594,22.9814 26.125,23.2471 Q25.8906,23.5127 25.5156,23.5127 Q25.1719,23.5127 24.9688,23.3096 Q24.7656,23.1221 24.6563,22.6064 Q24.6094,22.2471 24.4219,22.0596 Q24.0938,21.6846 23.4844,21.4658 Q22.875,21.2471 22.25,21.2471 Q21.4844,21.2471 20.8438,21.5752 Q20.2188,21.9033 19.7188,22.6533 Q19.2344,23.4033 19.2344,24.4346 L19.2344,25.5283 Q19.2344,26.7627 20.125,27.5908 Q21.0156,28.4033 22.6094,28.4033 Q23.5469,28.4033 24.2031,28.1533 Q24.5938,27.9971 25.0156,27.5596 Q25.2813,27.2939 25.4219,27.2158 Q25.5781,27.1377 25.7813,27.1377 Q26.1094,27.1377 26.3594,27.4033 Q26.625,27.6533 26.625,27.9971 Q26.625,28.3408 26.2813,28.7471 Q25.7813,29.3252 24.9844,29.6533 Q23.9063,30.1064 22.6094,30.1064 Q21.0938,30.1064 19.8906,29.4814 Q18.9063,28.9814 18.2188,27.9189 Q17.5313,26.8408 17.5313,25.5596 L17.5313,24.4033 Q17.5313,23.0752 18.1406,21.9346 Q18.7656,20.7783 19.8594,20.1689 Q20.9531,19.5439 22.1875,19.5439 Q22.9219,19.5439 23.5625,19.7158 Q24.2188,19.8721 24.7656,20.2314 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="47" x="36" y="29.2666">Vehiculo</text><!--MD5=[05f1a7330b1ceb1ed664acf8e30033c9]
+class Motor--><rect fill="#FFFAFA" filter="url(#f132buxca3vfdj)" height="32" id="Motor" style="stroke:#000000;stroke-width:1.5;" width="62" x="194" y="8.3564"/><ellipse cx="209" cy="24.3564" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M211.7656,20.2314 Q211.9219,20.0127 212.1094,19.9033 Q212.2969,19.7939 212.5156,19.7939 Q212.8906,19.7939 213.125,20.0596 Q213.3594,20.3096 213.3594,20.9189 L213.3594,22.3721 Q213.3594,22.9814 213.125,23.2471 Q212.8906,23.5127 212.5156,23.5127 Q212.1719,23.5127 211.9688,23.3096 Q211.7656,23.1221 211.6563,22.6064 Q211.6094,22.2471 211.4219,22.0596 Q211.0938,21.6846 210.4844,21.4658 Q209.875,21.2471 209.25,21.2471 Q208.4844,21.2471 207.8438,21.5752 Q207.2188,21.9033 206.7188,22.6533 Q206.2344,23.4033 206.2344,24.4346 L206.2344,25.5283 Q206.2344,26.7627 207.125,27.5908 Q208.0156,28.4033 209.6094,28.4033 Q210.5469,28.4033 211.2031,28.1533 Q211.5938,27.9971 212.0156,27.5596 Q212.2813,27.2939 212.4219,27.2158 Q212.5781,27.1377 212.7813,27.1377 Q213.1094,27.1377 213.3594,27.4033 Q213.625,27.6533 213.625,27.9971 Q213.625,28.3408 213.2813,28.7471 Q212.7813,29.3252 211.9844,29.6533 Q210.9063,30.1064 209.6094,30.1064 Q208.0938,30.1064 206.8906,29.4814 Q205.9063,28.9814 205.2188,27.9189 Q204.5313,26.8408 204.5313,25.5596 L204.5313,24.4033 Q204.5313,23.0752 205.1406,21.9346 Q205.7656,20.7783 206.8594,20.1689 Q207.9531,19.5439 209.1875,19.5439 Q209.9219,19.5439 210.5625,19.7158 Q211.2188,19.8721 211.7656,20.2314 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="30" x="223" y="29.2666">Motor</text><!--MD5=[39d6d670ed73aadc8a599944e69f7420]
+link Vehiculo to Motor--><path codeline="10" d="M98.23,24.3564 C98.23,24.3564 156,24.3564 180.55,24.3564 " fill="none" id="Vehiculo-Motor" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#000000" points="193.83,24.3564,184.83,20.3564,188.83,24.3564,184.83,28.3564,193.83,24.3564" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.0;" x1="188.83" x2="180.83" y1="24.3564" y2="24.3564"/><polygon fill="#000000" points="86.23,24.3564,92.23,28.3564,98.23,24.3564,92.23,20.3564,86.23,24.3564" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="117" y="20.8516">tiene un</text><!--MD5=[4c872d6e63264d609098e6a4f57fea56]
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide attributes
+hide methods
+Vehiculo *- -> Motor : tiene un
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p>Pero... <strong>&#xBF;Qu&#xE9; pasa si queremos concretar m&#xE1;s el tipo de motor?</strong>. Por ejemplo queremos indicar que el vehiculo tiene un motor de gasolina (explosi&#xF3;n).</p>
+<p>Tendr&#xED;amos que modificar la clase <strong><code>Vehiculo</code></strong> incumpliendo as&#xED; principio <strong>OCP</strong> y refactorizar la clase <strong><code>Vehiculo</code></strong> de la siguiente forma ...</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[13,17]}" class="language-csharp" data-line="13,17"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MotorGasolina</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Inyecta gasolina para explosi&#xF3;n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Revoluciones <span class="token operator">+=</span> RELACION_INYECCION_MARCHA_CILINDRADA_ETC_GASOLINA<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Vehiculo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name">Motor</span> MotorGasolina <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Vehiculo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+        Motor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">MotorGasolina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span><span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span>Revoluciones<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div></pre><p>Pero... <strong>&#xBF;Qu&#xE9; pasa si queremos a&#xF1;adir nuevos tipos de motor?</strong>. Por ejemplo, diesel o electrico.<br>
+La respuesta es que no podremos, ya que creamos directamente el objeto de bajo nivel <strong><code>MotorGasolina</code></strong> dentro de la clase <strong><code>Vehiculo</code></strong> y eso nos genera una dependencia directa.</p>
+<p>Para que cumpla <strong>DIP</strong> haremos que <strong><code>Vehiculo</code></strong> <strong>dependa de una abstracci&#xF3;n de</strong> <strong><code>Motor</code></strong> que denominaremos <strong><code>IMotor</code></strong> la cual tendremos que pasar o <strong>&apos;<em>inyectar</em>&apos;</strong> ya sea como par&#xE1;metro a trav&#xE9;s del constructor de vehiculo o a trav&#xE9;s de un setter. De esta manera conseguiremos que nuestro vehiculo tenga distintos tipos de motor sin modificar la clase <strong><code>Vehiculo</code></strong>.</p>
+<blockquote>
+<p>&#x270B; A este proceso se le denominar&#xE1; <strong>&apos;<em>Inversi&#xF3;n de Dependencias</em>&apos;</strong>.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp{highlight=[1-5,9,10]}" class="language-csharp" data-line="1-5,9,10"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IMotor</span> 
+<span class="token punctuation">{</span>
+    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Vehiculo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token return-type class-name">IMotor</span> Motor <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">Vehiculo</span><span class="token punctuation">(</span><span class="token class-name">IMotor</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Motor <span class="token operator">=</span> m<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span><span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token operator">=&gt;</span>  Motor<span class="token punctuation">.</span>Revoluciones<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1-5" data-start="1" data-end="5">
+
+
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div></pre><p>Ahora ya podremos implementar todas las concreciones de bajo nivel de <strong><code>Motor</code></strong> que se nos ocurran y depender&#xE1;n de la abstracci&#xF3;n <strong><code>IMotor</code></strong> tal y como postula <strong>DIP</strong>.</p>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MotorGasolina</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IMotor</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Inyecta gasolina para explosi&#xF3;n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Revoluciones <span class="token operator">+=</span> RELACION_INYECCION_MARCHA_CILINDRADA_ETC_GASOLINA<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MotorDiesel</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IMotor</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Inyecta gas&#xF3;leo para combusti&#xF3;n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Revoluciones <span class="token operator">+=</span> RELACION_INYECCION_MARCHA_CILINDRADA_ETC_DIESEL<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MotorElectrico</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IMotor</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> Revoluciones <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Aumenta intensidad corriente&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Revoluciones <span class="token operator">+=</span> RELACION_CORRINTE_MARCHA_ETC_ELECTRICO<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>Pero... &#xBF;C&#xF3;mo realizar esta inversi&#xF3;n de dependencias teniendo en cuenta la relaci&#xF3;n de <strong>composici&#xF3;n</strong> entre <strong><code>Vehiculo</code></strong> y <strong><code>Motor</code></strong>?. Una posibilidad es usas el patr&#xF3;n <strong>Simple Factory</strong>, el cual se encargar&#xE1; de de relacionar las dos clases.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">VehiculoFactory</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">TipoMotor</span> <span class="token punctuation">{</span> Gasolina<span class="token punctuation">,</span> Diesel<span class="token punctuation">,</span> Electrico <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">Vehiculo</span> <span class="token function">Crea</span><span class="token punctuation">(</span><span class="token class-name">TipoMotor</span> tipo<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> tipo <span class="token keyword">switch</span>
+        <span class="token punctuation">{</span>
+            TipoMotor<span class="token punctuation">.</span>Gasolina <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vehiculo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">MotorGasolina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            TipoMotor<span class="token punctuation">.</span>Diesel <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vehiculo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">MotorDiesel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            TipoMotor<span class="token punctuation">.</span>Electrico <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vehiculo</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">MotorElectrico</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            _ <span class="token operator">=&gt;</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span> <span class="token operator">??</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;No se pueden instanciar el motor </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tipo</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Vehiculo</span> vg <span class="token operator">=</span> VehiculoFactory<span class="token punctuation">.</span><span class="token function">Crea</span><span class="token punctuation">(</span>VehiculoFactory<span class="token punctuation">.</span>TipoMotor<span class="token punctuation">.</span>Gasolina<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Vehiculo</span> vd <span class="token operator">=</span> VehiculoFactory<span class="token punctuation">.</span><span class="token function">Crea</span><span class="token punctuation">(</span>VehiculoFactory<span class="token punctuation">.</span>TipoMotor<span class="token punctuation">.</span>Diesel<span class="token punctuation">)</span><span class="token punctuation">;</span>        
+        <span class="token class-name">Vehiculo</span> ve <span class="token operator">=</span> VehiculoFactory<span class="token punctuation">.</span><span class="token function">Crea</span><span class="token punctuation">(</span>VehiculoFactory<span class="token punctuation">.</span>TipoMotor<span class="token punctuation">.</span>Electrico<span class="token punctuation">)</span><span class="token punctuation">;</span>        
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p><strong>Nota:</strong> Si nos fijamos a efectos pr&#xE1;cticos tendremos la composici&#xF3;n porque las referencias a motor desaparecer&#xE1;n junto con el veh&#xED;culo.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<p>Resumiendo la implementaci&#xF3;n en un diagrama de clases, podr&#xED;a quedar de la siguiente forma ...</p>
+<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="514px" preserveAspectRatio="none" style="width:521px;height:514px;" version="1.1" viewBox="0 0 521 514" width="521px" zoomAndPan="magnify"><defs><filter height="300%" id="foudgpcl9mnqa" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[1a31b9e54bcfd7d61d79422ecda9418a]
+class IMotor--><rect codeline="10" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="IMotor" style="stroke:#000000;stroke-width:1.5;" width="66" x="214" y="375"/><ellipse cx="229" cy="391" fill="#B4A7E5" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M229.9531,387.6406 L229.9531,394.2969 L231.6719,394.2969 Q232.2813,394.2969 232.5469,394.5313 Q232.8125,394.7656 232.8125,395.1563 Q232.8125,395.5313 232.5469,395.7656 Q232.2813,396 231.6719,396 L226.5313,396 Q225.9219,396 225.6563,395.7656 Q225.3906,395.5313 225.3906,395.1406 Q225.3906,394.7656 225.6563,394.5313 Q225.9219,394.2969 226.5313,394.2969 L228.25,394.2969 L228.25,387.6406 L226.5313,387.6406 Q225.9219,387.6406 225.6563,387.4063 Q225.3906,387.1719 225.3906,386.7813 Q225.3906,386.4063 225.6563,386.1719 Q225.9219,385.9375 226.5313,385.9375 L231.6719,385.9375 Q232.2813,385.9375 232.5469,386.1719 Q232.8125,386.4063 232.8125,386.7813 Q232.8125,387.1719 232.5469,387.4063 Q232.2813,387.6406 231.6719,387.6406 L229.9531,387.6406 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="34" x="243" y="395.9102">IMotor</text><!--MD5=[1ea3fadc10fb6f83e43c4292af5630ac]
+class MotorGasolina--><rect codeline="11" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="MotorGasolina" style="stroke:#000000;stroke-width:1.5;" width="112" x="7" y="468"/><ellipse cx="22" cy="484" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M24.7656,479.875 Q24.9219,479.6563 25.1094,479.5469 Q25.2969,479.4375 25.5156,479.4375 Q25.8906,479.4375 26.125,479.7031 Q26.3594,479.9531 26.3594,480.5625 L26.3594,482.0156 Q26.3594,482.625 26.125,482.8906 Q25.8906,483.1563 25.5156,483.1563 Q25.1719,483.1563 24.9688,482.9531 Q24.7656,482.7656 24.6563,482.25 Q24.6094,481.8906 24.4219,481.7031 Q24.0938,481.3281 23.4844,481.1094 Q22.875,480.8906 22.25,480.8906 Q21.4844,480.8906 20.8438,481.2188 Q20.2188,481.5469 19.7188,482.2969 Q19.2344,483.0469 19.2344,484.0781 L19.2344,485.1719 Q19.2344,486.4063 20.125,487.2344 Q21.0156,488.0469 22.6094,488.0469 Q23.5469,488.0469 24.2031,487.7969 Q24.5938,487.6406 25.0156,487.2031 Q25.2813,486.9375 25.4219,486.8594 Q25.5781,486.7813 25.7813,486.7813 Q26.1094,486.7813 26.3594,487.0469 Q26.625,487.2969 26.625,487.6406 Q26.625,487.9844 26.2813,488.3906 Q25.7813,488.9688 24.9844,489.2969 Q23.9063,489.75 22.6094,489.75 Q21.0938,489.75 19.8906,489.125 Q18.9063,488.625 18.2188,487.5625 Q17.5313,486.4844 17.5313,485.2031 L17.5313,484.0469 Q17.5313,482.7188 18.1406,481.5781 Q18.7656,480.4219 19.8594,479.8125 Q20.9531,479.1875 22.1875,479.1875 Q22.9219,479.1875 23.5625,479.3594 Q24.2188,479.5156 24.7656,479.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="80" x="36" y="488.9102">MotorGasolina</text><!--MD5=[ec8267426ca8c42156aa4a520caa9836]
+class MotorDiesel--><rect codeline="12" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="MotorDiesel" style="stroke:#000000;stroke-width:1.5;" width="98" x="299" y="468"/><ellipse cx="314" cy="484" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M316.7656,479.875 Q316.9219,479.6563 317.1094,479.5469 Q317.2969,479.4375 317.5156,479.4375 Q317.8906,479.4375 318.125,479.7031 Q318.3594,479.9531 318.3594,480.5625 L318.3594,482.0156 Q318.3594,482.625 318.125,482.8906 Q317.8906,483.1563 317.5156,483.1563 Q317.1719,483.1563 316.9688,482.9531 Q316.7656,482.7656 316.6563,482.25 Q316.6094,481.8906 316.4219,481.7031 Q316.0938,481.3281 315.4844,481.1094 Q314.875,480.8906 314.25,480.8906 Q313.4844,480.8906 312.8438,481.2188 Q312.2188,481.5469 311.7188,482.2969 Q311.2344,483.0469 311.2344,484.0781 L311.2344,485.1719 Q311.2344,486.4063 312.125,487.2344 Q313.0156,488.0469 314.6094,488.0469 Q315.5469,488.0469 316.2031,487.7969 Q316.5938,487.6406 317.0156,487.2031 Q317.2813,486.9375 317.4219,486.8594 Q317.5781,486.7813 317.7813,486.7813 Q318.1094,486.7813 318.3594,487.0469 Q318.625,487.2969 318.625,487.6406 Q318.625,487.9844 318.2813,488.3906 Q317.7813,488.9688 316.9844,489.2969 Q315.9063,489.75 314.6094,489.75 Q313.0938,489.75 311.8906,489.125 Q310.9063,488.625 310.2188,487.5625 Q309.5313,486.4844 309.5313,485.2031 L309.5313,484.0469 Q309.5313,482.7188 310.1406,481.5781 Q310.7656,480.4219 311.8594,479.8125 Q312.9531,479.1875 314.1875,479.1875 Q314.9219,479.1875 315.5625,479.3594 Q316.2188,479.5156 316.7656,479.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="66" x="328" y="488.9102">MotorDiesel</text><!--MD5=[33bcd70f086726fdc1193c1d938f98ce]
+class MotorElectrico--><rect codeline="13" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="MotorElectrico" style="stroke:#000000;stroke-width:1.5;" width="109" x="154.5" y="468"/><ellipse cx="169.5" cy="484" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M172.2656,479.875 Q172.4219,479.6563 172.6094,479.5469 Q172.7969,479.4375 173.0156,479.4375 Q173.3906,479.4375 173.625,479.7031 Q173.8594,479.9531 173.8594,480.5625 L173.8594,482.0156 Q173.8594,482.625 173.625,482.8906 Q173.3906,483.1563 173.0156,483.1563 Q172.6719,483.1563 172.4688,482.9531 Q172.2656,482.7656 172.1563,482.25 Q172.1094,481.8906 171.9219,481.7031 Q171.5938,481.3281 170.9844,481.1094 Q170.375,480.8906 169.75,480.8906 Q168.9844,480.8906 168.3438,481.2188 Q167.7188,481.5469 167.2188,482.2969 Q166.7344,483.0469 166.7344,484.0781 L166.7344,485.1719 Q166.7344,486.4063 167.625,487.2344 Q168.5156,488.0469 170.1094,488.0469 Q171.0469,488.0469 171.7031,487.7969 Q172.0938,487.6406 172.5156,487.2031 Q172.7813,486.9375 172.9219,486.8594 Q173.0781,486.7813 173.2813,486.7813 Q173.6094,486.7813 173.8594,487.0469 Q174.125,487.2969 174.125,487.6406 Q174.125,487.9844 173.7813,488.3906 Q173.2813,488.9688 172.4844,489.2969 Q171.4063,489.75 170.1094,489.75 Q168.5938,489.75 167.3906,489.125 Q166.4063,488.625 165.7188,487.5625 Q165.0313,486.4844 165.0313,485.2031 L165.0313,484.0469 Q165.0313,482.7188 165.6406,481.5781 Q166.2656,480.4219 167.3594,479.8125 Q168.4531,479.1875 169.6875,479.1875 Q170.4219,479.1875 171.0625,479.3594 Q171.7188,479.5156 172.2656,479.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="77" x="183.5" y="488.9102">MotorElectrico</text><!--MD5=[159b4d1c9e53eef8947cc04c5a0af4a5]
+class TipoVehiculo--><rect codeline="15" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="40.1875" id="TipoVehiculo" style="stroke:#000000;stroke-width:1.5;" width="112" x="395" y="257"/><ellipse cx="410" cy="277.0938" fill="#EB937F" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M408.8594,277.8906 L408.8594,280.3906 L413.1875,280.3906 L413.1875,279.4688 Q413.1875,278.8594 413.4219,278.5938 Q413.6719,278.3281 414.0469,278.3281 Q414.4219,278.3281 414.6563,278.5938 Q414.8906,278.8594 414.8906,279.4688 L414.8906,282.0938 L406.8906,282.0938 Q406.2656,282.0938 406,281.8594 Q405.75,281.625 405.75,281.2344 Q405.75,280.8594 406.0156,280.625 Q406.2813,280.3906 406.8906,280.3906 L407.1563,280.3906 L407.1563,273.7344 L406.8906,273.7344 Q406.2656,273.7344 406,273.5 Q405.75,273.2656 405.75,272.875 Q405.75,272.5 406,272.2656 Q406.2656,272.0313 406.8906,272.0313 L414.5156,272.0313 L414.5156,274.625 Q414.5156,275.2344 414.2813,275.5 Q414.0625,275.75 413.6719,275.75 Q413.2969,275.75 413.0625,275.5 Q412.8281,275.2344 412.8281,274.625 L412.8281,273.7344 L408.8594,273.7344 L408.8594,276.1875 L410.3438,276.1875 Q410.3438,275.5313 410.4688,275.3438 Q410.7344,274.9375 411.2031,274.9375 Q411.5781,274.9375 411.8125,275.2031 Q412.0469,275.4531 412.0469,276.0625 L412.0469,278.0313 Q412.0469,278.5781 411.9219,278.7656 Q411.6563,279.1563 411.2031,279.1563 Q410.7344,279.1563 410.4688,278.75 Q410.3438,278.5625 410.3438,277.8906 L408.8594,277.8906 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="84" x="422" y="274.457">&#xAB;enumeration&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="71" x="428.5" y="289.5508">TipoVehiculo</text><!--MD5=[467e0de8a7076543130db530c9a20244]
+class VehiculoFactory--><rect codeline="18" fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="62.0234" id="VehiculoFactory" style="stroke:#000000;stroke-width:1.5;" width="118" x="190" y="117"/><ellipse cx="205" cy="137.0938" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M207.7656,132.9688 Q207.9219,132.75 208.1094,132.6406 Q208.2969,132.5313 208.5156,132.5313 Q208.8906,132.5313 209.125,132.7969 Q209.3594,133.0469 209.3594,133.6563 L209.3594,135.1094 Q209.3594,135.7188 209.125,135.9844 Q208.8906,136.25 208.5156,136.25 Q208.1719,136.25 207.9688,136.0469 Q207.7656,135.8594 207.6563,135.3438 Q207.6094,134.9844 207.4219,134.7969 Q207.0938,134.4219 206.4844,134.2031 Q205.875,133.9844 205.25,133.9844 Q204.4844,133.9844 203.8438,134.3125 Q203.2188,134.6406 202.7188,135.3906 Q202.2344,136.1406 202.2344,137.1719 L202.2344,138.2656 Q202.2344,139.5 203.125,140.3281 Q204.0156,141.1406 205.6094,141.1406 Q206.5469,141.1406 207.2031,140.8906 Q207.5938,140.7344 208.0156,140.2969 Q208.2813,140.0313 208.4219,139.9531 Q208.5781,139.875 208.7813,139.875 Q209.1094,139.875 209.3594,140.1406 Q209.625,140.3906 209.625,140.7344 Q209.625,141.0781 209.2813,141.4844 Q208.7813,142.0625 207.9844,142.3906 Q206.9063,142.8438 205.6094,142.8438 Q204.0938,142.8438 202.8906,142.2188 Q201.9063,141.7188 201.2188,140.6563 Q200.5313,139.5781 200.5313,138.2969 L200.5313,137.1406 Q200.5313,135.8125 201.1406,134.6719 Q201.7656,133.5156 202.8594,132.9063 Q203.9531,132.2813 205.1875,132.2813 Q205.9219,132.2813 206.5625,132.4531 Q207.2188,132.6094 207.7656,132.9688 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="42" x="241" y="134.457">&#xAB;static&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="86" x="219" y="149.5508">VehiculoFactory</text><line style="stroke:#000000;stroke-width:1.5;" x1="191" x2="307" y1="157.1875" y2="157.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="82" x="196" y="172.6064">Crea() : Vehiculo</text><!--MD5=[bfe80886124190284096452d0cb4568d]
+class Principal--><rect fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="Principal" style="stroke:#000000;stroke-width:1.5;" width="80" x="209" y="7"/><ellipse cx="224" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M226.7656,18.875 Q226.9219,18.6563 227.1094,18.5469 Q227.2969,18.4375 227.5156,18.4375 Q227.8906,18.4375 228.125,18.7031 Q228.3594,18.9531 228.3594,19.5625 L228.3594,21.0156 Q228.3594,21.625 228.125,21.8906 Q227.8906,22.1563 227.5156,22.1563 Q227.1719,22.1563 226.9688,21.9531 Q226.7656,21.7656 226.6563,21.25 Q226.6094,20.8906 226.4219,20.7031 Q226.0938,20.3281 225.4844,20.1094 Q224.875,19.8906 224.25,19.8906 Q223.4844,19.8906 222.8438,20.2188 Q222.2188,20.5469 221.7188,21.2969 Q221.2344,22.0469 221.2344,23.0781 L221.2344,24.1719 Q221.2344,25.4063 222.125,26.2344 Q223.0156,27.0469 224.6094,27.0469 Q225.5469,27.0469 226.2031,26.7969 Q226.5938,26.6406 227.0156,26.2031 Q227.2813,25.9375 227.4219,25.8594 Q227.5781,25.7813 227.7813,25.7813 Q228.1094,25.7813 228.3594,26.0469 Q228.625,26.2969 228.625,26.6406 Q228.625,26.9844 228.2813,27.3906 Q227.7813,27.9688 226.9844,28.2969 Q225.9063,28.75 224.6094,28.75 Q223.0938,28.75 221.8906,28.125 Q220.9063,27.625 220.2188,26.5625 Q219.5313,25.4844 219.5313,24.2031 L219.5313,23.0469 Q219.5313,21.7188 220.1406,20.5781 Q220.7656,19.4219 221.8594,18.8125 Q222.9531,18.1875 224.1875,18.1875 Q224.9219,18.1875 225.5625,18.3594 Q226.2188,18.5156 226.7656,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="48" x="238" y="27.9102">Principal</text><!--MD5=[1d6438b19b75334de94d74596f8416e5]
+class Vehiculo--><rect fill="#FFFAFA" filter="url(#foudgpcl9mnqa)" height="32" id="Vehiculo" style="stroke:#000000;stroke-width:1.5;" width="79" x="209.5" y="261"/><ellipse cx="224.5" cy="277" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M227.2656,272.875 Q227.4219,272.6563 227.6094,272.5469 Q227.7969,272.4375 228.0156,272.4375 Q228.3906,272.4375 228.625,272.7031 Q228.8594,272.9531 228.8594,273.5625 L228.8594,275.0156 Q228.8594,275.625 228.625,275.8906 Q228.3906,276.1563 228.0156,276.1563 Q227.6719,276.1563 227.4688,275.9531 Q227.2656,275.7656 227.1563,275.25 Q227.1094,274.8906 226.9219,274.7031 Q226.5938,274.3281 225.9844,274.1094 Q225.375,273.8906 224.75,273.8906 Q223.9844,273.8906 223.3438,274.2188 Q222.7188,274.5469 222.2188,275.2969 Q221.7344,276.0469 221.7344,277.0781 L221.7344,278.1719 Q221.7344,279.4063 222.625,280.2344 Q223.5156,281.0469 225.1094,281.0469 Q226.0469,281.0469 226.7031,280.7969 Q227.0938,280.6406 227.5156,280.2031 Q227.7813,279.9375 227.9219,279.8594 Q228.0781,279.7813 228.2813,279.7813 Q228.6094,279.7813 228.8594,280.0469 Q229.125,280.2969 229.125,280.6406 Q229.125,280.9844 228.7813,281.3906 Q228.2813,281.9688 227.4844,282.2969 Q226.4063,282.75 225.1094,282.75 Q223.5938,282.75 222.3906,282.125 Q221.4063,281.625 220.7188,280.5625 Q220.0313,279.4844 220.0313,278.2031 L220.0313,277.0469 Q220.0313,275.7188 220.6406,274.5781 Q221.2656,273.4219 222.3594,272.8125 Q223.4531,272.1875 224.6875,272.1875 Q225.4219,272.1875 226.0625,272.3594 Q226.7188,272.5156 227.2656,272.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="47" x="238.5" y="281.9102">Vehiculo</text><!--MD5=[1a313c4010df3c143c395fd04b1683a4]
+reverse link IMotor to MotorGasolina--><path d="M198.33,416.07 C165.04,432.53 121.94,453.85 93.43,467.95 " fill="none" id="IMotor-backto-MotorGasolina" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="195.59,409.62,216.62,407.03,201.79,422.17,195.59,409.62" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[7ad0edd3c1b17e4b01938a7b6a5c367d]
+reverse link IMotor to MotorDiesel--><path d="M278.7,420.56 C296.12,436.26 317.03,455.1 331.3,467.95 " fill="none" id="IMotor-backto-MotorDiesel" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="273.85,425.61,263.68,407.03,283.22,415.21,273.85,425.61" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[e393f02407d0c861be1e79c4e9a0c2fc]
+reverse link IMotor to MotorElectrico--><path d="M232.91,425.73 C226.85,440.25 220.07,456.48 215.28,467.95 " fill="none" id="IMotor-backto-MotorElectrico" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="226.56,422.78,240.73,407.03,239.48,428.18,226.56,422.78" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[60f52f985992cf3c4ce32c06f888aff8]
+link Principal to VehiculoFactory--><path codeline="23" d="M249,39.08 C249,57.05 249,87.65 249,111.69 " fill="none" id="Principal-to-VehiculoFactory" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="249,116.71,253,107.71,249,111.71,245,107.71,249,116.71" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="250" y="83.4951">&#xAB;use&#xBB;</text><!--MD5=[f7ecd57ebebea9caa6b0b452e9092975]
+link Vehiculo to IMotor--><path codeline="24" d="M248.519,305.0981 C248.519,305.0981 247.81,344.73 247.5,361.75 " fill="none" id="Vehiculo-IMotor" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#000000" points="247.27,374.78,251.4276,365.8517,247.3579,369.7808,243.4288,365.7111,247.27,374.78" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.0;" x1="247.3579" x2="247.5" y1="369.7808" y2="361.78"/><polygon fill="#000000" points="248.73,293.1,244.6251,299.0288,248.519,305.0981,252.6239,299.1694,248.73,293.1" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="250" y="341.4951">tiene un</text><!--MD5=[e982bc1d2b47ece70ddf2e438b2c2032]
+link VehiculoFactory to TipoVehiculo--><path codeline="25" d="M321.7,182.58 C337.33,190.63 353.49,199.64 368,209 C385.38,220.22 403.4,234.4 418.19,246.83 " fill="none" id="VehiculoFactory-TipoVehiculo" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#000000" points="429.77,256.75,425.5389,247.8563,425.9734,253.4964,420.3332,253.9309,429.77,256.75" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.0;" x1="425.9734" x2="418.375" y1="253.4964" y2="246.995"/><ellipse cx="315.3116" cy="179.3551" fill="#FFFFFF" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.0;" x1="322.4533" x2="308.17" y1="182.9602" y2="175.75"/><line style="stroke:#000000;stroke-width:1.0;" x1="311.7065" x2="318.9168" y1="186.4968" y2="172.2135"/><!--MD5=[079a0b10a75bd32fcbc899f68f479545]
+link VehiculoFactory to Vehiculo--><path codeline="26" d="M249,179.1 C249,202.66 249,234.81 249,255.49 " fill="none" id="VehiculoFactory-to-Vehiculo" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="249,260.75,253,251.75,249,255.75,245,251.75,249,260.75" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="250" y="223.4951">&#xAB;use&#xBB;</text><!--MD5=[ddb0523fde1f15c8cc7c6294be06d472]
+link VehiculoFactory to MotorGasolina--><path codeline="27" d="M218.91,179.06 C210.59,188.23 201.95,198.64 195,209 C135.68,297.42 87.91,416.55 70.3,463.15 " fill="none" id="VehiculoFactory-to-MotorGasolina" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="68.5,467.95,75.4125,460.9345,70.2603,463.2701,67.9247,458.118,68.5,467.95" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="129" y="341.4951">&#xAB;use&#xBB;</text><!--MD5=[7d84fe2caedf3de963572baefe1a67d5]
+link VehiculoFactory to MotorDiesel--><path codeline="28" d="M275.34,179.24 C282.22,188.33 289.08,198.65 294,209 C335.93,297.1 345.31,416.01 347.4,462.85 " fill="none" id="VehiculoFactory-to-MotorDiesel" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="347.61,467.94,351.246,458.7869,347.4096,462.944,343.2525,459.1076,347.61,467.94" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="336" y="341.4951">&#xAB;use&#xBB;</text><!--MD5=[75951c4879bb34057f088c4eee0702cb]
+link VehiculoFactory to MotorElectrico--><path codeline="29" d="M228.03,179.04 C214.82,199.86 198.98,228.81 192,257 C173.62,331.2 192.93,422.94 203.31,462.86 " fill="none" id="VehiculoFactory-to-MotorElectrico" style="stroke:#000000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#000000" points="204.65,467.92,206.2335,458.1993,203.3803,463.0839,198.4957,460.2307,204.65,467.92" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="186" y="341.4951">&#xAB;use&#xBB;</text><!--MD5=[c4d9a9f1366bdf979004075d8e865084]
+@startuml
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor Snow
+
+hide attributes
+hide methods
+
+interface IMotor
+class MotorGasolina implements IMotor
+class MotorDiesel implements IMotor
+class MotorElectrico implements IMotor
+
+enum TipoVehiculo <<enumeration>>
+
+show VehiculoFactory methods
+class VehiculoFactory <<static>>
+{
+    {static} Crea() : Vehiculo
+}
+
+Principal ..> VehiculoFactory : <<use>>
+Vehiculo *- -> IMotor : tiene un
+VehiculoFactory +- -> TipoVehiculo
+VehiculoFactory ..> Vehiculo : <<use>>
+VehiculoFactory ..> MotorGasolina : <<use>>
+VehiculoFactory ..> MotorDiesel : <<use>>
+VehiculoFactory ..> MotorElectrico : <<use>>
+
+@enduml
+
+PlantUML version 1.2020.26(Mon Dec 21 18:45:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p>Donde:</p>
+<ol>
+<li>Cumplimos <strong>DIP</strong> porque la clase de alto nivel <strong><code>Veh&#xED;culo</code></strong> depende solo de la abstracci&#xF3;n <strong><code>IMotor</code></strong> y as&#xED; como las especificaciones de bajo nivel de motor.</li>
+<li>La &apos;<em>factor&#xED;a simple</em>&apos; es la que tiene dependencias de uso (<strong><code>&lt;&lt;use&gt;&gt;</code></strong>) con las clases implicadas y se encargara de crear inst&#xE1;ncias de los diferentes tipos de veh&#xED;culos asegur&#xE1;ndonos que al desaparecer un veh&#xED;culo desaparezca su motor.</li>
+<li>la clase <strong><code>Principal</code></strong> usa la factor&#xED;a para instanciar objetos veh&#xED;culo de forma simple y adem&#xE1;s podr&#xED;amos usar esta misma de forma simple en nuestros test para crear <strong><a href="https://es.wikipedia.org/wiki/Objeto_simulado">mocks</a></strong> de veh&#xED;culo para hacer pruebas unitarias.</li>
+</ol>
 
       </div>
       
