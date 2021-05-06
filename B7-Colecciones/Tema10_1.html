@@ -345,6 +345,7 @@ justo después del front matter
 <li><a href="#colecciones-en-la-bcl">Colecciones en la BCL</a>
 <ol>
 <li><a href="#colecci%C3%B3n-listt">Colecci&#xF3;n List&lt;T&gt;</a></li>
+<li><a href="#colecci%C3%B3n-dictionaryt">Colecci&#xF3;n Dictionary&lt;T&gt;</a></li>
 </ol>
 </li>
 </ol>
@@ -356,25 +357,24 @@ justo después del front matter
 <p>Algunas de las colecciones m&#xE1;s utilizadas son las siguientes:</p>
 <ul>
 <li>
-<p>Las listas que implementan el interfaz IList. Entre ellas se encuentran los <strong>Arrays</strong> tradicionales, s&#xF3;lo que tendremos restricciones de a&#xF1;adir, remover, etc&#x2026;<br>
-<strong>ArrayList</strong> aparece en la v1.0 e implementa IList completo permitiendo A&#xF1;adir y Borrar e incluyendo m&#xE9;todos como BinarySearch y Sort que a diferencia de sus hermanos en los arrays no son est&#xE1;ticos.<br>
-<strong>List&lt;T&gt;</strong> es el equivalente gen&#xE9;rico a ArrayList y ser&#xE1; el que utilizaremos en su lugar, por ser m&#xE1;s robusta en la restricci&#xF3;n de tipos. Otro tipo ser&#xED;a <a href="https://msdn.microsoft.com/es-es/library/ms132319(VS.80).aspx">SortedList</a> que es una lista ordenada, pero no la veremos en este tema.</p>
+<p>Las listas que implementan el interfaz <strong>IList</strong>. Entre ellas se encuentran los <strong><code>Arrays</code></strong> tradicionales, s&#xF3;lo que tendremos restricciones de a&#xF1;adir, remover, etc&#x2026;<br>
+<strong><code>ArrayList</code></strong> aparece en la v1.0 e implementa IList completo permitiendo A&#xF1;adir y Borrar e incluyendo m&#xE9;todos como BinarySearch y Sort que a diferencia de sus hermanos en los arrays no son est&#xE1;ticos.<br>
+<strong><code>List\&lt;T&gt;</code></strong> es el equivalente gen&#xE9;rico a ArrayList y ser&#xE1; el que utilizaremos en su lugar, por ser m&#xE1;s robusta en la restricci&#xF3;n de tipos. Otro tipo ser&#xED;a <a href="https://msdn.microsoft.com/es-es/library/ms132319(VS.80).aspx">SortedList</a> que es una lista ordenada, pero no la veremos en este tema.</p>
 </li>
 <li>
-<p>Tambi&#xE9;n ofrece de la colecci&#xF3;n <strong>LinkedList&lt;T&gt;</strong>, que no implementa la interfaz IList y se basa en el concepto de nodo, visto anteriormente.</p>
+<p>Tambi&#xE9;n ofrece de la colecci&#xF3;n <strong><code>LinkedList&lt;T&gt;</code></strong>, que no implementa la interfaz IList y se basa en el concepto de nodo, visto anteriormente.</p>
 </li>
 <li>
-<p>Las <strong>HashTable</strong> o Dispersi&#xF3;n  y los <strong>Dictionary&lt;T&gt;</strong>. son estructuras de datos que asocian una clave a un valore. La operaci&#xF3;n principal que soporta de manera m&#xE1;s eficiente, es la b&#xFA;squeda.</p>
+<p>Las <strong><code>HashTable</code></strong> o Dispersi&#xF3;n  y los <strong><code>Dictionary&lt;T&gt;</code></strong>. son estructuras de datos que asocian una clave a un valore. La operaci&#xF3;n principal que soporta de manera m&#xE1;s eficiente, es la b&#xFA;squeda.</p>
 </li>
 <li>
 <p>Otros tipos menos usados son<br>
-las Pilas <strong>Stack</strong> o <strong>Stack&lt;T&gt;</strong> y las Colas <strong>Queue</strong> o <strong>Queue&lt;T&gt;</strong>. Tambi&#xE9;n se implementan como tablas, s&#xF3;lo que en las colas podemos establecer un factor de crecimiento al a&#xF1;adir.</p>
+las Pilas <strong><code>Stack</code></strong> o <strong><code>Stack&lt;T&gt;</code></strong> y las Colas <strong><code>Queue</code></strong> o <strong><code>Queue&lt;T&gt;</code></strong>. Tambi&#xE9;n se implementan como tablas, s&#xF3;lo que en las colas podemos establecer un factor de crecimiento al a&#xF1;adir.</p>
 </li>
 </ul>
 <h3 class="mume-header" id="colecci%C3%B3n-listt">Colecci&#xF3;n List&lt;T&gt;</h3>
 
-<p>Las listas son una especie de arrays din&#xE1;micos que permiten a&#xF1;adir  o quitar elementos  en cualquier momento y de cualquier parte del array. Para trabajar con ellas se utiliza el TAD <a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1?view=net-5.0">List&lt;T&gt;</a> de C#.<br>
-<strong><code>List&lt;T&gt; lista=new List&lt;T&gt;()</code></strong></p>
+<p>Las listas son una especie de arrays din&#xE1;micos que permiten a&#xF1;adir  o quitar elementos  en cualquier momento y de cualquier parte del array. Para trabajar con ellas se utiliza el TAD <a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1?view=net-5.0">List&lt;T&gt;</a> de C#. <strong><code>List&lt;T&gt; lista=new List&lt;T&gt;()</code></strong></p>
 <p>Al crearnos una lista de tipo Persona podremos acceder a sus miembros. Lo podemos ver en el siguiente ejemplo:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">struct</span> <span class="token class-name">Persona</span> 
 <span class="token punctuation">{</span> 
@@ -400,49 +400,55 @@ las Pilas <strong>Stack</strong> o <strong>Stack&lt;T&gt;</strong> y las Colas <
 </pre><p>Principales operaciones que se pueden realizar en una lista:</p>
 <ul>
 <li>
-<p><strong>Inicializar</strong> la Lista, para poder usarla, lo primero que debemos hacer es crear la lista (vac&#xED;a), para luego ir a&#xF1;adiendo elementos. Esto se hace definiendo una variable de tipo List y usando el  operador new para inicializarla, de la siguiente manera:<br>
-<strong><code>List&lt;string&gt; lista =new List&lt;string&gt;()</code></strong></p>
+<p><strong>Inicializar</strong> la Lista, para poder usarla. Lo primero que debemos hacer es instanciar la lista para luego ir a&#xF1;adiendo elementos. Esto se hace definiendo una variable de tipo List y usando el  operador new para inicializarla. Suponemos una lista de cadenas, se har&#xED;a de la siguiente manera:  <strong><code>List&lt;string&gt; lista =new List&lt;string&gt;()</code></strong></p>
 </li>
 <li>
 <p><strong>A&#xF1;adir</strong>  datos una vez tenemos la lista creada, podemos a&#xF1;adir datos de dos formas:</p>
 <ul>
 <li>
 <p>Usando el m&#xE9;todo <strong>Add</strong> de la propia lista, a&#xF1;adiremos un elemento al final de ella.<br>
-<strong><code>lista.Add(&quot;hola&quot;)</code></strong></p>
+<strong><code>lista.Add(&quot;cadena a&#xF1;adida&quot;)</code></strong></p>
 </li>
 <li>
-<p>Usando  el  m&#xE9;todo  Insert  de   la  propia  lista,  a&#xF1;adiremos  un  elemento  en  la  posici&#xF3;n  que indiquemos.<br>
-<strong><code>lista.Insert(2, &quot;otra cadena&quot;)</code></strong><br>
-A la hora de gestionar las listas, hay que tener en cuenta que las posiciones empiezan a numerarse por el cero.</p>
+<p>Usando  el  m&#xE9;todo  <strong>Insert</strong>  de   la  propia  lista,  a&#xF1;adiremos  un  elemento  en  la  posici&#xF3;n  que indiquemos.<br>
+<strong><code>lista.Insert(1, &quot;otra cadena&quot;)</code></strong></p>
 </li>
 </ul>
 </li>
-<li>
-<p><strong>Eliminar</strong> un dato de la lista, en este caso tambi&#xE9;n tenemos varias alternativas:</p>
+</ul>
+<blockquote>
+<p>&#x270B; A la hora de gestionar las listas, hay que tener en cuenta que las posiciones empiezan a numerarse por el cero. Adem&#xE1;s si se intenta sobrepasar o acceder a una posici&#xF3;n mayor al tama&#xF1;o de la lista se producir&#xE1; una excepci&#xF3;n similar a lo que ocurre con los arrays.</p>
+</blockquote>
 <ul>
-<li>
-<p>Usando el m&#xE9;todo <strong>Remove</strong> de la propia lista, eliminamos el elemento que coincida con el pasado como par&#xE1;metro.<br>
-<strong><code>lista.Remove(&quot;hola&quot;)</code></strong><br>
-Elimina el elemento  &quot;hola&quot; de la lista. Si hubiera varios, elimina el primero que se encuentre.</p>
-</li>
-<li>
-<p>Usando el m&#xE9;todo <strong>RemoveAt</strong> de la propia lista, elimina el elemento de la posici&#xF3;n que indiquemos:<br>
-<strong><code>lista.RemoveAt(2)</code></strong></p>
-</li>
-</ul>
-</li>
 <li>
 <p><strong>Modificar</strong>  un dato. Si  queremos  cambiar  directamente  el  valor  de  uno  de  los  datos  de  la  lista,  basta  con  que accedamos a su posici&#xF3;n y modifiquemos o le asignemos otro valor. Por ejemplo:<br>
 <strong><code>Lista[1]=&quot;Hola&quot;</code></strong></p>
 </li>
 <li>
+<p><strong>Eliminar</strong> un dato de la lista, en este caso tambi&#xE9;n tenemos varias alternativas:</p>
+<ul>
+<li>
+<p>Usando el m&#xE9;todo <strong>Remove</strong> de la propia lista, eliminamos el elemento que coincida con el que se pasa como par&#xE1;metro.<br>
+<strong><code>lista.Remove(&quot;Hola&quot;)</code></strong><br>
+Elimina el elemento  &quot;otra cadena&quot; de la lista. Si hubiera varios, eliminar&#xED;a el primero que se encuentre.</p>
+</li>
+<li>
+<p>Usando el m&#xE9;todo <strong>RemoveAt</strong> de la propia lista, elimina el elemento de la posici&#xF3;n que indiquemos:<br>
+<strong><code>lista.RemoveAt(0)</code></strong></p>
+</li>
+</ul>
+</li>
+<li>
 <p><strong>Recorrer</strong> los elementos de la lista a trav&#xE9;s de un bucle for o forech.  La longitud de la lista, nos la da la propiedad <strong>Count</strong>.</p>
 </li>
 </ul>
+<blockquote>
 <p><strong><code>for (int i=0; i&lt; lista.Count; i++) Console.WriteLine(lista[i])</code></strong><br>
 <strong><code>foreach (var c in lista) Console.WriteLine(c)</code></strong></p>
-<h3>Colecci&#xF3;n Dictionary&lt;T&gt;</h3>
-<p>Las tablas hash o Diccionarios son otro tipo de colecciones con un comportamiento particular. Hasta ahora, todos los elementos de una colecci&#xF3;n tienen una posici&#xF3;n num&#xE9;rica. Si tenemos una lista, el primer elemento ocupa la posici&#xF3;n 0, el siguiente la 1, etc. Si queremos acceder al cuarto elemento de una lista llamada miLista, tenemos que poner miLista[3], y si no sabemos la posici&#xF3;n debemos usar un bucle.</p>
+</blockquote>
+<h3 class="mume-header" id="colecci%C3%B3n-dictionaryt">Colecci&#xF3;n Dictionary&lt;T&gt;</h3>
+
+<p>Las tablas hash o Diccionarios son otro tipo de colecciones, pero que tienen un comportamiento particular. Hasta ahora, todos los elementos de una colecci&#xF3;n tienen una posici&#xF3;n num&#xE9;rica. Si tenemos una lista, el primer elemento ocupa la posici&#xF3;n 0, el siguiente la 1, etc. Si queremos acceder al cuarto elemento de una lista llamada miLista, tenemos que poner miLista[3], y si no sabemos la posici&#xF3;n debemos usar un bucle.</p>
 <p>Para evitar el bucle y realizar un acceso directo podemos usar tablas hash. En este tipo de colecciones, cada dato que agregamos a ella no tiene asociado una posici&#xF3;n num&#xE9;rica, sino una clave que lo identifique. De esta manera, si conocemos la clave del elemento, podemos acceder directamente a sus datos sin tener que recorrer toda la lista.</p>
 <p>Por ejemplo, podemos asociar el dni de cada persona con sus datos completos, teniendo al final una tabla como esta:</p>
 <table>
@@ -478,28 +484,26 @@ Elimina el elemento  &quot;hola&quot; de la lista. Si hubiera varios, elimina el
 <strong><code>Dictionary&lt;TClave, TValor&gt; tabla=new Dictionary&lt;TClave, TValor&gt;()</code></strong></p>
 </li>
 <li>
-<p><strong>A&#xF1;adir</strong> un dato al diccionario creado, se puede realizar de varias formas, pero lo m&#xE1;s normal es usar el m&#xE9;todo Add, indicando la clave que queremos asociar a cada elemento y el elemento en s&#xED;.<br>
+<p><strong>A&#xF1;adir</strong> un dato al diccionario creado, se puede realizar de varias formas, pero lo m&#xE1;s normal es usar el m&#xE9;todo <strong>Add</strong>, indicando la clave que queremos asociar a cada elemento y el elemento en s&#xED;.<br>
 Si por ejemplo estamos haciendo una tabla de elementos de tipo Persona, la clave puede ser el dni de la persona en s&#xED;, y el elemento a guardar el resto de datos:</p>
-</li>
-</ul>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-   <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token class-name">Persona</span> persona<span class="token operator">=</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-   <span class="token punctuation">{</span>
-       persona<span class="token punctuation">.</span>Nombre <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">&quot;nombre&quot;</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-       persona<span class="token punctuation">.</span>Edad <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">+</span> i<span class="token punctuation">;</span>
-       Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce un DNI para{0}&quot;</span><span class="token punctuation">,</span> persona<span class="token punctuation">.</span>Nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
-       p<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> persona<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-   Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce un DNI:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token class-name"><span class="token keyword">string</span></span> dni <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>dni<span class="token punctuation">]</span><span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   p<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>dni<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> x <span class="token keyword">in</span> p<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span> Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Persona</span> persona<span class="token operator">=</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    persona<span class="token punctuation">.</span>Nombre <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">&quot;nombre&quot;</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    persona<span class="token punctuation">.</span>Edad <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">+</span> i<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce un DNI para{0}&quot;</span><span class="token punctuation">,</span> persona<span class="token punctuation">.</span>Nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> persona<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><ul>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce un DNI:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> dni <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>dni<span class="token punctuation">]</span><span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>dni<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> x <span class="token keyword">in</span> p<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span> Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></li>
 <li>
 <p><strong>Eliminar</strong> un dato de la lista, para ello usamos el m&#xE9;todo <strong>Remove</strong> con la clave del elemento que queremos eliminar como argumento.<br>
 <strong><code>tabla.Remove(&quot;11223314L&quot;)</code></strong></p>
@@ -512,11 +516,11 @@ Si por ejemplo estamos haciendo una tabla de elementos de tipo Persona, la clave
 <p><strong>Recorrer</strong> diccionarios no es lo com&#xFA;n, ya que su acceso es mediante clave. Aunque se puede realizar el acceso a todos los elementos usando foreach.<br>
 Por ejemplo, este bucle saca las edades de todas las personas:<br>
 <strong><code>foreach (string x in p.Keys) Console.WriteLine(p[x].Edad)</code></strong><br>
-Aunque, es posible que el orden no sea el mismo que cuando se introdujeron los datos, ya que las tablas hash tienen un mecanismo de ordenaci&#xF3;n diferente.</p>
+&#x1F4A1; Es posible que el orden de salida no sea el mismo que cuando se introdujeron los datos, ya que las tablas hash tienen un mecanismo de ordenaci&#xF3;n diferente.</p>
 </li>
 </ul>
 <blockquote>
-<p>&#x270B; <strong>Nota:</strong> si se intenta acceder a un elemento del Dictionary  del que no existe la clave,el sistema lanzar&#xE1; una excepci&#xF3;n. Por lo que es buena pr&#xE1;ctica utilizar el m&#xE9;todo <strong><code>ContainsKey(clave)</code></strong>, para comprobar si existe la clave antes de acceder al elemento a trav&#xE9;s de esta.</p>
+<p>&#x270B; Si se intenta acceder a un elemento del Dictionary  del que no existe la clave,el sistema lanzar&#xE1; una excepci&#xF3;n. Por lo que es buena pr&#xE1;ctica utilizar el m&#xE9;todo <strong><code>ContainsKey(clave)</code></strong>, para comprobar si existe la clave antes de acceder al elemento a trav&#xE9;s de esta.</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
