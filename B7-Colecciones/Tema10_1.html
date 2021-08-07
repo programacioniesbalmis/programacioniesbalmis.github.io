@@ -440,6 +440,8 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 
     <span class="token keyword">public</span> <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token class-name">T</span> dato<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>dato <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;No pueden insertar como dato un NULL.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Siguiente <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
         Dato <span class="token operator">=</span> dato<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -461,15 +463,15 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 <title>LinkedList</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-215.8 778,-215.8 778,4 -4,4"/>
 <text text-anchor="middle" x="387" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Representacines conceptual de un nodo en memoria</text>
-<g id="clust4" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="transparent" points="378,-86.8 378,-203.8 766,-203.8 766,-86.8 378,-86.8"/>
-<text text-anchor="middle" x="572" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo valor</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster0</title>
 <polygon fill="none" stroke="transparent" points="8,-32.8 8,-203.8 358,-203.8 358,-32.8 8,-32.8"/>
 <text text-anchor="middle" x="183" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo referencia</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="transparent" points="378,-86.8 378,-203.8 766,-203.8 766,-86.8 378,-86.8"/>
+<text text-anchor="middle" x="572" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo valor</text>
 </g>
 <!-- n1r -->
 <g id="node1" class="node">
@@ -763,15 +765,15 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 243)">
 <title>LinkedList</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-243 754.6763,-243 754.6763,4 -4,4"/>
-<g id="clust4" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="#000000" points="459.6763,-45 459.6763,-176 742.6763,-176 742.6763,-45 459.6763,-45"/>
-<text text-anchor="middle" x="601.1763" y="-159.4" font-family="Arial" font-size="14.00" fill="#000000">Paso 2</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster0</title>
 <polygon fill="none" stroke="#000000" points="64,-8 64,-231 367.6763,-231 367.6763,-8 64,-8"/>
 <text text-anchor="middle" x="215.8382" y="-214.4" font-family="Arial" font-size="14.00" fill="#000000">Paso 1</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="#000000" points="459.6763,-45 459.6763,-176 742.6763,-176 742.6763,-45 459.6763,-45"/>
+<text text-anchor="middle" x="601.1763" y="-159.4" font-family="Arial" font-size="14.00" fill="#000000">Paso 2</text>
 </g>
 <!-- nodo1 -->
 <g id="node1" class="node">
@@ -1846,11 +1848,9 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 </p><blockquote>
 <p>&#x1F4CC; <strong>Nota:</strong> F&#xED;jate que si la posici&#xF3;n que indic&#xE1;ramos para insertar fura la &#xFA;ltima, es como si hici&#xE9;ramos un <strong><code>A&#xF1;adeAlFinal</code></strong>. Si tenemos en cuenta esto y que la lista pueda estar vac&#xED;a el m&#xE9;todo quedar&#xE1;.</p>
 </blockquote>
-<pre data-role="codeBlock" data-info="csharp {highlight=[6,7]}" class="language-csharp" data-line="6,7"><span class="token keyword">public</span> <span class="token keyword">void</span> A&#xF1;<span class="token function">adeDespuesDe</span><span class="token punctuation">(</span><span class="token class-name">Nodo<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> nodo<span class="token punctuation">,</span> <span class="token class-name">T</span> dato<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp {highlight=[4,5]}" class="language-csharp" data-line="4,5"><span class="token keyword">public</span> <span class="token keyword">void</span> A&#xF1;<span class="token function">adeDespuesDe</span><span class="token punctuation">(</span><span class="token class-name">Nodo<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> nodo<span class="token punctuation">,</span> <span class="token class-name">T</span> dato<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Precondiciones</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>nodo <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
-        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;Nodo donde insertar nulo.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>Longitud <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
         <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ListaException</span><span class="token punctuation">(</span><span class="token string">&quot;La lista no puede estar vac&#xED;a.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -1870,16 +1870,12 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 <div class="line-highlight-wrapper">
 
 
-
-
-<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
 </div></div><div class="line-highlight-wrapper">
 
 
 
-
-
-<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
 </div></div></pre><blockquote>
 <p>&#x1F4CC; <strong>Nota:</strong> En la listas simples solo podremos insertar despu&#xE9;s del nodo indicado. Tras ver el proceso de inserci&#xF3;n reflexiona por qu&#xE9;.</p>
 </blockquote>
@@ -2146,15 +2142,15 @@ l<span class="token punctuation">.</span>A&#xF1;<span class="token function">ade
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 186)">
 <title>LinkedList</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-186 1102,-186 1102,4 -4,4"/>
-<g id="clust5" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="#000000" points="578,-8 578,-174 1090,-174 1090,-8 578,-8"/>
-<text text-anchor="middle" x="834" y="-157.4" font-family="Arial" font-size="14.00" fill="#000000">Borrando el primer nodo</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster0</title>
 <polygon fill="none" stroke="#000000" points="64,-8 64,-174 486,-174 486,-8 64,-8"/>
 <text text-anchor="middle" x="275" y="-157.4" font-family="Arial" font-size="14.00" fill="#000000">Boorando el primer nodo</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="#000000" points="578,-8 578,-174 1090,-174 1090,-8 578,-8"/>
+<text text-anchor="middle" x="834" y="-157.4" font-family="Arial" font-size="14.00" fill="#000000">Borrando el primer nodo</text>
 </g>
 <!-- n01 -->
 <g id="node1" class="node">
@@ -2398,15 +2394,15 @@ l<span class="token punctuation">.</span>A&#xF1;<span class="token function">ade
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 206)">
 <title>LinkedList</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-206 1084.0157,-206 1084.0157,4 -4,4"/>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="#000000" points="64,-14 64,-180 486,-180 486,-14 64,-14"/>
-<text text-anchor="middle" x="275" y="-163.4" font-family="Arial" font-size="14.00" fill="#000000">Boorando &#xFA;ltimo o intermedio</text>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster1</title>
 <polygon fill="none" stroke="#000000" points="578,-8 578,-194 1072.0157,-194 1072.0157,-8 578,-8"/>
 <text text-anchor="middle" x="825.0079" y="-177.4" font-family="Arial" font-size="14.00" fill="#000000">Boorando &#xFA;ltimo o intermedio</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="#000000" points="64,-14 64,-180 486,-180 486,-14 64,-14"/>
+<text text-anchor="middle" x="275" y="-163.4" font-family="Arial" font-size="14.00" fill="#000000">Boorando &#xFA;ltimo o intermedio</text>
 </g>
 <!-- n01 -->
 <g id="node1" class="node">
