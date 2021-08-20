@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
       
       
       
@@ -261,12 +261,87 @@ pre[data-line] .line-highlight[data-end]:after {
   font-size: 90%;
   overflow-y: auto !important;
 }
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
 
       </style>
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="tema-21">Tema 2.1</h1>
+      <style>/* 
+Añade 
+
+@import "../EstilosPersonalizadosMarkdownEnhanced.less"
+
+justo después del front matter 
+*/
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v8/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+</style>
+<h1 class="mume-header undefined" id="tema-21">Tema 2.1</h1>
 
 <p><a href="./Tema2_1.pdf">Descargar estos apuntes</a></p>
 <h2 class="mume-header" id="%C3%ADndice">&#xCD;ndice</h2>
@@ -329,19 +404,19 @@ El uso de un IDE hace transparente para nosotros los comandos y los flujos de tr
 <h2 class="mume-header" id="creaci%C3%B3n-de-un-proyecto-de-consola">Creaci&#xF3;n de un proyecto de consola</h2>
 
 <p>La gesti&#xF3;n de proyectos se hace con la CLI <strong>dotnet</strong>, as&#xED; pues para crear un proyecto desde consola usaremos <a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new" target="_blank">dotnet new</a> y en concreto para crea una aplicaci&#xF3;n de consola ejecutaremos <strong><code>dotnet new console -n &lt;nombre&gt;</code></strong></p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:\<span class="token operator">&gt;</span>dotnet new console -n ejemplo
+<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>dotnet new console -n ejemplo
 
 The template <span class="token string">&quot;Console Application&quot;</span> was created successfully.
 
 Processing post-creation actions<span class="token punctuation">..</span>.
-Running <span class="token string">&apos;dotnet restore&apos;</span> on ejemplo\ejemplo.csproj<span class="token punctuation">..</span>.
+Running <span class="token string">&apos;dotnet restore&apos;</span> on ejemplo<span class="token punctuation">\</span>ejemplo.csproj<span class="token punctuation">..</span>.
   Determinando los proyectos que se van a restaurar<span class="token punctuation">..</span>.
-  Se ha restaurado B:\ejemplo\ejemplo.csproj <span class="token punctuation">(</span>en 100 ms<span class="token punctuation">)</span>.
+  Se ha restaurado B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>ejemplo.csproj <span class="token punctuation">(</span>en <span class="token number">100</span> ms<span class="token punctuation">)</span>.
 
 Restore succeeded.
 </pre><p>Tras ejecutar este comando, se crear&#xE1; un proyecto definido en el fichero <strong>ejemplo.csproj</strong> donde, si no especificamos la versi&#xF3;n de .NET, nos lo crear&#xE1; con la que hemos instalado y el lenguaje ser&#xE1; C# con la &#xFA;ltima versi&#xF3;n posible de esa plataforma.<br>
 Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET Core 3.1 y la versi&#xF3;n de C# es la 8.0</strong></p>
-<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
 
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OutputType</span><span class="token punctuation">&gt;</span></span>Exe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>OutputType</span><span class="token punctuation">&gt;</span></span>
@@ -361,31 +436,31 @@ Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET 
 <li>Con <strong><code>dotnet new sln -n &lt;nombre&gt;</code></strong> crearemos una soluci&#xF3;n.</li>
 <li>Con <strong><code>dotnet sln &lt;nombre&gt;.sln add &lt;nombre&gt;.csproj</code></strong> a&#xF1;adiremos una proyecto a una soluci&#xF3;n.</li>
 </ul>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:\<span class="token operator">&gt;</span>cd ejemplo
-B:\ejemplo<span class="token operator">&gt;</span>dotnet new sln -n ejemplo
+<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>cd ejemplo
+B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new sln -n ejemplo
 The template <span class="token string">&quot;Solution File&quot;</span> was created successfully.
 
-B:\ejemplo<span class="token operator">&gt;</span>dotnet sln ejemplo.sln add ejemplo.csproj
+B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet sln ejemplo.sln <span class="token function">add</span> ejemplo.csproj
 Se ha agregado el proyecto <span class="token string">&quot;ejemplo.csproj&quot;</span> a la soluci&#xF3;n.
-B:\ejemplo<span class="token operator">&gt;</span>dotnet sln list
+B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet sln list
 Proyectos
 ---------
 ejemplo.csproj
 </pre><p>Adem&#xE1;s, siempre es interesante a&#xF1;adir un fichero de metainformaci&#xF3;n para el <strong>control de versiones de git</strong>.</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:\ejemplo<span class="token operator">&gt;</span>dotnet new gitignore
+<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new gitignore
 The template <span class="token string">&quot;dotnet gitignore file&quot;</span> was created successfully.
 </pre><p>Tambi&#xE9;n es posible compilar el proyecto y generar el ensamblado con <strong><code>dotnet build</code></strong> y ejecutar el programa usando <strong><code>dotnet run</code></strong>. Aunque este proceso lo podremos hacer a trav&#xE9;s de <strong>VS Code</strong> usando la <strong>extensi&#xF3;n para C# de OmniSharp</strong>.</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:\ejemplo<span class="token operator">&gt;</span>dotnet build
-Microsoft <span class="token punctuation">(</span>R<span class="token punctuation">)</span> Build Engine versi&#xF3;n 16.6.0+5ff7b0c9e para .NET Core
+<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet build
+Microsoft <span class="token punctuation">(</span>R<span class="token punctuation">)</span> Build Engine versi&#xF3;n <span class="token number">16.6</span>.0+5ff7b0c9e para .NET Core
 Copyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> Microsoft Corporation. Todos los derechos reservados.
   Determinando los proyectos que se van a restaurar<span class="token punctuation">..</span>.
-  ejemplo -<span class="token operator">&gt;</span> B:\ejemplo\bin\Debug\netcoreapp3.1\ejemplo.dll
+  ejemplo -<span class="token operator">&gt;</span> B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>bin<span class="token punctuation">\</span>Debug<span class="token punctuation">\</span>netcoreapp3.1<span class="token punctuation">\</span>ejemplo.dll
 Compilaci&#xF3;n correcta.
-    0 Advertencia<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-    0 Errores
+    <span class="token number">0</span> Advertencia<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token number">0</span> Errores
 Tiempo transcurrido 00:00:00.64
 
-B:\ejemplo<span class="token operator">&gt;</span>dotnet run
+B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet run
 Hello World<span class="token operator">!</span>
 </pre><blockquote>
 <p>&#x270B; <strong>Importante!</strong> Para m&#xE1;s informaci&#xF3;n ver <a href="https://docs.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code" target="_blank">la integraci&#xF3;n con VS Code</a>.<br>
@@ -522,9 +597,9 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 </tr>
 <tr>
 <td><strong>Muestra informaci&#xF3;n in-line</strong></td>
-<td colspan="3"><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+I</code></strong></td>
-
-
+<td><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+I</code></strong></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -535,12 +610,12 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 <h3 class="mume-header" id="nuestro-primer-programa-hello-world">Nuestro primer programa Hello World</h3>
 
 <p>Si abrimos el fichero <strong>Program.cs</strong> que se ha creado junto a nuestro proyecto podr&#xE1;s ver el siguiente c&#xF3;digo:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> System<span class="token punctuation">;</span>
-<span class="token keyword">namespace</span> ejemplo
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">namespace</span> <span class="token namespace">ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">class</span> <span class="token class-name">Program</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Hello World!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
@@ -579,11 +654,11 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 </li>
 <li>
 <p>Deberemos declararlo de las siguientes maneras, pero siempre con el modificador <strong>static</strong>:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
 </pre></li>
 </ul>
 <div style="page-break-after:always;"></div>
@@ -601,24 +676,24 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">namespace</span> Espacio1 <span class="token comment">// Espacio1 es el identificador o etiqueta del namespace</span>
 <span class="token punctuation">{</span>
   <span class="token comment">// Definiciones de tipos dentro del namespace Espacio1</span>
-  <span class="token keyword">namespace</span> Espacio11
+  <span class="token keyword">namespace</span> <span class="token namespace">Espacio11</span>
   <span class="token punctuation">{</span>
     <span class="token comment">// Definiciones de dentro del namespace Espacio1.Espacio11</span>
     <span class="token keyword">class</span> <span class="token class-name">MiTipoEnEspacio11</span>
     <span class="token punctuation">{</span>
-      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+      <span class="token range operator">..</span><span class="token punctuation">.</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </pre></li>
 <li>
 <p>Tambi&#xE9;n podr&#xED;a hacer...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">namespace</span> Espacio1<span class="token punctuation">.</span>Espacio12
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">namespace</span> <span class="token namespace">Espacio1<span class="token punctuation">.</span>Espacio12</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Definiciones de dentro del namespace Espacio1.Espacio12</span>
     <span class="token keyword">class</span> <span class="token class-name">MiTipoEnEspacio12</span>
     <span class="token punctuation">{</span>
-      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+      <span class="token range operator">..</span><span class="token punctuation">.</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -643,10 +718,10 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 <ul>
 <li>
 <p>Para no tener que poner siempre el NCC cuando est&#xE9; usando tipos y clases definidas dentro de un determinado namespace, puedo usar la cl&#xE1;usula <strong>using</strong>.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> System<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
 <span class="token keyword">class</span> <span class="token class-name">Program</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Hello World!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// en lugar de tener que poner.</span>
@@ -656,9 +731,9 @@ Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://gith
 </pre></li>
 <li>
 <p>Aunque <strong>no es muy com&#xFA;n</strong>, podremos definir <strong>alias</strong> para clases repetidas en diferentes namespaces mediante la siguiente sintaxis: <strong><code>using &lt;alias&gt; = &lt;NCC&gt;;</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> System<span class="token punctuation">;</span>
-<span class="token keyword">using</span> MiConsole <span class="token operator">=</span> MisDefiniciones<span class="token punctuation">.</span>Console<span class="token punctuation">;</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<span class="token keyword">using</span> <span class="token class-name">MiConsole</span> <span class="token operator">=</span> <span class="token class-name">MisDefiniciones<span class="token punctuation">.</span>Console</span><span class="token punctuation">;</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
 Console<span class="token punctuation">.</span><span class="token function">Writeln</span><span class="token punctuation">(</span><span class="token string">&quot;Hola Mundo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Equivale a System.Console.Writeln(&quot;Hola Mundo&quot;);</span>
 MiConsole<span class="token punctuation">.</span><span class="token function">Escribe</span><span class="token punctuation">(</span><span class="token string">&quot;Hola Mundo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// MisDefiniciones.Console.Escribe(&quot;Hola Mundo&quot;);</span>
 </pre></li>
@@ -781,7 +856,7 @@ Podr&#xE1; tomar los siguientes valores:</li>
 <h4 class="mume-header" id="entrada-de-texto">Entrada de texto</h4>
 
 <p>Para la entrada est&#xE1;ndar utilizaremos los m&#xE9;todos <strong>Read</strong> que lee el siguiente car&#xE1;cter desde stdin (-1 si esta vac&#xED;a) y <strong>ReadLine</strong> que lee hasta final de l&#xED;nea.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">string</span> texto <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><blockquote>
 <p><strong>Nota:</strong> Solo funcionar&#xE1; si leemos cadenas.</p>
@@ -789,8 +864,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <h4 class="mume-header" id="entrada-de-datos-otros-tipos">Entrada de datos otros tipos</h4>
 
 <p>Todos los tipos del CTS tienen definido el m&#xE9;todo tipo <strong><code>Parse(string texto)</code></strong> que transforma de cadena al tipo.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">int</span> entero <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">double</span> real <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">int</span></span> entero <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">double</span></span> real <span class="token operator">=</span> <span class="token keyword">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><blockquote>
 <p><strong>Nota:</strong> Si el texto le&#xED;do no se puede convertir al tipo correspondiente se producir&#xE1; un error de ejecuci&#xF3;n y el programa finalizar&#xE1;.</p>
 </blockquote>
@@ -871,14 +946,22 @@ Ejemplo: int <strong>n</strong>umero<strong>D</strong>e<strong>P</strong>lantas;
 <p>Los <strong>editores de C# normalmente nos las resaltar&#xE1;n</strong> con alg&#xFA;n color determinado.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">abstract</span><span class="token punctuation">,</span> <span class="token keyword">as</span><span class="token punctuation">,</span> <span class="token keyword">base</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">,</span> <span class="token keyword">break</span><span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">,</span> <span class="token keyword">case</span><span class="token punctuation">,</span> <span class="token keyword">catch</span><span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token punctuation">,</span> <span class="token keyword">checked</span><span class="token punctuation">,</span> <span class="token keyword">class</span><span class="token punctuation">,</span> 
 <span class="token keyword">const</span><span class="token punctuation">,</span> <span class="token keyword">continue</span><span class="token punctuation">,</span> <span class="token keyword">decimal</span><span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">,</span> <span class="token keyword">delegate</span><span class="token punctuation">,</span> <span class="token keyword">do</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">else</span><span class="token punctuation">,</span> <span class="token keyword">enum</span><span class="token punctuation">,</span> <span class="token keyword">event</span><span class="token punctuation">,</span> 
-<span class="token keyword">explicit</span><span class="token punctuation">,</span> <span class="token keyword">extern</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token keyword">finally</span><span class="token punctuation">,</span> <span class="token keyword">fixed</span><span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token punctuation">,</span> <span class="token keyword">for</span><span class="token punctuation">,</span> <span class="token keyword">foreach</span><span class="token punctuation">,</span> <span class="token keyword">goto</span><span class="token punctuation">,</span> <span class="token keyword">if</span><span class="token punctuation">,</span> 
+<span class="token keyword">explicit</span><span class="token punctuation">,</span> <span class="token keyword">extern</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token keyword">finally</span><span class="token punctuation">,</span> <span class="token keyword">fixed</span><span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token punctuation">,</span> <span class="token keyword">for</span><span class="token punctuation">,</span> <span class="token keyword">foreach</span><span class="token punctuation">,</span> <span class="token keyword">goto</span><span class="token punctuation">,</span> <span class="token keyword">if</span><span class="token punctuation">,</span> 
 <span class="token keyword">implicit</span><span class="token punctuation">,</span> <span class="token keyword">in</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">,</span> <span class="token keyword">internal</span><span class="token punctuation">,</span> <span class="token keyword">lock</span><span class="token punctuation">,</span> <span class="token keyword">is</span><span class="token punctuation">,</span> <span class="token keyword">long</span><span class="token punctuation">,</span> <span class="token keyword">namespace</span><span class="token punctuation">,</span> <span class="token keyword">new</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> 
 <span class="token keyword">object</span><span class="token punctuation">,</span> <span class="token keyword">operator</span><span class="token punctuation">,</span> <span class="token keyword">out</span><span class="token punctuation">,</span> <span class="token keyword">override</span><span class="token punctuation">,</span> <span class="token keyword">params</span><span class="token punctuation">,</span> <span class="token keyword">private</span><span class="token punctuation">,</span> <span class="token keyword">protected</span><span class="token punctuation">,</span> <span class="token keyword">public</span><span class="token punctuation">,</span> <span class="token keyword">readonly</span><span class="token punctuation">,</span> 
 <span class="token keyword">ref</span><span class="token punctuation">,</span> <span class="token keyword">return</span><span class="token punctuation">,</span> <span class="token keyword">sbyte</span><span class="token punctuation">,</span> <span class="token keyword">sealed</span><span class="token punctuation">,</span> <span class="token keyword">short</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">,</span> <span class="token keyword">stackalloc</span><span class="token punctuation">,</span> <span class="token keyword">static</span><span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">struct</span><span class="token punctuation">,</span> 
-<span class="token keyword">switch</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">throw</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token keyword">try</span><span class="token punctuation">,</span> <span class="token keyword">typeof</span><span class="token punctuation">,</span> <span class="token keyword">uint</span><span class="token punctuation">,</span> <span class="token keyword">ulong</span><span class="token punctuation">,</span> <span class="token keyword">unchecked</span><span class="token punctuation">,</span> <span class="token keyword">unsafe</span><span class="token punctuation">,</span> <span class="token keyword">ushort</span><span class="token punctuation">,</span> 
-<span class="token keyword">using</span><span class="token punctuation">,</span> <span class="token keyword">virtual</span><span class="token punctuation">,</span> <span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token keyword">while</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">switch</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">throw</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword">try</span><span class="token punctuation">,</span> <span class="token keyword">typeof</span><span class="token punctuation">,</span> <span class="token keyword">uint</span><span class="token punctuation">,</span> <span class="token keyword">ulong</span><span class="token punctuation">,</span> <span class="token keyword">unchecked</span><span class="token punctuation">,</span> <span class="token keyword">unsafe</span><span class="token punctuation">,</span> <span class="token keyword">ushort</span><span class="token punctuation">,</span> 
+<span class="token keyword">using</span><span class="token punctuation">,</span> <span class="token keyword">virtual</span><span class="token punctuation">,</span> <span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token keyword">while</span><span class="token punctuation">,</span> <span class="token range operator">..</span><span class="token punctuation">.</span>
 </pre></li>
 </ul>
+<div class="contenedor">
+  <div class="fondo">
+    <div class="abre_comilla">&quot;</div>
+    <div class="cierra_comilla">&quot;</div>
+    <div class="cita">There are only two hard things in computer science: cache invalidation and naming things.</div>
+    <div class="autor">- Phil Karlton.</div>
+  </div>
+</div>
 <div style="page-break-after:always;"></div>
 <h2>Tipos De Datos B&#xE1;sicos</h2>
 <p>C# es (<strong>type-safe</strong>), esto significa que se garantizan los valores almacenados.</p>
@@ -1004,29 +1087,29 @@ Ejemplo: int <strong>n</strong>umero<strong>D</strong>e<strong>P</strong>lantas;
 <h2 class="mume-header" id="definici%C3%B3n-de-literales-en-c">Definici&#xF3;n de Literales en C#</h2>
 
 <p><strong>Entero sin signo:</strong> Los literales llevar&#xE1;n el car&#xE1;cter <strong>U</strong> &#xF3; u</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">uint</span> variable <span class="token operator">=</span> <span class="token number">4000000000</span>U<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">uint</span></span> variable <span class="token operator">=</span> <span class="token number">4000000000U</span><span class="token punctuation">;</span>
 </pre><p><strong>Entero largo y con signo:</strong> Los literales llevar&#xE1;n el car&#xE1;cter <strong>L</strong> y U</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">long</span> variable <span class="token operator">=</span> <span class="token number">4000000000000000</span>L<span class="token punctuation">;</span>
-<span class="token keyword">ulong</span> variable <span class="token operator">=</span> <span class="token number">18000000000000000000</span>UL<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">long</span></span> variable <span class="token operator">=</span> <span class="token number">4000000000000000L</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">ulong</span></span> variable <span class="token operator">=</span> <span class="token number">18000000000000000000UL</span><span class="token punctuation">;</span>
 </pre><p><strong>Hexadecimal:</strong> Pondremos el prefijo <strong>0x</strong> al valor en hexadecimal.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">ushort</span> n <span class="token operator">=</span> <span class="token number">0x070F</span><span class="token punctuation">;</span> <span class="token comment">// n = 0000 0111 0000 1111(2</span>
-<span class="token keyword">ushort</span> n <span class="token operator">=</span> <span class="token number">0</span>x_07_0F<span class="token punctuation">;</span> <span class="token comment">// Desde C# 7</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">ushort</span></span> n <span class="token operator">=</span> <span class="token number">0x070F</span><span class="token punctuation">;</span> <span class="token comment">// n = 0000 0111 0000 1111(2</span>
+<span class="token class-name"><span class="token keyword">ushort</span></span> n <span class="token operator">=</span> <span class="token number">0x_07_0F</span><span class="token punctuation">;</span> <span class="token comment">// Desde C# 7</span>
 </pre><p><strong>Binario desde C# 7:</strong> Pondremos el prefijo <strong>0b</strong> al valor en binario.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">ushort</span> n <span class="token operator">=</span> <span class="token number">0</span>b0000011100001111<span class="token punctuation">;</span> <span class="token comment">// n = 070F(16</span>
-<span class="token keyword">ushort</span> n <span class="token operator">=</span> <span class="token number">0</span>b_0000_0111_0000_1111<span class="token punctuation">;</span> <span class="token comment">// Desde C# 7</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">ushort</span></span> n <span class="token operator">=</span> <span class="token number">0b0000011100001111</span><span class="token punctuation">;</span> <span class="token comment">// n = 070F(16</span>
+<span class="token class-name"><span class="token keyword">ushort</span></span> n <span class="token operator">=</span> <span class="token number">0b_0000_0111_0000_1111</span><span class="token punctuation">;</span> <span class="token comment">// Desde C# 7</span>
 </pre><p><strong>Real de simple precisi&#xF3;n:</strong> los literales llevar&#xE1;n el car&#xE1;cter <strong>F</strong> &#xF3; f</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">float</span> variable <span class="token operator">=</span> <span class="token number">333.44f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> variable <span class="token operator">=</span> <span class="token number">4.5</span>E<span class="token operator">-</span><span class="token number">15F</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">float</span></span> variable <span class="token operator">=</span> <span class="token number">333.44f</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">float</span></span> variable <span class="token operator">=</span> <span class="token number">4.5E-15F</span><span class="token punctuation">;</span>
 </pre><p><strong>Real de doble precisi&#xF3;n:</strong> los literales llevar&#xE1;n el car&#xE1;cter <strong>D</strong> &#xF3; d</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">double</span> variable <span class="token operator">=</span> <span class="token number">124325.456859</span>D<span class="token punctuation">;</span>
-<span class="token keyword">double</span> variable <span class="token operator">=</span> <span class="token number">4.5</span>e127d<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">double</span></span> variable <span class="token operator">=</span> <span class="token number">124325.456859D</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">double</span></span> variable <span class="token operator">=</span> <span class="token number">4.5e127d</span><span class="token punctuation">;</span>
 </pre><p><strong>Decimal:</strong> Los literales llevar&#xE1;n el car&#xE1;cter <strong>M</strong> &#xF3; m</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">decimal</span> variable <span class="token operator">=</span> <span class="token number">64538756498374657493847594.45</span>M<span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">decimal</span></span> variable <span class="token operator">=</span> <span class="token number">64538756498374657493847594.45M</span><span class="token punctuation">;</span>
 </pre><div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="literales-booleanos">Literales Booleanos</h3>
 
 <p>Son las palabras reservadas <strong><code>true</code></strong> y <strong><code>false</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">bool</span> estaFraccionado <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">bool</span></span> estaFraccionado <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 </pre><h3 class="mume-header" id="literales-de-car%C3%A1cter">Literales de Car&#xE1;cter</h3>
 
 <ul>
@@ -1101,37 +1184,37 @@ Ejemplo: int <strong>n</strong>umero<strong>D</strong>e<strong>P</strong>lantas;
 </tr>
 </tbody>
 </table>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">char</span> c1 <span class="token operator">=</span> <span class="token string">&apos;F&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> c2 <span class="token operator">=</span> <span class="token string">&apos;\&apos;&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span> c3 <span class="token operator">=</span> <span class="token string">&apos;\u20AC&apos;</span><span class="token punctuation">;</span> \\ &#x20AC;
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">char</span></span> c1 <span class="token operator">=</span> <span class="token string character">&apos;F&apos;</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">char</span></span> c2 <span class="token operator">=</span> <span class="token string character">&apos;\&apos;&apos;</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">char</span></span> c3 <span class="token operator">=</span> <span class="token string character">&apos;\u20AC&apos;</span><span class="token punctuation">;</span> \\ &#x20AC;
 </pre><div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="literales-de-cadena">Literales de Cadena</h3>
 
 <ul>
 <li>
 <p>Los literales se definir&#xE1;n entre comillas dobles &quot;literal&quot;</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;Esto es una cadena de caracteres.&quot;</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;Esto es una cadena de caracteres.&quot;</span><span class="token punctuation">;</span>
 </pre></li>
 <li>
 <p>Dentro del literal de la cadena podremos incluir secuencias de escape de car&#xE1;cter, como las que hemos visto anteriormente.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;El precio es 20 \u20AC\nGRACIAS&quot;</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;El precio es 20 \u20AC\nGRACIAS&quot;</span><span class="token punctuation">;</span>
 </pre></li>
 <li>
 <p>Si colocamos el car&#xE1;cter <strong><code>@</code></strong> antes del literal de la cadena, se escapar&#xE1; cualquier secuencia de escape que se encuentre..</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">@&quot;El precio es 20 \u20AC\nGRACIAS&quot;</span><span class="token punctuation">;</span> 
-<span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token string">&quot;El precio es 20 \\u20AC\\nGRACIAS&quot;</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">@&quot;El precio es 20 \u20AC\nGRACIAS&quot;</span><span class="token punctuation">;</span> 
+<span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token string">&quot;El precio es 20 \\u20AC\\nGRACIAS&quot;</span><span class="token punctuation">;</span>
 </pre></li>
 <li>
 <p>A partir de C# 6 se pueden <a href="https://docs.microsoft.com/es-es/dotnet/csharp/tutorials/string-interpolation" target="_blank">interpolar cadenas</a> con las reglas de formato que ya hemos visto en la salida por pantalla.<br>
 Para ello colocaremos el car&#xE1;cter <strong><code>$</code></strong> delante de la misma.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">string</span> t1 <span class="token operator">=</span> <span class="token string">&quot;derecha&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
-<span class="token keyword">string</span> t2 <span class="token operator">=</span> $<span class="token string">&quot;\&quot;Justificaci&#xF3;n a la {t1} con anchura 10: {n, 10}\&quot;&quot;</span><span class="token punctuation">;</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> t1 <span class="token operator">=</span> <span class="token string">&quot;derecha&quot;</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">int</span></span> n <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> t2 <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;\&quot;Justificaci&#xF3;n a la </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t1</span><span class="token punctuation">}</span></span><span class="token string"> con anchura 10: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">n<span class="token punctuation">,</span> <span class="token number">10</span></span><span class="token punctuation">}</span></span><span class="token string">\&quot;&quot;</span></span><span class="token punctuation">;</span> 
 <span class="token comment">// Salida</span>
 <span class="token comment">// &quot;Justificaci&#xF3;n a la derecha con anchura 10:         99&quot;</span>
 
-<span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">;</span>
-<span class="token keyword">string</span> t <span class="token operator">=</span> $<span class="token string">&quot;Formato entero - {n:D5}&quot;</span><span class="token punctuation">;</span> 
+<span class="token class-name"><span class="token keyword">int</span></span> n <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> t <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Formato entero - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">n</span><span class="token format-string"><span class="token punctuation">:</span>D5</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span> 
 <span class="token comment">// Salida</span>
 <span class="token comment">// &quot;Formato entero &#x2013; 00088&quot;</span>
 </pre></li>
@@ -1251,32 +1334,32 @@ Para ello colocaremos el car&#xE1;cter <strong><code>$</code></strong> delante d
 <h4 class="mume-header" id="ejemplo-declaraci%C3%B3n-de-tipos-valor">Ejemplo Declaraci&#xF3;n de Tipos Valor</h4>
 
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Entero no anulable al que asigno 5 y con valores posibles de 0 a 255</span>
-<span class="token keyword">byte</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">byte</span></span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Entero no anulable al que asigno default para byte, que es 0 y con valores posibles de 0 a 255</span>
-<span class="token keyword">byte</span> b <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">byte</span></span> b <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Entero anulable al que asigno default para byte, que ahora es null por ser anulable</span>
 <span class="token comment">// y con valores posibles null o de 0 a 255</span>
 
-<span class="token keyword">byte</span><span class="token punctuation">?</span> c <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">?</span></span> c <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
 <span class="token comment">// Tras la inicializaci&#xF3;n tendr&#xE9; en memoria: a(5) b(0) c null</span>
 
 <span class="token comment">// Muestra: a(5) b(0) c()</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a({a}) b({b}) c({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
 c <span class="token operator">=</span> a<span class="token punctuation">;</span>
 <span class="token comment">// Muestra: a(5) b(0) c(5)</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a({a}) b({b}) c({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
 c <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
 <span class="token comment">// Muestra: a(5) b(0) c(255)</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a({a}) b({b}) c({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
 <span class="token comment">// Como 256 no es un valor v&#xE1;lido para byte da la vuelta y empieza en 0</span>
 c <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">)</span><span class="token punctuation">(</span>c <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 <span class="token comment">// Muestra: a(5) b(0) c(0)</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a({a}) b({b}) c({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 a <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Error de compilaci&#xF3;n</span>
 c <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// V&#xE1;lido</span>
@@ -1298,7 +1381,7 @@ c <span class="token operator">=</span> <span class="token keyword">null</span><
 </li>
 <li>
 <p>Por defecto <strong>puedo asignarles un valor null</strong> o un objeto del tipo. Pero <a href="https://docs.microsoft.com/es-es/dotnet/csharp/nullable-references" target="_blank">desde C# 8</a>, si a&#xF1;ado en el archivo del proyecto lo siguiente:</p>
-<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
     ...
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Nullable</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Nullable</span><span class="token punctuation">&gt;</span></span>
@@ -1306,41 +1389,41 @@ c <span class="token operator">=</span> <span class="token keyword">null</span><
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
 </pre><p>No podr&#xE9; asignar un valor null a un tipo referencia por defecto.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// En proyectos por defecto o anteriores a C# 8</span>
-<span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Ser&#xE1; v&#xE1;lido.</span>
-<span class="token keyword">string</span><span class="token punctuation">?</span> texto <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// Dar&#xE1; un aviso de compilaci&#xF3;n porque no tiene sentido usar ?</span>
+<span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Ser&#xE1; v&#xE1;lido.</span>
+<span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">?</span></span> texto <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// Dar&#xE1; un aviso de compilaci&#xF3;n porque no tiene sentido usar ?</span>
 
 <span class="token comment">// &lt;Nullable&gt;enable&lt;/Nullable&gt; en el proyecto con C# 8</span>
-<span class="token keyword">string</span> texto <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Dar&#xE1; un aviso de compilaci&#xF3;n indic&#xE1;ndome que estoy asignando un null.</span>
-<span class="token keyword">string</span><span class="token punctuation">?</span> texto <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// Ser&#xE1; v&#xE1;lido porque he marcado el tipo como anulable.</span>
+<span class="token class-name"><span class="token keyword">string</span></span> texto <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Dar&#xE1; un aviso de compilaci&#xF3;n indic&#xE1;ndome que estoy asignando un null.</span>
+<span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">?</span></span> texto <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// Ser&#xE1; v&#xE1;lido porque he marcado el tipo como anulable.</span>
 </pre></li>
 </ul>
 <div style="page-break-after:always;"></div>
 <h4 class="mume-header" id="ejemplo-declaraci%C3%B3n-de-tipos-referencia">Ejemplo Declaraci&#xF3;n de Tipos Referencia</h4>
 
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// La variable referencia a un objecto string en memoria, que contiene la cadena hola a -&gt; (hola)</span>
-<span class="token keyword">string</span> a <span class="token operator">=</span> <span class="token string">&quot;hola&quot;</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> a <span class="token operator">=</span> <span class="token string">&quot;hola&quot;</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Aviso de compilaci&#xF3;n s&#xF3;lo si est&#xE1; activado &lt;Nullable&gt;enable&lt;/Nullable&gt; pues default vale null y </span>
 <span class="token comment">// con este flag activado no se puede asignar null directamente a un tipo referencia.</span>
-<span class="token keyword">string</span> b <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span></span> b <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Aviso de compilaci&#xF3;n s&#xF3;lo si no est&#xE1; activado &lt;Nullable&gt;enable&lt;/Nullable&gt; </span>
 <span class="token comment">// ya que en ese caso carece de sentido al ser todos los tipos referencia anulables.</span>
 <span class="token comment">// Se comportar&#xE1; como si hubi&#xE9;ramos hecho string c = default;</span>
-<span class="token keyword">string</span><span class="token punctuation">?</span> c <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">string</span><span class="token punctuation">?</span></span> c <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Tras la inicilizaci&#xF3;n tendr&#xE9; en memoria: a-&gt;(hola) b-&gt;() c-&gt;null</span>
 
 <span class="token comment">// Muestra: a-&gt;(hola) b-&gt;() c-&gt;()</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a-&gt;({a}) b-&gt;({b}) c-&gt;({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra: a-&gt;(hola) b-&gt;() c-&gt;()</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra: a-&gt;(hola) b-&gt;() c-&gt;()</span>
 
 c <span class="token operator">=</span> a<span class="token punctuation">;</span>
 <span class="token comment">// Muestra: a-&gt;(hola) b-&gt;() c-&gt;a y por tanto c-&gt;a-&gt;(hola)</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a-&gt;({a}) b-&gt;({b}) c-&gt;a y por tanto c-&gt;a-&gt;({a})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c-&gt;a y por tanto c-&gt;a-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
 c <span class="token operator">=</span> <span class="token string">&quot;Pepe&quot;</span><span class="token punctuation">;</span>
 <span class="token comment">// Muestra: a-&gt;(hola) b-&gt;() c-&gt;(Pepe)</span>
-Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">&quot;a-&gt;({a}) b-&gt;({b}) c-&gt;({c})&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;a-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">) b-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">b</span><span class="token punctuation">}</span></span><span class="token string">) c-&gt;(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c</span><span class="token punctuation">}</span></span><span class="token string">)&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 a <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Aviso de compilaci&#xF3;n s&#xF3;lo si &lt;Nullable&gt;enable&lt;/Nullable&gt;</span>
 c <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// V&#xE1;lido en todos los casos.</span>

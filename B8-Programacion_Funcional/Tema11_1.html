@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>Delegados y Eventos</title>
+      <title>Delegados en C#</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -356,6 +356,12 @@ justo después del front matter
 <li><a href="#delegados-vs-interfaces">Delegados vs Interfaces</a>
 <ol>
 <li><a href="#bulb-cu%C3%A1ndo-usar-delegados-vs-interfaces">&#x1F4A1; &#xBF;Cu&#xE1;ndo usar Delegados vs Interfaces?</a></li>
+</ol>
+</li>
+<li><a href="#delegados-parametrizados">Delegados Parametrizados</a>
+<ol>
+<li><a href="#definiciones-para-procedimientos">Definiciones para procedimientos</a></li>
+<li><a href="#definiciones-para-funciones">Definiciones para funciones</a></li>
 </ol>
 </li>
 </ol>
@@ -1065,6 +1071,154 @@ Si no se te ocurre puedes ver la soluci&#xF3;n el la siguiente p&#xE1;gina...</p
 
 <div aria-hidden="true" class="line-highlight" data-range="19" data-start="19">
 </div></div></pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="delegados-parametrizados">Delegados Parametrizados</h3>
+
+<p>Podemos definir un delegado de forma parametrizada o que use gen&#xE9;ricos. Esto me permitir&#xE1; usar un <strong>tipos delegado predefinidos</strong> para las signaturas de m&#xE9;todos m&#xE1;s comunes que se me pueden dar.</p>
+<p>Por ejemplo, es muy com&#xFA;n definir delegados en los que se eval&#xFA;e un par&#xE1;metro entrada a modo de <a href="https://es.wikipedia.org/wiki/Predicado_(l%C3%B3gica)">&apos;<em>predicado l&#xF3;gico</em>&apos;</a> que se evaluar&#xE1;n a cierto o falso.</p>
+<p>Una posible definici&#xF3;n ser&#xED;a...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token generic-method"><span class="token function">Predicado</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>y nos permitir&#xED;a definir un tipo para cualquier signatura de m&#xE9;todo que eval&#xFA;e una entrada a modo de predicado. Por ejemplo...</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[12-16]}" class="language-csharp" data-line="12-16"><span class="token comment">// Est&#xE9; m&#xE9;todo est&#xE1;tico me permite evaluar la si es cierto o no </span>
+<span class="token comment">// el predicado &apos;Valor es un n&#xFA;mero par&apos;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">EsPar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> valor <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Est&#xE9; m&#xE9;todo est&#xE1;tico me permite evaluar la si es cierto o no </span>
+<span class="token comment">// el predicado &apos;Texto empieza por may&#xFA;scula&apos;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">EmpiezaPorMayuscula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> texto<span class="token punctuation">)</span> 
+<span class="token operator">=&gt;</span> texto <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// En ambos casos puedo usar la misma definici&#xF3;n de</span>
+    <span class="token comment">// delegado parametrizado para referenciar a los </span>
+    <span class="token comment">// m&#xE9;todos anteriores.</span>
+    <span class="token class-name">Predicado<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> predicado1 <span class="token operator">=</span> EsPar<span class="token punctuation">;</span>
+    <span class="token class-name">Predicado<span class="token punctuation">&lt;</span><span class="token keyword">string</span><span class="token punctuation">&gt;</span></span> predicado2 <span class="token operator">=</span> EmpiezaPorMayuscula<span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado1</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado2</span><span class="token punctuation">(</span><span class="token string">&quot;Hola&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="12-16" data-start="12" data-end="16">
+
+
+
+
+</div></div></pre><p>De hecho, ya existe una definici&#xF3;n similar en el espacio de nombres <strong><code>System</code></strong> de C#...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token generic-method"><span class="token function">Predicate</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword">in</span> T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>y es usada en algunos m&#xE9;todos de las BCL <strong>como por ejemplo</strong> el m&#xE9;todo <strong><code>public List&lt;T&gt; FindAll(Predicate&lt;T&gt; match);</code></strong> definido en <strong><code>List&lt;T&gt;</code></strong>. De tal manera que podr&#xED;amos usar nuestro m&#xE9;todo <strong><code>EsPar</code></strong> para obtener todos los n&#xFA;meros pares en una lista de n&#xFA;meros de la siguiente manera ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> l <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> l<span class="token punctuation">.</span><span class="token function">FindAll</span><span class="token punctuation">(</span>EsPar<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Adem&#xE1;s de <strong><code>delegate bool Predicate&lt;in T&gt;(T obj)</code></strong> podemos destacar la siguientes definiciones en las BCL de delegados parametrizados...</p>
+<h4 class="mume-header" id="definiciones-para-procedimientos">Definiciones para procedimientos</h4>
+
+<p>Bajo el tipo <strong><code>Action</code></strong> tendremos predefinidos delegados que admitir&#xE1;n m&#xE9;todos que no retornan nada (void) y que podr&#xE1;n tener de 0 a 16 par&#xE1;metros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Si no parametrizamos es porque no habr&#xE1; par&#xE1;metros de entrada.</span>
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Action</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token generic-method"><span class="token function">Action</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword">in</span> T1<span class="token punctuation">,</span> <span class="token keyword">in</span> T2<span class="token punctuation">,</span> &#x2026;<span class="token punctuation">,</span> <span class="token keyword">in</span> T16<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T1</span> obj1<span class="token punctuation">,</span> <span class="token class-name">T2</span> obj2<span class="token punctuation">,</span> &#x2026;<span class="token punctuation">,</span> <span class="token class-name">T16</span> obj16<span class="token punctuation">)</span>
+</pre><p>Un ejemplo de uso de este delegado ser&#xED;a el m&#xE9;todo <strong><code>public void ForEach(Action&lt;T&gt; action);</code></strong> definido en <strong><code>List&lt;T&gt;</code></strong>. De tal manera que me permitir&#xE1; recorrer los elementos de la secuencia e ir aplicando a cada uno de ellos la acci&#xF3;n especificada en forma de delegado...</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[7-9]}" class="language-csharp" data-line="7-9"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">valor</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> valores <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Defino un delegado para m&#xE9;todos con un solo par&#xE1;metro de entrada entero.</span>
+    <span class="token class-name">Action<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> Muestra<span class="token punctuation">;</span>
+    valores<span class="token punctuation">.</span><span class="token function">ForEach</span><span class="token punctuation">(</span>accion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// o directamente ... valores.ForEach(Muestra);</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7-9" data-start="7" data-end="9">
+
+
+</div></div></pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="definiciones-para-funciones">Definiciones para funciones</h4>
+
+<p>Bajo el tipo <strong><code>Func</code></strong> tendremos predefinidos delegados que admitir&#xE1;n m&#xE9;todos que no retornan un tipo a modo de &apos;<em>funci&#xF3;n</em>&apos; y que como los <strong><code>Action</code></strong> podr&#xE1;n tener de 0 a 16 par&#xE1;metros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// F&#xED;jate que ahora la parametrizacion define al menos el tipo R de (Retorno)</span>
+<span class="token comment">// de la funci&#xF3;n.</span>
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name">R</span> <span class="token generic-method"><span class="token function">Func</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword">out</span> R<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token comment">// El tipo de retorno se definir&#xE1; siempre al final en la parametrizaci&#xF3;n.</span>
+<span class="token keyword">public</span> <span class="token keyword">delegate</span> <span class="token return-type class-name">R</span> <span class="token generic-method"><span class="token function">Func</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword">in</span> T1<span class="token punctuation">,</span> &#x2026;<span class="token punctuation">,</span> <span class="token keyword">in</span> T16<span class="token punctuation">,</span> <span class="token keyword">out</span> R<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T1</span> obj1<span class="token punctuation">,</span>  &#x2026;<span class="token punctuation">,</span> <span class="token class-name">T16</span> obj16<span class="token punctuation">)</span>
+</pre><p>Iremos encontrando este tipo de delegado m&#xE1;s adelante, en ciertas definiciones de las BCL de <strong><code>System.Linq</code></strong>. Para poner nuestro ejemplo, vamos a fijarnos que el tipo delegado <strong><code>Predicado&lt;T&gt;</code></strong> que definimos en el nuestro primer ejemplo. Se puede definir tambi&#xE9;n con <strong><code>Func</code></strong> de la siguiente manera <strong><code>Func&lt;T, bool&gt;</code></strong>.</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Aunque admitan m&#xE9;todos con la misma signatura, para C# ser&#xE1;n tipos diferentes.</p>
+</blockquote>
+<p>Sin embargo, podremos reescribir el c&#xF3;digo de nuestro primer ejemplo sin necesidad de definir el tipo <strong><code>public delegate bool Predicado&lt;T&gt;(T p);</code></strong> y usando los tipos ya definidos en las BCL.</p>
+<pre data-role="codeBlock" data-info="csharp{highlight=[7-10]}" class="language-csharp" data-line="7-10"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">EsPar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> valor <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">EmpiezaPorMayuscula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> texto<span class="token punctuation">)</span> 
+<span class="token operator">=&gt;</span> texto <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// En ambos casos al ser el &#xFA;ltimo tipo parametrizado un bool</span>
+    <span class="token comment">// estaremos indicando que la signatura de los m&#xE9;todos debe retornar eso.</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">&gt;</span></span> predicado1 <span class="token operator">=</span> EsPar<span class="token punctuation">;</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">&gt;</span></span> predicado2 <span class="token operator">=</span> EmpiezaPorMayuscula<span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado1</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado2</span><span class="token punctuation">(</span><span class="token string">&quot;Hola&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7-10" data-start="7" data-end="10">
+
+
+
+</div></div></pre><p>Aunque solo se dar&#xE1; en casos aislados porque es fuente de baja cohesi&#xF3;n, a lo mejor queremos definir un delegado que referencie a un m&#xE9;todo con m&#xE1;s de un par&#xE1;metro de salida. En este caso, si nos acordamos de principio de curso, usaremos tuplas para definir el valor de retornos.</p>
+<p>Recordemos el ejemplo que vimos para este caso...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token punctuation">(</span><span class="token keyword">double</span> sen<span class="token punctuation">,</span> <span class="token keyword">double</span> cos<span class="token punctuation">)</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> anguloGr<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>No obstante, como comentamos, a partir de C#7 no ser&#xED;a necesario. Si quisi&#xE9;ramos usar <strong><code>Func</code></strong> para definir un tipo delegado que referenciase a los m&#xE9;todos anteriores podr&#xED;amos hacer lo siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">&gt;</span></span> f <span class="token operator">=</span> Direccion<span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> seno<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">double</span></span> coseno<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;s=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">seno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">, c=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">coseno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x1F4CC; <strong>Nota ampliaci&#xF3;n:</strong></p>
+<p>Aunque no lo comentamos a principio de curso, por no haber visto a&#xFA;n el concepto de tipo parametrizado. <strong><code>(double sen, double cos)</code></strong> es en realidad un tipo <strong><code>Tuple&lt;T1, T2, ..., Tn&gt;</code></strong> esto es, es un &apos;<em>syntactic sugar</em>&apos; de para la definici&#xF3;n <strong><code>Tuple&lt;double, double&gt;</code></strong> por tanto ser&#xED;a equivalente escribir nuestra definici&#xF3;n c&#xF3;mo ....</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">&gt;</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> anguloGr<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Si quisi&#xE9;ramos que nuestro c&#xF3;digo funcionara tambi&#xE9;n en las <strong>versiones anteriores a C#7</strong>, donde no est&#xE1;n definida la sintaxis nueva de tuplas, deber&#xED;amos reescribir el c&#xF3;digo anterior de la siguiente manera...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> Tuple<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> f <span class="token operator">=</span> Direccion<span class="token punctuation">;</span>
+    <span class="token class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span><span class="token punctuation">&gt;</span></span> direccion <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;s=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">direccion<span class="token punctuation">.</span>Item1</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">, c=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">direccion<span class="token punctuation">.</span>Item2</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Si te fijas, es equivalente, pero es m&#xE1;s simple e intuitiva la sintaxis a partir de C#7</p>
+</blockquote>
 
       </div>
       
