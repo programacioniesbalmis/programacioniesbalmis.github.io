@@ -1,0 +1,793 @@
+<!DOCTYPE html><html><head>
+      <title>Programaci&#xF3;n 1&#xBA; DAM Tema 3.1</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="tema-31">Tema 3.1</h1>
+
+<p><a href="./Tema3_1.pdf">Descargar estos apuntes</a></p>
+<h1 class="mume-header" id="%C3%ADndice">&#xCD;ndice</h1>
+
+<ol>
+<li><a href="#%C3%ADndice">&#xCD;ndice</a>
+<ol>
+<li><a href="#instrucciones">Instrucciones</a></li>
+<li><a href="#comentarios">Comentarios</a></li>
+<li><a href="#bloques-de-instrucciones">Bloques de instrucciones</a></li>
+<li><a href="#estructuras-de-control-i">Estructuras de control I</a>
+<ol>
+<li><a href="#condicionales">Condicionales</a>
+<ol>
+<li><a href="#condicional-simple-y-m%C3%BAltiple-con-if">Condicional simple y m&#xFA;ltiple con if</a></li>
+<li><a href="#ejemplos-de-uso-de-condicionales">Ejemplos de uso de condicionales</a></li>
+<li><a href="#condicional-m%C3%BAltiple-con-switch">Condicional m&#xFA;ltiple con switch</a></li>
+<li><a href="#ejemplos-condicional-m%C3%BAltiple-con-switch">Ejemplos condicional m&#xFA;ltiple con switch</a></li>
+<li><a href="#a-hrefhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsswitchthe-case-statement-and-the-when-clause-target_blankcl%C3%A1usula-when-junto-con-instrucci%C3%B3n-switcha">Cl&#xE1;usula when junto con instrucci&#xF3;n switch</a></li>
+<li><a href="#a-hrefhttpsdocsmicrosoftcomes-esdotnetcsharpwhats-newcsharp-8switch-expressions-target_blankexpresiones-condicionales-switcha">Expresiones condicionales switch</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="instrucciones">Instrucciones</h2>
+
+<p>Cada instrucci&#xF3;n se separa o va delimitada por el car&#xE1;cter <strong>&apos;;&apos;</strong></p>
+<p>Puede contener asignaciones, comentarios e instrucciones de:<br>
+Puede contener asignaciones, comentarios e instrucciones de:</p>
+<ul>
+<li>Control / condicionales.</li>
+<li>Iterativas / bucles.</li>
+</ul>
+<h2 class="mume-header" id="comentarios">Comentarios</h2>
+
+<p>Permiten introducir texto en mitad del c&#xF3;digo y que sea ignorado.<br>
+La sintaxis es parecida en la mayor&#xED;a de lenguajes.<br>
+Deberemos seguir la m&#xE1;xima: <em><code>&quot;Si un c&#xF3;digo hay que comentarlo, posiblemente no est&#xE9; bien hecho&quot;</code></em></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// comentarios de una l&#xED;nea</span>
+<span class="token comment">/*
+    comentarios de
+    varias l&#xED;neas
+*/</span>
+</pre><div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="bloques-de-instrucciones">Bloques de instrucciones</h2>
+
+<p>Se usan llaves para delimitar bloques.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">{</span>
+    <span class="token comment">// Varias instrucciones de c&#xF3;digo.</span>
+<span class="token punctuation">}</span>
+</pre><p>Se pueden <strong>anidar bloques</strong> pero no pueden declararse variables con el mismo nombre en ellos.<br>
+Un bloque <strong>anidado</strong> ir&#xE1; tabulado o <em>&apos;indentado&apos;</em> dentro del bloque que lo contiene.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> i<span class="token punctuation">;</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> i<span class="token punctuation">;</span> <span class="token comment">//ERROR, i esta declarada en un &#xE1;mbito envolvente</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p><strong>Bloques hermanos</strong> pueden tener variables con el mismo nombre.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> i<span class="token punctuation">;</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> i<span class="token punctuation">;</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="estructuras-de-control-i">Estructuras de control I</h2>
+
+<h3 class="mume-header" id="condicionales">Condicionales</h3>
+
+<h4 class="mume-header" id="condicional-simple-y-m%C3%BAltiple-con-if">Condicional simple y m&#xFA;ltiple con if</h4>
+
+<p>La expresi&#xF3;n debe escribirse <strong>entre par&#xE9;ntesis</strong> y deber&#xED;a ser una expresi&#xF3;n que se eval&#xFA;e a un valor booleano, esto es <strong>true o false</strong>.</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> En ning&#xFA;n caso se permitir&#xE1; un cast impl&#xED;cito de una expresi&#xF3;n que se eval&#xFA;a como entero a bool como sucede en otros lenguajes.</p>
+</blockquote>
+<p>Estructura <strong>if</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n<span class="token punctuation">)</span>
+    sentencia<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    bloque<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Estructura <strong>if - else</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n<span class="token punctuation">)</span>
+    sentencia_1<span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+    sentencia_2<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    bloque_1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> 
+<span class="token punctuation">{</span>
+    bloque_2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<p>Estructura <strong>if - else if - else</strong> (Condicional m&#xFA;ltiple)</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n_1<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    bloque_1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>expresi&#xF3;n_2<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    bloque_2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> 
+<span class="token punctuation">{</span>
+    bloque_3<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// continua el programa;</span>
+</pre><p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="315px" preserveAspectRatio="none" style="width:366px;height:315px;background:#FFFFFF;" version="1.1" viewBox="0 0 366 315" width="366px" zoomAndPan="magnify"><defs><filter height="300%" id="f15wledbayqg60" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><ellipse cx="145.5" cy="20" fill="#000000" filter="url(#f15wledbayqg60)" rx="10" ry="10" style="stroke:none;stroke-width:1.0;"/><polygon fill="#C2F0FF" filter="url(#f15wledbayqg60)" points="98.5,50,192.5,50,204.5,62,192.5,74,98.5,74,86.5,62,98.5,50" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="94" x="98.5" y="68.5469">expresi&#xF3;n_1</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="8" x="78.5" y="59.583">si</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="12" x="204.5" y="59.583">no</text><rect fill="#F0F8FF" filter="url(#f15wledbayqg60)" height="40.125" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="11" y="84"/><text fill="#000000" font-family="sans-serif" font-size="16" lengthAdjust="spacing" textLength="65" x="21" y="110.6094">bloque_1</text><polygon fill="#C2F0FF" filter="url(#f15wledbayqg60)" points="190.5,84,284.5,84,296.5,96,284.5,108,190.5,108,178.5,96,190.5,84" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="94" x="190.5" y="102.5469">expresi&#xF3;n_2</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="8" x="170.5" y="93.583">si</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="12" x="296.5" y="93.583">no</text><rect fill="#F0F8FF" filter="url(#f15wledbayqg60)" height="40.125" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="126" y="118"/><text fill="#000000" font-family="sans-serif" font-size="16" lengthAdjust="spacing" textLength="65" x="136" y="144.6094">bloque_2</text><rect fill="#F0F8FF" filter="url(#f15wledbayqg60)" height="40.125" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="85" x="264" y="118"/><text fill="#000000" font-family="sans-serif" font-size="16" lengthAdjust="spacing" textLength="65" x="274" y="144.6094">bloque_3</text><polygon fill="#C2F0FF" filter="url(#f15wledbayqg60)" points="237.5,164.125,249.5,176.125,237.5,188.125,225.5,176.125,237.5,164.125" style="stroke:#000000;stroke-width:1.5;"/><polygon fill="#C2F0FF" filter="url(#f15wledbayqg60)" points="145.5,194.125,157.5,206.125,145.5,218.125,133.5,206.125,145.5,194.125" style="stroke:#000000;stroke-width:1.5;"/><rect fill="#F0F8FF" filter="url(#f15wledbayqg60)" height="60.25" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="94" x="98.5" y="238.125"/><text fill="#000000" font-family="sans-serif" font-size="16" lengthAdjust="spacing" textLength="74" x="108.5" y="264.7344">continua el</text><text fill="#000000" font-family="sans-serif" font-size="16" lengthAdjust="spacing" textLength="68" x="108.5" y="284.8594">programa</text><line style="stroke:#000000;stroke-width:1.5;" x1="178.5" x2="168.5" y1="96" y2="96"/><line style="stroke:#000000;stroke-width:1.5;" x1="168.5" x2="168.5" y1="96" y2="118"/><polygon fill="#000000" points="164.5,108,168.5,118,172.5,108,168.5,112" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="296.5" x2="306.5" y1="96" y2="96"/><line style="stroke:#000000;stroke-width:1.5;" x1="306.5" x2="306.5" y1="96" y2="118"/><polygon fill="#000000" points="302.5,108,306.5,118,310.5,108,306.5,112" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="168.5" x2="168.5" y1="158.125" y2="176.125"/><line style="stroke:#000000;stroke-width:1.5;" x1="168.5" x2="225.5" y1="176.125" y2="176.125"/><polygon fill="#000000" points="215.5,172.125,225.5,176.125,215.5,180.125,219.5,176.125" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="306.5" x2="306.5" y1="158.125" y2="176.125"/><line style="stroke:#000000;stroke-width:1.5;" x1="306.5" x2="249.5" y1="176.125" y2="176.125"/><polygon fill="#000000" points="259.5,172.125,249.5,176.125,259.5,180.125,255.5,176.125" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="86.5" x2="53.5" y1="62" y2="62"/><line style="stroke:#000000;stroke-width:1.5;" x1="53.5" x2="53.5" y1="62" y2="84"/><polygon fill="#000000" points="49.5,74,53.5,84,57.5,74,53.5,78" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="204.5" x2="237.5" y1="62" y2="62"/><line style="stroke:#000000;stroke-width:1.5;" x1="237.5" x2="237.5" y1="62" y2="84"/><polygon fill="#000000" points="233.5,74,237.5,84,241.5,74,237.5,78" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="53.5" x2="53.5" y1="124.125" y2="206.125"/><line style="stroke:#000000;stroke-width:1.5;" x1="53.5" x2="133.5" y1="206.125" y2="206.125"/><polygon fill="#000000" points="123.5,202.125,133.5,206.125,123.5,210.125,127.5,206.125" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="237.5" x2="237.5" y1="188.125" y2="206.125"/><line style="stroke:#000000;stroke-width:1.5;" x1="237.5" x2="157.5" y1="206.125" y2="206.125"/><polygon fill="#000000" points="167.5,202.125,157.5,206.125,167.5,210.125,163.5,206.125" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="145.5" x2="145.5" y1="30" y2="50"/><polygon fill="#000000" points="141.5,40,145.5,50,149.5,40,145.5,44" style="stroke:#000000;stroke-width:1.0;"/><line style="stroke:#000000;stroke-width:1.5;" x1="145.5" x2="145.5" y1="218.125" y2="238.125"/><polygon fill="#000000" points="141.5,228.125,145.5,238.125,149.5,228.125,145.5,232.125" style="stroke:#000000;stroke-width:1.0;"/><!--MD5=[69937f964300c48353448fb0dc2f6023]
+@startuml
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam ActivityBackgroundColor AliceBlue
+skinparam ActivityDiamondBackgroundColor Application
+skinparam ActivityBorderColor Black
+skinparam ActivityDiamondBorderColor Black
+skinparam ClassBackgroundColor Snowstart
+skinparam ActivityFontSize 16
+skinparam ActivityDiamondFontSize 16
+skinparam ActivityDiamondFontStyle bold
+skinparam NoteBackgroundColor Snow
+skinparam NoteBorderColor Gray
+
+start
+if (expresión_1) then (si)
+     :bloque_1;
+else (no)
+    if (expresión_2) then (si)
+         :bloque_2;
+    else (no)
+         :bloque_3;
+    endif
+endif
+:continua el\nprograma;
+@enduml
+
+PlantUML version 1.2021.9(Sun Jul 25 12:13:56 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="ejemplos-de-uso-de-condicionales">Ejemplos de uso de condicionales</h4>
+
+<blockquote>
+<p><strong>Ejemplo 1</strong></p>
+<p>Realiza un programa que calcule la o las soluciones, si las hay, para ecuaciones de 2&#xBA; grado de la forma:<br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn><mspace width="0.7113188976377953em"></mspace><mi>d</mi><mi>o</mi><mi>n</mi><mi>d</mi><mi>e</mi><mspace width="0.7113188976377953em"></mspace><mi>x</mi><mo>=</mo><mfrac><mrow><mo>&#x2212;</mo><mi>b</mi><mo>&#xB1;</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mspace width="0.7113188976377953em"></mspace><mi>D</mi><mi>i</mi><mi>s</mi><mi>c</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>i</mi><mi>n</mi><mi>a</mi><mi>n</mi><mi>t</mi><mi>e</mi><mo>&#x2192;</mo><mi mathvariant="normal">&#x394;</mi><mo>=</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ax^2 + bx^2 + c = 0 \hspace{0.25cm} donde \hspace{0.25cm} x = \frac{-b\pm\sqrt{b^2-4ac}}{2a} \hspace{0.25cm} Discriminante \rightarrow \Delta = b^2 - 4ac</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.7113188976377953em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.7113188976377953em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.276389em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.590389em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">a</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">&#x2212;</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#xB1;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.913389em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span></span></span><span style="top:-2.873389em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.12661100000000003em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.7113188976377953em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.02778em;">scr</span><span class="mord mathnormal">iminan</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">&#x394;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span></span></span></span></span><br>
+<strong>Nota:</strong> Si el <strong>discriminante</strong> es mayor que 0 tiene 2 soluciones. Si es igual a 0 tiene 1 soluci&#xF3;n y si es menor que cero no tiene soluciones reales.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Dame el valor a:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> a <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Dame el valor b:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> b <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;Dame el valor c:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> c <span class="token operator">=</span> <span class="token keyword">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword">double</span></span> discriminante <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">*</span> a <span class="token operator">*</span> c<span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword">string</span></span> salida<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>discriminante <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        salida <span class="token operator">=</span> <span class="token string">&quot;No hay soluci&#xF3;n&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>discriminante <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> x <span class="token operator">=</span> <span class="token operator">-</span>b <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        salida <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;El resultado final es: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">x</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> x1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">-</span>b <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">Sqrt</span><span class="token punctuation">(</span>discriminante<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">double</span></span> x2 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">-</span>b <span class="token operator">-</span> Math<span class="token punctuation">.</span><span class="token function">Sqrt</span><span class="token punctuation">(</span>discriminante<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        salida <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;Tu operaci&#xF3;n tiene dos soluciones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">x1</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string"> y </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">x2</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p><strong>Ejemplo 2</strong></p>
+<p>Se nos pide hacer un sencillo programa de terminal en C# que calcule el m&#xE1;ximo recomendable de pulsaciones durante el ejercicio f&#xED;sico de una persona. Para ello se nos dan las siguientes reglas:<br>
+Si una persona hace ejercicio con regularidad y esta en buen estado f&#xED;sico, para calcular sus pulsaciones restaremos a 200 puntos la edad del individuo. Adem&#xE1;s si tiene entre 30 y 39 deberemos descontar siempre 5 puntos, para los que tengan entre 40 y 49, 15 puntos, y los que se hallen por encima de los cincuenta a&#xF1;os 20 puntos.<br>
+Si la persona no esta en buen estado f&#xED;sico o empieza ha hacer ejercicios deberemos restar adem&#xE1;s de las cantidades anteriores 40 puntos a cualquier edad.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduzca su edad: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">uint</span></span> edad <span class="token operator">=</span> <span class="token keyword">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">uint</span></span> pulso <span class="token operator">=</span> <span class="token number">200u</span> <span class="token operator">-</span> edad<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>edad <span class="token operator">&gt;=</span> <span class="token number">30</span> <span class="token operator">&amp;&amp;</span> edad <span class="token operator">&lt;</span> <span class="token number">40</span><span class="token punctuation">)</span>
+        pulso <span class="token operator">-=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>edad <span class="token operator">&gt;=</span> <span class="token number">40</span> <span class="token operator">&amp;&amp;</span> edad <span class="token operator">&lt;</span> <span class="token number">50</span><span class="token punctuation">)</span>
+        pulso <span class="token operator">-=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>edad <span class="token operator">&gt;=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+        pulso <span class="token operator">-=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Hace ejercicio f&#xED;sico con frecuencia S/N: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">bool</span></span> haceEjercicio <span class="token operator">=</span> <span class="token keyword">char</span><span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string character">&apos;s&apos;</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>haceEjercicio<span class="token punctuation">)</span>
+        pulso <span class="token operator">-=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Su pulso id&#xF3;neo para hacer ejercicio es de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">pulso</span><span class="token punctuation">}</span></span><span class="token string"> ppm&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p><strong>Ejemplo 3</strong></p>
+<p>Realiza un programa que te ayude a tomar decisiones jugando a <strong>Piedra - Papel - Tijera</strong><br>
+Para ello...</p>
+<ol>
+<li>Pedir&#xE1; al usuario una cadena con su elecci&#xF3;n y &#xE9;l elegir&#xE1; un n&#xFA;mero al azar y lo transformar&#xE1; a una jugada.</li>
+<li>La expresi&#xF3;n / funci&#xF3;n para generar un <a href="https://docs.microsoft.com/es-es/dotnet/api/system.random.next?view=netcore-3.1#System_Random_Next_System_Int32_System_Int32_" target="_blank">valor entero aleatorio</a> en C#<br>
+<code>Random semilla = new Random();</code><br>
+<code>int jugadaOrdenador = semilla.Next(1, 4); // Devuelve un valor entero aleatorio entre 1 y 3</code></li>
+<li>El programa los comparar&#xE1;, mostrar&#xE1; ambas elecciones y dir&#xE1; quien ha perdido.</li>
+</ol>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Introduce tu jugada (Piedra, Papel, Tijera): &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> jugadaUsuario <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> PIEDRA <span class="token operator">=</span> <span class="token string">&quot;PIEDRA&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> PAPEL <span class="token operator">=</span> <span class="token string">&quot;PAPEL&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token class-name"><span class="token keyword">string</span></span> TIJERA <span class="token operator">=</span> <span class="token string">&quot;TIJERA&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Random</span> semilla <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">int</span></span> valorJugadaOrdenador <span class="token operator">=</span> semilla<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword">string</span></span> jugadaOrdenador<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>valorJugadaOrdenador <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        jugadaOrdenador <span class="token operator">=</span> PIEDRA<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>valorJugadaOrdenador <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        jugadaOrdenador <span class="token operator">=</span> PAPEL<span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        jugadaOrdenador <span class="token operator">=</span> TIJERA<span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword">string</span></span> mensaje<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>jugadaUsuario <span class="token operator">==</span> jugadaOrdenador<span class="token punctuation">)</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Empate&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>jugadaUsuario <span class="token operator">==</span> PIEDRA <span class="token operator">&amp;&amp;</span> jugadaOrdenador <span class="token operator">==</span> TIJERA
+                <span class="token operator">||</span>
+                jugadaUsuario <span class="token operator">==</span> PAPEL <span class="token operator">&amp;&amp;</span> jugadaOrdenador <span class="token operator">==</span> PIEDRA
+                <span class="token operator">||</span>
+                jugadaUsuario <span class="token operator">==</span> TIJERA <span class="token operator">&amp;&amp;</span> jugadaOrdenador <span class="token operator">==</span> PAPEL<span class="token punctuation">)</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Ganas&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Pierdes&quot;</span><span class="token punctuation">;</span>
+
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Tu jugada ha sido: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugadaUsuario</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La jugada del ordenador ha sido: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugadaOrdenador</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot; !!!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="condicional-m%C3%BAltiple-con-switch">Condicional m&#xFA;ltiple con switch</h4>
+
+<p>La sintaxis b&#xE1;sica de la <strong>instrucci&#xF3;n o sentencia switch</strong> ser&#xE1; la siguiente:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">switch</span> <span class="token punctuation">(</span>expresi&#xF3;n <span class="token class-name">no</span> booleana<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span> literal1<span class="token punctuation">:</span>
+    <span class="token comment">// No se permiten instrucciones ni bucles sin un break;</span>
+    <span class="token keyword">case</span> literal2<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> literal3<span class="token punctuation">:</span>
+        instrucci&#xF3;n<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> literal4<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        bloque
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        sentencia<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Existe con sintaxis similar en casi todos los lenguajes y es la que deber&#xED;amos usar en la mayor&#xED;a de los casos, pues es reconocida por todos los programadores.</p>
+<p><strong>&#xBF;C&#xF3;mo eval&#xFA;a C# la siguiente sentencia?...</strong></p>
+<ol>
+<li>Se eval&#xFA;a la expresi&#xF3;n que deber&#xED;a dar un resultado no booleano.</li>
+<li>Se ejecuta la cla&#xFA;sula <strong><code>case</code></strong> cuyo literal se corresponda con el valor obtenido en el punto 1.<br>
+Si no se encuentra correspondencia, se ejecuta el caso <strong><code>default</code></strong>; y si no hay <strong><code>default</code></strong>, termina la ejecuci&#xF3;n de <strong><code>switch</code></strong>.</li>
+<li>Termina cuando se encuentra una sentencia <strong><code>break</code></strong> esta deber&#xED;amos ponerla para evitar ca&#xED;das al <em>&apos;vac&#xED;o&apos;</em>. (<strong>&#x1F480; fall through &#x1F480;</strong>)<br>
+Solo ser&#xE1; v&#xE1;lido no ponerla para <strong>agrupar</strong> literales.</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="ejemplos-condicional-m%C3%BAltiple-con-switch">Ejemplos condicional m&#xFA;ltiple con switch</h4>
+
+<blockquote>
+<p><strong>Ejemplo 1</strong></p>
+<p>Veamos un sencillo ejemplo en el que vamos a asignar a una variable <strong>presupuesto</strong> el presupuesto de un departamento para un a&#xF1;o. Teniendo en cuenta que el departamento de matem&#xE1;ticas tiene asignados 200&#x20AC;, el de lengua francesa y castellano 500&#x20AC; y el de inform&#xE1;tica 100&#x20AC;.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> departamento <span class="token operator">=</span> <span class="token string">&quot;INFORMATICA&quot;</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">?</span></span> presupuesto<span class="token punctuation">;</span>
+<span class="token keyword">switch</span> <span class="token punctuation">(</span>departamento<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;MATEMATICAS&quot;</span><span class="token punctuation">:</span>
+            presupuesto <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span> 
+            <span class="token comment">// Fall thought al no poner break. </span>
+            <span class="token comment">// C# nos generar&#xE1; un error de compilaci&#xF3;n aunque otros lenguajes no.</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;CASTELLANO&quot;</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;FRANCES&quot;</span><span class="token punctuation">:</span>            
+            <span class="token comment">// Agrupaci&#xF3;n de varios casos (Esto es v&#xE1;lido).</span>
+            presupuesto <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;INFORMATICA&quot;</span><span class="token punctuation">:</span>
+            presupuesto <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+            presupuesto <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token class-name"><span class="token keyword">string</span></span> mensaje <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;El departamento de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">departamento<span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> &quot;</span></span> <span class="token operator">+</span> 
+                <span class="token punctuation">(</span><span class="token punctuation">(</span>presupuesto <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> 
+                <span class="token punctuation">?</span> <span class="token interpolation-string"><span class="token string">$&quot;tiene </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">presupuesto</span><span class="token punctuation">}</span></span><span class="token string">&#x20AC; de presupuesto&quot;</span></span> 
+                <span class="token punctuation">:</span> <span class="token string">&quot;no tiene presupuesto&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p><strong>Ejemplo 2</strong></p>
+<p>&#xBF;C&#xF3;mo ser&#xED;a la selecci&#xF3;n de la jugada en el ordenador para nuestro juego de <strong>piedra &#x2013; papel &#x2013; tijera</strong> si us&#xE1;ramos un switch?</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">switch</span><span class="token punctuation">(</span>valorJugadaOrdenador<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span> jugadaOrdenador <span class="token operator">=</span> PIEDRA<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span> jugadaOrdenador <span class="token operator">=</span> PAPEL<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span> jugadaOrdenador <span class="token operator">=</span> TIJERA<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span> jugadaOrdenador <span class="token operator">=</span> <span class="token string">&quot;Jugada no v&#xE1;lida&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<blockquote>
+<p><strong>Ejemplo 3</strong></p>
+<p>Realiza un programa de terminal en C# que dado un a&#xF1;o y un mes de ese a&#xF1;o, ambos en formato num&#xE9;rico. Me diga cuantos d&#xED;as tiene ese mes.<br>
+Utiliza una estructura switch para hacerlo.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">int</span><span class="token punctuation">?</span></span> dias<span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Dime un a&#xF1;o: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">uint</span> a&#xF1;o <span class="token operator">=</span> <span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Dime un n&#xFA;mero de mes de ese a&#xF1;o: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">uint</span></span> mes <span class="token operator">=</span> <span class="token keyword">uint</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>mes<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">5</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">7</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">8</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">10</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">12</span><span class="token punctuation">:</span>
+            dias <span class="token operator">=</span> <span class="token number">31</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
+            dias <span class="token operator">=</span> a&#xF1;o <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> a&#xF1;o <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">!=</span> <span class="token number">0</span> 
+                    <span class="token operator">||</span> 
+                    a&#xF1;o <span class="token operator">%</span> <span class="token number">400</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">?</span> <span class="token number">28</span> <span class="token punctuation">:</span> <span class="token number">29</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token number">4</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">6</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">9</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token number">11</span><span class="token punctuation">:</span>
+            dias <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span>
+            dias <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name"><span class="token keyword">string</span></span> mensaje <span class="token operator">=</span> dias <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token punctuation">?</span>
+                    <span class="token interpolation-string"><span class="token string">$&quot;El </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mes</span><span class="token punctuation">}</span></span><span class="token string"> de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a&#xF1;o</span><span class="token punctuation">}</span></span><span class="token string"> tiene </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dias</span><span class="token punctuation">}</span></span><span class="token string"> d&#xED;as.&quot;</span></span> <span class="token punctuation">:</span>
+                    <span class="token string">&quot;N&#xFA;mero de mes incorrecto.&quot;</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="a-hrefhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsswitchthe-case-statement-and-the-when-clause-target_blankcl%C3%A1usula-when-junto-con-instrucci%C3%B3n-switcha"><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/switch#the-case-statement-and-the-when-clause" target="_blank">Cl&#xE1;usula when junto con instrucci&#xF3;n switch</a></h4>
+
+<p>Desde <strong>C#7</strong> el lenguaje permite a&#xF1;adir condiciones a un mismo caso. A trav&#xE9;s de la evaluaci&#xF3;n de una expresi&#xF3;n booleana. Para ello usaremos la palabra reservada del lenguaje <strong>when</strong></p>
+<p>Veamos un <strong>ejemplo b&#xE1;sico</strong> de sintaxis, aunque su utilidad real la veremos m&#xE1;s adelante al ver otros casos de uso de la instrucci&#xF3;n switch dentro de la Programaci&#xF3;n Orientada a Objetos (POO).</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">switch</span> <span class="token punctuation">(</span>expresi&#xF3;n <span class="token class-name">no</span> booleana<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span> literal1 <span class="token keyword">when</span> <span class="token operator">&lt;</span>expresi&#xF3;n booleana<span class="token operator">&gt;</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> literal2<span class="token punctuation">:</span>
+        instrucci&#xF3;n<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> literal3 <span class="token keyword">when</span> <span class="token operator">&lt;</span>expresi&#xF3;n booleana<span class="token operator">&gt;</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> literal4 <span class="token keyword">when</span> <span class="token operator">&lt;</span>expresi&#xF3;n booleana<span class="token operator">&gt;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        bloque
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        sentencia<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p><strong>Ejemplo</strong></p>
+<p>&#xBF;C&#xF3;mo ser&#xED;a la selecci&#xF3;n del resultado del juego de <strong>piedra &#x2013; papel &#x2013; tijera</strong> si us&#xE1;ramos un switch con un when?</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> mensaje<span class="token punctuation">;</span>
+<span class="token keyword">switch</span> <span class="token punctuation">(</span>jugadaUsuario<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span> PIEDRA <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> TIJERA<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> PAPEL <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> PIEDRA<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> TIJERA <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> PAPEL<span class="token punctuation">:</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Ganas&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> PIEDRA <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> PAPEL<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> PAPEL <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> TIJERA<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> TIJERA <span class="token keyword">when</span> jugadaOrdenador <span class="token operator">==</span> PIEDRA<span class="token punctuation">:</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Pierdes&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        mensaje <span class="token operator">=</span> <span class="token string">&quot;Empate&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="a-hrefhttpsdocsmicrosoftcomes-esdotnetcsharpwhats-newcsharp-8switch-expressions-target_blankexpresiones-condicionales-switcha"><a href="https://docs.microsoft.com/es-es/dotnet/csharp/whats-new/csharp-8#switch-expressions" target="_blank">Expresiones condicionales switch</a></h4>
+
+<p>Adem&#xE1;s, de como instrucci&#xF3;n, a partir de <strong>C#8</strong> podemos, usar la cl&#xE1;usula switch a modo expresi&#xF3;n, evalu&#xE1;ndose esta a un resultado.</p>
+<p>Este esquema switch como expresi&#xF3;n se ha incorporado de forma similar a otros lenguajes como <a href="https://openjdk.java.net/jeps/361" target="_blank">Java14</a>, <a href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression" target="_blank">Kotlin</a> o <a href="https://doc.rust-lang.org/reference/expressions/match-expr.html" target="_blank">Rust</a>.</p>
+<p>Las expresiones switch permiten usar una sintaxis de expresiones m&#xE1;s concisa. Hay <strong>menos palabras clave</strong> case y break repetitivas.</p>
+<p>La sintaxis b&#xE1;sica podr&#xED;a ser:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">TipoDato</span> dato <span class="token operator">=</span> <span class="token operator">&lt;</span>patr&#xF3;n<span class="token operator">&gt;</span> <span class="token keyword">switch</span>
+<span class="token punctuation">{</span>
+    <span class="token operator">&lt;</span>caso <span class="token number">1</span> patr&#xF3;n<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token operator">&lt;</span>caso <span class="token number">2</span> patr&#xF3;n<span class="token operator">&gt;</span> <span class="token keyword">when</span> <span class="token operator">&lt;</span>expresi&#xF3;n booleana<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token operator">&lt;</span>caso n patr&#xF3;n<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    _               <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato o Error<span class="token operator">&gt;</span> <span class="token comment">// Caso por defecto</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p><strong>Ejemplo</strong></p>
+<p>&#xBF;C&#xF3;mo ser&#xED;a la selecci&#xF3;n de la jugada en el ordenador para nuestro juego de <strong>piedra &#x2013; papel &#x2013; tijera</strong> si us&#xE1;ramos una <strong>expresi&#xF3;n switch</strong>?<br>
+Si lo comparamos con el que hicimos con la <strong>instrucci&#xF3;n o sentencia switch</strong>, vemos que queda m&#xE1;s claro y simplificado ahorr&#xE1;ndonos clausulas case y break.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> jugadaOrdenador <span class="token operator">=</span> valorJugadaOrdenador <span class="token keyword">switch</span>
+<span class="token punctuation">{</span>
+    <span class="token number">1</span> <span class="token operator">=&gt;</span> PIEDRA<span class="token punctuation">,</span>
+    <span class="token number">2</span> <span class="token operator">=&gt;</span> PAPEL<span class="token punctuation">,</span>
+    <span class="token number">3</span> <span class="token operator">=&gt;</span> TIJERA<span class="token punctuation">,</span>
+    _ <span class="token operator">=&gt;</span> <span class="token string">&quot;Jugada no v&#xE1;lida&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><div style="page-break-after:always;"></div>
+<p>Existe una variante donde el patr&#xF3;n a buscar sea un <strong>tupla</strong> de 2 o n valores:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">TipoDato</span> dato <span class="token operator">=</span> <span class="token punctuation">(</span>e1<span class="token punctuation">,</span>e2<span class="token punctuation">,</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">,</span>en<span class="token punctuation">)</span> <span class="token keyword">switch</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">(</span>d1t1<span class="token punctuation">,</span>d2t1<span class="token punctuation">,</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">,</span>dnt1<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>d1t2<span class="token punctuation">,</span>d2t2<span class="token punctuation">,</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">,</span>dnt2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">(</span>d1tn<span class="token punctuation">,</span>d2tn<span class="token punctuation">,</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">,</span>dntn<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>_<span class="token punctuation">,</span>_<span class="token punctuation">,</span><span class="token range operator">..</span><span class="token punctuation">.</span><span class="token punctuation">,</span>_<span class="token punctuation">)</span>          <span class="token operator">=&gt;</span> <span class="token operator">&lt;</span>expresi&#xF3;n que se eval&#xFA;e a TipoDato o Error<span class="token operator">&gt;</span> <span class="token comment">// Caso por defecto</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p><strong>Ejemplo</strong></p>
+<p>As&#xED; podr&#xED;a ser la selecci&#xF3;n del resultado del juego de <strong>piedra &#x2013; papel &#x2013; tijera</strong> si us&#xE1;ramos:<br>
+una <strong>expresi&#xF3;n switch</strong> con un patr&#xF3;n tupla dentro, a su vez, de una expresi&#xF3;n m&#xE1;s compleja.<br>
+En el ejemplo las tuplas ser&#xE1;n de 2 valores solo.</p>
+<p>&#x1F4CC; <strong>Nota:</strong> Este ejemplo es algo enrevesado pero nos ayuda a entender una expresi&#xF3;n puede formar parte de otra a&#xFA;n m&#xE1;s compleja. Obviamente no ser&#xED;a la forma m&#xE1;s recomendable pues al usarse con una<br>
+<strong>ternaria</strong> y un <strong>??</strong>, la expresi&#xF3;n resultante es algo ofuscada.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> mensaje <span class="token operator">=</span> jugadaUsuario <span class="token operator">==</span> jugadaOrdenador
+<span class="token punctuation">?</span> <span class="token string">&quot;Empate&quot;</span>
+<span class="token punctuation">:</span> <span class="token punctuation">(</span>jugadaUsuario<span class="token punctuation">,</span> jugadaOrdenador<span class="token punctuation">)</span> <span class="token keyword">switch</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">(</span>PIEDRA<span class="token punctuation">,</span> TIJERA<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;Ganas&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>PAPEL<span class="token punctuation">,</span> PIEDRA<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;Ganas&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>TIJERA<span class="token punctuation">,</span> PAPEL<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;Ganas&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>_<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+<span class="token operator">??</span> <span class="token string">&quot;Pierdes&quot;</span><span class="token punctuation">;</span>
+</pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

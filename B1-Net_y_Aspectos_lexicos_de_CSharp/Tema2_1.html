@@ -404,7 +404,7 @@ El uso de un IDE hace transparente para nosotros los comandos y los flujos de tr
 <h2 class="mume-header" id="creaci%C3%B3n-de-un-proyecto-de-consola">Creaci&#xF3;n de un proyecto de consola</h2>
 
 <p>La gesti&#xF3;n de proyectos se hace con la CLI <strong>dotnet</strong>, as&#xED; pues para crear un proyecto desde consola usaremos <a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new" target="_blank">dotnet new</a> y en concreto para crea una aplicaci&#xF3;n de consola ejecutaremos <strong><code>dotnet new console -n &lt;nombre&gt;</code></strong></p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>dotnet new console -n ejemplo
+<pre data-role="codeBlock" data-info="bash {highlight=1}" class="language-bash" data-line="1">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>dotnet new console -n ejemplo
 
 The template <span class="token string">&quot;Console Application&quot;</span> was created successfully.
 
@@ -414,16 +414,15 @@ Running <span class="token string">&apos;dotnet restore&apos;</span> on ejemplo<
   Se ha restaurado B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>ejemplo.csproj <span class="token punctuation">(</span>en <span class="token number">100</span> ms<span class="token punctuation">)</span>.
 
 Restore succeeded.
-</pre><p>Tras ejecutar este comando, se crear&#xE1; un proyecto definido en el fichero <strong>ejemplo.csproj</strong> donde, si no especificamos la versi&#xF3;n de .NET, nos lo crear&#xE1; con la que hemos instalado y el lenguaje ser&#xE1; C# con la &#xFA;ltima versi&#xF3;n posible de esa plataforma.<br>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div></pre><p>Tras ejecutar este comando, se crear&#xE1; un proyecto definido en el fichero <strong>ejemplo.csproj</strong> donde, si no especificamos la versi&#xF3;n de .NET, nos lo crear&#xE1; con la que hemos instalado y el lenguaje ser&#xE1; C# con la &#xFA;ltima versi&#xF3;n posible de esa plataforma.<br>
 Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET Core 3.1 y la versi&#xF3;n de C# es la 8.0</strong></p>
 <pre data-role="codeBlock" data-info="xml" class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>Microsoft.NET.Sdk<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OutputType</span><span class="token punctuation">&gt;</span></span>Exe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>OutputType</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>netcoreapp3.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LangVersion</span><span class="token punctuation">&gt;</span></span>8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>LangVersion</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
-
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
 </pre><blockquote>
 <p>Para m&#xE1;s informaci&#xF3;n ver <a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new#console" target="_blank">la documentaci&#xF3;n oficial</a>.</p>
@@ -436,7 +435,7 @@ Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET 
 <li>Con <strong><code>dotnet new sln -n &lt;nombre&gt;</code></strong> crearemos una soluci&#xF3;n.</li>
 <li>Con <strong><code>dotnet sln &lt;nombre&gt;.sln add &lt;nombre&gt;.csproj</code></strong> a&#xF1;adiremos una proyecto a una soluci&#xF3;n.</li>
 </ul>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>cd ejemplo
+<pre data-role="codeBlock" data-info="bash {highlight=[2,5]}" class="language-bash" data-line="2,5">B:<span class="token punctuation">\</span><span class="token operator">&gt;</span>cd ejemplo
 B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new sln -n ejemplo
 The template <span class="token string">&quot;Solution File&quot;</span> was created successfully.
 
@@ -446,11 +445,18 @@ B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&g
 Proyectos
 ---------
 ejemplo.csproj
-</pre><p>Adem&#xE1;s, siempre es interesante a&#xF1;adir un fichero de metainformaci&#xF3;n para el <strong>control de versiones de git</strong>.</p>
+<div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div></pre><p>Adem&#xE1;s, siempre es interesante a&#xF1;adir un fichero de metainformaci&#xF3;n para el <strong>control de versiones de git</strong>.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new gitignore
 The template <span class="token string">&quot;dotnet gitignore file&quot;</span> was created successfully.
 </pre><p>Tambi&#xE9;n es posible compilar el proyecto y generar el ensamblado con <strong><code>dotnet build</code></strong> y ejecutar el programa usando <strong><code>dotnet run</code></strong>. Aunque este proceso lo podremos hacer a trav&#xE9;s de <strong>VS Code</strong> usando la <strong>extensi&#xF3;n para C# de OmniSharp</strong>.</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet build
+<pre data-role="codeBlock" data-info="bash {highlight=[1,11]}" class="language-bash" data-line="1,11">B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet build
 Microsoft <span class="token punctuation">(</span>R<span class="token punctuation">)</span> Build Engine versi&#xF3;n <span class="token number">16.6</span>.0+5ff7b0c9e para .NET Core
 Copyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> Microsoft Corporation. Todos los derechos reservados.
   Determinando los proyectos que se van a restaurar<span class="token punctuation">..</span>.
@@ -462,7 +468,19 @@ Tiempo transcurrido 00:00:00.64
 
 B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet run
 Hello World<span class="token operator">!</span>
-</pre><blockquote>
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre><blockquote>
 <p>&#x270B; <strong>Importante!</strong> Para m&#xE1;s informaci&#xF3;n ver <a href="https://docs.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code" target="_blank">la integraci&#xF3;n con VS Code</a>.<br>
 Una vez instalado, deberemos configurar el par&#xE1;metros <a href="https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window" target="_blank">console</a> al valor <strong>integratedTerminal</strong>.</p>
 <pre data-role="codeBlock" data-info="json" class="language-json"><span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>

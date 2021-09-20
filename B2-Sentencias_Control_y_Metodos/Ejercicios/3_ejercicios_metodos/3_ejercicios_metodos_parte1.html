@@ -1,0 +1,600 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios M&#xE9;todos &apos;Simples&apos;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="ejercicios-m%C3%A9todos-simples">Ejercicios M&#xE9;todos &apos;Simples&apos;</h1>
+
+<p><a href="./3_ejercicios_metodos_parte1.pdf">Descargar estos ejercicios</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#ejercicio-1">Ejercicio 1</a></li>
+<li><a href="#ejercicio-2">Ejercicio 2</a></li>
+<li><a href="#ejercicio-3">Ejercicio 3</a></li>
+<li><a href="#ejercicio-4">Ejercicio 4</a></li>
+<li><a href="#ejercicio-5">Ejercicio 5</a></li>
+<li><a href="#ejercicio-6">Ejercicio 6</a></li>
+<li><a href="#white_check_mark-ejercicio-7">&#x2705; Ejercicio 7</a></li>
+<li><a href="#white_check_mark-ejercicio-8">&#x2705; Ejercicio 8</a></li>
+<li><a href="#white_check_mark-ejercicio-9">&#x2705; Ejercicio 9</a></li>
+<li><a href="#white_check_mark-ejercicio-10">&#x2705; Ejercicio 10</a></li>
+</ol>
+<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
+
+<blockquote>
+<p>Escribe el resultado de ejecutar este programa y comenta el motivo de la salida.</p>
+<p><strong>Nota:</strong> Puedes ayudarte con la traza.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Eleva</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        a <span class="token operator">=</span> a <span class="token operator">*</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> a <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> a <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">Eleva</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
+
+<blockquote>
+<p>Dise&#xF1;a una funci&#xF3;n denominada Eleva, que calcule <strong>x elevado a n</strong>, dados ambos como par&#xE1;metro.<br>
+Una vez definido, integra dicha funci&#xF3;n en un programa que calcule e imprima el resultado de la siguiente expresi&#xF3;n, siendo x, y, m tres n&#xFA;meros enteros introducidos por teclado.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathsize="1.2em"><mfrac><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><msup><mi>y</mi><mi>m</mi></msup></mrow><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\large \frac {x^4 + y^m} 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.586752em;vertical-align:-0.8232em;"></span><span class="mord sizing reset-size6 size7"><span class="mopen nulldelimiter sizing reset-size7 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4696266666666666em;"><span style="top:-2.5140000000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord">2</span></span><span style="top:-3.43em;"><span class="pstrut" style="height:3.2em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.8770000000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7926266666666667em;"><span style="top:-3.163em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.65004em;"><span style="top:-3.163em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size7 size6"></span></span></span></span></span></span></p>
+</blockquote>
+<h2 class="mume-header" id="ejercicio-3">Ejercicio 3</h2>
+
+<blockquote>
+<p>Escribe un algoritmo que, dados por teclado cinco d&#xED;as de la semana, escritos en forma de n&#xFA;mero, muestre el nombre del d&#xED;a asociado a cada uno de ellos.<br>
+Para ello, implementa el procedimiento <strong>DiaSemana</strong>, que dado un n&#xFA;mero escriba en pantalla el d&#xED;a correspondiente <strong><code>(utilizando switch)..</code></strong>.</p>
+<p><strong>Nota:</strong>  el par&#xE1;metro del procedimiento ser&#xE1; de <strong>entrada</strong> y por <strong>referencia</strong>. Adem&#xE1;s deber&#xE1; comprobar que el n&#xFA;mero de entrada est&#xE9; en el rango de 1 a 7 indicando, si es necesario, que la entrada no ha sido valida.</p>
+</blockquote>
+<h2 class="mume-header" id="ejercicio-4">Ejercicio 4</h2>
+
+<blockquote>
+<p>Implementa un programa en C# con una funci&#xF3;n que admita como argumentos <strong>dos n&#xFA;meros enteros (m y n)</strong> y devuelva como valor asociado al nombre de la funci&#xF3;n, el n&#xFA;mero combinatorio.<br>
+Este m&#xE9;todo debe llamar a su vez a la funci&#xF3;n <strong>factorial</strong> (que devolver&#xE1; el factorial de un n&#xFA;mero pasado como argumento).</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathsize="1.2em"><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><mi>m</mi><mi>n</mi></mfrac><mo fence="true">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>m</mi><mo stretchy="false">!</mo></mrow><mrow><mi>n</mi><mo stretchy="false">!</mo><mo>&#x22C5;</mo><mo stretchy="false">(</mo><mi>m</mi><mo>&#x2212;</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">!</mo></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\large \binom m n = \frac {m!} {n! \cdot (m-n)!}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.89003em;"></span><span class="mord sizing reset-size6 size7"><span class="mopen sizing reset-size7 size6 delimcenter" style="top:-0.04999999999999999em;"><span class="delimsizing size3">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.5140000000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord mathdefault">n</span></span><span style="top:-3.877em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord mathdefault">m</span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose sizing reset-size7 size6 delimcenter" style="top:-0.04999999999999999em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel sizing reset-size6 size7">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.768928em;vertical-align:-1.1232em;"></span><span class="mord sizing reset-size6 size7"><span class="mopen nulldelimiter sizing reset-size7 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.5140000000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x22C5;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">!</span></span></span><span style="top:-3.43em;"><span class="pstrut" style="height:3.2em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.8770000000000002em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="mclose">!</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size7 size6"></span></span></span></span></span></span></p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
+
+<blockquote>
+<p>Escribe el resultado de ejecutar este programa y comenta el motivo de la salida.</p>
+<p><strong>Nota:</strong> Puedes ayudarte con la traza.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">const</span> <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> a <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">funcion</span><span class="token punctuation">(</span><span class="token keyword">int</span> b<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> c<span class="token punctuation">;</span>
+        c <span class="token operator">=</span> b <span class="token operator">+</span> a<span class="token punctuation">;</span>
+        b<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> c<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            b <span class="token operator">=</span> <span class="token function">funcion</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
+<h2 class="mume-header" id="ejercicio-6">Ejercicio 6</h2>
+
+<blockquote>
+<p>Crea un m&#xE9;todo que cambie de formato una fecha. Dados el d&#xED;a, mes y a&#xF1;o devuelva un n&#xFA;mero entero tipo long <code>(ver nota)</code>.<br>
+Dada esta funci&#xF3;n, dise&#xF1;a un programa que solicite dos fechas de nacimiento y averig&#xFC;e cual de las dos personas es mayor.</p>
+<p><strong>Nota:</strong> Para una fecha que corresponda con 2/4/1997 el entero largo devuelto ser&#xED;a 19970402.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="white_check_mark-ejercicio-7">&#x2705; Ejercicio 7</h2>
+
+<blockquote>
+<p>Construye un programa que dados tres n&#xFA;meros enteros correspondientes a la hora, minutos y segundos actuales, calcula la hora (en el mismo formato) que ser&#xE1; un segundo m&#xE1;s tarde. Para ello, se deben dise&#xF1;ar dos m&#xE9;todos:<br>
+&#x2022; <strong>HoraASegundos</strong> que dados tres argumentos de entrada correspondientes a hora, minutos y segundos, devuelva la conversi&#xF3;n de dicha hora a segundos desde las 00:00:00.<br>
+&#x2022; <strong>SegundosAHora</strong>, que dado un argumento de entrada correspondiente a una hora en segundos desde las 00:00:00, la convierta en horas, minutos y segundos y la devuelva. <strong>Devolver&#xE1;s la informaci&#xF3;n mediante par&#xE1;metros de salida.</strong></p>
+<p><strong>Nota:</strong> El algoritmo debe leer la hora en formato HH, MM y SS, despu&#xE9;s transformarla a segundos (con HoraASegundos), sumarle uno a dichos segundos y despu&#xE9;s volver a transformarla en HH, MM y SS (con SegundosAHora).</p>
+</blockquote>
+<h2 class="mume-header" id="white_check_mark-ejercicio-8">&#x2705; Ejercicio 8</h2>
+
+<blockquote>
+<p>Escribe un m&#xE9;todo llamado <strong>Lee</strong> que que obtenga los siguientes datos de un usuario: n&#xFA;mero de departamento, coste por hora y horas trabajadas. <strong>Usar&#xE1;s tuplas para resolverlo</strong><br>
+Escribe un m&#xE9;todo llamado <strong>Salario</strong> que para calcular el salario semanal multiplique el coste por hora por el n&#xFA;mero de horas trabajadas.<br>
+Escribe un m&#xE9;todo llamado <strong>Muestra</strong> que muestre el salario semanal, el n&#xFA;mero del departamento, el coste por hora y las horas trabajadas. Pod&#xE9;is fijaros en el siguiente DEM:</p>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="256pt" height="156pt" viewBox="0.00 0.00 256.00 156.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 152)">
+<title>G</title>
+<polygon fill="#f5f5f5" stroke="transparent" points="-4,4 -4,-152 252,-152 252,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster2</title>
+<polygon fill="#f5f5f5" stroke="transparent" points="8,-8 8,-140 240,-140 240,-8 8,-8"/>
+</g>
+<!-- P -->
+<g id="node1" class="node">
+<title>P</title>
+<polygon fill="none" stroke="#000000" points="145,-128 91,-128 91,-92 145,-92 145,-128"/>
+<polygon fill="none" stroke="#000000" points="149,-132 87,-132 87,-88 149,-88 149,-132"/>
+<text text-anchor="middle" x="118" y="-105.8" font-family="Arial" font-size="14.00" fill="#000000">Main</text>
+</g>
+<!-- L -->
+<g id="node2" class="node">
+<title>L</title>
+<polygon fill="none" stroke="#000000" points="70,-52 16,-52 16,-16 70,-16 70,-52"/>
+<text text-anchor="middle" x="43" y="-29.8" font-family="Arial" font-size="14.00" fill="#000000">Lee</text>
+</g>
+<!-- P&#45;&gt;L -->
+<g id="edge1" class="edge">
+<title>P-&gt;L</title>
+<path fill="none" stroke="#000000" d="M95.9032,-87.6086C87.2613,-78.8515 77.2985,-68.7558 68.3654,-59.7036"/>
+<polygon fill="#000000" stroke="#000000" points="70.6707,-57.0568 61.1554,-52.3975 65.6883,-61.9737 70.6707,-57.0568"/>
+</g>
+<!-- S -->
+<g id="node3" class="node">
+<title>S</title>
+<polygon fill="none" stroke="#000000" points="147.5598,-52 88.4402,-52 88.4402,-16 147.5598,-16 147.5598,-52"/>
+<text text-anchor="middle" x="118" y="-29.8" font-family="Arial" font-size="14.00" fill="#000000">Salario</text>
+</g>
+<!-- P&#45;&gt;S -->
+<g id="edge2" class="edge">
+<title>P-&gt;S</title>
+<path fill="none" stroke="#000000" d="M118,-87.6086C118,-79.7272 118,-70.7616 118,-62.4482"/>
+<polygon fill="#000000" stroke="#000000" points="121.5001,-62.3974 118,-52.3975 114.5001,-62.3975 121.5001,-62.3974"/>
+</g>
+<!-- M -->
+<g id="node4" class="node">
+<title>M</title>
+<polygon fill="none" stroke="#000000" points="232.061,-52 165.939,-52 165.939,-16 232.061,-16 232.061,-52"/>
+<text text-anchor="middle" x="199" y="-29.8" font-family="Arial" font-size="14.00" fill="#000000">Muestra</text>
+</g>
+<!-- P&#45;&gt;M -->
+<g id="edge3" class="edge">
+<title>P-&gt;M</title>
+<path fill="none" stroke="#000000" d="M141.8646,-87.6086C151.3647,-78.6948 162.343,-68.3942 172.1221,-59.2188"/>
+<polygon fill="#000000" stroke="#000000" points="174.7587,-61.5444 179.6564,-52.1496 169.9689,-56.4396 174.7587,-61.5444"/>
+</g>
+</g>
+</svg>
+</p></blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="white_check_mark-ejercicio-9">&#x2705; Ejercicio 9</h2>
+
+<blockquote>
+<p>Escribe un programa para jugar a adivinar n&#xFA;meros. El programa tiene que seguir los siguientes pasos:</p>
+<ol>
+<li>Calcular de forma aleatoria el <strong>n&#xFA;mero a adivinar</strong> por el jugador. El n&#xFA;mero debe hallarse  entre 0 y 50 (ambos inclusive).</li>
+<li>Preguntar un n&#xFA;mero al jugador y dar una <strong>pista</strong> indicando si el n&#xFA;mero introducido es mayor o menor que el n&#xFA;mero a adivinar.</li>
+<li>Si el jugador acierta el n&#xFA;mero, la partida terminar&#xE1; indicando la <strong>cantidad de tentativas</strong> hechas por este jugador para acertar.</li>
+<li>Habr&#xE1; un m&#xE1;ximo de tentativas dependiendo del <strong>nivel</strong> elegido para jugar: <strong><code>f&#xE1;cil =10, medio = 6, dif&#xED;cil = 4</code></strong>.</li>
+<li>El programa preguntar&#xE1; si se desea <strong>seguir jugando</strong>. Si se responde que s&#xED; el juego seguir&#xE1; pidiendo un nuevo nivel y generando otro n&#xFA;mero, si se responde <strong>ESC</strong> se saldr&#xE1; del programa. Cualquier otra respuesta no ser&#xE1; v&#xE1;lida y se pedir&#xE1; que se vuelva a responder.</li>
+</ol>
+<p><strong>Nota:</strong>  Ser&#xE1; necesario realizar los m&#xE9;todos y el paso de par&#xE1;metros que consideres adecuado para una correcta programaci&#xF3;n.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">//Forma de controlar la pulsaci&#xF3;n en consola de la tecla  ESC &gt; con C#...</span>
+<span class="token comment">// El programa espera una tecla y la guarda en continuar.</span>
+	<span class="token class-name">ConsoleKeyInfo</span> continuar <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Comprobaci&#xF3;n de que la tecla pulsada es ESC.</span>
+	<span class="token class-name">Bool</span> esESC <span class="token operator">=</span> continuar<span class="token punctuation">.</span>Key <span class="token operator">==</span> ConsoleKey<span class="token punctuation">.</span>Escape<span class="token punctuation">;</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="white_check_mark-ejercicio-10">&#x2705; Ejercicio 10</h2>
+
+<blockquote>
+<p>Programa que implementar&#xE1; un juego con las siguientes caracter&#xED;sticas:</p>
+<ol>
+<li>El programa pedir&#xE1; que introduzcas el n&#xFA;mero de participantes a jugar.</li>
+<li>Cada participante tirar&#xE1; 3 veces un dado con valores entre 1 y 100 (electr&#xF3;nico se entiende), sum&#xE1;ndose el valor de las 3 jugadas. Ganar&#xE1; el participante que<br>
+obtenga mayor puntuaci&#xF3;n seg&#xFA;n las siguientes reglas:<br>
+&#x25E6; Si el n&#xBA; obtenido es m&#xFA;ltiplo de 3 o de 5 sumara 10 pts.<br>
+&#x25E6; Si el n&#xBA; obtenido es m&#xFA;ltiplo de 4 o de 6 sumara 5 pts.<br>
+&#x25E6; Si el n&#xBA; obtenido es mayor de 80 sumara 2 pts.<br>
+&#x25E6; Si el n&#xBA; obtenido es mayor de 50 sumar 1 pts.<br>
+&#x25E6; Si el n&#xBA; obtenido es menor de 50 restar&#xE1; 2 pts.<br>
+&#x25E6; Si el n&#xBA; obtenido es menor de 20 restar&#xE1; 1 pts.</li>
+<li>El DEM para el juego ser&#xE1; m&#xE1;s o menos el siguiente.</li>
+</ol>
+<p align="center" style="zoom:0.9"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="600pt" height="258pt" viewBox="0.00 0.00 600.41 257.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 253.6)">
+<title>G</title>
+<polygon fill="#f5f5f5" stroke="transparent" points="-4,4 -4,-253.6 596.4074,-253.6 596.4074,4 -4,4"/>
+<!-- mm -->
+<g id="node1" class="node">
+<title>mm</title>
+<polygon fill="none" stroke="#000000" points="308.1753,-245.6 254.1753,-245.6 254.1753,-209.6 308.1753,-209.6 308.1753,-245.6"/>
+<polygon fill="none" stroke="#000000" points="312.1753,-249.6 250.1753,-249.6 250.1753,-205.6 312.1753,-205.6 312.1753,-249.6"/>
+<text text-anchor="middle" x="281.1753" y="-223.4" font-family="Arial" font-size="14.00" fill="#000000">Main</text>
+</g>
+<!-- pj -->
+<g id="node2" class="node">
+<title>pj</title>
+<polygon fill="none" stroke="#000000" points="102.5265,-144.2019 -.1759,-144.2019 -.1759,-102.9981 102.5265,-102.9981 102.5265,-144.2019"/>
+<text text-anchor="middle" x="51.1753" y="-127.8" font-family="Arial" font-size="14.00" fill="#000000">Presentaci&#xF3;n</text>
+<text text-anchor="middle" x="51.1753" y="-111" font-family="Arial" font-size="14.00" fill="#000000">Juego</text>
+</g>
+<!-- mm&#45;&gt;pj -->
+<g id="edge1" class="edge">
+<title>mm-&gt;pj</title>
+<path fill="none" stroke="#000000" d="M249.9936,-214.3066C215.7756,-199.6198 159.3064,-175.0907 111.1753,-152.8 108.2319,-151.4368 105.2146,-150.0226 102.1748,-148.5846"/>
+<polygon fill="#000000" stroke="#000000" points="103.5718,-145.3733 93.0391,-144.2275 100.5584,-151.6915 103.5718,-145.3733"/>
+</g>
+<!-- np -->
+<g id="node3" class="node">
+<title>np</title>
+<polygon fill="none" stroke="#000000" points="217.8504,-144.2019 120.5002,-144.2019 120.5002,-102.9981 217.8504,-102.9981 217.8504,-144.2019"/>
+<text text-anchor="middle" x="169.1753" y="-127.8" font-family="Arial" font-size="14.00" fill="#000000">Pide Numero</text>
+<text text-anchor="middle" x="169.1753" y="-111" font-family="Arial" font-size="14.00" fill="#000000">Participantes</text>
+</g>
+<!-- mm&#45;&gt;np -->
+<g id="edge2" class="edge">
+<title>mm-&gt;np</title>
+<path fill="none" stroke="#000000" d="M257.423,-205.5443C240.3426,-189.6839 217.1906,-168.1856 198.886,-151.1885"/>
+<polygon fill="#000000" stroke="#000000" points="201.0794,-148.4489 191.3698,-144.2092 196.3162,-153.5785 201.0794,-148.4489"/>
+</g>
+<!-- jp -->
+<g id="node4" class="node">
+<title>jp</title>
+<polygon fill="none" stroke="#000000" points="326.08,-144.2019 236.2706,-144.2019 236.2706,-102.9981 326.08,-102.9981 326.08,-144.2019"/>
+<text text-anchor="middle" x="281.1753" y="-127.8" font-family="Arial" font-size="14.00" fill="#000000">Juego</text>
+<text text-anchor="middle" x="281.1753" y="-111" font-family="Arial" font-size="14.00" fill="#000000">Participante</text>
+</g>
+<!-- mm&#45;&gt;jp -->
+<g id="edge3" class="edge">
+<title>mm-&gt;jp</title>
+<path fill="none" stroke="#000000" d="M281.1753,-205.5443C281.1753,-190.6752 281.1753,-170.8509 281.1753,-154.4258"/>
+<polygon fill="#000000" stroke="#000000" points="284.6754,-154.2092 281.1753,-144.2092 277.6754,-154.2092 284.6754,-154.2092"/>
+<text text-anchor="middle" x="322.3878" y="-175" font-family="Times,serif" font-size="14.00" fill="#000000">1...n jugadores</text>
+</g>
+<!-- ct -->
+<g id="node7" class="node">
+<title>ct</title>
+<polygon fill="none" stroke="#000000" points="503.8114,-153.0014 344.5392,-153.0014 344.5392,-94.1986 503.8114,-94.1986 503.8114,-153.0014"/>
+<text text-anchor="middle" x="424.1753" y="-136.2" font-family="Arial" font-size="14.00" fill="#000000">Comprueba Total</text>
+<text text-anchor="middle" x="424.1753" y="-119.4" font-family="Arial" font-size="14.00" fill="#000000">Con Mejor Puntuaci&#xF3;n</text>
+<text text-anchor="middle" x="424.1753" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">Hasta &gt; Ahora</text>
+</g>
+<!-- mm&#45;&gt;ct -->
+<g id="edge6" class="edge">
+<title>mm-&gt;ct</title>
+<path fill="none" stroke="#000000" d="M312.3016,-216.7074C329.431,-209.8617 350.5245,-199.9783 367.1753,-187.6 377.3437,-180.0407 387.0543,-170.4289 395.4865,-160.9665"/>
+<polygon fill="#000000" stroke="#000000" points="398.3838,-162.9654 402.2509,-153.1015 393.0767,-158.4009 398.3838,-162.9654"/>
+<text text-anchor="middle" x="426.3878" y="-175" font-family="Times,serif" font-size="14.00" fill="#000000">1...n jugadores</text>
+</g>
+<!-- mg -->
+<g id="node8" class="node">
+<title>mg</title>
+<polygon fill="none" stroke="#000000" points="592.641,-144.2019 521.7096,-144.2019 521.7096,-102.9981 592.641,-102.9981 592.641,-144.2019"/>
+<text text-anchor="middle" x="557.1753" y="-127.8" font-family="Arial" font-size="14.00" fill="#000000">Muestra</text>
+<text text-anchor="middle" x="557.1753" y="-111" font-family="Arial" font-size="14.00" fill="#000000">Ganador</text>
+</g>
+<!-- mm&#45;&gt;mg -->
+<g id="edge7" class="edge">
+<title>mm-&gt;mg</title>
+<path fill="none" stroke="#000000" d="M312.3864,-225.1704C351.1134,-221.2403 418.4745,-211.3648 471.1753,-187.6 491.5465,-178.4139 511.7271,-163.7658 527.4146,-150.8002"/>
+<polygon fill="#000000" stroke="#000000" points="529.8219,-153.3479 535.1858,-144.2112 525.2949,-148.0087 529.8219,-153.3479"/>
+</g>
+<!-- td -->
+<g id="node5" class="node">
+<title>td</title>
+<polygon fill="none" stroke="#000000" points="277.3254,-41.4019 195.0252,-41.4019 195.0252,-.1981 277.3254,-.1981 277.3254,-41.4019"/>
+<text text-anchor="middle" x="236.1753" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Tira Dado</text>
+<text text-anchor="middle" x="236.1753" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">de 1 a 100</text>
+</g>
+<!-- jp&#45;&gt;td -->
+<g id="edge4" class="edge">
+<title>jp-&gt;td</title>
+<path fill="none" stroke="#000000" d="M256.9508,-102.7878C249.826,-95.2545 242.8722,-86.1736 238.8597,-76.4 235.7113,-68.7312 234.3714,-59.959 233.9816,-51.6839"/>
+<polygon fill="#000000" stroke="#000000" points="237.4812,-51.5708 233.9313,-41.5884 230.4813,-51.6057 237.4812,-51.5708"/>
+<text text-anchor="middle" x="271.8331" y="-63.8" font-family="Times,serif" font-size="14.00" fill="#000000">1...3 tiradas</text>
+</g>
+<!-- cp -->
+<g id="node6" class="node">
+<title>cp</title>
+<polygon fill="none" stroke="#000000" points="357.3438,-41.4019 295.0068,-41.4019 295.0068,-.1981 357.3438,-.1981 357.3438,-41.4019"/>
+<text text-anchor="middle" x="326.1753" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Calcula</text>
+<text text-anchor="middle" x="326.1753" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Puntos</text>
+</g>
+<!-- jp&#45;&gt;cp -->
+<g id="edge5" class="edge">
+<title>jp-&gt;cp</title>
+<path fill="none" stroke="#000000" d="M291.8283,-102.6152C295.8393,-94.4915 300.3521,-85.0751 304.1753,-76.4 307.7861,-68.2068 311.4611,-59.2232 314.7472,-50.9118"/>
+<polygon fill="#000000" stroke="#000000" points="318.0251,-52.1396 318.3989,-41.5514 311.5037,-49.5954 318.0251,-52.1396"/>
+<text text-anchor="middle" x="344.8331" y="-63.8" font-family="Times,serif" font-size="14.00" fill="#000000">1...3 tiradas</text>
+</g>
+</g>
+</svg>
+</p></blockquote>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
