@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
       
       
       
@@ -261,6 +261,9 @@ pre[data-line] .line-highlight[data-end]:after {
   font-size: 90%;
   overflow-y: auto !important;
 }
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
 
       </style>
     </head>
@@ -361,8 +364,8 @@ pre[data-line] .line-highlight[data-end]:after {
 <tbody>
 <tr>
 <td>0x20</td>
-<td colspan="2">32</td>
-
+<td>32</td>
+<td></td>
 </tr>
 <tr>
 <td>0x22</td>
@@ -399,7 +402,7 @@ pre[data-line] .line-highlight[data-end]:after {
 
 <blockquote>
 <p><strong>Programa que determina si dos n&#xFA;meros enteros positivos son amigos</strong></p>
-<p>Dos n&#xFA;meros son amigos si la suma de los divisores del primer n&#xFA;mero excepto &#xE9;l mismo, es igual al segundo numero, y viceversa</p>
+<p>Dos n&#xFA;meros son amigos si la suma de los divisores del primer n&#xFA;mero excepto &#xE9;l mismo, es igual al segundo numero, y viceversa. Puedes saber un poco m&#xE1;s de la historia de esta relaci&#xF3;n entre n&#xFA;meros leyendo la entrada en la <a href="https://es.wikipedia.org/wiki/N%C3%BAmeros_amigos">Wikipedia</a>.</p>
 </blockquote>
 <hr>
 <h2 class="mume-header" id="white_check_mark-ejercicio-11">&#x2705; Ejercicio 11</h2>
@@ -409,10 +412,58 @@ pre[data-line] .line-highlight[data-end]:after {
 <ul>
 <li>Realiza un programa que sea capaz de <strong>sumar</strong>, <strong>restar</strong>, <strong>multiplicar</strong> y dividir.</li>
 <li>El programa presentar&#xE1; un men&#xFA; con las cuatro operaciones que puede realizar.</li>
-<li>Saldr&#xE1; del programa con la tecla <strong>ESC</strong>, para ello se podr&#xE1; usar <a href="https://docs.microsoft.com/es-es/dotnet/api/system.console.readkey?view=netcore-3.1">Console.ReadKey()</a></li>
+<li>Saldr&#xE1; del programa con la tecla <strong>ESC</strong>.</li>
 </ul>
-</blockquote>
-<hr>
+<p>&#x1F4A1; <strong>Tip:</strong> Para controlar que se ha pulsado la tecla ESC podemos usar la instrucci&#xF3;n <a href="https://docs.microsoft.com/es-es/dotnet/api/system.console.readkey">Console.ReadKey()</a><br>
+en un esquema similar a la siguiente propuesta dentro del bucle...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3,9,13]}" class="language-csharp" data-line="3,9,13"><span class="token comment">// ... Mostrar men&#xFA;        </span>
+Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;Pulsa una opci&#xF3;n: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">var</span></span> tecla <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Esta instrucci&#xF3;n se para hasta que se pulse una tecla. (Sin intro)</span>
+
+<span class="token comment">// Introducci&#xF3;n de operandos ...        </span>
+<span class="token class-name"><span class="token keyword">double</span></span> o1 <span class="token operator">=</span> <span class="token range operator">..</span><span class="token range operator">..</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">double</span></span> o2 <span class="token operator">=</span> <span class="token range operator">..</span><span class="token range operator">..</span><span class="token punctuation">;</span>
+
+<span class="token class-name"><span class="token keyword">bool</span></span> esEscape <span class="token operator">=</span> tecla<span class="token punctuation">.</span>Key <span class="token operator">==</span> ConsoleKey<span class="token punctuation">.</span>Escape<span class="token punctuation">;</span> <span class="token comment">// Comprueba si la tecla pulsada es escape.</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>esEscape<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword">char</span></span> caracterAsociadoALaTecla <span class="token operator">=</span> tecla<span class="token punctuation">.</span>KeyChar<span class="token punctuation">;</span>  <span class="token comment">// Obtener el caracter asociado a la tecla.</span>
+    <span class="token class-name"><span class="token keyword">double</span></span> resultado <span class="token operator">=</span> caracterAsociadoALaTecla <span class="token keyword">switch</span>
+    <span class="token punctuation">{</span>
+        <span class="token string character">&apos;1&apos;</span> <span class="token operator">=&gt;</span> o1 <span class="token operator">+</span> o2<span class="token punctuation">,</span>
+        <span class="token comment">//...</span>
+        _ <span class="token operator">=&gt;</span> <span class="token keyword">double</span><span class="token punctuation">.</span>NaN
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// Mostrar resultado.</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
+</div></div></pre></blockquote>
 <h2 class="mume-header" id="ejercicio-12">Ejercicio 12</h2>
 
 <blockquote>
