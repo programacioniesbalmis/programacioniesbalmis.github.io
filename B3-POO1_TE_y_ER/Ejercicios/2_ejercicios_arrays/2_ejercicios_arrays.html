@@ -365,28 +365,93 @@ Es capic&#xFA;a.
 <span class="token number">3</span>. Salir del programa.
 </pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ol>
 <li>
-<p>Si seleccionamos la primera opci&#xF3;n aparecer&#xE1; una ventana que te pida una contrase&#xF1;a, que tendr&#xE1;s que repetir para darla c&#xF3;mo v&#xE1;lida.<br>
-Mientras que est&#xE1;s escribiendo la contrase&#xF1;a solamente se ver&#xE1;n los caracteres *****<br>
-Tras validar, la contrase&#xF1;a se guardar&#xE1; en un array.</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">________________________________________
-Entrada:
+<p>Si seleccionamos la opci&#xF3;n <em>&apos;Registrarse en el sistema&apos;</em>, aparecer&#xE1; una ventana que te pida una contrase&#xF1;a, que tendr&#xE1;s que repetir para darla c&#xF3;mo v&#xE1;lida.<br>
+Mientras que est&#xE1;s escribiendo la contrase&#xF1;a solamente se ver&#xE1;n los caracteres *****</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt">________________________________________
+Registrarse:
+
   Contrase&#xF1;a: ****
   Comprobar Contrase&#xF1;a: *****
 ________________________________________
-</pre></li>
+</pre><p>Las contrase&#xF1;as se leer&#xE1;n directamente en un <strong>array de caracteres de longitud m&#xE1;xima 20</strong> y tras la validar el proceso de registro viendo que las dos contrase&#xF1;as son iguales, <strong>la contrase&#xF1;a la guardaremos un array de caracteres</strong> no almacenandose ni como String o StringBuilder en ning&#xFA;n momento.</p>
+</li>
 <li>
-<p>En la opci&#xF3;n de Entrar al sistema, introducir&#xE1;s una cadena por teclado, se comprobar&#xE1; si la cadena introducida es igual a la contrase&#xF1;a guardada en el array.<br>
+<p>En la opci&#xF3;n de <em>&apos;Entrar al sistema&apos;</em>, introduciremos una cadena por teclado, se comprobar&#xE1; si la cadena introducida es igual a la contrase&#xF1;a guardada en el array.<br>
 Se avisar&#xE1; con un texto si la entrada ha sido correcta.</p>
-<pre data-role="codeBlock" data-info="bash" class="language-bash">______________________________________________
-Salida:		
+<pre data-role="codeBlock" data-info="txt" class="language-txt">______________________________________________
+Entrar:
+
   Introduce Contrase&#xF1;a: **
   La contrase&#xF1;a es correcta/incorrecta
 _______________________________________________
-</pre></li>
+</pre><p>No podremos entrar en esta opci&#xF3;n sin habernos registrado en el sistema y si lo hacemos deberemos indicarle al usuario que antes deber&#xED;a registrarse.</p>
+</li>
 </ol>
-<p>&#x1F4CC; <strong>Nota:</strong> solo tendr&#xE1;s un m&#xE9;todo <strong><code>RecogeContrase&#xF1;a</code></strong> al que se llamar&#xE1; las veces necesarias en ambas opciones. Para recoger contrase&#xF1;a utilizaremos <strong><code>Console.ReadKey(true)</code></strong>, que permite leer un car&#xE1;cter de teclado, con la opci&#xF3;n true no se mostrar&#xE1; por pantalla. Al mismo tiempo puedes mostrar un asterisco, y tenemos el efecto deseado.</p>
-</blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> tendremos un m&#xE9;todo llamado <strong><code>RecogeContrase&#xF1;a</code></strong> que leer&#xE1; un texto de forma oculta y al que llamaremos las veces necesarias en ambas opciones.</p>
+<p>Para recoger contrase&#xF1;a utilizaremos <strong><code>Console.ReadKey(true)</code></strong>, que permite leer un car&#xE1;cter de teclado.con la opci&#xF3;n <strong>true</strong> no se mostrar&#xE1; por pantalla el eco de la tecla pulsada. Al mismo tiempo puedes mostrar un asterisco, y tenemos el efecto deseado. M&#xE1;s o menos un boceto de lo qeu deber&#xED;amos hacer ser&#xED;a lo siguiente ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[7,8,13,14]}" class="language-csharp" data-line="7,8,13,14"><span class="token class-name">ConsoleKeyInfo</span> teclaFisica<span class="token punctuation">;</span>
+<span class="token keyword keyword-do">do</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Leo una tecla &apos;f&#xED;sica&apos; del teclado sin eco por pantalla</span>
+    teclaFisica <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// teclaFisica.Key contiene tecla &apos;f&#xED;sica&apos; y si no es intro me la guardo</span>
+    <span class="token comment">// y muestro un asterisco</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>teclaFisica<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Hago yo su eco</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// teclaFisica.KeyChar contiene el caracter que representa la tecla</span>
+        <span class="token comment">// f&#xED;sica pulsada.</span>
+        <span class="token class-name"><span class="token keyword keyword-char">char</span></span> caracter <span class="token operator">=</span> teclaFisica<span class="token punctuation">.</span>KeyChar<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token comment">// Leo mientras no sea intro</span>
+<span class="token punctuation">}</span> <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>teclaFisica<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="14" data-start="14">
+</div></div></pre></blockquote>
 <hr>
+<div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="white_check_markejercicio-10">&#x2705;Ejercicio 10</h2>
 
 <blockquote>
@@ -396,8 +461,13 @@ _______________________________________________
 <li>Se supone que como m&#xE1;ximo podemos tener <strong>25 alumnos</strong>.</li>
 <li>Se trata de obtener <strong>la frecuencia</strong> de las notas (<em>n&#xFA;mero de veces que cada nota aparece</em>).</li>
 </ul>
-<p>&#x1F4A1; <strong>Pista:</strong> Puedes usar un array para guardar las frecuencias, relacionando la posici&#xF3;n del array con la nota del alumno. Incrementando el contenido de la posici&#xF3;n <strong><code>i</code></strong>, cada vez que salga una nota <strong><code>n</code></strong>.</p>
-</blockquote>
+<p>&#x1F4A1; <strong>Pista:</strong> Puedes usar un array para guardar las frecuencias, relacionando la posici&#xF3;n del array con la nota del alumno. Incrementando el contenido de la posici&#xF3;n <strong><code>i</code></strong>, cada vez que salga una nota <strong><code>n</code></strong>.<br>
+<strong>Ejemplo:</strong> Imagina que tengo 10 notas <strong><code>notas = [2][4][4][5][5][5][6][7][7][9]</code></strong><br>
+En un array <strong>de tama&#xF1;o 11</strong> llamado <strong><code>frecuenciaNotas = [0][0][0][0][0][0][0][0][0][0][0]</code></strong> guardaremos la cuenta de cada una de ellas. F&#xED;jate, que los &#xED;ndices en ese array van del <strong>0</strong> al <strong>10</strong> que son los posibles valores v&#xE1;lidos de notas. Por tanto, en la posici&#xF3;n de &#xED;ndice <strong>5</strong> guardaremos la cuenta de las veces que ha aparecido la <strong>nota 5</strong> en <strong><code>notas</code></strong> que es <strong>3</strong>.</p>
+<p>Al final del proceso de <strong><code>notas</code></strong> el array <strong><code>frecuenciaNotas</code></strong> quedar&#xE1; ...</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">  0    1    2    3    4    5    6    7    8    9   10
+[ 0 ][ 0 ][ 1 ][ 0 ][ 2 ][ 3 ][ 1 ][ 2 ][ 0 ][ 1 ][ 0 ]
+</pre></blockquote>
 <hr>
 <h2 class="mume-header" id="ejercicio-11">Ejercicio 11</h2>
 
@@ -405,6 +475,7 @@ _______________________________________________
 <p>Introduce un array de 10 elementos y <strong>desplaza</strong> todos sus componentes una posici&#xF3;n hacia la derecha, colocando el &#xFA;ltimo en la primera posici&#xF3;n. Visualiza el array antes y despu&#xE9;s del desplazamiento.</p>
 </blockquote>
 <hr>
+<div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="ejercicio-12">Ejercicio 12</h2>
 
 <blockquote>
