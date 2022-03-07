@@ -356,7 +356,8 @@ justo después del front matter
 <li><a href="#i-principio-de-segregaci%C3%B3n-de-interfaces-isp">I &#x2192; Principio de Segregaci&#xF3;n de Interfaces (ISP)</a></li>
 <li><a href="#d-principio-de-inversi%C3%B3n-de-dependencias-dip">D &#x2192; Principio de Inversi&#xF3;n de Dependencias (DIP)</a>
 <ol>
-<li><a href="#patr%C3%B3n-creacional-factory-method-factory">Patr&#xF3;n creacional Factory Method &#x1F3ED;</a></li>
+<li><a href="#factory-patr%C3%B3n-creacional-factory-method">&#x1F3ED; Patr&#xF3;n creacional Factory Method</a></li>
+<li><a href="#construction_worker-patr%C3%B3n-creacional-builder-simplificado">&#x1F477; Patr&#xF3;n creacional Builder (simplificado)</a></li>
 </ol>
 </li>
 </ol>
@@ -975,7 +976,15 @@ JVM: OpenJDK 64-Bit Server VM
 Default Encoding: UTF-8
 Language: es
 Country: ES
---></g></svg></p><div style="page-break-after:always;"></div>
+--></g></svg></p><div class="contenedor">
+<div class="fondo">
+    <div class="abre_comilla">&quot;</div>
+    <div class="cierra_comilla">&quot;</div>
+    <div class="cita">The three chief virtues of a programmer are: Laziness, Impatience and Hubris.</div>
+    <div class="autor">- Larry Wall.</div>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="d-principio-de-inversi%C3%B3n-de-dependencias-dip">D &#x2192; Principio de Inversi&#xF3;n de Dependencias (DIP)</h3>
 
 <p>Es uno de los m&#xE1;s importantes y muy a tener en cuenta en nuestros dise&#xF1;os. El hacerlo, nos <strong>facilitar&#xE1; la labor de creaci&#xF3;n de test unitarios</strong>.</p>
@@ -1170,10 +1179,10 @@ La respuesta es que no podremos, ya que creamos directamente el objeto de bajo n
         Revoluciones <span class="token operator">+=</span> RELACION_INYECCION_MARCHA_CILINDRADA_ETC_DIESEL<span class="token punctuation">;</span> 
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><h4 class="mume-header" id="patr%C3%B3n-creacional-factory-method-factory">Patr&#xF3;n creacional Factory Method &#x1F3ED;</h4>
+</pre><h4 class="mume-header" id="factory-patr%C3%B3n-creacional-factory-method">&#x1F3ED; Patr&#xF3;n creacional Factory Method</h4>
 
 <p>Pero... &#xBF;C&#xF3;mo realizar esta inversi&#xF3;n de dependencias teniendo en cuenta la relaci&#xF3;n de <strong>composici&#xF3;n</strong> entre <strong><code>Vehiculo</code></strong> y <strong><code>Motor</code></strong>?. Una posibilidad es usas el patr&#xF3;n <strong>Method Factory</strong>, el cual se encargar&#xE1; de de relacionar las dos clases.</p>
-<p>El esquema b&#xE1;sico del patr&#xF3;n ser&#xE1; el siguiente:</p>
+<p>El esquema <strong>tradicional</strong> y b&#xE1;sico del patr&#xF3;n ser&#xE1; el siguiente:</p>
 <p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="203px" preserveAspectRatio="none" style="width:378px;height:203px;background:#FFFFFF;" version="1.1" viewBox="0 0 378 203" width="378px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jd1hqa6oybbx" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[72136138052d025cffdce3c22fbd185f]
 class Product--><rect codeline="9" fill="#FFFAFA" filter="url(#f1jd1hqa6oybbx)" height="40" id="Product" style="stroke:#000000;stroke-width:1.5;" width="74" x="56" y="21"/><ellipse cx="71" cy="37" fill="#A9DCDF" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M73.1875,38.7656 L69.0469,38.7656 L68.625,39.7969 L69.0469,39.7969 Q69.6563,39.7969 69.9219,40.0313 Q70.1875,40.2656 70.1875,40.6563 Q70.1875,41.0313 69.9219,41.2656 Q69.6563,41.5 69.0469,41.5 L66.75,41.5 Q66.1406,41.5 65.8906,41.2656 Q65.625,41.0313 65.625,40.6406 Q65.625,40.2656 65.9063,40.0313 Q66.1719,39.7813 66.7969,39.7969 L69.4688,33.1406 L68.3594,33.1406 Q67.75,33.1406 67.4844,32.9063 Q67.2188,32.6719 67.2188,32.2813 Q67.2188,31.9063 67.4844,31.6719 Q67.75,31.4375 68.3594,31.4375 L72.0313,31.4375 L75.4219,39.7969 Q76.0156,39.7969 76.2031,39.9375 Q76.5938,40.2031 76.5938,40.6563 Q76.5938,41.0313 76.3281,41.2656 Q76.0781,41.5 75.4688,41.5 L73.1719,41.5 Q72.5625,41.5 72.2969,41.2656 Q72.0313,41.0313 72.0313,40.6406 Q72.0313,40.2656 72.2969,40.0313 Q72.5625,39.7969 73.1719,39.7969 L73.5938,39.7969 L73.1875,38.7656 Z M72.4688,37.0625 L71.1094,33.6875 L69.7344,37.0625 L72.4688,37.0625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="42" x="85" y="41.9102">Product</text><line style="stroke:#000000;stroke-width:1.5;" x1="57" x2="129" y1="53" y2="53"/><!--MD5=[990132e04f994323e3060f5453bb4352]
 class ConcreteProduct--><rect codeline="10" fill="#FFFAFA" filter="url(#f1jd1hqa6oybbx)" height="40" id="ConcreteProduct" style="stroke:#000000;stroke-width:1.5;" width="124" x="7" y="143"/><ellipse cx="22" cy="159" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M24.7656,154.875 Q24.9219,154.6563 25.1094,154.5469 Q25.2969,154.4375 25.5156,154.4375 Q25.8906,154.4375 26.125,154.7031 Q26.3594,154.9531 26.3594,155.5625 L26.3594,157.0156 Q26.3594,157.625 26.125,157.8906 Q25.8906,158.1563 25.5156,158.1563 Q25.1719,158.1563 24.9688,157.9531 Q24.7656,157.7656 24.6563,157.25 Q24.6094,156.8906 24.4219,156.7031 Q24.0938,156.3281 23.4844,156.1094 Q22.875,155.8906 22.25,155.8906 Q21.4844,155.8906 20.8438,156.2188 Q20.2188,156.5469 19.7188,157.2969 Q19.2344,158.0469 19.2344,159.0781 L19.2344,160.1719 Q19.2344,161.4063 20.125,162.2344 Q21.0156,163.0469 22.6094,163.0469 Q23.5469,163.0469 24.2031,162.7969 Q24.5938,162.6406 25.0156,162.2031 Q25.2813,161.9375 25.4219,161.8594 Q25.5781,161.7813 25.7813,161.7813 Q26.1094,161.7813 26.3594,162.0469 Q26.625,162.2969 26.625,162.6406 Q26.625,162.9844 26.2813,163.3906 Q25.7813,163.9688 24.9844,164.2969 Q23.9063,164.75 22.6094,164.75 Q21.0938,164.75 19.8906,164.125 Q18.9063,163.625 18.2188,162.5625 Q17.5313,161.4844 17.5313,160.2031 L17.5313,159.0469 Q17.5313,157.7188 18.1406,156.5781 Q18.7656,155.4219 19.8594,154.8125 Q20.9531,154.1875 22.1875,154.1875 Q22.9219,154.1875 23.5625,154.3594 Q24.2188,154.5156 24.7656,154.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="92" x="36" y="163.9102">ConcreteProduct</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="130" y1="175" y2="175"/><!--MD5=[2c589014e840926a718801db2289e0a7]
@@ -1316,14 +1325,21 @@ Country: ES
 <span class="token punctuation">}</span>
 </pre><div style="page-break-after:always;"></div>
 <blockquote>
-<p>&#x1F4CC; <strong>Nota:</strong> Si nos fijamos a efectos pr&#xE1;cticos seguir&#xE1; cumpli&#xE9;ndose la composici&#xF3;n porque las referencias a motor desaparecer&#xE1;n junto con el veh&#xED;culo.</p>
+<p>&#x270B; Si nos fijamos a efectos pr&#xE1;cticos seguir&#xE1; cumpli&#xE9;ndose la composici&#xF3;n porque las referencias a motor desaparecer&#xE1;n junto con el veh&#xED;culo.</p>
+</blockquote>
 <p>Adem&#xE1;s:</p>
 <ol>
-<li>Cumplimos <strong>DIP</strong> porque la clase de alto nivel <strong><code>Veh&#xED;culo</code></strong> depende solo de la abstracci&#xF3;n <strong><code>Motor</code></strong> y as&#xED; como las especificaciones de bajo nivel de motor.</li>
-<li>El &apos;<em>Factory Method</em>&apos; es la que tiene dependencias de uso (<strong><code>&lt;&lt;use&gt;&gt;</code></strong>) con las clases implicadas y se encargara de crear inst&#xE1;ncias de los diferentes tipos de veh&#xED;culos asegur&#xE1;ndonos que al desaparecer un veh&#xED;culo desaparezca su motor.</li>
-<li>La clase <strong><code>Principal</code></strong> usa las clases subclases &apos;<em>factor&#xED;a</em>&apos; para instanciar objetos veh&#xED;culo de forma simple y adem&#xE1;s podr&#xED;amos usar esta misma de <strong>forma simple</strong> en nuestros test para crear <strong><a href="https://es.wikipedia.org/wiki/Objeto_simulado">mocks</a></strong> de veh&#xED;culo para hacer pruebas unitarias.</li>
-<li>Cumplimos el principio <strong>OCP</strong> porque si a&#xF1;adi&#xE9;semos un nuevo tipo de motor no las definiciones Vehiculo e Motor no tendr&#xED;amos que modificarlas (Cerradas para Modificaci&#xF3;n) y solo tendr&#xED;amos que definir nuevas concreciones (Abiertas para ampliaci&#xF3;n).</li>
-</ol>
+<li>
+<p>Cumplimos <strong>DIP</strong> porque la clase de alto nivel <strong><code>Veh&#xED;culo</code></strong> depende solo de la abstracci&#xF3;n <strong><code>Motor</code></strong> y as&#xED; como las especificaciones de bajo nivel de motor.</p>
+</li>
+<li>
+<p>El &apos;<em>Factory Method</em>&apos; es la que tiene dependencias de uso (<strong><code>&lt;&lt;use&gt;&gt;</code></strong>) con las clases implicadas y se encargara de crear inst&#xE1;ncias de los diferentes tipos de veh&#xED;culos asegur&#xE1;ndonos que al desaparecer un veh&#xED;culo desaparezca su motor.</p>
+</li>
+<li>
+<p>La clase <strong><code>Principal</code></strong> usa las clases subclases &apos;<em>factor&#xED;a</em>&apos; para instanciar objetos veh&#xED;culo de forma simple y adem&#xE1;s podr&#xED;amos usar esta misma de <strong>forma simple</strong> en nuestros test para crear <strong><a href="https://es.wikipedia.org/wiki/Objeto_simulado">mocks</a></strong> de veh&#xED;culo para hacer pruebas unitarias.</p>
+</li>
+<li>
+<p>Cumplimos el principio <strong>OCP</strong> porque si a&#xF1;adi&#xE9;semos un nuevo tipo de motor, las definiciones Vehiculo e Motor no tendr&#xED;amos que modificarlas (Cerradas para Modificaci&#xF3;n) y solo tendr&#xED;amos que definir nuevas concreciones (Abiertas para ampliaci&#xF3;n). Por ejemplo si a&#xF1;adimos un tipo de motor llamado <strong><code>MotorElectrico</code></strong> tendr&#xED;amos solo que definir las nuevas concreciones de las abstracciones ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MotorElectrico</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Motor</span></span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1347,15 +1363,181 @@ Country: ES
         <span class="token class-name">Vehiculo</span> ve <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">VehiculoElectrico</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre></blockquote>
-<div class="contenedor">
-<div class="fondo">
-    <div class="abre_comilla">&quot;</div>
-    <div class="cierra_comilla">&quot;</div>
-    <div class="cita">The three chief virtues of a programmer are: Laziness, Impatience and Hubris.</div>
-    <div class="autor">- Larry Wall.</div>
-</div>
-</div>
+</pre></li>
+</ol>
+<p>Sin embargo, si a&#xF1;adi&#xE9;semos nuevos componentes al veh&#xED;culo como por ejemplo neum&#xE1;ticos de varios tipos. Las combinaciones de creaci&#xF3;n podr&#xED;an crecer y posiblemente necesitemos definir muchos tipos nuevos a modo de &apos;<em>factor&#xED;a</em>&apos;. Algo similar a la que nos suced&#xED;a con los componentes de ordenador y que solucionamos con un patr&#xF3;n Decorator.</p>
+<p>Otro patr&#xF3;n creacional usado sobretodo por programadores de Java para facilitar sus test es el denominado <strong>Builder</strong>.</p>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="construction_worker-patr%C3%B3n-creacional-builder-simplificado">&#x1F477; Patr&#xF3;n creacional Builder (simplificado)</h4>
+
+<p>En este ejemplo vamos a salirnos del dise&#xF1;o tradicional del patr&#xF3;n. Pero s&#xED;, vamos ver una propuesta simplificada bastante ilustrativa de la idea del mismo.</p>
+<p>Supongamos como coment&#xE1;bamos, que queremos a&#xF1;adir neum&#xE1;ticos a nuestros veh&#xED;culos. Podemos definir la siguiente abstracci&#xF3;n de los datos de un neum&#xE1;tico con sus abstracciones...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">INeumaticos</span>
+<span class="token punctuation">{</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> IndiceVelocidad <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> IndiceCarga <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Radio <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Perfil <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Ancho <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">NeumaticosNormal</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">INeumaticos</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> IndiceVelocidad <span class="token operator">=&gt;</span> <span class="token string">&quot;H&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> IndiceCarga <span class="token operator">=&gt;</span> <span class="token number">88</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Radio <span class="token operator">=&gt;</span> <span class="token number">16</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Perfil <span class="token operator">=&gt;</span> <span class="token number">55</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Ancho <span class="token operator">=&gt;</span> <span class="token number">205</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">NeumaticosSport</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">INeumaticos</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> IndiceVelocidad <span class="token operator">=&gt;</span> <span class="token string">&quot;Y&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> IndiceCarga <span class="token operator">=&gt;</span> <span class="token number">92</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Radio <span class="token operator">=&gt;</span> <span class="token number">18</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Perfil <span class="token operator">=&gt;</span> <span class="token number">40</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Ancho <span class="token operator">=&gt;</span> <span class="token number">225</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Vamos a modificar la definici&#xF3;n de veh&#xED;culo.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Vehiculo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Motor</span> Motor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">INeumaticos</span> Neumaticos <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token function">Vehiculo</span><span class="token punctuation">(</span><span class="token class-name">Motor</span> motor<span class="token punctuation">,</span> <span class="token class-name">INeumaticos</span> neumaticos<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Motor <span class="token operator">=</span> motor<span class="token punctuation">;</span>
+        Neumaticos <span class="token operator">=</span> neumaticos<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Motor<span class="token punctuation">.</span><span class="token function">Acelera</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Revoluciones <span class="token operator">=&gt;</span> Motor<span class="token punctuation">.</span>Revoluciones<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>F&#xED;jate que <strong>ya no es una clase abstracta</strong> y que adem&#xE1;s el constructor tiene m&#xE1;s sentido al recibir las abstracciones para cumplir <strong>DIP</strong>. Es una clase m&#xE1;s simple y sin definir m&#xE9;todos raros fuera de su &apos;<em>responsabilidad</em>&apos;.</p>
+<div style="page-break-after:always;"></div>
+<p>Definiremos ahora una clase <strong><code>Builder</code></strong> a modo de &apos;<em>obrero de la consrtrucci&#xF3;n</em>&apos; a la que le iremos pasando los componentes para ensamblar un determinado tipo de veh&#xED;culo. Dicha clase le podemos llamar <strong><code>VehiculoBuilder</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3,4, 8-10, 22-26]}" class="language-csharp" data-line="3,4,8-10,22-26"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">VehiculoBuilder</span>
+<span class="token punctuation">{</span>    
+    <span class="token comment">// Debe definir propiedades autoimplementadas con los campos o </span>
+    <span class="token comment">// &apos;piezas&apos; que necesita el &apos;obrero&apos; para ensamblar un objeto de tipo veh&#xED;culo.</span>
+    <span class="token keyword keyword-private">private</span> <span class="token return-type class-name">Motor</span> Motor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-private">private</span> <span class="token return-type class-name">INeumaticos</span> Neumaticos <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token comment">// Definimos Setters para cada una de las piezas pero de con un</span>
+    <span class="token comment">// interfaz flu&#xED;do, para facilitar la sint&#xE1;xis de construcci&#xF3;n.</span>
+    <span class="token comment">// Es la forma en que le pasamos al &apos;obrero&apos; las piezas necesarias para ensamplar el veh&#xED;culo.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">VehiculoBuilder</span> <span class="token function">SetMotor</span><span class="token punctuation">(</span><span class="token class-name">Motor</span> m<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Motor <span class="token operator">=</span> m<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">VehiculoBuilder</span> <span class="token function">SetNeumaticos</span><span class="token punctuation">(</span><span class="token class-name">INeumaticos</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Neumaticos <span class="token operator">=</span> n<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Por &#xFA;ltimo, definiremos un m&#xE9;tod llamado Build() que devulver&#xE1; un objeto veh&#xED;culo creado.</span>
+    <span class="token comment">// F&#xED;jate que si no est&#xE1; definido uno de los compoenentes o piezas del veh&#xED;culo, </span>
+    <span class="token comment">// el obrero crear&#xE1; una por defecto o que puede definirse en funci&#xF3;n de las otras. </span>
+    <span class="token comment">// Por ejemplo, podr&#xED;amos decidir que si el motor es gasolina y no me han </span>
+    <span class="token comment">// definido los neum&#xE1;ticos, podr&#xED;a montar por defecto neum&#xE1;ticos sport para ese tipo de motor.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Vehiculo</span> <span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Vehiculo</span><span class="token punctuation">(</span>
+        Motor <span class="token operator">??</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">MotorGasolina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        Neumaticos <span class="token operator">??</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">NeumaticosNormal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="8-10" data-start="8" data-end="10">
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="22-26" data-start="22" data-end="26">
+
+
+
+
+</div></div></pre><p>Ahora crear, difenetes combinaciones de vh&#xED;culos ser&#xED;a bastante simple e intuitiva.</p>
+<pre data-role="codeBlock" data-info="csharp  {highlight=[3, 6, 10,11]}" class="language-csharp" data-line="3,6,10,11"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Definimos el &apos;obrero que va a construir los veh&#xED;culos&apos;.</span>
+    <span class="token class-name">VehiculoBuilder</span> builder <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">VehiculoBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// &#x1F477;</span>
+
+    <span class="token comment">// Creamos un veh&#xED;culo con motor de gasol&#xED;na y neum&#xE1;ticos sport.</span>
+    <span class="token class-name">Vehiculo</span> gasolinaSport <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">SetMotor</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">MotorGasolina</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">SetNeumaticos</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">NeumaticosSport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Le cambiamos el componente de neum&#xE1;ticos a obrero para que ahora</span>
+    <span class="token comment">// me haga un veh&#xED;culo con motor de gasol&#xED;na y neum&#xE1;ticos normales. </span>
+    <span class="token class-name">Vehiculo</span> gasolinaNormal <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">SetNeumaticos</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">NeumaticosNormal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span><span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre><blockquote>
+<p>&#x270B; <strong>Importante:</strong> Si te fijas bien en el c&#xF3;digo, podremos definir todas las combinaciones de motor y neum&#xE1;tico que queramos, simplemente definiendo nuesvas concreciones y sin tener que definir una factor&#xED;a espec&#xED;fica de la combinaci&#xF3;n. Adem&#xE1;s cumpliremos <strong>OCP</strong> y <strong>DIP</strong> ya que al definir nuevos tipos de neum&#xE1;tico o motor no tendremos que redefinir la clase <strong><code>Veh&#xED;culo</code></strong>, ni niguna de los &apos;<em>ensamblajes</em>&apos; de veh&#xED;culos ya creadas.</p>
+</blockquote>
 
       </div>
       
