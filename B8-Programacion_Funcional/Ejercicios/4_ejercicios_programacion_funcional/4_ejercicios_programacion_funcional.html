@@ -1,0 +1,553 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios programaci&#xF3;n funcional</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="ejercicios-programaci%C3%B3n-funcional">Ejercicios programaci&#xF3;n funcional</h1>
+
+<p><a href="./4_ejercicios_programacion_funcional.pdf">Descargar estos ejercicios</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#ejercicio-1">Ejercicio 1</a></li>
+<li><a href="#ejercicio-2">Ejercicio 2</a></li>
+<li><a href="#ejercicio-3">Ejercicio 3</a></li>
+<li><a href="#white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</a></li>
+<li><a href="#white_check_mark-ejercicio-5">&#x2705; Ejercicio 5</a></li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="ejercicio-1">Ejercicio 1</h3>
+
+<blockquote>
+<p>Crea una aplicaci&#xF3;n que a partir de una Lista de enteros, te muestre los m&#xFA;ltiplos de un n&#xFA;mero introducido por teclado que existan en la lista, usando <strong>funciones-&#x3BB;</strong> y el operador <strong><code>?:</code></strong></p>
+</blockquote>
+<h3 class="mume-header" id="ejercicio-2">Ejercicio 2</h3>
+
+<blockquote>
+<p>Crea una aplicaci&#xF3;n que sirva para <strong>buscar coincidencias en una lista de cadenas</strong>. Para ello, asignaremos a <strong>un delegado gen&#xE9;rico</strong> una una <strong>funci&#xF3;n-&#x3BB;</strong> que reciba una lista y una cadena y sobre la lista con el m&#xE9;todo <strong><code>FindAll</code></strong> busque la cadena.<br>
+Ten en cuenta que el m&#xE9;todo <strong><code>FindAll</code></strong> necesitar&#xE1; un predicado para el cual utilizaremos otra funci&#xF3;n-&#x3BB; para formarlo.<br>
+&#x1F4CC; <strong>Nota:</strong> Puede serte de utilidad la operaci&#xF3;n <strong><code>Contains</code></strong> sobre cadenas.<br>
+Por &#xFA;ltimo, muestra, con el m&#xE9;todo <strong><code>public void ForEach (Action&lt;T&gt; action);</code></strong> <a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.foreach">definido en  <code>List&lt;T&gt;</code></a>, la lista resultante que devuelva la invocaci&#xF3;n del delegado.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="ejercicio-3">Ejercicio 3</h3>
+
+<blockquote>
+<p>Vamos a modificar el ejercicio de la biblioteca del bloque anterior para aplicar funciones lambda, dando tipo a las mismas a trav&#xE9;s de los delegados gen&#xE9;ricos predefinidos en .NET como <strong><code>Action&lt;..&gt;</code></strong>, <strong><code>Predicate&lt;..&gt;</code></strong>, <strong><code>Func&lt;...&gt;</code></strong>, etc.<br>
+Los m&#xE9;todos a modificar se indicar&#xE1;n a continuaci&#xF3;n y en ellos deber&#xE1;s completar lo indicado entre corchetes.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Libro</span> <span class="token function">BuscaPorISBN</span><span class="token punctuation">(</span><span class="token class-name">String</span> isbn<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Tipo</span></span><span class="token punctuation">]</span> TieneISBN <span class="token operator">=</span> <span class="token punctuation">[</span>funcion<span class="token operator">-</span>&#x3BB;<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> Libros<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span>TieneISBN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">CuentaLibrosConNumeroDePaginasMenorA</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> num<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Tipo</span></span><span class="token punctuation">]</span> TienepaPaginasMenorANum <span class="token operator">=</span> <span class="token punctuation">[</span>funcion<span class="token operator">-</span>&#x3BB;<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> Libros<span class="token punctuation">.</span><span class="token function">FindAll</span><span class="token punctuation">(</span>TienepaPaginasMenorANum<span class="token punctuation">)</span><span class="token punctuation">.</span>Count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">EliminaPorAutor</span><span class="token punctuation">(</span><span class="token class-name">String</span> autor<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Tipo</span></span><span class="token punctuation">]</span> EsDeAutor <span class="token operator">=</span> <span class="token punctuation">[</span>funcion<span class="token operator">-</span>&#x3BB;<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    Libros<span class="token punctuation">.</span><span class="token function">RemoveAll</span><span class="token punctuation">(</span>EsDeAutor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EstaPrestado</span><span class="token punctuation">(</span><span class="token class-name">String</span> isbn<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Tipo</span></span><span class="token punctuation">]</span> ContieneCandena <span class="token operator">=</span> <span class="token punctuation">[</span>funcion<span class="token operator">-</span>&#x3BB;<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token function">LibrosPrestados</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span>ContieneCandena<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">LibrosPrestados</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// Incluye aqu&#xED; el c&#xF3;digo donde se lee el StreamReader con los libros </span>
+    <span class="token comment">// prestados que se guardar&#xF3;n con el ToString de los objetos an&#xF3;nimos </span>
+    <span class="token comment">// pr&#xE9;stamo. Adem&#xE1;s, para generar la secuencia utiliza la producci&#xF3;n </span>
+    <span class="token comment">// perezosa yield return&#x2026;</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</h3>
+
+<blockquote>
+<p>Vamos ha realizar una serie de operaciones funcionales usando funciones-&#x3BB; con el patr&#xF3;n <strong>Map &#x2013; Filter &#x2013; Fold</strong> (Select &#x2013; Where &#x2013; Aggregate en C#)</p>
+<p>Partiremos de la siguiente lista de n&#xFA;meros reales:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span></span> reales <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span></span> 
+<span class="token punctuation">{</span> 
+	<span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">1.6</span><span class="token punctuation">,</span> <span class="token number">2.8</span><span class="token punctuation">,</span> <span class="token number">3.9</span><span class="token punctuation">,</span> <span class="token number">4.1</span><span class="token punctuation">,</span> <span class="token number">5.2</span><span class="token punctuation">,</span> <span class="token number">6.3</span><span class="token punctuation">,</span> <span class="token number">7.4</span><span class="token punctuation">,</span> <span class="token number">8.1</span><span class="token punctuation">,</span> <span class="token number">9.2</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><p>Vamos a realizar las siguientes operaciones:</p>
+<ol>
+<li>
+<p>Mostrar la lista usando el m&#xE9;todo <strong><code>ForEach(Action&lt;T&gt; action)</code></strong> de lista. Pasando a la funci&#xF3;n-&#x3BB; action, una <strong>clausura</strong> de la variable string texto, en la que iremos componiendo su contenido separado por un espacio en blanco.</p>
+</li>
+<li>
+<p>Cuenta aquellos elementos cuya <strong>parte decimal es menor que 0.5</strong></p>
+<ul>
+<li><strong>Map:</strong> Paso del valor real a su parte decimal. <strong>Ej: 2.8 &#x2192; 0.8</strong></li>
+<li><strong>Filter:</strong> Filtro aquellas partes decimales que cumplen el predicado: <strong>d &lt; 0.5</strong></li>
+<li><strong>Fold:</strong> Contar los elementos en la secuencia resultante.</li>
+</ul>
+</li>
+<li>
+<p>Calcular la suma de todos los valores de la secuencia cuya <strong>parte entera sea m&#xFA;ltiplo de 3</strong>.</p>
+<ul>
+<li><strong>Map:</strong> Mapea el valor real a un objeto an&#xF3;nimo con la parte entera y el propio valor real de la secuencia. <strong>Ej: <code>2.8 &#x2192; new { e = 2, r = 2.8 }</code></strong></li>
+<li><strong>Filter:</strong> Filtro aquellas partes enteras que cumplen el predicado:  <strong><code>o.e % 3 == 0</code></strong></li>
+<li><strong>Fold:</strong> Suma todos los <strong><code>o.r</code></strong> de la secuencia resultante.</li>
+</ul>
+</li>
+<li>
+<p>Calcular el m&#xE1;ximo valor de la secuencia cuya parte decimal es mayor que <strong>0.5</strong></p>
+<ul>
+<li><strong>Map:</strong> Mapea el valor real a un objeto an&#xF3;nimo con la parte decimal y el propio valor real de la secuencia. <strong>Ej: <code>2.8 &#x2192; new { d = 0.8, r = 2.8 }</code></strong></li>
+<li><strong>Filter:</strong> Filtro aquellas partes decimales que cumplen el predicado: <strong><code>o.d &gt; 0.5</code></strong></li>
+<li><strong>Fold:</strong> Me quedo con el m&#xE1;ximo de todos los <strong><code>o.r</code></strong> de la secuencia resultante.</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<ol start="5">
+<li>
+<p><strong>Ampliaci&#xF3;n</strong>: Muestra aquellos elementos de la secuencia cuya <strong>parte entera es un valor primo</strong>.<br>
+&#x1F4A1; <strong>Idea:</strong> Seguramente has de hacer m&#xE1;s de un <strong><code>Filter</code></strong> e incluso otro <strong><code>Filter</code></strong> dentro de uno de ellos. Adem&#xE1;s, para crear un predicado que me diga si un n&#xFA;mero primo de forma funcional (pero poco eficiente) puedes hacer lo siguiente ...</p>
+<ol>
+<li>Generar una <strong>secuencia entre 2 y la parte entera menos uno</strong> con <strong><code>Enumerable.Range()</code></strong></li>
+<li>Filtrar aquellos valores divisibles por la parte entera.</li>
+<li>Preguntar si la secuencia resultante tiene 0 elementos.</li>
+</ol>
+</li>
+</ol>
+<p>Una vez completadas todas las operaciones. Al ejecutar el programa la salida por pantalla del programa deber&#xE1; ser ...</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt">Elementos: 0,5 1,6 2,8 3,9 4,1 5,2 6,3 7,4 8,1 9,2
+N&#xFA;mero elementos con parte decimal &lt; 0,5 = 6
+Suma elementos con parte entera m&#xFA;ltiplo de 3 = 19,4
+M&#xE1;ximo cuya parte decimal &gt; 0,5 = 3,9
+Elementos parte entera es primo: 2,8 3,9 5,2 7,4
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="white_check_mark-ejercicio-5">&#x2705; Ejercicio 5</h3>
+
+<blockquote>
+<p>En el el <strong>zip de propuestas de soluci&#xF3;n para autoevaluaci&#xF3;n</strong> de este bloque de ejercicios, hay un fichero denominado <strong><code>Ej5_ConsultasProductos_a_completar.cs</code></strong> donde hay definidas las siguientes clases ...</p>
+<p align="center"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="130px" preserveAspectRatio="none" style="width:378px;height:130px;background:#00000000;" version="1.1" viewBox="0 0 378 130" width="378px" zoomAndPan="magnify"><defs><filter height="300%" id="f1ceusv39o9e1q" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[9884e166d189446fe4825863c8acf943]
+class Producto--><rect codeline="14" fill="#FFFFFF" filter="url(#f1ceusv39o9e1q)" height="109.1797" id="Producto" style="stroke:#000000;stroke-width:1.5;" width="165" x="7" y="7"/><ellipse cx="60.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M63.5156,18.875 Q63.6719,18.6563 63.8594,18.5469 Q64.0469,18.4375 64.2656,18.4375 Q64.6406,18.4375 64.875,18.7031 Q65.1094,18.9531 65.1094,19.5625 L65.1094,21.0156 Q65.1094,21.625 64.875,21.8906 Q64.6406,22.1563 64.2656,22.1563 Q63.9219,22.1563 63.7188,21.9531 Q63.5156,21.7656 63.4063,21.25 Q63.3594,20.8906 63.1719,20.7031 Q62.8438,20.3281 62.2344,20.1094 Q61.625,19.8906 61,19.8906 Q60.2344,19.8906 59.5938,20.2188 Q58.9688,20.5469 58.4688,21.2969 Q57.9844,22.0469 57.9844,23.0781 L57.9844,24.1719 Q57.9844,25.4063 58.875,26.2344 Q59.7656,27.0469 61.3594,27.0469 Q62.2969,27.0469 62.9531,26.7969 Q63.3438,26.6406 63.7656,26.2031 Q64.0313,25.9375 64.1719,25.8594 Q64.3281,25.7813 64.5313,25.7813 Q64.8594,25.7813 65.1094,26.0469 Q65.375,26.2969 65.375,26.6406 Q65.375,26.9844 65.0313,27.3906 Q64.5313,27.9688 63.7344,28.2969 Q62.6563,28.75 61.3594,28.75 Q59.8438,28.75 58.6406,28.125 Q57.6563,27.625 56.9688,26.5625 Q56.2813,25.4844 56.2813,24.2031 L56.2813,23.0469 Q56.2813,21.7188 56.8906,20.5781 Q57.5156,19.4219 58.6094,18.8125 Q59.7031,18.1875 60.9375,18.1875 Q61.6719,18.1875 62.3125,18.3594 Q62.9688,18.5156 63.5156,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="49" x="81.25" y="27.9102">Producto</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="171" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="152" x="13" y="54.4189">+CodArticulo : string { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="153" x="13" y="68.2549">+Descripcion : string { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="142" x="13" y="82.0908">+Categoria : string { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="139" x="13" y="95.9268">+Colores : string[] { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="13" y="109.7627">+Precio : double { get; init; }</text><!--MD5=[2c3b64486187b4b813e0967cd9f5765a]
+class Dimensiones--><rect codeline="23" fill="#FFFFFF" filter="url(#f1ceusv39o9e1q)" height="81.5078" id="Dimensiones" style="stroke:#000000;stroke-width:1.5;" width="132" x="232" y="20.5"/><ellipse cx="258.25" cy="36.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M261.0156,32.375 Q261.1719,32.1563 261.3594,32.0469 Q261.5469,31.9375 261.7656,31.9375 Q262.1406,31.9375 262.375,32.2031 Q262.6094,32.4531 262.6094,33.0625 L262.6094,34.5156 Q262.6094,35.125 262.375,35.3906 Q262.1406,35.6563 261.7656,35.6563 Q261.4219,35.6563 261.2188,35.4531 Q261.0156,35.2656 260.9063,34.75 Q260.8594,34.3906 260.6719,34.2031 Q260.3438,33.8281 259.7344,33.6094 Q259.125,33.3906 258.5,33.3906 Q257.7344,33.3906 257.0938,33.7188 Q256.4688,34.0469 255.9688,34.7969 Q255.4844,35.5469 255.4844,36.5781 L255.4844,37.6719 Q255.4844,38.9063 256.375,39.7344 Q257.2656,40.5469 258.8594,40.5469 Q259.7969,40.5469 260.4531,40.2969 Q260.8438,40.1406 261.2656,39.7031 Q261.5313,39.4375 261.6719,39.3594 Q261.8281,39.2813 262.0313,39.2813 Q262.3594,39.2813 262.6094,39.5469 Q262.875,39.7969 262.875,40.1406 Q262.875,40.4844 262.5313,40.8906 Q262.0313,41.4688 261.2344,41.7969 Q260.1563,42.25 258.8594,42.25 Q257.3438,42.25 256.1406,41.625 Q255.1563,41.125 254.4688,40.0625 Q253.7813,38.9844 253.7813,37.7031 L253.7813,36.5469 Q253.7813,35.2188 254.3906,34.0781 Q255.0156,32.9219 256.1094,32.3125 Q257.2031,31.6875 258.4375,31.6875 Q259.1719,31.6875 259.8125,31.8594 Q260.4688,32.0156 261.0156,32.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="75" x="274.75" y="41.4102">Dimensiones</text><line style="stroke:#000000;stroke-width:1.5;" x1="233" x2="363" y1="52.5" y2="52.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="108" x="238" y="67.9189">+Largo : int { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="112" x="238" y="81.7549">+Ancho : int { get; init; }</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="120" x="238" y="95.5908">+Espesor : int { get; init; }</text><!--MD5=[0ada2a24e6e20924ed50a7a33f1dd97e]
+reverse link Producto to Dimensiones--><path codeline="10" d="M185.26,61.5 C201.03,61.5 217.06,61.5 231.87,61.5 " fill="none" id="Producto-backto-Dimensiones" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#000000" points="172.11,61.5,178.11,65.5,184.11,61.5,178.11,57.5,172.11,61.5" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="180.0483" y="75.7405">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="216.819" y="75.9689">1</text><!--MD5=[3cfb618aeb19d3d40e89a0f65ccbcbd0]
+@startuml
+
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam ArrowColor Black
+skinparam PackageBackgroundColor WhiteSmoke
+skinparam ClassBorderColor Black
+skinparam ClassBackgroundColor White
+skinparam BackgroundColor Transparent
+
+Producto "1" *- - "1" Dimensiones
+
+hide class methods
+
+class Producto
+{
+    + CodArticulo : string { get; init; }
+    + Descripcion : string { get; init; }
+    + Categoria : string { get; init; }
+    + Colores : string[] { get; init; }
+    + Precio : double { get; init; }
+}
+
+class Dimensiones
+{
+    + Largo : int { get; init; }
+    + Ancho : int { get; init; }
+    + Espesor : int { get; init; }
+}
+
+@enduml
+
+PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: es
+Country: ES
+--></g></svg></p><p>En la propiedad est&#xE1;tica <strong><code>Productos</code></strong> de la clase <strong><code>Datos</code></strong> te devolver&#xE1; una secuencia de productos (<strong><code>IEnumerable&lt;Producto&gt;</code></strong>) sobre la que realizar las consultas.</p>
+<p>Adem&#xE1;s, en el programa principal tienes un &apos;<em>esqueleto</em>&apos; a completar con descripci&#xF3;n de cada consulta. Por ejemplo, para la primera consulta tendr&#xED;amos ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp">Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>SeparadorConsulta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>
+    <span class="token string">&quot;Consulta 1: Usando las funciones Where y Select.\n&quot;</span> <span class="token operator">+</span>
+    <span class="token string">&quot;Mostrar CodArticulo, Descripcion y Precio .\n&quot;</span> <span class="token operator">+</span>
+    <span class="token string">&quot;de productos con Precio entre 10 y 30 euros\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> consulta1 <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">,</span> consulta1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Nosotros deberemos rellenar la consulta de acuerdo a las especificaciones de la descripci&#xF3;n, cuidando la presentaci&#xF3;n y sangr&#xED;a para que sean legibles. Por ejemplo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> consulta1 <span class="token operator">=</span> Productos<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>p <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>Precio <span class="token operator">&gt;=</span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">.</span>Precio <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">)</span>
+                         <span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>p <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span>
+                         <span class="token punctuation">{</span>
+                             CodArticulo <span class="token operator">=</span> p<span class="token punctuation">.</span>CodArticulo<span class="token punctuation">,</span>
+                             Descripcion <span class="token operator">=</span> p<span class="token punctuation">.</span>Descripcion<span class="token punctuation">,</span>
+                             Precio <span class="token operator">=</span> p<span class="token punctuation">.</span>Precio
+                         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>Una vez completadas todas las consultas. Al ejecutar el programa la salida por pantalla del programa deber&#xE1; ser ...</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 1: Usando las funciones Where y Select.
+Mostrar CodArticulo, Descripcion y Precio .
+de productos con Precio entre 10 y 30 euros
+
+{ CodArticulo = A01, Descripcion = Uno, Precio = 15,05 }
+{ CodArticulo = A02, Descripcion = Dos, Precio = 25,95 }
+{ CodArticulo = A04, Descripcion = Cuatro, Precio = 18,45 }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 2: Usando las funciones Select, OrderByDescending y Take.
+Muestra CodArticulo, Descripcion y Precio de los 3 productos.
+m&#xE1;s caros (ordenando por Precio descendente)
+
+{ CodArticulo = A03, Descripcion = Tres, Precio = 30,25 }
+{ CodArticulo = A02, Descripcion = Dos, Precio = 25,95 }
+{ CodArticulo = A04, Descripcion = Cuatro, Precio = 18,45 }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 3: Usando las funciones GroupBy, OrderBy y First.
+Muestra el precio m&#xE1;s barato por categor&#xED;a
+
+{ Categoria = C1, PrecioMasBarato = 15,05 }
+{ Categoria = C2, PrecioMasBarato = 18,45 }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 4: Usando las funciones GroupBy, Count.
+&#xBF;Cu&#xE1;ntos productos hay de cada categor&#xED;a?
+
+{ Categoria = C1, NumeroProductos = 3 }
+{ Categoria = C2, NumeroProductos = 1 }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 5: Usando las funciones GroupBy, Count, Where y Select
+Mostrar las categor&#xED;as que tengan m&#xE1;s de 2 productos
+
+C1
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 6: Usando la funci&#xF3;n Select
+Mostrar CodArticulo, Descripcion, Precio y Descuento redondeado a 2 decimales,
+siendo Descuento el 10% del Precio
+
+{ CodArticulo = A01, Descripcion = Uno, Precio = 15,05, Descuento = 1,5 }
+{ CodArticulo = A02, Descripcion = Dos, Precio = 25,95, Descuento = 2,6 }
+{ CodArticulo = A03, Descripcion = Tres, Precio = 30,25, Descuento = 3,03 }
+{ CodArticulo = A04, Descripcion = Cuatro, Precio = 18,45, Descuento = 1,84 }
+</pre></blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 7: Usando las funciones Where, Contains y Select.
+Mostrar CodArticulo, Descripcion y Colores
+de los productos de color verde o rojo
+(es decir, que contengan alguno de los dos)
+
+{ CodArticulo = A02, Descripcion = Dos, Colores = [blanco, gris, rojo] }
+{ CodArticulo = A03, Descripcion = Tres, Colores = [rojo, gris, verde] }
+{ CodArticulo = A04, Descripcion = Cuatro, Colores = [verde, rojo] }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 8: Usando las funciones Where, Count y Select.
+Mostrar CodArticulo, Descripcion y Colores.
+de los productos que se fabrican en tres Colores
+
+{ CodArticulo = A01, Descripcion = Uno, Colores = [blanco, negro, gris] }
+{ CodArticulo = A02, Descripcion = Dos, Colores = [blanco, gris, rojo] }
+{ CodArticulo = A03, Descripcion = Tres, Colores = [rojo, gris, verde] }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 9: Usando las funciones Where, Select.
+Mostrar CodArticulo, Descripcion y Dimensiones
+de los productos con espesor de 3 cm
+
+{ CodArticulo = A01, Descripcion = Uno, Dimensiones = L:4 x A:4 x E:3 }
+{ CodArticulo = A03, Descripcion = Tres, Dimensiones = L:5 x A:5 x E:3 }
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 10: Usando las funciones SelectMany, Distinct y OrderBy.
+Mostrar los colores de productos ordenados y sin repeticiones
+
+blanco
+gris
+negro
+rojo
+verde
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Consulta 11: Usando las funciones SelectMany, GroupBy, OrderByDescending.
+Mostrar TotalProductos que hay de cada Color ordenando de mayor a menor cantidad
+
+{ Color = gris, TotalProductos = 3 }
+{ Color = rojo, TotalProductos = 3 }
+{ Color = blanco, TotalProductos = 2 }
+{ Color = verde, TotalProductos = 2 }
+{ Color = negro, TotalProductos = 1 }
+</pre></blockquote>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

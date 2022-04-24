@@ -1,0 +1,855 @@
+<!DOCTYPE html><html><head>
+      <title>Introducci&#xF3;n a la Programaci&#xF3;n Funcional</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview .slides > section {
+  height: 100%;
+  font-size: 90%;
+  overflow-y: auto !important;
+}
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <style>/* 
+Añade 
+
+@import "../EstilosPersonalizadosMarkdownEnhanced.less"
+
+justo después del front matter 
+*/
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v15/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+</style>
+<h1 class="mume-header undefined" id="tema-115">Tema 11.5</h1>
+
+<p><a href="./Tema11_5.pdf">Descargar estos apuntes</a></p>
+<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+
+<ol>
+<li><a href="#recursividad">Recursividad</a>
+<ol>
+<li><a href="#definiciones">Definiciones</a></li>
+<li><a href="#ventajas">Ventajas</a></li>
+<li><a href="#desventajas">Desventajas</a></li>
+<li><a href="#tipos-de-recursividad">Tipos de recursividad</a></li>
+<li><a href="#dise%C3%B1o-de-un-algoritmo-recursivo">Dise&#xF1;o de un algoritmo recursivo</a></li>
+<li><a href="#punto-de-vista-desde-el-lenguaje-c">Punto de vista desde el lenguaje C#</a>
+<ol>
+<li><a href="#usando-funciones-lambda-lambda">Usando funciones Lambda (&#x3BB;)</a></li>
+</ol>
+</li>
+<li><a href="#ejemplos-de-recursividad">Ejemplos de recursividad</a></li>
+</ol>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="recursividad">Recursividad</h2>
+
+<h3 class="mume-header" id="definiciones">Definiciones</h3>
+
+<ul>
+<li>
+<p><strong>Llamada recursiva</strong>: se produce cuando un m&#xE9;todo se llama a si mismo para realizar el proceso u obtener el valor de retorno.</p>
+</li>
+<li>
+<p><strong>Recursividad</strong>: la capacidad de un m&#xF3;dulo de llamarse a si mismo.</p>
+</li>
+<li>
+<p><strong>Algoritmo recursivo</strong>: un algoritmo resuelto mediante recursividad.</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Cualquier <strong>algoritmo recursivo</strong> tiene un equivalente <strong>iterativo</strong>.</p>
+</blockquote>
+</li>
+</ul>
+<h3 class="mume-header" id="ventajas">Ventajas</h3>
+
+<ul>
+<li>Existen problemas cuya soluci&#xF3;n natural es claramente recursiva con lo que el algoritmo resulta <strong>muy simple y claro frente</strong> a la soluci&#xF3;n iterativa. Por  ejemplo ...
+<ul>
+<li>El recorrido de colecciones tipo &#xE1;rbol o grafo.</li>
+<li>Algoritmos que generan &#xE1;rboles en la b&#xFA;squeda de una soluci&#xF3;n como el backtracking.</li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="desventajas">Desventajas</h3>
+
+<ul>
+<li>Generalmente es menos eficiente que la soluci&#xF3;n iterativa. Aunque se puede aliviar con una t&#xE9;cnica denominada <strong>memoization</strong>.</li>
+<li>Consume muchos m&#xE1;s recursos.</li>
+<li>Puede llevar al desbordamiento de la pila de llamadas o (<strong>Stack Overflow</strong>).</li>
+</ul>
+<h3 class="mume-header" id="tipos-de-recursividad">Tipos de recursividad</h3>
+
+<ul>
+<li>
+<p><strong>Recursividad directa</strong>: se produce cuando un subprograma o m&#xF3;dulo se llama a si mismo.</p>
+</li>
+<li>
+<p><strong>Recursividad indirecta</strong>: se produce cuando un subprograma o m&#xF3;dulo <strong>A</strong> llama a otro <strong>B</strong> que acaba llamando de nuevo a <strong>A</strong>.</p>
+<blockquote>
+<p>&#x1F480; &#x270B; Esta &#xFA;ltima, no deber&#xED;amos usarla <strong>en ning&#xFA;n caso</strong>.</p>
+</blockquote>
+</li>
+</ul>
+<p align="center" style="zoom:0.6"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="442pt" height="231pt" viewBox="0.00 0.00 442.13 230.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 226.6)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-226.6 438.1262,-226.6 438.1262,4 -4,4"/>
+<!-- PP -->
+<g id="node1" class="node">
+<title>PP</title>
+<polygon fill="none" stroke="#000000" points="241.3272,-218.4336 163.4694,-218.4336 163.4694,-177.1664 241.3272,-177.1664 241.3272,-218.4336"/>
+<polygon fill="none" stroke="#000000" points="245.3483,-222.4016 159.4483,-222.4016 159.4483,-173.1984 245.3483,-173.1984 245.3483,-222.4016"/>
+<text text-anchor="middle" x="202.3983" y="-202" font-family="Arial" font-size="14.00" fill="#000000">Programa</text>
+<text text-anchor="middle" x="202.3983" y="-185.2" font-family="Arial" font-size="14.00" fill="#000000">Principal</text>
+</g>
+<!-- A -->
+<g id="node2" class="node">
+<title>A</title>
+<polygon fill="none" stroke="#000000" points="133.6951,-135.8019 33.1015,-135.8019 33.1015,-94.5981 133.6951,-94.5981 133.6951,-135.8019"/>
+<text text-anchor="middle" x="83.3983" y="-119.4" font-family="Arial" font-size="14.00" fill="#000000">Subprograma</text>
+<text text-anchor="middle" x="83.3983" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">A</text>
+</g>
+<!-- PP&#45;&gt;A -->
+<g id="edge1" class="edge">
+<title>PP-&gt;A</title>
+<path fill="none" stroke="#000000" d="M166.6944,-173.0173C152.5015,-163.1657 136.1458,-151.813 121.7058,-141.7899"/>
+<polygon fill="#000000" stroke="#000000" points="123.6666,-138.8904 113.4559,-136.0635 119.6751,-144.6409 123.6666,-138.8904"/>
+</g>
+<!-- D -->
+<g id="node5" class="node">
+<title>D</title>
+<polygon fill="none" stroke="#000000" points="252.6951,-135.8019 152.1015,-135.8019 152.1015,-94.5981 252.6951,-94.5981 252.6951,-135.8019"/>
+<text text-anchor="middle" x="202.3983" y="-119.4" font-family="Arial" font-size="14.00" fill="#000000">Subprograma</text>
+<text text-anchor="middle" x="202.3983" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">D</text>
+</g>
+<!-- PP&#45;&gt;D -->
+<g id="edge5" class="edge">
+<title>PP-&gt;D</title>
+<path fill="none" stroke="#000000" d="M202.3983,-173.0173C202.3983,-164.5468 202.3983,-154.9665 202.3983,-146.0758"/>
+<polygon fill="#000000" stroke="#000000" points="205.8984,-146.0634 202.3983,-136.0635 198.8984,-146.0635 205.8984,-146.0634"/>
+</g>
+<!-- E -->
+<g id="node6" class="node">
+<title>E</title>
+<polygon fill="none" stroke="#000000" points="371.6951,-135.8019 271.1015,-135.8019 271.1015,-94.5981 371.6951,-94.5981 371.6951,-135.8019"/>
+<text text-anchor="middle" x="321.3983" y="-119.4" font-family="Arial" font-size="14.00" fill="#000000">Subprograma</text>
+<text text-anchor="middle" x="321.3983" y="-102.6" font-family="Arial" font-size="14.00" fill="#000000">E</text>
+</g>
+<!-- PP&#45;&gt;E -->
+<g id="edge6" class="edge">
+<title>PP-&gt;E</title>
+<path fill="none" stroke="#000000" d="M238.1022,-173.0173C252.2951,-163.1657 268.6508,-151.813 283.0908,-141.7899"/>
+<polygon fill="#000000" stroke="#000000" points="285.1215,-144.6409 291.3407,-136.0635 281.13,-138.8904 285.1215,-144.6409"/>
+</g>
+<!-- B -->
+<g id="node3" class="node">
+<title>B</title>
+<polygon fill="none" stroke="#000000" points="100.6951,-41.4019 .1015,-41.4019 .1015,-.1981 100.6951,-.1981 100.6951,-41.4019"/>
+<text text-anchor="middle" x="50.3983" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Subprograma</text>
+<text text-anchor="middle" x="50.3983" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">B</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge2" class="edge">
+<title>A-&gt;B</title>
+<path fill="none" stroke="#000000" d="M72.1266,-94.2028C69.3551,-88.5273 66.5647,-82.3162 64.3983,-76.4 61.4863,-68.4477 58.9635,-59.6401 56.893,-51.4242"/>
+<polygon fill="#000000" stroke="#000000" points="60.2375,-50.3601 54.5168,-41.4425 53.4278,-51.9813 60.2375,-50.3601"/>
+</g>
+<!-- C -->
+<g id="node4" class="node">
+<title>C</title>
+<polygon fill="none" stroke="#000000" points="219.6951,-41.4019 119.1015,-41.4019 119.1015,-.1981 219.6951,-.1981 219.6951,-41.4019"/>
+<text text-anchor="middle" x="169.3983" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Subprograma</text>
+<text text-anchor="middle" x="169.3983" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">C</text>
+</g>
+<!-- A&#45;&gt;C -->
+<g id="edge4" class="edge">
+<title>A-&gt;C</title>
+<path fill="none" stroke="#000000" d="M108.8784,-94.2808C115.166,-88.7066 121.7207,-82.5247 127.3983,-76.4 135.0017,-68.1978 142.5912,-58.6682 149.185,-49.8399"/>
+<polygon fill="#000000" stroke="#000000" points="152.0917,-51.7945 155.1699,-41.6567 146.4415,-47.6622 152.0917,-51.7945"/>
+</g>
+<!-- B&#45;&gt;A -->
+<g id="edge3" class="edge">
+<title>B-&gt;A</title>
+<path fill="none" stroke="#ff0000" d="M57.7016,-41.6919C62.0982,-54.2688 67.7748,-70.5074 72.674,-84.522"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="69.4706,-85.9647 76.0745,-94.2496 76.0785,-83.6547 69.4706,-85.9647"/>
+<text text-anchor="middle" x="96.2377" y="-63.8" font-family="Arial" font-size="14.00" fill="#ff0000">Indirecta</text>
+</g>
+<!-- E&#45;&gt;E -->
+<g id="edge7" class="edge">
+<title>E:n-&gt;E:s</title>
+<path fill="none" stroke="#006400" d="M321.3983,-136.2C344.1977,-145.7 389.7966,-145.7 389.7966,-115.2 389.7966,-88.6316 355.196,-85.2068 331.2053,-91.0447"/>
+<polygon fill="#006400" stroke="#006400" points="329.8458,-87.8054 321.3983,-94.2 331.9897,-94.469 329.8458,-87.8054"/>
+<text text-anchor="middle" x="411.9614" y="-111" font-family="Arial" font-size="14.00" fill="#006400">Directa</text>
+</g>
+</g>
+</svg>
+</p><div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="dise%C3%B1o-de-un-algoritmo-recursivo">Dise&#xF1;o de un algoritmo recursivo</h3>
+
+<p>Necesitaremos definir o buscar dos cosas:</p>
+<ol>
+<li>
+<p><strong>El caso general</strong></p>
+<ul>
+<li>Deberemos subdividir el problema en <strong>versiones menores de si mismo</strong>.
+<ul>
+<li>Pueden darse varios casos generales.</li>
+<li>Todos <strong>tender&#xE1;n</strong> a un determinado caso base.</li>
+</ul>
+</li>
+<li>Deberemos confiar en que la llamada recursiva va a hacer su trabajo y va a solucionar o devolver parte del problema.</li>
+</ul>
+</li>
+<li>
+<p><strong>Al menos una caso base</strong></p>
+<ul>
+<li>Condici&#xF3;n de salida de la recursividad o llamada recursiva, donde el caso general ya no se puede subdividir m&#xE1;s y donde dejamos de hacer llamadas recursivas.</li>
+<li>Pueden darse varios casos base.</li>
+<li>&#x1F480; Si no existe el caso base no saldr&#xED;amos de la recursividad y se producir&#xED;a un <strong>Stack Overflow</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 class="mume-header" id="punto-de-vista-desde-el-lenguaje-c">Punto de vista desde el lenguaje C#</h3>
+
+<ul>
+<li>Tendremos una <strong>pila de llamadas</strong> al mismo m&#xE9;todo.</li>
+<li>En cada llamada se apilan o <em>&apos;guardan&apos;</em> y no se modifican los objetos locales y par&#xE1;metros del m&#xE9;todo llamador.</li>
+<li>Al recuperar el control, el valor de los objetos apilados es recuperado.</li>
+<li>Es interesante usar el depurador para ver como funcionan este tipo de programas.</li>
+</ul>
+<p><strong>Ejemplo:</strong> Ve&#xE1;moslo a trav&#xE9;s de un problema que ya hemos solucionado de forma iterativa, pero que tiene una soluci&#xF3;n matem&#xE1;tica natural recursiva.</p>
+<p>Vamos a implementar una funci&#xF3;n recursiva para calcular el factorial de un n&#xFA;mero entero. Recordemos que el factorial se simboliza como <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">n!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span></span>, se lee como &apos;<em>n factorial</em>&apos;, y la definici&#xF3;n es: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo><mo>=</mo><mi>n</mi><mo>&#xD7;</mo><mo stretchy="false">(</mo><mi>n</mi><mo>&#x2212;</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&#xD7;</mo><mo stretchy="false">(</mo><mi>n</mi><mo>&#x2212;</mo><mn>2</mn><mo stretchy="false">)</mo><mo>&#xD7;</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>&#xD7;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n! = n \times (n-1) \times (n-2) \times ... \times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#xD7;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>. Adem&#xE1;s, no se puede calcular el factorial de n&#xFA;meros negativos, y el factorial de 0 es 1, de modo que una funci&#xF3;n bien hecha para c&#xE1;lculo de factoriales deber&#xED;a incluir un control para esos casos.</p>
+<p>Pasos</p>
+<ol>
+<li>La funci&#xF3;n deber&#xED;a tener un interfaz descriptivo, tal y como lo tiene la iterativa, esto es: <strong><code>ulong Factorial(ulong n)</code></strong></li>
+<li>Identificaremos el caso base, en este caso es <strong>si n = 0 &#x2192; !n = 1</strong></li>
+<li>Identificaremos el caso general, esto es, c&#xF3;mo descomponer el problema de tal manera que tienda al caso base. En este caso ser&#xE1; <strong>n! = n X (n - 1)!</strong></li>
+</ol>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-ulong">ulong</span></span> <span class="token function">Factorial</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-ulong">ulong</span></span> n<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-ulong">ulong</span></span> valor<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>        
+        valor <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>                      <span class="token comment">// Caso Base</span>
+    <span class="token keyword keyword-else">else</span>        
+        valor <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token function">Factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Caso General</span>
+    <span class="token keyword keyword-return">return</span> valor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><div style="display: flex; justify-content: space-between; margin-top: 15px">
+<div style="width: 70%">
+<p>La variable local <strong><code>valor</code></strong> y el par&#xE1;metro formal <strong><code>n</code></strong> ser&#xE1; diferente en cada llamada y se liberar&#xE1;n de memoria en cuanto se <strong>desapilen</strong> la llamadas a la funci&#xF3;n.</p>
+<p>Si ejecut&#xE1;semos el siguiente c&#xF3;digo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">Factorial</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Se generar&#xED;a la pila de llamadas del esquema de la derecha.</p>
+</div>
+<div style="width: auto">
+<p style="zoom:0.5"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="182pt" height="430pt" viewBox="0.00 0.00 182.28 429.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 425.6)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-425.6 178.2833,-425.6 178.2833,4 -4,4"/>
+<!-- P4 -->
+<g id="node1" class="node">
+<title>P4</title>
+<polygon fill="none" stroke="#000000" points="133.698,-421.4019 1.3034,-421.4019 1.3034,-380.1981 133.698,-380.1981 133.698,-421.4019"/>
+<text text-anchor="middle" x="67.5007" y="-405" font-family="Arial" font-size="14.00" fill="#000000">Caso Base retorna</text>
+<text text-anchor="middle" x="67.5007" y="-388.2" font-family="Arial" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- P3 -->
+<g id="node2" class="node">
+<title>P3</title>
+<polygon fill="none" stroke="#000000" points="135.0021,-327.0019 -.0007,-327.0019 -.0007,-285.7981 135.0021,-285.7981 135.0021,-327.0019"/>
+<text text-anchor="middle" x="67.5007" y="-310.6" font-family="Arial" font-size="14.00" fill="#000000">Factorial(1) retorna</text>
+<text text-anchor="middle" x="67.5007" y="-293.8" font-family="Arial" font-size="14.00" fill="#000000">1 * Factorial(1-1)</text>
+</g>
+<!-- P4&#45;&gt;P3 -->
+<g id="edge5" class="edge">
+<title>P4:e-&gt;P3:e</title>
+<path fill="none" stroke="#000000" d="M133.5007,-400.8C171.8593,-400.8 176.8268,-321.9278 145.3483,-308.3717"/>
+<polygon fill="#000000" stroke="#000000" points="145.9933,-304.9314 135.5007,-306.4 144.6189,-311.7952 145.9933,-304.9314"/>
+<text text-anchor="middle" x="169.392" y="-349.4" font-family="Arial" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- P3&#45;&gt;P4 -->
+<g id="edge4" class="edge">
+<title>P3-&gt;P4</title>
+<path fill="none" stroke="#c0c0c0" d="M67.5007,-327.3504C67.5007,-339.8165 67.5007,-355.8645 67.5007,-369.7786"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" points="64.0008,-369.9081 67.5007,-379.9081 71.0008,-369.9082 64.0008,-369.9081"/>
+<text text-anchor="middle" x="79.3706" y="-349.4" font-family="Arial" font-size="14.00" fill="#c0c0c0">n=0</text>
+</g>
+<!-- P2 -->
+<g id="node3" class="node">
+<title>P2</title>
+<polygon fill="none" stroke="#000000" points="135.0021,-232.6019 -.0007,-232.6019 -.0007,-191.3981 135.0021,-191.3981 135.0021,-232.6019"/>
+<text text-anchor="middle" x="67.5007" y="-216.2" font-family="Arial" font-size="14.00" fill="#000000">Factorial(2) retorna</text>
+<text text-anchor="middle" x="67.5007" y="-199.4" font-family="Arial" font-size="14.00" fill="#000000">2 * Factorial(2-1)</text>
+</g>
+<!-- P3&#45;&gt;P2 -->
+<g id="edge6" class="edge">
+<title>P3:e-&gt;P2:e</title>
+<path fill="none" stroke="#000000" d="M135.5007,-306.4C173.8507,-306.4 177.1464,-227.5278 145.3878,-213.9717"/>
+<polygon fill="#000000" stroke="#000000" points="145.9921,-210.5233 135.5007,-212 144.6231,-217.3882 145.9921,-210.5233"/>
+<text text-anchor="middle" x="170.392" y="-255" font-family="Arial" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- P2&#45;&gt;P3 -->
+<g id="edge3" class="edge">
+<title>P2-&gt;P3</title>
+<path fill="none" stroke="#c0c0c0" d="M67.5007,-232.9504C67.5007,-245.4165 67.5007,-261.4645 67.5007,-275.3786"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" points="64.0008,-275.5081 67.5007,-285.5081 71.0008,-275.5082 64.0008,-275.5081"/>
+<text text-anchor="middle" x="79.3706" y="-255" font-family="Arial" font-size="14.00" fill="#c0c0c0">n=1</text>
+</g>
+<!-- P1 -->
+<g id="node4" class="node">
+<title>P1</title>
+<polygon fill="none" stroke="#000000" points="135.0021,-138.2019 -.0007,-138.2019 -.0007,-96.9981 135.0021,-96.9981 135.0021,-138.2019"/>
+<text text-anchor="middle" x="67.5007" y="-121.8" font-family="Arial" font-size="14.00" fill="#000000">Factorial(3) retorna</text>
+<text text-anchor="middle" x="67.5007" y="-105" font-family="Arial" font-size="14.00" fill="#000000">3 * Factorial(3-1)</text>
+</g>
+<!-- P2&#45;&gt;P1 -->
+<g id="edge7" class="edge">
+<title>P2:e-&gt;P1:e</title>
+<path fill="none" stroke="#000000" d="M135.5007,-212C173.8507,-212 177.1464,-133.1278 145.3878,-119.5717"/>
+<polygon fill="#000000" stroke="#000000" points="145.9921,-116.1233 135.5007,-117.6 144.6231,-122.9882 145.9921,-116.1233"/>
+<text text-anchor="middle" x="170.392" y="-160.6" font-family="Arial" font-size="14.00" fill="#000000">2</text>
+</g>
+<!-- P1&#45;&gt;P2 -->
+<g id="edge2" class="edge">
+<title>P1-&gt;P2</title>
+<path fill="none" stroke="#c0c0c0" d="M67.5007,-138.5504C67.5007,-151.0165 67.5007,-167.0645 67.5007,-180.9786"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" points="64.0008,-181.1081 67.5007,-191.1081 71.0008,-181.1082 64.0008,-181.1081"/>
+<text text-anchor="middle" x="79.3706" y="-160.6" font-family="Arial" font-size="14.00" fill="#c0c0c0">n=2</text>
+</g>
+<!-- M -->
+<g id="node5" class="node">
+<title>M</title>
+<polygon fill="none" stroke="#000000" points="94.5007,-40 40.5007,-40 40.5007,-4 94.5007,-4 94.5007,-40"/>
+<polygon fill="none" stroke="#000000" points="98.5007,-44 36.5007,-44 36.5007,0 98.5007,0 98.5007,-44"/>
+<text text-anchor="middle" x="67.5007" y="-17.8" font-family="Arial" font-size="14.00" fill="#000000">Main</text>
+</g>
+<!-- P1&#45;&gt;M -->
+<g id="edge8" class="edge">
+<title>P1:e-&gt;M:e</title>
+<path fill="none" stroke="#000000" d="M135.5007,-117.6C177.6794,-117.6 149.0982,-35.664 108.4732,-23.5016"/>
+<polygon fill="#000000" stroke="#000000" points="108.9104,-20.0281 98.5007,-22 107.868,-26.9501 108.9104,-20.0281"/>
+<text text-anchor="middle" x="157.392" y="-66.2" font-family="Arial" font-size="14.00" fill="#000000">6</text>
+</g>
+<!-- M&#45;&gt;P1 -->
+<g id="edge1" class="edge">
+<title>M-&gt;P1</title>
+<path fill="none" stroke="#c0c0c0" d="M67.5007,-44.1729C67.5007,-56.8318 67.5007,-72.8952 67.5007,-86.7676"/>
+<polygon fill="#c0c0c0" stroke="#c0c0c0" points="64.0008,-86.8562 67.5007,-96.8562 71.0008,-86.8563 64.0008,-86.8562"/>
+<text text-anchor="middle" x="79.3706" y="-66.2" font-family="Arial" font-size="14.00" fill="#c0c0c0">n=3</text>
+</g>
+</g>
+</svg>
+</p></div>
+</div>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">&quot;</div>
+        <div class="cierra_comilla">&quot;</div>
+        <div class="cita">To understand recursion, one must first understand recursion.</div>
+        <div class="autor">- Etephen Hawking</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="usando-funciones-lambda-lambda">Usando funciones Lambda (&#x3BB;)</h4>
+
+<p>Para expresar la funci&#xF3;n factorial anterior con expresiones lambda har&#xED;amos algo c&#xF3;mo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> factorial <span class="token operator">=</span> n <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> n <span class="token operator">*</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</pre><p>Pero como a&#xFA;n no hemos completado la instrucci&#xF3;n donde <strong>definimos</strong> el identificador del delegado factorial <strong>nos dice que a&#xFA;n no existe al usarlo</strong>.</p>
+<p>Existen varias soluciones al problema &apos;<em>elegantes</em>&apos; desde el punto de vista <strong>funcional y matem&#xE1;tico</strong>. Pero una soluci&#xF3;n muy simple ser&#xED;a definir primero el <strong>identificador</strong> que referencia al delegado asign&#xE1;ndole <strong><code>default</code></strong>.</p>
+<p>C&#xF3;mo ya est&#xE1; definido el identificador y es una referencia a un delegado. Podremos <strong>reasignarlo</strong> haciendo una clausura dentro del mismo la referencia.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> factorial <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
+factorial <span class="token operator">=</span> n <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> n <span class="token operator">*</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">factorial</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p>&#x1F680; <strong>Ampliaci&#xF3;n:</strong></p>
+<p>F&#xED;jate que la implementaci&#xF3;n en otros lenguajes <strong>d&#xE9;bilmente tipados</strong> es &apos;<em>m&#xE1;s simple</em>&apos;...</p>
+<ol>
+<li>
+<p><strong>JavaScript</strong></p>
+<pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token keyword keyword-let">let</span> <span class="token function-variable function">factorial</span> <span class="token operator">=</span> <span class="token parameter">n</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> n <span class="token operator">*</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">factorial</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre></li>
+<li>
+<p><strong>Python</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">factorial <span class="token operator">=</span> <span class="token keyword keyword-lambda">lambda</span> n <span class="token punctuation">:</span> n <span class="token operator">*</span> factorial<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-else">else</span> <span class="token number">1</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>factorial<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre></li>
+</ol>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="ejemplos-de-recursividad">Ejemplos de recursividad</h3>
+
+<p><strong>Ejemplo 1</strong>: Vamos ha hacer una funci&#xF3;n recursiva que calcule la potencia de un numero.</p>
+<ul>
+<li>
+<p><strong>Interfaz</strong>: <strong><code>double Pow(double b, int e)</code></strong> ... Deber&#xED;a ser igual que el de la iterativa.</p>
+</li>
+<li>
+<p><strong>Caso Base</strong>: b<sup>0</sup> &#x2192; 1</p>
+</li>
+<li>
+<p><strong>Caso General</strong>: b<sup>e</sup> &#x2192; b x b<sup>e-1</sup></p>
+</li>
+<li>
+<p>Propuesta de soluci&#xF3;n</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Pow</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> b<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> e<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span></span> p<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>e <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token comment">// Caso Base</span>
+        p <span class="token operator">=</span> <span class="token number">1d</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span>
+        <span class="token comment">// Caso General</span>
+        p <span class="token operator">=</span> b <span class="token operator">*</span> <span class="token function">Pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> e <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>Propuesta con &#x3BB;</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span></span> pow <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
+pow <span class="token operator">=</span> <span class="token punctuation">(</span>b<span class="token punctuation">,</span> e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> e <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token punctuation">?</span> b <span class="token operator">*</span> <span class="token function">pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> e <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token number">1d</span><span class="token punctuation">;</span>
+</pre></li>
+</ul>
+<p><strong>Ejemplo 2</strong>: Vamos a implementar una funci&#xF3;n que dado un n&#xFA;mero decimal de entrada, me devuelva una cadena con su representaci&#xF3;n en binario (base 2). En este ejemplo es un poco m&#xE1;s dif&#xED;cil de ver el caso base y general.</p>
+<ul>
+<li>
+<p><strong>Interfaz</strong>: <strong><code>string Binario(int valorDecimal)</code></strong></p>
+</li>
+<li>
+<p><strong>Caso Base</strong>: Habr&#xE1; dos casos base que son los valores que no necesitan conversi&#xF3;n por ser menores que 2 que que s&#xF3;n los dos posibles cocientes que concatenar&#xE9; en primer lugar ...</p>
+<ol>
+<li>valorDecimal = 0 &#x2192; cadenaBinaria = &quot;0&quot;</li>
+<li>valorDecimal = 1 &#x2192; cadenaBinaria = &quot;1&quot;</li>
+</ol>
+</li>
+<li>
+<p><strong>Caso General</strong>:  Binario(valorDecimal / 2) + &quot;Resto de dividir valorDecimal por 2&quot;</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Como he concatenar los restos de del &#xFA;ltimo al primero, por eso voy concatenando los restos por la derecha.</p>
+</blockquote>
+</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<ul>
+<li>
+<p>Propuesta de soluci&#xF3;n</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">Binario</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> valorDecimal<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaBinaria<span class="token punctuation">;</span>
+    <span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>valorDecimal<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-case">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            cadenaBinaria <span class="token operator">=</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-case">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            cadenaBinaria <span class="token operator">=</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-default">default</span><span class="token punctuation">:</span>
+            cadenaBinaria <span class="token operator">=</span> <span class="token function">Binario</span><span class="token punctuation">(</span>valorDecimal <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">valorDecimal <span class="token operator">%</span> <span class="token number">2</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> cadenaBinaria<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>Propuesta con &#x3BB;</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> binario <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
+binario <span class="token operator">=</span> d <span class="token operator">=&gt;</span> d <span class="token keyword keyword-switch">switch</span>
+<span class="token punctuation">{</span>
+    <span class="token number">0</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+    <span class="token number">1</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+    _ <span class="token operator">=&gt;</span> <span class="token function">binario</span><span class="token punctuation">(</span>d <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">d <span class="token operator">%</span> <span class="token number">2</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">binario</span><span class="token punctuation">(</span><span class="token number">44</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrar&#xE1; &quot;101100&quot;</span>
+
+<span class="token comment">// Algo m&#xE1;s ofuscada podr&#xED;a ser la siguiente expresi&#xF3;n.</span>
+binario <span class="token operator">=</span> d <span class="token operator">=&gt;</span> d <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">?</span> <span class="token function">binario</span><span class="token punctuation">(</span>d <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">d <span class="token operator">%</span> <span class="token number">2</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>d <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">?</span> <span class="token string">&quot;0&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+</ul>
+<div style="page-break-after:always;"></div>
+<p><strong>Ejemplo 3</strong>: Dada una cadena de entrada, implementar una funci&#xF3;n recursiva que me devuelva su inversa.</p>
+<ul>
+<li>
+<p><strong>Interfaz</strong>: <strong><code>string Invierte(string t)</code></strong></p>
+</li>
+<li>
+<p><strong>Caso Base</strong>: Si la longitud de la cadena de entrada es 1 su inversa es ella misma.</p>
+</li>
+<li>
+<p><strong>Caso General</strong>: Invierte(t menos la primera letra) + primera letra de t</p>
+</li>
+<li>
+<p>Propuesta de soluci&#xF3;n</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">Invierte</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> t<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> invertida<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>t<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        invertida <span class="token operator">=</span> <span class="token function">Invierte</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">Substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span>
+        invertida <span class="token operator">=</span> t<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> invertida<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></li>
+<li>
+<p>Propuesta con &#x3BB;</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> invierte <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
+invierte <span class="token operator">=</span> t <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">?</span> <span class="token function">invierte</span><span class="token punctuation">(</span>t<span class="token punctuation">[</span><span class="token number">1</span><span class="token range operator">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> t<span class="token punctuation">;</span>
+</pre><blockquote>
+<p>&#x1F4CC; <strong>Nota</strong>: <strong><code>t[1..]</code></strong> es un &apos;<em>syntactic sugar</em>&apos; de <strong><code>t.Substring(1, t.Length - 1)</code></strong></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong></p>
+<p>Existen problemas t&#xED;picos mucho m&#xE1;s complejos a resolver mediante recursividad pero quedan fuera de lo que pretende este tema que es una mera introducci&#xF3;n al concepto.</p>
+</blockquote>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
