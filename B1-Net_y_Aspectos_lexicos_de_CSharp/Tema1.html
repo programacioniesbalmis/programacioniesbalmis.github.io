@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
       
       
       
@@ -261,6 +261,9 @@ pre[data-line] .line-highlight[data-end]:after {
   font-size: 90%;
   overflow-y: auto !important;
 }
+.markdown-preview.markdown-preview .slide code {
+  color: yellow;
+}
 
       </style>
     </head>
@@ -268,44 +271,93 @@ pre[data-line] .line-highlight[data-end]:after {
       <div class="mume markdown-preview  ">
       <h1 class="mume-header undefined" id="tema-1">Tema 1</h1>
 
-<p><a href="./Tema1.pdf">Descargar estos apuntes</a></p>
+<p>Descargar estos apuntes en <a href="./Tema1.pdf">pdf</a> o <a href="./Tema1.html">html</a></p>
 <h2 class="mume-header" id="%C3%ADndice">&#xCD;ndice</h2>
 
 <ol>
 <li><a href="#%C3%ADndice">&#xCD;ndice</a></li>
 <li><a href="#introducci%C3%B3n-a-net-o-dotnet">Introducci&#xF3;n a .NET o dotnet</a>
 <ol>
-<li><a href="#net-core">.NET Core</a></li>
-<li><a href="#common-language-runtime-clr-o-runtime-a-secas">Common Language Runtime (CLR) o Runtime a secas</a></li>
-<li><a href="#common-intermediate-language-cil">Common Intermediate Language (CIL)</a></li>
-<li><a href="#ensamblado-o-ensamble">Ensamblado o Ensamble</a></li>
-<li><a href="#librer%C3%ADas-de-clase-base-bcl">Librer&#xED;as de clase base BCL</a></li>
-<li><a href="#sistema-com%C3%BAn-de-tipos-cts">Sistema Com&#xFA;n de Tipos (CTS)</a></li>
+<li><a href="#un-poco-de-historia">Un poco de historia</a></li>
+<li><a href="#versiones-del-lenguaje-c-csharp-seg%C3%BAn-la-plataforma">Versiones del lenguaje C# (CSharp) seg&#xFA;n la plataforma</a></li>
+<li><a href="#net-6-lts">.NET 6 LTS</a></li>
 </ol>
 </li>
-<li><a href="#hoja-de-ruta-de-net">Hoja de ruta de .NET</a></li>
 </ol>
+<div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="introducci%C3%B3n-a-net-o-dotnet">Introducci&#xF3;n a .NET o dotnet</h2>
 
-<ul>
-<li>NET Son una serie de tecnolog&#xED;as desarrolladas por Microsoft&#xAE; en 2002 para interoperabilidad de aplicaciones con la red Internet.</li>
-<li>En sus inicios se ha denominado <strong>.NET Framework</strong> hasta la versi&#xF3;n <strong>4.8</strong> a&#xFA;n en uso.</li>
-<li>En la <strong>actualidad</strong> estas tecnolog&#xED;as se han <strong>redefinido</strong> entorno al conocido como <a href="https://dotnet.microsoft.com/" target="_blank">.NET Core</a> teniendo como base.
-<ul>
-<li>El <a href="https://github.com/dotnet" target="_blank">c&#xF3;digo abierto</a> y <strong>Multiplataforma.</strong></li>
-<li>Desarrollos basados en Microservicios en la nube, CI/CD y Contenedores.</li>
-</ul>
-</li>
-<li>Microsoft quiere quitarle el apellido <strong>Core</strong> a la tecnolog&#xED;a, a principios de 2021.</li>
-</ul>
-<h3 class="mume-header" id="net-core">.NET Core</h3>
+<h3 class="mume-header" id="un-poco-de-historia">Un poco de historia</h3>
 
 <ul>
-<li>En 2012 Microsoft public&#xF3; y estandariz&#xF3; a trav&#xE9;s de la <a href="https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf" target="_blank">ECMA-335</a> la arquitectura usada en .NET para que terceros pudieran hacer sus propias implementaciones.</li>
-<li><strong>.NET Core</strong> es la &#xFA;ltima implementaci&#xF3;n de esta arquitectura y est&#xE1; basada en los siguientes componentes principales entre otros:
+<li>
+<p><strong>2002</strong> Aparece <strong>.NET</strong> Son una serie de tecnolog&#xED;as desarrolladas por Microsoft para interoperabilidad de aplicaciones con la red Internet en respuesta a la aparici&#xF3;n de <strong>Java&#x2122;&#xFE0F;</strong> de la mano de Sun Microsystems.<br>
+En sus inicios, se le denomin&#xF3; <strong>.NET Framework</strong> hasta la versi&#xF3;n <strong>4.8</strong> a&#xFA;n en uso. Sin embargo, este framework solo estaba implementado y soportados en los <strong>sistemas operativos de Windows</strong>.</p>
+</li>
+<li>
+<p><strong>2004</strong> Al estar publicadas las especificaciones del Framework como est&#xE1;ndar por la <strong><a href="https://www.ecma-international.org/">ECMA</a></strong> se creo una versi&#xF3;n de <strong>.NET Framework</strong> para entornos Unix, Linux denominada <strong><a href="https://www.mono-project.com/">Proyecto Mono</a></strong> que a lo largo de su historia ha tenido diferentes impulsores</p>
+</li>
+<li>
+<p><strong>2012</strong> Este a&#xF1;o, Microsoft decidi&#xF3; redefinir la tecnolog&#xED;a y el Framework para adaptarlo a las nuevas arquitecturas en la nube. Para ello, se baso en los siguientes pilares:</p>
+<ol>
+<li>El &quot;<a href="https://es.wikipedia.org/wiki/C%C3%B3digo_abierto">c&#xF3;digo abierto</a>&quot; hospedado en el repositorio <a href="https://github.com/dotnet">https://github.com/dotnet</a>.</li>
+<li>Soporte para plataformas <strong>Windows</strong>, <strong>Linux</strong>, <strong>MacOS X</strong> y <strong>Docker</strong>.</li>
+<li>Aumentar la eficiencia en tama&#xF1;o, velocidad de ejecuci&#xF3;n y recursos consumidos.</li>
+<li>Desarrollos basados en <a href="https://es.wikipedia.org/wiki/Arquitectura_de_microservicios">Arquitecturas de Microservicios</a>, <a href="https://es.wikipedia.org/wiki/CI/CD">CI/CD</a>, etc.</li>
+<li>Conservar muchas de las librer&#xED;as y funcionalidades a&#xF1;adidas en los &#xFA;ltimos a&#xF1;os al .NET Framework, eliminando aquellas partes obsoletas que solo se conservaban por mantener la compatibilidad hacia atr&#xE1;s.</li>
+</ol>
+<p>Como <strong>.NET Framework</strong> estaba hasta la versi&#xF3;n <strong>4.8</strong>, Microsoft le quit&#xF3; el apellido &apos;<em><strong>Framework</strong></em>&apos; y le puso &apos;<em><strong>Core</strong></em>&apos;. De tal manera que, para evitar confusiones, esta nueva versi&#xF3;n pas&#xF3; a llamarse <strong>.NET Core</strong> desde las versiones <strong>1.0 en el 2016</strong> hasta la <strong>3.1 en el 2019</strong>. Posteriormente aparece una versi&#xF3;n <strong>5 en el 2020</strong> donde se le quita el apellido &apos;<em><strong>Core</strong></em>&apos; y se queda <strong>.NET 5</strong> a solas, pues ya no hay posibles confusiones con las versiones del antiguo <strong>.NET Framework</strong></p>
+</li>
+<li>
+<p><strong>2021</strong> Aparece la versi&#xF3;n <strong>.NET 6 <a href="https://es.wikipedia.org/wiki/Soporte_de_largo_plazo">LTS</a></strong> llamada a estar activa hasta 2024 donde aparecer&#xE1; la pr&#xF3;xima LST denominada <strong>.NET 8</strong></p>
+</li>
+</ul>
+<div align="center">
+  <img height src="Img/roadmap.png">
+</div>
+<div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="versiones-del-lenguaje-c-csharp-seg%C3%BAn-la-plataforma">Versiones del lenguaje C# (CSharp) seg&#xFA;n la plataforma</h3>
+
+<p>Si vamos a la <a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/configure-language-version">documentaci&#xF3;n oficial</a> podemos resumir:</p>
+<table>
+<thead>
+<tr>
+<th>Plataforma</th>
+<th>Versi&#xF3;n de C#</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.NET Framework 4.8</td>
+<td>7.3</td>
+</tr>
+<tr>
+<td>.NET Core 3.1</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>.NET 6.x</strong></td>
+<td><strong>10</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Como pasa en otros lenguajes con historia como por ejemplo Java, Php, C++, etc. tanto la sintaxis del lenguaje como las estructuras de mismo has ido evolucionando a lo largo de las versiones. Aunque a lo largo de los apuntes vamos a tratar de indicar la versi&#xF3;n aquellos aspectos sint&#xE1;cticos relevantes. Podremos encontrar varias formas de hacer las cosas, por eso es importante que entendamos el concepto.</p>
+</blockquote>
+<h3 class="mume-header" id="net-6-lts">.NET 6 LTS</h3>
+
+<ul>
+<li>
+<p>Como hemos comentado, en <strong>2012</strong> se <strong>public&#xF3; y estandariz&#xF3;</strong> a trav&#xE9;s de la <a href="https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf%22">ECMA-335</a> la nueva arquitectura usada en .NET para que terceros pudieran hacer sus propias implementaciones y cuya primera implementaci&#xF3;n se liber&#xF3; en 2016 bajo el nombre .NET Core 1.0.</p>
+</li>
+<li>
+<p><strong>.NET 6 LTS</strong> se liber&#xF3; en en <strong>diciembre de 2021</strong> y es la &#xFA;ltima implementaci&#xF3;n de esta arquitectura que cuenta con soporte de larga duraci&#xF3;n.</p>
+</li>
+<li>
+<p>Sus componentes b&#xE1;sicos comunes a sus predecesoras y que debemos conocer son:</p>
 <ul>
 <li>Entorno com&#xFA;n de ejecuci&#xF3;n <strong>CLR</strong> (Common Language Runtime)</li>
-<li>Lenguaje Intermedio Com&#xFA;n <a href="https://es.wikipedia.org/wiki/Common_Intermediate_Language" target="_blank">CIL</a> (Common Intermediate Language)</li>
+<li>Lenguaje Intermedio Com&#xFA;n <strong><a href="https://es.wikipedia.org/wiki/Common_Intermediate_Language">CIL</a></strong> (Common Intermediate Language)</li>
 <li>Biblioteca de clases de .NET Core <strong>BCL</strong> (Base Class Library)</li>
 <li>Sistema com&#xFA;n del tipos <strong>CTS</strong> (Common Type System)
 <ul>
@@ -315,12 +367,15 @@ pre[data-line] .line-highlight[data-end]:after {
 </ul>
 </li>
 </ul>
-<h3 class="mume-header" id="common-language-runtime-clr-o-runtime-a-secas">Common Language Runtime (CLR) o Runtime a secas</h3>
+<div style="page-break-after:always;"></div>
+<h4 class="mume-header" id="common-language-runtime-clr">Common Language Runtime (CLR)</h4>
 
-<p><img src="Img/clr.jpg" alt="clr"></p>
+<div align="center">
+  <img height="300" src="Img/clr.jpg">
+</div>
 <ul>
-<li>Es la capa que hay justo por encima del SO y la arquitectura espec&#xED;fica, y <strong>se encarga de gestionar la ejecuci&#xF3;n de las aplicaciones</strong> en ella.</li>
-<li>Su uso es muy com&#xFA;n y existen otros como: JRE de Java, etc&#x2026;</li>
+<li>Tambi&#xE9;n podemos llamarlo <strong>.NET Runtime</strong> o <strong>Runtime</strong> a secas o si quisi&#xE9;ramos explicarlo de forma informal y simplificada con nuestras palabras podr&#xED;amos decir que ... Runtime = &quot;<em>Software que se encarga de ejecutar algo y por tanto sabe como hacerlo</em>&quot;.</li>
+<li>De una manera m&#xE1;s &apos;<em>formal</em>&apos; podemos decir que el CLR es la capa que hay justo por encima del SO y <strong>se encarga de gestionar la ejecuci&#xF3;n de las aplicaciones</strong> en el. Su uso es muy com&#xFA;n y existen otros runtime como el equivalente Java&#x2122;&#xFE0F; denominado <strong>JRE</strong> (Java&#x2122;&#xFE0F; <strong>Runtime</strong> Environment)</li>
 <li>Todo esto soluciona una serie de problemas de las aplicaciones tradicionales de la d&#xE9;cada de los 90, como:
 <ul>
 <li>Ejecuci&#xF3;n multiplataforma: <strong>Si tengo un Runtime para la plataforma y arquitectura puedo ejecutar el programa</strong>.</li>
@@ -331,18 +386,18 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="common-intermediate-language-cil">Common Intermediate Language (CIL)</h3>
+<h4 class="mume-header" id="common-intermediate-language-cil">Common Intermediate Language (CIL)</h4>
 
 <ul>
-<li>.NET No genera c&#xF3;digo m&#xE1;quina para ninguna plataforma concreta.</li>
-<li>Se genera un c&#xF3;digo especial denominado <strong>IL</strong> que es el que interpreta el CLR.</li>
-<li>En otros <em>&apos;RunTimes&apos;</em> como JRE se le conoce como <strong>ByteCode</strong>.</li>
-<li>Se encarga de transformarlo a c&#xF3;digo nativo el <strong>JIT</strong> (Just in time compiler) o jitter que forma parte del CLR.</li>
-<li>Esta compilaci&#xF3;n, como el nombre indica, se hace din&#xE1;micamente o en el momento.</li>
+<li>.NET No genera <a href="https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina">c&#xF3;digo m&#xE1;quina</a> para ninguna plataforma concreta.</li>
+<li>Se genera un c&#xF3;digo especial denominado <strong>IL</strong> que es el que interpreta el CLR. En otros <em>&apos;RunTimes&apos;</em> como JRE se le conoce como <strong>ByteCode</strong>.</li>
+<li>Se encarga de transformarlo a c&#xF3;digo maquina el <strong>JIT</strong> (Just in time compiler) o jitter que forma parte del CLR. Esta compilaci&#xF3;n, como el nombre indica, se hace din&#xE1;micamente o en el momento.</li>
 </ul>
-<p><img src="Img/cil.png" alt="cil"></p>
+<div align="center">
+  <img height="500" src="Img/cil.png">
+</div>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="ensamblado-o-ensamble">Ensamblado o Ensamble</h3>
+<h4 class="mume-header" id="ensamblado-o-ensamble">Ensamblado o Ensamble</h4>
 
 <ul>
 <li>Al compilar C# o F# generaremos normalmente <strong>grupo de ficheros con extensi&#xF3;n DLL y/o EXE</strong> que denominaremos <strong>ensamblados</strong>.</li>
@@ -361,14 +416,14 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="librer%C3%ADas-de-clase-base-bcl">Librer&#xED;as de clase base BCL</h3>
+<h4 class="mume-header" id="librer%C3%ADas-de-clase-base-bcl">Librer&#xED;as de clase base BCL</h4>
 
 <ul>
 <li>Tambi&#xE9;n definidas en la ECMA-332</li>
-<li>Librer&#xED;as incluidas en el .NET Core SDK para el desarrollo, por defecto, en todos los lenguajes soportador por la plataforma.</li>
+<li>Librer&#xED;as incluidas en el <strong>.NET SDK</strong> para el desarrollo, por defecto, en todos los lenguajes soportador por la plataforma.</li>
 <li>A trav&#xE9;s de las clases suministradas en ella, es posible desarrollar cualquier tipo de aplicaci&#xF3;n:
 <ul>
-<li>Aplicaciones de consola, escritorio, web y m&#xF3;vil devices.</li>
+<li>Aplicaciones de consola, escritorio, web, m&#xF3;vil devices, <a href="https://es.wikipedia.org/wiki/Internet_de_las_cosas">IoT</a>, etc...</li>
 <li>Microservicios en la nube, como por ejemplo una API Rest.</li>
 <li>Comunicaciones en red.</li>
 <li>etc.</li>
@@ -407,29 +462,20 @@ pre[data-line] .line-highlight[data-end]:after {
 </tbody>
 </table>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="sistema-com%C3%BAn-de-tipos-cts">Sistema Com&#xFA;n de Tipos (CTS)</h3>
+<h4 class="mume-header" id="sistema-com%C3%BAn-de-tipos-cts">Sistema Com&#xFA;n de Tipos (CTS)</h4>
 
 <ul>
 <li>Cada lenguaje gestionado puede tener y definir sus propios tipos de datos que pueden ser diferentes.</li>
 <li>Pero todos ellos deben cumplir unas reglas para que el <strong>CLR</strong> los acepte a trav&#xE9;s del <strong>CIL</strong> generado.</li>
 </ul>
-<h4 class="mume-header" id="especificaci%C3%B3n-com%C3%BAn-del-lenguaje-cls">Especificaci&#xF3;n Com&#xFA;n del Lenguaje (CLS)</h4>
+<h5 class="mume-header" id="especificaci%C3%B3n-com%C3%BAn-del-lenguaje-cls">Especificaci&#xF3;n Com&#xFA;n del Lenguaje (CLS)</h5>
 
 <ul>
 <li>Reglas que tienen que seguir las definiciones de los tipos de un lenguaje gestionado para poder ser accedidos por otro lenguaje gestionado.</li>
 </ul>
-<p><img src="Img/cts.png" alt="cts"></p>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="hoja-de-ruta-de-net">Hoja de ruta de .NET</h2>
-
-<p>Versiones del lenguaje seg&#xFA;n la plataforma (<a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/configure-language-version" target="_blank">fuente</a>):</p>
-<ul>
-<li>.NET 5.x	C# 9.0</li>
-<li>.NET Core	3.x	C# 8.0</li>
-<li>.NET Framework hasta C# 7.3</li>
-</ul>
-<p><img src="Img/roadmap.png" alt="roadmap"></p>
-
+<div align="center">
+  <img height="300" src="Img/cts.png">
+</div>
       </div>
       
       
