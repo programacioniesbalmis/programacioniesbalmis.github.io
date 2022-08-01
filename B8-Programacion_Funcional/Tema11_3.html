@@ -347,18 +347,24 @@ justo después del front matter
 <h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
 
 <ol>
-<li><a href="#funcionalidades-interesantes-del-lenguaje-c">Funcionalidades Interesantes del Lenguaje C#</a></li>
-<li><a href="#tipos-an%C3%B3nimos-inmutables">Tipos An&#xF3;nimos Inmutables</a><br>
-1. <a href="#extendiendo-al-sintaxis-a-los-tipos-conocidos">Extendiendo al sintaxis a los tipos conocidos</a><br>
-2. <a href="#m%C3%A9todos-de-extensi%C3%B3n">M&#xE9;todos de Extensi&#xF3;n</a><br>
-3. <a href="#recorrido-perezoso-de-secuencias">Recorrido Perezoso De Secuencias</a><br>
-1. <a href="#casos-de-uso-de-los-generadoreshttpseswikipediaorgwikigenerador_informc3a1tica">Casos de uso de los generadores)</a><br>
-2. <a href="#sintaxis-y-ejemplo-de-uso-de-yieldhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsyield">Sintaxis y ejemplo de uso de yield</a></li>
+<li><a href="#funcionalidades-interesantes-del-lenguaje-c">Funcionalidades Interesantes del Lenguaje C#</a>
+<ol>
+<li><a href="#tipos-an%C3%B3nimos-inmutables">Tipos An&#xF3;nimos Inmutables</a></li>
+<li><a href="#tipo-record">Tipo Record</a></li>
+<li><a href="#m%C3%A9todos-de-extensi%C3%B3n">M&#xE9;todos de Extensi&#xF3;n</a></li>
+<li><a href="#recorrido-perezoso-de-secuencias">Recorrido Perezoso De Secuencias</a>
+<ol>
+<li><a href="#casos-de-uso-de-los-generadores">Casos de uso de los generadores</a></li>
+<li><a href="#sintaxis-y-ejemplo-de-uso-de-yieldhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsyield">Sintaxis y ejemplo de uso de yield</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="funcionalidades-interesantes-del-lenguaje-c">Funcionalidades Interesantes del Lenguaje C#</h2>
 
-<h2 class="mume-header" id="tipos-an%C3%B3nimos-inmutables">Tipos An&#xF3;nimos Inmutables</h2>
+<h3 class="mume-header" id="tipos-an%C3%B3nimos-inmutables">Tipos An&#xF3;nimos Inmutables</h3>
 
 <p><strong>Definici&#xF3;n:</strong> Los tipos an&#xF3;nimos son una manera de encapsular un conjunto de propiedades de solo lectura en un &#xFA;nico objeto <strong>sin tener que definir un tipo</strong>. Para ello, el compilador genera el nombre del tipo transparente para el programador y por tanto no disponible en el nivel de c&#xF3;digo fuente.</p>
 <p><strong>Restricciones:</strong> Solo podremos definir propiedades y por tanto, no son v&#xE1;lidos ning&#xFA;n otro tipo de miembros de clase, como m&#xE9;todos o eventos. Adem&#xE1;s, la expresi&#xF3;n que se usa para inicializar una propiedad no puede ser <strong><code>null</code></strong>.</p>
@@ -385,7 +391,6 @@ justo después del front matter
 </pre><blockquote>
 <p>&#x270B; <strong>Importante:</strong> En este caso hemos creado <strong>dos objetos an&#xF3;nimos con el mismo nombre de propiedades</strong> y por tanto del &apos;<em>mismo tipo</em>&apos;. Esto ser&#xE1; detectado internamente por el Runtime que <strong>combinar&#xE1; ambos tipos an&#xF3;nimos creados</strong>, en uno solo.</p>
 </blockquote>
-<p>Aunque a&#xFA;n no vamos a ver ejemplos de uso significativos. M&#xE1;s adelante, en el tema, los usaremos para obtener instant&#xE1;neas de datos agrupados como resultado de consultas. Algo as&#xED; como la obtenci&#xF3;n de un <strong>snapshot</strong> tras hacer un <strong><code>select</code></strong> en SQL. Por esa raz&#xF3;n, una de las restricciones m&#xE1;s notables de los tipos an&#xF3;nimos es que su uso est&#xE1; limitado a hacerse dentro del <strong>cuerpo de un m&#xE9;todo</strong>.</p>
 <p><strong>No pueden declararse</strong> como <strong>tipos an&#xF3;nimos</strong>:</p>
 <ul>
 <li>Campos privados.</li>
@@ -400,40 +405,197 @@ justo después del front matter
 <li>El mismo orden de declaraci&#xF3;n de las propiedades.</li>
 <li>Los mismos valores para esas propiedades.</li>
 </ul>
-<p>Por &#xFA;ltimo, puesto que heredan de la clase <strong><code>object</code></strong> podr&#xE1;n mostrarse <strong><code>string ToString()</code></strong> por ejemplo...</p>
-<pre data-role="codeBlock" data-info="csharp{}" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Mar&#xED;a&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Mar&#xED;a&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Mar&#xED;a&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Mostrar&#xE1; True a pesar de que sean referencias a</span>
+<span class="token comment">// objetos diferentes en memoria.</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>anonimo1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>anonimo2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Por &#xFA;ltimo, puesto que heredan de la clase <strong><code>object</code></strong> podr&#xE1;n mostrarse <strong><code>string ToString()</code></strong> por ejemplo...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Mar&#xED;a&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
 <span class="token comment">// Mostrar&#xE1; &quot;{ Nombre = &quot;Mar&#xED;a&quot;, Edad = 23 }&quot; sin necesidad de invalidar ToString().</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>anonimo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h4 class="mume-header" id="extendiendo-al-sintaxis-a-los-tipos-conocidos">Extendiendo al sintaxis a los tipos conocidos</h4>
+</pre><div style="page-break-after:always;"></div>
+<h3 class="mume-header" id="tipo-record">Tipo Record</h3>
 
-<p>Podemos usar una sintaxis an&#xE1;loga para instanciar objetos tipados, sin haber definido ning&#xFA;n constructor.</p>
-<p>En el siguiente ejemplo definimos la clase <strong><code>Persona</code></strong> con solo el constructor por defecto.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Sexo</span> <span class="token punctuation">{</span> Mujer<span class="token punctuation">,</span> Var&#xF3;n <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-class">class</span> <span class="token class-name">Persona</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Sexo</span> Sexo <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> CodigoPais <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<p>M&#xE1;s adelante, usaremos los tipos an&#xF3;nimos para obtener instant&#xE1;neas de datos agrupados como resultado de consultas. Algo as&#xED; como la obtenci&#xF3;n de un <strong>snapshot</strong> tras hacer un <strong><code>select</code></strong> en SQL.</p>
+<p>A esta agrupaci&#xF3;n de datos resultado de una consulta sobre otros objetos se le denomina <strong><a href="https://es.wikipedia.org/wiki/Objeto_de_transferencia_de_datos">DTO</a> (Data Transfer Object)</strong> y deben tener las <strong>caracter&#xED;sticas de inmutabilidad y comparaci&#xF3;n de igualdad que tienen los tipos an&#xF3;nimos</strong>.</p>
+<p>No obstante, una de las <strong>restricciones</strong> m&#xE1;s notables de los <strong>tipos an&#xF3;nimos</strong> es que <strong>su uso est&#xE1; limitado</strong> a hacerse dentro del <strong>cuerpo de un m&#xE9;todo</strong>. Esto significa, por ejemplo, que un m&#xE9;todo no podr&#xE1; retornar un tipo an&#xF3;nimo que contenga el resultado de mi consulta.</p>
+<p>Supongamos que definimos un m&#xE9;todo que crea un objeto anonimo con el <strong>nombre</strong> y el <strong>c&#xF3;digo de pa&#xED;s</strong> de una persona.</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Aunque en el ejemplo no se hace por simplicidad, supondremos que los datos de <strong><code>Nombre</code></strong> y <strong><code>CodigoPais</code></strong> se han obtenido de la consulta sobre otros objetos.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// El c&#xF3;digo del cuerpo es v&#xE1;lido pero como el tipo es an&#xF3;nimo </span>
+<span class="token comment">// no sabremos c&#xF3;mo indicarselo al m&#xE9;todo.</span>
+<span class="token keyword keyword-static">static</span> <span class="token punctuation">?</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>    
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> PersonasPais <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> PersonasPais<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Pero a trav&#xE9;s de sus propiedades auto-implementadas definidas podremos definir una lista de personas por extensi&#xF3;n, usando la sintaxis para definir tipos an&#xF3;nimos y que tambi&#xE9;n podremos encontrar de forma similar en otros lenguajes de programaci&#xF3;n.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">List<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span> Personas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span> 
+</pre><ol>
+<li>
+<p>Una <strong>posible soluci&#xF3;n</strong> es usar el tipo <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/types/using-type-dynamic">dynamic</a></strong> que equivaldr&#xED;a a la declaraci&#xF3;n de tipos que hacemos en los lenguajes de scripting como JavaScrip donde el tipo no se conoce hasta el tiempo de ejecuci&#xF3;n.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-dynamic">dynamic</span></span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>    
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> PersonasPais <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> PersonasPais<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name"><span class="token keyword keyword-dynamic">dynamic</span></span> dato <span class="token operator">=</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>&#x1F480; Sin embargo, <strong>no</strong> deber&#xED;amos <strong>usar nunca</strong> este tipo ya que solo est&#xE1; pensado para usar en ciertos casos de <a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/types/using-type-dynamic#com-interop">interoperabilidad</a> con otras librer&#xED;as. Perdemos toda la seguridad de usar un lenguaje fuertemente tipado y pudiendo obtener errores en tiempo de ejecuci&#xF3;n f&#xE1;cilmente.</p>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<ol start="2">
+<li>
+<p>Otra posible soluci&#xF3;n es definir una clase espec&#xED;fica que agrupe los datos y que tenga las caracter&#xED;sticas de inmutabilidad y comparaci&#xF3;n que tienen los tipos an&#xF3;nimos.</p>
+<p>Tendr&#xED;amos que definir algo as&#xED;...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-class">class</span> <span class="token class-name">PersonaPais</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> Sexo <span class="token operator">=</span> Sexo<span class="token punctuation">.</span>Mujer<span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Juana&quot;</span><span class="token punctuation">,</span> Sexo <span class="token operator">=</span> Sexo<span class="token punctuation">.</span>Mujer<span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;RU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Dario&quot;</span><span class="token punctuation">,</span> Sexo <span class="token operator">=</span> Sexo<span class="token punctuation">.</span>Var&#xF3;n<span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Jenny&quot;</span><span class="token punctuation">,</span> Sexo <span class="token operator">=</span> Sexo<span class="token punctuation">.</span>Mujer<span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p>F&#xED;jate que el tipo Persona es mutable que <strong>todos los setters auto-implementados son publicos</strong>. Pero como aprendimos, esto es peligroso porque perdemos la encapsulaci&#xF3;n de nuestras clases.</p>
-<p>Para este tipo de inicializaciones, no nos valdr&#xED;a definir la propiedades de solo lectura <strong>ej.</strong> <strong><code>public string Nombre { get; }</code></strong>. Esto nos permit&#xED;a asignarle valor solo en el constructor, pero no usar la sint&#xE1;xis anterior.</p>
-<p>Por esta raz&#xF3;n desde <mark><strong>C#9</strong></mark> adem&#xE1;s de <strong><code>get</code></strong> y <strong><code>set</code></strong>, tendremos la palabra reservada <strong><code>init</code></strong> para definir propiedades y que ser&#xE1; equivalente a <strong><code>set</code></strong> pero solo nos permitir&#xE1; asignarle valor una vez y por tanto ser&#xED;a otra forma de definirla como de solo lectura. Siendo m&#xE1;s apropiado definir nuestras propiedades de solo lectura de esta forma <strong><code>public string Nombre { get; init; }</code></strong> a partir de C#9.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Sexo</span> <span class="token punctuation">{</span> Mujer<span class="token punctuation">,</span> Var&#xF3;n <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-class">class</span> <span class="token class-name">Persona</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">PersonaPais</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> codigoPais<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        CodigoPais <span class="token operator">=</span> codigoPais<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> CodigoPais <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span><span class="token punctuation">?</span></span> obj<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        obj <span class="token keyword keyword-is">is</span> <span class="token class-name">PersonaPais</span> pais <span class="token operator">&amp;&amp;</span>
+        Nombre <span class="token operator">==</span> pais<span class="token punctuation">.</span>Nombre <span class="token operator">&amp;&amp;</span>
+        CodigoPais <span class="token operator">==</span> pais<span class="token punctuation">.</span>CodigoPais<span class="token punctuation">;</span>
+    <span class="token comment">// Estoy obligado a implementarlo junto con el Equals.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>Nombre<span class="token punctuation">,</span> CodigoPais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name">PersonaPais</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">PersonaPais</span> PersonasPais <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">(</span><span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;ES&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> PersonasPais<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>Esta opci&#xF3;n, nos obliga a definir una clase &apos;<em>muy larga</em>&apos; para unos datos que son el resultado de una consulta y as&#xED; para otras combinaciones de datos que se nos ocurran. Adem&#xE1;s, perdemos la declaraci&#xF3;n la construcci&#xF3;n que us&#xE1;bamos para los tipos an&#xF3;nimos <strong><code>new { Nombre = &quot;Diana&quot;, CodigoPais = &quot;ES&quot; };</code></strong> por un constructor tradicional <strong><code>new PersonaPais(&quot;Diana&quot;, &quot;ES&quot;);</code></strong></p>
+<p>Por esta raz&#xF3;n desde <strong>C# 9</strong> adem&#xE1;s de <strong><code>get</code></strong> y <strong><code>set</code></strong>, tendremos la palabra reservada <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/init">init</a></strong> para definir propiedades y que ser&#xE1; equivalente a <strong><code>set</code></strong> pero solo nos permitir&#xE1; asignarle valor una vez y por tanto ser&#xED;a <strong>otra forma de definirla como de solo lectura</strong>. Siendo m&#xE1;s apropiado definir nuestras propiedades de solo lectura de esta forma <strong><code>public string Nombre { get; init; }</code></strong> a partir de C# 9.</p>
+ <div style="page-break-after:always;"></div>
+<p>Usando la palabra reservada <strong><code>init</code></strong> podremos <strong>ahorrarnos el constructor</strong> y reescribir nuestro c&#xF3;digo anterior como ...</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3,4,15}" class="language-csharp" data-line="3,4,15"><span class="token keyword keyword-class">class</span> <span class="token class-name">PersonaPais</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Sexo</span> Sexo <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> CodigoPais <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span><span class="token punctuation">?</span></span> obj<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        obj <span class="token keyword keyword-is">is</span> <span class="token class-name">PersonaPais</span> pais <span class="token operator">&amp;&amp;</span>
+        Nombre <span class="token operator">==</span> pais<span class="token punctuation">.</span>Nombre <span class="token operator">&amp;&amp;</span>
+        CodigoPais <span class="token operator">==</span> pais<span class="token punctuation">.</span>CodigoPais<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>Nombre<span class="token punctuation">,</span> CodigoPais<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>De esta manera, ya no podr&#xED;amos modificar el estado de los objetos de la lista y podr&#xED;amos preservar su encapsulaci&#xF3;n aunque no podremos asegurarnos 100% de que el estado con el que se inicializan, es del todo correcto si las dejamos auto-implementadas.</p>
+
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name">PersonaPais</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">PersonaPais</span> PersonasPais <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">{</span> Nombre<span class="token operator">=</span><span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais<span class="token operator">=</span><span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> PersonasPais<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+</div></div></pre><p>Podemos usar este tipo de definiciones de clases con <strong><code>init</code></strong> para retornar colecciones de objetos inmutables utilizando una sintaxis an&#xE1;loga a la de los objetos an&#xF3;nimos de la siguiente forma ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp">   <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>PersonaPais<span class="token punctuation">&gt;</span></span> <span class="token function">PersonasPorCodigoDePais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">PersonaPais<span class="token punctuation">[</span><span class="token punctuation">]</span></span> personasPorCodigoDePais <span class="token operator">=</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Juana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;RU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Dario&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PersonaPais</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Jenny&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> personasPorCodigoDePais<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre> <div style="page-break-after:always;"></div>
+</li>
+<li>
+<p>Para evitar, este tipo de declaraciones tan largas. <strong>C# 9</strong> incluyo la palabra reservada <strong><a href="https://docs.microsoft.com/es-mx/dotnet/csharp/language-reference/builtin-types/record">record</a></strong> el cual me permite definir una tipo referencia para ser usado como <strong>DTO</strong> con las caracter&#xED;sticas de inmutabilidad y comparaci&#xF3;n que hemos indicado.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">PersonaPais</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> CodigoPais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">PersonaPais</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Resultado de consulta en objeto an&#xF3;nimo.</span>
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// Lo devolvemos tipado como DTO</span>
+    <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>dato<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> dato<span class="token punctuation">.</span>CodigoPais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">PersonaPais</span> p <span class="token operator">=</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+</ol>
+<p>Podemos destacar las siguientes caracter&#xED;sticas a la hora de compararlos teniendo en cuenta que los operadores <strong><code>==</code></strong> y <strong><code>!=</code></strong> se redefinen autom&#xE1;ticamente para comparar propiedad a propiedad.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=5}" class="language-csharp" data-line="5"><span class="token class-name">PersonaPais</span> p1 <span class="token operator">=</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">PersonaPais</span> p2 <span class="token operator">=</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrar&#xE1; PersonaPais { Nombre = Diana, CodigoPais = &quot;ES&quot; }</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// True</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p1 <span class="token operator">==</span> p2<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// True</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ReferenceEquals</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> p2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// False referencias a diferentes objetos.</span>
+<div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div></pre><p>Tambi&#xE9;n es posible indicar la propiedad que estamos pasando al construir el registros con la sintaxis <strong><code>Popiedad: valor</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp {highlight=4}" class="language-csharp" data-line="4"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">PersonaPais</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> dato<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> <span class="token named-parameter punctuation">CodigoPais</span><span class="token punctuation">:</span> dato<span class="token punctuation">.</span>CodigoPais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div></pre><p>Aunque son objetos inmutables, podemos crear f&#xE1;cilmente una nueva instancia modificando una propiedad con la <strong>expresi&#xF3;n</strong> <strong><a href="https://docs.microsoft.com/es-mx/dotnet/csharp/language-reference/builtin-types/record#nondestructive-mutation">with</a></strong></p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[2,4]}" class="language-csharp" data-line="2,4"><span class="token class-name">PersonaPais</span> p1 <span class="token operator">=</span> <span class="token function">PersonasPais</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">PersonaPais</span> p2 <span class="token operator">=</span> p1 <span class="token keyword keyword-with">with</span> <span class="token punctuation">{</span> CodigoPais <span class="token operator">=</span> <span class="token string">&quot;RU&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrar&#xE1; PersonaPais { Nombre = Diana, CodigoPais = ES }</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// // Mostrar&#xE1; PersonaPais { Nombre = Diana, CodigoPais = RU }</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p1 <span class="token operator">==</span> p2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// False</span>
+<div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div></pre><div style="page-break-after:always;"></div>
+<p>Al igual que suced&#xED;a con class, tambi&#xE9;n podremos devolver <strong>colecciones de registros inmutables</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>PersonaPais<span class="token punctuation">&gt;</span></span> <span class="token function">PersonasPorCodigoDePais</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">PersonaPais<span class="token punctuation">[</span><span class="token punctuation">]</span></span> personasPorCodigoDePais <span class="token operator">=</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span> <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Diana&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">CodigoPais</span><span class="token punctuation">:</span> <span class="token string">&quot;ES&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span> <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Juana&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">CodigoPais</span><span class="token punctuation">:</span> <span class="token string">&quot;RU&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span> <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Dario&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">CodigoPais</span><span class="token punctuation">:</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span> <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Jenny&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">CodigoPais</span><span class="token punctuation">:</span> <span class="token string">&quot;CU&quot;</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> personasPorCodigoDePais<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Si quieres saber m&#xE1;s sobre <strong>c&#xF3;mo usar registros</strong>, puedes leer la documentaci&#xF3;n oficial en <strong><a href="https://docs.microsoft.com/es-mx/dotnet/csharp/whats-new/tutorials/records">este enlace</a></strong>.</p>
+</blockquote>
 <div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="m%C3%A9todos-de-extensi%C3%B3n">M&#xE9;todos de Extensi&#xF3;n</h3>
 
@@ -609,7 +771,7 @@ secuencia<span class="token punctuation">.</span><span class="token function">Sk
 <p>Para hablar del recorrido &apos;<em>perezoso</em>&apos; de una secuencia, deberemos hablar de la palabra reservada <strong><code>yield</code></strong>. Es interesante indicar que una posible traducci&#xF3;n del ingl&#xE9;s de <strong>to yield</strong> como verbo ser&#xED;a <strong>&apos;<em>generar o producir</em>&apos;</strong> ya que m&#xE1;s que de recorrido perezoso deber&#xED;amos hablar de <em>&apos;<strong>generaci&#xF3;n</strong> perezosa de datos en una secuencia&apos;</em>.</p>
 <p>Se ha decidido incluir su explicaci&#xF3;n en este tema de funcionalidades interesantes de C# ya que, la palabra reservada <strong><code>yield</code></strong> la vamos a encontrar en otros lenguajes de programaci&#xF3;n tales como: <strong>JavaScript</strong>, <strong>Php</strong>, <strong>Python</strong>, <strong>Scala</strong> o <strong>Ruby</strong> con un significado y uso similar, aunque con variaciones en la sintaxis.</p>
 <p><strong><code>yield</code></strong> nos permite que un determinado m&#xE9;todo devuelva una secuencia <strong><code>IEnumerable&lt;T&gt;</code></strong>, sin que esta se base en una colecci&#xF3;n espec&#xED;fica o en la definici&#xF3;n de un iterador <strong><code>IEnumerator&lt;T&gt;</code></strong></p>
-<h4 class="mume-header" id="casos-de-uso-de-los-generadoreshttpseswikipediaorgwikigenerador_informc3a1tica">Casos de uso de los <a href="https://es.wikipedia.org/wiki/Generador_(inform%C3%A1tica)">generadores</a></h4>
+<h4 class="mume-header" id="casos-de-uso-de-los-generadores">Casos de uso de los generadores</h4>
 
 <blockquote>
 <p>&#x270B; <strong>Importante:</strong> Nos <strong>interesa usar secuencias para procesar datos</strong>, porque en la mayor&#xED;a de lenguajes nos permitir&#xE1;n realizar consultas y agrupaciones complejas mediante programaci&#xF3;n funcional y declarativa. M&#xE1;s adelante en este tema haremos una introducci&#xF3;n a estos procesos sobre secuencias.</p>
@@ -623,6 +785,9 @@ secuencia<span class="token punctuation">.</span><span class="token function">Sk
 <li>Necesitemos hacer un b&#xFA;squeda en una gran colecci&#xF3;n de objetos, de los que solo vamos a necesitar unos pocos hasta encontrar lo que busc&#xE1;bamos. Sin embargo, hemos tenido que cargar previamente todos en la colecci&#xF3;n para realizar la b&#xFA;squeda.</li>
 </ol>
 <p>En estos casos es mejor ir generando los elementos de la secuencia, conforme los necesitemos para su proceso y no todos a la vez como suceder&#xED;a al cargarlos en una colecci&#xF3;n.</p>
+<blockquote>
+<p>&#x1F4CC; <strong>Nota:</strong> Puedes saber algo m&#xE1;s sobre los generadores leyendo a <strong><a href="https://es.wikipedia.org/wiki/Generador_(inform%C3%A1tica)">esta entrada en la Wikipedia</a></strong></p>
+</blockquote>
 <h4 class="mume-header" id="sintaxis-y-ejemplo-de-uso-de-yieldhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsyield">Sintaxis y ejemplo de uso de <a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/yield">yield</a></h4>
 
 <p>En C# <strong><code>yield</code></strong> ir&#xE1; seguido de las clausulas <strong><code>return</code></strong> o <strong><code>break</code></strong>.</p>
@@ -882,7 +1047,7 @@ Producido 324
 Producido 326
 El 4to multiplo es 326
 </pre><p>No hace falta que tengamos un bucle y un &#xFA;nico <strong><code>yield return dato;</code></strong>. Podr&#xED;amos, por ejemplo, <a href="https://es.wikipedia.org/wiki/Hard_code"><em>&apos;hardcodear&apos;</em></a> una secuencia con gran cantidad de datos predefinidos en nuestro programa, sin necesidad de cargarlos en ning&#xFA;n tipo de colecci&#xF3;n. Una posibilidad ser&#xED;a la siguiente ...</p>
-<pre data-role="codeBlock" data-info="csharp{highlight=[13-19]}" class="language-csharp" data-line="13-19"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Empleado</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Empleado</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Edad <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
@@ -897,10 +1062,10 @@ El 4to multiplo es 326
             <span class="token comment">// Despu&#xE9;s de cada yield el contr&#xF3;l volver&#xE1; al main y </span>
             <span class="token comment">// en el siguiente MoveNext() del foreach regresar&#xE1; para </span>
             <span class="token comment">// generar el siguiente objeto de la secuencia.</span>
-            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Xusa&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">32</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Juanjo&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">51</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Carmen&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">27</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Pepe&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">45</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Empleado</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Xusa&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">32</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Empleado</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Juanjo&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">51</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Empleado</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Carmen&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">27</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Empleado</span><span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">&quot;Sim&#xF3;n&quot;</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">45</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -913,29 +1078,40 @@ El 4to multiplo es 326
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>Nombre</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>Edad</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="13-19" data-start="13" data-end="19">
-
-
-
-
-
-
-</div></div></pre><blockquote>
+</pre><blockquote>
 <p>&#x1F4E3; <strong>Resumen:</strong></p>
 <p><strong><code>yield</code></strong> en resumen, nos ayudar&#xE1; a implementar la generaci&#xF3;n incremental de una secuencia de datos, introduciendo saltos entre un m&#xE9;todo y quien lo llam&#xF3;. De esta manera evitaremos consumir recursos de ejecuci&#xF3;n y memoria con <strong>flujos de datos de gran tama&#xF1;o</strong>.</p>
 </blockquote>
+<div style="page-break-after:always;"></div>
+<blockquote>
+<p>&#x1F393; <strong>Caso de estudio:</strong></p>
+<p>Ser&#xED;as capaz de reescribir el c&#xF3;digo del &#xFA;ltimo ejemplo declarando <strong><code>Empleado</code></strong> y <strong><code>Emplados</code></strong> usando la palabra <strong><code>record</code></strong>.</p>
+<p>&#x1F4CC; <strong>Nota:</strong> ten en cuenta que <strong><code>record</code></strong> no admite el modificador <strong><code>static</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Empleado</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Empleados</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span> DepartamentoDeVentas
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-get">get</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Xusa&quot;</span><span class="token punctuation">,</span>   <span class="token named-parameter punctuation">Edad</span><span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Juanjo&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Edad</span><span class="token punctuation">:</span> <span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Carmen&quot;</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Edad</span><span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-yield">yield</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">&quot;Sim&#xF3;n&quot;</span><span class="token punctuation">,</span>  <span class="token named-parameter punctuation">Edad</span><span class="token punctuation">:</span> <span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">Empleado</span> e <span class="token keyword keyword-in">in</span> Empleados<span class="token punctuation">.</span>DepartamentoDeVentas<span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>Nombre</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>Edad</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></blockquote>
 
       </div>
       
