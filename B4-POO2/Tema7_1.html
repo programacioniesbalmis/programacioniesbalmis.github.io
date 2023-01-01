@@ -269,7 +269,79 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="tema-7-parte-1">Tema 7 parte 1</h1>
+      <style>/* 
+Añade 
+
+@import "../EstilosPersonalizadosMarkdownEnhanced.less"
+
+justo después del front matter 
+*/
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v17/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+</style>
+<h1 class="mume-header undefined" id="tema-7-parte-1">Tema 7 parte 1</h1>
 
 <p>Descargar estos apuntes en <a href="./Tema7_1.pdf">pdf</a> o <a href="./Tema7_1.html">html</a></p>
 <h2 class="mume-header" id="%C3%ADndice">&#xCD;ndice</h2>
@@ -313,14 +385,14 @@ pre[data-line] .line-highlight[data-end]:after {
 <li><a href="#definiendo-tipos-y-objetos-valor">Definiendo tipos y objetos &apos;<em>valor</em>&apos;</a>
 <ol>
 <li><a href="#un-poco-de-hist%C3%B3ria">Un poco de hist&#xF3;ria</a></li>
-<li><a href="#bulb-tips-para-definir-un-tipo-usando-struct">&#x1F4A1; Tips para definir un tipo usando struct</a></li>
+<li><a href="#bulb-tips-para-definir-un-value-object-usando-struct-o-tipos-valor">&#x1F4A1; Tips para definir un Value Object usando struct o tipos valor</a></li>
 <li><a href="#definir-objetos-valor-a-trav%C3%A9s-de-c">Definir objetos valor a trav&#xE9;s de &apos;<em>C#</em>&apos;</a>
 <ol>
-<li><a href="#creando-objetos-valor">Creando objetos valor</a></li>
+<li><a href="#creando-un-objeto-valor-como-un-tipo-valor">Creando un objeto valor como un tipo valor</a></li>
 <li><a href="#definiendo-operaciones-inmutables-en-el-objeto-valor">Definiendo operaciones inmutables en el objeto valor</a></li>
 </ol>
 </li>
-<li><a href="#ejemplo-de-objeto-valor-definido-en-las-bcl">Ejemplo de objeto valor definido en las BCL</a>
+<li><a href="#ejemplo-de-objeto-valor-definido-en-las-bcl-como-tipo-valor">Ejemplo de objeto valor definido en las BCL como tipo valor</a>
 <ol>
 <li><a href="#formas-de-instanciar-objetos-valor-fecha">Formas de instanciar objetos valor fecha</a></li>
 <li><a href="#operaciones-m%C3%A1s-comunes-con-fechas">Operaciones m&#xE1;s comunes con fechas</a></li>
@@ -1164,25 +1236,62 @@ Country: ES
 <p>Por ese motivo se incluy&#xF3; la palabra reservada <strong><code>struct</code></strong> que permit&#xED;a definir tipos como <strong><code>class</code></strong> pero con ciertas restricciones. Adem&#xE1;s, estos tipos ser&#xED;an <strong>valor</strong>. Por ejemplo, si nos fijamos <strong><code>int</code></strong> es una alias para el tipo <strong><code>System.Int32</code></strong> y si nos fijamos en su <a href="https://docs.microsoft.com/es-es/dotnet/api/system.int32" target="_blank">definici&#xF3;n</a>, este es un <strong><code>struct</code></strong>.</p>
 <p>En dise&#xF1;o orientado a objetos a trav&#xE9;s de diagramas UML <strong>tambi&#xE9;n se les conoce como</strong> <a href="https://www.uml-diagrams.org/data-type.html" target="_blank">Data Type</a>.</p>
 <p>En la POO moderna, la aproximaci&#xF3;n para el uso de estructuras que m&#xE1;s consenso produce, es la definici&#xF3;n de <a href="https://martinfowler.com/bliki/ValueObject.html" target="_blank">Value Object</a> que <a href="https://es.wikipedia.org/wiki/Martin_Fowler" target="_blank">Martin Fowler</a> da sobre los mismos. Las caracter&#xED;sticas que deber&#xED;an tener los tipos para definirlos a trav&#xE9;s <strong><code>struct</code></strong> seg&#xFA;n Martin la  describiremos a continuaci&#xF3;n.</p>
-<h3 class="mume-header" id="bulb-tips-para-definir-un-tipo-usando-struct">&#x1F4A1; Tips para definir un tipo usando struct</h3>
-
+<p>Llegados a este punto, podemos tener algo de confusi&#xF3;n y preguntarnos.</p>
+<p>&#xBF;Es lo mismo un <strong>value type</strong> que un <strong>value object</strong>?, &#xBF;Son sin&#xF3;nimos?</p>
+<p>La respuesta es <strong>NO</strong>. Podemos resumir lo siguiente...</p>
+<blockquote>
+<p>&#x1F4E3; <strong>Resumen:</strong></p>
 <ul>
-<li>Al almacenarse en el <strong>Stack</strong> o Pila, no deber&#xED;an de superar los <strong>16 bytes</strong> de tama&#xF1;o por motivos de eficiencia en la lecturas y copias. Si ocupan m&#xE1;s, nuestros programas se pueden ralentizar demasiado y podremos desbordar la pila que recordemos que tiene un tama&#xF1;o menor al Heap.</li>
-<li>Deber&#xED;an ser <strong>inmutables</strong>, esto es, cualquier operaci&#xF3;n sobre un objeto <strong><code>struct</code></strong> deber&#xED;a producir un nuevo objeto <strong><code>struct</code></strong>.</li>
-<li>Sus campos, a su vez, ser&#xE1;n tipos inmutables.</li>
-<li>No deber&#xED;an tener ning&#xFA;n campo marcado como <strong><code>{id}</code></strong> que haga a los objetos &#xFA;nicos.</li>
-<li><strong>Los objetos representan entidades completamente intercambiables</strong>. Por ejemplo...
+<li>
+<p>Un <strong>Value Type</strong> (tipo valor <a href="https://en.wikipedia.org/wiki/Value_type_and_reference_type">ver wikipedia</a>) son un tipo de &apos;<em>objetos</em>&apos; cuyas instancias se guardan directamente en el <em><strong>Stack</strong></em> en lugar de <em><strong>Heap</strong></em> y tener solo una referencia en el <em><strong>Stack</strong></em> como vimos en los primeros temas. Por tanto, todos los tipos valor son <strong>struct</strong> como hemos visto con <strong><code>int</code></strong> que es un tipo valor b&#xE1;sico.</p>
+</li>
+<li>
+<p>Un <strong>Value Object</strong> (objecto valor <a href="https://en.wikipedia.org/wiki/Value_object">ver wikipedia</a>) ser&#xE1;n casos muy puntuales y se representar&#xE1;n por una <strong><code>record</code></strong>, <strong><code>class</code></strong> o <strong><code>struct</code></strong> cuyas caracter&#xED;sticas son muy espec&#xED;ficas y pueden representarse con el tipo valor <strong><code>struct</code></strong> en C#, aunque no es estrictamente necesario. De hecho <a href="https://learn.microsoft.com/es-es/dotnet/csharp/whats-new/csharp-9#record-types">C# 9</a> introdujo el tipo <strong><code>record</code></strong> para representar los <strong>Value Objects</strong> de forma m&#xE1;s concreta mediante tipos referencia en lugar de valor. Para saber m&#xE1;s sobre estos &#xFA;ltimos, puedes ver el <a href="https://learn.microsoft.com/es-es/dotnet/csharp/whats-new/tutorials/records#characteristics-of-records">siguiente enlace</a>.</p>
+</li>
+</ul>
+</blockquote>
+<h3 class="mume-header" id="bulb-tips-para-definir-un-value-object-usando-struct-o-tipos-valor">&#x1F4A1; Tips para definir un Value Object usando struct o tipos valor</h3>
+
+<p>Veamos como definir nuestros <strong>Value Objects</strong> con un tipos valor o <strong><code>struct</code></strong> siguiendo las siguientes especificaciones.</p>
+<ul>
+<li>
+<p>Al almacenarse en el <strong>Stack</strong> o Pila, no deber&#xED;an de superar los <strong>16 bytes</strong> de tama&#xF1;o por motivos de eficiencia en la lecturas y copias. Si ocupan m&#xE1;s, nuestros programas se pueden ralentizar demasiado y podremos desbordar la pila que recordemos que tiene un tama&#xF1;o menor al Heap.</p>
+</li>
+<li>
+<p>Deber&#xED;an ser <strong>inmutables</strong>, esto es, cualquier operaci&#xF3;n sobre un objeto <strong><code>struct</code></strong> deber&#xED;a producir un nuevo objeto <strong><code>struct</code></strong>.</p>
+</li>
+<li>
+<p>Sus campos, a su vez, ser&#xE1;n tipos inmutables.</p>
+</li>
+<li>
+<p>No deber&#xED;an tener ning&#xFA;n campo marcado como <strong><code>{id}</code></strong> que haga a los objetos &#xFA;nicos.</p>
+</li>
+<li>
+<p><strong>Los objetos representan entidades completamente intercambiables</strong>. Por ejemplo...</p>
 <ul>
 <li>Un objeto <strong><code>billete de 5&#x20AC;</code></strong> es intercambiable por otro <strong><code>billete de 5&#x20AC;</code></strong>. Sigo teniendo la misma cosa. El mismo <em>&apos;valor&apos;</em>.</li>
-<li>Un objeto naipe con el <strong><code>7 de picas</code></strong> es intercambiable por otro <strong><code>7 de picas</code></strong>.</li>
+<li>Un objeto naipe con el <strong><code>7 de picas</code></strong> es intercambiable por otro <strong><code>7 de picas</code></strong>. Puedo intercambiarlo por otra carta igual y adem&#xE1;s es inmutable porque si cambiara su valor ser&#xED;a otra carta completamente diferente.</li>
 <li>Un objeto IP con el valor <strong><code>192.168.0.1</code></strong> es intercambiable por otro <strong><code>192.168.0.1</code></strong>.</li>
 <li>Una objeto coordenada de la consola con los valores <strong><code>X (columna) = 40</code></strong> y <strong><code>Y (fila) = 10</code></strong> es intercambiable con otro objetos con los mismos valores.</li>
+<li>Un objeto Fecha <strong><code>21/03/2030</code></strong> es intercambiable por otro objeto fecha id&#xE9;ntico. Seguir&#xED;a teniendo el mismo valor.</li>
 </ul>
+</li>
+<li>
+<p>En todos los casos de ejemplo f&#xED;jate que la composici&#xF3;n son tipos valor simples que no ocupan mucho en memoria.</p>
 </li>
 </ul>
 <blockquote>
-<p>&#x1F4CC; <strong>Nota:</strong> Con tantas restricciones su uso ser&#xE1; poco com&#xFA;n.</p>
+<p>&#x1F4CC; <strong>Nota:</strong> Con tantas restricciones <strong>su uso ser&#xE1; poco com&#xFA;n</strong>.</p>
 </blockquote>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">&quot;</div>
+        <div class="cierra_comilla">&quot;</div>
+        <div class="cita">Certainly not every good program is object-oriented, and not every object-oriented program is good.</div>
+        <div class="autor">- Bjarne Stroustrup (C++ creator)</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
 <h3 class="mume-header" id="definir-objetos-valor-a-trav%C3%A9s-de-c">Definir objetos valor a trav&#xE9;s de &apos;<em>C#</em>&apos;</h3>
 
 <p>Vamos a definir un tipo valor denominado <strong><code>Punto2D</code></strong> que contendr&#xE1; 2 campos que ser&#xE1;n las coordenadas <strong><code>x</code></strong> e <strong><code>y</code></strong> respectivas al punto.</p>
@@ -1219,7 +1328,7 @@ Country: ES
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> Y<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><p>En lugar de usar el palabra reservada <strong><code>class</code></strong>, hemos usado <strong><code>struct</code></strong>. Adem&#xE1;s, como queremos que sea <strong>inmutable</strong>, los campos los hemos definido <strong><code>readonly</code></strong> y como una vez definidos ya no podremos modificarlos, los hemos definido c&#xF3;mo p&#xFA;blicos para que desde fuera se pueda consultar su valor.</p>
-<h4 class="mume-header" id="creando-objetos-valor">Creando objetos valor</h4>
+<h4 class="mume-header" id="creando-un-objeto-valor-como-un-tipo-valor">Creando un objeto valor como un tipo valor</h4>
 
 <p>La forma m&#xE1;s simple, es hacerlo de forma an&#xE1;loga a c&#xF3;mo declar&#xE1;bamos un entero (recordemos que en el fondo un int es un struct).</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Punto2D</span> p<span class="token punctuation">;</span>
@@ -1786,7 +1895,7 @@ Country: ES
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </pre><div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="ejemplo-de-objeto-valor-definido-en-las-bcl">Ejemplo de objeto valor definido en las BCL</h3>
+<h3 class="mume-header" id="ejemplo-de-objeto-valor-definido-en-las-bcl-como-tipo-valor">Ejemplo de objeto valor definido en las BCL como tipo valor</h3>
 
 <p>Uno de los objetos valor predefinidos en las BCL y que m&#xE1;s vamos usar, es el tipo de dato <strong>fecha</strong>: <a href="https://docs.microsoft.com/en-us/dotnet/api/system.datetime?view=netcore-3.1" target="_blank">System.DateTime</a></p>
 <h4 class="mume-header" id="formas-de-instanciar-objetos-valor-fecha">Formas de instanciar objetos valor fecha</h4>
@@ -2614,15 +2723,15 @@ De esta manera, adem&#xE1;s, el objeto <strong><code>Isbn13</code></strong> que 
 <svg width="521pt" height="351pt" viewBox="0.00 0.00 521.00 351.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 347)">
 <title>G</title>
-<g id="clust1" class="cluster">
-<title>cluster1</title>
-<polygon fill="#4682b4" stroke="#000000" points="82,-89 82,-254 228,-254 228,-89 82,-89"/>
-<text text-anchor="middle" x="155" y="-237.4" font-family="Arial" font-size="14.00" fill="#ffffff">STACK</text>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster2</title>
 <polygon fill="#b0c4de" stroke="#000000" points="322,-8 322,-335 470,-335 470,-8 322,-8"/>
 <text text-anchor="middle" x="396" y="-318.4" font-family="Arial" font-size="14.00" fill="#000000">HEAP</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="#4682b4" stroke="#000000" points="82,-89 82,-254 228,-254 228,-89 82,-89"/>
+<text text-anchor="middle" x="155" y="-237.4" font-family="Arial" font-size="14.00" fill="#ffffff">STACK</text>
 </g>
 <!-- stack -->
 <g id="node1" class="node">
