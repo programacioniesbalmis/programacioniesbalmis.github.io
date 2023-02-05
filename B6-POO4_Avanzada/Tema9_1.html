@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
       
       
       
@@ -384,6 +384,7 @@ justo después del front matter
 </li>
 </ol>
 </li>
+<li><a href="#creando-un-ensablado-para-publicar">Creando un ensablado para publicar</a></li>
 </ol>
 <div style="page-break-after:always;"></div>
 <h2 class="mume-header" id="organizando-nuestras-clases">Organizando nuestras clases</h2>
@@ -1890,6 +1891,27 @@ Language: es
 Country: ES
 --></g></svg></p><p>Fij&#xE9;monos que ahora el <strong>doble &#xE1;mbito de uso</strong> ha desaparecido, pues <strong>en ambos casos</strong> estamos accediendo a una clase <strong><mark>fuera</mark></strong> de nuestra librer&#xED;a. Ahora en <strong><code>Utilities.dll</code></strong>.</p>
 <div style="page-break-after:always;"></div>
+<h2 class="mume-header" id="creando-un-ensablado-para-publicar">Creando un ensablado para publicar</h2>
+
+<p>En la siguiente URL puedes encontrar la informaci&#xF3;n oficial acerca de la publicaci&#xF3;n o despliegue de aplicaciones:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/es-es/dotnet/core/deploying/">https://learn.microsoft.com/es-es/dotnet/core/deploying/</a></li>
+</ul>
+<p>Generando un &#xFA;nico ejecutable para una plataforma espec&#xED;fica. Deber&#xED;amos ejecutar la siguiente instrucci&#xF3;n del CLI de .NET en el &apos;<em>Workspace</em>&apos; donde se encuentre nuestra soluci&#xF3;n ...</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">dotnet publish --configuration Release 
+               --runtime win-x64 
+               --output ./release nombre_solucion.sln 
+               --self-contained<span class="token operator">=</span>false -p:PublishSingleFile<span class="token operator">=</span>true
+</pre><p>Donde:</p>
+<ul>
+<li><strong><code>--configuration Release</code></strong>: Indica que queremos hacer una compilaci&#xF3;n para cliente sin informaci&#xF3;n de depuraci&#xF3;n.</li>
+<li><strong><code>--runtime win-x64</code></strong>: Indica que queremos que la soluci&#xF3;n sea compilada para plataformas Windos de 64 bits. Donde <strong><code>win-x64</code></strong> es el <strong><code>&lt;RID&gt;</code></strong> (Runtime Identifier) y puedes ver las sus diferentes valores aqu&#xED; <a href="https://learn.microsoft.com/es-es/dotnet/core/rid-catalog">https://learn.microsoft.com/es-es/dotnet/core/rid-catalog</a>. De esta forma se crear&#xE1; un &apos;<em>cargador</em>&apos; para ejecuci&#xF3;n espec&#xED;fico de la plataforma.</li>
+<li><strong><code>--output ./release</code></strong>: Indica donde queremos que nos genere el ejecutable final final.</li>
+<li><strong><code>nombre_solucion.sln</code></strong>: Ser&#xE1; el nombre de nuestra soluci&#xF3;n.</li>
+<li><strong><code>--self-contained=false</code></strong>: Indicar&#xE1; si queremos incluir el CLR necesario para ejecutar en el ejecutable. Al poner false el CLR de .NET deber&#xE1; estar instalado en la m&#xE1;quina donde queramos ejecutar.</li>
+<li><strong><code>-p:PublishSingleFile=true</code></strong>: Indicamos que queremos generar un &#xFA;nico fichero <strong><code>.exe</code></strong> sin librer&#xED;as que lo acompa&#xF1;es.</li>
+</ul>
+
       </div>
       
       
