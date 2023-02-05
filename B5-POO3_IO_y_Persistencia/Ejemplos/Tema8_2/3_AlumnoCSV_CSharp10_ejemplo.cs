@@ -200,7 +200,10 @@ class Program
             Console.Write("Introduce una opción: ");
             válida = int.TryParse(Console.ReadLine(), out int valor);
             if (válida)
-                válida = Array.IndexOf(Enum.GetValues(typeof(OpciónPrograma)), valor) > 0;
+            {
+                int[] valores = (int[])Enum.GetValues(typeof(OpciónPrograma));
+                válida = Array.IndexOf(valores, valor) >= 0;
+            }
             if (válida)
                 o = (OpciónPrograma)valor;
             else
