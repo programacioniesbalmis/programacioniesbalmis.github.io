@@ -510,15 +510,15 @@ La diferencia con las Listas es que la clave de acceso y modificaci&#xF3;n a tra
 <title>LinkedList</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-215.8 778,-215.8 778,4 -4,4"/>
 <text text-anchor="middle" x="387" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">Representacines conceptual de un nodo en memoria</text>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="transparent" points="8,-32.8 8,-203.8 358,-203.8 358,-32.8 8,-32.8"/>
-<text text-anchor="middle" x="183" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo referencia</text>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster1</title>
 <polygon fill="none" stroke="transparent" points="378,-86.8 378,-203.8 766,-203.8 766,-86.8 378,-86.8"/>
 <text text-anchor="middle" x="572" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo valor</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="transparent" points="8,-32.8 8,-203.8 358,-203.8 358,-32.8 8,-32.8"/>
+<text text-anchor="middle" x="183" y="-187.2" font-family="Arial" font-size="14.00" fill="#000000">Cuando el dato es un tipo referencia</text>
 </g>
 <!-- n1r -->
 <g id="node1" class="node">
@@ -3011,23 +3011,32 @@ l<span class="token punctuation">.</span>A&#xF1;<span class="token function">ade
 <p>&#x270B; <strong>Importrnte:</strong> Pero ... &#xBF;Por qu&#xE9; crear un objeto aparte para iterar y no dejar que las colecciones implementen directamente <strong><code>IEnumerator&lt;T&gt;</code></strong>?</p>
 </blockquote>
 <p>La respuesta tiene que ver con la necesidad de permitir la ejecuci&#xF3;n de <strong>iteraciones anidadas sobre una misma secuencia</strong>.  Si la secuencia implementara directamente la interfaz enumeradora, solo se dispondr&#xED;a de un &#xFA;nico &apos;<em>estado de iteraci&#xF3;n</em>&apos; en cada momento y ser&#xED;a imposible implementar bucles anidados <strong><code>foreach</code></strong> sobre una misma secuencia.</p>
-<pre data-role="codeBlock" data-info="csharp{highlight=[4-8]}" class="language-csharp" data-line="4-8"><span class="token comment">// Supongamos que nuestra lista simplemente enlazada implementa ya IEnumerable&lt;T&gt;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Supongamos que nuestra lista simplemente enlazada implementa ya IEnumerable&lt;T&gt;</span>
 <span class="token class-name">ListaSimpleEnlazada<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> l <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ListaSimpleEnlazada<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 l<span class="token punctuation">.</span>A&#xF1;<span class="token function">adeAlFinal</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> l<span class="token punctuation">.</span>A&#xF1;<span class="token function">adeAlFinal</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> l<span class="token punctuation">.</span>A&#xF1;<span class="token function">adeAlFinal</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> l<span class="token punctuation">.</span>A&#xF1;<span class="token function">adeAlFinal</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// La mejor opci&#xF3;n es obtener el iterador en el &#xE1;mbito donde lo voy a usar.</span>
+<span class="token class-name">IEnumerator<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> e1 <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">GetEnumerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>e1<span class="token punctuation">.</span><span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">IEnumerator<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> e2 <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">GetEnumerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>e2<span class="token punctuation">.</span><span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;it1 = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e1<span class="token punctuation">.</span>Current</span><span class="token punctuation">}</span></span><span class="token string">,  it2 = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e2<span class="token punctuation">.</span>Current</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Es esta otra opci&#xF3;n obtengo los dos iteradores al principio pero hago un</span>
+<span class="token comment">// reset al acabar la vuelta del segundo para empezar por el principio en</span>
+<span class="token comment">// futuras vueltas.</span>
 <span class="token class-name">IEnumerator<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> e1 <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">GetEnumerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">IEnumerator<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> e2 <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">GetEnumerator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>e1<span class="token punctuation">.</span><span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
     <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>e2<span class="token punctuation">.</span><span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;it1 = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e1<span class="token punctuation">.</span>Current</span><span class="token punctuation">}</span></span><span class="token string">,  it2 = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e2<span class="token punctuation">.</span>Current</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<div class="line-highlight-wrapper">
+    e<span class="token punctuation">.</span><span class="token function">Reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-
-<div aria-hidden="true" class="line-highlight" data-range="4-8" data-start="4" data-end="8">
-
-
-
-
-</div></div></pre><p>Si nos fijamos en la ilustraci&#xF3;n de abajo, el usar este patr&#xF3;n nos permite adem&#xE1;s mantener varios objetos enumeradores que me permiten iterar en la lista al mismo tiempo.</p>
+</pre><p>Si nos fijamos en la ilustraci&#xF3;n de abajo, el usar este patr&#xF3;n nos permite adem&#xE1;s mantener varios objetos enumeradores que me permiten iterar en la lista al mismo tiempo.</p>
 <p align="center" style="zoom:0.8"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
@@ -3297,11 +3306,12 @@ l<span class="token punctuation">.</span>A&#xF1;<span class="token function">ade
         <span class="token return-type class-name"><span class="token keyword keyword-object">object</span></span> IEnumerator<span class="token punctuation">.</span>Current <span class="token operator">=&gt;</span> Current<span class="token punctuation">;</span>
 
         <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">MoveNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment">// Si vengo de reset voy al primero y sino al siguiente.</span>
-            It <span class="token operator">=</span> It <span class="token operator">==</span> <span class="token keyword keyword-null">null</span> <span class="token punctuation">?</span> Primero <span class="token punctuation">:</span> It<span class="token punctuation">.</span>Siguiente<span class="token punctuation">;</span>
-            <span class="token comment">// Retorno true si he podido ir al siguiente.</span>
-            <span class="token keyword keyword-return">return</span> It <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span>   
+            <span class="token comment">// Antes de iterar confirmo si voy a poder hacerlo.</span>
+            <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> puedoIterar <span class="token operator">=</span> It <span class="token operator">==</span> <span class="token keyword keyword-null">null</span> <span class="token operator">&amp;&amp;</span> Primero <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span> <span class="token operator">||</span> It <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span> <span class="token operator">&amp;&amp;</span> It<span class="token punctuation">.</span>Siguiente <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
+            <span class="token comment">// Itero si puedo</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>puedoIterar<span class="token punctuation">)</span> It <span class="token operator">=</span> It <span class="token operator">==</span> <span class="token keyword keyword-null">null</span> <span class="token punctuation">?</span> Primero <span class="token punctuation">:</span> It<span class="token punctuation">.</span>Siguiente<span class="token punctuation">;</span>                
+            <span class="token keyword keyword-return">return</span> puedoIterar<span class="token punctuation">;</span> <span class="token comment">// Retorno true si he podido iterar.</span>
         <span class="token punctuation">}</span>
         <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
@@ -3555,15 +3565,15 @@ l<span class="token punctuation">.</span>A&#xF1;<span class="token function">ade
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 299)">
 <title>G</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-299 677.0878,-299 677.0878,4 -4,4"/>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="#000000" points="96,-8 96,-143 665.0878,-143 665.0878,-8 96,-8"/>
-<text text-anchor="middle" x="380.5439" y="-126.4" font-family="Arial" font-size="14.00" fill="#000000">l : ListaSimpleEnlazada&lt;StringBuilder&gt;</text>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster1</title>
 <polygon fill="none" stroke="#000000" points="64,-206 64,-287 224,-287 224,-206 64,-206"/>
 <text text-anchor="middle" x="144" y="-270.4" font-family="Arial" font-size="14.00" fill="#000000">v : StringBuilder[]</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="#000000" points="96,-8 96,-143 665.0878,-143 665.0878,-8 96,-8"/>
+<text text-anchor="middle" x="380.5439" y="-126.4" font-family="Arial" font-size="14.00" fill="#000000">l : ListaSimpleEnlazada&lt;StringBuilder&gt;</text>
 </g>
 <!-- n1 -->
 <g id="node1" class="node">
