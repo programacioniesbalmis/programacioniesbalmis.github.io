@@ -2,42 +2,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DatosAutoresTema_11_4
+public class Autor
 {
-    public class Autor
-    {
-        public string Nombre { get; init; }
-        public string Nacionalidad { get; init; }
-        public DateTime Muerte { get; init; }
-        public IEnumerable<Libro> Libros { get; init; }
+    public string Nombre { get; init; }
+    public string Nacionalidad { get; init; }
+    public DateTime Muerte { get; init; }
+    public IEnumerable<Libro> Libros { get; init; }
 
-        public override string ToString() =>
-        $"Nombre: {Nombre}\nNacionalidad: {Nacionalidad}\nMuerte: {Muerte.ToShortDateString()}\n" +
-        $"Libros:\n\t{string.Join("\n\t", Libros)}";
-    }
-    public class Libro
-    {
-        public string Titulo { get; init; }
-        public int Año { get; init; }
-        public int Paginas { get; init; }
+    public override string ToString() =>
+    $"Nombre: {Nombre}\nNacionalidad: {Nacionalidad}\nMuerte: {Muerte.ToShortDateString()}\n" +
+    $"Libros:\n\t{string.Join("\n\t", Libros)}";
+}
+public class Libro
+{
+    public string Titulo { get; init; }
+    public int Año { get; init; }
+    public int Paginas { get; init; }
 
-        public override string ToString() =>
-        $"Titulo: {Titulo,-37}  Año: {Año,-4}  Páginas: {Paginas}";
-    }
+    public override string ToString() =>
+    $"Titulo: {Titulo,-37}  Año: {Año,-4}  Páginas: {Paginas}";
+}
 
-    public static class Datos
+public static class Datos
+{
+    public static IEnumerable<Autor> Autores
     {
-        public static IEnumerable<Autor> Autores
+        get
         {
-            get
+            yield return new()
             {
-                yield return new()
+                Nombre = "William Shakespeare",
+                Nacionalidad = "Inglesa",
+                Muerte = new DateTime(1616, 5, 3),
+                Libros = new Libro[]
                 {
-                    Nombre = "William Shakespeare",
-                    Nacionalidad = "Inglesa",
-                    Muerte = new DateTime(1616, 5, 3),
-                    Libros = new Libro[]
-                    {
                         new Libro()
                         {
                             Titulo = "Macbeth",
@@ -50,15 +48,15 @@ namespace DatosAutoresTema_11_4
                             Año = 1611,
                             Paginas = 160
                         }
-                    }
-                };
-                yield return new()
+                }
+            };
+            yield return new()
+            {
+                Nombre = "Miguel de Cervantes",
+                Nacionalidad = "Española",
+                Muerte = new DateTime(1616, 6, 22),
+                Libros = new Libro[]
                 {
-                    Nombre = "Miguel de Cervantes",
-                    Nacionalidad = "Española",
-                    Muerte = new DateTime(1616, 6, 22),
-                    Libros = new Libro[]
-                    {
                         new Libro()
                         {
                             Titulo = "Don Quijote de la Mancha",
@@ -83,38 +81,37 @@ namespace DatosAutoresTema_11_4
                             Año = 1613,
                             Paginas = 1160
                         }
-                    }
-                };
-                yield return new()
+                }
+            };
+            yield return new()
+            {
+                Nombre = "Fernando de Rojas",
+                Nacionalidad = "Española",
+                Muerte = new DateTime(1541, 2, 7),
+                Libros = new Libro[]
                 {
-                    Nombre = "Fernando de Rojas",
-                    Nacionalidad = "Española",
-                    Muerte = new DateTime(1541, 2, 7),
-                    Libros = new Libro[]
-                    {
                         new Libro()
                         {
                             Titulo = "La Celestina",
                             Año = 1500,
                             Paginas = 160
                         }
-                    }
-                };
-            }
+                }
+            };
         }
     }
+}
 
-    class Principal
+class Principal
+{
+
+    static void Main()
     {
+        string SeparadorDato = "\n" + new string('-', 80) + "\n";
 
-        static void Main()
-        {
-            string SeparadorDato = "\n" + new string('-', 80) + "\n";
-
-            Console.WriteLine(
-                    SeparadorDato 
-                    + string.Join(SeparadorDato, Datos.Autores) 
-                    + SeparadorDato);
-        }
+        Console.WriteLine(
+                SeparadorDato
+                + string.Join(SeparadorDato, Datos.Autores)
+                + SeparadorDato);
     }
 }
