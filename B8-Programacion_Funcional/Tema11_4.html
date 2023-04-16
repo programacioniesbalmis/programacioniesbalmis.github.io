@@ -360,9 +360,12 @@ justo después del front matter
           <a href="#expresiones-lambda-en-c" class="md-toc-link">
             <p>Expresiones Lambda en C#</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open>
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open>
         <summary class="md-toc-link-wrapper">
-          <a href="#clausuras-en-c" class="md-toc-link"><p>Clausuras en C#</p>
+          <a href="#clausuras-en-csharp" class="md-toc-link"><p>Clausuras en CSharp</p>
 </a>
           </summary>
         <div>
@@ -425,9 +428,6 @@ justo después del front matter
             <p>FlatMap o Aplanado</p>
 
           </a></div>
-        </div>
-      </details>
-    
         </div>
       </details>
     
@@ -597,10 +597,10 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
 <span class="token comment">// ERROR no s&#xE9; deducir los tipos de forma impl&#xED;cita.</span>
 <span class="token comment">// Esto solo ser&#xED;a v&#xE1;lido en un lenguaje d&#xE9;bilmente tipado como JavaScript.</span>
 <span class="token class-name"><span class="token keyword keyword-var">var</span></span> suma <span class="token operator">=</span> <span class="token punctuation">(</span>o1<span class="token punctuation">,</span> o2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> o1 <span class="token operator">+</span> o2<span class="token punctuation">;</span>
-</pre><h4 class="mume-header" id="clausuras-en-c">Clausuras en C#</h4>
+</pre><h3 class="mume-header" id="clausuras-en-csharp">Clausuras en CSharp</h3>
 
 <p>Para entender el concepto de <strong><a href="https://es.wikipedia.org/wiki/Clausura_(inform%C3%A1tica)">clausura</a></strong>, vamos a ver los siguiente definici&#xF3;n del lenguaje C#.</p>
-<h5 class="mume-header" id="variables-externas-capturadas">Variables Externas Capturadas</h5>
+<h4 class="mume-header" id="variables-externas-capturadas">Variables Externas Capturadas</h4>
 
 <p>En el cuerpo de expresi&#xF3;n de una expresi&#xF3;n lambda, podemos incluir referencias a variables locales y los par&#xE1;metros de un m&#xE9;todo. A estas referencias se les conoce como <strong>variables externas capturadas</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -736,7 +736,7 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
 <p>En C# estos m&#xE9;todos para trabajar con secuencias (<strong><code>IEnumerable&lt;T&gt;</code></strong>) est&#xE1;n definidos como <a href="https://docs.microsoft.com/es-es/dotnet/api/system.linq.enumerable">m&#xE9;todos de extensi&#xF3;n</a> en <strong><code>System.Linq</code></strong> como ya comentamos al hablar de este tipo de m&#xE9;todos.</p>
 <p>Entre ellos podremos destacar: <strong><code>Select</code></strong>, <strong><code>Where</code></strong>, <strong><code>Agreggate</code></strong>, <strong><code>GroupBy</code></strong>, <strong><code>Distinct</code></strong>, <strong><code>ElementAt</code></strong>, <strong><code>Join</code></strong>, <strong><code>GroupJoin</code></strong>, <strong><code>OrderBy</code></strong>, <strong><code>Reverse</code></strong>, <strong><code>SelectMany</code></strong>, etc.</p>
 <div style="page-break-after:always;"></div>
-<h4 class="mume-header" id="patr%C3%B3n-map-filter-fold">Patr&#xF3;n Map-Filter-Fold</h4>
+<h3 class="mume-header" id="patr%C3%B3n-map-filter-fold">Patr&#xF3;n Map-Filter-Fold</h3>
 
 <p>Es un patr&#xF3;n funcional utilizado en numerosos lenguajes tan populares como JavaScriprt(&gt;ES6), Java(&gt;8), C#, Python, Scala, Swift, Kotlin, etc y que permite hacer operaciones declarativas sobre secuencias de elementos de forma an&#xE1;loga a SQL.</p>
 <blockquote>
@@ -749,7 +749,7 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
 <li><strong>Llaves</strong> para objetos <strong>{</strong> Propiedad1=valor1, Porpiedad2=valor2 <strong>}</strong></li>
 </ul>
 </blockquote>
-<h5 class="mume-header" id="map-o-select">Map (o Select)</h5>
+<h4 class="mume-header" id="map-o-select">Map (o Select)</h4>
 
 <p><strong><a href="https://en.wikipedia.org/wiki/Map_(higher-order_function)">Map</a></strong> es una HOF que aplica una funci&#xF3;n &#xFA;nica de &apos;<em>mapeo</em>&apos; o <strong>transformaci&#xF3;n</strong> a cada elemento de la secuencia y devuelve una nueva secuencia que contiene los resultados de la transformaci&#xF3;n en el mismo orden de la secuencia de entrada.</p>
 <p>A lo largo de este tema vamos a ejemplificar los conceptos de forma gen&#xE9;rica con emojis, porque realmente es un concepto abstracto y estos nos ayudar&#xE1;n a entender la abstracci&#xF3;n de forma did&#xE1;ctica.<br>
@@ -783,7 +783,7 @@ Ej. <strong>[&#x1F42E;, &#x1F41F;, &#x1F360;, &#x1F414;, &#x1F33D;].map(cook) &#
 <span class="token class-name">IEnumerable<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> enteros <span class="token operator">=</span> reales<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>Convert<span class="token punctuation">.</span>ToInt32<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> enteros<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h5 class="mume-header" id="filter-o-where">Filter (o Where)</h5>
+</pre><h4 class="mume-header" id="filter-o-where">Filter (o Where)</h4>
 
 <p><strong><a href="https://en.wikipedia.org/wiki/Filter_(higher-order_function)">Filter</a></strong> es una HOF que aplica un predicado a cada elemento de la secuencia de entrada y devuelve una secuencia de salida con los elementos en la secuencia que cumplen el predicado.</p>
 <p>Supongamos que representamos <strong>filter</strong> con la expresi&#xF3;n <strong>filter = (A &#x2192; bool) &#xD7; Sec[A] &#x2192; Sec[A&apos;]</strong> donde:</p>
@@ -809,7 +809,7 @@ Ej. <strong>[&#x1F354;, &#x1F365;, &#x1F35F;, &#x1F357;, &#x1F37F;].filter(isVeg
 <span class="token comment">// 2. Aplicamos el predicado a la funci&#xF3;n where</span>
 <span class="token class-name">IEnumerable<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> enterosPares <span class="token operator">=</span> enteros<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>esPar<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> enterosPares<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><h5 class="mume-header" id="fold-o-aggregate">Fold (o Aggregate)</h5>
+</pre><h4 class="mume-header" id="fold-o-aggregate">Fold (o Aggregate)</h4>
 
 <p><strong><a href="https://en.wikipedia.org/wiki/Fold_(higher-order_function)">Fold</a></strong> es una HOF tambi&#xE9;n conocida como <strong>reduce</strong>, <strong>aggregate</strong>, <strong>accumulate</strong>, etc. que &apos;<em>combina</em>&apos; los elementos de la secuencia de entrada reduci&#xE9;ndolos a un &#xFA;nico elemento de retorno. Para obtener este elemento de retorno necesitaremos una funci&#xF3;n binaria que combine los elementos de la secuencia en e dicho elemento de retorno que normalmente tendr&#xE1; un estado inicial.</p>
 <p>Supongamos que representamos <strong>fold</strong> con la expresi&#xF3;n <strong>fold = (B &#xD7; A &#x2192; B) &#xD7; Sec[A] &#xD7; B &#x2192; B</strong> donde:</p>
@@ -948,7 +948,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <p>&#x1F4CC; <strong>Nota:</strong> Obviamente en este caso, es much&#xED;simo m&#xE1;s simple utilizar la funci&#xF3;n ya implementada <strong><code>Join</code></strong>. Pero hemos puesto este ejemplo, adem&#xE1;s de para ver el concepto de <strong><code>foldl</code></strong> y <strong><code>foldr</code></strong>, para entender la potencia de esta funci&#xF3;n si entendemos bien lo potente que es esta operaci&#xF3;n conceptualmente.<br>
 De momento la hemos usado para cosas tan diferentes como: que Pepe coma &#x1F60B;, contar aprobados o concatenar palabras con un separador.</p>
 </blockquote>
-<h5 class="mume-header" id="combinando-las-tres-operaciones">Combinando las tres operaciones</h5>
+<h4 class="mume-header" id="combinando-las-tres-operaciones">Combinando las tres operaciones</h4>
 
 <p>Podemos combinar dichas operaciones para realizar nuestro proceso en una &#xFA;nica funci&#xF3;n de forma declarativa.</p>
 <p>Imaginemos nuestro ejemplo en que queremos queremos alimentar a Pepe que recordemos que es vegetariano y partimos de un mont&#xF3;n de productor en crudo. Podr&#xED;amos hacer...</p>
@@ -1007,17 +1007,17 @@ aprobados <span class="token operator">=</span> <span class="token builtin">redu
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Aprobados: </span><span class="token interpolation"><span class="token punctuation">{</span>aprobados<span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
 </pre></blockquote>
 <div style="page-break-after:always;"></div>
-<h4 class="mume-header" id="otras-operaciones-funcionales-declarativas-en-c">Otras operaciones funcionales declarativas en C#</h4>
+<h3 class="mume-header" id="otras-operaciones-funcionales-declarativas-en-c">Otras operaciones funcionales declarativas en C#</h3>
 
 <p>Ya hemos visto que <strong><code>Select</code></strong>, <strong><code>Where</code></strong>, <strong><code>Aggregate</code></strong>, <strong><code>Count</code></strong> y sin duda estas operaciones como hemos mencionado nos deben <em>&apos;sonar&apos;</em> de SQL. Pero..., &#xBF;Existen otras operaciones equivalentes a las que podemos encontrar en SQL?.</p>
 <p>la respuesta es <strong>s&#xED;</strong> y vamos ver algunas de ellas ...</p>
-<h5 class="mume-header" id="orderbyorderbydescending">OrderBy/OrderByDescending</h5>
+<h4 class="mume-header" id="orderbyorderbydescending">OrderBy/OrderByDescending</h4>
 
 <p>Ordena de manera ascendente/descendente los elementos de una secuencia en funci&#xF3;n de una clave.</p>
 <blockquote>
 <p>&#x1F4CC; <strong>Nota:</strong> Los tipos deben ser <strong>comparables</strong>. Si no lo son, necesitar&#xE1; de un objeto que implemente el interfaz <strong><code>IComparer&lt;T&gt;</code></strong> entre dos elementos del tipo de la clave por la que hemos decidido ordenar.</p>
 </blockquote>
-<h5 class="mume-header" id="distinct">Distinct</h5>
+<h4 class="mume-header" id="distinct">Distinct</h4>
 
 <p>Elimina valores repetidos en una secuencia.</p>
 <blockquote>
@@ -1050,7 +1050,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;La nota redondeada mayor es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">notaMayor</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p>F&#xED;jate que aunque es un poco m&#xE1;s enrevesada, tambi&#xE9;n tenemos una equivalencia en SQL.</p>
 <pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token keyword keyword-DISTINCT">DISTINCT</span> <span class="token function">ROUND</span><span class="token punctuation">(</span>nota<span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> notaMayor <span class="token keyword keyword-FROM">FROM</span> notas <span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> notaMayor <span class="token keyword keyword-DESC">DESC</span> <span class="token keyword keyword-LIMIT">LIMIT</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</pre><h5 class="mume-header" id="groupby">GroupBy</h5>
+</pre><h4 class="mume-header" id="groupby">GroupBy</h4>
 
 <p>Agrupa los elementos de una secuencia seg&#xFA;n una funci&#xF3;n del selector de claves especificada y crea un valor de resultado a partir de cada grupo y su clave. Los elementos de cada grupo se proyectan utilizando una funci&#xF3;n determinada.</p>
 <p>Existen diferentes sobrecargas posibles para usar la agrupaci&#xF3;n. Nosotros vamos a usar esta pues es la m&#xE1;s &apos;<em>intuitiva</em>&apos;...</p>
@@ -1278,7 +1278,7 @@ Empleados<span class="token punctuation">.</span>DepartamentoDeVentas
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ATexto</span><span class="token punctuation">(</span>empleadosVentasPorCiudadDeMasDe40A&#xF1;os<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><div style="page-break-after:always;"></div>
-<h5 class="mume-header" id="zip">Zip</h5>
+<h4 class="mume-header" id="zip">Zip</h4>
 
 <p>Se trata de una <a href="https://en.wikipedia.org/wiki/Zipping_(computer_science)">operaci&#xF3;n t&#xED;pica en los lenguajes funcionales</a> al permitirnos manejar el concepto de tupla y que por tanto podemos <a href="https://docs.microsoft.com/es-es/dotnet/api/system.linq.enumerable.zip">encontrar tambi&#xE9;n en C#</a> ya que tambi&#xE9;n nos los permite.</p>
 <p>B&#xE1;sicamente realiza una correspondencia un&#xED;voca entre los elementos de <strong>dos</strong> o m&#xE1;s secuencias iterables, produciendo una <strong>nueva secuencia de tuplas</strong> resultado de dicha correspondencia. Obviamente, su nombre viene de la analog&#xED;a de cerrar una cremallera.</p>
@@ -1307,7 +1307,7 @@ Poblaci&#xF3;n Indonesia 264 millones.
 <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> poblacion <span class="token operator">=</span> datos<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>t <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>Item2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre></blockquote>
 <div style="page-break-after:always;"></div>
-<h5 class="mume-header" id="flatmap-o-aplanado">FlatMap o Aplanado</h5>
+<h4 class="mume-header" id="flatmap-o-aplanado">FlatMap o Aplanado</h4>
 
 <p>La operaci&#xF3;n de aplanado es otra de las funciones t&#xED;picas de la programaci&#xF3;n funcional que vamos a encontrar en todos los lenguajes funcionales y otros como JavaScript, Java o C#. A este tipo de HOF se le conoce como <strong><a href="https://es.wikipedia.org/wiki/M%C3%B3nada_(programaci%C3%B3n_funcional)">m&#xF3;nada</a></strong> porque cumple ciertas operaciones matem&#xE1;ticas en la que no vamos a entrar por estar fuera del tema, pero que si has visto la <strong><a href="https://es.wikipedia.org/wiki/M%C3%B3nada_(programaci%C3%B3n_funcional)#Definici%C3%B3n_Formal">definici&#xF3;n formal</a></strong> del enlace anterior seguramente no te hayas enterado de nada si no tienes una profunda base matem&#xE1;tica del la teor&#xED;a de categor&#xED;as.</p>
 <p>Pero siguiendo la analog&#xED;a que hemos usado en el tema, podemos definirla como:<br>
@@ -1461,8 +1461,7 @@ Libros:
         Titulo: La Galatea                             A&#xF1;o: 1585  P&#xE1;ginas: 664
         Titulo: Los trabajos de Persiles y Sigismunda  A&#xF1;o: 1617  P&#xE1;ginas: 888
         Titulo: Novelas ejemplares                     A&#xF1;o: 1613  P&#xE1;ginas: 1160
-</pre><div style="page-break-after:always;"></div>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">Nombre: Fernando de Rojas
+</pre><pre data-role="codeBlock" data-info="txt" class="language-txt">Nombre: Fernando de Rojas
 Nacionalidad: Espa&#xF1;ola
 Muerte: 07/02/1541
 Libros:
@@ -1487,10 +1486,10 @@ Datos<span class="token punctuation">.</span>Autores<span class="token punctuati
                                       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p>Una vez tenemos la secuencia de salida con los objetos an&#xF3;nimos de la proyecci&#xF3;n. Podemos mostrarla en forma de tabla de la siguiente forma ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp">Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>snapShot<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>SeparadorDato<span class="token punctuation">,</span> <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> tupla<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-    salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;Libro: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Libro</span><span class="token punctuation">}</span></span><span class="token string">\nAutor: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Autor</span><span class="token punctuation">}</span></span><span class="token string">\nPaginas: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>P&#xE1;ginas</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span>
+    salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;Libro: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Libro</span><span class="token punctuation">}</span></span><span class="token string">\nAutor: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Autor</span><span class="token punctuation">}</span></span><span class="token string">\n &quot;</span></span><span class="token operator">+</span>
+              <span class="token interpolation-string"><span class="token string">$&quot;Paginas: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>P&#xE1;ginas</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span>
 <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><div style="page-break-after:always;"></div>
-<p>Generando la siguiente salida por consola...</p>
+</pre><p>Generando la siguiente salida por consola...</p>
 <pre data-role="codeBlock" data-info="txt" class="language-txt">--------------------------------------------------------------------------------
 Libro: Macbeth
 Autor: William Shakespeare
@@ -1522,7 +1521,7 @@ Paginas: 160
 <p>Autores con <strong>m&#xE1;s de un</strong> libro.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-var">var</span></span> snapshot <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>snapshot<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>SeparadorDato<span class="token punctuation">,</span>
-                                     <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                              <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre></li>
 <li>
 <p>Total de libros escritos por escritores Espa&#xF1;oles.</p>
