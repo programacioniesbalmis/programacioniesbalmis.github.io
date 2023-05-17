@@ -3,11 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-<<<<<<< HEAD
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
-=======
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
->>>>>>> origin/main
       
       
       
@@ -760,7 +756,7 @@ Ej. <strong>[&#x1F354;, &#x1F365;, &#x1F35F;, &#x1F357;, &#x1F37F;].filter(isVeg
 Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">,</span> enterosPares<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><h4 class="mume-header" id="fold-o-aggregate">Fold (o Aggregate)</h4>
 
-<p><strong><a href="https://en.wikipedia.org/wiki/Fold_(higher-order_function)">Fold</a></strong> es una HOF tambi&#xE9;n conocida como <strong>reduce</strong>, <strong>aggregate</strong>, <strong>accumulate</strong>, etc. que &apos;<em>combina</em>&apos; los elementos de la secuencia de entrada reduci&#xE9;ndolos a un &#xFA;nico elemento de retorno. Para obtener este elemento de retorno necesitaremos una funci&#xF3;n binaria que combine los elementos de la secuencia en e dicho elemento de retorno que normalmente tendr&#xE1; un estado inicial.</p>
+<p><strong><a href="https://en.wikipedia.org/wiki/Fold_(higher-order_function)">Fold</a></strong> es una HOF tambi&#xE9;n conocida como <strong>reduce</strong>, <strong>aggregate</strong>, <strong>accumulate</strong>, etc. que &apos;<em>combina</em>&apos; los elementos de la secuencia de entrada reduci&#xE9;ndolos a un &#xFA;nico elemento de retorno. Para obtener este elemento de retorno necesitaremos una funci&#xF3;n binaria que combine los elementos de la secuencia en dicho elemento de retorno que normalmente tendr&#xE1; un estado inicial.</p>
 <p>Supongamos que representamos <strong>fold</strong> con la expresi&#xF3;n <strong>fold = (B &#xD7; A &#x2192; B) &#xD7; Sec[A] &#xD7; B &#x2192; B</strong> donde:</p>
 <ul>
 <li>
@@ -900,13 +896,13 @@ De momento la hemos usado para cosas tan diferentes como: que Pepe coma &#x1F60B
 <h4 class="mume-header" id="combinando-las-tres-operaciones">Combinando las tres operaciones</h4>
 
 <p>Podemos combinar dichas operaciones para realizar nuestro proceso en una &#xFA;nica funci&#xF3;n de forma declarativa.</p>
-<p>Imaginemos nuestro ejemplo en que queremos queremos alimentar a Pepe que recordemos que es vegetariano y partimos de un mont&#xF3;n de productor en crudo. Podr&#xED;amos hacer...</p>
+<p>Imaginemos nuestro ejemplo en que queremos alimentar a Pepe, que recordemos que es vegetariano y partimos de un mont&#xF3;n de productor en crudo. Podr&#xED;amos hacer...</p>
 <p><strong>[&#x1F42E;, &#x1F41F;, &#x1F360;, &#x1F414;, &#x1F33D;].map(cook).filter(isVegetarian).fold(&#x1F62B;, eat) &#x2192; &#x1F60B;</strong></p>
 <p>Esto equivaldr&#xED;a a las operaciones anteriores de forma encadenada. Donde la secuencia de salida de una funci&#xF3;n pasa a ser la de entrada de la siguiente [&#x1F42E;, &#x1F41F;, &#x1F360;, &#x1F414;, &#x1F33D;] &#x2192; [&#x1F354;, &#x1F365;, &#x1F35F;, &#x1F357;, &#x1F37F;] &#x2192; [&#x1F35F;, &#x1F37F;] &#x2192; &#x1F60B;</p>
 <p>Sin embargo es importante preguntarnos si el orden de aplicaci&#xF3;n es eficiente. F&#xED;jate que en este caso, hemos tenido que <em>&apos;cocinar&apos;</em> todos los alimentos aunque realmente Pepe solo se ha comido dos de ellos. Este proceso hubiera sido much&#xED;simo m&#xE1;s eficiente si hubieramos cocinado solo aquellos que <em>&apos;son vegetales&apos;</em> [&#x1F42E;, &#x1F41F;, &#x1F360;, &#x1F414;, &#x1F33D;] &#x2192; [&#x1F360;, &#x1F33D;] &#x2192; [&#x1F35F;, &#x1F37F;] &#x2192; &#x1F60B;, esto es, haciendo el filtrado antes que la transformaci&#xF3;n ...</p>
 <p><strong>[&#x1F42E;, &#x1F41F;, &#x1F360;, &#x1F414;, &#x1F33D;].filter(isVegetarian).map(cook).fold(&#x1F62B;, eat) &#x2192; &#x1F60B;</strong></p>
 <blockquote>
-<p>&#x1F4CC; <strong>Nota:</strong> Esto &#xFA;ltimo ser&#xED;a posible solo si la funci&#xF3;n de filtrado ahora tuviese como conjunto <strong>A</strong> a los productos crudos o una <strong>abstracci&#xF3;n</strong> de ambos, esto, es pudiera saber si saber si un productos &apos;<strong>es vegetal</strong>&apos; independientemente de si est&#xE1; cocinado o no <strong>isVegetarian(&#x1F33D;) &#x2192; true</strong> y <strong>isVegetarian(&#x1F37F;) &#x2192; true</strong></p>
+<p>&#x1F4CC; <strong>Nota:</strong> Esto &#xFA;ltimo ser&#xED;a posible solo si la funci&#xF3;n de filtrado ahora tuviese como conjunto <strong>A</strong> a los productos crudos o una <strong>abstracci&#xF3;n</strong> de ambos,  es decir, si se pudiera saber si un productos &apos;<strong>es vegetal</strong>&apos; independientemente de si est&#xE1; cocinado o no <strong>isVegetarian(&#x1F33D;) &#x2192; true</strong> y <strong>isVegetarian(&#x1F37F;) &#x2192; true</strong></p>
 </blockquote>
 <p><strong>Ejemplo:</strong> Imaginemos que queremos saber el total de aprobados de una lista de notas con decimales.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// Select (map):      Transforma de double a double sin decimales. </span>
@@ -927,7 +923,7 @@ De momento la hemos usado para cosas tan diferentes como: que Pepe coma &#x1F60B
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Aprobados: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">aprobados</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p>Puesto que cosas como contar elementos en usa secuencia, acumular en una suma, buscar un m&#xE1;ximo, etc. son casos t&#xED;picos de fold, ya vienen predefinidos en C# y no tendr&#xED;amos que implementarlos a trav&#xE9;s de Aggregate</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-int">int</span></span> aprobados <span class="token operator">=</span> notas<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Func<span class="token operator">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token operator">&gt;</span><span class="token punctuation">)</span>Math<span class="token punctuation">.</span>Round<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>n <span class="token operator">=&gt;</span> n <span class="token operator">&gt;=</span> <span class="token number">5d</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><p>F&#xED;jate que es bastante una posible consulta para hacer lo mismo en SQL.</p>
+</pre><p>F&#xED;jate que es bastante similar a SQL, una posible consulta para hacer lo mismo en SQL.</p>
 <pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token function">ROUND</span><span class="token punctuation">(</span>nota<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> aprobados <span class="token keyword keyword-FROM">FROM</span> notas <span class="token keyword keyword-where">where</span> <span class="token function">ROUND</span><span class="token punctuation">(</span>nota<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 </pre><p>En este caso no podemos filtrar antes de hacer el mapeo puesto que el resultado ser&#xED;a diferente. Piensa que <strong><code>4.6</code></strong> despu&#xE9;s del <strong><code>Round</code></strong> ser&#xE1; <strong><code>5</code></strong> y contar&#xE1; como aprobado.</p>
 <div style="page-break-after:always;"></div>
