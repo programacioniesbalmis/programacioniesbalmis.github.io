@@ -1,290 +1,48 @@
 <!DOCTYPE html><html><head>
-      <title>Introducci&#xF3;n a la Programaci&#xF3;n Concurrente y As&#xED;ncrona</title>
+      <title>Introducción a la Programación Concurrente y Asíncrona</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview {
-  background-color: #FFFF;
-}
-
-      </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <style>/* 
-Añade 
-
-@import "../EstilosPersonalizadosMarkdownEnhanced.less"
-
-justo después del front matter 
-*/
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 @font-face {
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v18/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
-.contenedor {
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
   margin: 30px auto 30px auto;
 }
-.fondo {
+.markdown-preview.markdown-preview .fondo {
   background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
   background-size: cover;
   width: 75%;
@@ -292,7 +50,7 @@ justo después del front matter
   border-radius: 10px;
   position: relative;
 }
-.cita {
+.markdown-preview.markdown-preview .cita {
   font-family: Arial;
   font-style: italic;
   font-weight: 600;
@@ -307,7 +65,7 @@ justo después del front matter
   font-size: 1.3rem;
   transform: translate(-50%, -50%);
 }
-.abre_comilla {
+.markdown-preview.markdown-preview .abre_comilla {
   font-family: "Catamaran";
   font-weight: 600;
   color: white;
@@ -316,7 +74,7 @@ justo después del front matter
   font-size: 6rem;
   transform: translate(0%, -15%);
 }
-.cierra_comilla {
+.markdown-preview.markdown-preview .cierra_comilla {
   font-family: "Catamaran";
   font-weight: 600;
   color: white;
@@ -326,7 +84,7 @@ justo después del front matter
   font-size: 6rem;
   transform: translate(0%, 55%);
 }
-.autor {
+.markdown-preview.markdown-preview .autor {
   font-family: Arial;
   color: white;
   margin: 0px;
@@ -335,75 +93,166 @@ justo después del front matter
   top: 83%;
   font-size: 1rem;
 }
-</style>
-<h1 class="mume-header undefined" id="tema-12">Tema 12</h1>
 
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="tema-12">Tema 12 </h1>
 <p>Descargar estos apuntes en <a href="./Tema12.pdf">pdf</a> o <a href="./Tema12.html">html</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#concurrente-y-as%C3%ADncrona">Concurrente y As&#xED;ncrona</a>
-<ol>
-<li><a href="#definiciones">Definiciones</a>
-<ol>
-<li><a href="#concurrencia-vs-paralelismo">Concurrencia vs paralelismo</a></li>
-<li><a href="#programaci%C3%B3n-concurrente">Programaci&#xF3;n concurrente</a>
-<ol>
-<li><a href="#problemas-derivados-de-la-concurrencia">Problemas derivados de la concurrencia</a></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><a href="#concurrencia-en-c">Concurrencia en C#</a>
-<ol>
-<li><a href="#biblioteca-tpl-task-parallel-library">Biblioteca TPL (Task Parallel Library)</a></li>
-</ol>
-</li>
-<li><a href="#patr%C3%B3n-tap-modelo-as%C3%ADncrono-basado-en-tareas">Patr&#xF3;n TAP (Modelo as&#xED;ncrono basado en tareas)</a>
-<ol>
-<li><a href="#lanzar-una-tarea-as%C3%ADncrona-sin-valor-de-retorno-y-sin-dato-de-entrada">Lanzar una tarea as&#xED;ncrona SIN valor de retorno y SIN dato de entrada</a></li>
-<li><a href="#tarea-as%C3%ADncrona-sin-valor-de-retorno-y-con-dato-de-entrada">Tarea as&#xED;ncrona SIN valor de retorno y CON dato de entrada</a></li>
-<li><a href="#tarea-as%C3%ADncrona-con-valor-de-retorno-y-sin-dato-de-entrada">Tarea as&#xED;ncrona CON valor de retorno y SIN dato de entrada</a></li>
-<li><a href="#tarea-as%C3%ADncrona-con-valor-de-retorno-y-con-dato-de-entrada">Tarea as&#xED;ncrona CON valor de retorno y CON dato de entrada</a></li>
-<li><a href="#tarea-as%C3%ADncrona-con-valor-de-retorno-y-clausura">Tarea as&#xED;ncrona CON valor de retorno y Clausura</a></li>
-<li><a href="#lanzando-m%C3%BAltiples-tareas-y-esperando-a-que-terminen-todas">Lanzando m&#xFA;ltiples tareas y esperando a que terminen todas</a>
-<ol>
-<li><a href="#ejemplo-de-concurrencia-y-evaluaci%C3%B3n-de-resultados">Ejemplo de Concurrencia y evaluaci&#xF3;n de resultados</a></li>
-</ol>
-</li>
-<li><a href="#ejecuci%C3%B3n-de-iteraciones-concurrente-clase-est%C3%A1tica-parellel">Ejecuci&#xF3;n de iteraciones concurrente clase est&#xE1;tica Parellel</a></li>
-</ol>
-</li>
-<li><a href="#usando-m%C3%A9todos-as%C3%ADncronos-de-las-bcl">Usando m&#xE9;todos as&#xED;ncronos de las BCL</a>
-<ol>
-<li><a href="#pipeline-de-tareas-as%C3%ADncronas">Pipeline de tareas as&#xED;ncronas</a></li>
-<li><a href="#pipeline-de-tareas-as%C3%ADncronas-futuros">Pipeline de tareas as&#xED;ncronas (&apos;Futuros&apos;)</a></li>
-<li><a href="#palabras-reservadas-patr%C3%B3n-async-y-await">Palabras reservadas (Patr&#xF3;n???) async y await</a></li>
-<li><a href="#esquemas-b%C3%A1sicos-de-uso-de-async-y-await">Esquemas b&#xE1;sicos de uso de async y await</a></li>
-<li><a href="#funcionamiento-de-await">Funcionamiento de <strong><code>await</code></strong></a></li>
-<li><a href="#tareas-as%C3%ADncronas-temporizadoras">Tareas as&#xED;ncronas temporizadoras</a></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#concurrente-y-asíncrona" class="md-toc-link"><p>Concurrente y Asíncrona</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definiciones" class="md-toc-link"><p>Definiciones</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#concurrencia-vs-paralelismo" class="md-toc-link">
+            <p>Concurrencia vs paralelismo</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#programación-concurrente" class="md-toc-link"><p>Programación concurrente</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#problemas-derivados-de-la-concurrencia" class="md-toc-link">
+            <p>Problemas derivados de la concurrencia</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#concurrencia-en-c" class="md-toc-link"><p>Concurrencia en C#</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#biblioteca-tpl-task-parallel-library" class="md-toc-link">
+            <p>Biblioteca TPL (Task Parallel Library)</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#patrón-tap-modelo-asíncrono-basado-en-tareas" class="md-toc-link"><p>Patrón TAP (Modelo asíncrono basado en tareas)</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#lanzar-una-tarea-asíncrona-sin-valor-de-retorno-y-sin-dato-de-entrada" class="md-toc-link">
+            <p>Lanzar una tarea asíncrona SIN valor de retorno y SIN dato de entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tarea-asíncrona-sin-valor-de-retorno-y-con-dato-de-entrada" class="md-toc-link">
+            <p>Tarea asíncrona SIN valor de retorno y CON dato de entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tarea-asíncrona-con-valor-de-retorno-y-sin-dato-de-entrada" class="md-toc-link">
+            <p>Tarea asíncrona CON valor de retorno y SIN dato de entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tarea-asíncrona-con-valor-de-retorno-y-con-dato-de-entrada" class="md-toc-link">
+            <p>Tarea asíncrona CON valor de retorno y CON dato de entrada</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tarea-asíncrona-con-valor-de-retorno-y-clausura" class="md-toc-link">
+            <p>Tarea asíncrona CON valor de retorno y Clausura</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#lanzando-múltiples-tareas-y-esperando-a-que-terminen-todas" class="md-toc-link"><p>Lanzando múltiples tareas y esperando a que terminen todas</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ejemplo-de-concurrencia-y-evaluación-de-resultados" class="md-toc-link">
+            <p>Ejemplo de Concurrencia y evaluación de resultados</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ejecución-de-iteraciones-concurrente-clase-estática-parellel" class="md-toc-link">
+            <p>Ejecución de iteraciones concurrente clase estática Parellel</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#usando-métodos-asíncronos-de-las-bcl" class="md-toc-link"><p>Usando métodos asíncronos de las BCL</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#pipeline-de-tareas-asíncronas" class="md-toc-link">
+            <p>Pipeline de tareas asíncronas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#pipeline-de-tareas-asíncronas-futuros" class="md-toc-link">
+            <p>Pipeline de tareas asíncronas ('Futuros')</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#palabras-reservadas-patrón-async-y-await" class="md-toc-link">
+            <p>Palabras reservadas (Patrón???) async y await</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#esquemas-básicos-de-uso-de-async-y-await" class="md-toc-link">
+            <p>Esquemas básicos de uso de async y await</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#funcionamiento-de-await" class="md-toc-link">
+            <p>Funcionamiento de <strong><code>await</code></strong></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tareas-asíncronas-temporizadoras" class="md-toc-link">
+            <p>Tareas asíncronas temporizadoras</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="concurrente-y-as%C3%ADncrona">Concurrente y As&#xED;ncrona</h2>
-
+<h2 id="concurrente-y-asíncrona">Concurrente y Asíncrona </h2>
 <div align="center">
     <img height="250px" src="assets/Concurrencia.png">
 </div>
-<h3 class="mume-header" id="definiciones">Definiciones</h3>
-
+<h3 id="definiciones">Definiciones </h3>
 <div style="display: flex; justify-content: space-between; margin-top: 15px">
 <div style="width: 70%">
-<p><strong>Proceso</strong>: Es un programa en ejecuci&#xF3;n formado por...</p>
+<p><strong>Proceso</strong>: Es un programa en ejecución formado por...</p>
 <ul>
-<li>El c&#xF3;digo que ejecuta el procesador y su estado (registros en CPU).</li>
+<li>El código que ejecuta el procesador y su estado (registros en CPU).</li>
 <li>La pila de llamadas.</li>
 <li>La memoria de trabajo.</li>
-<li>Informaci&#xF3;n de la planificaci&#xF3;n.</li>
-<li>Al menos est&#xE1; formado por un hilo de ejecuci&#xF3;n.</li>
+<li>Información de la planificación.</li>
+<li>Al menos está formado por un hilo de ejecución.</li>
 </ul>
 </div>
 <div style="width: auto">
@@ -412,14 +261,13 @@ justo después del front matter
 </div>
 <p><strong>Hilo (Thread)</strong>: Secuencia de instrucciones dentro de un proceso, que ejecuta sus instrucciones de forma independiente.</p>
 <blockquote>
-<p>&#x1F4CC; <strong>Nota:</strong> Un proceso puede tener varios hilos que compartir&#xE1;n recursos y la memoria con el proceso principal, pero no la pila de llamadas.</p>
+<p>📌 <strong>Nota:</strong> Un proceso puede tener varios hilos que compartirán recursos y la memoria con el proceso principal, pero no la pila de llamadas.</p>
 </blockquote>
-<h4 class="mume-header" id="concurrencia-vs-paralelismo">Concurrencia vs paralelismo</h4>
-
+<h4 id="concurrencia-vs-paralelismo">Concurrencia vs paralelismo </h4>
 <ul>
 <li><strong>Proceso secuencial</strong>
 <ul>
-<li>Un &#xFA;nico proceso con un &#xFA;nico hilo de intrucciones.</li>
+<li>Un único proceso con un único hilo de intrucciones.</li>
 </ul>
 </li>
 </ul>
@@ -429,13 +277,13 @@ justo después del front matter
 <ul>
 <li><strong>Concurrencia</strong>
 <ul>
-<li>Capacidad de un sistema para procesar m&#xE1;s de un <strong>hilo de ejecuci&#xF3;n</strong> al mismo tiempo.</li>
-<li>Se puede dar sobre un &#xFA;nico procesador repartiendo el tiempo del mismo entre los diferentes hilos.</li>
+<li>Capacidad de un sistema para procesar más de un <strong>hilo de ejecución</strong> al mismo tiempo.</li>
+<li>Se puede dar sobre un único procesador repartiendo el tiempo del mismo entre los diferentes hilos.</li>
 </ul>
 </li>
 <li><strong>Paralelismo</strong>
 <ul>
-<li>Es un <strong>caso especifico de concurrencia</strong>, donde cada hilo es ejecutado en un procesador o n&#xFA;cleo de proceso diferente.</li>
+<li>Es un <strong>caso especifico de concurrencia</strong>, donde cada hilo es ejecutado en un procesador o núcleo de proceso diferente.</li>
 </ul>
 </li>
 </ul>
@@ -444,43 +292,39 @@ justo después del front matter
     <img height="200px" src="./assets/ConcurrenciaVsParalelismo.jpg">
 </div>
 </div>
-<h4 class="mume-header" id="programaci%C3%B3n-concurrente">Programaci&#xF3;n concurrente</h4>
-
+<h4 id="programación-concurrente">Programación concurrente </h4>
 <ul>
-<li>Conjunto de notaciones y t&#xE9;cnicas utilizadas para describir mediante programas el paralelismo potencial de los problemas, resolviendo los problemas de sincronizaci&#xF3;n y comunicaci&#xF3;n que pueden plantearse.</li>
+<li>Conjunto de notaciones y técnicas utilizadas para describir mediante programas el paralelismo potencial de los problemas, resolviendo los problemas de sincronización y comunicación que pueden plantearse.</li>
 <li>Mejora del rendimiento en casos de problemas con elevado costo temporal.</li>
 </ul>
-<h5 class="mume-header" id="problemas-derivados-de-la-concurrencia">Problemas derivados de la concurrencia</h5>
-
+<h5 id="problemas-derivados-de-la-concurrencia">Problemas derivados de la concurrencia </h5>
 <ul>
-<li>En la mayor&#xED;a de los casos la soluci&#xF3;n secuencial es m&#xE1;s optima.</li>
-<li>Dificultad de depuraci&#xF3;n.</li>
-<li><strong>Condici&#xF3;n de carrera (Race condition)</strong>: Este problema se produce cuando 2 o m&#xE1;s hilos de ejecuci&#xF3;n modifican un recurso compartido en un orden diferente al esperado.</li>
-<li><strong>Exclusi&#xF3;n mutua (Mutex)</strong>: Cuando un hilo bloquea el acceso a un objeto o recurso porque solo debe acceder un hilo a la vez a el. El resto de hilos esperar&#xE1;n a que sea desbloqueado para acceder. Puede producirse el llamado <strong>DeadLock</strong>.</li>
+<li>En la mayoría de los casos la solución secuencial es más optima.</li>
+<li>Dificultad de depuración.</li>
+<li><strong>Condición de carrera (Race condition)</strong>: Este problema se produce cuando 2 o más hilos de ejecución modifican un recurso compartido en un orden diferente al esperado.</li>
+<li><strong>Exclusión mutua (Mutex)</strong>: Cuando un hilo bloquea el acceso a un objeto o recurso porque solo debe acceder un hilo a la vez a el. El resto de hilos esperarán a que sea desbloqueado para acceder. Puede producirse el llamado <strong>DeadLock</strong>.</li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="concurrencia-en-c">Concurrencia en C#</h3>
-
-<p>Muchos equipos y estaciones de trabajo personales tienen varios n&#xFA;cleos de CPU que permiten ejecutar m&#xFA;ltiples subprocesos simult&#xE1;neamente. Para aprovecharse del hardware, puede paralelizar el c&#xF3;digo para distribuir el trabajo entre varios procesadores.</p>
+<h3 id="concurrencia-en-c">Concurrencia en C# </h3>
+<p>Muchos equipos y estaciones de trabajo personales tienen varios núcleos de CPU que permiten ejecutar múltiples subprocesos simultáneamente. Para aprovecharse del hardware, puede paralelizar el código para distribuir el trabajo entre varios procesadores.</p>
 <div style="display: flex; justify-content: space-between; margin-top: 15px">
 <div style="width: 70%">
-<p>En el pasado, la paralelizaci&#xF3;n requer&#xED;a manipulaci&#xF3;n de bajo nivel de los subprocesos y bloqueos. .NET mejora la compatibilidad para la programaci&#xF3;n paralela proporcionando un tiempo de ejecuci&#xF3;n, tipos de biblioteca de clases y herramientas de diagn&#xF3;stico. Estas caracter&#xED;sticas, simplifican el desarrollo en paralelo. Puede escribir c&#xF3;digo paralelo eficaz, espec&#xED;fico y escalable de forma natural sin tener que trabajar directamente con subprocesos ni el bloque de subprocesos.</p>
-<p>La ilustraci&#xF3;n de la derecha proporciona una informaci&#xF3;n general de alto nivel de la arquitectura de programaci&#xF3;n paralela en .NET.</p>
+<p>En el pasado, la paralelización requería manipulación de bajo nivel de los subprocesos y bloqueos. .NET mejora la compatibilidad para la programación paralela proporcionando un tiempo de ejecución, tipos de biblioteca de clases y herramientas de diagnóstico. Estas características, simplifican el desarrollo en paralelo. Puede escribir código paralelo eficaz, específico y escalable de forma natural sin tener que trabajar directamente con subprocesos ni el bloque de subprocesos.</p>
+<p>La ilustración de la derecha proporciona una información general de alto nivel de la arquitectura de programación paralela en .NET.</p>
 </div>
 <div style="width: auto">
     <img height="250px" src="./assets/Arquitectura_TPL.png">
 </div>
 </div>
-<h4 class="mume-header" id="biblioteca-tpl-task-parallel-library">Biblioteca TPL (Task Parallel Library)</h4>
-
-<p>La librer&#xED;a de procesamiento paralelo TPL se encarga de...</p>
+<h4 id="biblioteca-tpl-task-parallel-library">Biblioteca TPL (Task Parallel Library) </h4>
+<p>La librería de procesamiento paralelo TPL se encarga de...</p>
 <div style="display: flex; justify-content: space-between; margin-top: 15px">
 <div style="width: 70%">
 <ul>
-<li>Divisi&#xF3;n del trabajo proporcionando una capa de abstracci&#xF3;n sobre el API de concurrencia del propio SO.</li>
-<li>Programaci&#xF3;n de los subprocesos usando un <strong>ThreadPool</strong>.</li>
-<li>Compatibilidad con la cancelaci&#xF3;n.</li>
-<li>Administraci&#xF3;n de los detalles de bajo nivel.</li>
+<li>División del trabajo proporcionando una capa de abstracción sobre el API de concurrencia del propio SO.</li>
+<li>Programación de los subprocesos usando un <strong>ThreadPool</strong>.</li>
+<li>Compatibilidad con la cancelación.</li>
+<li>Administración de los detalles de bajo nivel.</li>
 </ul>
 </div>
 <div style="width: auto">
@@ -488,17 +332,17 @@ justo después del front matter
 </div>
 </div>
 <blockquote>
-<p>&#x1F4E3; <strong>Resumen:</strong></p>
-<p>Por describirlo con palabras sencillas, podemos decir que el CLR tiene <strong>ya creados una serie de hilos (ThreadPool)</strong> sobre el Sietema Operativo. Estos los ir&#xE1; usando para realizar aquellas tareas (Tasks) que necesite realizar en paralelo. Mientras los hilos del ThreadPool est&#xE9;n ocupados las tareas esperar&#xE1;n en cola.<br>
-Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosotros a trav&#xE9;s de la TPL.</p>
+<p>📣 <strong>Resumen:</strong></p>
+<p>Por describirlo con palabras sencillas, podemos decir que el CLR tiene <strong>ya creados una serie de hilos (ThreadPool)</strong> sobre el Sietema Operativo. Estos los irá usando para realizar aquellas tareas (Tasks) que necesite realizar en paralelo. Mientras los hilos del ThreadPool estén ocupados las tareas esperarán en cola.<br>
+Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosotros a través de la TPL.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="patr%C3%B3n-tap-modelo-as%C3%ADncrono-basado-en-tareas">Patr&#xF3;n TAP (Modelo as&#xED;ncrono basado en tareas)</h3>
-
-<p>TODO: Aqu&#xED; solo se ha incluido las transparencias, pendiente de incluir lo de Xusa y revisar.</p>
-<h4 class="mume-header" id="lanzar-una-tarea-as%C3%ADncrona-sin-valor-de-retorno-y-sin-dato-de-entrada">Lanzar una tarea as&#xED;ncrona SIN valor de retorno y SIN dato de entrada</h4>
-
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<h3 id="patrón-tap-modelo-asíncrono-basado-en-tareas">Patrón TAP (Modelo asíncrono basado en tareas) </h3>
+<p>TODO: Aquí solo se ha incluido las transparencias, pendiente de incluir lo de Xusa y revisar.</p>
+<h4 id="lanzar-una-tarea-asíncrona-sin-valor-de-retorno-y-sin-dato-de-entrada">Lanzar una tarea asíncrona SIN valor de retorno y SIN dato de entrada </h4>
+<div class="caso_estudio">
+<p>🎓 <strong>Caso de estudio:</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
     <span class="token punctuation">{</span>
@@ -513,20 +357,20 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
     <span class="token class-name">Task</span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token function">StartNew</span><span class="token punctuation">(</span>accion<span class="token punctuation">)</span><span class="token punctuation">;</span>
     t<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><ul>
+</code></pre><ul>
 <li>La tarea es un delegado <em><code>Action</code></em> con lo que no devuelve ni recibe nada.</li>
-<li>El m&#xE9;todo est&#xE1;tico <strong><code>Task.Factory.StartNew(&#x2026;)</code></strong> crear&#xE1; y har&#xE1; un <strong><code>Start</code></strong> de una tarea as&#xED;ncrona y la retorna como par&#xE1;metro.</li>
-<li>El m&#xE9;todo <strong><code>Wait()</code></strong> esperar&#xE1; en el hilo principal a que la tarea termine.</li>
+<li>El método estático <strong><code>Task.Factory.StartNew(…)</code></strong> creará y hará un <strong><code>Start</code></strong> de una tarea asíncrona y la retorna como parámetro.</li>
+<li>El método <strong><code>Wait()</code></strong> esperará en el hilo principal a que la tarea termine.</li>
 </ul>
-<h4 class="mume-header" id="tarea-as%C3%ADncrona-sin-valor-de-retorno-y-con-dato-de-entrada">Tarea as&#xED;ncrona SIN valor de retorno y CON dato de entrada</h4>
-
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> dato<span class="token punctuation">)</span> 
+</div> <!--fin caso de estudio -->
+<h4 id="tarea-asíncrona-sin-valor-de-retorno-y-con-dato-de-entrada">Tarea asíncrona SIN valor de retorno y CON dato de entrada </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> dato<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> dato <span class="token keyword keyword-as">as</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span><span class="token punctuation">;</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>mensaje <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> 
-        <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;dato no es string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"dato no es string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> &#x2013; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> – </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Thread<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -534,21 +378,20 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name">Action<span class="token punctuation">&lt;</span><span class="token keyword keyword-object">object</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> TareaAsincrona<span class="token punctuation">;</span>
-    <span class="token class-name">Task</span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token function">StartNew</span><span class="token punctuation">(</span>accion<span class="token punctuation">,</span> <span class="token string">&quot;Hola&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Task</span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token function">StartNew</span><span class="token punctuation">(</span>accion<span class="token punctuation">,</span> <span class="token string">"Hola"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     t<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><ul>
-<li>La tarea es un delegado <strong><code>Action&lt;object&gt;</code></strong> con lo que no devuelve pero recibe los datos para su ejecuci&#xF3;n a trav&#xE9;s de un object.</li>
-<li>Pasaremos a <strong><code>Task.Factory.StartNew(accion, dato)</code></strong> el dato del cual har&#xE1; un upcasting a object.</li>
+</code></pre><ul>
+<li>La tarea es un delegado <strong><code>Action&lt;object&gt;</code></strong> con lo que no devuelve pero recibe los datos para su ejecución a través de un object.</li>
+<li>Pasaremos a <strong><code>Task.Factory.StartNew(accion, dato)</code></strong> el dato del cual hará un upcasting a object.</li>
 </ul>
-<h4 class="mume-header" id="tarea-as%C3%ADncrona-con-valor-de-retorno-y-sin-dato-de-entrada">Tarea as&#xED;ncrona CON valor de retorno y SIN dato de entrada</h4>
-
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<h4 id="tarea-asíncrona-con-valor-de-retorno-y-sin-dato-de-entrada">Tarea asíncrona CON valor de retorno y SIN dato de entrada </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> NUM_VUELTAS <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
     <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
         Thread<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-return">return</span> NUM_VUELTAS<span class="token punctuation">;</span>
@@ -557,24 +400,23 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 <span class="token punctuation">{</span>
     <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> TareaAsincrona<span class="token punctuation">;</span>
     <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">StartNew</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>accion<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><ul>
-<li>La tarea as&#xED;ncrona ser&#xE1; un delegado <strong><code>Func&lt;TResult&gt;</code></strong></li>
+</code></pre><ul>
+<li>La tarea asíncrona será un delegado <strong><code>Func&lt;TResult&gt;</code></strong></li>
 <li><strong><code>t.Result</code></strong> se espera a que se espera a que la tarea termine.</li>
-<li>La clase <strong><code>Task</code></strong> ir&#xE1; parametrizada con el valor de retorno <strong><code>Task&lt;TResult&gt;</code></strong>. En este caso, <strong><code>Task&lt;int&gt;</code></strong> lo mismo suceder&#xE1; con la llamada est&#xE1;tica <strong><code>Task.Factory.StartNew&lt;int&gt;(...)</code></strong></li>
+<li>La clase <strong><code>Task</code></strong> irá parametrizada con el valor de retorno <strong><code>Task&lt;TResult&gt;</code></strong>. En este caso, <strong><code>Task&lt;int&gt;</code></strong> lo mismo sucederá con la llamada estática <strong><code>Task.Factory.StartNew&lt;int&gt;(...)</code></strong></li>
 </ul>
-<h4 class="mume-header" id="tarea-as%C3%ADncrona-con-valor-de-retorno-y-con-dato-de-entrada">Tarea as&#xED;ncrona CON valor de retorno y CON dato de entrada</h4>
-
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> dato<span class="token punctuation">)</span> 
+<h4 id="tarea-asíncrona-con-valor-de-retorno-y-con-dato-de-entrada">Tarea asíncrona CON valor de retorno y CON dato de entrada </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> dato<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> NUM_VUELTAS <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> dato <span class="token keyword keyword-as">as</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span><span class="token punctuation">;</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>mensaje <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> 
-        <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;dato no es string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"dato no es string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
     <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
         Thread<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-return">return</span> NUM_VUELTAS<span class="token punctuation">;</span>
@@ -583,31 +425,29 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-object">object</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> TareaAsincrona<span class="token punctuation">;</span>
-    <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">StartNew</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>accion<span class="token punctuation">,</span> <span class="token string">&quot;Hola&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">StartNew</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>accion<span class="token punctuation">,</span> <span class="token string">"Hola"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>La tarea as&#xED;ncrona ser&#xE1; un delegado <strong><code>Func&lt;object, R&gt;</code></strong> indicando que retornar&#xE1; un tipo parametrizado y recibe un object con todos los datos que necesite.</p>
-<h4 class="mume-header" id="tarea-as%C3%ADncrona-con-valor-de-retorno-y-clausura">Tarea as&#xED;ncrona CON valor de retorno y Clausura</h4>
-
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> <span class="token string">&quot;Hola&quot;</span><span class="token punctuation">;</span> <span class="token comment">// Variable a clausurar en la tarea as&#xED;ncrona.</span>
+</code></pre><p>La tarea asíncrona será un delegado <strong><code>Func&lt;object, R&gt;</code></strong> indicando que retornará un tipo parametrizado y recibe un object con todos los datos que necesite.</p>
+<h4 id="tarea-asíncrona-con-valor-de-retorno-y-clausura">Tarea asíncrona CON valor de retorno y Clausura </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> <span class="token string">"Hola"</span><span class="token punctuation">;</span> <span class="token comment">// Variable a clausurar en la tarea asíncrona.</span>
     <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
         <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> NUM_VUELTAS <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mensaje</span><span class="token punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             Thread<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword keyword-return">return</span> NUM_VUELTAS<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token comment">// La tarea la lanzo como si fuera un acci&#xF3;n sin par&#xE1;metros.</span>
+    <span class="token comment">// La tarea la lanzo como si fuera un acción sin parámetros.</span>
     <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> t <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">StartNew</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>accion<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas.&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Podemos pasar datos a la tarea as&#xED;ncrona a trav&#xE9;s del mecanismo de clausura, pero nos obliga a definir la tarea en el mismo &#xE1;mbito que la variable.</p>
-<h4 class="mume-header" id="lanzando-m%C3%BAltiples-tareas-y-esperando-a-que-terminen-todas">Lanzando m&#xFA;ltiples tareas y esperando a que terminen todas</h4>
-
-<p>Ve&#xE1;moslo a trav&#xE9;s de un ejemplo simple...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Diagnostics</span><span class="token punctuation">;</span>
+</code></pre><p>Podemos pasar datos a la tarea asíncrona a través del mecanismo de clausura, pero nos obliga a definir la tarea en el mismo ámbito que la variable.</p>
+<h4 id="lanzando-múltiples-tareas-y-esperando-a-que-terminen-todas">Lanzando múltiples tareas y esperando a que terminen todas </h4>
+<p>Veámoslo a través de un ejemplo simple...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Diagnostics</span><span class="token punctuation">;</span>
 
 <span class="token keyword keyword-class">class</span> <span class="token class-name">Datos</span> 
 <span class="token punctuation">{</span>
@@ -625,12 +465,12 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 
     <span class="token keyword keyword-public">public</span> <span class="token function">Datos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Numeros <span class="token operator">=</span> <span class="token function">ListaAleatroria</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// Retorna una tupla con el m&#xE1;ximo y m&#xED;nimo de la secuencia </span>
-    <span class="token comment">// calculados secuencialmente. (Podr&#xED;a ser un proceso paralelo)</span>
+    <span class="token comment">// Retorna una tupla con el máximo y mínimo de la secuencia </span>
+    <span class="token comment">// calculados secuencialmente. (Podría ser un proceso paralelo)</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">MaxMin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Tuple<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>Numeros<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Max</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Numeros<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Min</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// Retorna una tupla con el m&#xE1;ximo y m&#xED;nimo de la secuencia </span>
-    <span class="token comment">// calculados concurrentemente. (Podr&#xED;a ser un proceso paralelo)</span>
+    <span class="token comment">// Retorna una tupla con el máximo y mínimo de la secuencia </span>
+    <span class="token comment">// calculados concurrentemente. (Podría ser un proceso paralelo)</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">MaxMinConcurrente</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name">List<span class="token punctuation">&lt;</span>Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> tareas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span>Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
@@ -644,27 +484,27 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 
 <span class="token keyword keyword-class">class</span> <span class="token class-name">Programa</span> 
 <span class="token punctuation">{</span>
-    <span class="token comment">// Para comparar la ejecuci&#xF3;n de diferentes procesos </span>
-    <span class="token comment">// vamos a utilizar la siguiente funci&#xF3;n de utilidad.</span>
+    <span class="token comment">// Para comparar la ejecución de diferentes procesos </span>
+    <span class="token comment">// vamos a utilizar la siguiente función de utilidad.</span>
 
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token generic-method"><span class="token function">ComparaEjecuciones</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>
                 <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Func<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> funciones<span class="token punctuation">,</span> 
                 <span class="token class-name"><span class="token keyword keyword-string">string</span></span> tituloResultado<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto<span class="token punctuation">;</span>
-        texto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token string">&quot;Funci&#xF3;n&quot;</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">35</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token string">&quot;Tiempo&quot;</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">16</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tituloResultado</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
-        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">String</span><span class="token punctuation">(</span><span class="token string character">&apos;-&apos;</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+        texto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token string">"Función"</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">35</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token string">"Tiempo"</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">16</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tituloResultado</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">String</span><span class="token punctuation">(</span><span class="token char">'-'</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
         <span class="token class-name">Stopwatch</span> c <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Stopwatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-var">var</span></span> funcion <span class="token keyword keyword-in">in</span> funciones<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span> 
         <span class="token punctuation">{</span>
             c<span class="token punctuation">.</span><span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token class-name"><span class="token keyword keyword-var">var</span></span> r <span class="token operator">=</span> funciones<span class="token punctuation">[</span>funcion<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             c<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">funcion<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">35</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c<span class="token punctuation">.</span>Elapsed<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">16</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">r</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>        
+            texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">funcion<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">35</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c<span class="token punctuation">.</span>Elapsed<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">16</span></span><span class="token punctuation">}</span></span><span class="token string"> | </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">r</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>        
             c<span class="token punctuation">.</span><span class="token function">Reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">String</span><span class="token punctuation">(</span><span class="token string character">&apos;-&apos;</span><span class="token punctuation">,</span> <span class="token number">79</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
-        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$&quot;\nPulsa una tecla...&quot;</span></span><span class="token punctuation">;</span>
+        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\n</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">String</span><span class="token punctuation">(</span><span class="token char">'-'</span><span class="token punctuation">,</span> <span class="token number">79</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+        texto <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\nPulsa una tecla..."</span></span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -678,20 +518,19 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
             <span class="token punctuation">{</span> <span class="token keyword keyword-nameof">nameof</span><span class="token punctuation">(</span>datos<span class="token punctuation">.</span>MaxMin<span class="token punctuation">)</span><span class="token punctuation">,</span> datos<span class="token punctuation">.</span>MaxMin <span class="token punctuation">}</span><span class="token punctuation">,</span>
             <span class="token punctuation">{</span> <span class="token keyword keyword-nameof">nameof</span><span class="token punctuation">(</span>datos<span class="token punctuation">.</span>MaxMinConcurrente <span class="token punctuation">)</span><span class="token punctuation">,</span> datos<span class="token punctuation">.</span>MaxMinConcurrente <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token function">ComparaEjecuciones</span><span class="token punctuation">(</span>funciones<span class="token punctuation">,</span> <span class="token string">&quot;M&#xE1;ximo - M&#xED;nimo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">ComparaEjecuciones</span><span class="token punctuation">(</span>funciones<span class="token punctuation">,</span> <span class="token string">"Máximo - Mínimo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><h5 class="mume-header" id="ejemplo-de-concurrencia-y-evaluaci%C3%B3n-de-resultados">Ejemplo de Concurrencia y evaluaci&#xF3;n de resultados</h5>
-
-<p>Supongamos que queremos calcular el numero e a trav&#xE9;s de la siguiente serie num&#xE9;rica:</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>e</mi><mo>=</mo><munderover><mo>&#x2211;</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">&#x221E;</mi></munderover><mfrac><mn>1</mn><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mspace width="1.4226em"></mspace><mo>&#x2192;</mo><mspace width="1.4226em"></mspace><mi>e</mi><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mn>3</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mo>&#x2026;</mo><mo>+</mo><mfrac><mn>1</mn><mrow><mi mathvariant="normal">&#x221E;</mi><mo stretchy="false">!</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">e = \sum_{n=0}^\infty {\frac{1}{n!}} \hspace{0.5cm} \to \hspace{0.5cm} e = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + &#x2026; + \frac{1}{\infty!}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">&#x2211;</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">&#x221E;</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:1.4226em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#x2192;</span><span class="mspace" style="margin-right:1.4226em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">&#x2026;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">&#x221E;</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>Si queremos calcular <strong>10 t&#xE9;rminos</strong> de la serie igual no nos es eficaz utilizar concurrencia. Pero, si queremos <strong>calcular 10000</strong> <strong>&#xBF;Valdr&#xE1; la pena?</strong>.</p>
+</code></pre><h5 id="ejemplo-de-concurrencia-y-evaluación-de-resultados">Ejemplo de Concurrencia y evaluación de resultados </h5>
+<p>Supongamos que queremos calcular el numero e a través de la siguiente serie numérica:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>e</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><mn>1</mn><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mspace width="1.4226em"></mspace><mo>→</mo><mspace width="1.4226em"></mspace><mi>e</mi><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mn>3</mn><mo stretchy="false">!</mo></mrow></mfrac><mo>+</mo><mo>…</mo><mo>+</mo><mfrac><mn>1</mn><mrow><mi mathvariant="normal">∞</mi><mo stretchy="false">!</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">e = \sum_{n=0}^\infty {\frac{1}{n!}} \hspace{0.5cm} \to \hspace{0.5cm} e = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + … + \frac{1}{\infty!}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:1.4226em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:1.4226em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∞</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>Si queremos calcular <strong>10 términos</strong> de la serie igual no nos es eficaz utilizar concurrencia. Pero, si queremos <strong>calcular 10000</strong> <strong>¿Valdrá la pena?</strong>.</p>
 <blockquote>
-<p>&#x1F4CC; <strong>Nota:</strong> Para este ejemplo, con el fin de que se noten m&#xE1;s los tiempos, vamos ha calcular el factorial en cada t&#xE9;rmino de forma completa aunque obviamente sea bastante ineficiente.</p>
+<p>📌 <strong>Nota:</strong> Para este ejemplo, con el fin de que se noten más los tiempos, vamos ha calcular el factorial en cada término de forma completa aunque obviamente sea bastante ineficiente.</p>
 </blockquote>
-<p>Una propuesta de soluci&#xF3;n no concurrente podr&#xED;a ser ...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<p>Una propuesta de solución no concurrente podría ser ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span></span> E <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> ITERACIONES<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
@@ -701,13 +540,13 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-return">return</span> E<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>La misma propuesta implementada de forma concurrente mediante <strong><code>Task</code></strong> podr&#xED;a ser ...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoEConcurrente</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+</code></pre><p>La misma propuesta implementada de forma concurrente mediante <strong><code>Task</code></strong> podría ser ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoEConcurrente</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name">List<span class="token punctuation">&lt;</span>Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> tareas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span>Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> ITERACIONES<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment">// Para evitar que la i sea modificada como condici&#xF3;n de carrera</span>
+        <span class="token comment">// Para evitar que la i sea modificada como condición de carrera</span>
         <span class="token comment">// la copio en una variable local.		 </span>
         <span class="token class-name"><span class="token keyword keyword-var">var</span></span> l <span class="token operator">=</span> i<span class="token punctuation">;</span>
 
@@ -720,61 +559,58 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
     <span class="token comment">// Me espero a que se calculen todos los factoriales de forma concurrente.</span>
     Task<span class="token punctuation">.</span><span class="token function">WaitAll</span><span class="token punctuation">(</span>tareas<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// Sumo todos los t&#xE9;rminos de la serie.</span>
+    <span class="token comment">// Sumo todos los términos de la serie.</span>
     <span class="token keyword keyword-return">return</span> Enumerable<span class="token punctuation">.</span><span class="token function">Range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> tareas<span class="token punctuation">.</span>Count<span class="token punctuation">)</span>
                      <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>e<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> e <span class="token operator">+</span> <span class="token number">1d</span> <span class="token operator">/</span> tareas<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>TODO: Usar las anotaciones de profile que v&#xED; en un v&#xED;deo de Youtube.</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">Funci&#xF3;n                             | Tiempo           | Numero E estimado
+</code></pre><p>TODO: Usar las anotaciones de profile que ví en un vídeo de Youtube.</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>Función                             | Tiempo           | Numero E estimado
 -------------------------------------------------------------------------------
 CalculoE                            | 00:00:00.2823546 | 2,7182818284590455
 CalculoEConcurrente                 | 00:00:00.0550042 | 2,7182818284590455
 -------------------------------------------------------------------------------
 Pulsa una tecla...
-</pre><h4 class="mume-header" id="ejecuci%C3%B3n-de-iteraciones-concurrente-clase-est%C3%A1tica-parellel">Ejecuci&#xF3;n de iteraciones concurrente clase est&#xE1;tica Parellel</h4>
-
+</code></pre><h4 id="ejecución-de-iteraciones-concurrente-clase-estática-parellel">Ejecución de iteraciones concurrente clase estática Parellel </h4>
 <p>TODO: Dejar esto como curiosidad al final del tema o quitarlo...</p>
-<p>Otra forma de implementar el c&#xF3;digo anterior de forma m&#xE1;s legible es mediante los m&#xE9;todos de la clase <strong><code>Parallel</code></strong>: <strong><code>For</code></strong> y <strong><code>ForEach</code></strong></p>
-<p>En este caso controlamos cuando acaba cada una de las tareas y podemos sumar los t&#xE9;rminos en orden de finalizaci&#xF3;n. Ser&#xED;a equivalente a usar un <strong><code>Task.WaitAny(&#x2026;)</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name"><span class="token keyword keyword-object">object</span></span> mutex <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Obejct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p>Otra forma de implementar el código anterior de forma más legible es mediante los métodos de la clase <strong><code>Parallel</code></strong>: <strong><code>For</code></strong> y <strong><code>ForEach</code></strong></p>
+<p>En este caso controlamos cuando acaba cada una de las tareas y podemos sumar los términos en orden de finalización. Sería equivalente a usar un <strong><code>Task.WaitAny(…)</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name"><span class="token keyword keyword-object">object</span></span> mutex <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Obejct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoEConcurrente</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span></span> E <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     Parallel<span class="token punctuation">.</span><span class="token function">For</span><span class="token punctuation">(</span>
         <span class="token number">1</span><span class="token punctuation">,</span> ITERACIONES <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token comment">// Esta acci&#xF3;n se ejecutar&#xE1; en paralelo tomando valores de </span>
+        <span class="token comment">// Esta acción se ejecutará en paralelo tomando valores de </span>
         <span class="token comment">// de i = 1 hasta  ITERACIONES</span>
         i <span class="token operator">=&gt;</span> 
         <span class="token punctuation">{</span>
             <span class="token class-name"><span class="token keyword keyword-var">var</span></span> f <span class="token operator">=</span> Enumerable<span class="token punctuation">.</span><span class="token function">Range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>f<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> f <span class="token operator">*</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// Bloqueo en exclusi&#xF3;n m&#xFA;tua el acceso al objeto E donde</span>
-            <span class="token comment">// cada tarea acumula el c&#xE1;lculo de su t&#xE9;rmino de la serie.</span>
+            <span class="token comment">// Bloqueo en exclusión mútua el acceso al objeto E donde</span>
+            <span class="token comment">// cada tarea acumula el cálculo de su término de la serie.</span>
             <span class="token keyword keyword-lock">lock</span> <span class="token punctuation">(</span>mutex<span class="token punctuation">)</span> <span class="token punctuation">{</span> E <span class="token operator">+=</span> <span class="token number">1d</span> <span class="token operator">/</span> f<span class="token punctuation">;</span> <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> E<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="usando-m%C3%A9todos-as%C3%ADncronos-de-las-bcl">Usando m&#xE9;todos as&#xED;ncronos de las BCL</h3>
-
-<p>Son m&#xE9;todos que acaban con la terminaci&#xF3;n  <strong><code>Async</code></strong> y <strong>devuelven una tarea</strong> que realiza un proceso de duraci&#xF3;n indeterminada.</p>
-<p>En el siguiente ejemplo obtenemos el c&#xF3;digo html de la p&#xE1;gina de Google que no sabemos que puede tardar.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><div style="page-break-after:always;"></div>
+<h3 id="usando-métodos-asíncronos-de-las-bcl">Usando métodos asíncronos de las BCL </h3>
+<p>Son métodos que acaban con la terminación  <strong><code>Async</code></strong> y <strong>devuelven una tarea</strong> que realiza un proceso de duración indeterminada.</p>
+<p>En el siguiente ejemplo obtenemos el código html de la página de Google que no sabemos que puede tardar.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name">Action</span> pausa <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;\n\nPulsa una tecla...\n\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"\n\nPulsa una tecla...\n\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
         Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> tGetHTML <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetStringAsync</span><span class="token punctuation">(</span><span class="token string">&quot;http://www.google.es&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> tGetHTML <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetStringAsync</span><span class="token punctuation">(</span><span class="token string">"http://www.google.es"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">// tGetHTML.Wait() No es necesario pues el Result ya hace el Wait.</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>tGetHTML<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">pausa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><h4 class="mume-header" id="pipeline-de-tareas-as%C3%ADncronas">Pipeline de tareas as&#xED;ncronas</h4>
-
-<p>Suele ser un caso de uso com&#xFA;n y consiste en una secuencia de tareas enlazadas, cuyo resultado depende de lo producido por la tarea anterior.</p>
-<p>Por ejemplo el caso anterior tambi&#xE9;n podr&#xED;amos hacerlo a trav&#xE9;s del siguiente pipeline.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">PipeLine1</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span>
+</code></pre><h4 id="pipeline-de-tareas-asíncronas">Pipeline de tareas asíncronas </h4>
+<p>Suele ser un caso de uso común y consiste en una secuencia de tareas enlazadas, cuyo resultado depende de lo producido por la tarea anterior.</p>
+<p>Por ejemplo el caso anterior también podríamos hacerlo a través del siguiente pipeline.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">PipeLine1</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> client <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">Task<span class="token punctuation">&lt;</span>HttpResponseMessage<span class="token punctuation">&gt;</span></span> t1 <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">GetAsync</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -788,96 +624,92 @@ Pulsa una tecla...
 
     <span class="token keyword keyword-return">return</span> t3<span class="token punctuation">.</span>Result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><h4 class="mume-header" id="pipeline-de-tareas-as%C3%ADncronas-futuros">Pipeline de tareas as&#xED;ncronas (&apos;Futuros&apos;)</h4>
-
-<p>TODO: Esto es dudoso, consultar (Buscar v&#xED;deo Java en mis favoritos) ...</p>
-<p>El c&#xF3;digo anterior es un poco engorroso y adem&#xE1;s no tiene mucho sentido, porque el hilo principal espera a que termine cada tarea as&#xED;ncrona en el pipeline.</p>
-<p>Un esquema com&#xFA;n que podemos encontrar en C# y en otros lenguajes es el siguiente.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">PipeLine2</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+</code></pre><h4 id="pipeline-de-tareas-asíncronas-futuros">Pipeline de tareas asíncronas ('Futuros') </h4>
+<p>TODO: Esto es dudoso, consultar (Buscar vídeo Java en mis favoritos) ...</p>
+<p>El código anterior es un poco engorroso y además no tiene mucho sentido, porque el hilo principal espera a que termine cada tarea asíncrona en el pipeline.</p>
+<p>Un esquema común que podemos encontrar en C# y en otros lenguajes es el siguiente.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">PipeLine2</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
 <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetAsync</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">ContinueWith</span><span class="token punctuation">(</span>t <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>Result<span class="token punctuation">.</span>Content<span class="token punctuation">.</span><span class="token function">ReadAsStreamAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">ContinueWith</span><span class="token punctuation">(</span>t <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamReader</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>Result<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ReadToEndAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span>Result<span class="token punctuation">;</span> <span class="token comment">//El &#xFA;ltimo continue retorna Task&lt;string&gt;</span>
-</pre><p>El m&#xE9;todo devuelve una tarea as&#xED;ncrona que producir&#xE1; un string como consecuencia del pipeline de varias tareas as&#xED;ncronas.</p>
-<p>Pero esto no es tan sencillo, pues durante el pipeline se pueden producir excepciones. (<a href="https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/exception-handling-task-parallel-library">Aqu&#xED;</a> puedes ver m&#xE1;s sobre gesti&#xF3;n de excepciones en el TPL)</p>
-<h4 class="mume-header" id="palabras-reservadas-patr%C3%B3n-async-y-await">Palabras reservadas (Patr&#xF3;n???) async y await</h4>
-
-<p>Nos permite mayor legibilidad y gestionar errores o excepciones en m&#xE9;todos as&#xED;ncronos de forma sencilla mediante bloques <strong><code>try - catch - finally - using</code></strong></p>
+                <span class="token punctuation">.</span>Result<span class="token punctuation">;</span> <span class="token comment">//El último continue retorna Task&lt;string&gt;</span>
+</code></pre><p>El método devuelve una tarea asíncrona que producirá un string como consecuencia del pipeline de varias tareas asíncronas.</p>
+<p>Pero esto no es tan sencillo, pues durante el pipeline se pueden producir excepciones. (<a href="https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/exception-handling-task-parallel-library">Aquí</a> puedes ver más sobre gestión de excepciones en el TPL)</p>
+<h4 id="palabras-reservadas-patrón-async-y-await">Palabras reservadas (Patrón???) async y await </h4>
+<p>Nos permite mayor legibilidad y gestionar errores o excepciones en métodos asíncronos de forma sencilla mediante bloques <strong><code>try - catch - finally - using</code></strong></p>
 <p>Usaremos las siguientes palabras reservadas del lenguaje <strong><code>async</code></strong> y <strong><code>await</code></strong>.</p>
-<p>Un m&#xE9;todo modificado con la palabra reservada <strong><code>async</code></strong> ...</p>
+<p>Un método modificado con la palabra reservada <strong><code>async</code></strong> ...</p>
 <ul>
 <li>
-<p>Ejecutar&#xE1; un grupo de instrucciones de forma s&#xED;ncrona (Patr&#xF3;n TAP).</p>
+<p>Ejecutará un grupo de instrucciones de forma síncrona (Patrón TAP).</p>
 </li>
 <li>
-<p>Deber&#xED;a incluir <strong>al menos una</strong> expresi&#xF3;n <strong><code>await</code></strong>, que marca un punto en el que el m&#xE9;todo no puede continuar hasta que se completa la operaci&#xF3;n as&#xED;ncrona en espera.</p>
+<p>Debería incluir <strong>al menos una</strong> expresión <strong><code>await</code></strong>, que marca un punto en el que el método no puede continuar hasta que se completa la operación asíncrona en espera.</p>
 </li>
 <li>
-<p>El id de un m&#xE9;todo asincr&#xF3;nico, por convenci&#xF3;n, finaliza con un sufijo &apos;<strong><code>&lt;idM&#xE9;todo&gt;Async</code></strong>&apos;.</p>
+<p>El id de un método asincrónico, por convención, finaliza con un sufijo '<strong><code>&lt;idMétodo&gt;Async</code></strong>'.</p>
 </li>
 <li>
-<p>Si no hay ning&#xFA;n await se comportar&#xE1; como un m&#xE9;todo s&#xED;ncrono. (&#x1F480; No tiene sentido).</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-async">async</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">SoySync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<p>Si no hay ningún await se comportará como un método síncrono. (💀 No tiene sentido).</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-async">async</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">SoySync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
-    <span class="token comment">// No hay ning&#xFA;n await</span>
+    <span class="token comment">// No hay ningún await</span>
 <span class="token punctuation">}</span>
-</pre></li>
+</code></pre></li>
 </ul>
-<h4 class="mume-header" id="esquemas-b%C3%A1sicos-de-uso-de-async-y-await">Esquemas b&#xE1;sicos de uso de async y await</h4>
-
+<h4 id="esquemas-básicos-de-uso-de-async-y-await">Esquemas básicos de uso de async y await </h4>
 <ol>
 <li>
-<p>Definiendo m&#xE9;todo <strong><code>async</code></strong> que retorna un resultado</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>TResult<span class="token punctuation">&gt;</span></span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<p>Definiendo método <strong><code>async</code></strong> que retorna un resultado</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>TResult<span class="token punctuation">&gt;</span></span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>	
     <span class="token function">MetodoSincrono11</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Debe ser una tarea simple con poco coste.</span>
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync11</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync12</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">TResult</span> resultado <span class="token operator">=</span> &#x2026; 
-    &#x2026; 
+    <span class="token class-name">TResult</span> resultado <span class="token operator">=</span> … 
+    … 
     <span class="token keyword keyword-return">return</span> resultado<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre></li>
+</code></pre></li>
 <li>
-<p>Definiendo m&#xE9;todo <strong><code>async</code></strong> que NO retorna nada</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<p>Definiendo método <strong><code>async</code></strong> que NO retorna nada</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token function">MetodoSincrono21</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync21</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync22</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    &#x2026; 
+    … 
 <span class="token punctuation">}</span>
-</pre></li>
+</code></pre></li>
 <li>
-<p>Llamando a un m&#xE9;todo <strong><code>async</code></strong> desde otro NO <strong><code>async</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoLlamador</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<p>Llamando a un método <strong><code>async</code></strong> desde otro NO <strong><code>async</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoLlamador</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
-    <span class="token class-name">Task<span class="token punctuation">&lt;</span>TResult<span class="token punctuation">&gt;</span></span> t1 <span class="token operator">=</span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Task<span class="token punctuation">&lt;</span>TResult<span class="token punctuation">&gt;</span></span> t1 <span class="token operator">=</span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>t1<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">Task</span> t2 <span class="token operator">=</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Task</span> t2 <span class="token operator">=</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
     t2<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre></li>
+</code></pre></li>
 <li>
-<p>Llamando a un m&#xE9;todo <strong><code>async</code></strong> desde otro <strong><code>async</code></strong></p>
+<p>Llamando a un método <strong><code>async</code></strong> desde otro <strong><code>async</code></strong></p>
 <blockquote>
-<p>&#x270B; <strong>Importante:</strong> F&#xED;jate que <strong><code>MetodoAsync1</code></strong> devolver&#xE1; directamente el <strong><code>TResult</code></strong> si al ser llamado es precedido de un <strong><code>await</code></strong> en lugar de <strong><code>Task&lt;TResult&gt;</code></strong> como en el caso anterior.</p>
+<p>✋ <strong>Importante:</strong> Fíjate que <strong><code>MetodoAsync1</code></strong> devolverá directamente el <strong><code>TResult</code></strong> si al ser llamado es precedido de un <strong><code>await</code></strong> en lugar de <strong><code>Task&lt;TResult&gt;</code></strong> como en el caso anterior.</p>
 </blockquote>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">MetodoLlamadorAsync</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">MetodoLlamadorAsync</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
-    <span class="token class-name">TResult</span> r <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">TResult</span> r <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>&#x2026;<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync2</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre></li>
+</code></pre></li>
 </ol>
-<h4 class="mume-header" id="funcionamiento-de-await">Funcionamiento de <strong><code>await</code></strong></h4>
-
-<p>Al llegar al <strong><code>await</code></strong> se suspende el m&#xE9;todo <strong><code>async</code></strong> y el control vuelve al llamador del m&#xE9;todo. Que a su ves se suspender&#xED;a si tambi&#xE9;n estuviese llamado con <strong><code>async</code></strong> y as&#xED; hasta llegar a un m&#xE9;todo no marcado con <strong><code>async</code></strong> donde continuar&#xED;a ejecutando donde se qued&#xF3; la ejecuci&#xF3;n.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-class">class</span> <span class="token class-name">MyTaskTest</span>
+<h4 id="funcionamiento-de-await">Funcionamiento de <strong><code>await</code></strong> </h4>
+<p>Al llegar al <strong><code>await</code></strong> se suspende el método <strong><code>async</code></strong> y el control vuelve al llamador del método. Que a su ves se suspendería si también estuviese llamado con <strong><code>async</code></strong> y así hasta llegar a un método no marcado con <strong><code>async</code></strong> donde continuaría ejecutando donde se quedó la ejecución.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MyTaskTest</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">doTheJob</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -889,58 +721,58 @@ Pulsa una tecla...
         <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-await">await</span> Task<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
         <span class="token punctuation">{</span>
             Thread<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;doSomethingASync&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"doSomethingASync"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword keyword-return">return</span> a <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><div style="display: flex; justify-content: space-between; margin-top: 15px">
+</code></pre><div style="display: flex; justify-content: space-between; margin-top: 15px">
 <div style="width: 60%">
-<p>Por ejemplo ... TODO: Cambiar ejemplo por el de la ilustraci&#xF3;n</p>
-<p><strong><code>doSomethingASync</code></strong> devolver&#xE1; el control al m&#xE9;todo llamador <strong><code>doTheJob</code></strong> al llegar al <strong><code>await</code></strong> y al completar la tarea as&#xED;ncrona dentro de la funci&#xF3;n-&#x3BB; continuar&#xE1; con la ejecuci&#xF3;n.</p>
-<p>Este proceso se producir&#xE1; en cascada hacia arriba como se muestra en la ilustraci&#xF3;n de la derecha.</p>
+<p>Por ejemplo ... TODO: Cambiar ejemplo por el de la ilustración</p>
+<p><strong><code>doSomethingASync</code></strong> devolverá el control al método llamador <strong><code>doTheJob</code></strong> al llegar al <strong><code>await</code></strong> y al completar la tarea asíncrona dentro de la función-λ continuará con la ejecución.</p>
+<p>Este proceso se producirá en cascada hacia arriba como se muestra en la ilustración de la derecha.</p>
 </div>
 <div style="width: auto">
     <img height="300px" src="./assets/Async.png">
 </div>
 </div>
-<p>Combinaremos los modificadores <strong><code>async</code></strong> y <strong><code>await</code></strong> con instancias de <strong><code>Task</code></strong> que hemos visto con anterioridad como por ejemplo&#x2026;</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">TareaLargaSincrona1</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> datosEntrada<span class="token punctuation">)</span> 
+<p>Combinaremos los modificadores <strong><code>async</code></strong> y <strong><code>await</code></strong> con instancias de <strong><code>Task</code></strong> que hemos visto con anterioridad como por ejemplo…</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">TareaLargaSincrona1</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> datosEntrada<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> datos <span class="token operator">=</span> datosEntrada <span class="token keyword keyword-as">as</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span><span class="token punctuation">;</span>
     Task<span class="token punctuation">.</span><span class="token function">Delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Tarda 1 sg.</span>
-    <span class="token keyword keyword-return">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Tarea Larga 1 </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">datos</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token interpolation-string"><span class="token string">$"Tarea Larga 1 </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">datos</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">TareaPropiaAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> datosEntrada<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> salida <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> salida <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> tl1 <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token function">StartNew</span><span class="token punctuation">(</span>TareaLargaSincrona1<span class="token punctuation">,</span> datosEntrada<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> tl2 <span class="token operator">=</span> Task<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token function">StartNew</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
     <span class="token punctuation">{</span>
         Task<span class="token punctuation">.</span><span class="token function">Delay</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Tarda 2 sg.</span>
-        <span class="token keyword keyword-return">return</span> <span class="token interpolation-string"><span class="token string">$&quot;Tarea Larga 2 </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">datosEntrada</span><span class="token punctuation">}</span></span><span class="token string">\n&quot;</span></span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token interpolation-string"><span class="token string">$"Tarea Larga 2 </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">datosEntrada</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     salida <span class="token operator">+=</span> <span class="token keyword keyword-await">await</span> tl1<span class="token punctuation">;</span>
-    salida <span class="token operator">+=</span> <span class="token string">&quot;Tarea corta\n&quot;</span><span class="token punctuation">;</span>
+    salida <span class="token operator">+=</span> <span class="token string">"Tarea corta\n"</span><span class="token punctuation">;</span>
     salida <span class="token operator">+=</span> <span class="token keyword keyword-await">await</span> tl2<span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> salida<span class="token punctuation">;</span> <span class="token comment">// Tarda Max(1,2) = 2 sg en lugar de 2+1 = 3 sg</span>
 <span class="token punctuation">}</span>
-</pre><p>Recordemos que cuando <strong><code>TareaPropiaAsync</code></strong> se pare en el primer <strong><code>await</code></strong> devolver&#xE1; el control al <strong><code>Main</code></strong>.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-private">private</span> <span class="token keyword keyword-async">async</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p>Recordemos que cuando <strong><code>TareaPropiaAsync</code></strong> se pare en el primer <strong><code>await</code></strong> devolverá el control al <strong><code>Main</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-private">private</span> <span class="token keyword keyword-async">async</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>            
-    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> t <span class="token operator">=</span> <span class="token function">TareaPropiaAsync</span><span class="token punctuation">(</span><span class="token string">&quot;Datos Entrada&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> t <span class="token operator">=</span> <span class="token function">TareaPropiaAsync</span><span class="token punctuation">(</span><span class="token string">"Datos Entrada"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>t<span class="token punctuation">.</span>IsCompleted<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">&quot;En Main&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"En Main"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-await">await</span> Task<span class="token punctuation">.</span><span class="token function">Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>Si reescribimos nuestro m&#xE9;todo cURL con <strong><code>async</code></strong> y <strong><code>await</code></strong> podr&#xED;a quedar de la siguiente forma:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">cURLAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> 
+</code></pre><p>Si reescribimos nuestro método cURL con <strong><code>async</code></strong> y <strong><code>await</code></strong> podría quedar de la siguiente forma:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">cURLAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> client <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> response <span class="token operator">=</span> 
@@ -952,21 +784,21 @@ Pulsa una tecla...
 
 <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// async con Main solo funciona desde C# 7.1</span>
 <span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> html <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">cURLAsync</span><span class="token punctuation">(</span><span class="token string">&quot;http://www.google.es&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> html <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">cURLAsync</span><span class="token punctuation">(</span><span class="token string">"http://www.google.es"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre><p>El siguiente ejemplo busca el nombre de un producto a partir de su c&#xF3;digo de barras (EAN) en el BD de Open Food Facts mantenida por la comunidad.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Producto</span> 
+</code></pre><p>El siguiente ejemplo busca el nombre de un producto a partir de su código de barras (EAN) en el BD de Open Food Facts mantenida por la comunidad.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Producto</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">Busca</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> EAN<span class="token punctuation">)</span> 
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> url <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$&quot;https://world.openfoodfacts.org/api/v0/product/</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">EAN</span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> url <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"https://world.openfoodfacts.org/api/v0/product/</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">EAN</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword keyword-var">var</span></span> json <span class="token operator">=</span> JsonDocument<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token keyword keyword-await">await</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetStringAsync</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> json<span class="token punctuation">.</span>RootElement<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">&quot;status&quot;</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> status<span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> json<span class="token punctuation">.</span>RootElement<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">"status"</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> status<span class="token punctuation">)</span>
                 <span class="token operator">&amp;&amp;</span> status<span class="token punctuation">.</span><span class="token function">GetInt32</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
-                <span class="token operator">&amp;&amp;</span> json<span class="token punctuation">.</span>RootElement<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">&quot;product&quot;</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> product<span class="token punctuation">)</span>
-                <span class="token operator">&amp;&amp;</span> product<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">&quot;product_name_es&quot;</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> productName<span class="token punctuation">)</span>
-                <span class="token punctuation">?</span> productName<span class="token punctuation">.</span><span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">&quot;Nombre del producto no encontrado&quot;</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;&amp;</span> json<span class="token punctuation">.</span>RootElement<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">"product"</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> product<span class="token punctuation">)</span>
+                <span class="token operator">&amp;&amp;</span> product<span class="token punctuation">.</span><span class="token function">TryGetProperty</span><span class="token punctuation">(</span><span class="token string">"product_name_es"</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> productName<span class="token punctuation">)</span>
+                <span class="token punctuation">?</span> productName<span class="token punctuation">.</span><span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">"Nombre del producto no encontrado"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
@@ -974,49 +806,46 @@ Pulsa una tecla...
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-async">async</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword keyword-try">try</span> <span class="token punctuation">{</span> 
-            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-await">await</span> Producto<span class="token punctuation">.</span><span class="token function">Busca</span><span class="token punctuation">(</span><span class="token string">&quot;5449000000996&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-await">await</span> Producto<span class="token punctuation">.</span><span class="token function">Busca</span><span class="token punctuation">(</span><span class="token string">"5449000000996"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</pre><h4 class="mume-header" id="tareas-as%C3%ADncronas-temporizadoras">Tareas as&#xED;ncronas temporizadoras</h4>
-
-<p>Es un tarea que se ejecuta de forma as&#xED;ncrona cada vez que expira una cuenta atr&#xE1;s o temporizador.</p>
+</code></pre><h4 id="tareas-asíncronas-temporizadoras">Tareas asíncronas temporizadoras </h4>
+<p>Es un tarea que se ejecuta de forma asíncrona cada vez que expira una cuenta atrás o temporizador.</p>
 <p>Existen varias formas de definir temporizadores en <strong>.NET</strong> ya sea con la clase <strong><code>Timer</code></strong> de <strong><code>System.Threading</code></strong> o la clase Timer de <strong><code>System.Timers</code></strong>.</p>
 <p>Nosotros vamos a usar <strong><code>System.Timers.Timer</code></strong> porque usa el modelo de evento al que nos podremos suscribir, permite herencia, es ligera y tiene unas operaciones muy intuitivas. (Internamente llama a <strong><code>System.Threading.Timer</code></strong>).</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Timer</span> timer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Timer</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Timer</span> timer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Timer</span> 
 <span class="token punctuation">{</span>
     <span class="token comment">// Tiempo que tarda en expirar el temporizador.</span>
     Interval <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">,</span>	
-    <span class="token comment">// Habilitaci&#xF3;n de la generaci&#xF3;n del evento Enabled al expirar.</span>
+    <span class="token comment">// Habilitación de la generación del evento Enabled al expirar.</span>
     Enabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token comment">// Si al expirar se reinicia autom&#xE1;ticamente.</span>
+    <span class="token comment">// Si al expirar se reinicia automáticamente.</span>
     AutoReset <span class="token operator">=</span> <span class="token boolean">true</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token comment">// Suscripci&#xF3;n al evento de expiraci&#xF3;n a trav&#xE9;s de un manejador.</span>
-<span class="token comment">// Tambi&#xE9;n pueden suscribirse diferentes objetos al mismo evento.</span>
+<span class="token comment">// Suscripción al evento de expiración a través de un manejador.</span>
+<span class="token comment">// También pueden suscribirse diferentes objetos al mismo evento.</span>
 timer<span class="token punctuation">.</span>Elapsed <span class="token operator">+=</span>  Timer_Elapsed
-<span class="token comment">// Inicio de la temporizaci&#xF3;n.</span>
+<span class="token comment">// Inicio de la temporización.</span>
 timer<span class="token punctuation">.</span><span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-&#x2026; 
+… 
 
 <span class="token comment">// Sender es el Timer que ha generado el evento.</span>
 <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Timer_Elapsed</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">ElapsedEventArgs</span> e<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name">Timer</span> t <span class="token operator">=</span> sender <span class="token keyword keyword-as">as</span> <span class="token class-name">Timer</span><span class="token punctuation">;</span>	
     t<span class="token punctuation">.</span>Interval <span class="token operator">+=</span> <span class="token number">500</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$&quot;Timer expirado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>SignalTime<span class="token punctuation">.</span><span class="token function">ToLongTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Timer expirado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>SignalTime<span class="token punctuation">.</span><span class="token function">ToLongTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre>
+</code></pre>
       </div>
       
       
-    
-    
     
     
     
