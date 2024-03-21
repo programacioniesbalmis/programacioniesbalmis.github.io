@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +95,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -210,7 +268,8 @@
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Principales <strong>operaciones</strong> que se pueden realizar en una lista:</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p>Principales <strong>operaciones</strong> que se pueden realizar en una lista:</p>
 <ul>
 <li>
 <p><strong>Inicializar</strong> la Lista, para poder usarla.<br>
@@ -225,9 +284,6 @@ Supongamos una lista de cadenas, la inicialización se haría de la siguiente ma
 <span class="token comment">// Puedo definir unos datos iniciales como en los arrays.</span>
 <span class="token class-name"><span class="token keyword keyword-var">var</span></span> textos <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token string">"texto1"</span><span class="token punctuation">,</span> <span class="token string">"texto2"</span><span class="token punctuation">,</span> <span class="token string">"texto3"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre></li>
-</ul>
-<div style="page-break-after:always;"></div>
-<ul>
 <li>
 <p><strong>Añadir</strong> datos una vez tenemos la lista creada, podemos añadir datos de dos formas:</p>
 <ol>
@@ -272,6 +328,7 @@ Elimina el elemento <strong><code>"Hola"</code></strong> de la lista y si hubier
 </blockquote>
 </li>
 </ul>
+<div style="page-break-after:always;"></div>
 <h4 id="conversiones-entre-listt-y-otras-colecciones">Conversiones entre List&lt;T&gt; y otras colecciones </h4>
 <p>Como ya vimos con las colecciones vinculadas, podemos crear una <strong><code>List&lt;T&gt;</code></strong> a partir de cualquier colección que implemente <strong><code>IEnumerable&lt;T&gt;</code></strong>, pero tendremos que tener cuidado si son tipos referencia mutables, porque ambas colecciones compartirán la referencia a esos objetos.</p>
 <ol>
@@ -307,7 +364,7 @@ l<span class="token punctuation">.</span><span class="token function">Add</span>
 </code></pre></li>
 </ol>
 <div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Supongamos que tenemos un <strong>array de enteros muy grande</strong> (en nuestra prueba vamos a usar <strong>500000</strong> enteros) y queremos hacer una función que reciba dicho array y me filtre los datos devolviéndome únicamente los enteros pares. Para ello, vamos a utilizar diferentes algoritmos o estratégias así como diferentes colecciones para realizar el filtrado y testear así las diferentes características que hemos descrito a lo largo de este tema 10.</p>
 <p>Vamos a definir el primer lugar un método que me genere el array de números enteros a filtrar de forma aleatoria. Una posibilidad podría ser el siguiente código...</p>
@@ -329,91 +386,83 @@ l<span class="token punctuation">.</span><span class="token function">Add</span>
         <span class="token keyword keyword-return">return</span> numeros<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 </code></pre><p>En primer lugar vamos a utilizar únicamente arrays y para filtrar vamos a crear otro array que re-dimensionaremos en 1 como hemos hecho a lo largo del curso.</p>
-<p>📌 <strong>Nota:</strong> Recordemos que la operación <strong><code>Resize</code></strong> sobre un array tiene un coste temporal alto y que los arrays no permiten operaciones de eliminación de elementos que me permitiría optar por una estrategia de obtener los pares eliminando los impares.<br>
-Una posible implementación podría ser la siguiente....</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesArraysYResize</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> pares <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Empty</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Recordemos que la operación <strong><code>Resize</code></strong> sobre un array tiene un coste temporal alto y que los arrays no permiten operaciones de eliminación de elementos que me permitiría optar por una estrategia de obtener los pares eliminando los impares.</p>
+</blockquote>
+<p>Una posible implementación podría ser la siguiente....</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesArraysYResize</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> pares <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Empty</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numeros<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                Array<span class="token punctuation">.</span><span class="token function">Resize</span><span class="token punctuation">(</span><span class="token keyword keyword-ref">ref</span> pares<span class="token punctuation">,</span> pares<span class="token punctuation">.</span>Length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                pares<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numeros<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Array<span class="token punctuation">.</span><span class="token function">Resize</span><span class="token punctuation">(</span><span class="token keyword keyword-ref">ref</span> pares<span class="token punctuation">,</span> pares<span class="token punctuation">.</span>Length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pares<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre><p>Ahora vamos a utilizar la misma estrategia pero usando internamente una colección de tipo <strong><code>List&lt;int&gt;</code></strong> en lugar de un <strong><code>int[]</code></strong>. Internamente es similar, pero recordemos que su implementación se ha optimizado para <strong>añadir elementos al final</strong>.</p>
 <p>Una posible implementación podría ser la siguiente....</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoListYAdd</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> pares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoListYAdd</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> pares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numeros<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
-               pares<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numeros<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            pares<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio continuación ...</strong></p>
-<p>En la siguiente implementación aprovechando que las listas implementan el método <strong><code>RemoveAt(int pos)</code></strong> para borrar en una posición determinada. Vamos a implementar el algoritmo borrando aquellos números impares que encontremos.</p>
+    <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>En la siguiente implementación aprovechando que las listas implementan el método <strong><code>RemoveAt(int pos)</code></strong> para borrar en una posición determinada. Vamos a implementar el algoritmo borrando aquellos números impares que encontremos.</p>
 <p>📌 <strong>Nota:</strong> Recuerda que el borrado es costoso en <strong><code>List&lt;T&gt;</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoListYRemoveAt</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoListYRemoveAt</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Convierto el array de entrada a una lista para las operaciones.</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> lpares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// Mientras no hayamos llegado el final del array...</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> lpares<span class="token punctuation">.</span>Count<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment">// Convierto el array de entrada a una lista para las operaciones.</span>
-        <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> lpares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token comment">// Mientras no hayamos llegado el final del array...</span>
-        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> lpares<span class="token punctuation">.</span>Count<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>lpares<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-                <span class="token comment">// Si borramos no hacemos i++ porque al borrar el siguiente </span>
-                <span class="token comment">// elemento ocupará el lugar del que estamos borrando.</span>
-                lpares<span class="token punctuation">.</span><span class="token function">RemoveAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-else">else</span>
-                i<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment">// Vuelvo a transformar la lista en un array </span>
-        <span class="token comment">// que es lo que devuelve el método.</span>
-        <span class="token keyword keyword-return">return</span> lpares<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>lpares<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token comment">// Si borramos no hacemos i++ porque al borrar el siguiente </span>
+            <span class="token comment">// elemento ocupará el lugar del que estamos borrando.</span>
+            lpares<span class="token punctuation">.</span><span class="token function">RemoveAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-else">else</span>
+            i<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+
+    <span class="token comment">// Vuelvo a transformar la lista en un array </span>
+    <span class="token comment">// que es lo que devuelve el método.</span>
+    <span class="token keyword keyword-return">return</span> lpares<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre><p>Ahora vamos a implementar un algoritmo análogo pero usando <strong><code>LinkedList&lt;T&gt;</code></strong> que es más eficiente para borrados.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoLinkedListYRemove</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">ObtenerParesUsandoLinkedListYRemove</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numeros<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Convierto el array de entrada a una lista enlazada.</span>
+    <span class="token class-name">LinkedList<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> llpares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LinkedList<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token class-name"><span class="token keyword keyword-var">var</span></span> it <span class="token operator">=</span> llpares<span class="token punctuation">.</span>First<span class="token punctuation">;</span>
+    <span class="token comment">// Mientras el iterador de nodos apunte a algún nodo.</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment">// Convierto el array de entrada a una lista enlazada.</span>
-        <span class="token class-name">LinkedList<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> llpares <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LinkedList<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Me quedo con la referencia al siguiente nodo por</span>
+        <span class="token comment">// si al hacer el Remove del mismo se perdiese.</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> s <span class="token operator">=</span> it<span class="token punctuation">.</span>Next<span class="token punctuation">;</span>
 
-        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> it <span class="token operator">=</span> llpares<span class="token punctuation">.</span>First<span class="token punctuation">;</span>
-        <span class="token comment">// Mientras el iterador de nodos apunte a algún nodo.</span>
-        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token comment">// Me quedo con la referencia al siguiente nodo por</span>
-            <span class="token comment">// si al hacer el Remove del mismo se perdiese.</span>
-            <span class="token class-name"><span class="token keyword keyword-var">var</span></span> s <span class="token operator">=</span> it<span class="token punctuation">.</span>Next<span class="token punctuation">;</span>
-
-            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">.</span>Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-                llpares<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            
-            it <span class="token operator">=</span> s<span class="token punctuation">;</span> <span class="token comment">// Tanto si borro como sino voy al siguiente.</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment">// Paso de nuevo la lista enlazada a un array </span>
-        <span class="token comment">// que es lo que devuelve el método.</span>
-        <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> pares  <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-int">int</span></span><span class="token punctuation">[</span>llpares<span class="token punctuation">.</span>Count<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        llpares<span class="token punctuation">.</span><span class="token function">CopyTo</span><span class="token punctuation">(</span>pares<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it<span class="token punctuation">.</span>Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            llpares<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        it <span class="token operator">=</span> s<span class="token punctuation">;</span> <span class="token comment">// Tanto si borro como sino voy al siguiente.</span>
     <span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Paso de nuevo la lista enlazada a un array </span>
+    <span class="token comment">// que es lo que devuelve el método.</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> pares  <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-int">int</span></span><span class="token punctuation">[</span>llpares<span class="token punctuation">.</span>Count<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    llpares<span class="token punctuation">.</span><span class="token function">CopyTo</span><span class="token punctuation">(</span>pares<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> pares<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre><p>Voy a realizar un programa principal donde '<em>cronometre</em>' el tiempo de ejecución de cada uno de los métodos que he implementado, operando sobre el mismo array generado aleatoriamente y así poder comparar las diferentes estratégias.</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio continuación ...</strong></p>
 <p>En la siguiente implementación aprovechando que las listas implementan el método</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -458,7 +507,7 @@ Usando LinkedList y Remove, t -&gt; 42 ms
 <li>La mejor estrategía para filtrar ha sido añadir en un <strong><code>List&lt;T&gt;</code></strong>.</li>
 </ol>
 <p>Prueba a ejecutar el programa con diferentes tamaños del array de entrada y ejecuciones aleatorias y reflexiona sobre las implementaciones propuestas.</p>
-</blockquote>
+</div> <!-- fin caso_estudio -->
 <div style="page-break-after:always;"></div>
 <h3 id="el-tad-cola">El TAD Cola </h3>
 <p>Los elementos se añaden por el final y se suprimen por el principio denominado <strong>frente de la cola</strong>. Por esta razón, también se les conoce como estructuras <strong>FIFO</strong>, acrónimo en ingles de <em>'<strong>Primero</strong> en Entrar, <strong>Primero</strong> en Salir'</em>.<br>
@@ -480,17 +529,9 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 377.2)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-377.2 1286.58,-377.2 1286.58,4 -4,4"></polygon>
-<g id="clust2" class="cluster">
-<title>cluster2</title>
-<polygon fill="none" stroke="Transparent" points="267.58,-143.8 267.58,-365.2 385.58,-365.2 385.58,-143.8 267.58,-143.8"></polygon>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster4</title>
-<polygon fill="none" stroke="Transparent" points="519.58,-109 519.58,-365.2 637.58,-365.2 637.58,-109 519.58,-109"></polygon>
-</g>
-<g id="clust1" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="Transparent" points="141.58,-161.2 141.58,-365.2 259.58,-365.2 259.58,-161.2 141.58,-161.2"></polygon>
+<g id="clust3" class="cluster">
+<title>cluster3</title>
+<polygon fill="none" stroke="Transparent" points="393.58,-126.4 393.58,-365.2 511.58,-365.2 511.58,-126.4 393.58,-126.4"></polygon>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster0</title>
@@ -500,21 +541,29 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
 <title>cluster5</title>
 <polygon fill="none" stroke="Transparent" points="723.58,-8 723.58,-361.8 861.58,-361.8 861.58,-8 723.58,-8"></polygon>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster6</title>
-<polygon fill="none" stroke="Transparent" points="869.58,-8 869.58,-361.8 1007.58,-361.8 1007.58,-8 869.58,-8"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="Transparent" points="141.58,-161.2 141.58,-365.2 259.58,-365.2 259.58,-161.2 141.58,-161.2"></polygon>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster7</title>
-<polygon fill="none" stroke="Transparent" points="1015.58,-8 1015.58,-361.8 1153.58,-361.8 1153.58,-8 1015.58,-8"></polygon>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="Transparent" points="267.58,-143.8 267.58,-365.2 385.58,-365.2 385.58,-143.8 267.58,-143.8"></polygon>
 </g>
 <g id="clust9" class="cluster">
 <title>cluster8</title>
 <polygon fill="none" stroke="Transparent" points="1161.58,-8 1161.58,-361.8 1274.58,-361.8 1274.58,-8 1161.58,-8"></polygon>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster3</title>
-<polygon fill="none" stroke="Transparent" points="393.58,-126.4 393.58,-365.2 511.58,-365.2 511.58,-126.4 393.58,-126.4"></polygon>
+<g id="clust8" class="cluster">
+<title>cluster7</title>
+<polygon fill="none" stroke="Transparent" points="1015.58,-8 1015.58,-361.8 1153.58,-361.8 1153.58,-8 1015.58,-8"></polygon>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster4</title>
+<polygon fill="none" stroke="Transparent" points="519.58,-109 519.58,-365.2 637.58,-365.2 637.58,-109 519.58,-109"></polygon>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster6</title>
+<polygon fill="none" stroke="Transparent" points="869.58,-8 869.58,-361.8 1007.58,-361.8 1007.58,-8 869.58,-8"></polygon>
 </g>
 <!-- vacio -->
 <g id="node1" class="node">
@@ -797,10 +846,9 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Consultando el frente de la cola </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c<span class="token punctuation">.</span><span class="token function">Peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Cola -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> c<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Aunque a simple vista son una concreción de las listas, puede ser interesante tener solo un subconjunto de operaciones más limitado, enfocado a ciertos problemas y que nos pueda proporcionar más '<em>robustez</em>' de cara a errores, legibilidad del código e incluso rendimiento en la ejecución del mismo.</p>
-<p>Normalmente las colas se usar para gestionar datos, eventos o procesos asíncronos por orden de llegada. El ejemplo más paradigmático sería la <strong>cola de impresión</strong>, que irá encolando los '<em>trabajos</em>' de impresión y desencolándolos por orden conforme quede libre un recurso de impresión.</p>
-<div style="page-break-after:always;"></div>
-<blockquote>
+</code></pre><p>Aunque a simple vista son una concreción de las listas, puede ser interesante tener solo un subconjunto de operaciones más limitado, enfocado a ciertos problemas y que nos pueda proporcionar más '<em>robustez</em>' de cara a errores, legibilidad del código e incluso rendimiento en la ejecución del mismo.<br>
+Normalmente las colas se usar para gestionar datos, eventos o procesos asíncronos por orden de llegada. El ejemplo más paradigmático sería la <strong>cola de impresión</strong>, que irá encolando los '<em>trabajos</em>' de impresión y desencolándolos por orden conforme quede libre un recurso de impresión.</p>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Hemos visto que internamente el tipo <strong><code>Queue&lt;T&gt;</code></strong> está implementado con una <strong>tabla o '<em>Array</em>'</strong>. Pero, también podría estarlo como una <strong>lista vinculada</strong>. Para ello, vamos a definir nosotros la colección <strong><code>LinkedQueue&lt;T&gt;</code></strong> y vamos usar internamente una <strong><code>LinkedList&lt;T&gt;</code></strong> linked list para hacerlo y generará excepciones del tipo <strong><code>LinkedQueueException</code></strong> si no se puede realizar la operación.</p>
 <p>Nuestra va ofrecernos solo las operaciones típicas de una cola como son:</p>
@@ -813,7 +861,7 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
 <li>void Clear()</li>
 <li>bool Empty { get; }</li>
 <li>int Count { get; }</li>
-<li>Además implementará el interfaz IEnumerable<t></t></li>
+<li>Además implementará el interfaz IEnumerable&lt;T&gt;</li>
 </ul>
 <p>Se nos podría ocurrir establecer una relación de heréncia del tipo <strong><code>class LinkedQueue&lt;T&gt; : LinkedList&lt;T&gt;</code></strong>. Pero esto sería incorrecto pues nuestra cola además de sus operaciones específicas, también nos ofrecería las de la lista vinculada. Realmente lo que sucede es que una cola <strong>no es una</strong> lista vinculada y por tanto en este caso la mejor opción es definir una <strong>composición</strong>.</p>
 <p>Nuestra definición pues <strong>'<em>envolverá</em>'</strong> encapsulando el tipo <strong><code>LinkedList&lt;T&gt;</code></strong> en el que se va a apoyar ofreciendo solo las operaciones de cola que gestionaremos a través del tipo envuelto. A este tipo de diseño se le conoce como <strong>Wrapper</strong>.</p>
@@ -849,13 +897,8 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Count <span class="token operator">=&gt;</span> Lista<span class="token punctuation">.</span>Count<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Lista<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> Lista<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio continuación</strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Encolar añade al final de la lista.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Encolar añade al final de la lista.</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Enqueue</span><span class="token punctuation">(</span><span class="token class-name">T</span> data<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Lista<span class="token punctuation">.</span><span class="token function">AddLast</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Desencolar extrae el elemento del principio de la lista. </span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">T</span> <span class="token function">Dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -865,14 +908,12 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
         Lista<span class="token punctuation">.</span><span class="token function">RemoveFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-return">return</span> nodo<span class="token punctuation">.</span>Value<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">T</span> <span class="token function">Peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Empty<span class="token punctuation">)</span>
             <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LinkedQueueException</span><span class="token punctuation">(</span><span class="token string">"No se puede consultar el frente de una cola vacía."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-return">return</span> Lista<span class="token punctuation">.</span>First<span class="token operator">!</span><span class="token punctuation">.</span>Value<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
     <span class="token comment">// Para implementar IEnumerable&lt;T&gt; nos basamos en que ya está implementado en</span>
     <span class="token comment">// la colección subyacente y realmente devolvemos el objeto </span>
     <span class="token comment">// iterador que devuelva la misma.</span>
@@ -884,9 +925,8 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment">// Cola de jugadores.</span>
-        <span class="token class-name">LinkedQueue<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> jugadores <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LinkedQueue<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>        
+        <span class="token class-name">LinkedQueue<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> jugadores <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LinkedQueue<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span> <span class="token comment">// Cola de jugadores.</span>
             <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span>
                 <span class="token string">"Pepe"</span><span class="token punctuation">,</span> <span class="token string">"María"</span><span class="token punctuation">,</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span> <span class="token string">"Sara"</span> 
             <span class="token punctuation">}</span>
@@ -904,8 +944,7 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
             segundosHastaExplosion <span class="token operator">-=</span> espera<span class="token punctuation">;</span>
             explosion <span class="token operator">=</span> segundosHastaExplosion <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// Comprobamos si ha explotado.</span>
             <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>explosion<span class="token punctuation">)</span>
-                <span class="token comment">// Si no ha explotado encolamos de nuevo al </span>
-                <span class="token comment">// jugador para que vuelva a recibir la bomba.</span>
+                <span class="token comment">// Si no ha explotado encolamos de nuevo al jugador para que vuelva a recibir la bomba.</span>
                 jugadores<span class="token punctuation">.</span><span class="token function">Enqueue</span><span class="token punctuation">(</span>jugador<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword keyword-else">else</span>
                 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"La bomba le ha explotado a </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugador</span><span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -914,8 +953,7 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
         jugadores<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
+</code></pre></div> <!-- fin caso_estudio -->
 <h3 id="el-tad-pila">El TAD Pila </h3>
 <p>Los elementos se añaden y extraen <strong>por el mismo extremo</strong> que denominaremos <strong>cabeza de la pila</strong>. Por esta razón, también se les conoce como estructuras <strong>LIFO</strong>, acrónimo en ingles de <em>'<strong>Último</strong> en Entrar, <strong>Primero</strong> en Salir'</em>.</p>
 <p>Al igual que sucedía con las colas, podremos implementar el TAD Pila de forma vinculada o con una tabla. Pero su funcionalidad será la misma, porque realmente lo que implementa son ciertas operaciones básicas que veremos a continuación.</p>
@@ -936,41 +974,41 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 293.6)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-293.6 1101.19,-293.6 1101.19,4 -4,4"></polygon>
-<g id="clust2" class="cluster">
-<title>cluster2</title>
-<polygon fill="none" stroke="Transparent" points="243.19,-60.2 243.19,-281.6 338.19,-281.6 338.19,-60.2 243.19,-60.2"></polygon>
-</g>
-<g id="clust1" class="cluster">
-<title>cluster1</title>
-<polygon fill="none" stroke="Transparent" points="140.19,-77.6 140.19,-281.6 235.19,-281.6 235.19,-77.6 140.19,-77.6"></polygon>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster6</title>
-<polygon fill="none" stroke="Transparent" points="745.19,-42.8 745.19,-281.6 852.19,-281.6 852.19,-42.8 745.19,-42.8"></polygon>
+<g id="clust4" class="cluster">
+<title>cluster4</title>
+<polygon fill="none" stroke="Transparent" points="449.19,-25.4 449.19,-281.6 544.19,-281.6 544.19,-25.4 449.19,-25.4"></polygon>
 </g>
 <g id="clust9" class="cluster">
 <title>cluster8</title>
 <polygon fill="none" stroke="Transparent" points="975.19,-60.2 975.19,-281.6 1089.19,-281.6 1089.19,-60.2 975.19,-60.2"></polygon>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster5</title>
-<polygon fill="none" stroke="Transparent" points="630.19,-25.4 630.19,-281.6 737.19,-281.6 737.19,-25.4 630.19,-25.4"></polygon>
-</g>
-<g id="clust8" class="cluster">
-<title>cluster7</title>
-<polygon fill="none" stroke="Transparent" points="860.19,-60.2 860.19,-281.6 967.19,-281.6 967.19,-60.2 860.19,-60.2"></polygon>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="Transparent" points="552.19,-8 552.19,-278.2 622.19,-278.2 622.19,-8 552.19,-8"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="Transparent" points="140.19,-77.6 140.19,-281.6 235.19,-281.6 235.19,-77.6 140.19,-77.6"></polygon>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster3</title>
 <polygon fill="none" stroke="Transparent" points="346.19,-42.8 346.19,-281.6 441.19,-281.6 441.19,-42.8 346.19,-42.8"></polygon>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster4</title>
-<polygon fill="none" stroke="Transparent" points="449.19,-25.4 449.19,-281.6 544.19,-281.6 544.19,-25.4 449.19,-25.4"></polygon>
+<g id="clust8" class="cluster">
+<title>cluster7</title>
+<polygon fill="none" stroke="Transparent" points="860.19,-60.2 860.19,-281.6 967.19,-281.6 967.19,-60.2 860.19,-60.2"></polygon>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster5</title>
+<polygon fill="none" stroke="Transparent" points="630.19,-25.4 630.19,-281.6 737.19,-281.6 737.19,-25.4 630.19,-25.4"></polygon>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="Transparent" points="552.19,-8 552.19,-278.2 622.19,-278.2 622.19,-8 552.19,-8"></polygon>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="Transparent" points="243.19,-60.2 243.19,-281.6 338.19,-281.6 338.19,-60.2 243.19,-60.2"></polygon>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster6</title>
+<polygon fill="none" stroke="Transparent" points="745.19,-42.8 745.19,-281.6 852.19,-281.6 852.19,-42.8 745.19,-42.8"></polygon>
 </g>
 <!-- vacio -->
 <g id="node1" class="node">
@@ -1215,10 +1253,7 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Consultando la cabeza de la pila </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">p<span class="token punctuation">.</span><span class="token function">Peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Pila -&gt; </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio:</strong></p>
-<p>Un típico ejemplo de uso de pilas es comprobar si una <strong>expresión está balanceada</strong> o no. Por ejemplo, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo stretchy="false">)</mo><mo>∗</mo><mo stretchy="false">(</mo><mn>2</mn><mo>−</mo><mn>5</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mo>∗</mo><mn>4</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">((3 + 4) * (2 - 5 / (2 * 4)))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">((</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5/</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)))</span></span></span></span> está balanceada porque se abren tantos paréntesis como se cierran de forma correcta.</p>
+</code></pre><p>Un típico ejemplo de uso de pilas es comprobar si una <strong>expresión está balanceada</strong> o no. Por ejemplo, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo stretchy="false">)</mo><mo>∗</mo><mo stretchy="false">(</mo><mn>2</mn><mo>−</mo><mn>5</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mo>∗</mo><mn>4</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">((3 + 4) * (2 - 5 / (2 * 4)))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">((</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5/</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)))</span></span></span></span> está balanceada porque se abren tantos paréntesis como se cierran de forma correcta.</p>
 <p>Para ello, vamos a definir un método estático denominado <strong><code>bool VerificaParentesis(in string expresion)</code></strong> que me diga si la cadena con la expresión de entrada lo está o no.</p>
 <p>El algoritmo consistirá en recorrer la cadena y cada vez que encontremos el caracter <strong><code>'('</code></strong> <strong>apilarlo</strong> y cuando encontremos un <strong><code>')'</code></strong> <strong>desapilar</strong> de la cadena. Si desapilamos y no hay nada en la pila, significará que no hay ningún paréntesis de apertura para el de cierre que acabamos de encontrar. Además, si tras recorrer todas la expresión quedan elementos en la pila significará que no todos los paréntesis de apertura se has logrado cerrar.</p>
 <p><strong>¿Serías capaz de escribir una propuesta de solución tal usando <strong><code>Stack&lt;T&gt;</code></strong> para realizar el algoritmo?</strong></p>
@@ -1249,7 +1284,14 @@ Podremos implementar el TAD Cola de forma vinculada o con una tabla. Pero su fun
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">VerificaParentesis</span><span class="token punctuation">(</span><span class="token string">"((3 + 4) * (2 - 5 / (2 * 4))"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">The possible solutions to a given problem emerge as the leaves of a tree, each node representing a point of deliberation and decision.</div>
+        <div class="autor">- Niklaus Wirth.</div>
+    </div>
+</div>
 <div style="page-break-after:always;"></div>
 <h3 id="colección-dictionaryk-v">Colección Dictionary&lt;K, V&gt; </h3>
 <p>Las tablas hash o <strong>Diccionarios</strong>, son otro tipo de colecciones, pero que tienen un comportamiento particular.</p>
@@ -1364,16 +1406,16 @@ Donde realmente los elemento de mi colección serán objetos del tipo <strong><c
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 417)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-417 694.89,-417 694.89,4 -4,4"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="Transparent" points="8,-72 8,-311 123.89,-311 123.89,-72 8,-72"></polygon>
+<text text-anchor="middle" x="65.95" y="-294.4" font-family="Arial" font-size="14.00">Claves</text>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster1</title>
 <polygon fill="none" stroke="Transparent" points="216.17,-8 216.17,-405 330.52,-405 330.52,-8 216.17,-8"></polygon>
 <text text-anchor="middle" x="273.35" y="-388.4" font-family="Arial" font-size="14.00">Tabla de</text>
 <text text-anchor="middle" x="273.35" y="-371.6" font-family="Arial" font-size="14.00">capacidad 1000</text>
-</g>
-<g id="clust1" class="cluster">
-<title>cluster0</title>
-<polygon fill="none" stroke="Transparent" points="8,-72 8,-311 123.89,-311 123.89,-72 8,-72"></polygon>
-<text text-anchor="middle" x="65.95" y="-294.4" font-family="Arial" font-size="14.00">Claves</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster2</title>
@@ -1552,14 +1594,6 @@ Donde realmente los elemento de mi colección serán objetos del tipo <strong><c
 </li>
 </ol>
 </blockquote>
-<div class="contenedor">
-    <div class="fondo">
-        <div class="abre_comilla">"</div>
-        <div class="cierra_comilla">"</div>
-        <div class="cita">The possible solutions to a given problem emerge as the leaves of a tree, each node representing a point of deliberation and decision.</div>
-        <div class="autor">- Niklaus Wirth.</div>
-    </div>
-</div>
 <div style="page-break-after:always;"></div>
 <h5 id="usando-tipos-propios-como-claves">Usando tipos propios como claves </h5>
 <p>Imaginemos que queremos definir un diccionario donde la <strong>clave</strong> ahora será la clase <strong><code>Persona</code></strong> que hemos utilizado a lo largo del tema y el valor será una lista de cadenas con los nombres de las mascotas de esa persona.</p>
@@ -1589,7 +1623,16 @@ Donde realmente los elemento de mi colección serán objetos del tipo <strong><c
     <span class="token comment">// del Hash existe la posibilidad de que objetos diferentes me devuelvan el</span>
     <span class="token comment">// el mismo Hash.</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Analicemos la siguiente propuesta código de ejemplo comentado donde usamos la clase <strong><code>Persona</code></strong> que hemos definido como clave...</p>
+</code></pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">The most damaging phrase in the language is.. it's always been done this way.</div>
+        <div class="autor">- Grace Hopper</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<p>Analicemos la siguiente propuesta código de ejemplo comentado donde usamos la clase <strong><code>Persona</code></strong> que hemos definido como clave...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Definimos el diccionario donde la clave es una persona y</span>
@@ -1620,7 +1663,7 @@ Donde realmente los elemento de mi colección serán objetos del tipo <strong><c
 <span class="token punctuation">}</span>
 </code></pre><p>Prueba a ejecutar este código y comprueba que funciona correctamente. Prueba ahora a eliminar la invalidación de <strong><code>GetHashCode()</code></strong> de <strong><code>Persona</code></strong> y ver que sucede. Deberías obtener un error en la <strong><code>línea 24</code></strong> puesto que estamos intentado usar como clave de acceso un objeto <strong><code>Persona</code></strong> de nombre <strong>María</strong> y edad <strong>22</strong> años que <em>'supuestamente'</em> no está definida en el diccionario porque su Hash es diferente al del objeto con que se añadió.</p>
 <div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Vamos su uso a través de un simple <strong>programa de ejemplo</strong> que realice un pequeño examen sobre las capitales de la UE. Para ello, el programa preguntará 5 capitales. Puntuando con 2 puntos cada pregunta acertada.</p>
 <p>Veamos una posible solución usando diccionarios y otras colecciones vistas en el tema...</p>
@@ -1675,7 +1718,7 @@ Donde realmente los elemento de mi colección serán objetos del tipo <strong><c
     <span class="token punctuation">}</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Tu nota final es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">puntos</span><span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre></div> <!-- fin caso_estudio -->
 
       </div>
       

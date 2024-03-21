@@ -3,424 +3,309 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-colecciones-bcl">Ejercicios Colecciones BCL</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-colecciones-bcl">Ejercicios Colecciones BCL </h1>
 <p><a href="./2_ejercicios_colecciones_bcl.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#ejercicio-1">Ejercicio 1</a></li>
-<li><a href="#white_check_mark-ejercicio-2">&#x2705; Ejercicio 2</a></li>
-<li><a href="#ejercicio-3">Ejercicio 3</a></li>
-<li><a href="#white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</a></li>
-<li><a href="#ejercicio-5">Ejercicio 5</a></li>
-</ol>
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-2" class="md-toc-link">
+            <p>✅ Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3" class="md-toc-link">
+            <p>Ejercicio 3</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-4" class="md-toc-link">
+            <p>✅ Ejercicio 4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5" class="md-toc-link">
+            <p>Ejercicio 5</p>
+
+          </a></div>
+</div>
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="ejercicio-1">Ejercicio 1</h3>
-
-<blockquote>
-<p>En este ejercicio se va a practicar el uso de la lista gen&#xE9;rica de la BCL, para ello deber&#xE1;s implementar los siguientes m&#xE9;todos y un programa para poder testear el funcionamiento de estos.</p>
+<div class="ejercicio">
+<h3 id="ejercicio-1">Ejercicio 1 </h3>
+<p>En este ejercicio se va a practicar el uso de la lista genérica de la BCL, para ello deberás implementar los siguientes métodos y un programa para poder testear el funcionamiento de estos.</p>
 <ol>
 <li>
-<p>Implementa un m&#xE9;todo llamado <strong><code>BorraEnteros</code></strong> que reciba como par&#xE1;metros una lista gen&#xE9;rica de enteros (<strong><code>List&lt;int&gt;</code></strong>, que deber&#xE1;s inicializar previamente) y un n&#xFA;mero entero.<br>
-Lo que har&#xE1; ser&#xE1; modificar la lista borrando los n&#xFA;meros que coincidan con el entero indicado.</p>
+<p>Implementa un método llamado <strong><code>BorraEnteros</code></strong> que reciba como parámetros una lista genérica de enteros (<strong><code>List&lt;int&gt;</code></strong>, que deberás inicializar previamente) y un número entero.<br>
+Lo que hará será modificar la lista borrando los números que coincidan con el entero indicado.</p>
 </li>
 <li>
-<p>Implementa una funci&#xF3;n llamada <strong><code>Mezcla</code></strong> que reciba como par&#xE1;metro dos listas de enteros (ya ordenadas), y devuelva como resultado otra lista donde se unan las dos anteriores, pero con los n&#xFA;meros tambi&#xE9;n en orden.</p>
+<p>Implementa una función llamada <strong><code>Mezcla</code></strong> que reciba como parámetro dos listas de enteros (ya ordenadas), y devuelva como resultado otra lista donde se unan las dos anteriores, pero con los números también en orden.</p>
 </li>
 <li>
-<p>Implementa un m&#xE9;todo llamado <strong><code>ImprimeInverso</code></strong> que reciba como par&#xE1;metros una lista de Personas y una posici&#xF3;n (entero), e imprima por pantalla en orden inverso los nombres de la lista desde esa posici&#xF3;n hasta el principio.<br>
+<p>Implementa un método llamado <strong><code>ImprimeInverso</code></strong> que reciba como parámetros una lista de Personas y una posición (entero), e imprima por pantalla en orden inverso los nombres de la lista desde esa posición hasta el principio.<br>
 Puedes utiliza la clase persona de otros ejercicios.</p>
 </li>
 <li>
-<p>Implementa un procedimiento llamado <strong><code>OrdenaCadenas</code></strong> que reciba como par&#xE1;metro una lista de strings la ordene alfab&#xE9;ticamente. Deber&#xE1;s usar alg&#xFA;n algoritmo de ordenaci&#xF3;n y el m&#xE9;todo <strong><code>CompareTo</code></strong> para comparar las cadenas antes de realizar los intercambios.</p>
+<p>Implementa un procedimiento llamado <strong><code>OrdenaCadenas</code></strong> que reciba como parámetro una lista de strings la ordene alfabéticamente. Deberás usar algún algoritmo de ordenación y el método <strong><code>CompareTo</code></strong> para comparar las cadenas antes de realizar los intercambios.</p>
 </li>
 </ol>
-</blockquote>
+</div> <!-- fin ejercicio -->
 <div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="white_check_mark-ejercicio-2">&#x2705; Ejercicio 2</h3>
-
-<blockquote>
-<p>Crea una clase <strong><code>Automovil</code></strong> con los datos b&#xE1;sicos de los autom&#xF3;viles (marca, modelo, cilindrada, a&#xF1;o de fabricaci&#xF3;n, etc) y los m&#xE9;todos necesarios para poder usarla con comodidad.</p>
-<p>Crea una clase <strong><code>Program</code></strong> con una serie de m&#xE9;todos que nos permitan trabajar con una lista gen&#xE9;rica de autom&#xF3;viles.</p>
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-2">✅ Ejercicio 2 </h3>
+<p>Crea una clase <strong><code>Automovil</code></strong> con los datos básicos de los automóviles (marca, modelo, cilindrada, año de fabricación, etc) y los métodos necesarios para poder usarla con comodidad.</p>
+<p>Crea una clase <strong><code>Program</code></strong> con una serie de métodos que nos permitan trabajar con una lista genérica de automóviles.</p>
 <ul>
 <li>
-<p>Necesitaremos un M&#xE9;todo <strong><code>A&#xF1;adeAutomovil</code></strong> que a partir de una lista y un autom&#xF3;vil, a&#xF1;adir&#xE1; este a la lista.</p>
+<p>Necesitaremos un Método <strong><code>AñadeAutomovil</code></strong> que a partir de una lista y un automóvil, añadirá este a la lista.</p>
 </li>
 <li>
-<p><strong><code>EliminaAutomovil</code></strong> que eliminar&#xE1; el autom&#xF3;vil con el &#xED;ndice <strong><code>i</code></strong> que se haya pasado como argumento.</p>
+<p><strong><code>EliminaAutomovil</code></strong> que eliminará el automóvil con el índice <strong><code>i</code></strong> que se haya pasado como argumento.</p>
 </li>
 <li>
-<p>Crea un m&#xE9;todo <strong><code>AutomovilesPorA&#xF1;oFabricacion</code></strong>, que te permita encontrar en la lista  los coches con una determinada fecha de fabricaci&#xF3;n y que retorne una nueva lista con esos datos.</p>
+<p>Crea un método <strong><code>AutomovilesPorAñoFabricacion</code></strong>, que te permita encontrar en la lista  los coches con una determinada fecha de fabricación y que retorne una nueva lista con esos datos.</p>
 </li>
 <li>
-<p>Otro m&#xE9;todo <strong><code>AutomovilesPorA&#xF1;oFabricacionYColor</code></strong> que devuelva una sublista con los coches de la lista que sean de un determinado color y una fecha pasados ambos como par&#xE1;metros.</p>
+<p>Otro método <strong><code>AutomovilesPorAñoFabricacionYColor</code></strong> que devuelva una sublista con los coches de la lista que sean de un determinado color y una fecha pasados ambos como parámetros.</p>
 </li>
 <li>
-<p>M&#xE9;todo que permita mostrar el contenido de la lista.</p>
+<p>Método que permita mostrar el contenido de la lista.</p>
 </li>
 </ul>
-</blockquote>
-<h3 class="mume-header" id="ejercicio-3">Ejercicio 3</h3>
-
-<blockquote>
-<p>Utilizando la clase gen&#xE9;rica <strong><code>Dictionary&lt;K, V&gt;</code></strong> definida en <strong><code>System.Collections.Generic</code></strong>, implementa un sencillo programa de consola que pida nombres por teclado hasta que introduzcamos la cadena <strong>&quot;fin&quot;</strong>.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="ejercicio-3">Ejercicio 3 </h3>
+<p>Utilizando la clase genérica <strong><code>Dictionary&lt;K, V&gt;</code></strong> definida en <strong><code>System.Collections.Generic</code></strong>, implementa un sencillo programa de consola que pida nombres por teclado hasta que introduzcamos la cadena <strong>"fin"</strong>.</p>
 <p>En ese momento mostraremos los nombres introducidos y cuantas veces se ha introducido cada uno.<br>
-Para mostrar el resultado, deber&#xE1;s mostrar por un lado las claves y posteriormente el par clave valor. Para ello tendr&#xE1;s que recorre el diccionario 2 veces, una con un <strong><code>foreach</code></strong> para las claves y otra con un <strong><code>foreach</code></strong> para el diccionario obteniendo pares clave valor con la siguiente clase <strong><code>KeyValuePair&lt;K, V&gt;</code></strong></p>
-<p>&#x1F4A1; <strong>Pista</strong>:</p>
-<p>Tienes que guardar los nombres <strong>como clave</strong> en el diccionario y el n&#xFA;mero de veces que se ha introducido <strong>como valor</strong>.</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</h3>
-
+Para mostrar el resultado, deberás mostrar por un lado las claves y posteriormente el par clave valor. Para ello tendrás que recorre el diccionario 2 veces, una con un <strong><code>foreach</code></strong> para las claves y otra con un <strong><code>foreach</code></strong> para el diccionario obteniendo pares clave valor con la siguiente clase <strong><code>KeyValuePair&lt;K, V&gt;</code></strong></p>
 <blockquote>
-<p>Crea una clase <strong><code>Polinomio</code></strong> que guarde los datos de un polinomio en un diccionario gen&#xE9;rico ordenado.</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>&#x2212;</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x2212;</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">9x^7-3x^3-7x+5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span></p>
-<p>Por ejemplo el polinomio se guardar&#xED;a en una propiedad privada autom&#xE1;tica de forma equivalente a esta ...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token keyword keyword-private">private</span> <span class="token return-type class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> Monomios <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<p>💡 <strong>Pista</strong>: Tienes que guardar los nombres <strong>como clave</strong> en el diccionario y el número de veces que se ha introducido <strong>como valor</strong>.</p>
+</blockquote>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-4">✅ Ejercicio 4 </h3>
+<p>Crea una clase <strong><code>Polinomio</code></strong> que guarde los datos de un polinomio en un diccionario genérico ordenado.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>−</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>−</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">9x^7-3x^3-7x+5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span></p>
+<p>Por ejemplo el polinomio se guardaría en una propiedad privada automática de forma equivalente a esta ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-private">private</span> <span class="token return-type class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> Monomios <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token comment">// Guardando el polinomio en un diccionario de la siguiente forma ...</span>
 Monomios <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p>Donde cada <strong>monomio</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>X</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cX^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) se guardan en orden inverso, la &quot;<em>clave</em>&quot; es el <strong>exponente e`</strong> y el &quot;<em>valor</em>&quot; el <strong>coeficiente c</strong>.</p>
-<p>El constructor de la clase polinomio lo recibir&#xE1; <strong>una cadena</strong> de la siguiente forma: <strong><code>&quot;9x7-3x3-7x+5&quot;</code></strong> y su m&#xE9;todo string <strong><code>ToString()</code></strong> lo mostrar&#xE1; de forma an&#xE1;loga.</p>
-<p>Define un m&#xE9;todo de clase est&#xE1;tico y publico llamado <strong><code>Suma</code></strong> donde entren dos objetos polinomios en forma devuelva otro con el resultado de la suma de tal manera que si en el programa principal quiero hacer la siguiente suma ...</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>&#x2212;</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x2212;</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>5</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>&#x2212;</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>4</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x2212;</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">(9x^7-3x^3-7x+5)+(4x^2-1) = 9x^7-3x^3+4x^2-7x+4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span></p>
-<p>Tendr&#xE9; que escribir el siguiente c&#xF3;digo ...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Polinomio</span> suma <span class="token operator">=</span> Polinomio<span class="token punctuation">.</span><span class="token function">Suma</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Polinomio</span><span class="token punctuation">(</span><span class="token string">&quot;9x7-3x3-7x+5&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Polinomio</span><span class="token punctuation">(</span><span class="token string">&quot;4x2-1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Donde cada <strong>monomio</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>X</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cX^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) se guardan en orden inverso, la "<em>clave</em>" es el <strong>exponente e`</strong> y el "<em>valor</em>" el <strong>coeficiente c</strong>.</p>
+<p>El constructor de la clase polinomio lo recibirá <strong>una cadena</strong> de la siguiente forma: <strong><code>"9x7-3x3-7x+5"</code></strong> y su método string <strong><code>ToString()</code></strong> lo mostrará de forma análoga.</p>
+<p>Define un método de clase estático y publico llamado <strong><code>Suma</code></strong> donde entren dos objetos polinomios en forma devuelva otro con el resultado de la suma de tal manera que si en el programa principal quiero hacer la siguiente suma ...</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>−</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>−</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>5</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>9</mn><msup><mi>x</mi><mn>7</mn></msup><mo>−</mo><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>+</mo><mn>4</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>7</mn><mi>x</mi><mo>+</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">(9x^7-3x^3-7x+5)+(4x^2-1) = 9x^7-3x^3+4x^2-7x+4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span></p>
+<p>Tendré que escribir el siguiente código ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Polinomio</span> suma <span class="token operator">=</span> Polinomio<span class="token punctuation">.</span><span class="token function">Suma</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Polinomio</span><span class="token punctuation">(</span><span class="token string">"9x7-3x3-7x+5"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Polinomio</span><span class="token punctuation">(</span><span class="token string">"4x2-1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>suma<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre><p>y su ejecuci&#xF3;n mostrar&#xE1; ... <strong><code>9x7-3x3+4x2-7x+4</code></strong></p>
-<p>Recuerda que internamente tendremos en cada objeto polinomio una colecci&#xF3;n equivalente a las siguientes...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token comment">// polinomio 1</span>
+</code></pre><p>y su ejecución mostrará ... <strong><code>9x7-3x3+4x2-7x+4</code></strong></p>
+<p>Recuerda que internamente tendremos en cada objeto polinomio una colección equivalente a las siguientes...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// polinomio 1</span>
 <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token comment">// polinomio 2</span>
 <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token comment">// suma</span>
 <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SortedDictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p>&#x1F4A1; <strong>Pista</strong>:</p>
-<p>Para inicializar el diccionario con el polinomio en el constructor que recibe una cadena con el polinomio, habr&#xE1; diferentes propuestas. Pero lo m&#xE1;s l&#xF3;gico ser&#xED;a usar expresiones regulares.</p>
-<p><strong>&#xBF;C&#xF3;mo extraer lo monomios de una cadena con un polinomio de entrada usando una expresi&#xF3;n regular?</strong></p>
-<p>Lo m&#xE1;s l&#xF3;gico es hacer un <strong>match</strong> de los diferentes <strong><code>monomios</code></strong> con la forma <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> en la cadena de entrada.</p>
-<p>Una propuesta de expresi&#xF3;n regular ser&#xED;a la siguiente ...</p>
+</code></pre><blockquote>
+<p>💡 <strong>Pista</strong>: Para inicializar el diccionario con el polinomio en el constructor que recibe una cadena con el polinomio, habrá diferentes propuestas. Pero lo más lógico sería usar expresiones regulares.</p>
+</blockquote>
+<p><strong>¿Cómo extraer lo monomios de una cadena con un polinomio de entrada usando una expresión regular?</strong></p>
+<p>Lo más lógico es hacer un <strong>match</strong> de los diferentes <strong><code>monomios</code></strong> con la forma <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> en la cadena de entrada.</p>
+<p>Una propuesta de expresión regular sería la siguiente ...</p>
 <ol>
 <li>
-<p>Definimos un <strong>grupo</strong> para el <strong>coeficiente</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>). Adem&#xE1;s, si hay coeficiente este puede ser un signo solo o tener valor num&#xE9;rico <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2212;</mo><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">-x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">&#x2212;</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = -1</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#x2212;</mo><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">-3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">&#x2212;</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = -3</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">+x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = 1</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">+3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> o <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = 3</strong>).<br>
-Una posibilidad ser&#xED;a <strong><code>string grupoCoeficiente = @&quot;(?&lt;grupoCoeficiente&gt;[+-]?\d*)?&quot;;</code></strong> aunque admita la cadena vac&#xED;a nos valdr&#xED;a como simplificaci&#xF3;n.</p>
+<p>Definimos un <strong>grupo</strong> para el <strong>coeficiente</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>). Además, si hay coeficiente este puede ser un signo solo o tener valor numérico <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">-x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = -1</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">-3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = -3</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">+x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = 1</strong>), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">+3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> o <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">3x^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span> (<strong>c = 3</strong>).</p>
+<p>Una posibilidad sería <strong><code>string grupoCoeficiente = @"(?&lt;grupoCoeficiente&gt;[+-]?\d*)?";</code></strong> aunque admita la cadena vacía nos valdría como simplificación.</p>
 </li>
 <li>
-<p>Definimos un <strong>grupo</strong> para el <strong>inc&#xF3;gnita</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>)<br>
-Una posibilidad ser&#xED;a <strong><code>string grupoIncognita = @&quot;(?&lt;grupoIncognita&gt;[xX])?&quot;;</code></strong><br>
-Su interpretaci&#xF3;n ser&#xED;a: Si no hay inc&#xF3;gnita <strong><code>x</code></strong> o <strong><code>X</code></strong> entonces el exponente es 0 y en caso contr&#xE1;rio es mayor que cero. (No admitiremos negativos).</p>
+<p>Definimos un <strong>grupo</strong> para el <strong>incógnita</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>)</p>
+<p>Una posibilidad sería <strong><code>string grupoIncognita = @"(?&lt;grupoIncognita&gt;[xX])?";</code></strong><br>
+Su interpretación sería: Si no hay incógnita <strong><code>x</code></strong> o <strong><code>X</code></strong> entonces el exponente es 0 y en caso contrário es mayor que cero. (No admitiremos negativos).</p>
 </li>
 <li>
-<p>Definimos un <strong>grupo</strong> para el <strong>exponente</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">cx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">x</span></span></span></span>)<br>
-Una posibilidad ser&#xED;a <strong><code>string grupoExponente = @&quot;(?&lt;grupoExponente&gt;[1-9]|\d*)?&quot;;</code></strong><br>
-Su interpretaci&#xF3;n ser&#xED;a: Si no hay exponente entonces este puede ser 0 o 1 dependiendo de si hay inc&#xF3;gnita o no y si lo hay tomar&#xE1; el valor entero del grupo.</p>
+<p>Definimos un <strong>grupo</strong> para el <strong>exponente</strong> que puede estar (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><msup><mi>x</mi><mi>e</mi></msup></mrow><annotation encoding="application/x-tex">cx^e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord mathnormal">c</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span></span></span></span></span></span></span>) o no (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">cx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">x</span></span></span></span>)</p>
+<p>Una posibilidad sería <strong><code>string grupoExponente = @"(?&lt;grupoExponente&gt;[1-9]|\d*)?";</code></strong><br>
+Su interpretación sería: Si no hay exponente entonces este puede ser 0 o 1 dependiendo de si hay incógnita o no y si lo hay tomará el valor entero del grupo.</p>
 </li>
 <li>
-<p>Por tanto el patr&#xF3;n para ir buscando los monomios en la cadena e ir inicializando el polinomio quedar&#xED;a ...<br>
-<strong><code>string patronMonomio = $&quot;{grupoCoeficiente}{grupoIncognita}{grupoExponente}&quot;;</code></strong></p>
+<p>Por tanto el patrón para ir buscando los monomios en la cadena e ir inicializando el polinomio quedaría ...</p>
+<p><strong><code>string patronMonomio = $"{grupoCoeficiente}{grupoIncognita}{grupoExponente}";</code></strong></p>
 </li>
 </ol>
-<p>&#x1F680; <strong>Ampliaci&#xF3;n:</strong></p>
-<p>Redefine el operador <strong><code>+</code></strong> y &#xFA;salo en lugar de la funci&#xF3;n suma.</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<h3 class="mume-header" id="ejercicio-5">Ejercicio 5</h3>
-
 <blockquote>
+<p>🚀 <strong>Ampliación:</strong> Redefine el operador <strong><code>+</code></strong> y úsalo en lugar de la función suma.</p>
+</blockquote>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h3 id="ejercicio-5">Ejercicio 5 </h3>
 <p>Crea una clase llamada <strong>DatosContacto</strong> con los siguientes campos:</p>
 <ul>
 <li>El DNI de la persona (string)</li>
 <li>El nombre completo de la persona (string)</li>
-<li>La direcci&#xF3;n completa de la persona (string)</li>
+<li>La dirección completa de la persona (string)</li>
 <li>Telefono (string)</li>
 </ul>
 <p>En la clase del programa principal:</p>
 <ul>
-<li>
-<p>Crea un diccionario llamado <strong><code>agendaContactos</code></strong>  con una clave de tipo string y el valor de la clase <strong><code>DatosContacto</code></strong>.</p>
-</li>
-<li>
-<p>A&#xF1;ade un m&#xE9;todo est&#xE1;tico <strong><code>CreaContactos</code></strong> que devuelva el diccionario rellenado por el usuario, hasta que se introduzca un DNI vac&#xED;o.</p>
-</li>
-<li>
-<p>A&#xF1;ade el m&#xE9;todo est&#xE1;tico <strong><code>BorraContacto</code></strong> que reciba como par&#xE1;metros un DNI (como cadena) y el diccionario. Borrar&#xE1; del mismo, el dato cuya clave coincida con el DNI que se le pasa.</p>
-</li>
-<li>
-<p>A&#xF1;ade un m&#xE9;todo est&#xE1;tico <strong><code>A&#xF1;adeContacto</code></strong> que reciba como par&#xE1;metro un dato de tipo DatosContacto, y el diccionario con la agenda de contactos, y a&#xF1;ada a la tabla la persona indicada.</p>
-</li>
-<li>
-<p>Crea <strong><code>MuestraAgenda</code></strong> que reciba como par&#xE1;metro el diccionario y muestre su contenido.</p>
-</li>
-<li>
-<p>Crea un programa principal que te permita probar todos los m&#xE9;todos.</p>
-</li>
+<li>Crea un diccionario llamado <strong><code>agendaContactos</code></strong>  con una clave de tipo string y el valor de la clase <strong><code>DatosContacto</code></strong>.</li>
+<li>Añade un método estático <strong><code>CreaContactos</code></strong> que devuelva el diccionario rellenado por el usuario, hasta que se introduzca un DNI vacío.</li>
+<li>Añade el método estático <strong><code>BorraContacto</code></strong> que reciba como parámetros un DNI (como cadena) y el diccionario. Borrará del mismo, el dato cuya clave coincida con el DNI que se le pasa.</li>
+<li>Añade un método estático <strong><code>AñadeContacto</code></strong> que reciba como parámetro un dato de tipo DatosContacto, y el diccionario con la agenda de contactos, y añada a la tabla la persona indicada.</li>
+<li>Crea <strong><code>MuestraAgenda</code></strong> que reciba como parámetro el diccionario y muestre su contenido.</li>
+<li>Crea un programa principal que te permita probar todos los métodos.</li>
 </ul>
-<p>&#x1F4CC; <strong>Nota:</strong> Como clave para cada contacto utiliza su DNI. Deber&#xE1;s controlar si las claves est&#xE1;n en el diccionario anteriores de acceder a el, para evitar posteriores excepciones.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Como clave para cada contacto utiliza su DNI. Deberás controlar si las claves están en el diccionario anteriores de acceder a el, para evitar posteriores excepciones.</p>
 </blockquote>
+</div> <!-- fin ejercicio -->
 
       </div>
       
       
-    
-    
     
     
     
