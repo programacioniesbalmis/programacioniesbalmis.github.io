@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -112,8 +131,8 @@
             <p>Operadores cast</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#operador-unario-de-pre-y-post-incremetodecremento" class="md-toc-link">
-            <p>Operador unario de pre y post incremeto/decremento</p>
+          <a href="#operador-unario-de-pre-y-post-incrementodecremento" class="md-toc-link">
+            <p>Operador unario de pre y post incremento/decremento</p>
 
           </a></div>
         </div>
@@ -157,13 +176,11 @@
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> ParteReal <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> ParteImaginaria <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-
     <span class="token keyword keyword-public">public</span> <span class="token function">Complejo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> parteReal<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> parteImaginaria<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         ParteReal <span class="token operator">=</span> parteReal<span class="token punctuation">;</span>
         ParteImaginaria <span class="token operator">=</span> parteImaginaria<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ParteReal</span><span class="token format-string"><span class="token punctuation">:</span>G</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
@@ -178,7 +195,6 @@
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span></span> pR <span class="token operator">=</span> c1<span class="token punctuation">.</span>ParteReal <span class="token operator">+</span> c2<span class="token punctuation">.</span>ParteReal<span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span></span> pI <span class="token operator">=</span> c1<span class="token punctuation">.</span>ParteImaginaria <span class="token operator">+</span> c2<span class="token punctuation">.</span>ParteImaginaria<span class="token punctuation">;</span>
-
     <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span>pR<span class="token punctuation">,</span> pI<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><blockquote>
@@ -190,7 +206,6 @@
 <span class="token class-name">Complejo</span> c3 <span class="token operator">=</span> c1 <span class="token operator">+</span> c2<span class="token punctuation">;</span> <span class="token comment">// Sumo de forma 'amigable'.</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>c3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrará 8 + 4i</span>
 </code></pre><p>El resto de operadores binarios aritméticos se implementarían de forma análoga.</p>
-<div style="page-break-after:always;"></div>
 <h3 id="operadores-binarios-de-comparación">Operadores binarios de comparación </h3>
 <p>Vamos a ver el caso especial de los operadores <strong><code>==</code></strong> y <strong><code>!=</code></strong>. Estos operadores conjugados deben definirse juntos ya que si definimos uno y no el otro obtendremos un error. Además, al definirlos, también deberemos invalidar los métodos virtuales <strong><code>Equals</code></strong> y <strong><code>GetHashCode</code></strong> de la clase <strong><code>Object</code></strong> puesto que no hacerlo, nos generará un <strong>aviso</strong> del compilador de C# indicándonos que es recomendable hacerlo.</p>
 <ol>
@@ -213,14 +228,8 @@ Podríamos usar el <strong><code>ToString()</code></strong> pero es mejor usar u
 </code></pre></li>
 <li>
 <p>Implementamos los operadores <strong><code>==</code></strong> y <strong><code>!=</code></strong> y re-usamos <strong><code>Equals</code></strong> para la comparación.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c1<span class="token punctuation">,</span> <span class="token class-name">Complejo</span> c2<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-return">return</span> c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c1<span class="token punctuation">,</span> <span class="token class-name">Complejo</span> c2<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-return">return</span> <span class="token operator">!</span>c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c1<span class="token punctuation">,</span> <span class="token class-name">Complejo</span> c2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Complejo</span> c1<span class="token punctuation">,</span> <span class="token class-name">Complejo</span> c2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span>c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></li>
 </ol>
 <div style="page-break-after:always;"></div>
@@ -248,16 +257,14 @@ Podríamos usar el <strong><code>ToString()</code></strong> pero es mejor usar u
 <span class="token class-name"><span class="token keyword keyword-double">double</span></span> d <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment">// Asignará 3.7 a d sin darnos error.</span>
 </code></pre></li>
 </ol>
-<h3 id="operador-unario-de-pre-y-post-incremetodecremento">Operador unario de pre y post incremeto/decremento </h3>
+<h3 id="operador-unario-de-pre-y-post-incrementodecremento">Operador unario de pre y post incremento/decremento </h3>
 <p>Cuando se usen de forma <strong>prefija</strong> se evaluará el nuevo objeto creado, y cuando se usen de forma <strong>postifja</strong>, el compilador lo que hará será evaluar el objeto original que se les pasó como parámetro en lugar del creado en el <strong><code>return</code></strong>.</p>
 <blockquote>
 <p>📌 <strong>Nota:</strong> En ambos casos tras la evaluación, <strong><code>c</code></strong> pasará a referenciar al objeto creado en el <strong><code>return</code></strong>.</p>
 </blockquote>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Definición del operador unario ++ (pre y post incremeto)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Definición del operador unario ++ (pre y post incremento)</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Complejo <span class="token keyword keyword-operator">operator</span> <span class="token operator">++</span> <span class="token punctuation">(</span><span class="token class-name">Complejo</span> c<span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>ParteReal <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>ParteImaginaria<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>ParteReal <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>ParteImaginaria<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// Uso</span>
 <span class="token class-name">Complejo</span> c <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Complejo</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token number">1d</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 <span class="token comment">// cAux será una copia de c y después c será el nuevo objeto incrementado.</span>
@@ -265,7 +272,7 @@ Podríamos usar el <strong><code>ToString()</code></strong> pero es mejor usar u
 <span class="token comment">// c será el nuevo objeto incrementado y cAux será una copia del nuevo c.</span>
 <span class="token class-name">Complejo</span> cAux <span class="token operator">=</span> <span class="token operator">++</span>c<span class="token punctuation">;</span>
 </code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Vamos a crear las <strong>clases</strong> <strong><code>Centímetros</code></strong> y <strong><code>Metros</code></strong> para poder hacer operaciones seguras y semánticamente elegantes con ambos tipos de unidades. Para ello, vamos a seguir las siguientes especificaciones.</p>
 <p>Ambas poseerán una <strong>propiedad double de solo lectura</strong> denominada <strong><code>Valor</code></strong> que almacenará el valor de las unidades que estamos representando.</p>
@@ -273,8 +280,7 @@ Podríamos usar el <strong><code>ToString()</code></strong> pero es mejor usar u
 <ol>
 <li>
 <p>Operadores <strong>binarios, <code>+</code> (suma) y <code>-</code> (resta)</strong> que permitan desde ambas clases sumar o restar centímetros con metros y viceversa, permitiendo aplicar por tanto la operación conmutativa de la operación.</p>
-<p>Pare ello, deberemos tener en cuenta que igual que  cuando sumamos <strong><code>int ± double → double</code></strong>, deberemos decidir a qué se evalúa la suma de<br>
-<strong><code>Centímetros ± Metros</code></strong> y viceversa. En nuestro caso, vamos a evaluar tanto la suma y como la resta a <strong><code>Centímetros</code></strong>. Esto es importante porque una misma operación no se puede evaluar a dos tipos diferentes. Por tanto tendremos que.</p>
+<p>Pare ello, deberemos tener en cuenta que igual que  cuando sumamos <strong><code>int ± double → double</code></strong>, deberemos decidir a qué se evalúa la suma de <strong><code>Centímetros ± Metros</code></strong> y viceversa. En nuestro caso, vamos a evaluar tanto la suma y como la resta a <strong><code>Centímetros</code></strong>. Esto es importante porque una misma operación no se puede evaluar a dos tipos diferentes. Por tanto tendremos que.</p>
 <ul>
 <li><strong><code>Metros ± Metros → Metros</code></strong></li>
 <li><strong><code>Centímetros ± Centímetros → Centímetros</code></strong></li>
@@ -296,15 +302,18 @@ Podríamos usar el <strong><code>ToString()</code></strong> pero es mejor usar u
 <p>Implementa un pequeño programa de test para probar todos los operadores implementados.</p>
 </li>
 </ol>
-<p>✋ Intenta usar <strong>cuerpos de expresion</strong> en la medida de lo posible y siempre que lo consideres apropiado.<br>
-✋ Intenta <strong>reutilizar al máximo el código</strong>. Esto es, usar operadores ya implementados para la implementación de otros, ya que en algún caso el cuerpo de expresión se puede repetir o es análogo.<br>
-En las siguientes páginas tienes una propuesta de solución comentada para que puedas compararla con la tuya o echarle un vistazo si te quedas bloqueado/a.</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
 <blockquote>
-<p>🎓 <strong>Caso de estudio (Continuación)</strong></p>
-<p>📌 <strong>Nota:</strong> En esta propuesta de solución hemos usado <strong>cuerpos de expresión</strong>, ya que la mayoría de métodos retornan únicamente una expresión y por tanto es un caso de uso adecuado de los mismos.<br>
-👁️ En algunos casos para que la implementación del cuerpo de expresión no desbordase por la derecha, se ha bajado la parte del <strong><code>=&gt; &lt;cuerpo de expresión&gt;;</code></strong> a la siguiente línea.</p>
+<p>💡 <strong>Tips</strong>:</p>
+<ul>
+<li>Intenta usar <strong>cuerpos de expresión</strong> en la medida de lo posible y siempre que lo consideres apropiado.</li>
+<li>Intenta <strong>reutilizar al máximo el código</strong>. Esto es, usar operadores ya implementados para la implementación de otros, ya que en algún caso el cuerpo de expresión se puede repetir o es análogo.</li>
+</ul>
+</blockquote>
+<p>En las siguientes páginas tienes una propuesta de solución comentada para que puedas compararla con la tuya o echarle un vistazo si te quedas bloqueado/a.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> En esta propuesta de solución hemos usado <strong>cuerpos de expresión</strong>, ya que la mayoría de métodos retornan únicamente una expresión y por tanto es un caso de uso adecuado de los mismos.</p>
+</blockquote>
+<p>En algunos casos para que la implementación del cuerpo de expresión no desbordase por la derecha, se ha bajado la parte del <strong><code>=&gt; &lt;cuerpo de expresión&gt;;</code></strong> a la siguiente línea.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Metros</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-private">private</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> Valor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
@@ -314,41 +323,35 @@ En las siguientes páginas tienes una propuesta de solución comentada para que 
     <span class="token comment">// de uso adecuado de cuerpos de expresión.</span>
     <span class="token comment">// Invalidación de ToString para que sepamos mostrarlo con sus unidades.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token punctuation">}</span></span><span class="token string"> m"</span></span><span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de los operadores de cast explícito de Metros a Centímetros y double.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de los operadores de cast explícito </span>
+    <span class="token comment">// de Metros a Centímetros y double.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-explicit">explicit</span> <span class="token keyword keyword-operator">operator</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">)</span> 
     <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>Valor <span class="token operator">*</span> <span class="token number">100d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-explicit">explicit</span> <span class="token keyword keyword-operator">operator</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de la suma y la resta binaria de Metros.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de la suma y la resta binaria de Metros.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Metros <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m1<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m2<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span>m1<span class="token punctuation">.</span>Valor <span class="token operator">+</span> m2<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Metros <span class="token keyword keyword-operator">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m1<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m2<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span>m1<span class="token punctuation">.</span>Valor <span class="token operator">-</span> m2<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de operadores de comparación (Iguales hasta 2 decimales)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de operadores de comparación (Iguales hasta 2 decimales)</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> obj<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> obj <span class="token keyword keyword-is">is</span> <span class="token class-name">Metros</span> m <span class="token operator">&amp;&amp;</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>Valor <span class="token operator">-</span> m<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1e-2</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m1<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>m2<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m1<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span> m1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>m2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de la comparación de Metros con Centímetros, re-usamos </span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de la comparación de Metros con Centímetros, re-usamos </span>
     <span class="token comment">// las implementaciones del cast explícito a Metros y la comparación de </span>
     <span class="token comment">// Metros con Metros.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> cm<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m <span class="token operator">==</span> <span class="token punctuation">(</span>Metros<span class="token punctuation">)</span>cm<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> cm<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m <span class="token operator">!=</span> <span class="token punctuation">(</span>Metros<span class="token punctuation">)</span>cm<span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de la comparación de Centímetros con Metros, re-usamos </span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de la comparación de Centímetros con Metros, re-usamos </span>
     <span class="token comment">// la implementación de la comparación de Metros con Centímetros.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> cm<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m <span class="token operator">==</span> cm<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> cm<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> m <span class="token operator">!=</span> cm<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio (Continuación)</strong></p>
+</code></pre><blockquote>
 <p>📌 <strong>Nota:</strong> Hemos dejado en esta clase todos los operadores binarios que se evalúan a Centímetros y los de comparación que comparan Centímetros con Centímetros.</p>
+</blockquote>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Cent</span>ímetros
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-private">private</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> Valor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
@@ -356,43 +359,37 @@ En las siguientes páginas tienes una propuesta de solución comentada para que 
 
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token punctuation">}</span></span><span class="token string"> cm"</span></span><span class="token punctuation">;</span>
 
-    <span class="token comment">// Redefinición de los operadores de cast explícito de Centímetros a Metros y double.</span>
-    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-explicit">explicit</span> <span class="token keyword keyword-operator">operator</span> <span class="token function">Metros</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Valor <span class="token operator">/</span> <span class="token number">100d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Redefinición de los operadores de cast explícito </span>
+    <span class="token comment">// de Centímetros a Metros y double.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-explicit">explicit</span> <span class="token keyword keyword-operator">operator</span> <span class="token function">Metros</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c<span class="token punctuation">)</span> 
+    <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Valor <span class="token operator">/</span> <span class="token number">100d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-explicit">explicit</span> <span class="token keyword keyword-operator">operator</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c<span class="token punctuation">.</span>Valor<span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de la suma y la resta binaria de Centímetros.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de la suma y la resta binaria de Centímetros.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c2<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span>c1<span class="token punctuation">.</span>Valor <span class="token operator">+</span> c2<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c2<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span>c1<span class="token punctuation">.</span>Valor <span class="token operator">-</span> c2<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de la suma y resta binaría de Centímetros con Metros reutilizando </span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de la suma y resta binaría de Centímetros con Metros reutilizando </span>
     <span class="token comment">// el código ya implementado de cast a Centímetros, así como la suma y resta  </span>
     <span class="token comment">// de Centímetros ya implementadas para no repetirnos y rehusar código.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> 
     <span class="token operator">=&gt;</span> c <span class="token operator">+</span> <span class="token punctuation">(</span>Centímetros<span class="token punctuation">)</span>m<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c<span class="token punctuation">,</span> <span class="token class-name">Metros</span> m<span class="token punctuation">)</span> 
     <span class="token operator">=&gt;</span> c <span class="token operator">-</span> <span class="token punctuation">(</span>Centímetros<span class="token punctuation">)</span>m<span class="token punctuation">;</span>
-
     <span class="token comment">// Redefinición de la suma y resta binaría de Metros con Centímetros para tener</span>
     <span class="token comment">// en cuenta así la conmutatividad de la operación.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c<span class="token punctuation">)</span> 
     <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>Centímetros<span class="token punctuation">)</span>m <span class="token operator">+</span> c<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Centímetros <span class="token keyword keyword-operator">operator</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token class-name">Metros</span> m<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c<span class="token punctuation">)</span> 
     <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>Centímetros<span class="token punctuation">)</span>m <span class="token operator">-</span> c<span class="token punctuation">;</span>
-
-    <span class="token comment">// Redefinición de operadores de comparación (Iguales hasta 2 decimales)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Redefinición de operadores de comparación (Iguales hasta 2 decimales)</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Valor</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> obj<span class="token punctuation">)</span>
     <span class="token operator">=&gt;</span> obj <span class="token keyword keyword-is">is</span> <span class="token class-name">Cent</span>ímetros cm <span class="token operator">&amp;&amp;</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>Valor <span class="token operator">-</span> cm<span class="token punctuation">.</span>Valor<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1e-2</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span>Centí<span class="token class-name">metros</span> c1<span class="token punctuation">,</span> Centí<span class="token class-name">metros</span> c2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span>c1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>c2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio (Continuación)</strong></p>
-<p>Vamos a realizar un programa principal para probar la implementación anterior.</p>
+</code></pre><p>Vamos a realizar un programa principal para probar la implementación anterior.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">CasoDeEstudio</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -400,15 +397,13 @@ En las siguientes páginas tienes una propuesta de solución comentada para que 
         <span class="token class-name"><span class="token keyword keyword-var">var</span></span> c1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword keyword-var">var</span></span> c2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> Centí<span class="token function">metros</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword keyword-var">var</span></span> m <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Metros</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1</span><span class="token punctuation">}</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1 <span class="token operator">+</span> m</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1</span><span class="token punctuation">}</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1 <span class="token operator">+</span> m</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">+</span> c1</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> == </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c1</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">==</span> c1</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> == </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c2</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">==</span> c2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m</span><span class="token punctuation">}</span></span><span class="token string"> != </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c2</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">!=</span> c2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">+</span> c1</span><span class="token punctuation">}</span></span><span class="token string"> == </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">c2 <span class="token operator">+</span> c1</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">m <span class="token operator">+</span> c1 <span class="token operator">==</span> c2 <span class="token operator">+</span> c1</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// De izquierda a derecha...</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token comment">// De izquierda a derecha...</span>
         <span class="token comment">//      Suma m con m y se evalúa a m</span>
         <span class="token comment">//      Suma m con cm y se evalúa a cm</span>
         <span class="token comment">//      Suma cm con m y se evalúa a cm</span>
@@ -423,7 +418,7 @@ En las siguientes páginas tienes una propuesta de solución comentada para que 
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><p>La salida de ejecutar el programa anterior será la siguiente...</p>
-<pre data-role="codeBlock" data-info="bash {.line-numbers}" class="language-bash bash line-numbers"><code><span class="token number">25</span> cm + <span class="token number">2</span> m <span class="token operator">=</span> <span class="token number">225</span> cm
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token number">25</span> cm + <span class="token number">2</span> m <span class="token operator">=</span> <span class="token number">225</span> cm
 <span class="token number">2</span> m + <span class="token number">25</span> cm <span class="token operator">=</span> <span class="token number">225</span> cm
 <span class="token number">2</span> m <span class="token operator">==</span> <span class="token number">25</span> cm <span class="token operator">=</span> False
 <span class="token number">2</span> m <span class="token operator">==</span> <span class="token number">200</span> cm <span class="token operator">=</span> True
@@ -434,7 +429,7 @@ En las siguientes páginas tienes una propuesta de solución comentada para que 
 <span class="token number">25</span> cm <span class="token operator">=</span> <span class="token number">0,25</span> m
 <span class="token number">2</span> m <span class="token operator">=</span> <span class="token number">2</span>
 <span class="token number">25</span> cm <span class="token operator">=</span> <span class="token number">25</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></blockquote>
+</code></pre></div> <!-- fin caso de estudio -->
 <div style="page-break-after:always;"></div>
 <h2 id="anexo-de-ampliación-opcional">Anexo de ampliación opcional </h2>
 <h3 id="caso-especial-del-operador-de-indización">Caso especial del operador de indización </h3>
@@ -587,32 +582,53 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gym<span class="token punctuation">[</span>GYM<span class="token punctuation">.</span>DiaSemana<span class="token punctuation">.</span>Martes<span class="token punctuation">,</span> GYM<span class="token punctuation">.</span>Clase<span class="token punctuation">.</span>Pilates<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gym<span class="token punctuation">[</span>GYM<span class="token punctuation">.</span>DiaSemana<span class="token punctuation">.</span>Jueves<span class="token punctuation">,</span> GYM<span class="token punctuation">.</span>Clase<span class="token punctuation">.</span>Pilates<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>🎓 Caso de estudio:</strong></p>
 <p>Vamos a ver un ejemplo, similar al último, que trate de usar todo lo que hemos visto en el tema, repasando conceptos anteriores.</p>
 <p>Para ello voy a crear un tipo valor <strong><code>Hora</code></strong> que:</p>
 <ul>
-<li>A partir de una cadena del tipo <strong><code>"HH:MM"</code></strong> que llegará al constructor y usando expresiones regulares, descompondrá la información para ambos valores en dos propiedades autoimplementadas de solo lectura <strong><code>HH</code></strong> y <strong><code>MM</code></strong> respectivamente. Generaremos la excepción adecuada si la clase no es la correcta.</li>
-<li>Invalidará <strong><code>Equals</code></strong>, <strong><code>GetHasCode</code></strong> y <strong><code>ToString</code></strong>. Mostrando este último las horas en formato <strong><code>HH:MM</code></strong>.</li>
-<li>Redefinirá los operadores <strong><code>==</code></strong>, <strong><code>!=</code></strong>, <strong><code>&gt;</code></strong>, <strong><code>&lt;</code></strong>, <strong><code>&gt;=</code></strong> y <strong><code>&lt;=</code></strong></li>
+<li>
+<p>A partir de una cadena del tipo <strong><code>"HH:MM"</code></strong> que llegará al constructor y usando expresiones regulares, descompondrá la información para ambos valores en dos propiedades autoimplementadas de solo lectura <strong><code>HH</code></strong> y <strong><code>MM</code></strong> respectivamente. Generaremos la excepción adecuada si la clase no es la correcta.</p>
+</li>
+<li>
+<p>Invalidará <strong><code>Equals</code></strong>, <strong><code>GetHasCode</code></strong> y <strong><code>ToString</code></strong>. Mostrando este último las horas en formato <strong><code>HH:MM</code></strong>.</p>
+</li>
+<li>
+<p>Redefinirá los operadores <strong><code>==</code></strong>, <strong><code>!=</code></strong>, <strong><code>&gt;</code></strong>, <strong><code>&lt;</code></strong>, <strong><code>&gt;=</code></strong> y <strong><code>&lt;=</code></strong></p>
+</li>
 </ul>
 <p>Además, deberemos crear la clase <strong><code>Horario</code></strong> que:</p>
 <ul>
-<li>Definirá el <strong>enumerado</strong> <strong><code>Dia</code></strong> con los días de la semana de <strong>Lunes</strong> a <strong>Viernes</strong>.</li>
-<li>Definirá un campo de solo lectura horas que será un array de objetos <strong><code>Hora</code></strong>.</li>
-<li>Definirá un campo de solo lectura horario que será una matriz de cadenas (acrónimo de las asignaturas o módulos).</li>
-<li>Un constructor que recibirá el array de horas en el horario y dimensionará la matriz sin datos.</li>
-<li>Definirá un <strong>indizador</strong> que reciba un objeto <strong>Hora</strong> válido dentro del rango del horario de horas y el valor enumerado de día y me devolverá o asignará el valor del módulo impartido. Es importante que si añadimos un valor de hora fuera del horário, generaremos una excepción de <strong><code>IndexOutOfRangeException</code></strong>.<br>
-📌 <strong>Nota:</strong> si tengo clase de Programación de <strong>8:00</strong> a <strong>8:55</strong> y la hora que me pasan es las 8:22, el indizador devolverá dicho módulo o cambiará el nombre del mismo por otra cadena.</li>
-<li>Definirá un <strong>indizador</strong> que solo permitirá asignar (set) en determinada hora, un array de módulos a impartir durante los diferentes días de la semana.<br>
-📌 <strong>Nota:</strong> Este indizador debe reutilizar el indizador que hemos definido anteriormente.</li>
-<li>Invalidaremos el método <strong><code>ToString</code></strong> para que muestre el horario por consola.</li>
-</ul>
-<p>Por último, vamos a implementar un pequeño programa principal, donde creemos un objeto de clase horario inicializándo sus clases con el indizador de hora y posteriormente en un bucle infinito que se recupere de las posibles excepciones producidas, pediremos día y hora por teclado para mostrar la clase que hay en el horario usando el indizador definido en horario.<br>
-Ej. <strong><code>string actividad = horario[new Hora("9:45"), Dia.Lunes]</code></strong></p>
-</blockquote>
+<li>
+<p>Definirá el <strong>enumerado</strong> <strong><code>Dia</code></strong> con los días de la semana de <strong>Lunes</strong> a <strong>Viernes</strong>.</p>
+</li>
+<li>
+<p>Definirá un campo de solo lectura horas que será un array de objetos <strong><code>Hora</code></strong>.</p>
+</li>
+<li>
+<p>Definirá un campo de solo lectura horario que será una matriz de cadenas (acrónimo de las asignaturas o módulos).</p>
+</li>
+<li>
+<p>Un constructor que recibirá el array de horas en el horario y dimensionará la matriz sin datos.</p>
+</li>
+<li>
+<p>Definirá un <strong>indizador</strong> que reciba un objeto <strong>Hora</strong> válido dentro del rango del horario de horas y el valor enumerado de día y me devolverá o asignará el valor del módulo impartido. Es importante que si añadimos un valor de hora fuera del horario, generaremos una excepción de <strong><code>IndexOutOfRangeException</code></strong>.</p>
 <blockquote>
-<p><strong>🎓 Caso de estudio (continuación)</strong></p>
+<p>📌 <strong>Nota:</strong> si tengo clase de Programación de <strong>8:00</strong> a <strong>8:55</strong> y la hora que me pasan es las 8:22, el indizador devolverá dicho módulo o cambiará el nombre del mismo por otra cadena.</p>
+</blockquote>
+</li>
+<li>
+<p>Definirá un <strong>indizador</strong> que solo permitirá asignar (set) en determinada hora, un array de módulos a impartir durante los diferentes días de la semana.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Este indizador debe reutilizar el indizador que hemos definido anteriormente.</p>
+</blockquote>
+</li>
+<li>
+<p>Invalidaremos el método <strong><code>ToString</code></strong> para que muestre el horario por consola.</p>
+</li>
+</ul>
+<p>Por último, vamos a implementar un pequeño programa principal, donde creemos un objeto de clase horario inicializando sus clases con el indizador de hora y posteriormente en un bucle infinito que se recupere de las posibles excepciones producidas, pediremos día y hora por teclado para mostrar la clase que hay en el horario usando el indizador definido en horario.</p>
+<p>Ej. <strong><code>string actividad = horario[new Hora("9:45"), Dia.Lunes]</code></strong></p>
 <p>Un ejemplo de ejecución podría ser el siguiente...<br>
 Mostraríamos en primer lugar el horario.</p>
 <pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>          Lunes     Martes    Miércoles Jueves    Viernes   
@@ -641,12 +657,8 @@ Las 07:00 está fuera de horario.
 Introduce la hora (HH:MM): 22:00
 Introduce el dia de Lunes a Viernes: Jueves
 Las 22:00 está fuera de horario.
-</code></pre><p>Puedes intentar hacerlo y compararlo con la siguiente propuesta de solución.</p>
-<p>En la siguiente página tienes una propuesta de solución ...</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>🎓 Caso de estudio (continuación)</strong></p>
+</code></pre><p>Puedes intentar hacerlo y compararlo con la siguiente propuesta de solución.<br>
+En la siguiente página tienes una propuesta de solución ...</p>
 <p>Empecemos con las implementación de la clase <strong><code>Hora</code></strong></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">Hora</span>
 <span class="token punctuation">{</span>
@@ -659,12 +671,11 @@ Las 22:00 está fuera de horario.
         <span class="token class-name">Match</span> coincidencia <span class="token operator">=</span> patron<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>hora<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>coincidencia<span class="token punctuation">.</span>Success<span class="token punctuation">)</span>
             <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span>
-                           <span class="token interpolation-string"><span class="token string">$"La hora </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">hora</span><span class="token punctuation">}</span></span><span class="token string"> no tiene un formáto válido HH:MM"</span></span><span class="token punctuation">,</span> <span class="token string">"hora"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token interpolation-string"><span class="token string">$"La hora </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">hora</span><span class="token punctuation">}</span></span><span class="token string"> no tiene un formato válido HH:MM"</span></span><span class="token punctuation">,</span> <span class="token string">"hora"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         HH <span class="token operator">=</span> <span class="token keyword keyword-ushort">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token string">"hora"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
         MM <span class="token operator">=</span> <span class="token keyword keyword-ushort">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token string">"minuto"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">HH</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MM</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">HH</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MM</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> o<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> o <span class="token keyword keyword-is">is</span> <span class="token class-name">Hora</span> h <span class="token operator">&amp;&amp;</span> h<span class="token punctuation">.</span>HH <span class="token operator">==</span> HH <span class="token operator">&amp;&amp;</span> h<span class="token punctuation">.</span>MM <span class="token operator">==</span> MM<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Hora</span> h1<span class="token punctuation">,</span> <span class="token class-name">Hora</span> h2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> h1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>h2<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -673,7 +684,7 @@ Las 22:00 está fuera de horario.
     <span class="token punctuation">(</span>h1<span class="token punctuation">.</span>HH <span class="token operator">&gt;</span> h2<span class="token punctuation">.</span>HH<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>h1<span class="token punctuation">.</span>HH <span class="token operator">==</span> h2<span class="token punctuation">.</span>HH <span class="token operator">&amp;&amp;</span> h1<span class="token punctuation">.</span>MM <span class="token operator">&gt;</span> h2<span class="token punctuation">.</span>MM<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">Hora</span> h1<span class="token punctuation">,</span> <span class="token class-name">Hora</span> h2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
     <span class="token operator">!</span><span class="token punctuation">(</span>h1 <span class="token operator">&gt;</span> h2 <span class="token operator">||</span> h1 <span class="token operator">==</span> h2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Hora <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Hora</span> h<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> minutos<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> Hora <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span><span class="token punctuation">(</span><span class="token class-name">Hora</span> h<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> minutos<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name"><span class="token keyword keyword-int">int</span></span> m <span class="token operator">=</span> h<span class="token punctuation">.</span>M <span class="token operator">+</span> minutos<span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword keyword-int">int</span></span> hora <span class="token operator">=</span> h<span class="token punctuation">.</span>H <span class="token operator">+</span> m <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">;</span>
@@ -681,23 +692,19 @@ Las 22:00 está fuera de horario.
         <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span>hora<span class="token punctuation">,</span> m<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword keyword-class">class</span> <span class="token class-name">Horario</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Horario</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">Dia</span> <span class="token punctuation">{</span> Lunes<span class="token punctuation">,</span> Martes<span class="token punctuation">,</span> Miércoles<span class="token punctuation">,</span> Jueves<span class="token punctuation">,</span> Viernes <span class="token punctuation">}</span>
     <span class="token comment">// Definimos los campos.</span>
     <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span> horario<span class="token punctuation">;</span>
     <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name">Hora<span class="token punctuation">[</span><span class="token punctuation">]</span></span> horas<span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-public">public</span> <span class="token function">Horario</span><span class="token punctuation">(</span><span class="token class-name">Hora<span class="token punctuation">[</span><span class="token punctuation">]</span></span> horas<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token function">Horario</span><span class="token punctuation">(</span><span class="token class-name">Hora<span class="token punctuation">[</span><span class="token punctuation">]</span></span> horas<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Dimensiono la matriz sin clases.</span>
         <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>horas <span class="token operator">=</span> horas<span class="token punctuation">;</span>
         horario <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span></span><span class="token punctuation">[</span>horas<span class="token punctuation">.</span>Length<span class="token punctuation">,</span> Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Dia</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<blockquote>
-<p><strong>🎓 Caso de estudio (continuación)</strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Buscaremos el indice que se corresponde en el array de horas </span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Buscaremos el indice que se corresponde en el array de horas </span>
     <span class="token comment">// (filas en la matriz) que se corresponde con la hora introducida. </span>
     <span class="token comment">// Por ejemplo, si la primera hora son las 8:00 (ind = 0) y la segunda </span>
     <span class="token comment">// las 8:55 (ind = 1) y recibo las 8:33 devolveré el índice 0, pero a </span>
@@ -713,15 +720,14 @@ Las 22:00 está fuera de horario.
             <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>hora <span class="token operator">==</span> horas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> ind <span class="token operator">=</span> i<span class="token punctuation">;</span>
             <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>hora <span class="token operator">&lt;</span> horas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> ind <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> estamosAunEnlaUltimaHora <span class="token operator">=</span> hora <span class="token operator">&gt;</span> horas<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> hora <span class="token operator">&lt;</span> horas<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">55</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> estamosAunEnlaUltimaHora <span class="token operator">=</span> hora <span class="token operator">&gt;</span> horas<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> hora <span class="token operator">&lt;</span> horas<span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">55</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>estamosAunEnlaUltimaHora<span class="token punctuation">)</span> ind <span class="token operator">=</span> horas<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>ind <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
             <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentOutOfRangeException</span><span class="token punctuation">(</span>
                   <span class="token interpolation-string"><span class="token string">$"La hora </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">hora</span><span class="token punctuation">}</span></span><span class="token string"> no está fuera del horario."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
         <span class="token keyword keyword-return">return</span> ind<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span><span class="token class-name">Hora</span> hora<span class="token punctuation">,</span> <span class="token class-name">Dia</span> dia<span class="token punctuation">]</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span><span class="token class-name">Hora</span> hora<span class="token punctuation">,</span> <span class="token class-name">Dia</span> dia<span class="token punctuation">]</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Índizador que establece una clase para una Hora y un Día.</span>
         <span class="token keyword keyword-set">set</span> <span class="token operator">=&gt;</span> horario<span class="token punctuation">[</span><span class="token function">IndiceSegunHora</span><span class="token punctuation">(</span>hora<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span>dia<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-value">value</span><span class="token punctuation">;</span>
@@ -729,8 +735,7 @@ Las 22:00 está fuera de horario.
         <span class="token comment">// Si hay un null devolverá HUECO</span>
         <span class="token keyword keyword-get">get</span> <span class="token operator">=&gt;</span> horario<span class="token punctuation">[</span><span class="token function">IndiceSegunHora</span><span class="token punctuation">(</span>hora<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span>dia<span class="token punctuation">]</span> <span class="token operator">??</span> <span class="token string">"HUECO"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span><span class="token class-name">Hora</span> hora<span class="token punctuation">]</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span><span class="token class-name">Hora</span> hora<span class="token punctuation">]</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Indizador que usando el anterior, ponga las clases de Lunes</span>
         <span class="token comment">// a viernes para una determinada hora.</span>
@@ -741,11 +746,7 @@ Las 22:00 está fuera de horario.
                 <span class="token keyword keyword-this">this</span><span class="token punctuation">[</span>hora<span class="token punctuation">,</span> dia<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-value">value</span><span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>🎓 Caso de estudio (continuación)</strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Mostrar la matriz del horario.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Mostrar la matriz del horario.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> ANCHO_COLUMNA <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
@@ -754,7 +755,7 @@ Las 22:00 está fuera de horario.
         <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> dia <span class="token keyword keyword-in">in</span> diasSemana<span class="token punctuation">)</span>
             texto<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dia<span class="token punctuation">,</span><span class="token operator">-</span>ANCHO_COLUMNA</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         texto<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> horas<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> horas<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             texto<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">horas<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token operator">-</span>ANCHO_COLUMNA</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> diasSemana<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
@@ -764,8 +765,7 @@ Las 22:00 está fuera de horario.
         <span class="token keyword keyword-return">return</span> texto<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
-<span class="token comment">// Clase con el programa principal</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Clase con el programa principal</span>
 <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Principal</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Método que crea e inicializa un objeto horario.</span>
@@ -777,8 +777,7 @@ Las 22:00 está fuera de horario.
             <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"10:45"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"11:05"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"12:00"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"12:55"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"13:15"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Hora</span><span class="token punctuation">(</span><span class="token string">"14:10"</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">Horario</span> horario <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Horario</span><span class="token punctuation">(</span>horas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token class-name">Horario</span> horario <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Horario</span><span class="token punctuation">(</span>horas<span class="token punctuation">)</span><span class="token punctuation">;</span>
         horario<span class="token punctuation">[</span>horas<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
         horario<span class="token punctuation">[</span>horas<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span><span class="token punctuation">,</span> <span class="token string">"BD"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
         horario<span class="token punctuation">[</span>horas<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">{</span> <span class="token string">"Prog"</span><span class="token punctuation">,</span> <span class="token string">"SI"</span><span class="token punctuation">,</span> <span class="token string">"SI"</span><span class="token punctuation">,</span> <span class="token string">"SI"</span><span class="token punctuation">,</span> <span class="token string">"Prog"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -791,11 +790,7 @@ Las 22:00 está fuera de horario.
 
         <span class="token keyword keyword-return">return</span> horario<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>🎓 Caso de estudio (continuación)</strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name">Horario</span> horario <span class="token operator">=</span> <span class="token function">Horario1DAM</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
@@ -820,7 +815,7 @@ Las 22:00 está fuera de horario.
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre></div> <!-- fin caso de estudio -->
 
       </div>
       
