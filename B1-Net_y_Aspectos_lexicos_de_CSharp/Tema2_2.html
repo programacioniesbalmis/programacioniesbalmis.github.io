@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +95,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -201,8 +259,8 @@
 <td><strong><code>(exp.1) &gt;= (exp.2) → Se evalúa a bool</code></strong></td>
 </tr>
 <tr>
-<td></td>
-<td>**`(exp.1)</td>
+<td>Resultado booleano</td>
+<td><strong><code>(exp.1) &amp;&amp; (exp.2) → Se evalúa a bool</code></strong></td>
 </tr>
 </tbody>
 </table>
@@ -407,20 +465,20 @@ Tabla de verdad...</p>
 </thead>
 <tbody>
 <tr>
-<td>**`true</td>
-<td></td>
+<td><strong><code>true  || true</code></strong></td>
+<td>true</td>
 </tr>
 <tr>
-<td>**`true</td>
-<td></td>
+<td><strong><code>true  || false</code></strong></td>
+<td>true</td>
 </tr>
 <tr>
-<td>**`false</td>
-<td></td>
+<td><strong><code>false || true</code></strong></td>
+<td>true</td>
 </tr>
 <tr>
-<td>**`false</td>
-<td></td>
+<td><strong><code>false || false</code></strong></td>
+<td>false</td>
 </tr>
 </tbody>
 </table>
@@ -455,6 +513,7 @@ a <span class="token operator">??=</span> b<span class="token punctuation">;</sp
 </ul>
 <h4 id="operadores-condicionales-null--y-">Operadores condicionales Null ?. y ?[] </h4>
 <p>Lo veremos más adelante en el tema 5.1 cuando veamos programación orientada a objetos básica.</p>
+<div style="page-break-after:always;"></div>
 <h3 id="condicional-ternario">Condicional Ternario </h3>
 <ul>
 <li>
@@ -565,7 +624,7 @@ a <span class="token operator">??=</span> b<span class="token punctuation">;</sp
 <td>11</td>
 <td>OR de <strong>bits</strong></td>
 <td>izq. a der.</td>
-<td>**`x</td>
+<td><strong><code>x | y</code></strong></td>
 </tr>
 <tr>
 <td>12</td>
@@ -577,7 +636,7 @@ a <span class="token operator">??=</span> b<span class="token punctuation">;</sp
 <td>13</td>
 <td>OR <strong>lógico</strong></td>
 <td>izq. a der.</td>
-<td>**`x</td>
+<td><strong><code>x || y</code></strong></td>
 </tr>
 <tr>
 <td>14</td>
@@ -595,7 +654,7 @@ a <span class="token operator">??=</span> b<span class="token punctuation">;</sp
 <td>17</td>
 <td>Asignación y Asignación compuesta.</td>
 <td>der. a izq.</td>
-<td><strong><code>x = y, x += y, x -= y, x *= y, x /= y, x %= y, x &amp;= y,</code></strong><br>**`x</td>
+<td><strong><code>x = y, x += y, x -= y, x *= y, x /= y, x %= y, x &amp;= y,</code></strong><br><strong><code>x | = y, x ^= y, x &lt;&lt;= y, x &gt;&gt;= y, x ??= y, =&gt;</code></strong></td>
 </tr>
 <tr>
 <td>18</td>
@@ -605,19 +664,17 @@ a <span class="token operator">??=</span> b<span class="token punctuation">;</sp
 </tr>
 </tbody>
 </table>
-<div style="page-break-after:always;"></div>
 <h3 id="ejemplos-de-precedencia-con-operadores-básicos">Ejemplos de Precedencia con Operadores Básicos </h3>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplo 1:</strong></p>
-<p>Escribe la expresión algorítmica en C# para la siguiente expresión aritmética usando el menor número de paréntesis:<br>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="2.074em"><mi>r</mi><mo>=</mo><mfrac><msup><mi>a</mi><mn>2</mn></msup><mrow><mi>b</mi><mo>−</mo><mi>c</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>d</mi><mo>−</mo><mi>e</mi></mrow><mrow><mi>f</mi><mo>−</mo><mfrac><mrow><mi>g</mi><mo>⋅</mo><mi>h</mi></mrow><mi>j</mi></mfrac></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\huge r = \frac {a^2} {b-c} + \frac {d-e} {f-\frac {g \cdot h} {j}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.893em;"></span><span class="mord mathnormal sizing reset-size6 size10" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel sizing reset-size6 size10">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.6805em;vertical-align:-1.5956em;"></span><span class="mord sizing reset-size6 size10"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4874em;"><span style="top:-3.388em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-4.304em;"><span class="pstrut" style="height:4.074em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-4.751em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8104em;"><span style="top:-3.803em;margin-right:0.0241em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin sizing reset-size6 size10">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:5.5347em;vertical-align:-2.6903em;"></span><span class="mord sizing reset-size6 size10"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-3.2568em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9272em;"><span style="top:-3.095em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.67em;"><span class="pstrut" style="height:3.44em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.885em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mbin mtight">⋅</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.48em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span></span></span><span style="top:-4.304em;"><span class="pstrut" style="height:4.074em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-4.751em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2972em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span></span></span></span></span></p>
-</blockquote>
+<p>Escribe la expresión algorítmica en C# para la siguiente expresión aritmética usando el menor número de paréntesis:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="2.074em"><mi>r</mi><mo>=</mo><mfrac><msup><mi>a</mi><mn>2</mn></msup><mrow><mi>b</mi><mo>−</mo><mi>c</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mi>d</mi><mo>−</mo><mi>e</mi></mrow><mrow><mi>f</mi><mo>−</mo><mfrac><mrow><mi>g</mi><mo>⋅</mo><mi>h</mi></mrow><mi>j</mi></mfrac></mrow></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\huge r = \frac {a^2} {b-c} + \frac {d-e} {f-\frac {g \cdot h} {j}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.893em;"></span><span class="mord mathnormal sizing reset-size6 size10" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel sizing reset-size6 size10">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.6805em;vertical-align:-1.5956em;"></span><span class="mord sizing reset-size6 size10"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4874em;"><span style="top:-3.388em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">c</span></span></span><span style="top:-4.304em;"><span class="pstrut" style="height:4.074em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-4.751em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8104em;"><span style="top:-3.803em;margin-right:0.0241em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin sizing reset-size6 size10">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:5.5347em;vertical-align:-2.6903em;"></span><span class="mord sizing reset-size6 size10"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-3.2568em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter sizing reset-size10 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9272em;"><span style="top:-3.095em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.67em;"><span class="pstrut" style="height:3.44em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.885em;"><span class="pstrut" style="height:3.44em;"></span><span class="sizing reset-size10 size8 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mbin mtight">⋅</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.48em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span></span></span><span style="top:-4.304em;"><span class="pstrut" style="height:4.074em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-4.751em;"><span class="pstrut" style="height:4.074em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2972em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size10 size6"></span></span></span></span></span></span></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-int">int</span></span> r <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">*</span> a <span class="token operator">/</span> <span class="token punctuation">(</span>b – c<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>d – e<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>f <span class="token operator">-</span> g <span class="token operator">*</span> h <span class="token operator">/</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p><strong>Ejemplo 2:</strong></p>
-<p>Evalúa la expresión <strong><code>int a = -(4 * 4 / 2 - (4 * (8 % 2) + 12)) + 8 / 2 % 2;</code></strong><br>
+</code></pre></div> <!-- fin caso de estudio -->
+<div class="caso_estudio">
+<p><strong>Ejemplo 2:</strong><br>
+Evalúa la expresión <strong><code>int a = -(4 * 4 / 2 - (4 * (8 % 2) + 12)) + 8 / 2 % 2;</code></strong><br>
 paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p>
-</blockquote>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">8</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">8</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">0</span> <span class="token operator">+</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">8</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">+</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">8</span> <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span>
@@ -629,11 +686,11 @@ paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token number">4</span> <span class="token operator">+</span> <span class="token number">4</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token number">4</span> <span class="token operator">+</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p><strong>Ejemplo 3:</strong></p>
-<p>Evalúa la expresión <strong><code>bool a = 35 &gt; 47 &amp;&amp; 9 == 9 || 35 != 3 + 2 &amp;&amp; 3 &gt;= 3;</code></strong><br>
+</code></pre></div> <!-- fin caso de estudio -->
+<div class="caso_estudio">
+<p><strong>Ejemplo 3:</strong><br>
+Evalúa la expresión <strong><code>bool a = 35 &gt; 47 &amp;&amp; 9 == 9 || 35 != 3 + 2 &amp;&amp; 3 &gt;= 3;</code></strong><br>
 paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p>
-</blockquote>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token number">35</span> <span class="token operator">&gt;</span> <span class="token number">47</span> <span class="token operator">&amp;&amp;</span> <span class="token number">9</span> <span class="token operator">==</span> <span class="token number">9</span> <span class="token operator">||</span> <span class="token number">35</span> <span class="token operator">!=</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span> <span class="token number">3</span> <span class="token operator">&gt;=</span> <span class="token number">3</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token number">35</span> <span class="token operator">&gt;</span> <span class="token number">47</span> <span class="token operator">&amp;&amp;</span> <span class="token number">9</span> <span class="token operator">==</span> <span class="token number">9</span> <span class="token operator">||</span> <span class="token number">35</span> <span class="token operator">!=</span> <span class="token number">5</span> <span class="token operator">&amp;&amp;</span> <span class="token number">3</span> <span class="token operator">&gt;=</span> <span class="token number">3</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span> <span class="token number">9</span> <span class="token operator">==</span> <span class="token number">9</span> <span class="token operator">||</span> <span class="token number">35</span> <span class="token operator">!=</span> <span class="token number">5</span> <span class="token operator">&amp;&amp;</span> <span class="token number">3</span> <span class="token operator">&gt;=</span> <span class="token number">3</span><span class="token punctuation">;</span>
@@ -643,7 +700,9 @@ paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token boolean">false</span> <span class="token operator">||</span> <span class="token boolean">true</span> <span class="token operator">&amp;&amp;</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token boolean">false</span> <span class="token operator">||</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> a <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
+</code></pre></div> <!-- fin caso de estudio -->
+<div style="page-break-after:always;"></div>
+<div class="caso_estudio">
 <p><strong>Ejemplo 4:</strong></p>
 <ul>
 <li>Sean <strong>x, y, z, u, v, t, w</strong> variables que contienen respectivamente los valores <strong>2, 3, 4, 5, 6 y 7</strong><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-double">double</span></span> x<span class="token operator">=</span><span class="token number">2d</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token number">3d</span><span class="token punctuation">,</span> z<span class="token operator">=</span><span class="token number">4d</span><span class="token punctuation">,</span> u<span class="token operator">=</span><span class="token number">5d</span><span class="token punctuation">,</span> v<span class="token operator">=</span><span class="token number">6d</span><span class="token punctuation">,</span> t<span class="token operator">=</span><span class="token number">7d</span><span class="token punctuation">,</span> w<span class="token punctuation">;</span>
@@ -653,8 +712,7 @@ paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p
 </ul>
 <p><strong>Nota:</strong> Puedes ver el resultado de evaluar estas expresiones mediante la instrucción:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>  Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"x=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">x</span><span class="token punctuation">}</span></span><span class="token string"> - y=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">y</span><span class="token punctuation">}</span></span><span class="token string"> - z=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">z</span><span class="token punctuation">}</span></span><span class="token string"> - u=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">u</span><span class="token punctuation">}</span></span><span class="token string"> - v=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">v</span><span class="token punctuation">}</span></span><span class="token string"> - t=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t</span><span class="token punctuation">}</span></span><span class="token string"> - w=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">w</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></blockquote>
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th></th>
@@ -730,6 +788,7 @@ paso a paso teniendo en cuenta la precedencia de los operadores aritméticos.</p
 </tr>
 </tbody>
 </table>
+</div> <!-- fin caso de estudio -->
 
       </div>
       
