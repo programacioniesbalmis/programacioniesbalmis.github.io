@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +95,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -147,10 +205,6 @@
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ejemplos-de-uso-de-fileinfo-y-directoryinfo" class="md-toc-link">
             <p>Ejemplos de uso de FileInfo y DirectoryInfo</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mortar_board-caso-de-estudio-de-gestión-de-archivos-y-directorios" class="md-toc-link">
-            <p>🎓 Caso de estudio de gestión de archivos y directorios</p>
 
           </a></div>
         </div>
@@ -258,7 +312,7 @@ Esta opción es la más simple, si sabemos cual es el SO donde vamos a ejecutar.
 <li>
 <p>Combinar un <strong>DirectoryName path1</strong> y un <strong>FileName path2</strong> para formar <strong>una nueva ruta</strong>.</p>
 <blockquote>
-<p>⚠️ <strong>Nota:</strong> Siempre que <strong>path2</strong> no empiece por el carácter separador de directorio o de volumen.</p>
+<p>⚠️ <strong>Aviso:</strong> Siempre que <strong>path2</strong> no empiece por el carácter separador de directorio o de volumen.</p>
 </blockquote>
 <p><strong>string <a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.path.combine?view=net-5.0#System_IO_Path_Combine_System_String_System_String_">Combine</a>(string path1, string path2);</strong></p>
 <ul>
@@ -277,7 +331,7 @@ Esta opción es la más simple, si sabemos cual es el SO donde vamos a ejecutar.
 <p>Ambas clases contienen gran cantidad de <strong>métodos estáticos de utilidad</strong> para hacer <strong>operaciones</strong> con ficheros/archivos y directorios/carpetas, del estilo de las que se hacen desde la <strong>línea de comandos</strong>.</p>
 <p>Lógicamente los métodos definidos en <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.directory?view=net-5.0">Directory</a></strong> realizan operaciones sobre <strong>directorios</strong> y los definidos en <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.file?view=net-5.0">File</a></strong> sobre <strong>archivos</strong>.</p>
 <blockquote>
-<p><strong>Nota:</strong> Cómo no es idea de estos temas copiar la documentación de Microsoft en castellano. Es recomendable que le eches un vistazo a los enlaces del anterior párrafo para hacerte una idea de las operaciones definidas en estas clases.</p>
+<p>📌 <strong>Nota:</strong> Cómo no es idea de estos temas copiar la documentación de Microsoft en castellano. Es recomendable que le eches un vistazo a los enlaces del anterior párrafo para hacerte una idea de las operaciones definidas en estas clases.</p>
 </blockquote>
 <h4 id="ejemplo-de-uso-de-file-y-directory">Ejemplo de uso de File y Directory </h4>
 <p>Veamos alguno de estos métodos a través del siguiente <strong>ejemplo comentado</strong>:</p>
@@ -289,17 +343,13 @@ Esta opción es la más simple, si sabemos cual es el SO donde vamos a ejecutar.
     <span class="token comment">// Si no existe el directorio datos en la ruta relativa actual lo crearé.</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetDirectoryName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
         Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span><span class="token string">"datos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Creo el fichero datos.txt vacío. Más adelante en el tema</span>
     <span class="token comment">// veremos que llamar al Close() es importante para que no</span>
     <span class="token comment">// se quede abierto.</span>
     File<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Me sitúo en el directorio datos.</span>
     Directory<span class="token punctuation">.</span><span class="token function">SetCurrentDirectory</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">GetDirectoryName</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"El fichero "</span> <span class="token operator">+</span> ruta <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Compruebo si se ha creado el fichero correctamente viendo si </span>
     <span class="token comment">// existe o no en el directorio datos (donde me acabo de situar).</span>
     <span class="token comment">// Mostraré si existe o no por pantalla.</span>
@@ -325,7 +375,7 @@ Dichos objetos se instanciarán en memoria a través de las clases...</p>
 <ul>
 <li>Se accederá a través de la sustitución de Liskov de objetos de tipo <strong><code>DirectoryInfo</code></strong> o <strong><code>FileInfo</code></strong>.</li>
 </ul>
-<p align="center" style="zoom:0.8" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="335px" preserveAspectRatio="none" style="width:489px;height:335px;background:#FFFFFF;" version="1.1" viewBox="0 0 489 335" width="489px" zoomAndPan="magnify"><defs></defs><g><rect fill="#FFFAFA" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="214" x="263" y="111.3452"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="103" x="318.5" y="139.4771">FileSystemInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="368" y="155.5757">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="166" x="287" y="171.6743">Información y operaciones</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="184" x="278" y="187.7729">comunes a ambos elementos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="149" x="295.5" y="203.8716">del sistema de ficheros.</text><rect fill="#F0F8FF" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="25"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="91" x="61" y="53.1318">DirectoryInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="104.5" y="69.2305">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="134" x="39.5" y="85.3291">Contiene información</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="142" x="35.5" y="101.4277">especifica de carpetas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="163" x="25" y="117.5264">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="113" x="50" y="133.625">sobre las mismas.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,88.2959 213,88.2959 L203,88.2959 " fill="none" style="stroke:#000000;stroke-width:1.0;"></path><rect fill="#F0F8FF" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="181.5918"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="53" x="80" y="209.7236">FileInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="104.5" y="225.8223">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="134" x="39.5" y="241.9209">Contiene información</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="140" x="36.5" y="258.0195">especifica de archivos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="163" x="25" y="274.1182">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="73" x="70" y="290.2168">sobre ellos.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,244.8877 213,244.8877 L203,244.8877 " fill="none" style="stroke:#000000;stroke-width:1.0;"></path><!--SRC=[bP9BRXf148RtVOgIiW4a4o0uif0LsURXn888PR0t8OkQdc8efH-ekmSBMpvLZf2BkMQ2vKJP99jHLzVZ-wldluW9GxBi2eix5RZS9aWU36qI51n89_PEdSTqCFH17UicZ6L02uyAOCwEj3S-G6vGVvURcNVfCrg2oy1eZXSPFn3qXn8vNr3J2R34ec1NGl-q2HSOIdOlqKSV-44wqLmQBfqbbq3BXqAJlXBOTV2LAyOD_NxBYIJpf9xK-TkZNjNv-YOwV_yDEfqP6yeECP7zv3Q-qrcxjQjFmQBcdpyS7C3lA4ZW7SMrqzvMSW04jBcFG8Pg3LvI1Hc8N8z2a6KshBSKVEmAJu1eM5DkAggfa-ODVJYyGiUo59CZuD_eQq7jIBFCQcPg33jAAB0_PC5hbQIYpmE1mGYMeqKHy1U_tle_qHZqblV-Nz1aJBFs1OalZXvIIuCktIxciASGfHNwtK5lCEo-Qwss5SmebpyCWzves1lrJc4yNK6TRglMzN8EqLT1arWlfi1vLRklhMvmZ_2b4ksMHb17hTMY3TdqvHAcRi_1DoPHDtUBNqLYePJjV6gAtmzFhZX1Ha5amTr2JMY3bKdIgdtjmX7ShcOdPsgEhgom5115DHQ3fN0OmJHx1W00]--></g></svg></p><ul>
+<p align="center" style="zoom:0.8" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="335px" preserveAspectRatio="none" style="width:489px;height:335px;background:#FFFFFF;" version="1.1" viewBox="0 0 489 335" width="489px" zoomAndPan="magnify"><defs></defs><g><rect fill="#FFFAFA" height="110.4932" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="214" x="263" y="111.3452"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="103" x="318.5" y="139.4771">FileSystemInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="368" y="155.5757">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="166" x="287" y="171.6743">Información y operaciones</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="184" x="278" y="187.7729">comunes a ambos elementos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="149" x="295.5" y="203.8716">del sistema de ficheros.</text><rect fill="#F0F8FF" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="25"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="91" x="61" y="53.1318">DirectoryInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="104.5" y="69.2305">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="134" x="39.5" y="85.3291">Contiene información</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="142" x="35.5" y="101.4277">especifica de carpetas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="163" x="25" y="117.5264">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="113" x="50" y="133.625">sobre las mismas.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,88.2959 213,88.2959 L203,88.2959 " fill="none" style="stroke:#000000;stroke-width:1.0;"></path><rect fill="#F0F8FF" height="126.5918" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="193" x="10" y="181.5918"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="53" x="80" y="209.7236">FileInfo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="104.5" y="225.8223">&nbsp;</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="134" x="39.5" y="241.9209">Contiene información</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="140" x="36.5" y="258.0195">especifica de archivos</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="163" x="25" y="274.1182">y operaciones especificas</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="73" x="70" y="290.2168">sobre ellos.</text><path d="M263,166.5918 L253,166.5918 C238,166.5918 228,244.8877 213,244.8877 L203,244.8877 " fill="none" style="stroke:#000000;stroke-width:1.0;"></path><!--SRC=[bPBFRXD13CRlynIMkBIH6fAG8XHLg6t-54e24Kbx8Hoyiyx6OdOcyiocIb6VYaVWnV2kKWN41IwhiJtsx_FiTnaJIYhPvoLkZN2nIP02E5edo5d89WxUNCIqT_JM7EwD60l14huRW2bxii45WSoX_QQPIV3f8vO4LyBe3ea5Fn9q-nhva5FJ2J37F6TVGFUy2MSe1Vldw5qGVjHET5UE2r-IJs3rGzAKhnLs8w7o-R2XFsmuaLQUp9EvU7dGQrfVNaGV7hv2gpLXHujzJ5I-z-lGQgtyojSdAT7opnyUzX2s91e4Jt7bRIWhFG02bbc8G8vg3K5BEJc8N8z2q6NMR3Sa8RQLfq1qR2bp5TNKKVE6GVP7w52NOl84_1jzfQWjMTPPpKoBigM42lj35XnlQIc6J0WSHYWvbgW2_kBNM_yd6iLkU1V-1KtEDMjValhYu24pT-ZJtMmAEvAehT1jzpgzVllLoN9JmOGo_SFGwmpwdK7d78RZ9TJbKtDoCvz239LOKkl599nLjVjEpItk43vNghsa0NpQahyTVNXEmDZlM49Z47DxFpjUUDq_k-O42n9L0lSpCw8rLYvfXmsryGPmjvoSlJ5Jz4M5XSwcQ8RggIJx0OmNlm00]--></g></svg></p><ul>
 <li>Una ejemplo de esta información común detallada. Es el campo <strong><code>Attributes</code></strong> del sistema de ficheros.<br>
 El campo <strong><code>Attributes</code></strong> es una máscara creada a partir del <strong>Enum <a href="https://docs.microsoft.com/es-es/dotnet/api/system.io.fileattributes?view=net-5.0">FileAttributes</a></strong>. Con información común a ficheros y directorios.
 <blockquote>
@@ -340,7 +390,7 @@ El campo <strong><code>Attributes</code></strong> es una máscara creada a parti
 <h4 id="ejemplos-de-uso-de-fileinfo-y-directoryinfo">Ejemplos de uso de FileInfo y DirectoryInfo </h4>
 <p><strong>Ejemplo 1:</strong></p>
 <p>Supongamos una función que recibe la ruta al fichero del sistema Windows 10 <strong><code>C:\Windows\write.exe</code></strong> y nos muestra la información común almacenada en la clase abstracta <strong><code>FileSystemInfo</code></strong> sobre él.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">EjemploFileInfo</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">EjemploFileInfo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ObtenInformacion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> rutaAFichero<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -371,10 +421,10 @@ El campo <strong><code>Attributes</code></strong> es una máscara creada a parti
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ObtenInformacion</span><span class="token punctuation">(</span><span class="token string">@"C:\Windows\write.exe"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+</code></pre><div style="page-break-after:always;"></div>
 <p><strong>Ejemplo 2:</strong></p>
 <p>Supongamos un programa que me liste lo que contiene el directorio '<em>HOME</em>' de un usuario para diferentes SO, indicándome si lo encontrado es un archivo o una carpeta.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">//La siguiente expresión está fuera del alcance de este curso pero por resumir</span>
     <span class="token comment">// lo que hace diremos que ...</span>
@@ -384,16 +434,16 @@ El campo <strong><code>Attributes</code></strong> es una máscara creada a parti
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> home <span class="token operator">=</span> Environment<span class="token punctuation">.</span>OSVersion<span class="token punctuation">.</span>Platform <span class="token operator">==</span> <span class="token return-type class-name">PlatformID<span class="token punctuation">.</span>Unix          
                   <span class="token punctuation">?</span></span> Environment<span class="token punctuation">.</span><span class="token function">GetEnvironmentVariable</span><span class="token punctuation">(</span><span class="token string">"HOME"</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"."</span>
                   <span class="token punctuation">:</span> Environment<span class="token punctuation">.</span><span class="token function">ExpandEnvironmentVariables</span><span class="token punctuation">(</span><span class="token string">"%HOMEDRIVE%%HOMEPATH%"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// Compruebo si existe la ruta devuelta por el entorno.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Compruebo si existe la ruta devuelta por el entorno.</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Me sitúo en el directorio home.</span>
         Directory<span class="token punctuation">.</span><span class="token function">SetCurrentDirectory</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// Instancio el objeto de tipo DirectoryInfo con la información de la carpeta.</span>
         <span class="token class-name">DirectoryInfo</span> infoCarpeta <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DirectoryInfo</span><span class="token punctuation">(</span>home<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// Obtengo información de todos los objetos que hay en dicha carpeta ya sean</span>
-        <span class="token comment">// otras capetas o archivos. Para eso llamo a GetFileSystemInfos() que me</span>
+        <span class="token comment">// Obtengo información de todos los objetos que hay en dicha carpeta </span>
+        <span class="token comment">// ya sean otras capetas o archivos. </span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token comment">// Para eso llamo a GetFileSystemInfos() que me</span>
         <span class="token comment">// devuelve un array de FileSystemInfo con dicha información.</span>
         <span class="token class-name">FileSystemInfo<span class="token punctuation">[</span><span class="token punctuation">]</span></span> infosEnFS <span class="token operator">=</span> infoCarpeta<span class="token punctuation">.</span><span class="token function">GetFileSystemInfos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -401,8 +451,7 @@ El campo <strong><code>Attributes</code></strong> es una máscara creada a parti
         <span class="token comment">// -&gt; DirectoryInfo[] infoCarpetas = infoCarpeta.GetDirectories();</span>
         <span class="token comment">// De forma análoga si hubiera querido coger solo información de archivos...</span>
         <span class="token comment">// -&gt; FileInfo[] infoArchivos = infoCarpeta.GetFiles();</span>
-
-        <span class="token comment">// Recorro el array.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token comment">// Recorro el array.</span>
         <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">FileSystemInfo</span> infoEnFS <span class="token keyword keyword-in">in</span> infosEnFS<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             <span class="token comment">// Compruebo si en la máscara el item que estoy recorriendo </span>
@@ -417,8 +466,17 @@ El campo <strong><code>Attributes</code></strong> es una máscara creada a parti
     <span class="token keyword keyword-else">else</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"No se ha podido encontrar la carpeta home."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
-<h4 id="mortar_board-caso-de-estudio-de-gestión-de-archivos-y-directorios">🎓 Caso de estudio de gestión de archivos y directorios </h4>
+</code></pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">I think Microsoft named .Net so it wouldn't show up in a Unix directory listing.</div>
+        <div class="autor">- Oktal.</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="caso_estudio">
+<p>🎓 <strong>Caso de estudio:</strong></p>
 <p>En el siguiente caso de estudio, vamos a crear un método llamado <strong>void OcultaDirectorio(string ruta)</strong> que reciba una ruta a una carpeta y la marque como oculta.<br>
 Además, vamos a controlar las posibles excepciones que se generen y las vamos a relanzar al <strong><code>Main</code></strong>. Para ello, si hacemos <strong><code>Ctrl + Click</code></strong> sobre el constructor de <strong><code>DirectoryInfo</code></strong> podemos ver que genera las excepciones:</p>
 <ul>
@@ -453,13 +511,12 @@ Una <strong>propuesta de solución</strong> podría ser la siguiente ...</p>
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">PathTooLongException</span> e<span class="token punctuation">)</span> 
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">PathTooLongException</span> e<span class="token punctuation">)</span> 
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PathTooLongException</span><span class="token punctuation">(</span>log<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<p>Ahora defino un <strong><code>Main</code></strong> donde voy a usar el método definido de tal manera que:</p>
+</code></pre><p>Ahora defino un <strong><code>Main</code></strong> donde voy a usar el método definido de tal manera que:</p>
 <ol>
 <li>Primero creo un directorio llamado <strong><code>'oculto'</code></strong> donde estoy ejecutando la aplicación.</li>
 <li>Posteriormente lo ocultaré llamando al método <strong><code>OcultaDirectorio</code></strong>.<br>
@@ -485,15 +542,21 @@ Además, capturo cualquier excepción que se pueda producir, tanto creando el di
 <span class="token punctuation">}</span>
 </code></pre><p>En este caso de estudio, se propone hacer las siguientes modificaciones...</p>
 <ol>
-<li>Ejecutaló y comprueba si se ha creado un directorio oculto llamado <em>'oculto'</em>.</li>
-<li>Intenta ocultar un directorio inexistente.</li>
-<li>Revoca todos los permisos a tu usuario para esa carpeta y prueba a ocultarla.
+<li>
+<p>Ejecutaló y comprueba si se ha creado un directorio oculto llamado <em>'oculto'</em>.</p>
+</li>
+<li>
+<p>Intenta ocultar un directorio inexistente.</p>
+</li>
+<li>
+<p>Revoca todos los permisos a tu usuario para esa carpeta y prueba a ocultarla.</p>
 <blockquote>
-<p>📣 <strong>Nota:</strong> En el <strong><a href="https://answers.microsoft.com/es-es/windows/forum/all/windows-10-como-quito-los-permisos-de/86863693-988f-4546-b516-2e4298e2586f">siguiente enlace</a></strong> puede ver somo se quitan los permisos al Administrador en Windows 10.<br>
+<p>📌 <strong>Nota:</strong> En el <strong><a href="https://answers.microsoft.com/es-es/windows/forum/all/windows-10-como-quito-los-permisos-de/86863693-988f-4546-b516-2e4298e2586f">siguiente enlace</a></strong> puede ver somo se quitan los permisos al Administrador en Windows 10.<br>
 <strong>Intenta hacer lo mismo pero solo para tu usuario</strong>.</p>
 </blockquote>
 </li>
 </ol>
+</div> <!-- fin caso de estudio -->
 
       </div>
       

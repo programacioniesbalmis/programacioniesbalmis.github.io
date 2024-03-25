@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -77,6 +96,45 @@
   top: 83%;
   font-size: 1rem;
 }
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -108,8 +166,8 @@
             <p>Usos principales</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#usando-delegados-en-c" class="md-toc-link">
-            <p>Usando delegados en C#</p>
+          <a href="#usando-delegados-en-csharp" class="md-toc-link">
+            <p>Usando delegados en CSharp</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#multidifusión-de-delegados" class="md-toc-link">
@@ -161,20 +219,20 @@
 <li>Pasar una referencia a un método como parámetro.</li>
 <li>Simplificar la implementación del patrón Strategy.</li>
 </ul>
-<h3 id="usando-delegados-en-c">Usando delegados en C# </h3>
+<h3 id="usando-delegados-en-csharp">Usando delegados en CSharp </h3>
 <p>Si un delegado en un objeto, deberá haber un tipo que lo defina. Este tipo tendrá un nombre (identificador) y me indicará la signatura de los métodos que referenciará el objeto delegado.</p>
-<p>La sintáxis para definir el tipo será:<br>
-<strong><code>&lt;modificadores&gt; delegate &lt;tipoRetorno&gt; &lt;TipoDelegado&gt;(&lt;parámetros formales&gt;);</code></strong> (Ver <strong><code>línea 4</code></strong> del ejemplo)</p>
+<p>La sintaxis para definir el tipo será:<br>
+<strong><code>&lt;modificadores&gt; delegate &lt;tipoRetorno&gt; &lt;TipoDelegado&gt;(&lt;parámetros formales&gt;);</code></strong> (Ver ejemplo)</p>
 <p>Donde:</p>
 <ul>
 <li><strong><code>&lt;TipoDelegado&gt;</code></strong> será el <strong>nombre del tipo</strong> que me servirá para definir objetos delegado.</li>
 <li><strong><code>&lt;tipoRetorno&gt;</code></strong> y <strong><code>&lt;parámetros formales&gt;</code></strong> se corresponderán, respectivamente, con el tipo del valor de retorno y la lista de parámetros formales que definirán la signatura de los métodos cuyas referencias contendrán los objetos de ese tipo delegado.</li>
 </ul>
-<p>La sintáxis para instanciár objetos delegado del tipo definido será:<br>
+<p>La sintaxis para instanciar objetos delegado del tipo definido será:<br>
 <strong><code>TipoDelegado oDelegado = IdMetodoQueCumpleLaSignaturaDelTipo;</code></strong> (Ver <strong><code>línea 28</code></strong> del ejemplo)<br>
 que será un <em>syntactic sugar</em> del siguiente código...<br>
 <strong><code>TipoDelegado oDelegado = new TipoDelegado(IdMetodoQueCumpleLaSignaturaDelTipo);</code></strong></p>
-<p>La sintáxis para hacer una llamada al método o métodos que almacena un objeto delegado será:<br>
+<p>La sintaxis para hacer una llamada al método o métodos que almacena un objeto delegado será:<br>
 <strong><code>tipoRetorno resultado = oDelegado(&lt;parámetros reales&gt;);</code></strong> (Ver <strong><code>línea 18</code></strong> del ejemplo)<br>
 que será un <em>syntactic sugar</em> del siguiente código...<br>
 <strong><code>tipoRetorno resultado = oDelegado.Invoke(&lt;parámetros reales&gt;);</code></strong><br>
@@ -281,8 +339,8 @@ y que realmente estaremos haciendo una llamada al método...<br>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<p>Si quisiéramos ordenar las personas por <strong><code>Edad</code></strong>, la clase list nos va a ofrecer el método <strong><code>Sort</code></strong>. Como nuestra clase <strong><code>Persona</code></strong> no implementa <strong><code>IComparable&lt;Persona&gt;</code></strong>, deberemos indicarle de algún modo al <strong><code>Sort</code></strong> la '<em>estrategia</em>' de ordenación. Por esta razón <strong><code>Sort</code></strong> nos ofrecerá las siguientes sobrecargas ...</p>
+</code></pre><p>Si quisiéramos ordenar las personas por <strong><code>Edad</code></strong>, la clase list nos va a ofrecer el método <strong><code>Sort</code></strong>. Como nuestra clase <strong><code>Persona</code></strong> no implementa <strong><code>IComparable&lt;Persona&gt;</code></strong>, deberemos indicarle de algún modo al <strong><code>Sort</code></strong> la '<em>estrategia</em>' de ordenación. Por esta razón <strong><code>Sort</code></strong> nos ofrecerá las siguientes sobrecargas ...</p>
+<div style="page-break-after:always;"></div>
 <ol>
 <li>
 <p>public void <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.sort#System_Collections_Generic_List_1_Sort_System_Comparison__0__">Sort</a></strong>(<strong>IComparer&lt;T&gt;?</strong> comparer);</p>
@@ -302,7 +360,6 @@ y que realmente estaremos haciendo una llamada al método...<br>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Persona</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// ... código omitido para abreviar.</span>
-
     <span class="token comment">// Definición de la clase que implementa el interfaz </span>
     <span class="token comment">// con la estrategia de comparación.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ComparaEdad</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparer<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span></span>
@@ -311,13 +368,11 @@ y que realmente estaremos haciendo una llamada al método...<br>
         <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span>Edad<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
 <span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// ... código omitido para abreviar.</span>
-
         <span class="token comment">// Uso de la primera sobrecarga del Sort</span>
         personas<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona<span class="token punctuation">.</span>ComparaEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -354,7 +409,7 @@ y que realmente estaremos haciendo una llamada al método...<br>
 <li>La clase que utiliza la interfaz <strong>deseará convertir esa interfaz en otra interfaz</strong> o tipos de clase.</li>
 </ul>
 <div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Supongamos el siguiente programa de ejemplo, donde dado un array de valores. Queremos calcular la media de las raíces cuadradas de los valores y también la media de elevar <strong>e</strong> a los valores.</p>
 <p>Una posible propuesta sería la siguiente...</p>
@@ -388,10 +443,6 @@ y que realmente estaremos haciendo una llamada al método...<br>
 </code></pre><p>Sin embargo en la propuesta anterior se repite el código para calcular la média y cómo nos sucedía en otros casos solo se repite la función aplicada al valor.</p>
 <p><strong>Piensa cómo sería la solución usando interfaces</strong>.<br>
 Si no se te ocurre puedes ver la solución el la siguiente página...</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio continuación ...</strong></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Debemos definir el interfaz que implemente la función.</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">IFuncion</span>
 <span class="token punctuation">{</span>
@@ -433,10 +484,6 @@ Si no se te ocurre puedes ver la solución el la siguiente página...</p>
 </code></pre><p>Cómo vemos en este caso es más apropiado usar delegados porque tenemos una única función. No hay extensión del interfaz y estamos generando mucho código de definición de tipos a cambio repetir el código de cálculo de la media.</p>
 <p><strong>Piensa cómo sería la solución usando delegados</strong>.<br>
 Si no se te ocurre puedes ver la solución el la siguiente página...</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>🎓 <strong>Caso de estudio continuación ...</strong></p>
 <p>Supongamos el siguiente programa de ejemplo, donde dado un array de valores.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span> 
 <span class="token punctuation">{</span>
@@ -459,7 +506,7 @@ Si no se te ocurre puedes ver la solución el la siguiente página...</p>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media exponentes:"</span> <span class="token operator">+</span> <span class="token function">Media</span><span class="token punctuation">(</span>puntos<span class="token punctuation">,</span> Math<span class="token punctuation">.</span>Exp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre></div> <!-- fin caso de estudio -->
 <div style="page-break-after:always;"></div>
 <h3 id="delegados-parametrizados">Delegados Parametrizados </h3>
 <p>Podemos definir un delegado de forma parametrizada o que use genéricos. Esto me permitirá usar un <strong>tipos delegado predefinidos</strong> para las signaturas de métodos más comunes que se me pueden dar.</p>
@@ -553,8 +600,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> seno<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> coseno<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"s=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">seno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">, c=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">coseno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><blockquote>
-<p>📌 <strong>Nota ampliación:</strong></p>
+</code></pre><div class="caso_estudio">
+<p>📎 <strong>Anexo ampliación</strong></p>
 <p>Aunque no lo comentamos a principio de curso, por no haber visto aún el concepto de tipo parametrizado. <strong><code>(double sen, double cos)</code></strong> es en realidad un tipo <strong><code>Tuple&lt;T1, T2, ..., Tn&gt;</code></strong> esto es, es un '<em>syntactic sugar</em>' de para la definición <strong><code>Tuple&lt;double, double&gt;</code></strong> por tanto sería equivalente escribir nuestra definición cómo ....</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Tuple<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">&gt;</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> anguloGr<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -569,7 +616,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"s=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">direccion<span class="token punctuation">.</span>Item1</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">, c=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">direccion<span class="token punctuation">.</span>Item2</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><p>Si te fijas, es equivalente, pero es más simple e intuitiva la sintaxis a partir de C#7</p>
-</blockquote>
+</div> <!-- fin caso de estudio -->
 
       </div>
       

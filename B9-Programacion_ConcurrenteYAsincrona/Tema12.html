@@ -25,14 +25,17 @@
   background-color: #f5f5f5;
   border: 2px solid #969696;
   padding: 15px;
+  margin-top: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
 }
 .markdown-preview.markdown-preview .ejercicio {
-  background-color: #f5f5f5;
-  border: 2px solid #969696;
-  padding: 15px;
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
@@ -93,6 +96,45 @@
   top: 83%;
   font-size: 1rem;
 }
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -143,7 +185,7 @@
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#concurrencia-en-c" class="md-toc-link"><p>Concurrencia en C#</p>
+          <a href="#concurrencia-en-csharp" class="md-toc-link"><p>Concurrencia en CSharp</p>
 </a>
           </summary>
         <div>
@@ -193,11 +235,7 @@
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejecución-de-iteraciones-concurrente-clase-estática-parellel" class="md-toc-link">
-            <p>Ejecución de iteraciones concurrente clase estática Parellel</p>
-
-          </a></div>
+    
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
@@ -215,8 +253,8 @@
             <p>Pipeline de tareas asíncronas ('Futuros')</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#palabras-reservadas-patrón-async-y-await" class="md-toc-link">
-            <p>Palabras reservadas (Patrón???) async y await</p>
+          <a href="#patrón-async-y-await" class="md-toc-link">
+            <p>Patrón async y await</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#esquemas-básicos-de-uso-de-async-y-await" class="md-toc-link">
@@ -240,12 +278,12 @@
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="concurrente-y-asíncrona">Concurrente y Asíncrona </h2>
-<div align="center">
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 15px; margin-bottom: 15px">
     <img height="250px" src="assets/Concurrencia.png">
 </div>
 <h3 id="definiciones">Definiciones </h3>
-<div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 70%">
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
 <p><strong>Proceso</strong>: Es un programa en ejecución formado por...</p>
 <ul>
 <li>El código que ejecuta el procesador y su estado (registros en CPU).</li>
@@ -255,7 +293,7 @@
 <li>Al menos está formado por un hilo de ejecución.</li>
 </ul>
 </div>
-<div style="width: auto">
+<div class="flotante_der">
     <img height="200px" src="./assets/Hilos.png">
 </div>
 </div>
@@ -263,6 +301,7 @@
 <blockquote>
 <p>📌 <strong>Nota:</strong> Un proceso puede tener varios hilos que compartirán recursos y la memoria con el proceso principal, pero no la pila de llamadas.</p>
 </blockquote>
+<div style="page-break-after:always;"></div>
 <h4 id="concurrencia-vs-paralelismo">Concurrencia vs paralelismo </h4>
 <ul>
 <li><strong>Proceso secuencial</strong>
@@ -271,9 +310,8 @@
 </ul>
 </li>
 </ul>
-<div style="page-break-after:always;"></div>
-<div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 70%">
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
 <ul>
 <li><strong>Concurrencia</strong>
 <ul>
@@ -288,8 +326,8 @@
 </li>
 </ul>
 </div>
-<div style="width: auto">
-    <img height="200px" src="./assets/ConcurrenciaVsParalelismo.jpg">
+<div class="flotante_der">
+    <img width="400px" src="./assets/ConcurrenciaVsParalelismo.jpg">
 </div>
 </div>
 <h4 id="programación-concurrente">Programación concurrente </h4>
@@ -305,21 +343,22 @@
 <li><strong>Exclusión mutua (Mutex)</strong>: Cuando un hilo bloquea el acceso a un objeto o recurso porque solo debe acceder un hilo a la vez a el. El resto de hilos esperarán a que sea desbloqueado para acceder. Puede producirse el llamado <strong>DeadLock</strong>.</li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h3 id="concurrencia-en-c">Concurrencia en C# </h3>
+<h3 id="concurrencia-en-csharp">Concurrencia en CSharp </h3>
 <p>Muchos equipos y estaciones de trabajo personales tienen varios núcleos de CPU que permiten ejecutar múltiples subprocesos simultáneamente. Para aprovecharse del hardware, puede paralelizar el código para distribuir el trabajo entre varios procesadores.</p>
-<div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 70%">
-<p>En el pasado, la paralelización requería manipulación de bajo nivel de los subprocesos y bloqueos. .NET mejora la compatibilidad para la programación paralela proporcionando un tiempo de ejecución, tipos de biblioteca de clases y herramientas de diagnóstico. Estas características, simplifican el desarrollo en paralelo. Puede escribir código paralelo eficaz, específico y escalable de forma natural sin tener que trabajar directamente con subprocesos ni el bloque de subprocesos.</p>
-<p>La ilustración de la derecha proporciona una información general de alto nivel de la arquitectura de programación paralela en .NET.</p>
+<p>En el pasado, la paralelización requería manipulación de bajo nivel de los subprocesos y bloqueos. .NET mejora la compatibilidad para la programación paralela proporcionando un tiempo de ejecución, tipos de biblioteca de clases y herramientas de diagnóstico.</p>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<p>Estas características, simplifican el desarrollo en paralelo. Puede escribir código paralelo eficaz, específico y escalable de forma natural sin tener que trabajar directamente con subprocesos ni el bloque de subprocesos.</p>
+<p>La ilustración proporciona una información general de alto nivel de la arquitectura de programación paralela en .NET.</p>
 </div>
-<div style="width: auto">
-    <img height="250px" src="./assets/Arquitectura_TPL.png">
+<div class="flotante_der">
+<img width="2000px" ,="" src="./assets/Arquitectura_TPL.png">
 </div>
 </div>
 <h4 id="biblioteca-tpl-task-parallel-library">Biblioteca TPL (Task Parallel Library) </h4>
+<div class="flotante" ,="" style="align-items: top;">
+<div class="flotante_izq">
 <p>La librería de procesamiento paralelo TPL se encarga de...</p>
-<div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 70%">
 <ul>
 <li>División del trabajo proporcionando una capa de abstracción sobre el API de concurrencia del propio SO.</li>
 <li>Programación de los subprocesos usando un <strong>ThreadPool</strong>.</li>
@@ -327,21 +366,17 @@
 <li>Administración de los detalles de bajo nivel.</li>
 </ul>
 </div>
-<div style="width: auto">
-    <img height="100px" src="./assets/ThreadPool.png">
+<div class="flotante_der">
+    <img width="400px" src="./assets/ThreadPool.png">
 </div>
 </div>
 <blockquote>
-<p>📣 <strong>Resumen:</strong></p>
-<p>Por describirlo con palabras sencillas, podemos decir que el CLR tiene <strong>ya creados una serie de hilos (ThreadPool)</strong> sobre el Sietema Operativo. Estos los irá usando para realizar aquellas tareas (Tasks) que necesite realizar en paralelo. Mientras los hilos del ThreadPool estén ocupados las tareas esperarán en cola.<br>
+<p>📣 <strong>Resumen:</strong> Por describirlo con palabras sencillas, podemos decir que el CLR tiene <strong>ya creados una serie de hilos (ThreadPool)</strong> sobre el Sietema Operativo. Estos los irá usando para realizar aquellas tareas (Tasks) que necesite realizar en paralelo. Mientras los hilos del ThreadPool estén ocupados las tareas esperarán en cola.<br>
 Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosotros a través de la TPL.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
 <h3 id="patrón-tap-modelo-asíncrono-basado-en-tareas">Patrón TAP (Modelo asíncrono basado en tareas) </h3>
-<p>TODO: Aquí solo se ha incluido las transparencias, pendiente de incluir lo de Xusa y revisar.</p>
 <h4 id="lanzar-una-tarea-asíncrona-sin-valor-de-retorno-y-sin-dato-de-entrada">Lanzar una tarea asíncrona SIN valor de retorno y SIN dato de entrada </h4>
-<div class="caso_estudio">
-<p>🎓 <strong>Caso de estudio:</strong></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
@@ -362,7 +397,6 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
 <li>El método estático <strong><code>Task.Factory.StartNew(…)</code></strong> creará y hará un <strong><code>Start</code></strong> de una tarea asíncrona y la retorna como parámetro.</li>
 <li>El método <strong><code>Wait()</code></strong> esperará en el hilo principal a que la tarea termine.</li>
 </ul>
-</div> <!--fin caso de estudio -->
 <h4 id="tarea-asíncrona-sin-valor-de-retorno-y-con-dato-de-entrada">Tarea asíncrona SIN valor de retorno y CON dato de entrada </h4>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">TareaAsincrona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> dato<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
@@ -429,6 +463,7 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><p>La tarea asíncrona será un delegado <strong><code>Func&lt;object, R&gt;</code></strong> indicando que retornará un tipo parametrizado y recibe un object con todos los datos que necesite.</p>
+<div style="page-break-after:always;"></div>
 <h4 id="tarea-asíncrona-con-valor-de-retorno-y-clausura">Tarea asíncrona CON valor de retorno y Clausura </h4>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> <span class="token string">"Hola"</span><span class="token punctuation">;</span> <span class="token comment">// Variable a clausurar en la tarea asíncrona.</span>
@@ -445,6 +480,7 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Me dice la tarea que ha dado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">t<span class="token punctuation">.</span>Result</span><span class="token punctuation">}</span></span><span class="token string"> vueltas."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><p>Podemos pasar datos a la tarea asíncrona a través del mecanismo de clausura, pero nos obliga a definir la tarea en el mismo ámbito que la variable.</p>
+<div style="page-break-after:always;"></div>
 <h4 id="lanzando-múltiples-tareas-y-esperando-a-que-terminen-todas">Lanzando múltiples tareas y esperando a que terminen todas </h4>
 <p>Veámoslo a través de un ejemplo simple...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Diagnostics</span><span class="token punctuation">;</span>
@@ -481,8 +517,7 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
         <span class="token keyword keyword-return">return</span> Tuple<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>tareas<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Result<span class="token punctuation">,</span> tareas<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
-<span class="token keyword keyword-class">class</span> <span class="token class-name">Programa</span> 
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Programa</span> 
 <span class="token punctuation">{</span>
     <span class="token comment">// Para comparar la ejecución de diferentes procesos </span>
     <span class="token comment">// vamos a utilizar la siguiente función de utilidad.</span>
@@ -508,8 +543,7 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
         Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name">Datos</span> datos <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Datos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Func<span class="token punctuation">&lt;</span>Tuple<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> funciones <span class="token operator">=</span> 
@@ -555,44 +589,20 @@ Para nosotros todo esto es transparente y se encarga de hacerlo el CLR por nosot
                    <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Enumerable<span class="token punctuation">.</span><span class="token function">Range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span>
                                    <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>f<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> f <span class="token operator">*</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token comment">// Me espero a que se calculen todos los factoriales de forma concurrente.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Me espero a que se calculen todos los factoriales de forma concurrente.</span>
     Task<span class="token punctuation">.</span><span class="token function">WaitAll</span><span class="token punctuation">(</span>tareas<span class="token punctuation">.</span><span class="token function">ToArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token comment">// Sumo todos los términos de la serie.</span>
     <span class="token keyword keyword-return">return</span> Enumerable<span class="token punctuation">.</span><span class="token function">Range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> tareas<span class="token punctuation">.</span>Count<span class="token punctuation">)</span>
                      <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>e<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> e <span class="token operator">+</span> <span class="token number">1d</span> <span class="token operator">/</span> tareas<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>TODO: Usar las anotaciones de profile que ví en un vídeo de Youtube.</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>Función                             | Tiempo           | Numero E estimado
+</code></pre><pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>Función                             | Tiempo           | Numero E estimado
 -------------------------------------------------------------------------------
 CalculoE                            | 00:00:00.2823546 | 2,7182818284590455
 CalculoEConcurrente                 | 00:00:00.0550042 | 2,7182818284590455
 -------------------------------------------------------------------------------
 Pulsa una tecla...
-</code></pre><h4 id="ejecución-de-iteraciones-concurrente-clase-estática-parellel">Ejecución de iteraciones concurrente clase estática Parellel </h4>
-<p>TODO: Dejar esto como curiosidad al final del tema o quitarlo...</p>
-<p>Otra forma de implementar el código anterior de forma más legible es mediante los métodos de la clase <strong><code>Parallel</code></strong>: <strong><code>For</code></strong> y <strong><code>ForEach</code></strong></p>
-<p>En este caso controlamos cuando acaba cada una de las tareas y podemos sumar los términos en orden de finalización. Sería equivalente a usar un <strong><code>Task.WaitAny(…)</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-readonly">readonly</span> <span class="token class-name"><span class="token keyword keyword-object">object</span></span> mutex <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Obejct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">CalculoEConcurrente</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword keyword-double">double</span></span> E <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    Parallel<span class="token punctuation">.</span><span class="token function">For</span><span class="token punctuation">(</span>
-        <span class="token number">1</span><span class="token punctuation">,</span> ITERACIONES <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token comment">// Esta acción se ejecutará en paralelo tomando valores de </span>
-        <span class="token comment">// de i = 1 hasta  ITERACIONES</span>
-        i <span class="token operator">=&gt;</span> 
-        <span class="token punctuation">{</span>
-            <span class="token class-name"><span class="token keyword keyword-var">var</span></span> f <span class="token operator">=</span> Enumerable<span class="token punctuation">.</span><span class="token function">Range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">1d</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>f<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> f <span class="token operator">*</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment">// Bloqueo en exclusión mútua el acceso al objeto E donde</span>
-            <span class="token comment">// cada tarea acumula el cálculo de su término de la serie.</span>
-            <span class="token keyword keyword-lock">lock</span> <span class="token punctuation">(</span>mutex<span class="token punctuation">)</span> <span class="token punctuation">{</span> E <span class="token operator">+=</span> <span class="token number">1d</span> <span class="token operator">/</span> f<span class="token punctuation">;</span> <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-return">return</span> E<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<h3 id="usando-métodos-asíncronos-de-las-bcl">Usando métodos asíncronos de las BCL </h3>
+</code></pre><h3 id="usando-métodos-asíncronos-de-las-bcl">Usando métodos asíncronos de las BCL </h3>
 <p>Son métodos que acaban con la terminación  <strong><code>Async</code></strong> y <strong>devuelven una tarea</strong> que realiza un proceso de duración indeterminada.</p>
 <p>En el siguiente ejemplo obtenemos el código html de la página de Google que no sabemos que puede tardar.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -607,7 +617,8 @@ Pulsa una tecla...
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>tGetHTML<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">pausa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><h4 id="pipeline-de-tareas-asíncronas">Pipeline de tareas asíncronas </h4>
+</code></pre><div style="page-break-after:always;"></div>
+<h4 id="pipeline-de-tareas-asíncronas">Pipeline de tareas asíncronas </h4>
 <p>Suele ser un caso de uso común y consiste en una secuencia de tareas enlazadas, cuyo resultado depende de lo producido por la tarea anterior.</p>
 <p>Por ejemplo el caso anterior también podríamos hacerlo a través del siguiente pipeline.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">PipeLine1</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span>
@@ -625,7 +636,6 @@ Pulsa una tecla...
     <span class="token keyword keyword-return">return</span> t3<span class="token punctuation">.</span>Result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><h4 id="pipeline-de-tareas-asíncronas-futuros">Pipeline de tareas asíncronas ('Futuros') </h4>
-<p>TODO: Esto es dudoso, consultar (Buscar vídeo Java en mis favoritos) ...</p>
 <p>El código anterior es un poco engorroso y además no tiene mucho sentido, porque el hilo principal espera a que termine cada tarea asíncrona en el pipeline.</p>
 <p>Un esquema común que podemos encontrar en C# y en otros lenguajes es el siguiente.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">PipeLine2</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
@@ -635,7 +645,7 @@ Pulsa una tecla...
                 <span class="token punctuation">.</span>Result<span class="token punctuation">;</span> <span class="token comment">//El último continue retorna Task&lt;string&gt;</span>
 </code></pre><p>El método devuelve una tarea asíncrona que producirá un string como consecuencia del pipeline de varias tareas asíncronas.</p>
 <p>Pero esto no es tan sencillo, pues durante el pipeline se pueden producir excepciones. (<a href="https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/exception-handling-task-parallel-library">Aquí</a> puedes ver más sobre gestión de excepciones en el TPL)</p>
-<h4 id="palabras-reservadas-patrón-async-y-await">Palabras reservadas (Patrón???) async y await </h4>
+<h4 id="patrón-async-y-await">Patrón async y await </h4>
 <p>Nos permite mayor legibilidad y gestionar errores o excepciones en métodos asíncronos de forma sencilla mediante bloques <strong><code>try - catch - finally - using</code></strong></p>
 <p>Usaremos las siguientes palabras reservadas del lenguaje <strong><code>async</code></strong> y <strong><code>await</code></strong>.</p>
 <p>Un método modificado con la palabra reservada <strong><code>async</code></strong> ...</p>
@@ -662,7 +672,7 @@ Pulsa una tecla...
 <li>
 <p>Definiendo método <strong><code>async</code></strong> que retorna un resultado</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span>TResult<span class="token punctuation">&gt;</span></span> <span class="token function">MetodoAsync1</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>	
+<span class="token punctuation">{</span>
     <span class="token function">MetodoSincrono11</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Debe ser una tarea simple con poco coste.</span>
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync11</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
     <span class="token keyword keyword-await">await</span> <span class="token function">MetodoAsync12</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -711,12 +721,12 @@ Pulsa una tecla...
 <p>Al llegar al <strong><code>await</code></strong> se suspende el método <strong><code>async</code></strong> y el control vuelve al llamador del método. Que a su ves se suspendería si también estuviese llamado con <strong><code>async</code></strong> y así hasta llegar a un método no marcado con <strong><code>async</code></strong> donde continuaría ejecutando donde se quedó la ejecución.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MyTaskTest</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task</span> <span class="token function">doTheJob</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">DoTheJob</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">doSomethingAsync</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span> <span class="token keyword keyword-await">await</span> <span class="token function">DoSomethingAsync</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> a<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">doSomethingAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> a<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">DoSomethingAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> a<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-await">await</span> Task<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
         <span class="token punctuation">{</span>
@@ -726,14 +736,25 @@ Pulsa una tecla...
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 60%">
-<p>Por ejemplo ... TODO: Cambiar ejemplo por el de la ilustración</p>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span>  <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> t<span class="token operator">=</span> MyTaskTest<span class="token punctuation">.</span><span class="token function">DoTheJob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>t<span class="token punctuation">.</span>IsCompleted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
 <p><strong><code>doSomethingASync</code></strong> devolverá el control al método llamador <strong><code>doTheJob</code></strong> al llegar al <strong><code>await</code></strong> y al completar la tarea asíncrona dentro de la función-λ continuará con la ejecución.</p>
 <p>Este proceso se producirá en cascada hacia arriba como se muestra en la ilustración de la derecha.</p>
 </div>
-<div style="width: auto">
-    <img height="300px" src="./assets/Async.png">
+<div class="flotante_der">
+<img width="2000px" src="./assets/Async.png">
 </div>
 </div>
 <p>Combinaremos los modificadores <strong><code>async</code></strong> y <strong><code>await</code></strong> con instancias de <strong><code>Task</code></strong> que hemos visto con anterioridad como por ejemplo…</p>
@@ -771,7 +792,8 @@ Pulsa una tecla...
     <span class="token punctuation">}</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>Result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Si reescribimos nuestro método cURL con <strong><code>async</code></strong> y <strong><code>await</code></strong> podría quedar de la siguiente forma:</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p>Si reescribimos nuestro método cURL con <strong><code>async</code></strong> y <strong><code>await</code></strong> podría quedar de la siguiente forma:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-async">async</span> <span class="token return-type class-name">Task<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">cURLAsync</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> url<span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> client <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">HttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -801,8 +823,7 @@ Pulsa una tecla...
                 <span class="token punctuation">?</span> productName<span class="token punctuation">.</span><span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">"Nombre del producto no encontrado"</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
-<span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span> 
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span> 
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-async">async</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Task</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword keyword-try">try</span> <span class="token punctuation">{</span> 
@@ -817,30 +838,30 @@ Pulsa una tecla...
 <p>Es un tarea que se ejecuta de forma asíncrona cada vez que expira una cuenta atrás o temporizador.</p>
 <p>Existen varias formas de definir temporizadores en <strong>.NET</strong> ya sea con la clase <strong><code>Timer</code></strong> de <strong><code>System.Threading</code></strong> o la clase Timer de <strong><code>System.Timers</code></strong>.</p>
 <p>Nosotros vamos a usar <strong><code>System.Timers.Timer</code></strong> porque usa el modelo de evento al que nos podremos suscribir, permite herencia, es ligera y tiene unas operaciones muy intuitivas. (Internamente llama a <strong><code>System.Threading.Timer</code></strong>).</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Timer</span> timer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Timer</span> 
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code> <span class="token comment">// Sender es el Timer que ha generado el evento.</span>
+<span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Timer_Elapsed</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">ElapsedEventArgs</span> e<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// Tiempo que tarda en expirar el temporizador.</span>
-    Interval <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">,</span>	
-    <span class="token comment">// Habilitación de la generación del evento Enabled al expirar.</span>
-    Enabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token comment">// Si al expirar se reinicia automáticamente.</span>
-    AutoReset <span class="token operator">=</span> <span class="token boolean">true</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Suscripción al evento de expiración a través de un manejador.</span>
-<span class="token comment">// También pueden suscribirse diferentes objetos al mismo evento.</span>
-timer<span class="token punctuation">.</span>Elapsed <span class="token operator">+=</span>  Timer_Elapsed
-<span class="token comment">// Inicio de la temporización.</span>
-timer<span class="token punctuation">.</span><span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-… 
-
-<span class="token comment">// Sender es el Timer que ha generado el evento.</span>
-<span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Timer_Elapsed</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">ElapsedEventArgs</span> e<span class="token punctuation">)</span> 
-<span class="token punctuation">{</span>
-    <span class="token class-name">Timer</span> t <span class="token operator">=</span> sender <span class="token keyword keyword-as">as</span> <span class="token class-name">Timer</span><span class="token punctuation">;</span>	
+    <span class="token class-name">System<span class="token punctuation">.</span>Timers<span class="token punctuation">.</span>Timer</span> t <span class="token operator">=</span> sender <span class="token keyword keyword-as">as</span> <span class="token class-name">System<span class="token punctuation">.</span>Timers<span class="token punctuation">.</span>Timer</span><span class="token punctuation">;</span>
     t<span class="token punctuation">.</span>Interval <span class="token operator">+=</span> <span class="token number">500</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Timer expirado </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">e<span class="token punctuation">.</span>SignalTime<span class="token punctuation">.</span><span class="token function">ToLongTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">System<span class="token punctuation">.</span>Timers<span class="token punctuation">.</span>Timer</span> timer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">System<span class="token punctuation">.</span>Timers<span class="token punctuation">.</span>Timer</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Tiempo que tarda en expirar el temporizador.</span>
+        Interval <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">,</span>
+        <span class="token comment">// Habilitación de la generación del evento Enabled al expirar.</span>
+        Enabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token comment">// Si al expirar se reinicia automáticamente.</span>
+        AutoReset <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// Suscripción al evento de expiración a través de un manejador.</span>
+    <span class="token comment">// También pueden suscribirse diferentes objetos al mismo evento.</span>
+    timer<span class="token punctuation">.</span>Elapsed <span class="token operator">+=</span> Timer_Elapsed<span class="token punctuation">;</span>
+    <span class="token comment">// Inicio de la temporización.</span>
+    timer<span class="token punctuation">.</span><span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
       </div>

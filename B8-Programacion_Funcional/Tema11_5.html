@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -77,6 +96,45 @@
   top: 83%;
   font-size: 1rem;
 }
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -121,7 +179,7 @@
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#punto-de-vista-desde-el-lenguaje-c" class="md-toc-link"><p>Punto de vista desde el lenguaje C#</p>
+          <a href="#punto-de-vista-desde-el-lenguaje-csharp" class="md-toc-link"><p>Punto de vista desde el lenguaje CSharp</p>
 </a>
           </summary>
         <div>
@@ -182,7 +240,7 @@
 <li>
 <p><strong>Recursividad indirecta</strong>: se produce cuando un subprograma o módulo <strong>A</strong> llama a otro <strong>B</strong> que acaba llamando de nuevo a <strong>A</strong>.</p>
 <blockquote>
-<p>💀 ✋ Esta última, no deberíamos usarla <strong>en ningún caso</strong>.</p>
+<p>💀 <strong>Peligro</strong>: Esta última, no deberíamos usarla <strong>en ningún caso</strong>.</p>
 </blockquote>
 </li>
 </ul>
@@ -285,7 +343,6 @@
 </g>
 </svg>
 </p><p></p>
-<div style="page-break-after:always;"></div>
 <h3 id="diseño-de-un-algoritmo-recursivo">Diseño de un algoritmo recursivo </h3>
 <p>Necesitaremos definir o buscar dos cosas:</p>
 <ol>
@@ -304,13 +361,19 @@
 <li>
 <p><strong>Al menos una caso base</strong></p>
 <ul>
-<li>Condición de salida de la recursividad o llamada recursiva, donde el caso general ya no se puede subdividir más y donde dejamos de hacer llamadas recursivas.</li>
-<li>Pueden darse varios casos base.</li>
-<li>💀 Si no existe el caso base no saldríamos de la recursividad y se produciría un <strong>Stack Overflow</strong>.</li>
+<li>
+<p>Condición de salida de la recursividad o llamada recursiva, donde el caso general ya no se puede subdividir más y donde dejamos de hacer llamadas recursivas.</p>
+</li>
+<li>
+<p>Pueden darse varios casos base.</p>
+<blockquote>
+<p>💀 <strong>Peligro</strong>: Si no existe el caso base no saldríamos de la recursividad y se produciría un <strong>Stack Overflow</strong>.</p>
+</blockquote>
+</li>
 </ul>
 </li>
 </ol>
-<h3 id="punto-de-vista-desde-el-lenguaje-c">Punto de vista desde el lenguaje C# </h3>
+<h3 id="punto-de-vista-desde-el-lenguaje-csharp">Punto de vista desde el lenguaje CSharp </h3>
 <ul>
 <li>Tendremos una <strong>pila de llamadas</strong> al mismo método.</li>
 <li>En cada llamada se apilan o <em>'guardan'</em> y no se modifican los objetos locales y parámetros del método llamador.</li>
@@ -319,7 +382,7 @@
 </ul>
 <p><strong>Ejemplo:</strong> Veámoslo a través de un problema que ya hemos solucionado de forma iterativa, pero que tiene una solución matemática natural recursiva.</p>
 <p>Vamos a implementar una función recursiva para calcular el factorial de un número entero. Recordemos que el factorial se simboliza como <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">n!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span></span>, se lee como '<em>n factorial</em>', y la definición es: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo><mo>=</mo><mi>n</mi><mo>×</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>×</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>×</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n! = n \times (n-1) \times (n-2) \times ... \times 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">...</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>. Además, no se puede calcular el factorial de números negativos, y el factorial de 0 es 1, de modo que una función bien hecha para cálculo de factoriales debería incluir un control para esos casos.</p>
-<p>Pasos</p>
+<p>Pasos:</p>
 <ol>
 <li>La función debería tener un interfaz descriptivo, tal y como lo tiene la iterativa, esto es: <strong><code>ulong Factorial(ulong n)</code></strong></li>
 <li>Identificaremos el caso base, en este caso es <strong>si n = 0 → !n = 1</strong></li>
@@ -335,8 +398,8 @@
         valor <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token function">Factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Caso General</span>
     <span class="token keyword keyword-return">return</span> valor<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="display: flex; justify-content: space-between; margin-top: 15px">
-<div style="width: 70%">
+</code></pre><div class="flotante" ,="" style="align-items: op;">
+<div class="flotante_izq">
 <p>La variable local <strong><code>valor</code></strong> y el parámetro formal <strong><code>n</code></strong> será diferente en cada llamada y se liberarán de memoria en cuanto se <strong>desapilen</strong> la llamadas a la función.</p>
 <p>Si ejecutásemos el siguiente código:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -345,8 +408,8 @@
 <span class="token punctuation">}</span>
 </code></pre><p>Se generaría la pila de llamadas del esquema de la derecha.</p>
 </div>
-<div style="width: auto">
-<p style="zoom:0.5" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<div class="flotante_der">
+<p style="zoom:0.6" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 9.0.0 (20230911.1827)
  -->
@@ -468,7 +531,7 @@
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> factorial <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
 factorial <span class="token operator">=</span> n <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> n <span class="token operator">*</span> <span class="token function">factorial</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">factorial</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
+</code></pre><div class="caso_estudio">
 <p>🚀 <strong>Ampliación:</strong></p>
 <p>Fíjate que la implementación en otros lenguajes <strong>débilmente tipados</strong> es '<em>más simple</em>'...</p>
 <ol>
@@ -483,7 +546,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>factorial<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre></li>
 </ol>
-</blockquote>
+</div> <!-- fin de caso estudio -->
 <div style="page-break-after:always;"></div>
 <h3 id="ejemplos-de-recursividad">Ejemplos de recursividad </h3>
 <p><strong>Ejemplo 1</strong>: Vamos ha hacer una función recursiva que calcule la potencia de un numero.</p>
@@ -606,10 +669,10 @@ invierte <span class="token operator">=</span> t <span class="token operator">=&
 </blockquote>
 </li>
 </ul>
-<blockquote>
+<div class="caso_estudio">
 <p>📣 <strong>Resumen:</strong></p>
 <p>Existen problemas típicos mucho más complejos a resolver mediante recursividad pero quedan fuera de lo que pretende este tema que es una mera introducción al concepto.</p>
-</blockquote>
+</div> <!-- fin de caso estudio -->
 
       </div>
       

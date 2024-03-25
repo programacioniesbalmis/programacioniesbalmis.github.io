@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -77,6 +96,45 @@
   top: 83%;
   font-size: 1rem;
 }
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -108,10 +166,10 @@
             <p>Nomenclatura básica</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#gestión-básica-de-eventoshttpsdocsmicrosoftcomes-esdotnetstandardevents-con-csharp" class="md-toc-link">
-            </a><p><a href="#gestión-básica-de-eventoshttpsdocsmicrosoftcomes-esdotnetstandardevents-con-csharp" class="md-toc-link">Gestión básica de </a><a href="https://docs.microsoft.com/es-es/dotnet/standard/events/">eventos</a> con CSharp</p>
+          <a href="#gestión-básica-de-eventos-con-csharp" class="md-toc-link">
+            <p>Gestión básica de eventos con CSharp</p>
 
-          </div>
+          </a></div>
         </div>
       </details>
     
@@ -189,7 +247,7 @@
 <li>El objeto que maneja el evento se conoce como <strong>receptor o suscriptor</strong> del evento. Debe ser un objeto diferente al objeto emisor y es el que contiene los controladores.</li>
 </ul>
 <div style="page-break-after:always;"></div>
-<h3 id="gestión-básica-de-eventoshttpsdocsmicrosoftcomes-esdotnetstandardevents-con-csharp">Gestión básica de <a href="https://docs.microsoft.com/es-es/dotnet/standard/events/">eventos</a> con CSharp </h3>
+<h3 id="gestión-básica-de-eventos-con-csharp">Gestión básica de eventos con CSharp </h3>
 <p>La sintaxis de definición será ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Publicador</span>
 <span class="token punctuation">{</span>
@@ -276,8 +334,7 @@
 <span class="token comment">// son del mismo tipo pero podrían ser de tipos diferentes.</span>
 <span class="token class-name">Suscriptor</span> s1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Suscriptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Suscriptor</span> s2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Suscriptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><div style="page-break-after:always;"></div>
-<p>Además, tendremos el siguiente código donde los objetos <strong>suscriptores</strong> <strong><code>s1</code></strong> y <strong><code>s2</code></strong> se suscriben al evento que genera el <strong>publicador</strong> <strong><code>p</code></strong></p>
+</code></pre><p>Además, tendremos el siguiente código donde los objetos <strong>suscriptores</strong> <strong><code>s1</code></strong> y <strong><code>s2</code></strong> se suscriben al evento que genera el <strong>publicador</strong> <strong><code>p</code></strong></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>p<span class="token punctuation">.</span>IdEvento <span class="token operator">+=</span> s1<span class="token punctuation">.</span>ManejadorDeEventoDelSuscriptor<span class="token punctuation">;</span>
 p<span class="token punctuation">.</span>IdEvento <span class="token operator">+=</span> s2<span class="token punctuation">.</span>ManejadorDeEventoDelSuscriptor<span class="token punctuation">;</span>
 </code></pre><p>Posteriormente, en algún lugar del programa, se ejecutará la siguiente línea con la operación que puede desencadenar el evento sobre el objeto publicador <strong><code>p</code></strong>.</p>
@@ -292,34 +349,30 @@ p<span class="token punctuation">.</span><span class="token function">OperacionQ
 <p>Aunque queda fuera de este tema, en estos casos convendría ejecutar el proceso del evento en un hilo aparte.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Vamos a tratar de modelar mediante el mecanismo de comunicación con eventos entre objetos. Un modelo muy simplificado de una central nuclear donde:</p>
 <p>Tendremos una clase <strong><code>Reactor</code></strong> a la que se le podrá cambiar la potencia que genera en <strong><code>kW</code></strong> a través de una propiedad. Esta potencia tendrá un máximo de <strong><code>2000 kW</code></strong> para que la temperatura del mismo se mantenga a menos de <strong><code>1000°C</code></strong>. En este modelo simplificado, el valor de la propiedad <strong><code>Temperatura</code></strong> se calculará con una simple regla de 3 dados los máximos anteriormente dados.</p>
 <p>El reactor generará un evento de cambio de temperatura al modificarse la potencia requerida en el mismo.</p>
 <p>Piensa en cómo modelar dicha clase <strong><code>Reactor</code></strong> si no se te ocurre, puedes partir de la siguiente propuesta...</p>
-<pre data-role="codeBlock" data-info="csharp {}" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Threading</span><span class="token punctuation">;</span>
 
 <span class="token keyword keyword-class">class</span> <span class="token class-name">Reactor</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> kW_MAXIMOS <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> TEMPERATURA_MAXIMA <span class="token operator">=</span> <span class="token number">1000D</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-public">public</span> <span class="token function">Reactor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Potencia_kW <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token function">Reactor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Potencia_kW <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token comment">// Temperatura es una propiedad calculada en función de la potencia.</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> Temperatura <span class="token operator">=&gt;</span> TEMPERATURA_MAXIMA <span class="token operator">*</span> Potencia_kW <span class="token operator">/</span> kW_MAXIMOS<span class="token punctuation">;</span>
-
     <span class="token comment">// Definimos el evento de cambio de temperatura al que suscribirnos.</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">GestionTemperatura</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-event">event</span> <span class="token class-name">GestionTemperatura<span class="token punctuation">?</span></span> CambioEnTemperatura<span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-private">private</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> potencia_kW<span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-private">private</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> potencia_kW<span class="token punctuation">;</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Potencia_kW
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-get">get</span> <span class="token operator">=&gt;</span> potencia_kW<span class="token punctuation">;</span>
-        <span class="token keyword keyword-set">set</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-set">set</span>
         <span class="token punctuation">{</span>
             <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token keyword keyword-value">value</span> <span class="token operator">!=</span> potencia_kW<span class="token punctuation">)</span>
             <span class="token punctuation">{</span>
@@ -373,10 +426,7 @@ p<span class="token punctuation">.</span><span class="token function">OperacionQ
     Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>informacion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>Una posible implementación de un programa principal de prueba sería ...</p>
+</code></pre><p>Una posible implementación de un programa principal de prueba sería ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Definimos los objetos relacionados.</span>
@@ -449,12 +499,18 @@ p<span class="token punctuation">.</span><span class="token function">OperacionQ
 </g>
 </g>
 </svg>
-</p><p>✋ <strong>Importante:</strong> Si nos fijamos en el diseño consecuencia del uso de eventos, podemos observar que las clases '<em>desconocen</em>' con que otras clases se están relacionando. Por ejemplo, <strong><code>Alarma</code></strong> no sabe nada sobre quien le produce la activación. Solo sabe que se creó para saltar a partir de una determinado umbral y es lo que hace al recibir el evento. Podríamos rehusar este tipo <strong><code>Alarma</code></strong> para cualquier otro tipo que no sea una reactor.<br>
+</p><blockquote>
+<p>✋ <strong>Importante:</strong> Si nos fijamos en el diseño consecuencia del uso de eventos, podemos observar que las clases '<em>desconocen</em>' con que otras clases se están relacionando. Por ejemplo, <strong><code>Alarma</code></strong> no sabe nada sobre quien le produce la activación. Solo sabe que se creó para saltar a partir de una determinado umbral y es lo que hace al recibir el evento. Podríamos rehusar este tipo <strong><code>Alarma</code></strong> para cualquier otro tipo que no sea una reactor.<br>
 Lo mismo sucede con la clase <strong><code>Reactor</code></strong>. No recibe ni usa ni se relaciona con el tipo <strong><code>Alarma</code></strong> o <strong><code>Refrigeracion</code></strong> y <em><code>desconoce</code></em> que tipo de objetos se suscribirán a sus eventos de cambio en la temperatura del reactor. Esto nos conduce  a un fuerte <strong><code>desacoplamiento</code></strong> en nuestro diseño y a la posibilidad de hacer modificaciones o ampliaciones futuras sin tener que cambiar nuestra clase <strong><code>Reactor</code></strong>.</p>
+</blockquote>
 <p>No todos los lenguajes dispondrán de la posibilidad de definir <strong>eventos</strong>, pero si que dispondrán de la posibilidad de implementar un esquema similar utilizando la programación orientada a objetos tradicional. A este tipo de esquema publicador/subscriptor simple, también se le conoce como <strong><a href="https://es.wikipedia.org/wiki/Observer_(patr%C3%B3n_de_dise%C3%B1o)">Patron Observador</a></strong> y hemos visto que en C# se implementa de forma simple a través de <strong>eventos</strong>.</p>
+<blockquote>
 <p>📌 <strong>Nota1:</strong> No debemos confundir el <strong>patrón observador</strong> con el <strong>patrón publicador-subscriptor</strong> que será una arquitectura mucho más compleja basada en el patrón observador.</p>
+</blockquote>
+<blockquote>
 <p>📌 <strong>Nota2:</strong> El estudio en profundidad de ambos patrones y su comparación, quedan completamente fuera del alcance de este curso y lo único que se pretende en el tema es, entender el concepto de evento y gestionar en C# la comunicación simple entre objetos, utilizando los mismos.</p>
 </blockquote>
+</div> <!-- fin caso de estudio -->
 
       </div>
       

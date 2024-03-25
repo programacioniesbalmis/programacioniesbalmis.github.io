@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +95,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -366,7 +424,16 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
 <span class="token comment">// ERROR no sé deducir los tipos de forma implícita.</span>
 <span class="token comment">// Esto solo sería válido en un lenguaje débilmente tipado como JavaScript.</span>
 <span class="token class-name"><span class="token keyword keyword-var">var</span></span> suma <span class="token operator">=</span> <span class="token punctuation">(</span>o1<span class="token punctuation">,</span> o2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> o1 <span class="token operator">+</span> o2<span class="token punctuation">;</span>
-</code></pre><h3 id="clausuras-en-csharp">Clausuras en CSharp </h3>
+</code></pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">In software, when something is painful, the way to reduce the pain is to do it more frequently, not less..</div>
+        <div class="autor">- David Farley</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="clausuras-en-csharp">Clausuras en CSharp </h3>
 <p>Para entender el concepto de <strong><a href="https://es.wikipedia.org/wiki/Clausura_(inform%C3%A1tica)">clausura</a></strong>, vamos a ver los siguiente definición del lenguaje C#.</p>
 <h4 id="variables-externas-capturadas">Variables Externas Capturadas </h4>
 <p>En el cuerpo de expresión de una expresión lambda, podemos incluir referencias a variables locales y a los parámetros de un método. A estas referencias se les conoce como <strong>variables externas capturadas</strong>.</p>
@@ -414,8 +481,7 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
     <span class="token class-name"><span class="token keyword keyword-int">int</span></span> factor <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> n <span class="token operator">=&gt;</span> n <span class="token operator">*</span> factor<span class="token punctuation">;</span>    
 <span class="token punctuation">}</span>
-
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-var">var</span></span> producto <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">// A() ha desvuelto el control a Main y se supone que la variable local factor</span>
@@ -426,8 +492,7 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
     <span class="token comment">// que es 3.</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">producto</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrará 15</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+</code></pre><div class="caso_estudio">
 <p>📣 <strong>Resumen:</strong></p>
 <p>Es momento de realizar una breve recapitulación de conceptos...</p>
 <p>En programación funcional (λ-cálculo) se denominan funciones de orden superior (HOF), aquellas que:</p>
@@ -451,9 +516,9 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> a <span class="token operator">=</span>  <span class="token function">suma</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a = (op2 =&gt; 3 + op2)(2) = 3 + 2 = 5</span>
 </code></pre></li>
 </ol>
-</blockquote>
-<p>Veamos un par de ejemplo de uso de este concepto de clausura con una utilidad más concreta pero simplemente para que terminemos de entender el concepto y la terminología ...</p>
+</div> <!-- fin caso_estudio -->
 <div style="page-break-after:always;"></div>
+<p>Veamos un par de ejemplo de uso de este concepto de clausura con una utilidad más concreta pero simplemente para que terminemos de entender el concepto y la terminología ...</p>
 <p><strong>Ejemplo 1:</strong> Definiremos una HOF <strong><code>Contador()</code></strong> que me devuelva una clausura que al llamarla me devuelva un contador capturado incrementado.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> <span class="token function">Contador</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">{</span>
@@ -474,7 +539,8 @@ s <span class="token operator">=&gt;</span> s<span class="token punctuation">.</
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">cuenta2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 3</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">cuenta1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 2</span>
 <span class="token punctuation">}</span>
-</code></pre><p><strong>Ejemplo 2:</strong> Definiremos una HOF <strong><code>Potencia(double y)</code></strong> que me permita definir otras funciones que calculen potencias con un</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p><strong>Ejemplo 2:</strong> Definiremos una HOF <strong><code>Potencia(double y)</code></strong> que me permita definir otras funciones que calculen potencias con un</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// HOF que devuelve una clausura que captura el parámetro de entrada 'y'.</span>
@@ -643,9 +709,9 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <p><strong>(B × A → B)</strong> La función binaria de agregación será de tipo <strong><code>Func&lt;StringBuilder, string, StringBuilder&gt;</code></strong> y recibirá el <strong><code>StringBuilder</code></strong> <strong><code>B</code></strong> con lo que llevo de la cadena concatenada, la siguiente palabra <strong>A</strong> a concatenar con el separador y retornará el <strong><code>StringBuilder</code></strong> <strong>B</strong> con la palabra concatenada por la derecha.</p>
 </li>
 </ul>
+<p>Podemos resumir de forma simple que <strong><code>Join</code></strong> se comporta como <strong><code>foldl</code></strong> porque entra una secuencia de cadenas y devuelve un único tipo resultado de concatenar las cadenas con un separador determinado.</p>
 <blockquote>
-<p>📣 <strong>Resumen:</strong> Podemos resumir de forma simple que <strong><code>Join</code></strong> se comporta como <strong><code>foldl</code></strong> porque entra una secuencia de cadenas y devuelve un único tipo resultado de concatenar las cadenas con un separador determinado.<br>
-La única diferencia es que <strong><code>Join</code></strong> devuelve un <strong><code>string</code></strong> y nosotros vamos a devolver un <strong><code>StringBuilder</code></strong> por eficiencia.</p>
+<p>La única diferencia es que <strong><code>Join</code></strong> devuelve un <strong><code>string</code></strong> y nosotros vamos a devolver un <strong><code>StringBuilder</code></strong> por eficiencia.</p>
 </blockquote>
 <p>Veamos pues nuestra propuesta de implementación de <strong><code>Join</code></strong> con un <strong><code>Aggregate</code></strong> (<strong><code>foldr</code></strong>) en C# ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Definimos la secuencia</span>
@@ -744,7 +810,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token keyword keyword-SELECT">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token function">ROUND</span><span class="token punctuation">(</span>nota<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-AS">AS</span> aprobados <span class="token keyword keyword-FROM">FROM</span> notas <span class="token keyword keyword-where">where</span> <span class="token function">ROUND</span><span class="token punctuation">(</span>nota<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 </code></pre><p>En este caso no podemos filtrar antes de hacer el mapeo puesto que el resultado sería diferente. Piensa que <strong><code>4.6</code></strong> después del <strong><code>Round</code></strong> será <strong><code>5</code></strong> y contará como aprobado.</p>
 <div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🚀 <strong>Ampliación:</strong></p>
 <p>Cómo hemos dicho este patrón existirá de forma similar en otros lenguajes y seguramente sin saber la sintaxis de otros lenguajes seguramente podemos entender el código equivalente en lenguajes tan populares como:</p>
 <p><strong>JavaScript:</strong></p>
@@ -767,7 +833,7 @@ aprobados <span class="token operator">=</span> <span class="token builtin">redu
                             <span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">round</span><span class="token punctuation">,</span> notas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
             <span class="token number">0</span><span class="token punctuation">)</span>
 <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'Aprobados: </span><span class="token interpolation"><span class="token punctuation">{</span>aprobados<span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
-</code></pre></blockquote>
+</code></pre></div> <!-- fin caso_estudio -->
 <div style="page-break-after:always;"></div>
 <h3 id="otras-operaciones-funcionales-declarativas-en-c">Otras operaciones funcionales declarativas en C# </h3>
 <p>Ya hemos visto que <strong><code>Select</code></strong>, <strong><code>Where</code></strong>, <strong><code>Aggregate</code></strong>, <strong><code>Count</code></strong> y sin duda estas operaciones como hemos mencionado nos deben <em>'sonar'</em> de SQL. Pero..., ¿Existen otras operaciones equivalentes a las que podemos encontrar en SQL?.</p>
@@ -965,6 +1031,14 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <p>📌 <strong>Nota</strong>: Al ser la secuencia de un tipo implícito o anónimo, solo podremos recorrer la secuiencia en el mismo ámbito de uso de tipo. Si intentáramos encapsular el la obtención de la secuencia en una función, no podríamos devolverla como tal, sino que deberíamos encapsularla en un tipo de datos o clase que la contuviera.</p>
 <p>Lo mismo sucedería si quisieramos encapsular el código que muestra los datos en pantalla. No sabríamos de que tipo asignarle a la secuencia que pasaríamos como parámetro.</p>
 </blockquote>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">The earlier you catch defects, the cheaper they are to fix.</div>
+        <div class="autor">- David Farley</div>
+    </div>
+</div>
 <div style="page-break-after:always;"></div>
 <h5 id="resultado-del-groupby-en-un-nuevo-tipo-de-datos">Resultado del GroupBy en un nuevo tipo de datos </h5>
 <p>Supongamos que hubiéramos querido encapsular la obtención de <strong><code>empleadosXCiudad</code></strong> en una función y hacer el mismo proceso modularizado. Puesto que la secuencia es de un tipo anónimo, nos hubiéramos visto obligados ha definir una nueva clase con una propiedad <strong><code>Ciudad</code></strong> del tipo enumerado y otra <strong><code>Empleados</code></strong> como secuencia de objetos empleados por ejemplo.</p>
@@ -996,7 +1070,7 @@ Empleados<span class="token punctuation">.</span>DepartamentoDeVentas
 
 <span class="token comment">// Posteriormente hacer la llamada a las funciones.</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ATexto</span><span class="token punctuation">(</span><span class="token function">EmpleadosVentasPorCiudad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     
-</code></pre><p>En este caso no hemos filtrado por edad como hacíamos en el caso inicial. Pero si quisieramos hacerlo a posteiori, podríamos hacerlo de la siguiente manera...</p>
+</code></pre><p>En este caso no hemos filtrado por edad como hacíamos en el caso inicial. Pero si quisiéramos hacerlo a posteiori, podríamos hacerlo de la siguiente manera...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> empleadosXCiudad <span class="token operator">=</span> <span class="token function">EmpleadosVentasPorCiudad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Mapeamos al mismo DTO pero filtrando la propiedad Empleados por edad.</span>
@@ -1057,8 +1131,7 @@ Empleados<span class="token punctuation">.</span>DepartamentoDeVentas
     <span class="token function">EmpleadosVentasPorCiudad</span><span class="token punctuation">(</span>e <span class="token operator">=&gt;</span> e<span class="token punctuation">.</span>Edad <span class="token operator">&gt;</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">ATexto</span><span class="token punctuation">(</span>empleadosVentasPorCiudadDeMasDe40Años<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<h4 id="zip">Zip </h4>
+</code></pre><h4 id="zip">Zip </h4>
 <p>Se trata de una <a href="https://en.wikipedia.org/wiki/Zipping_(computer_science)">operación típica en los lenguajes funcionales</a> al permitirnos manejar el concepto de tupla y que por tanto podemos <a href="https://docs.microsoft.com/es-es/dotnet/api/system.linq.enumerable.zip">encontrar también en C#</a> ya que también nos los permite.</p>
 <p>Básicamente realiza una correspondencia unívoca entre los elementos de <strong>dos</strong> o más secuencias iterables, produciendo una <strong>nueva secuencia de tuplas</strong> resultado de dicha correspondencia. Obviamente, su nombre viene de la analogía de cerrar una cremallera.</p>
 <p>Supongamos <strong>Sec[A]</strong> = [🐮, 🐟, 🍠, 🐔, 🌽] y <strong>Sec[B]</strong> = [🍔, 🍥, 🍟, 🍗, 🍿]</p>
@@ -1238,7 +1311,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token comment">// Mostrará por pantalla: 11, 22, 34, 25, 29, 10, 17, 14, 30, 31</span>
 </code></pre><p>Vemos un ejemplo más ilustrativo de este tipo de operación con tipos más elaborados.</p>
 <p>Supongamos que la siguiente típica relación de cardinalidad uno a varios entre <strong><code>Autor</code></strong> y <strong><code>Libro</code></strong>. Donde suponemos que un autor ha escrito uno o varios libros y que modelizaremos de la siguiente manera...</p>
-<p></p><p align="center" style="zoom:1" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="106px" preserveAspectRatio="none" style="width:456px;height:106px;background:#FFFFFF;" version="1.1" viewBox="0 0 456 106" width="456px" zoomAndPan="magnify"><defs></defs><g><!--class Autor--><g id="elem_Autor"><rect codeline="13" fill="none" height="92.8281" id="Autor" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="216" x="7" y="7"></rect><ellipse cx="93.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M96.5156,18.875 Q96.6719,18.6563 96.8594,18.5469 Q97.0469,18.4375 97.2656,18.4375 Q97.6406,18.4375 97.875,18.7031 Q98.1094,18.9531 98.1094,19.5625 L98.1094,21.0156 Q98.1094,21.625 97.875,21.8906 Q97.6406,22.1563 97.2656,22.1563 Q96.9219,22.1563 96.7188,21.9531 Q96.5156,21.7656 96.4063,21.25 Q96.3594,20.8906 96.1719,20.7031 Q95.8438,20.3281 95.2344,20.1094 Q94.625,19.8906 94,19.8906 Q93.2344,19.8906 92.5938,20.2188 Q91.9688,20.5469 91.4688,21.2969 Q90.9844,22.0469 90.9844,23.0781 L90.9844,24.1719 Q90.9844,25.4063 91.875,26.2344 Q92.7656,27.0469 94.3594,27.0469 Q95.2969,27.0469 95.9531,26.7969 Q96.3438,26.6406 96.7656,26.2031 Q97.0313,25.9375 97.1719,25.8594 Q97.3281,25.7813 97.5313,25.7813 Q97.8594,25.7813 98.1094,26.0469 Q98.375,26.2969 98.375,26.6406 Q98.375,26.9844 98.0313,27.3906 Q97.5313,27.9688 96.7344,28.2969 Q95.6563,28.75 94.3594,28.75 Q92.8438,28.75 91.6406,28.125 Q90.6563,27.625 89.9688,26.5625 Q89.2813,25.4844 89.2813,24.2031 L89.2813,23.0469 Q89.2813,21.7188 89.8906,20.5781 Q90.5156,19.4219 91.6094,18.8125 Q92.7031,18.1875 93.9375,18.1875 Q94.6719,18.1875 95.3125,18.3594 Q95.9688,18.5156 96.5156,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="114.25" y="28.7285">Autor</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="222" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="13" y="57.5332">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204" x="13" y="75.1426">-nacionalidad : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="198" x="13" y="92.752">-muerte : DateTime  {readOnly}</text></g><!--class Libro--><g id="elem_Libro"><rect codeline="20" fill="none" height="92.8281" id="Libro" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="166" x="283" y="7"></rect><ellipse cx="345.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M348.5156,18.875 Q348.6719,18.6563 348.8594,18.5469 Q349.0469,18.4375 349.2656,18.4375 Q349.6406,18.4375 349.875,18.7031 Q350.1094,18.9531 350.1094,19.5625 L350.1094,21.0156 Q350.1094,21.625 349.875,21.8906 Q349.6406,22.1563 349.2656,22.1563 Q348.9219,22.1563 348.7188,21.9531 Q348.5156,21.7656 348.4063,21.25 Q348.3594,20.8906 348.1719,20.7031 Q347.8438,20.3281 347.2344,20.1094 Q346.625,19.8906 346,19.8906 Q345.2344,19.8906 344.5938,20.2188 Q343.9688,20.5469 343.4688,21.2969 Q342.9844,22.0469 342.9844,23.0781 L342.9844,24.1719 Q342.9844,25.4063 343.875,26.2344 Q344.7656,27.0469 346.3594,27.0469 Q347.2969,27.0469 347.9531,26.7969 Q348.3438,26.6406 348.7656,26.2031 Q349.0313,25.9375 349.1719,25.8594 Q349.3281,25.7813 349.5313,25.7813 Q349.8594,25.7813 350.1094,26.0469 Q350.375,26.2969 350.375,26.6406 Q350.375,26.9844 350.0313,27.3906 Q349.5313,27.9688 348.7344,28.2969 Q347.6563,28.75 346.3594,28.75 Q344.8438,28.75 343.6406,28.125 Q342.6563,27.625 341.9688,26.5625 Q341.2813,25.4844 341.2813,24.2031 L341.2813,23.0469 Q341.2813,21.7188 341.8906,20.5781 Q342.5156,19.4219 343.6094,18.8125 Q344.7031,18.1875 345.9375,18.1875 Q346.6719,18.1875 347.3125,18.3594 Q347.9688,18.5156 348.5156,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="366.25" y="28.7285">Libro</text><line style="stroke:#000000;stroke-width:0.5;" x1="284" x2="448" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="289" y="57.5332">-titulo : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="289" y="75.1426">-año : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="289" y="92.752">-paginas : int {readOnly}</text></g><!--reverse link Autor to Libro--><g id="link_Autor_Libro"><path codeline="9" d="M235.04,53.5 C255.08,53.5 263.73,53.5 282.86,53.5 " fill="none" id="Autor-backto-Libro" style="stroke:#000000;stroke-width:1.0;"></path><polygon fill="none" points="223.04,53.5,229.04,57.5,235.04,53.5,229.04,49.5,223.04,53.5" style="stroke:#000000;stroke-width:1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="230.8827" y="67.576">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="269.9651" y="67.7567">*</text></g><!--SRC=[VP31IiH038RlynIXHw6WLs_jUX44XLtmd7PY6tOwMJ8feaiVocVmnPnQ2iMLdKl8_D_y_oI1tWnCGBdh3JmhjSOINJfoFA7Y06t0b2epvMOqUcmbxlcJu7Q3LAholfCW2dN0zhYHNdAB7TMvT2fZz0lsshFHVf0ZRTZTd5IBUjB_pHRWZzL1CQQiKpJdgj7oLN5NW9Gb53S5F76ZubpFdfPHO23hnIVdblRtYJixoAU4A4EZ1FUGyi2nWxCI-kSOFgOLm3Rl1mDxz5UmOIIrsUS1ZGuy46oPQGrVVhU66ziOv8ehVd_DCaUxr4xOSSHqAK_k1m00]--></g></svg></p><p></p>
+<p></p><p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="106px" preserveAspectRatio="none" style="width:456px;height:106px;background:#FFFFFF;" version="1.1" viewBox="0 0 456 106" width="456px" zoomAndPan="magnify"><defs></defs><g><!--class Autor--><g id="elem_Autor"><rect codeline="13" fill="none" height="92.8281" id="Autor" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="216" x="7" y="7"></rect><ellipse cx="93.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M96.5156,18.875 Q96.6719,18.6563 96.8594,18.5469 Q97.0469,18.4375 97.2656,18.4375 Q97.6406,18.4375 97.875,18.7031 Q98.1094,18.9531 98.1094,19.5625 L98.1094,21.0156 Q98.1094,21.625 97.875,21.8906 Q97.6406,22.1563 97.2656,22.1563 Q96.9219,22.1563 96.7188,21.9531 Q96.5156,21.7656 96.4063,21.25 Q96.3594,20.8906 96.1719,20.7031 Q95.8438,20.3281 95.2344,20.1094 Q94.625,19.8906 94,19.8906 Q93.2344,19.8906 92.5938,20.2188 Q91.9688,20.5469 91.4688,21.2969 Q90.9844,22.0469 90.9844,23.0781 L90.9844,24.1719 Q90.9844,25.4063 91.875,26.2344 Q92.7656,27.0469 94.3594,27.0469 Q95.2969,27.0469 95.9531,26.7969 Q96.3438,26.6406 96.7656,26.2031 Q97.0313,25.9375 97.1719,25.8594 Q97.3281,25.7813 97.5313,25.7813 Q97.8594,25.7813 98.1094,26.0469 Q98.375,26.2969 98.375,26.6406 Q98.375,26.9844 98.0313,27.3906 Q97.5313,27.9688 96.7344,28.2969 Q95.6563,28.75 94.3594,28.75 Q92.8438,28.75 91.6406,28.125 Q90.6563,27.625 89.9688,26.5625 Q89.2813,25.4844 89.2813,24.2031 L89.2813,23.0469 Q89.2813,21.7188 89.8906,20.5781 Q90.5156,19.4219 91.6094,18.8125 Q92.7031,18.1875 93.9375,18.1875 Q94.6719,18.1875 95.3125,18.3594 Q95.9688,18.5156 96.5156,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="114.25" y="28.7285">Autor</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="222" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="13" y="57.5332">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204" x="13" y="75.1426">-nacionalidad : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="198" x="13" y="92.752">-muerte : DateTime  {readOnly}</text></g><!--class Libro--><g id="elem_Libro"><rect codeline="20" fill="none" height="92.8281" id="Libro" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="166" x="283" y="7"></rect><ellipse cx="345.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M348.5156,18.875 Q348.6719,18.6563 348.8594,18.5469 Q349.0469,18.4375 349.2656,18.4375 Q349.6406,18.4375 349.875,18.7031 Q350.1094,18.9531 350.1094,19.5625 L350.1094,21.0156 Q350.1094,21.625 349.875,21.8906 Q349.6406,22.1563 349.2656,22.1563 Q348.9219,22.1563 348.7188,21.9531 Q348.5156,21.7656 348.4063,21.25 Q348.3594,20.8906 348.1719,20.7031 Q347.8438,20.3281 347.2344,20.1094 Q346.625,19.8906 346,19.8906 Q345.2344,19.8906 344.5938,20.2188 Q343.9688,20.5469 343.4688,21.2969 Q342.9844,22.0469 342.9844,23.0781 L342.9844,24.1719 Q342.9844,25.4063 343.875,26.2344 Q344.7656,27.0469 346.3594,27.0469 Q347.2969,27.0469 347.9531,26.7969 Q348.3438,26.6406 348.7656,26.2031 Q349.0313,25.9375 349.1719,25.8594 Q349.3281,25.7813 349.5313,25.7813 Q349.8594,25.7813 350.1094,26.0469 Q350.375,26.2969 350.375,26.6406 Q350.375,26.9844 350.0313,27.3906 Q349.5313,27.9688 348.7344,28.2969 Q347.6563,28.75 346.3594,28.75 Q344.8438,28.75 343.6406,28.125 Q342.6563,27.625 341.9688,26.5625 Q341.2813,25.4844 341.2813,24.2031 L341.2813,23.0469 Q341.2813,21.7188 341.8906,20.5781 Q342.5156,19.4219 343.6094,18.8125 Q344.7031,18.1875 345.9375,18.1875 Q346.6719,18.1875 347.3125,18.3594 Q347.9688,18.5156 348.5156,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="366.25" y="28.7285">Libro</text><line style="stroke:#000000;stroke-width:0.5;" x1="284" x2="448" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="289" y="57.5332">-titulo : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="289" y="75.1426">-año : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="289" y="92.752">-paginas : int {readOnly}</text></g><!--reverse link Autor to Libro--><g id="link_Autor_Libro"><path codeline="9" d="M235.04,53.5 C255.08,53.5 263.73,53.5 282.86,53.5 " fill="none" id="Autor-backto-Libro" style="stroke:#000000;stroke-width:1.0;"></path><polygon fill="none" points="223.04,53.5,229.04,57.5,235.04,53.5,229.04,49.5,223.04,53.5" style="stroke:#000000;stroke-width:1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="230.8827" y="67.576">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="269.9651" y="67.7567">*</text></g><!--SRC=[VP31IiH038RlynIXHw6WLs_jUX44XLtmd7PY6tOwMJ8feaiVocVmnPnQ2iMLdKl8_D_y_oI1tWnCGBdh3JmhjSOINJfoFA7Y06t0b2epvMOqUcmbxlcJu7Q3LAholfCW2dN0zhYHNdAB7TMvT2fZz0lsshFHVf0ZRTZTd5IBUjB_pHRWZzL1CQQiKpJdgj7oLN5NW9Gb53S5F76ZubpFdfPHO23hnIVdblRtYJixoAU4A4EZ1FUGyi2nWxCI-kSOFgOLm3Rl1mDxz5UmOIIrsUS1ZGuy46oPQGrVVhU66ziOv8ehVd_DCaUxr4xOSSHqAK_k1m00]--></g></svg></p><p></p>
 <blockquote>
 <p>📌 <strong>Nota:</strong> Para simplificar, puedes descargarte el código de las clases y la carga inicial de datos del siguiente código <a href="https://programacioniesbalmis.github.io/B8-Programacion_Funcional/DatosAutoresTema_11_4_ejemplo.cs">DatosAutoresTema_11_4.cs</a>.</p>
 </blockquote>
@@ -1276,23 +1349,20 @@ Datos<span class="token punctuation">.</span>Autores<span class="token punctuati
 <span class="token punctuation">{</span>
     <span class="token comment">// IEnumerable&lt;Autor&gt; x (Autor → IEnumerable&lt;LibroDto&gt;) → IEnumerable&lt;LibroDto&gt;</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>LibroDto<span class="token punctuation">&gt;</span></span> <span class="token function">LibrosDeMenosdeMilPaginas</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-    Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros
-                                   <span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>l <span class="token operator">=&gt;</span> l<span class="token punctuation">.</span>Paginas <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+    Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>l <span class="token operator">=&gt;</span> l<span class="token punctuation">.</span>Paginas <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">)</span>
                                    <span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>l <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroDto</span><span class="token punctuation">(</span>
                                     <span class="token named-parameter punctuation">Libro</span><span class="token punctuation">:</span> l<span class="token punctuation">.</span>Titulo<span class="token punctuation">,</span> <span class="token named-parameter punctuation">Autor</span><span class="token punctuation">:</span> a<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> <span class="token named-parameter punctuation">Paginas</span><span class="token punctuation">:</span> l<span class="token punctuation">.</span>Paginas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">// Una vez tenemos la secuencia de salida con los objetos anónimos de la proyección. </span>
     <span class="token comment">// Podemos mostrarla en forma de tabla de la siguiente forma ...</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token class-name">IEnumerable<span class="token punctuation">&lt;</span>LibroDto<span class="token punctuation">&gt;</span></span> datos<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> separadorDato<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-    datos<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>separadorDato<span class="token punctuation">,</span> 
-                    <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> tupla<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+    datos<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>separadorDato<span class="token punctuation">,</span> <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> tupla<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
                     salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"Libro: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Libro</span><span class="token punctuation">}</span></span><span class="token string">\nAutor: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Autor</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span> <span class="token operator">+</span>
                               <span class="token interpolation-string"><span class="token string">$"Paginas: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">tupla<span class="token punctuation">.</span>Paginas</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">separadorDato</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><p>Posteriormente si ejecutamos ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>LibroDto<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span>LibroDto<span class="token punctuation">.</span><span class="token function">LibrosDeMenosdeMilPaginas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SeparadorDato<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><p>Generando la siguiente salida por consola...</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>--------------------------------------------------------------------------------
-Libro: Macbeth
+<pre data-role="codeBlock" data-info="cmd {code_chunk_offset=0, style=&quot;font-size:0.8em&quot;}" class="language-cmd cmd"><code>Libro: Macbeth
 Autor: William Shakespeare
 Paginas: 128
 --------------------------------------------------------------------------------
@@ -1311,62 +1381,55 @@ Paginas: 888
 Libro: La Celestina
 Autor: Fernando de Rojas
 Paginas: 160
---------------------------------------------------------------------------------
 </code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
-<p>Vamos a realizar varias consultas sobre el código del ejemplo anterior donde tenemos libros por autor.<br>
-✋ <strong>Intenta pensarlas sin mirar la propuesta de solución.</strong></p>
+<p>Vamos a realizar varias consultas sobre el código del ejemplo anterior donde tenemos libros por autor. <strong>Intenta pensarlas sin mirar la propuesta de solución.</strong></p>
 <ol>
 <li>
 <p>Autores con <strong>más de un</strong> libro.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> snapshot <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>snapshot<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>SeparadorDato<span class="token punctuation">,</span>
-                              <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></li>
 <li>
 <p>Total de libros escritos por escritores Españoles.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> totalLibros <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Nacionalidad <span class="token operator">==</span> <span class="token string">"Española"</span><span class="token punctuation">)</span>
-                               <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>t<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> t <span class="token operator">+=</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+                                <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>t<span class="token punctuation">,</span> a<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> t <span class="token operator">+=</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// Otra opción más legible utilizando SelectMany sería...</span>
 <span class="token class-name"><span class="token keyword keyword-var">var</span></span> totalLibros <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Nacionalidad <span class="token operator">==</span> <span class="token string">"Española"</span><span class="token punctuation">)</span>
-                               <span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">)</span>
-                               <span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+                                <span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">)</span>
+                                <span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Hay </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">totalLibros</span><span class="token punctuation">}</span></span><span class="token string"> escritos por españoles"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></li>
 <li>
 <p>Muestra el <strong>nombre del autor</strong> y <strong>año de la muerte</strong> agrupando los autores por siglo en el que murieron en orden ascendente de siglo.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> snapShot <span class="token operator">=</span>
 Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Autor <span class="token operator">=</span> a<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span> AñoMuerte <span class="token operator">=</span> a<span class="token punctuation">.</span>Muerte<span class="token punctuation">.</span>Year <span class="token punctuation">}</span><span class="token punctuation">)</span>
-             <span class="token punctuation">.</span><span class="token function">OrderBy</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>AñoMuerte<span class="token punctuation">)</span>
-             <span class="token punctuation">.</span><span class="token function">GroupBy</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>AñoMuerte <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
-                      <span class="token punctuation">(</span>siglo<span class="token punctuation">,</span> autores<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Siglo <span class="token operator">=</span> siglo<span class="token punctuation">,</span> Autores <span class="token operator">=</span> autores <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">.</span><span class="token function">OrderBy</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>AñoMuerte<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">GroupBy</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>AñoMuerte <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">(</span>siglo<span class="token punctuation">,</span> autores<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Siglo <span class="token operator">=</span> siglo<span class="token punctuation">,</span> Autores <span class="token operator">=</span> autores <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>snapShot<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span>SeparadorDato<span class="token punctuation">,</span> <span class="token punctuation">(</span>salida<span class="token punctuation">,</span> aXs<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
 salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"Siglo: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">aXs<span class="token punctuation">.</span>Siglo</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span> 
 <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">aXs<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> 
-                           <span class="token punctuation">(</span>t<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token operator">=&gt;</span> t <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a<span class="token punctuation">.</span>Autor</span><span class="token punctuation">}</span></span><span class="token string"> muerto en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a<span class="token punctuation">.</span>AñoMuerte</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">)</span>
+                            <span class="token punctuation">(</span>t<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token operator">=&gt;</span> t <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"\t</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a<span class="token punctuation">.</span>Autor</span><span class="token punctuation">}</span></span><span class="token string"> muerto en </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a<span class="token punctuation">.</span>AñoMuerte</span><span class="token punctuation">}</span></span><span class="token string">\n"</span></span><span class="token punctuation">)</span>
     </span><span class="token punctuation">}</span></span><span class="token string">"</span></span> <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">SeparadorDato</span><span class="token punctuation">}</span></span><span class="token string">"</span></span>
 <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>✋ <strong>Importante:</strong> Aunque en este caso hemos utilizado programación funcional para mostrar el resultado. Este sería el típico caso donde <strong>por legibilidad</strong> y <strong>claridad de código</strong> sería más interesante usar el esquema tradicional de componer un <strong><code>StringBuilder</code></strong> con bucles.</p>
-</li>
-</ol>
+</code></pre><blockquote>
+<p>📌 <strong>Nota:</strong> Aunque en este caso hemos utilizado programación funcional para mostrar el resultado. Este sería el típico caso donde <strong>por legibilidad</strong> y <strong>claridad de código</strong> sería más interesante usar el esquema tradicional de componer un <strong><code>StringBuilder</code></strong> con bucles.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<ol start="4">
+</li>
 <li>
 <p>Numero <strong>total de páginas escritas</strong> por <strong>William Shakespeare</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> totalPaginas <span class="token operator">=</span>
 Datos<span class="token punctuation">.</span>Autores<span class="token punctuation">.</span><span class="token function">Where</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Nombre <span class="token operator">==</span> <span class="token string">"William Shakespeare"</span><span class="token punctuation">)</span>
-             <span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>l <span class="token operator">=&gt;</span> l<span class="token punctuation">.</span>Paginas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token punctuation">.</span><span class="token function">SelectMany</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>Libros<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>l <span class="token operator">=&gt;</span> l<span class="token punctuation">.</span>Paginas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"William Shakespeare escribió </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">totalPaginas</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></li>
 </ol>
-</blockquote>
+</div> <!-- fin caso de estudio -->
 
       </div>
       
