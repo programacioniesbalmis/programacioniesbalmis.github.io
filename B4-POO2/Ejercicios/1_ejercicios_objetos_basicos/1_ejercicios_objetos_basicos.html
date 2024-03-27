@@ -1,376 +1,229 @@
 <!DOCTYPE html><html><head>
-      <title>Ejercicios Objetos B&#xE1;sicos y Valor</title>
+      <title>Ejercicios Objetos Básicos y Valor</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview .slides > section {
-  height: 100%;
-  font-size: 90%;
-  overflow-y: auto !important;
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
-.markdown-preview.markdown-preview .slide code {
-  color: yellow;
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-objetos-b%C3%A1sicos-y-valor">Ejercicios Objetos B&#xE1;sicos y Valor</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-objetos-básicos-y-valor">Ejercicios Objetos Básicos y Valor </h1>
 <p><a href="./1_ejercicios_objetos_basicos.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#ejercicio-1">Ejercicio 1</a></li>
-<li><a href="#ejercicio-2">Ejercicio 2</a></li>
-<li><a href="#ejercicio-3">Ejercicio 3</a></li>
-<li><a href="#white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</a></li>
-<li><a href="#ejercicio-5">Ejercicio 5</a></li>
-<li><a href="#white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</a></li>
-<li><a href="#white_check_mark-ejercicio-7">&#x2705; Ejercicio 7</a></li>
-<li><a href="#ejercicio-8">Ejercicio 8</a></li>
-</ol>
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2" class="md-toc-link">
+            <p>Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3" class="md-toc-link">
+            <p>Ejercicio 3</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-4" class="md-toc-link">
+            <p>✅ Ejercicio 4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5" class="md-toc-link">
+            <p>Ejercicio 5</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-6" class="md-toc-link">
+            <p>✅ Ejercicio 6</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-7" class="md-toc-link">
+            <p>✅ Ejercicio 7</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-8" class="md-toc-link">
+            <p>Ejercicio 8</p>
+
+          </a></div>
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
-
-<blockquote>
-<p>A partir del siguiente diagrama de clases, crea la clase necesaria  que permita reflejar los elementos que ves representados en &#xE9;l, y la aplicaci&#xF3;n para probarla. Las categor&#xED;as de los trabajadores pueden ser:<br>
+<div class="ejercicio">
+<h2 id="ejercicio-1">Ejercicio 1 </h2>
+<p>A partir del siguiente diagrama de clases, crea la clase necesaria  que permita reflejar los elementos que ves representados en él, y la aplicación para probarla. Las categorías de los trabajadores pueden ser:<br>
 <strong><code>Subalterno = 10, Administrativo = 20, JefeDepartamento = 40, Gerente = 60</code></strong>.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> El salario del empleado se calcular&#xE1; a partir de la categor&#xED;a de trabajo que desempe&#xF1;e, las categor&#xED;as tienen asociadas el incremento en porcentaje que se tiene que hacer al salario base, que ser&#xE1; una constante con el valor de 1200.</p>
-<p align="center" style="zoom:0.4"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="915.1515px" preserveAspectRatio="none" style="width:1003px;height:915px;background:#00000000;" version="1.1" viewBox="0 0 1003 915" width="1003.0303px" zoomAndPan="magnify"><defs><filter height="300%" id="fr9cz7jnfgrqs" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="6.06060606060606"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="12.12121212121212" dy="12.12121212121212" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[267282629f1778b9c75091f9d8fe6097]
-class Empleado--><rect codeline="10" fill="#FFFAFA" filter="url(#fr9cz7jnfgrqs)" height="648.5795" id="Empleado" style="stroke:#000000;stroke-width:4.545454545454545;" width="939.3939" x="21.2121" y="21.2121"/><ellipse cx="391.6667" cy="69.697" fill="#ADD1B2" rx="33.3333" ry="33.3333" style="stroke:#000000;stroke-width:3.03030303030303;"/><path d="M400.0473,57.197 Q400.5208,56.5341 401.089,56.2027 Q401.6572,55.8712 402.3201,55.8712 Q403.4564,55.8712 404.1667,56.6761 Q404.8769,57.4337 404.8769,59.2803 L404.8769,63.6837 Q404.8769,65.5303 404.1667,66.3352 Q403.4564,67.1402 402.3201,67.1402 Q401.2784,67.1402 400.6629,66.5246 Q400.0473,65.9564 399.7159,64.3939 Q399.5739,63.3049 399.0057,62.7367 Q398.0114,61.6004 396.1648,60.9375 Q394.3182,60.2746 392.4242,60.2746 Q390.1042,60.2746 388.1629,61.2689 Q386.2689,62.2633 384.7538,64.536 Q383.286,66.8087 383.286,69.9337 L383.286,73.2481 Q383.286,76.9886 385.9848,79.4981 Q388.6837,81.9602 393.5133,81.9602 Q396.3542,81.9602 398.3428,81.2027 Q399.5265,80.7292 400.8049,79.4034 Q401.6098,78.5985 402.036,78.3617 Q402.5095,78.125 403.125,78.125 Q404.1193,78.125 404.8769,78.9299 Q405.6818,79.6875 405.6818,80.7292 Q405.6818,81.7708 404.6402,83.0019 Q403.125,84.7538 400.7102,85.7481 Q397.4432,87.1212 393.5133,87.1212 Q388.9205,87.1212 385.2746,85.2273 Q382.2917,83.7121 380.2083,80.4924 Q378.125,77.2254 378.125,73.3428 L378.125,69.839 Q378.125,65.8144 379.9716,62.358 Q381.8655,58.8542 385.1799,57.0076 Q388.4943,55.1136 392.2348,55.1136 Q394.4602,55.1136 396.4015,55.6345 Q398.3902,56.108 400.0473,57.197 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="36.3636" lengthAdjust="spacing" textLength="172.7273" x="453.7879" y="84.5762">Empleado</text><line style="stroke:#000000;stroke-width:4.545454545454545;" x1="24.2424" x2="957.5758" y1="118.1818" y2="118.1818"/><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="330.303" x="39.3939" y="164.9059">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="396.9697" x="39.3939" y="206.833">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="451.5152" x="39.3939" y="248.7601">-a&#xF1;oNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="312.1212" x="39.3939" y="290.6871">+categoria: Categoria</text><line style="stroke:#000000;stroke-width:4.545454545454545;" x1="24.2424" x2="957.5758" y1="310.1326" y2="310.1326"/><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="903.0303" x="39.3939" y="356.8567">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="400" x="39.3939" y="398.7837">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="315.1515" x="39.3939" y="440.7108">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="372.7273" x="39.3939" y="482.6379">+GetA&#xF1;oNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="248.4848" x="39.3939" y="524.565">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="654.5455" x="39.3939" y="566.4921">+SetCategoria(in categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="266.6667" x="39.3939" y="608.4192">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="33.3333" lengthAdjust="spacing" textLength="275.7576" x="39.3939" y="650.3462">+Acadena(): string</text><!--MD5=[7e1ce8ab2bf669717f28e918f4971b9a]
-class Categoria--><rect codeline="30" fill="#FFFAFA" filter="url(#fr9cz7jnfgrqs)" height="96.9697" id="Categoria" style="stroke:#000000;stroke-width:4.545454545454545;" width="260.6061" x="360.6061" y="775.7576"/><ellipse cx="406.0606" cy="824.2424" fill="#EB937F" rx="33.3333" ry="33.3333" style="stroke:#000000;stroke-width:3.03030303030303;"/><path d="M402.6042,826.6572 L402.6042,834.233 L415.7197,834.233 L415.7197,831.4394 Q415.7197,829.5928 416.4299,828.7879 Q417.1875,827.983 418.3239,827.983 Q419.4602,827.983 420.1705,828.7879 Q420.8807,829.5928 420.8807,831.4394 L420.8807,839.3939 L396.6383,839.3939 Q394.7443,839.3939 393.9394,838.6837 Q393.1818,837.9735 393.1818,836.7898 Q393.1818,835.6534 393.9867,834.9432 Q394.7917,834.233 396.6383,834.233 L397.4432,834.233 L397.4432,814.0625 L396.6383,814.0625 Q394.7443,814.0625 393.9394,813.3523 Q393.1818,812.642 393.1818,811.4583 Q393.1818,810.322 393.9394,809.6117 Q394.7443,808.9015 396.6383,808.9015 L419.7443,808.9015 L419.7443,816.7614 Q419.7443,818.608 419.0341,819.4129 Q418.3712,820.1705 417.1875,820.1705 Q416.0511,820.1705 415.3409,819.4129 Q414.6307,818.608 414.6307,816.7614 L414.6307,814.0625 L402.6042,814.0625 L402.6042,821.4962 L407.1023,821.4962 Q407.1023,819.5076 407.4811,818.9394 Q408.286,817.7083 409.7064,817.7083 Q410.8428,817.7083 411.553,818.5133 Q412.2633,819.2708 412.2633,821.1174 L412.2633,827.0833 Q412.2633,828.7405 411.8845,829.3087 Q411.0795,830.4924 409.7064,830.4924 Q408.286,830.4924 407.4811,829.2614 Q407.1023,828.6932 407.1023,826.6572 L402.6042,826.6572 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="36.3636" lengthAdjust="spacing" textLength="163.6364" x="448.4848" y="839.1217">Categoria</text><!--MD5=[26e9fc1e267e578bb7af05bfe7c81018]
-reverse link Empleado to Categoria--><path codeline="35" d="M490.9091,715.2424 C490.9091,735.3636 490.9091,755.4848 490.9091,775.6061 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:3.03030303030303;"/><ellipse cx="490.9091" cy="694" rx="24.2424" ry="24.2424" style="stroke:#000000;stroke-width:3.03030303030303;fill:none;"/><line style="stroke:#000000;stroke-width:3.03030303030303;fill:none;" x1="490.9091" x2="490.9091" y1="718.2424" y2="669.7576"/><line style="stroke:#000000;stroke-width:3.03030303030303;fill:none;" x1="466.6667" x2="515.1515" y1="694" y2="694"/><!--MD5=[7b34c271696065cc023204e09384bef8]
-@startuml
-
-left to right direction
-scale 1000 width
-skinparam classAttributeIconSize 0
-skinparam ArrowColor Black
-skinparam BackgroundColor Transparent
-skinparam PackageBackgroundColor WhiteSmoke
-skinparam ClassBorderColor Black
-skinparam ClassBackgroundColor Snow
-class Empleado
-{
-    - dni : string {readOnly} 
-    - nombre : string {readOnly}
-    - añoNacimiento : int {readOnly}
-    + categoria: Categoria
-
-    + Empleado(in dni : string, in nombre : string, in nacimiento : int)
-    + Empleado(in e : Empleado)
-    + GetNombre() : string
-    + GetAñoNacimiento() : int
-    + GetDni() : string
-    + SetCategoria(in categoria : Categoria) : void
-    + Salario() : double
-    + Acadena(): string 
-}
-
-
-hide empty methods
-hide empty attributes
- enum Categoria
-{
-
-
-}
-Empleado +- Categoria
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p><p>Una posible salida ser&#xED;a:</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">El empleado Mar&#xED;a Soto del Rio con dni: 23453456L tiene un salario 1920 y su categoria es: Gerente
+<blockquote>
+<p>📌 <strong>Nota:</strong> El salario del empleado se calculará a partir de la categoría de trabajo que desempeñe, las categorías tienen asociadas el incremento en porcentaje que se tiene que hacer al salario base, que será una constante con el valor de 1200.</p>
+</blockquote>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="340px" preserveAspectRatio="none" style="width:424px;height:340px;" version="1.1" viewBox="0 0 424 340" width="424px" zoomAndPan="magnify"><defs></defs><g><!--class Empleado--><g id="elem_Empleado"><rect codeline="10" fill="#FFFAFA" height="259.3125" id="Empleado" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="410" x="7" y="7"></rect><ellipse cx="176.25" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M179.0156,18.875 Q179.1719,18.6563 179.3594,18.5469 Q179.5469,18.4375 179.7656,18.4375 Q180.1406,18.4375 180.375,18.7031 Q180.6094,18.9531 180.6094,19.5625 L180.6094,21.0156 Q180.6094,21.625 180.375,21.8906 Q180.1406,22.1563 179.7656,22.1563 Q179.4219,22.1563 179.2188,21.9531 Q179.0156,21.7656 178.9063,21.25 Q178.8594,20.8906 178.6719,20.7031 Q178.3438,20.3281 177.7344,20.1094 Q177.125,19.8906 176.5,19.8906 Q175.7344,19.8906 175.0938,20.2188 Q174.4688,20.5469 173.9688,21.2969 Q173.4844,22.0469 173.4844,23.0781 L173.4844,24.1719 Q173.4844,25.4063 174.375,26.2344 Q175.2656,27.0469 176.8594,27.0469 Q177.7969,27.0469 178.4531,26.7969 Q178.8438,26.6406 179.2656,26.2031 Q179.5313,25.9375 179.6719,25.8594 Q179.8281,25.7813 180.0313,25.7813 Q180.3594,25.7813 180.6094,26.0469 Q180.875,26.2969 180.875,26.6406 Q180.875,26.9844 180.5313,27.3906 Q180.0313,27.9688 179.2344,28.2969 Q178.1563,28.75 176.8594,28.75 Q175.3438,28.75 174.1406,28.125 Q173.1563,27.625 172.4688,26.5625 Q171.7813,25.4844 171.7813,24.2031 L171.7813,23.0469 Q171.7813,21.7188 172.3906,20.5781 Q173.0156,19.4219 174.1094,18.8125 Q175.2031,18.1875 176.4375,18.1875 Q177.1719,18.1875 177.8125,18.3594 Q178.4688,18.5156 179.0156,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="196.75" y="28.7285">Empleado</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="416" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="13" y="57.5332">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="13" y="75.1426">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="197" x="13" y="92.752">-añoNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="13" y="110.3613">+categoria: Categoria</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="416" y1="117.4375" y2="117.4375"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="398" x="13" y="135.9707">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="179" x="13" y="153.5801">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="13" y="171.1895">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="13" y="188.7988">+GetAñoNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="13" y="206.4082">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="287" x="13" y="224.0176">+SetCategoria(in categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117" x="13" y="241.627">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="13" y="259.2363">+ACadena(): string</text></g><!--class Categoria--><g id="elem_Categoria"><rect codeline="29" fill="#FFFAFA" height="32" id="Categoria" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="94" x="165" y="301.5"></rect><ellipse cx="180" cy="317.5" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M178.8594,318.2969 L178.8594,320.7969 L183.1875,320.7969 L183.1875,319.875 Q183.1875,319.2656 183.4219,319 Q183.6719,318.7344 184.0469,318.7344 Q184.4219,318.7344 184.6563,319 Q184.8906,319.2656 184.8906,319.875 L184.8906,322.5 L176.8906,322.5 Q176.2656,322.5 176,322.2656 Q175.75,322.0313 175.75,321.6406 Q175.75,321.2656 176.0156,321.0313 Q176.2813,320.7969 176.8906,320.7969 L177.1563,320.7969 L177.1563,314.1406 L176.8906,314.1406 Q176.2656,314.1406 176,313.9063 Q175.75,313.6719 175.75,313.2813 Q175.75,312.9063 176,312.6719 Q176.2656,312.4375 176.8906,312.4375 L184.5156,312.4375 L184.5156,315.0313 Q184.5156,315.6406 184.2813,315.9063 Q184.0625,316.1563 183.6719,316.1563 Q183.2969,316.1563 183.0625,315.9063 Q182.8281,315.6406 182.8281,315.0313 L182.8281,314.1406 L178.8594,314.1406 L178.8594,316.5938 L180.3438,316.5938 Q180.3438,315.9375 180.4688,315.75 Q180.7344,315.3438 181.2031,315.3438 Q181.5781,315.3438 181.8125,315.6094 Q182.0469,315.8594 182.0469,316.4688 L182.0469,318.4375 Q182.0469,318.9844 181.9219,319.1719 Q181.6563,319.5625 181.2031,319.5625 Q180.7344,319.5625 180.4688,319.1563 Q180.3438,318.9688 180.3438,318.2969 L178.8594,318.2969 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="194" y="323.2285">Categoria</text></g><!--reverse link Empleado to Categoria--><g id="link_Empleado_Categoria"><path codeline="34" d="M212,282.17 C212,293.86 212,289.55 212,301.24 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:1.0;"></path><ellipse cx="212" cy="274.17" fill="none" rx="8" ry="8" style="stroke:#000000;stroke-width:1.0;"></ellipse><line style="stroke:#000000;stroke-width:1.0;" x1="212" x2="212" y1="282.17" y2="266.17"></line><line style="stroke:#000000;stroke-width:1.0;" x1="204" x2="220" y1="274.17" y2="274.17"></line></g><!--SRC=[RP1DJiCm48NtFiKiMnKarjsb0I4s1Ib8h9ruI4UrFTN4eIfL3yKPk1XEyzCqr2lRxvityyRYPu3085Hk0XWIB0AnLzMM_4wBTb1ONLL9249v7V2bO9_HDyB324b4U9-oPO6LrSLs9AtYinIklMdrTz6-YXBwCABU8gLBdC8V6mgOETxYY4sRULOi1kLsonQOM6MUzqgTiy2JsrdKXjLHGJptO3p14geOqPTmbAYzUdiuGITxThdWBQ83zEyFhtL1Zc8iZY3vCAKMKEY09Glf9QJzLNLQFzAC_DKqTz5gsh_zcxIRtp1gIlfthpzZM9_jPlF1y28bLq7EIFI-w8-U_jTb68OyJTiX9uo2DbLVJAQlqLOBjHqCrxd5JaXIRT3hsNpOjZh59QaD6GHqkt00Xov7gHJwseqsULGgedrUMDnVj3y0]--></g></svg></p><p>Una posible salida sería:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>El empleado María Soto del Rio con dni: 23453456L tiene un salario 1920 y u categoria es: Gerente
 El empleado Juanma Perez Ortiz con dni: 14568712G tiene un salario 1440 y su categoria es: Administrativos
 El empleado Pedro Martinez Sancho con dni: 12346123K tiene un salario 1440 y su categoria es: Administrativos
-</pre></blockquote>
-<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
-
-<blockquote>
-<p>Crea un programa que permita guardar informaci&#xF3;n sobre las caracter&#xED;sticas gr&#xE1;ficas de un equipo inform&#xE1;tico. La informaci&#xF3;n relevante es:</p>
+</code></pre></div> <!-- Fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-2">Ejercicio 2 </h2>
+<p>Crea un programa que permita guardar información sobre las características gráficas de un equipo informático. La información relevante es:</p>
 <ul>
-<li>N&#xFA;mero de pulgadas (short)</li>
-<li>Controlador gr&#xE1;fico (string)</li>
-<li>N&#xFA;mero de colores (short)</li>
+<li>Número de pulgadas (short)</li>
+<li>Controlador gráfico (string)</li>
+<li>Número de colores (short)</li>
 <li>Pixeles eje x (int)</li>
 <li>Pixeles eje y (int)</li>
 </ul>
-<p>Debe ser posible cambiar el n&#xFA;mero de colores, la resoluci&#xF3;n de la pantalla y el controlador en cualquier momento, as&#xED; como consultar toda la informaci&#xF3;n concerniente a las caracter&#xED;sticas gr&#xE1;ficas. <em><strong>Crea alguna instancia de pantalla y prueba el funcionamiento.</strong></em></p>
-<p>&#x1F4CC; <strong>Nota</strong>: todos los campos ser&#xE1;n privados, y deberemos crear <strong>solo</strong> los m&#xE9;todos y accesores o modificadores necesarios para poder hacer funcional la aplicaci&#xF3;n.</p>
+<p>Debe ser posible cambiar el número de colores, la resolución de la pantalla y el controlador en cualquier momento, así como consultar toda la información concerniente a las características gráficas. <em><strong>Crea alguna instancia de pantalla y prueba el funcionamiento.</strong></em></p>
+<blockquote>
+<p>📌 <strong>Nota</strong>: todos los campos serán privados, y deberemos crear <strong>solo</strong> los métodos y accesores o modificadores necesarios para poder hacer funcional la aplicación.</p>
 </blockquote>
+</div> <!-- Fin ejercicio -->
+<div class="ejercicio">
+<h2 id="ejercicio-3">Ejercicio 3 </h2>
+<p>Crea una clase Humano con los campos, como mínimo: nombre, edad, peso, sexo, inteligencia, fuerza, destreza y energía.<br>
+Los métodos <strong><code>MostrarInformación</code></strong>, <strong><code>SetNombre</code></strong>, <strong><code>SetEdad</code></strong>,...y los constructores que creas necesarios.</p>
+</div> <!-- Fin ejercicio -->
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-3">Ejercicio 3</h2>
-
-<blockquote>
-<p>Crea una clase Humano con los campos, como m&#xED;nimo: nombre, edad, peso, sexo, inteligencia, fuerza, destreza y energ&#xED;a.<br>
-Los m&#xE9;todos <strong><code>MostrarInformaci&#xF3;n</code></strong>, <strong><code>SetNombre</code></strong>, <strong><code>SetEdad</code></strong>,...y los constructores que creas necesarios.</p>
-</blockquote>
-<h2 class="mume-header" id="white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</h2>
-
-<blockquote>
-<p>Crea un proyecto con <strong>los TAD necesarios</strong> para que el siguiente c&#xF3;digo perteneciente a la Main, pueda ser ejecutado sin problemas:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Compas</span> compas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Compas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-4">✅ Ejercicio 4 </h2>
+<p>Crea un proyecto con <strong>los TAD necesarios</strong> para que el siguiente código perteneciente a la Main, pueda ser ejecutado sin problemas:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Compas</span> compas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Compas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Circulo</span> circulo <span class="token operator">=</span> compas<span class="token punctuation">.</span><span class="token function">DibujaCirculo</span><span class="token punctuation">(</span><span class="token number">3.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Rotulador</span> rotulador <span class="token operator">=</span> Estuche<span class="token punctuation">.</span><span class="token function">GetRotuladores</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                       <span class="token punctuation">[</span>
@@ -380,178 +233,77 @@ rotulador<span class="token punctuation">.</span><span class="token function">Ro
 <span class="token class-name">Pincel</span> pincel <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Pincel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 pincel<span class="token punctuation">.</span><span class="token function">SetColor</span><span class="token punctuation">(</span>Color<span class="token punctuation">.</span>Verde<span class="token punctuation">)</span><span class="token punctuation">;</span>
 pincel<span class="token punctuation">.</span><span class="token function">Pinta</span><span class="token punctuation">(</span>circulo<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-</pre><p>&#x1F4A1; <strong>Pistas:</strong></p>
+</code></pre><blockquote>
+<p>💡 <strong>Pistas:</strong></p>
 <ol>
-<li>El circulo tendr&#xE1; un <strong>atributo</strong> <strong><code>radio</code></strong>.</li>
-<li>El rotulador tendr&#xE1; un <strong>atributo</strong> <strong><code>color</code></strong> de tipo <strong>enumerado</strong> y solo rotula per&#xED;metros.</li>
-<li>Habr&#xE1; una <strong>clase est&#xE1;tica</strong> <strong><code>Estuche</code></strong> con un solo m&#xE9;todo tambi&#xE9;n <strong>est&#xE1;tico</strong> que <strong>devolver&#xE1; un array de rotuladores</strong> con colores creados de forma aleatoria.</li>
-<li>El pincel tambi&#xE9;n tiene un atributo color y solo pinta &#xE1;reas.</li>
+<li>El circulo tendrá un <strong>atributo</strong> <strong><code>radio</code></strong>.</li>
+<li>El rotulador tendrá un <strong>atributo</strong> <strong><code>color</code></strong> de tipo <strong>enumerado</strong> y &gt; solo rotula perímetros.</li>
+<li>Habrá una <strong>clase estática</strong> <strong><code>Estuche</code></strong> con un solo método también &gt; <strong>estático</strong> que <strong>devolverá un array de rotuladores</strong> con colores creados &gt; de forma aleatoria.</li>
+<li>El pincel también tiene un atributo color y solo pinta áreas.</li>
 </ol>
-<p>La salida por pantalla del programa podr&#xED;a ser algo como lo siguiente:</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">Dibujado un c&#xED;rculo de radio 3,5 
-Rotulado el per&#xED;metro de 21,99 cm de color Azul.
-Pintada el area de  38,48 cm de color Verde.
-</pre></blockquote>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
-
-<blockquote>
-<p>A partir del siguiente texto:<br>
-&quot;<em>Una cadena de muebles a nivel nacional tiene tiendas ubicadas por toda la geograf&#xED;a espa&#xF1;ola.<br>
-Cada una de estas tiendas de muebles almacena informaci&#xF3;n sobre: sof&#xE1;s, sillas y mesas. De todos ellos es com&#xFA;n, como m&#xED;nimo, color(enumeraci&#xF3;n), peso, dimensiones (estructura), fabricante y precio. En cambio los sof&#xE1;s incluye informaci&#xF3;n de la tela con el que est&#xE1; tapizado y si es abatible o no, las sillas la longitud del respaldo y las mesas el tipo de madera que est&#xE1; hecho.</em>&quot;</p>
-<p>Crea <strong>una clase Mueble</strong> que contenga los campos, constructores y m&#xE9;todos necesarios para recoger la informaci&#xF3;n de un mueble y devolver mediante un m&#xE9;todo ACadena esa informaci&#xF3;n. <strong>Importante que al recoger los valores de color pertenezcan a la enumeraci&#xF3;n</strong>.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Debes de fijarte que el ejercicio pide que hagas <strong>solo la clase Mueble</strong>, con las caracter&#xED;sticas comunes a todos los muebles, el resto de texto se usar&#xE1; en ejercicios posteriores.</p>
 </blockquote>
-<h2 class="mume-header" id="white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</h2>
-
+<p>La salida por pantalla del programa podría ser algo como lo siguiente:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>Dibujado un círculo de radio 3,5 
+Rotulado el perímetro de 21,99 cm de color Azul.
+Pintada el area de  38,48 cm de color Verde.
+</code></pre></div> <!-- Fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-5">Ejercicio 5 </h2>
+<p>A partir del siguiente texto:<br>
+"<em>Una cadena de muebles a nivel nacional tiene tiendas ubicadas por toda la geografía española.<br>
+Cada una de estas tiendas de muebles almacena información sobre: sofás, sillas y mesas. De todos ellos es común, como mínimo, color(enumeración), peso, dimensiones (estructura), fabricante y precio. En cambio los sofás incluye información de la tela con el que está tapizado y si es abatible o no, las sillas la longitud del respaldo y las mesas el tipo de madera que está hecho.</em>"</p>
+<p>Crea <strong>una clase Mueble</strong> que contenga los campos, constructores y métodos necesarios para recoger la información de un mueble y devolver mediante un método ACadena esa información. <strong>Importante que al recoger los valores de color pertenezcan a la enumeración</strong>.</p>
 <blockquote>
-<p>A partir del primer ejercicio y teniendo en cuenta la relaci&#xF3;n entre las clases, crea las clase Empresa.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> El m&#xE9;todo DatosEmpresa de Empresa devolver&#xE1; la informaci&#xF3;n de la empresa sin los empleados, mientras que ACadena incluir&#xE1; los empleados.</p>
-<p align="center" style="zoom:0.9"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="392.1335px" preserveAspectRatio="none" style="width:1001px;height:392px;background:#00000000;" version="1.1" viewBox="0 0 1001 392" width="1001.1919px" zoomAndPan="magnify"><defs><filter height="300%" id="f11ifoocffa7sn" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.3837902264600714"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.767580452920143" dy="4.767580452920143" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[267282629f1778b9c75091f9d8fe6097]
-class Empleado--><rect codeline="10" fill="#FFFAFA" filter="url(#f11ifoocffa7sn)" height="255.1028" id="Empleado" style="stroke:#000000;stroke-width:1.7878426698450536;" width="369.4875" x="615.0179" y="41.1204"/><ellipse cx="760.7271" cy="60.1907" fill="#ADD1B2" rx="13.1108" ry="13.1108" style="stroke:#000000;stroke-width:1.1918951132300357;"/><path d="M764.0234,55.2741 Q764.2096,55.0134 764.4331,54.883 Q764.6566,54.7527 764.9173,54.7527 Q765.3643,54.7527 765.6436,55.0693 Q765.923,55.3673 765.923,56.0936 L765.923,57.8255 Q765.923,58.5518 765.6436,58.8684 Q765.3643,59.185 764.9173,59.185 Q764.5076,59.185 764.2655,58.9429 Q764.0234,58.7195 763.893,58.1049 Q763.8372,57.6765 763.6137,57.4531 Q763.2226,57.0061 762.4963,56.7454 Q761.77,56.4847 761.025,56.4847 Q760.1125,56.4847 759.3489,56.8757 Q758.604,57.2668 758.008,58.1608 Q757.4307,59.0547 757.4307,60.2838 L757.4307,61.5875 Q757.4307,63.0587 758.4923,64.0457 Q759.5538,65.0142 761.4534,65.0142 Q762.5708,65.0142 763.3529,64.7162 Q763.8185,64.5299 764.3214,64.0085 Q764.638,63.6919 764.8056,63.5988 Q764.9918,63.5057 765.2339,63.5057 Q765.625,63.5057 765.923,63.8223 Q766.2396,64.1202 766.2396,64.5299 Q766.2396,64.9397 765.8299,65.4239 Q765.2339,66.1129 764.2841,66.504 Q762.9991,67.0441 761.4534,67.0441 Q759.6469,67.0441 758.2129,66.2992 Q757.0396,65.7032 756.2202,64.4368 Q755.4008,63.1518 755.4008,61.6247 L755.4008,60.2466 Q755.4008,58.6636 756.1271,57.3041 Q756.872,55.926 758.1757,55.1996 Q759.4793,54.4547 760.9505,54.4547 Q761.8258,54.4547 762.5894,54.6596 Q763.3716,54.8458 764.0234,55.2741 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.3027" lengthAdjust="spacing" textLength="67.938" x="785.1609" y="66.0431">Empleado</text><line style="stroke:#000000;stroke-width:1.7878426698450536;" x1="616.2098" x2="983.3135" y1="79.261" y2="79.261"/><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="129.9166" x="622.1692" y="97.6388">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="156.1383" x="622.1692" y="114.1298">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="177.5924" x="622.1692" y="130.6208">-a&#xF1;oNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="122.7652" x="622.1692" y="147.1117">+categoria: Categoria</text><line style="stroke:#000000;stroke-width:1.7878426698450536;" x1="616.2098" x2="983.3135" y1="154.7601" y2="154.7601"/><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="355.1847" x="622.1692" y="173.1379">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="157.3302" x="622.1692" y="189.6289">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="123.9571" x="622.1692" y="206.1199">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="146.6031" x="622.1692" y="222.6109">+GetA&#xF1;oNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="97.7354" x="622.1692" y="239.1018">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="257.4493" x="622.1692" y="255.5928">+SetCategoria(in categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="104.8868" x="622.1692" y="272.0838">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="108.4625" x="622.1692" y="288.5748">+Acadena(): string</text><!--MD5=[7d0e5ddd73bd8fec86b8967827845935]
-class Empresa--><rect codeline="27" fill="#FFFAFA" filter="url(#f11ifoocffa7sn)" height="321.0667" id="Empresa" style="stroke:#000000;stroke-width:1.7878426698450536;" width="535.1609" x="8.3433" y="8.3433"/><ellipse cx="240.4648" cy="27.4136" fill="#ADD1B2" rx="13.1108" ry="13.1108" style="stroke:#000000;stroke-width:1.1918951132300357;"/><path d="M243.7612,22.497 Q243.9474,22.2363 244.1709,22.1059 Q244.3944,21.9756 244.6551,21.9756 Q245.1021,21.9756 245.3814,22.2922 Q245.6608,22.5901 245.6608,23.3164 L245.6608,25.0484 Q245.6608,25.7747 245.3814,26.0913 Q245.1021,26.4079 244.6551,26.4079 Q244.2454,26.4079 244.0033,26.1658 Q243.7612,25.9423 243.6308,25.3278 Q243.5749,24.8994 243.3515,24.676 Q242.9604,24.229 242.2341,23.9683 Q241.5077,23.7075 240.7628,23.7075 Q239.8503,23.7075 239.0867,24.0986 Q238.3418,24.4897 237.7458,25.3836 Q237.1685,26.2776 237.1685,27.5067 L237.1685,28.8103 Q237.1685,30.2816 238.23,31.2686 Q239.2916,32.237 241.1912,32.237 Q242.3086,32.237 243.0907,31.9391 Q243.5563,31.7528 244.0591,31.2314 Q244.3757,30.9148 244.5434,30.8217 Q244.7296,30.7285 244.9717,30.7285 Q245.3628,30.7285 245.6608,31.0451 Q245.9774,31.3431 245.9774,31.7528 Q245.9774,32.1625 245.5676,32.6468 Q244.9717,33.3358 244.0219,33.7269 Q242.7369,34.267 241.1912,34.267 Q239.3847,34.267 237.9507,33.5221 Q236.7774,32.9261 235.958,31.6597 Q235.1386,30.3747 235.1386,28.8476 L235.1386,27.4695 Q235.1386,25.8865 235.8649,24.527 Q236.6098,23.1488 237.9134,22.4225 Q239.2171,21.6776 240.6883,21.6776 Q241.5636,21.6776 242.3272,21.8824 Q243.1094,22.0687 243.7612,22.497 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.3027" lengthAdjust="spacing" textLength="60.7867" x="264.8987" y="33.266">Empresa</text><line style="stroke:#000000;stroke-width:1.7878426698450536;" x1="9.5352" x2="542.3123" y1="46.4839" y2="46.4839"/><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="127.5328" x="15.4946" y="64.8617">-cif : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="181.1681" x="15.4946" y="81.3527">-razonSocial : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="100.1192" x="15.4946" y="97.8436">-direccion : string</text><line style="stroke:#000000;stroke-width:1.7878426698450536;" x1="9.5352" x2="542.3123" y1="105.492" y2="105.492"/><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="462.4553" x="15.4946" y="123.8698">+Empresa(in cif : string, in razonSocial : string, in direccion : string, in dni : string,</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="228.8439" x="15.4946" y="140.3608">in nombre : string, in a&#xF1;oNacimento : int)</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="147.795" x="15.4946" y="156.8518">+Empresa(in e : Empresa)</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="150.1788" x="15.4946" y="173.3428">+NombreGerente() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="151.3707" x="15.4946" y="189.8337">+GetRazonSocial() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="133.4923" x="15.4946" y="206.3247">+GetDireccion() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="95.3516" x="15.4946" y="222.8157">+GetCif() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="439.8093" x="15.4946" y="239.3067">+A&#xF1;adeGerente(in dni : string, in nombre : string, in a&#xF1;oNacimento : int) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="232.4195" x="15.4946" y="255.7977">+SetDireccion(in direccion : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="143.0274" x="15.4946" y="272.2887">+DatosEmpresa() : string</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="171.6329" x="15.4946" y="288.7797">+GetEmpleados() : Empleado[]</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="520.8582" x="15.4946" y="305.2706">+Contrata(in dni : string, in nombre : string, in a&#xF1;oNacimento : int, in categoria : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="13.1108" lengthAdjust="spacing" textLength="108.4625" x="15.4946" y="321.7616">+Acadena(): string</text><!--MD5=[7e1ce8ab2bf669717f28e918f4971b9a]
-class Categoria--><rect codeline="48" fill="#FFFAFA" filter="url(#f11ifoocffa7sn)" height="38.1406" id="Categoria" style="stroke:#000000;stroke-width:1.7878426698450536;" width="102.503" x="748.5101" y="337.9023"/><ellipse cx="766.3886" cy="356.9726" fill="#EB937F" rx="13.1108" ry="13.1108" style="stroke:#000000;stroke-width:1.1918951132300357;"/><path d="M765.0291,357.9224 L765.0291,360.9021 L770.1877,360.9021 L770.1877,359.8033 Q770.1877,359.077 770.4671,358.7604 Q770.765,358.4438 771.212,358.4438 Q771.659,358.4438 771.9383,358.7604 Q772.2177,359.077 772.2177,359.8033 L772.2177,362.9321 L762.6825,362.9321 Q761.9376,362.9321 761.621,362.6527 Q761.323,362.3734 761.323,361.9078 Q761.323,361.4608 761.6396,361.1815 Q761.9562,360.9021 762.6825,360.9021 L762.9991,360.9021 L762.9991,352.9686 L762.6825,352.9686 Q761.9376,352.9686 761.621,352.6892 Q761.323,352.4099 761.323,351.9443 Q761.323,351.4973 761.621,351.218 Q761.9376,350.9386 762.6825,350.9386 L771.7707,350.9386 L771.7707,354.0301 Q771.7707,354.7564 771.4914,355.073 Q771.2306,355.371 770.765,355.371 Q770.3181,355.371 770.0387,355.073 Q769.7594,354.7564 769.7594,354.0301 L769.7594,352.9686 L765.0291,352.9686 L765.0291,355.8924 L766.7983,355.8924 Q766.7983,355.1103 766.9473,354.8868 Q767.2639,354.4026 767.8226,354.4026 Q768.2695,354.4026 768.5489,354.7192 Q768.8282,355.0171 768.8282,355.7434 L768.8282,358.09 Q768.8282,358.7418 768.6792,358.9653 Q768.3626,359.4309 767.8226,359.4309 Q767.2639,359.4309 766.9473,358.9467 Q766.7983,358.7232 766.7983,357.9224 L765.0291,357.9224 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14.3027" lengthAdjust="spacing" textLength="64.3623" x="783.0751" y="362.825">Categoria</text><!--MD5=[4c0d8c6dc72817c2e26b80705e19b643]
-reverse link Empresa to Empleado--><path codeline="53" d="M559.3564,168.6532 C578.1168,168.6532 596.7223,168.6532 614.7914,168.6532 " fill="none" id="Empresa-backto-Empleado" style="stroke:#000000;stroke-width:1.1918951132300357;"/><polygon fill="#000000" points="543.5757,168.6532,550.7271,173.4207,557.8784,168.6532,550.7271,163.8856,543.5757,168.6532" style="stroke:#000000;stroke-width:1.1918951132300357;"/><text fill="#000000" font-family="sans-serif" font-size="15.4946" lengthAdjust="spacing" textLength="8.3433" x="553.3443" y="185.0801">1</text><text fill="#000000" font-family="sans-serif" font-size="15.4946" lengthAdjust="spacing" textLength="26.2217" x="578.9752" y="185.209">1..n</text><!--MD5=[26e9fc1e267e578bb7af05bfe7c81018]
-reverse link Empleado to Categoria--><path codeline="54" d="M799.7616,314.1001 C799.7616,322.0143 799.7616,329.9285 799.7616,337.8427 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:1.1918951132300357;"/><ellipse cx="799.7616" cy="305.7449" rx="9.5352" ry="9.5352" style="stroke:#000000;stroke-width:1.1918951132300357;fill:none;"/><line style="stroke:#000000;stroke-width:1.1918951132300357;fill:none;" x1="799.7616" x2="799.7616" y1="315.2801" y2="296.2098"/><line style="stroke:#000000;stroke-width:1.1918951132300357;fill:none;" x1="790.2265" x2="809.2968" y1="305.7449" y2="305.7449"/><!--MD5=[485b3259c0650596df4f64d26e111843]
-@startuml
-
-left to right direction
-scale 1000 width
-skinparam classAttributeIconSize 0
-skinparam ArrowColor Black
-skinparam BackgroundColor Transparent
-skinparam PackageBackgroundColor WhiteSmoke
-skinparam ClassBorderColor Black
-skinparam ClassBackgroundColor Snow
-class Empleado
-{
-    - dni : string {readOnly} 
-    - nombre : string {readOnly}
-    - añoNacimiento : int {readOnly}
-    + categoria: Categoria
-
-    + Empleado(in dni : string, in nombre : string, in nacimiento : int)
-    + Empleado(in e : Empleado)
-    + GetNombre() : string
-    + GetAñoNacimiento() : int
-    + GetDni() : string
-    + SetCategoria(in categoria : Categoria) : void
-    + Salario() : double
-    + Acadena(): string 
-}
-
-class Empresa
-{
-    - cif : string {readOnly} 
-    - razonSocial : string {readOnly}
-    - direccion : string 
-    + Empresa(in cif : string, in razonSocial : string, in direccion : string, in dni : string, 
-in nombre : string, in añoNacimento : int)
-    + Empresa(in e : Empresa)
-    + NombreGerente() : string
-    + GetRazonSocial() : string
-    + GetDireccion() : string
-    + GetCif() : string
-    + AñadeGerente(in dni : string, in nombre : string, in añoNacimento : int) : void
-    + SetDireccion(in direccion : string) : void
-    + DatosEmpresa() : string
-    + GetEmpleados() : Empleado[]
-    + Contrata(in dni : string, in nombre : string, in añoNacimento : int, in categoria : string) : void
-    + Acadena(): string 
-}
-hide empty methods
-hide empty attributes
- enum Categoria
-{
-
-
-}
-Empresa "1" *- - "1..n" Empleado
-Empleado +- Categoria
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p><p>Una posible salida ser&#xED;a:</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">La Empresa S.L
-Mar&#xED;a Soto del Rio
+<p>📌 <strong>Nota:</strong> Debes de fijarte que el ejercicio pide que hagas <strong>solo la clase Mueble</strong>, con las características comunes a todos los muebles, el resto de texto se usará en ejercicios posteriores.</p>
+</blockquote>
+</div> <!-- Fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-6">✅ Ejercicio 6 </h2>
+<p>A partir del primer ejercicio y teniendo en cuenta la relación entre las clases, crea las clase Empresa.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> El método DatosEmpresa de Empresa devolverá la información de la empresa sin los empleados, mientras que ACadena incluirá los empleados.</p>
+</blockquote>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="225.6px" preserveAspectRatio="none" style="width:645px;height:225px;" version="1.1" viewBox="0 0 645 225" width="645px" zoomAndPan="magnify"><defs></defs><g><!--class Empleado--><g id="elem_Empleado"><rect codeline="12" fill="#FFFAFA" height="155.5875" id="Empleado" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.3;" width="246" x="394.8" y="25.5"></rect><ellipse cx="496.35" cy="35.1" fill="#ADD1B2" rx="6.6" ry="6.6" style="stroke:#181818;stroke-width:0.6;"></ellipse><path d="M498.0094,32.625 Q498.1031,32.4938 498.2156,32.4281 Q498.3281,32.3625 498.4594,32.3625 Q498.6844,32.3625 498.825,32.5219 Q498.9656,32.6719 498.9656,33.0375 L498.9656,33.9094 Q498.9656,34.275 498.825,34.4344 Q498.6844,34.5938 498.4594,34.5938 Q498.2531,34.5938 498.1312,34.4719 Q498.0094,34.3594 497.9437,34.05 Q497.9156,33.8344 497.8031,33.7219 Q497.6063,33.4969 497.2406,33.3656 Q496.875,33.2344 496.5,33.2344 Q496.0406,33.2344 495.6563,33.4313 Q495.2813,33.6281 494.9813,34.0781 Q494.6906,34.5281 494.6906,35.1469 L494.6906,35.8031 Q494.6906,36.5437 495.225,37.0406 Q495.7594,37.5281 496.7156,37.5281 Q497.2781,37.5281 497.6719,37.3781 Q497.9063,37.2844 498.1594,37.0219 Q498.3187,36.8625 498.4031,36.8156 Q498.4969,36.7688 498.6188,36.7688 Q498.8156,36.7688 498.9656,36.9281 Q499.125,37.0781 499.125,37.2844 Q499.125,37.4906 498.9188,37.7344 Q498.6188,38.0813 498.1406,38.2781 Q497.4938,38.55 496.7156,38.55 Q495.8063,38.55 495.0844,38.175 Q494.4938,37.875 494.0812,37.2375 Q493.6688,36.5906 493.6688,35.8219 L493.6688,35.1281 Q493.6688,34.3313 494.0344,33.6469 Q494.4094,32.9531 495.0656,32.5875 Q495.7219,32.2125 496.4625,32.2125 Q496.9031,32.2125 497.2875,32.3156 Q497.6813,32.4094 498.0094,32.625 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="37.8" x="508.65" y="38.5371">Empleado</text><line style="stroke:#000000;stroke-width:0.3;" x1="395.4" x2="640.2" y1="44.7" y2="44.7"></line><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="85.8" x="398.4" y="55.8199">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="103.2" x="398.4" y="66.3855">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="118.2" x="398.4" y="76.9512">-añoNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="82.2" x="398.4" y="87.5168">+categoria: Categoria</text><line style="stroke:#000000;stroke-width:0.3;" x1="395.4" x2="640.2" y1="91.7625" y2="91.7625"></line><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="238.8" x="398.4" y="102.8824">+Empleado(in dni : string, in nombre : string, in nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="107.4" x="398.4" y="113.448">+Empleado(in e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="82.2" x="398.4" y="124.0137">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="97.2" x="398.4" y="134.5793">+GetAñoNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="65.4" x="398.4" y="145.1449">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="172.2" x="398.4" y="155.7105">+SetCategoria(in categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="70.2" x="398.4" y="166.2762">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="70.2" x="398.4" y="176.8418">+Acadena(): string</text></g><!--class Empresa--><g id="elem_Empresa"><rect codeline="29" fill="#FFFAFA" height="197.85" id="Empresa" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.3;" width="354.6" x="4.2" y="4.2"></rect><ellipse cx="162.15" cy="13.8" fill="#ADD1B2" rx="6.6" ry="6.6" style="stroke:#181818;stroke-width:0.6;"></ellipse><path d="M163.8094,11.325 Q163.9031,11.1938 164.0156,11.1281 Q164.1281,11.0625 164.2594,11.0625 Q164.4844,11.0625 164.625,11.2219 Q164.7656,11.3719 164.7656,11.7375 L164.7656,12.6094 Q164.7656,12.975 164.625,13.1344 Q164.4844,13.2938 164.2594,13.2938 Q164.0531,13.2938 163.9313,13.1719 Q163.8094,13.0594 163.7438,12.75 Q163.7156,12.5344 163.6031,12.4219 Q163.4063,12.1969 163.0406,12.0656 Q162.675,11.9344 162.3,11.9344 Q161.8406,11.9344 161.4562,12.1313 Q161.0812,12.3281 160.7813,12.7781 Q160.4906,13.2281 160.4906,13.8469 L160.4906,14.5031 Q160.4906,15.2437 161.025,15.7406 Q161.5594,16.2281 162.5156,16.2281 Q163.0781,16.2281 163.4719,16.0781 Q163.7062,15.9844 163.9594,15.7219 Q164.1188,15.5625 164.2031,15.5156 Q164.2969,15.4688 164.4188,15.4688 Q164.6156,15.4688 164.7656,15.6281 Q164.925,15.7781 164.925,15.9844 Q164.925,16.1906 164.7188,16.4344 Q164.4188,16.7813 163.9406,16.9781 Q163.2938,17.25 162.5156,17.25 Q161.6063,17.25 160.8844,16.875 Q160.2938,16.575 159.8813,15.9375 Q159.4688,15.2906 159.4688,14.5219 L159.4688,13.8281 Q159.4688,13.0313 159.8344,12.3469 Q160.2094,11.6531 160.8656,11.2875 Q161.5219,10.9125 162.2625,10.9125 Q162.7031,10.9125 163.0875,11.0156 Q163.4813,11.1094 163.8094,11.325 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="33.6" x="174.45" y="17.2371">Empresa</text><line style="stroke:#000000;stroke-width:0.3;" x1="4.8" x2="358.2" y1="23.4" y2="23.4"></line><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="82.8" x="7.8" y="34.5199">-cif : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="118.2" x="7.8" y="45.0855">-razonSocial : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="65.4" x="7.8" y="55.6512">-direccion : string</text><line style="stroke:#000000;stroke-width:0.3;" x1="4.8" x2="358.2" y1="59.8969" y2="59.8969"></line><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="304.8" x="7.8" y="71.0168">+Empresa(in cif : string, in razonSocial : string, in direccion : string, in dni : string,</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="153" x="7.8" y="81.5824">in nombre : string, in añoNacimento : int)</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="99" x="7.8" y="92.148">+Empresa(in e : Empresa)</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="99.6" x="7.8" y="102.7137">+NombreGerente() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="99.6" x="7.8" y="113.2793">+GetRazonSocial() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="88.2" x="7.8" y="123.8449">+GetDireccion() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="63" x="7.8" y="134.4105">+GetCif() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="292.8" x="7.8" y="144.9762">+AñadeGerente(in dni : string, in nombre : string, in añoNacimento : int) : void</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="153" x="7.8" y="155.5418">+SetDireccion(in direccion : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="94.8" x="7.8" y="166.1074">+DatosEmpresa() : string</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="116.4" x="7.8" y="176.673">+GetEmpleados() : Empleado[]</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="347.4" x="7.8" y="187.2387">+Contrata(in dni : string, in nombre : string, in añoNacimento : int, in categoria : string) : void</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="72" x="7.8" y="197.8043">+ACadena(): string</text></g><!--class Categoria--><g id="elem_Categoria"><rect codeline="49" fill="#FFFAFA" height="19.2" id="Categoria" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.3;" width="56.4" x="489.6" y="202.2"></rect><ellipse cx="498.6" cy="211.8" fill="#EB937F" rx="6.6" ry="6.6" style="stroke:#181818;stroke-width:0.6;"></ellipse><path d="M497.9156,212.2781 L497.9156,213.7781 L500.5125,213.7781 L500.5125,213.225 Q500.5125,212.8594 500.6531,212.7 Q500.8031,212.5406 501.0281,212.5406 Q501.2531,212.5406 501.3937,212.7 Q501.5344,212.8594 501.5344,213.225 L501.5344,214.8 L496.7344,214.8 Q496.3594,214.8 496.2,214.6594 Q496.05,214.5187 496.05,214.2844 Q496.05,214.0594 496.2094,213.9188 Q496.3688,213.7781 496.7344,213.7781 L496.8937,213.7781 L496.8937,209.7844 L496.7344,209.7844 Q496.3594,209.7844 496.2,209.6437 Q496.05,209.5031 496.05,209.2687 Q496.05,209.0438 496.2,208.9031 Q496.3594,208.7625 496.7344,208.7625 L501.3094,208.7625 L501.3094,210.3188 Q501.3094,210.6844 501.1688,210.8438 Q501.0375,210.9938 500.8031,210.9938 Q500.5781,210.9938 500.4375,210.8438 Q500.2969,210.6844 500.2969,210.3188 L500.2969,209.7844 L497.9156,209.7844 L497.9156,211.2563 L498.8063,211.2563 Q498.8063,210.8625 498.8812,210.75 Q499.0406,210.5063 499.3219,210.5063 Q499.5469,210.5063 499.6875,210.6656 Q499.8281,210.8156 499.8281,211.1813 L499.8281,212.3625 Q499.8281,212.6906 499.7531,212.8031 Q499.5938,213.0375 499.3219,213.0375 Q499.0406,213.0375 498.8812,212.7938 Q498.8063,212.6813 498.8063,212.2781 L497.9156,212.2781 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="37.2" x="507" y="215.2371">Categoria</text></g><!--reverse link Empresa to Empleado--><g id="link_Empresa_Empleado"><path codeline="54" d="M366.174,103.2 C378.21,103.2 382.98,103.2 394.638,103.2 " fill="none" id="Empresa-backto-Empleado" style="stroke:#000000;stroke-width:0.6;"></path><polygon fill="#000000" points="358.974,103.2,362.574,105.6,366.174,103.2,362.574,100.8,358.974,103.2" style="stroke:#000000;stroke-width:0.6;"></polygon><text fill="#000000" font-family="sans-serif" font-size="7.8" lengthAdjust="spacing" textLength="4.2" x="363.7439" y="111.4294">1</text><text fill="#000000" font-family="sans-serif" font-size="7.8" lengthAdjust="spacing" textLength="13.2" x="376.7747" y="111.47">1..n</text></g><!--reverse link Empleado to Categoria--><g id="link_Empleado_Categoria"><path codeline="55" d="M517.8,190.602 C517.8,197.616 517.8,195.03 517.8,202.044 " fill="none" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:0.6;"></path><ellipse cx="517.8" cy="185.802" fill="none" rx="4.8" ry="4.8" style="stroke:#000000;stroke-width:0.6;"></ellipse><line style="stroke:#000000;stroke-width:0.6;" x1="517.8" x2="517.8" y1="190.602" y2="181.002"></line><line style="stroke:#000000;stroke-width:0.6;" x1="513" x2="522.6" y1="185.802" y2="185.802"></line></g><!--SRC=[fLJBRjim4BppAnO-sKrij9SUShFb8kWbBUe2FHGzhAcrlB146YJT837oKVs6_bYf1oLQPeC2zSKYP_OnEokLj7FWD1WkzWvoDYGTQoNiWTKH3LOWIxHswPpXxSdHHwdLXfy9taQKfJ7wCTEbDh0gKHuYQEMFXT4dbRVuLuFAUeYKYrYVFGiB6fE_xTdHfj87YhXPtSzAcvnCkcHB6ANQAFqeX9LO-jONxuLePC67wbWIvbgS1VZV77B5S0VMgrK5d8t7FgdowGKwMEbgQoZ5w0Zu-vT-GCaLUuNQ4rcvCUi693egj66yWomyYWuBBKrPNNHpwrEDwxTtetApHA8w99m3Va_keKatdVK91sXv8QIX-Dm3lbPy7RSXr-kfo_Ow8H9QH_tKd8SOBD5mMo7Nfsr97R2Kc9F2wQoVjdY9V3DaiRTDykursmm- -xNLah5ynRjc-wNV_e4pZB8krqYAAZNZJ-LkWEjqxVM5f-8lflPxbFGrDDFPMXy3sbfwJ_KRbdRsoz1m4b-7lfDenhlhUxyitgjGz5yNDwLnj1jnDycHZWBMwBGD0qgr7ru2sw3XzFr7nyYqSWOT_e-6vZxU_6IdooontNlE2QWwkYUegDgIiOBKgOe-4cSXFAzJ29Dt4tWpd_l_nK9DXgzPU82R-H3x1m00]--></g></svg></p><p>Una posible salida sería:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>La Empresa S.L
+María Soto del Rio
 Calle el Pozo, 34 Bajo
-El empleado Mar&#xED;a Soto del Rio con dni: 23453456L tiene un salario 1920 y su categoria es: Gerente
+El empleado María Soto del Rio con dni: 23453456L tiene un salario 1920 y su categoria es: Gerente
 El empleado Juanma Perez Ortiz con dni: 14568712G tiene un salario 1440 y su categoria es: Administrativos
 El empleado Pedro Martinez Sancho con dni: 12346123K tiene un salario 1440 y su categoria es: Administrativos
-</pre></blockquote>
+</code></pre></div> <!-- Fin ejercicio -->
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="white_check_mark-ejercicio-7">&#x2705; Ejercicio 7</h2>
-
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-7">✅ Ejercicio 7 </h2>
+<p>Debes definir un <strong>tipo valor</strong> que represente un <strong>Naipe</strong> de la baraja Española de 48 cartas. El tipo estará compuesto por dos miembros: un valor y un palo, este último sera de tipo enumerado con los siguientes valores posibles: <strong><code>Oros, Copas, Bastos, Espada</code></strong>.<br>
+Crea un método en la clase principal que utilizando el tipo Naipe nos devuelva una baraja con las <strong>48 cartas</strong>, usa una matriz <strong><code>Naipe[,] baraja= new Naipe[4,12]</code></strong> e inicialízala suponiendo que cada fila representa un palo.<br>
+Crea un método que nos mezcle la baraja para que queden sus cartas desordenadas.<br>
+Crea un programa que muestre el resultado de la utilización de los métodos anteriores.</p>
 <blockquote>
-<p>Debes definir un <strong>tipo valor</strong> que represente un <strong>Naipe</strong> de la baraja Espa&#xF1;ola de 48 cartas. El tipo estar&#xE1; compuesto por dos miembros: un valor y un palo, este &#xFA;ltimo sera de tipo enumerado con los siguientes valores posibles: <strong><code>Oros, Copas, Bastos, Espada</code></strong>.<br>
-Crea un m&#xE9;todo en la clase principal que utilizando el tipo Naipe nos devuelva una baraja con las <strong>48 cartas</strong>, usa una matriz <strong><code>Naipe[,] baraja= new Naipe[4,12]</code></strong> e inicial&#xED;zala suponiendo que cada fila representa un palo.<br>
-Crea un m&#xE9;todo que nos mezcle la baraja para que queden sus cartas desordenadas.<br>
-Crea un programa que muestre el resultado de la utilizaci&#xF3;n de los m&#xE9;todos anteriores.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Vuelve a repasar los apuntes donde se explica la creaci&#xF3;n del <strong><code>Tipo Valor</code></strong> y sigue las normas que se explican para este tipo.</p>
+<p>📌 <strong>Nota:</strong> Vuelve a repasar los apuntes donde se explica la creación del <strong><code>Tipo Valor</code></strong> y sigue las normas que se explican para este tipo.</p>
 </blockquote>
-<h2 class="mume-header" id="ejercicio-8">Ejercicio 8</h2>
-
-<blockquote>
-<p>Utilizando el tipo valor Punto definido en los apuntes, vamos a crear otro tipo valor <strong><code>Estrella</code></strong> formado por un punto, el caracter <strong>*</strong> y un color aleatorio de la enumeraci&#xF3;n <strong><code>ConsoleColor</code></strong>.</p>
+</div> <!-- Fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-8">Ejercicio 8 </h2>
+<p>Utilizando el tipo valor Punto definido en los apuntes, vamos a crear otro tipo valor <strong><code>Estrella</code></strong> formado por un punto, el caracter <strong>*</strong> y un color aleatorio de la enumeración <strong><code>ConsoleColor</code></strong>.</p>
 <p>En el programa principal seguiremos los siguientes pasos:</p>
 <ul>
 <li>Deberemos introducir por teclado la cantidad de estrellas a dibujar.</li>
-<li>Adem&#xE1;s almacenaremos los datos en una tabla definida de la siguiente manera <strong><code>Estrella[] estrellas = new Estrella[NumEstrellas];</code></strong></li>
-<li>Generaremos la posici&#xF3;n del Punto y el Color de  cada estrella de forma aleatoria.</li>
-<li>Borraremos la pantalla con el m&#xE9;todo <strong><code>Clear()</code></strong> de la clase <strong><code>Console</code></strong>.</li>
+<li>Además almacenaremos los datos en una tabla definida de la siguiente manera <strong><code>Estrella[] estrellas = new Estrella[NumEstrellas];</code></strong></li>
+<li>Generaremos la posición del Punto y el Color de  cada estrella de forma aleatoria.</li>
+<li>Borraremos la pantalla con el método <strong><code>Clear()</code></strong> de la clase <strong><code>Console</code></strong>.</li>
 <li>Dibujaremos todo el array de estrellas en cada una de las coordenadas introducidas y con el color generado aleatorio.</li>
 </ul>
-<p>&#x1F4CC; <strong>Nota:</strong> para posicionar la estrella en la pantalla usaremos el m&#xE9;todo de la clase <strong><code>Console</code></strong> <strong><code>void SetCursorPosition(int letf, int top);</code></strong> que situar&#xE1; el cursor en una coordenada dentro de las <strong>24 filas</strong> y <strong>80 columnas</strong> que puede tener una consola con origen en la esquina superior izquierda (para generar los puntos, utilizaremos en Next de la clase <em><code>Random</code></em> con el rango entre <strong>24</strong> y <strong>80</strong>). Para pintar el color utilizaremos la propiedad, de la clase <strong><code>Console</code></strong>, <strong><code>ForegroundColor</code></strong>.</p>
-<p align="center" style="zoom:0.9"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="143.6031px" preserveAspectRatio="none" style="width:501px;height:143px;background:#00000000;" version="1.1" viewBox="0 0 501 143" width="501.3055px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jk8739dmu2k0" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.6109660574412534"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.221932114882507" dy="5.221932114882507" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4188b287b597d910fa9f45f2dbe415c5]
-class Punto2D--><rect codeline="11" fill="#FFFAFA" filter="url(#f1jk8739dmu2k0)" height="99.0331" id="Punto2D" style="stroke:#000000;stroke-width:1.9582245430809402;" width="159.2689" x="323.7598" y="18.2768"/><ellipse cx="360.3786" cy="44.5088" fill="#FF7700" rx="14.3603" ry="14.3603" style="stroke:#000000;stroke-width:1.3054830287206267;"/><path d="M357.1761,48.8128 L357.1761,40.1232 Q356.4621,40.1028 356.1154,39.7968 Q355.789,39.4909 355.789,39.0013 Q355.789,38.5117 356.1358,38.2058 Q356.4825,37.8998 357.2781,37.8998 L361.9289,37.8998 Q363.01,37.8998 364.0503,38.3078 Q365.0906,38.6953 365.7229,39.3277 Q366.1921,39.7968 366.702,40.6128 Q367.212,41.4083 367.4772,42.2242 Q367.7423,43.0197 367.7423,44.1824 L367.7423,45.2431 Q367.7423,46.6506 367.2528,47.7521 Q366.7836,48.8332 366.0085,49.5268 Q365.2334,50.1999 364.5602,50.5263 Q363.4791,51.0362 361.7453,51.0362 L357.2781,51.0362 Q356.4825,51.0362 356.1358,50.7303 Q355.789,50.4243 355.789,49.9143 Q355.789,49.4248 356.1358,49.1188 Q356.4825,48.8128 357.1761,48.8128 Z M359.3995,48.8128 L361.7657,48.8128 Q363.0711,48.8128 363.7443,48.4253 Q364.6214,47.9357 365.0702,47.181 Q365.5189,46.4058 365.5189,45.182 L365.5189,44.1212 Q365.5189,43.0809 365.111,42.2854 Q364.4786,41.0411 363.6831,40.5924 Q362.908,40.1232 361.7453,40.1232 L359.3995,40.1232 L359.3995,48.8128 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.6658" font-style="italic" lengthAdjust="spacing" textLength="84.8564" x="379.8303" y="41.0666">&#xAB;dataType&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="15.6658" lengthAdjust="spacing" textLength="62.6632" x="390.9269" y="60.7713">Punto2D</text><line style="stroke:#000000;stroke-width:1.9582245430809402;" x1="325.0653" x2="481.7232" y1="70.7409" y2="70.7409"/><text fill="#000000" font-family="sans-serif" font-size="14.3603" lengthAdjust="spacing" textLength="142.2977" x="331.5927" y="90.87">+X : double {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.3603" lengthAdjust="spacing" textLength="143.6031" x="331.5927" y="108.9326">+Y : double {readOnly}</text><!--MD5=[2f5897d57f8f629ea11c6dca59b36640]
-class Estrella--><rect codeline="17" fill="#FFFAFA" filter="url(#f1jk8739dmu2k0)" height="117.0957" id="Estrella" style="stroke:#000000;stroke-width:1.9582245430809402;" width="236.2924" x="9.1384" y="9.1384"/><ellipse cx="81.9191" cy="35.3704" fill="#FF7700" rx="14.3603" ry="14.3603" style="stroke:#000000;stroke-width:1.3054830287206267;"/><path d="M78.7165,39.6744 L78.7165,30.9848 Q78.0026,30.9644 77.6558,30.6585 Q77.3295,30.3525 77.3295,29.8629 Q77.3295,29.3734 77.6762,29.0674 Q78.023,28.7614 78.8185,28.7614 L83.4693,28.7614 Q84.5504,28.7614 85.5907,29.1694 Q86.631,29.557 87.2634,30.1893 Q87.7325,30.6585 88.2425,31.4744 Q88.7524,32.2699 89.0176,33.0858 Q89.2828,33.8814 89.2828,35.0441 L89.2828,36.1048 Q89.2828,37.5122 88.7932,38.6137 Q88.3241,39.6948 87.549,40.3884 Q86.7738,41.0615 86.1007,41.3879 Q85.0196,41.8978 83.2857,41.8978 L78.8185,41.8978 Q78.023,41.8978 77.6762,41.5919 Q77.3295,41.2859 77.3295,40.7759 Q77.3295,40.2864 77.6762,39.9804 Q78.023,39.6744 78.7165,39.6744 Z M80.9399,39.6744 L83.3061,39.6744 Q84.6116,39.6744 85.2848,39.2869 Q86.1619,38.7973 86.6106,38.0426 Q87.0594,37.2675 87.0594,36.0436 L87.0594,34.9829 Q87.0594,33.9426 86.6514,33.147 Q86.0191,31.9027 85.2236,31.454 Q84.4484,30.9848 83.2857,30.9848 L80.9399,30.9848 L80.9399,39.6744 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.6658" font-style="italic" lengthAdjust="spacing" textLength="84.8564" x="106.0705" y="31.9282">&#xAB;dataType&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="15.6658" lengthAdjust="spacing" textLength="54.8303" x="121.0836" y="51.6329">Estrella</text><line style="stroke:#000000;stroke-width:1.9582245430809402;" x1="10.4439" x2="244.1253" y1="61.6025" y2="61.6025"/><text fill="#000000" font-family="sans-serif" font-size="14.3603" lengthAdjust="spacing" textLength="220.6266" x="16.9713" y="81.7317">+Coordenada : Punto2D {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.3603" lengthAdjust="spacing" textLength="207.5718" x="16.9713" y="99.7942">+Color : ConsoleColor {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14.3603" lengthAdjust="spacing" textLength="174.9347" x="16.9713" y="117.8568">+Caracter : char {readOnly}</text><!--MD5=[aad911e382751fa18fd3448d9586d663]
-reverse link Estrella to Punto2D--><path codeline="23" d="M263.094,67.8851 C283.7728,67.8851 304.53,67.8851 323.4726,67.8851 " fill="none" id="Estrella-backto-Punto2D" style="stroke:#000000;stroke-width:1.3054830287206267;"/><polygon fill="#000000" points="245.7702,67.8851,253.6031,73.107,261.436,67.8851,253.6031,62.6632,245.7702,67.8851" style="stroke:#000000;stroke-width:1.3054830287206267;"/><text fill="#000000" font-family="sans-serif" font-size="16.9713" lengthAdjust="spacing" textLength="9.1384" x="255.9607" y="86.4031">1</text><text fill="#000000" font-family="sans-serif" font-size="16.9713" lengthAdjust="spacing" textLength="9.1384" x="304.0369" y="86.8148">1</text><!--MD5=[2c860561cf9de90c4c5a56e2923a68f2]
-@startuml
-left to right direction
-scale 500 width
-skinparam classAttributeIconSize 0
-skinparam BackgroundColor Transparent
-skinparam ArrowColor Black
-skinparam PackageBackgroundColor WhiteSmoke
-skinparam ClassBorderColor Black
-skinparam ClassBackgroundColor Snow
-
-hide methods
-class Punto2D <<(D,#FF7700) dataType>>
-{
-    + X : double {readOnly}
-    + Y : double {readOnly}
-}
-hide methods
-class Estrella <<(D,#FF7700) dataType>>
-{
-    + Coordenada : Punto2D {readOnly}
-    + Color : ConsoleColor {readOnly}
-    + Caracter : char {readOnly}
-}
-Estrella "1" *- - "1" Punto2D
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p></blockquote>
+<blockquote>
+<p>📌 <strong>Nota:</strong> para posicionar la estrella en la pantalla usaremos el método de la clase <strong><code>Console</code></strong> <strong><code>void SetCursorPosition(int letf, int top);</code></strong> que situará el cursor en una coordenada dentro de las <strong>24 filas</strong> y <strong>80 columnas</strong> que puede tener una consola con origen en la esquina superior izquierda (para generar los puntos, utilizaremos en Next de la clase <em><code>Random</code></em> con el rango entre <strong>24</strong> y <strong>80</strong>). Para pintar el color utilizaremos la propiedad, de la clase <strong><code>Console</code></strong>, <strong><code>ForegroundColor</code></strong>.</p>
+</blockquote>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="117px" preserveAspectRatio="none" style="width:468px;height:117px;" version="1.1" viewBox="0 0 468 117" width="468px" zoomAndPan="magnify"><defs></defs><g><!--class Punto2D--><g id="elem_Punto2D"><rect codeline="10" fill="#FFFAFA" height="85.9219" id="Punto2D" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="156" x="305" y="16"></rect><ellipse cx="348.35" cy="37.3516" fill="#FF7700" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M345.8969,40.6484 L345.8969,33.9922 Q345.35,33.9766 345.0844,33.7422 Q344.8344,33.5078 344.8344,33.1328 Q344.8344,32.7578 345.1,32.5234 Q345.3656,32.2891 345.975,32.2891 L349.5375,32.2891 Q350.3656,32.2891 351.1625,32.6016 Q351.9594,32.8984 352.4438,33.3828 Q352.8031,33.7422 353.1938,34.3672 Q353.5844,34.9766 353.7875,35.6016 Q353.9906,36.2109 353.9906,37.1016 L353.9906,37.9141 Q353.9906,38.9922 353.6156,39.8359 Q353.2563,40.6641 352.6625,41.1953 Q352.0688,41.7109 351.5531,41.9609 Q350.725,42.3516 349.3969,42.3516 L345.975,42.3516 Q345.3656,42.3516 345.1,42.1172 Q344.8344,41.8828 344.8344,41.4922 Q344.8344,41.1172 345.1,40.8828 Q345.3656,40.6484 345.8969,40.6484 Z M347.6,40.6484 L349.4125,40.6484 Q350.4125,40.6484 350.9281,40.3516 Q351.6,39.9766 351.9438,39.3984 Q352.2875,38.8047 352.2875,37.8672 L352.2875,37.0547 Q352.2875,36.2578 351.975,35.6484 Q351.4906,34.6953 350.8813,34.3516 Q350.2875,33.9922 349.3969,33.9922 L347.6,33.9922 L347.6,40.6484 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="65" x="366.65" y="33.457">«dataType»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55" x="371.65" y="50.627">Punto2D</text><line style="stroke:#000000;stroke-width:0.5;" x1="306" x2="460" y1="58.7031" y2="58.7031"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="311" y="77.2363">+X : double {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="311" y="94.8457">+Y : double {readOnly}</text></g><!--class Estrella--><g id="elem_Estrella"><rect codeline="16" fill="#FFFAFA" height="103.5313" id="Estrella" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="238" x="7" y="7"></rect><ellipse cx="91.25" cy="28.3516" fill="#FF7700" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"></ellipse><path d="M88.7969,31.6484 L88.7969,24.9922 Q88.25,24.9766 87.9844,24.7422 Q87.7344,24.5078 87.7344,24.1328 Q87.7344,23.7578 88,23.5234 Q88.2656,23.2891 88.875,23.2891 L92.4375,23.2891 Q93.2656,23.2891 94.0625,23.6016 Q94.8594,23.8984 95.3438,24.3828 Q95.7031,24.7422 96.0938,25.3672 Q96.4844,25.9766 96.6875,26.6016 Q96.8906,27.2109 96.8906,28.1016 L96.8906,28.9141 Q96.8906,29.9922 96.5156,30.8359 Q96.1563,31.6641 95.5625,32.1953 Q94.9688,32.7109 94.4531,32.9609 Q93.625,33.3516 92.2969,33.3516 L88.875,33.3516 Q88.2656,33.3516 88,33.1172 Q87.7344,32.8828 87.7344,32.4922 Q87.7344,32.1172 88,31.8828 Q88.2656,31.6484 88.7969,31.6484 Z M90.5,31.6484 L92.3125,31.6484 Q93.3125,31.6484 93.8281,31.3516 Q94.5,30.9766 94.8438,30.3984 Q95.1875,29.8047 95.1875,28.8672 L95.1875,28.0547 Q95.1875,27.2578 94.875,26.6484 Q94.3906,25.6953 93.7813,25.3516 Q93.1875,24.9922 92.2969,24.9922 L90.5,24.9922 L90.5,31.6484 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="65" x="109.75" y="24.457">«dataType»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="118.75" y="41.627">Estrella</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="244" y1="49.7031" y2="49.7031"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="226" x="13" y="68.2363">+Coordenada : Punto2D {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="212" x="13" y="85.8457">+Color : ConsoleColor {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="175" x="13" y="103.4551">+Caracter : char {readOnly}</text></g><!--reverse link Estrella to Punto2D--><g id="link_Estrella_Punto2D"><path codeline="22" d="M257.17,59 C277.36,59 285.87,59 304.65,59 " fill="none" id="Estrella-backto-Punto2D" style="stroke:#000000;stroke-width:1.0;"></path><polygon fill="#000000" points="245.17,59,251.17,63,257.17,59,251.17,55,245.17,59" style="stroke:#000000;stroke-width:1.0;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="253.0285" y="73.0339">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="290.1045" y="73.2524">1</text></g><!--SRC=[XP3DQm8n4CNl-rSCzj8lmVOYY0YkLkYfWaBRuxYPxeQD6PdC8bRytnjTMzOFQ2v3UB-yzoQElXIKGMnUA1WhbAbbduJI-XKABY5p6C9GLUoYKdhDsC_iDq6dWQIObRbmvSs87GlC1Ns84dbjK4CHNjT0wkABXZIDLypftEUzi4gp9PVKO4VxFYcB8RbkLWDdLZFFwoGfh25OaXPiGd9O3AQLLtuUGxz_EtwycKowtKxd3WmgpZSh6WoIRGBnFC07zC1mjN04Mo4qRzvjTaVjywgskvRt4bJ8EVm_SCJx9JqQZEw_DI-Yw_LwSVh0Zkhh9HL_9bFQWrc1SjhohrBhgGNtxVPX7WD_0000]--></g></svg></p></div> <!-- Fin ejercicio -->
 
       </div>
       
       
-    
-    
     
     
     

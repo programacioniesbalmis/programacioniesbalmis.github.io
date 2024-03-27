@@ -1,478 +1,281 @@
 <!DOCTYPE html><html><head>
-      <title>Ejercicios Herencia y Abstracci&#xF3;n</title>
+      <title>Ejercicios Herencia y Abstracción</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview .slides > section {
-  height: 100%;
-  font-size: 90%;
-  overflow-y: auto !important;
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
-.markdown-preview.markdown-preview .slide code {
-  color: yellow;
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-herencia-y-abstracci%C3%B3n">Ejercicios Herencia y Abstracci&#xF3;n</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-herencia-y-abstracción">Ejercicios Herencia y Abstracción </h1>
 <p><a href="./2_ejercicios_herencia_abstraccion.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#ejercicio-1">Ejercicio 1</a></li>
-<li><a href="#ejercicio-2">Ejercicio 2</a></li>
-<li><a href="#ejercicio-3">Ejercicio 3</a></li>
-<li><a href="#white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</a></li>
-<li><a href="#ejercicio-5">Ejercicio 5</a></li>
-<li><a href="#white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</a></li>
-</ol>
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2" class="md-toc-link">
+            <p>Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3" class="md-toc-link">
+            <p>Ejercicio 3</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-4" class="md-toc-link">
+            <p>✅ Ejercicio 4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5" class="md-toc-link">
+            <p>Ejercicio 5</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-6" class="md-toc-link">
+            <p>✅ Ejercicio 6</p>
+
+          </a></div>
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
-
-<blockquote>
-<p>Crea las clases silla, mesa y sof&#xE1; hijas de la clase mueble del ejercicio 4 de la entrega anterior. A cada una de ellas le deber&#xE1;s de a&#xF1;adir los campos y m&#xE9;todos necesarios que identifiquen a dichos elementos seg&#xFA;n el texto del ejercicio 4.<br>
-Crea un m&#xE9;todo com&#xFA;n para todos los muebles que nos permita calcular el precio del transporte seg&#xFA;n su peso, dimensiones y fabricante (puedes usar la f&#xF3;rmula que consideres para hacer este c&#xE1;lculo).<br>
+<div class="ejercicio">
+<h2 id="ejercicio-1">Ejercicio 1 </h2>
+<p>Crea las clases silla, mesa y sofá hijas de la clase mueble del ejercicio 4 de la entrega anterior. A cada una de ellas le deberás de añadir los campos y métodos necesarios que identifiquen a dichos elementos según el texto del ejercicio 4.<br>
+Crea un método común para todos los muebles que nos permita calcular el precio del transporte según su peso, dimensiones y fabricante (puedes usar la fórmula que consideres para hacer este cálculo).<br>
 Finalmente, haz un programa principal que nos cree instancias de los tres tipos de<br>
-muebles, que llame a los m&#xE9;todos de las clases para mostrar la informaci&#xF3;n y que llame al m&#xE9;todo para calcular el precio del transporte y lo muestre.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Debes pensar en que clase o clases vas a incluir el m&#xE9;todo de calcular precio, para seguir las normas que se explican en el tema.</p>
-</blockquote>
-<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
-
+muebles, que llame a los métodos de las clases para mostrar la información y que llame al método para calcular el precio del transporte y lo muestre.</p>
 <blockquote>
+<p>📌 <strong>Nota:</strong> Debes pensar en que clase o clases vas a incluir el método de calcular precio, para seguir las normas que se explican en el tema.</p>
+</blockquote>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-2">Ejercicio 2 </h2>
 <p>Se pide implementar usando POO y herencia las siguientes entidades:</p>
 <ul>
-<li>La clase <strong><code>Local</code></strong>:
+<li>
+<p>La clase <strong><code>Local</code></strong>:</p>
 <ul>
 <li>Con los campos ciudad, calle, numero plantas y dimensiones.</li>
-<li>Con la operaci&#xF3;n GetNumeroPlantas para poder acceder al atributo numeroPlantas.</li>
-<li>Con la operaci&#xF3;n ACadena que devolver&#xE1; un string con los datos de un local.</li>
+<li>Con la operación GetNumeroPlantas para poder acceder al atributo numeroPlantas.</li>
+<li>Con la operación ACadena que devolverá un string con los datos de un local.</li>
 </ul>
 </li>
-<li>La clase <strong><code>LocalComercial</code></strong> que heredar&#xE1; de Local.
+<li>
+<p>La clase <strong><code>LocalComercial</code></strong> que heredará de Local.</p>
 <ul>
-<li>Con los campos raz&#xF3;n social y n&#xFA;mero licencia.</li>
-<li>Con la operaci&#xF3;n ACadena que devolver&#xE1; un string con los datos de un local comercial.</li>
+<li>Con los campos razón social y número licencia.</li>
+<li>Con la operación ACadena que devolverá un string con los datos de un local comercial.</li>
 </ul>
 </li>
-<li>La clase <strong><code>Cine</code></strong> que heredar&#xE1; de LocalComercial.
+<li>
+<p>La clase <strong><code>Cine</code></strong> que heredará de LocalComercial.</p>
 <ul>
 <li>Con el campo aforo sala.</li>
-<li>Con la operaci&#xF3;n ACadena que devolver&#xE1; un string con los datos de un cine.</li>
+<li>Con la operación ACadena que devolverá un string con los datos de un cine.</li>
 </ul>
 </li>
 </ul>
-<p>Deberemos implementar un programa principal que cree un array de 3 cines y lo inicialice con datos de supuestos cines. Despu&#xE9;s deber&#xE1; mostrar por pantalla la informaci&#xF3;n completa de cada uno de los cines mediante un foreach, a trav&#xE9;s del m&#xE9;todo ACadena.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Deber&#xE1;s soobreescribir el m&#xE9;todo ACadena, para poder aprovechar el c&#xF3;digo implementado en las clases padre.</p>
-</blockquote>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-3">Ejercicio 3</h2>
-
+<p>Deberemos implementar un programa principal que cree un array de 3 cines y lo inicialice con datos de supuestos cines. Después deberá mostrar por pantalla la información completa de cada uno de los cines mediante un foreach, a través del método ACadena.</p>
 <blockquote>
-<p>Para dar nuestros primeros pasos con el polimorfismo de datos <strong>del principio de sustituci&#xF3;n de Liskov</strong>, vamos a recordar el c&#xE1;lculo de factorial y de n&#xFA;mero primo.<br>
-Vamos a necesitar una clase padre <strong><code>ElNoCalculador</code></strong> con un atributo <strong><code>protected short numero</code></strong>, que ser&#xE1; la base del calculo posterior, tambi&#xE9;n tendr&#xE1; dos m&#xE9;todos virtuales <strong><code>Factorial</code></strong> y <strong><code>Primo</code></strong> devolver&#xE1;n un double y un booleano respectivamente <strong><code>(en esta clase no se realizar&#xE1;n los c&#xE1;lculos, los m&#xE9;todos devolver&#xE1;n 0 y false)</code></strong>. Adem&#xE1;s, crearemos una clase hija <strong>ElCalculador</strong> que s&#xED; implementa estos m&#xE9;todos de forma correcta a partir del numero del padre.<br>
+<p>📌 <strong>Nota:</strong> Deberás soobreescribir el método ACadena, para poder aprovechar el código implementado en las clases padre.</p>
+</blockquote>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-3">Ejercicio 3 </h2>
+<p>Para dar nuestros primeros pasos con el polimorfismo de datos <strong>del principio de sustitución de Liskov</strong>, vamos a recordar el cálculo de factorial y de número primo.</p>
+<p>Vamos a necesitar una clase padre <strong><code>ElNoCalculador</code></strong> con un atributo <strong><code>protected short numero</code></strong>, que será la base del calculo posterior, también tendrá dos métodos virtuales <strong><code>Factorial</code></strong> y <strong><code>Primo</code></strong> devolverán un double y un booleano respectivamente <strong><code>(en esta clase no se realizarán los cálculos, los métodos devolverán 0 y false)</code></strong>. Además, crearemos una clase hija <strong>ElCalculador</strong> que sí implementa estos métodos de forma correcta a partir del numero del padre.<br>
 Para probar el funcionamiento del polimorfismo nos crearemos un objeto de la manera: <strong><code>ElNoCalculador obj = new ElCalculador(num);</code></strong><br>
-y llamaremos a los m&#xE9;todos <strong><code>Primo</code></strong> y <strong><code>Factorial</code></strong>.</p>
-<p>&#x270B; Reflexiona las siguiente preguntas:</p>
+y llamaremos a los métodos <strong><code>Primo</code></strong> y <strong><code>Factorial</code></strong>.</p>
+<p>Reflexiona las siguiente preguntas:</p>
 <ol>
-<li><strong>&#xBF;A qu&#xE9; m&#xE9;todos se llama, a los de la clase padre o a los de la clase hija?</strong></li>
-<li>Crea en la clase hija un m&#xE9;todo MostrarResultado y ll&#xE1;malo con el objeto.  <strong>&#xBF;Qu&#xE9; ocurre?</strong></li>
-<li>y si comentas el m&#xE9;todo Primo de la hija. <strong>&#xBF;Qu&#xE9; ocurre?</strong></li>
+<li><strong>¿A qué métodos se llama, a los de la clase padre o a los de la clase hija?</strong></li>
+<li>Crea en la clase hija un método MostrarResultado y llámalo con el objeto.  <strong>¿Qué ocurre?</strong></li>
+<li>y si comentas el método Primo de la hija. <strong>¿Qué ocurre?</strong></li>
 </ol>
-</blockquote>
-<h2 class="mume-header" id="white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</h2>
-
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-4">✅ Ejercicio 4 </h2>
+<p>Crea una clase <strong><code>Guerrero</code></strong> que herede de la clase <strong><code>Humano</code></strong> del ejercicio anterior, añade los campos <strong><code>tipoArma</code></strong> y <strong><code>tipoArmadura</code></strong> y los métodos que creas necesarios, para hacerla funcional.</p>
+<p>Crea también la clase <strong><code>Mago</code></strong> hija de humano con los atributos <strong><code>tipoLibroHechizos</code></strong> y <strong><code>tipoTúnica</code></strong> y los métodos necesarios.</p>
 <blockquote>
-<p>Crea una clase <strong><code>Guerrero</code></strong> que herede de la clase <strong><code>Humano</code></strong> del ejercicio anterior, a&#xF1;ade los campos <strong><code>tipoArma</code></strong> y <strong><code>tipoArmadura</code></strong> y los m&#xE9;todos que creas necesarios, para hacerla funcional.</p>
-<p>Crea tambi&#xE9;n la clase <strong><code>Mago</code></strong> hija de humano con los atributos <strong><code>tipoLibroHechizos</code></strong> y <strong><code>tipoT&#xFA;nica</code></strong> y los m&#xE9;todos necesarios.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Ser&#xED;a interesante que utilices tipos enumerados para los campos anteriormente descritos.</p>
+<p>📌 <strong>Nota:</strong> Sería interesante que utilices tipos enumerados para los campos anteriormente descritos.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
-
-<blockquote>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="ejercicio-5">Ejercicio 5 </h2>
 <p>Declara una clase abstracta <strong><code>Legislador</code></strong> que herede de la clase <strong><code>Persona</code></strong>, que usamos en ejercicios anteriores, con un campo <strong><code>povinciaQueRepresenta</code></strong> tipo <strong><code>string</code></strong>, y si quieres otros atributos que creas necesarios.</p>
 <p>Como puedes ver en el diagrama, la clase <strong><code>Legislador</code></strong> hereda de la clase <strong><code>Persona</code></strong> que no es abstracta, lo cual significa que puede haber instancias de <strong><code>Persona</code></strong> pero no de <strong><code>Legislador</code></strong>.</p>
-<p>Declara un m&#xE9;todo abstracto <strong><code>GetCamaraEnQueTrabaja</code></strong> (devolver&#xE1; un string indicando la c&#xE1;mara a la que pertenece), ToString (devolver&#xE1; un string con los datos a mostrar de la clase incluida la provincia que representa).</p>
-<p>Crea las siguientes clases que heredar&#xE1;n de Legislador e implementar&#xE1;n los m&#xE9;todos necesarios:</p>
+<p>Declara un método abstracto <strong><code>GetCamaraEnQueTrabaja</code></strong> (devolverá un string indicando la cámara a la que pertenece), ToString (devolverá un string con los datos a mostrar de la clase incluida la provincia que representa).</p>
+<p>Crea las siguientes clases que heredarán de Legislador e implementarán los métodos necesarios:</p>
 <ul>
 <li><strong><code>Diputado</code></strong></li>
 <li><strong><code>Senador</code></strong></li>
 </ul>
-<p>Crea un <strong>array de tres legisladores</strong> de distintos tipos, usa <strong>polimorfismo de datos</strong> y muestra por pantalla la c&#xE1;mara en que trabajan y otros datos que creas necesarios.</p>
-<p align="center" style="zoom:0.9"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="430.9777px" preserveAspectRatio="none" style="width:600px;height:430px;background:#FFFFFF;" version="1.1" viewBox="0 0 600 430" width="600.5808px" zoomAndPan="magnify"><defs><filter height="300%" id="fzl7w9tttqg1x" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.323330106485963"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.646660212971926" dy="4.646660212971926" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[99f30358ff3a26b7a268ad7befd36654]
-class Senador--><rect codeline="10" fill="#FFFAFA" filter="url(#fzl7w9tttqg1x)" height="94.6848" id="Senador" style="stroke:#000000;stroke-width:1.7424975798644722;" width="267.183" x="8.1317" y="320.6196"/><ellipse cx="109.4869" cy="339.2062" fill="#ADD1B2" rx="12.7783" ry="12.7783" style="stroke:#000000;stroke-width:1.1616650532429815;"/><path d="M112.6997,334.4143 Q112.8812,334.1602 113.099,334.0332 Q113.3168,333.9061 113.5709,333.9061 Q114.0065,333.9061 114.2788,334.2147 Q114.5511,334.5051 114.5511,335.213 L114.5511,336.901 Q114.5511,337.6089 114.2788,337.9175 Q114.0065,338.226 113.5709,338.226 Q113.1716,338.226 112.9356,337.9901 Q112.6997,337.7723 112.5726,337.1733 Q112.5182,336.7558 112.3003,336.538 Q111.9192,336.1024 111.2113,335.8483 Q110.5034,335.5941 109.7773,335.5941 Q108.8879,335.5941 108.1438,335.9753 Q107.4177,336.3565 106.8369,337.2277 Q106.2742,338.099 106.2742,339.297 L106.2742,340.5675 Q106.2742,342.0015 107.3088,342.9635 Q108.3434,343.9073 110.1948,343.9073 Q111.2839,343.9073 112.0462,343.6169 Q112.5,343.4354 112.9901,342.9272 Q113.2986,342.6186 113.462,342.5278 Q113.6435,342.4371 113.8795,342.4371 Q114.2606,342.4371 114.5511,342.7456 Q114.8596,343.0361 114.8596,343.4354 Q114.8596,343.8347 114.4603,344.3066 Q113.8795,344.9782 112.9538,345.3594 Q111.7014,345.8858 110.1948,345.8858 Q108.4342,345.8858 107.0365,345.1597 Q105.893,344.5789 105.0944,343.3446 Q104.2957,342.0922 104.2957,340.6038 L104.2957,339.2606 Q104.2957,337.7178 105.0036,336.3928 Q105.7297,335.0496 107.0002,334.3417 Q108.2708,333.6157 109.7047,333.6157 Q110.5578,333.6157 111.302,333.8153 Q112.0644,333.9969 112.6997,334.4143 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="13.94" lengthAdjust="spacing" textLength="54.5983" x="133.3011" y="344.9102">Senador</text><line style="stroke:#000000;stroke-width:1.7424975798644722;" x1="9.2933" x2="274.153" y1="357.7928" y2="357.7928"/><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="253.243" x="15.1016" y="375.7045">+Senador(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="205.6147" x="15.1016" y="391.7772">+^GetCamaraEnQueTrabaja() : string</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="113.8432" x="15.1016" y="407.8499">+^ToString()  : string</text><!--MD5=[63254bb2e08e0e0aa445a40e901b5706]
-class Legislador--><rect codeline="16" fill="#FFFAFA" filter="url(#fzl7w9tttqg1x)" height="136.1235" id="Legislador" style="stroke:#000000;stroke-width:1.7424975798644722;" width="284.6079" x="153.9206" y="115.0048"/><ellipse cx="257.5992" cy="133.5915" fill="#A9DCDF" rx="12.7783" ry="12.7783" style="stroke:#000000;stroke-width:1.1616650532429815;"/><path d="M260.1404,135.6425 L255.3303,135.6425 L254.8403,136.8405 L255.3303,136.8405 Q256.0382,136.8405 256.3468,137.1128 Q256.6554,137.385 256.6554,137.8388 Q256.6554,138.2744 256.3468,138.5467 Q256.0382,138.819 255.3303,138.819 L252.6621,138.819 Q251.9543,138.819 251.6638,138.5467 Q251.3553,138.2744 251.3553,137.8207 Q251.3553,137.385 251.682,137.1128 Q251.9906,136.8224 252.7166,136.8405 L255.8204,129.1082 L254.5317,129.1082 Q253.8238,129.1082 253.5152,128.8359 Q253.2067,128.5636 253.2067,128.1099 Q253.2067,127.6742 253.5152,127.402 Q253.8238,127.1297 254.5317,127.1297 L258.7972,127.1297 L262.736,136.8405 Q263.4257,136.8405 263.6435,137.0039 Q264.0973,137.3124 264.0973,137.8388 Q264.0973,138.2744 263.7887,138.5467 Q263.4983,138.819 262.7904,138.819 L260.1222,138.819 Q259.4143,138.819 259.1058,138.5467 Q258.7972,138.2744 258.7972,137.8207 Q258.7972,137.385 259.1058,137.1128 Q259.4143,136.8405 260.1222,136.8405 L260.6123,136.8405 L260.1404,135.6425 Z M259.3054,133.6641 L257.7263,129.7435 L256.129,133.6641 L259.3054,133.6641 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="13.94" font-style="italic" lengthAdjust="spacing" textLength="67.3766" x="281.4134" y="139.2954">Legislador</text><line style="stroke:#000000;stroke-width:1.7424975798644722;" x1="155.0823" x2="437.3669" y1="152.1781" y2="152.1781"/><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="181.2197" x="160.8906" y="170.0898">-povinciaQueRepresenta : string</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="10.455" x="160.8906" y="186.1625">...</text><line style="stroke:#000000;stroke-width:1.7424975798644722;" x1="155.0823" x2="437.3669" y1="193.6169" y2="193.6169"/><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="263.698" x="160.8906" y="211.5285">+Legislador(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" font-style="italic" lengthAdjust="spacing" textLength="270.668" x="160.8906" y="227.6013">+GetCamaraEnQueTrabaja() : string {abstract}</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="103.3882" x="160.8906" y="243.674">^ToString() : string</text><!--MD5=[a5a87463b566e9c1629b7f04eded644a]
-class Diputado--><rect codeline="26" fill="#FFFAFA" filter="url(#fzl7w9tttqg1x)" height="94.6848" id="Diputado" style="stroke:#000000;stroke-width:1.7424975798644722;" width="268.3446" x="316.5537" y="320.6196"/><ellipse cx="416.7473" cy="339.2062" fill="#ADD1B2" rx="12.7783" ry="12.7783" style="stroke:#000000;stroke-width:1.1616650532429815;"/><path d="M419.9601,334.4143 Q420.1416,334.1602 420.3594,334.0332 Q420.5772,333.9061 420.8313,333.9061 Q421.2669,333.9061 421.5392,334.2147 Q421.8115,334.5051 421.8115,335.213 L421.8115,336.901 Q421.8115,337.6089 421.5392,337.9175 Q421.2669,338.226 420.8313,338.226 Q420.432,338.226 420.196,337.9901 Q419.9601,337.7723 419.833,337.1733 Q419.7786,336.7558 419.5607,336.538 Q419.1796,336.1024 418.4717,335.8483 Q417.7638,335.5941 417.0378,335.5941 Q416.1484,335.5941 415.4042,335.9753 Q414.6781,336.3565 414.0973,337.2277 Q413.5346,338.099 413.5346,339.297 L413.5346,340.5675 Q413.5346,342.0015 414.5692,342.9635 Q415.6038,343.9073 417.4552,343.9073 Q418.5443,343.9073 419.3066,343.6169 Q419.7604,343.4354 420.2505,342.9272 Q420.5591,342.6186 420.7224,342.5278 Q420.9039,342.4371 421.1399,342.4371 Q421.5211,342.4371 421.8115,342.7456 Q422.12,343.0361 422.12,343.4354 Q422.12,343.8347 421.7207,344.3066 Q421.1399,344.9782 420.2142,345.3594 Q418.9618,345.8858 417.4552,345.8858 Q415.6946,345.8858 414.297,345.1597 Q413.1534,344.5789 412.3548,343.3446 Q411.5561,342.0922 411.5561,340.6038 L411.5561,339.2606 Q411.5561,337.7178 412.264,336.3928 Q412.9901,335.0496 414.2606,334.3417 Q415.5312,333.6157 416.9652,333.6157 Q417.8182,333.6157 418.5624,333.8153 Q419.3248,333.9969 419.9601,334.4143 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="13.94" lengthAdjust="spacing" textLength="58.0833" x="440.5615" y="344.9102">Diputado</text><line style="stroke:#000000;stroke-width:1.7424975798644722;" x1="317.7154" x2="583.7367" y1="357.7928" y2="357.7928"/><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="254.4046" x="323.5237" y="375.7045">+Diputado(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="205.6147" x="323.5237" y="391.7772">+^GetCamaraEnQueTrabaja() : string</text><text fill="#000000" font-family="sans-serif" font-size="12.7783" lengthAdjust="spacing" textLength="113.8432" x="323.5237" y="407.8499">+^ToString()  : string</text><!--MD5=[8f63dadf5c643e74a34e53c8f0a15d23]
-class Persona--><rect fill="#FFFAFA" filter="url(#fzl7w9tttqg1x)" height="37.1733" id="Persona" style="stroke:#000000;stroke-width:1.7424975798644722;" width="91.7715" x="250.3388" y="8.1317"/><ellipse cx="267.7638" cy="26.7183" fill="#ADD1B2" rx="12.7783" ry="12.7783" style="stroke:#000000;stroke-width:1.1616650532429815;"/><path d="M270.9765,21.9264 Q271.158,21.6723 271.3758,21.5453 Q271.5937,21.4182 271.8478,21.4182 Q272.2834,21.4182 272.5557,21.7268 Q272.8279,22.0172 272.8279,22.7251 L272.8279,24.4131 Q272.8279,25.121 272.5557,25.4296 Q272.2834,25.7381 271.8478,25.7381 Q271.4485,25.7381 271.2125,25.5022 Q270.9765,25.2844 270.8495,24.6854 Q270.795,24.2679 270.5772,24.0501 Q270.196,23.6145 269.4881,23.3604 Q268.7803,23.1062 268.0542,23.1062 Q267.1648,23.1062 266.4206,23.4874 Q265.6946,23.8686 265.1137,24.7398 Q264.5511,25.6111 264.5511,26.8091 L264.5511,28.0796 Q264.5511,29.5136 265.5857,30.4756 Q266.6203,31.4194 268.4717,31.4194 Q269.5607,31.4194 270.3231,31.129 Q270.7769,30.9475 271.2669,30.4393 Q271.5755,30.1307 271.7389,30.0399 Q271.9204,29.9492 272.1563,29.9492 Q272.5375,29.9492 272.8279,30.2577 Q273.1365,30.5482 273.1365,30.9475 Q273.1365,31.3468 272.7372,31.8187 Q272.1563,32.4903 271.2306,32.8715 Q269.9782,33.3979 268.4717,33.3979 Q266.711,33.3979 265.3134,32.6718 Q264.1699,32.091 263.3712,30.8567 Q262.5726,29.6043 262.5726,28.1159 L262.5726,26.7727 Q262.5726,25.2299 263.2805,23.9049 Q264.0065,22.5617 265.2771,21.8538 Q266.5477,21.1278 267.9816,21.1278 Q268.8347,21.1278 269.5789,21.3274 Q270.3412,21.509 270.9765,21.9264 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="13.94" lengthAdjust="spacing" textLength="54.5983" x="284.0271" y="32.4223">Persona</text><!--MD5=[f035e06a47e51b365866fa5eaf3bd625]
-reverse link Legislador to Diputado--><path codeline="32" d="M368.213,269.3785 C383.1055,287.0126 398.2652,304.9719 411.4618,320.5847 " fill="none" id="Legislador-backto-Diputado" style="stroke:#000000;stroke-width:1.1616650532429815;"/><polygon fill="none" points="361.6496,274.211,352.879,251.2101,374.0794,263.7212,361.6496,274.211" style="stroke:#000000;stroke-width:1.1616650532429815;"/><!--MD5=[86d21c8e50885466a05997a560fe90ac]
-reverse link Legislador to Senador--><path codeline="33" d="M224.2362,269.3785 C209.3437,287.0126 194.1839,304.9719 180.9874,320.5847 " fill="none" id="Legislador-backto-Senador" style="stroke:#000000;stroke-width:1.1616650532429815;"/><polygon fill="none" points="218.3698,263.7212,239.5702,251.2101,230.7996,274.211,218.3698,263.7212" style="stroke:#000000;stroke-width:1.1616650532429815;"/><!--MD5=[a4acb132358b8be221d7d5c57b7e6485]
-reverse link Persona to Legislador--><path codeline="36" d="M296.2246,68.8287 C296.2246,82.9777 296.2246,99.241 296.2246,114.9351 " fill="none" id="Persona-backto-Legislador" style="stroke:#000000;stroke-width:1.1616650532429815;"/><polygon fill="none" points="288.0929,68.7706,296.2246,45.5373,304.3562,68.7706,288.0929,68.7706" style="stroke:#000000;stroke-width:1.1616650532429815;"/><!--MD5=[ff48aa559c3e852c9472a4dccbd3935e]
-@startuml
-!define ABSTRACT &#123;abstract&#125;
- scale 600 width
- skinparam classAttributeIconSize 0
- skinparam ArrowColor Black
- skinparam PackageBackgroundColor WhiteSmoke
- skinparam ClassBorderColor Black
- skinparam ClassBackgroundColor Snow
-
-hide Senador attributes
-class Senador
-{
-+ Senador(in povinciaQueRepresenta : string)
-+ ^GetCamaraEnQueTrabaja() : string
-+ ^ToString()  : string
-} 
-abstract class Legislador
-{ 
-- povinciaQueRepresenta : string
-...
-+ Legislador(in povinciaQueRepresenta : string)
-+ {abstract}GetCamaraEnQueTrabaja() : string ABSTRACT
-  ^ToString() : string 
- }
-
-hide Diputado attributes
-class Diputado
-{ 
-+ Diputado(in povinciaQueRepresenta : string)
-+ ^GetCamaraEnQueTrabaja() : string
-+ ^ToString()  : string
-}
-Legislador<|- - Diputado
-Legislador<|- - Senador
-hide Persona attributes 
-hide Persona methods
-Persona<|- - Legislador
-@enduml
-
-@startuml
- scale 600 width
- skinparam classAttributeIconSize 0
- skinparam ArrowColor Black
- skinparam PackageBackgroundColor WhiteSmoke
- skinparam ClassBorderColor Black
- skinparam ClassBackgroundColor Snow
-
-hide Senador attributes
-class Senador
-{
-+ Senador(in povinciaQueRepresenta : string)
-+ ^GetCamaraEnQueTrabaja() : string
-+ ^ToString()  : string
-} 
-abstract class Legislador
-{ 
-- povinciaQueRepresenta : string
-...
-+ Legislador(in povinciaQueRepresenta : string)
-+ {abstract}GetCamaraEnQueTrabaja() : string &#123;abstract&#125;
-  ^ToString() : string 
- }
-
-hide Diputado attributes
-class Diputado
-{ 
-+ Diputado(in povinciaQueRepresenta : string)
-+ ^GetCamaraEnQueTrabaja() : string
-+ ^ToString()  : string
-}
-Legislador<|- - Diputado
-Legislador<|- - Senador
-hide Persona attributes 
-hide Persona methods
-Persona<|- - Legislador
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p></blockquote>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</h2>
-
-<blockquote>
-<p>Crear una clase llamada <strong><code>TablaEnteros</code></strong> que <strong>no permita</strong> que se creen objetos a partir de ella. Esta clase almacenar&#xE1; una tabla de enteros <strong>de una dimensi&#xF3;n</strong> y que ser&#xE1; un atributo protegido, el tama&#xF1;o debe ser especificado mediante su constructor.<br>
-<strong>La clase debe obligar a que  cualquier clase que herede de ella y no quiera ser una clase abstracta, implemente un m&#xE9;todo llamado <code>GuardarNumerosenTabla</code></strong>.</p>
-<p>Adem&#xE1;s, <strong><code>TablaEnteros</code></strong> dispondr&#xE1; de dos m&#xE9;todos:</p>
+<p>Crea un <strong>array de tres legisladores</strong> de distintos tipos, usa <strong>polimorfismo de datos</strong> y muestra por pantalla la cámara en que trabajan y otros datos que creas necesarios.</p>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="363.9723px" preserveAspectRatio="none" style="width:600px;height:363px;" version="1.1" viewBox="0 0 600 363" width="600.4619px" zoomAndPan="magnify"><defs></defs><g><!--class Senador--><g id="elem_Senador"><rect codeline="11" fill="#FFFAFA" height="85.7535" id="Senador" rx="2.3095" ry="2.3095" style="stroke:#000000;stroke-width:0.4618937644341801;" width="276.2125" x="6.4665" y="272.5173"></rect><ellipse cx="115.7044" cy="287.2979" fill="#ADD1B2" rx="10.1617" ry="10.1617" style="stroke:#181818;stroke-width:0.9237875288683602;"></ellipse><path d="M118.2592,283.4873 Q118.4036,283.2852 118.5768,283.1842 Q118.75,283.0831 118.9521,283.0831 Q119.2985,283.0831 119.515,283.3285 Q119.7315,283.5595 119.7315,284.1224 L119.7315,285.4648 Q119.7315,286.0277 119.515,286.2731 Q119.2985,286.5185 118.9521,286.5185 Q118.6345,286.5185 118.4469,286.3308 Q118.2592,286.1576 118.1582,285.6813 Q118.1149,285.3493 117.9417,285.1761 Q117.6386,284.8297 117.0756,284.6276 Q116.5127,284.4255 115.9353,284.4255 Q115.2281,284.4255 114.6363,284.7286 Q114.0589,285.0318 113.597,285.7246 Q113.1495,286.4174 113.1495,287.3701 L113.1495,288.3805 Q113.1495,289.5208 113.9723,290.2858 Q114.795,291.0364 116.2673,291.0364 Q117.1334,291.0364 117.7396,290.8054 Q118.1005,290.6611 118.4902,290.2569 Q118.7356,290.0115 118.8655,289.9394 Q119.0098,289.8672 119.1975,289.8672 Q119.5006,289.8672 119.7315,290.1126 Q119.9769,290.3435 119.9769,290.6611 Q119.9769,290.9786 119.6594,291.3539 Q119.1975,291.888 118.4613,292.1911 Q117.4654,292.6097 116.2673,292.6097 Q114.8672,292.6097 113.7558,292.0323 Q112.8464,291.5704 112.2113,290.5889 Q111.5762,289.593 111.5762,288.4094 L111.5762,287.3412 Q111.5762,286.1143 112.1391,285.0606 Q112.7165,283.9925 113.7269,283.4296 Q114.7373,282.8522 115.8776,282.8522 Q116.556,282.8522 117.1478,283.011 Q117.754,283.1553 118.2592,283.4873 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="49.8845" x="134.642" y="292.5899">Senador</text><line style="stroke:#000000;stroke-width:0.4618937644341801;" x1="7.3903" x2="281.7552" y1="302.0785" y2="302.0785"></line><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="265.127" x="12.0092" y="319.1993">+Senador(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="218.0139" x="12.0092" y="335.4666">+^GetCamaraEnQueTrabaja() : string</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="118.2448" x="12.0092" y="351.7339">+^ToString()  : string</text></g><!--class Legislador--><g id="elem_Legislador"><rect codeline="18" fill="#FFFAFA" height="125.6784" id="Legislador" rx="2.3095" ry="2.3095" style="stroke:#000000;stroke-width:0.4618937644341801;" width="287.2979" x="156.1201" y="91.455"></rect><ellipse cx="265.358" cy="106.2356" fill="#A9DCDF" rx="10.1617" ry="10.1617" style="stroke:#181818;stroke-width:0.9237875288683602;"></ellipse><path d="M267.3788,107.8666 L263.5537,107.8666 L263.164,108.8193 L263.5537,108.8193 Q264.1166,108.8193 264.362,109.0358 Q264.6074,109.2523 264.6074,109.6132 Q264.6074,109.9596 264.362,110.1761 Q264.1166,110.3926 263.5537,110.3926 L261.4319,110.3926 Q260.8689,110.3926 260.638,110.1761 Q260.3926,109.9596 260.3926,109.5987 Q260.3926,109.2523 260.6524,109.0358 Q260.8978,108.8048 261.4752,108.8193 L263.9434,102.6703 L262.9186,102.6703 Q262.3557,102.6703 262.1103,102.4538 Q261.8649,102.2373 261.8649,101.8764 Q261.8649,101.53 262.1103,101.3135 Q262.3557,101.097 262.9186,101.097 L266.3106,101.097 L269.4428,108.8193 Q269.9913,108.8193 270.1645,108.9492 Q270.5254,109.1946 270.5254,109.6132 Q270.5254,109.9596 270.28,110.1761 Q270.0491,110.3926 269.4861,110.3926 L267.3643,110.3926 Q266.8014,110.3926 266.556,110.1761 Q266.3106,109.9596 266.3106,109.5987 Q266.3106,109.2523 266.556,109.0358 Q266.8014,108.8193 267.3643,108.8193 L267.754,108.8193 L267.3788,107.8666 Z M266.7148,106.2933 L265.459,103.1755 L264.1888,106.2933 L266.7148,106.2933 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12.933" font-style="italic" lengthAdjust="spacing" textLength="60.97" x="284.2956" y="111.5275">Legislador</text><line style="stroke:#000000;stroke-width:0.4618937644341801;" x1="157.0439" x2="442.4942" y1="121.0162" y2="121.0162"></line><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="189.3764" x="161.6628" y="138.1369">-povinciaQueRepresenta : string</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="11.0855" x="161.6628" y="154.4042">...</text><line style="stroke:#000000;stroke-width:0.4618937644341801;" x1="157.0439" x2="442.4942" y1="160.9411" y2="160.9411"></line><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="276.2125" x="161.6628" y="178.0619">+Legislador(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.933" font-style="italic" lengthAdjust="spacing" textLength="273.4411" x="161.6628" y="194.3292">+GetCamaraEnQueTrabaja() : string {abstract}</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="107.1594" x="161.6628" y="210.5965">^ToString() : string</text></g><!--class Diputado--><g id="elem_Diputado"><rect codeline="27" fill="#FFFAFA" height="85.7535" id="Diputado" rx="2.3095" ry="2.3095" style="stroke:#000000;stroke-width:0.4618937644341801;" width="278.9838" x="315.4734" y="272.5173"></rect><ellipse cx="424.7113" cy="287.2979" fill="#ADD1B2" rx="10.1617" ry="10.1617" style="stroke:#181818;stroke-width:0.9237875288683602;"></ellipse><path d="M427.2662,283.4873 Q427.4105,283.2852 427.5837,283.1842 Q427.7569,283.0831 427.959,283.0831 Q428.3054,283.0831 428.5219,283.3285 Q428.7385,283.5595 428.7385,284.1224 L428.7385,285.4648 Q428.7385,286.0277 428.5219,286.2731 Q428.3054,286.5185 427.959,286.5185 Q427.6415,286.5185 427.4538,286.3308 Q427.2662,286.1576 427.1651,285.6813 Q427.1218,285.3493 426.9486,285.1761 Q426.6455,284.8297 426.0826,284.6276 Q425.5196,284.4255 424.9423,284.4255 Q424.235,284.4255 423.6432,284.7286 Q423.0658,285.0318 422.6039,285.7246 Q422.1565,286.4174 422.1565,287.3701 L422.1565,288.3805 Q422.1565,289.5208 422.9792,290.2858 Q423.802,291.0364 425.2742,291.0364 Q426.1403,291.0364 426.7465,290.8054 Q427.1074,290.6611 427.4971,290.2569 Q427.7425,290.0115 427.8724,289.9394 Q428.0167,289.8672 428.2044,289.8672 Q428.5075,289.8672 428.7385,290.1126 Q428.9838,290.3435 428.9838,290.6611 Q428.9838,290.9786 428.6663,291.3539 Q428.2044,291.888 427.4682,292.1911 Q426.4723,292.6097 425.2742,292.6097 Q423.8741,292.6097 422.7627,292.0323 Q421.8533,291.5704 421.2182,290.5889 Q420.5831,289.593 420.5831,288.4094 L420.5831,287.3412 Q420.5831,286.1143 421.1461,285.0606 Q421.7234,283.9925 422.7338,283.4296 Q423.7442,282.8522 424.8845,282.8522 Q425.5629,282.8522 426.1547,283.011 Q426.761,283.1553 427.2662,283.4873 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="52.6559" x="443.649" y="292.5899">Diputado</text><line style="stroke:#000000;stroke-width:0.4618937644341801;" x1="316.3972" x2="593.5335" y1="302.0785" y2="302.0785"></line><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="267.8984" x="321.0162" y="319.1993">+Diputado(in povinciaQueRepresenta : string)</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="218.0139" x="321.0162" y="335.4666">+^GetCamaraEnQueTrabaja() : string</text><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="118.2448" x="321.0162" y="351.7339">+^ToString()  : string</text></g><!--class Persona--><g id="elem_Persona"><rect fill="#FFFAFA" height="29.5612" id="Persona" rx="2.3095" ry="2.3095" style="stroke:#000000;stroke-width:0.4618937644341801;" width="78.5219" x="260.5081" y="6.4665"></rect><ellipse cx="274.3649" cy="21.2471" fill="#ADD1B2" rx="10.1617" ry="10.1617" style="stroke:#181818;stroke-width:0.9237875288683602;"></ellipse><path d="M276.9197,17.4365 Q277.0641,17.2344 277.2373,17.1334 Q277.4105,17.0323 277.6126,17.0323 Q277.959,17.0323 278.1755,17.2777 Q278.392,17.5087 278.392,18.0716 L278.392,19.414 Q278.392,19.9769 278.1755,20.2223 Q277.959,20.4677 277.6126,20.4677 Q277.295,20.4677 277.1074,20.28 Q276.9197,20.1068 276.8187,19.6305 Q276.7754,19.2985 276.6022,19.1253 Q276.2991,18.7789 275.7361,18.5768 Q275.1732,18.3747 274.5958,18.3747 Q273.8886,18.3747 273.2968,18.6778 Q272.7194,18.9809 272.2575,19.6738 Q271.81,20.3666 271.81,21.3193 L271.81,22.3297 Q271.81,23.47 272.6328,24.235 Q273.4555,24.9856 274.9278,24.9856 Q275.7939,24.9856 276.4001,24.7546 Q276.761,24.6103 277.1507,24.2061 Q277.3961,23.9607 277.526,23.8886 Q277.6703,23.8164 277.858,23.8164 Q278.1611,23.8164 278.392,24.0618 Q278.6374,24.2927 278.6374,24.6103 Q278.6374,24.9278 278.3199,25.3031 Q277.858,25.8372 277.1218,26.1403 Q276.1259,26.5589 274.9278,26.5589 Q273.5277,26.5589 272.4163,25.9815 Q271.5069,25.5196 270.8718,24.5381 Q270.2367,23.5421 270.2367,22.3585 L270.2367,21.2904 Q270.2367,20.0635 270.7997,19.0098 Q271.377,17.9417 272.3874,17.3788 Q273.3978,16.8014 274.5381,16.8014 Q275.2165,16.8014 275.8083,16.9602 Q276.4145,17.1045 276.9197,17.4365 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="12.933" lengthAdjust="spacing" textLength="48.9607" x="287.2979" y="26.539">Persona</text></g><!--reverse link Legislador to Diputado--><g id="link_Legislador_Diputado"><path codeline="34" d="M371.8142,229.1776 C389.7726,247.6164 397.4226,255.4642 413.8476,272.3326 " fill="none" id="Legislador-backto-Diputado" style="stroke:#000000;stroke-width:0.9237875288683602;"></path><polygon fill="none" points="360.2125,217.2656,367.8435,233.0449,375.7849,225.3104,360.2125,217.2656" style="stroke:#000000;stroke-width:0.9237875288683602;"></polygon></g><!--reverse link Legislador to Senador--><g id="link_Legislador_Senador"><path codeline="35" d="M227.7239,229.1776 C209.7655,247.6164 202.1155,255.4642 185.6905,272.3326 " fill="none" id="Legislador-backto-Senador" style="stroke:#000000;stroke-width:0.9237875288683602;"></path><polygon fill="none" points="239.3256,217.2656,223.7533,225.3104,231.6946,233.0449,239.3256,217.2656" style="stroke:#000000;stroke-width:0.9237875288683602;"></polygon></g><!--reverse link Persona to Legislador--><g id="link_Persona_Legislador"><path codeline="36" d="M299.7691,52.8406 C299.7691,66.1894 299.7691,70.6143 299.7691,91.2055 " fill="none" id="Persona-backto-Legislador" style="stroke:#000000;stroke-width:0.9237875288683602;"></path><polygon fill="none" points="299.7691,36.2125,294.2263,52.8406,305.3118,52.8406,299.7691,36.2125" style="stroke:#000000;stroke-width:0.9237875288683602;"></polygon></g><!--SRC=[lP9DIyD048Rl-oj616af3LNHW_MIH171Gsq2teH9CYPhazsmkx5exNztcpGV5A6Up6MPcMTctfdCIK9lN12uNX0kNJ-4izFpYyivHjeeZCtEkfep7MDES3sRmPed9cDwnKM92Wk8SzJQDKRng3Bq64iHy2-2sG1nbP9hN-PIWPTZl1g45jR4b3pxf4fM8ccmbumR2WgveW7hxpfvKYMaVY_M00Ub0Y7N0-Om72eKseP86COodX1GKPfFAAY8I6bMZmS12KoaOXi6zfkqzeWBAEK75p77vugML2hIjXB23TZrSP6Ezmcl3sHyBAo4Us59spN2TnoDEx3bGXdKjWtriIqmrlwGPk7mH2dNUICAwkJf4Iarv3ZElbDVuEzJR5eHssFZTETKPmwdwWYsPVljtl6oCbP9Eycay_pRWXdhzt7xFPtscWxyxIKix758WRMlHtu0]--></g></svg></p></div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-6">✅ Ejercicio 6 </h2>
+<p>Crear una clase llamada <strong><code>TablaEnteros</code></strong> que <strong>no permita</strong> que se creen objetos a partir de ella. Esta clase almacenará una tabla de enteros <strong>de una dimensión</strong> y que será un atributo protegido, el tamaño debe ser especificado mediante su constructor.<br>
+<strong>La clase debe obligar a que  cualquier clase que herede de ella y no quiera ser una clase abstracta, implemente un método llamado <code>GuardarNumerosenTabla</code></strong>.</p>
+<p>Además, <strong><code>TablaEnteros</code></strong> dispondrá de dos métodos:</p>
 <ul>
-<li><strong><code>DevuelveTabla</code></strong>, m&#xE9;todo <strong>redefinible</strong>, que servir&#xE1; para devolver la cadena con el contenido completo de la tabla.</li>
-<li><strong><code>SumaPropia</code></strong> que se encargar&#xE1; de comprobar si existen m&#xE1;s n&#xFA;meros positivos o negativos en la tabla y devolver&#xE1; la suma de aquellos de los que hay mayor cantidad.</li>
+<li><strong><code>DevuelveTabla</code></strong>, método <strong>redefinible</strong>, que servirá para devolver la cadena con el contenido completo de la tabla.</li>
+<li><strong><code>SumaPropia</code></strong> que se encargará de comprobar si existen más números positivos o negativos en la tabla y devolverá la suma de aquellos de los que hay mayor cantidad.</li>
 </ul>
 <p>Crear a partir de esta clase dos nuevas clases llamadas:</p>
 <ul>
-<li><strong><code>TablaImpares</code></strong>: que solo guardar&#xE1; n&#xFA;meros impares en el atributo del padre.</li>
-<li><strong><code>TablaPares</code></strong>: que solo guardar&#xE1; n&#xFA;meros pares, el el atributo del padre.</li>
+<li><strong><code>TablaImpares</code></strong>: que solo guardará números impares en el atributo del padre.</li>
+<li><strong><code>TablaPares</code></strong>: que solo guardará números pares, el el atributo del padre.</li>
 </ul>
-<p>Ambas, lo har&#xE1;n mediante el m&#xE9;todo <strong><code>GuardarNumerosEnTabla</code></strong>, antes mencionado, que seleccionar&#xE1; los n&#xFA;meros apropiados (pares o impares) a guardar a partir de n&#xFA;mero generados aleatoriamente.</p>
+<p>Ambas, lo harán mediante el método <strong><code>GuardarNumerosEnTabla</code></strong>, antes mencionado, que seleccionará los números apropiados (pares o impares) a guardar a partir de número generados aleatoriamente.</p>
 <p>En el programa principal, crea instancias de cada una de estas  clases, dales valores y muestra las tablas y la suma propia de ambos objetos por pantalla.</p>
-</blockquote>
+</div> <!-- fin ejercicio -->
 
       </div>
       
       
-    
-    
     
     
     

@@ -21,6 +21,25 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -77,6 +96,45 @@
   top: 83%;
   font-size: 1rem;
 }
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -105,7 +163,7 @@
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#excepciones-en-c" class="md-toc-link"><p>Excepciones en C#</p>
+          <a href="#excepciones-en-csharp" class="md-toc-link"><p>Excepciones en CSharp</p>
 </a>
           </summary>
         <div>
@@ -474,20 +532,20 @@
     </div>
 </div>
 <div style="page-break-after:always;"></div>
-<h3 id="excepciones-en-c">Excepciones en C# </h3>
+<h3 id="excepciones-en-csharp">Excepciones en CSharp </h3>
 <ul>
 <li>Todas derivan de la clase <strong><code>System.Exception</code></strong></li>
-<li>Existen ya muchas <strong><a href="https://docs.microsoft.com/es-es/dotnet/standard/exceptions/?redirectedfrom=MSDN#common-exceptions" target="_blank">predefinidas</a></strong>.</li>
+<li>Existen ya muchas <a href="https://docs.microsoft.com/es-es/dotnet/standard/exceptions/?redirectedfrom=MSDN#common-exceptions">predefinidas</a>.</li>
 <li>Podemos definir <strong>excepciones propias</strong> mediante el mecanismo de herencia.</li>
 </ul>
 <h4 id="generación-de-excepciones">Generación de excepciones </h4>
-<p>Utilizaremos la instrucción <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/throw" target="_blank">throw</a></strong> → <strong><code>throw new &lt;TipoExcepción&gt;(...);</code></strong></p>
-<p>Veamos un <strong>ejemplo</strong> en el que vamos a usar la excepción ya predefinida <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.argumentnullexception?view=netcore-3.1" target="_blank">ArgumentNullException</a></strong> que me servirá para detectar aquellos tipos referencia que sean <strong><code>null</code></strong> antes de usarlos.</p>
+<p>Utilizaremos la instrucción <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/throw">throw</a></strong> → <code>throw new &lt;TipoExcepción&gt;(...);</code></p>
+<p>Veamos un <strong>ejemplo</strong> en el que vamos a usar la excepción ya predefinida <a href="https://docs.microsoft.com/es-es/dotnet/api/system.argumentnullexception?view=netcore-3.1">ArgumentNullException</a> que me servirá para detectar aquellos tipos referencia que sean <code>null</code> antes de usarlos.</p>
 <p>Por ejemplo, en el método <strong><code>Diagnostico</code></strong> del bloque anterior que creamos para la clase <strong><code>Sicologo</code></strong> supongamos que me llega <strong><code>Paciente?</code></strong> anulable y queremos asegurarnos de que no sea <strong><code>null</code></strong></p>
 <blockquote>
 <p>📌 <strong>Nota:</strong> Antes de existir los tipos no anulables en C# era un problema muy común y fuente de errores en otros lenguajes como C++. Es por eso que desde C#10 los objetos no son anulables por defecto.</p>
 </blockquote>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Sicologo</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Sicologo</span>
 <span class="token punctuation">{</span>
     <span class="token range operator">..</span><span class="token punctuation">.</span>
     <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">Diagnostico</span><span class="token punctuation">(</span><span class="token class-name">Paciente<span class="token punctuation">?</span></span> p<span class="token punctuation">)</span>
@@ -503,19 +561,11 @@
     <span class="token punctuation">}</span>
     <span class="token range operator">..</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Nadie nos asegura que cuando se llame al método Diagnóstico no se pase un null como parámetro. Si eso sucediese la instrucción <strong><code>p.GetNombre()</code></strong> generaría la excepción del sistema <strong><code>NullReferenceException</code></strong> finalizando el programa. Es más el compilador nos generará un aviso y deberíamos poner cosas como <strong><code>p?.GetNombre() ?? "Sin Nombre"</code></strong><br>
+</code></pre><p>Nadie nos asegura que cuando se llame al método Diagnóstico no se pase un null como parámetro. Si eso sucediese la instrucción <strong><code>p.GetNombre()</code></strong> generaría la excepción del sistema <strong><code>NullReferenceException</code></strong> finalizando el programa. Es más el compilador nos generará un aviso y deberíamos poner cosas como <strong><code>p?.GetNombre() ?? "Sin Nombre"</code></strong><br>
 Este es uno de los errores más típicos en muchos lenguajes y nosotros lo filtramos generando una excepción de <strong><code>ArgumentNullException</code></strong> que podremos gestionar de una manera más específica.</p>
 <blockquote>
 <p>✋ <strong>Importante:</strong> Fíjate, que al lanzar la excepción realmente lo que hacemos es crear una referencia objeto en memoria con <strong><code>new ArgumentNullException("paciente");</code></strong>. Este objeto contendrá información sobre el error y una referencia al mismo será pasada al punto donde controlemos el error.</p>
 </blockquote>
-<div class="contenedor">
-    <div class="fondo">
-        <div class="abre_comilla">"</div>
-        <div class="cierra_comilla">"</div>
-        <div class="cita">Truth can only be found in one place: the code.</div>
-        <div class="autor">- Robert C. Martin.</div>
-    </div>
-</div>
 <div style="page-break-after:always;"></div>
 <h5 id="captura-y-control-de-excepciones">Captura y control de excepciones </h5>
 <p>En la gran mayoría de lenguajes orientados a objetos se realiza con las palabras reservadas <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/try-catch">try y catch</a></strong>.</p>
@@ -556,8 +606,8 @@ Unhandled exception. System.FormatException: Input string was not <span class="t
 También podemos hacer <strong><code>Ctrl + &lt;click izquierdo del ratón&gt;</code></strong> sobre el método y esto nos abrirá su definición y el la documentación del método podremos verlo.</p>
 </blockquote>
 <p>La excepción ha sido capturada por el Runtime de C#, nos la ha mostrado y ha finalizado la ejecución. A efectos prácticos, es cómo si hubiera un bloque <strong><code>try - catch</code></strong> que englobara todo nuestro código y que <em>'barriera'</em> o capturase cualquier error/excepción que se pudiera producir aunque nosotros no lo hagamos.</p>
-<p>Veamos cómo sería el código siguiendo la sintaxis del try - catch para capturar la excepción <strong><code>FormatException</code></strong></p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>Veamos cómo sería el código siguiendo la sintaxis del <strong>try - catch</strong> para capturar la excepción <strong><code>FormatException</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token comment">// Tendremos que definir la variable textoNumero fuera del bloque try </span>
     <span class="token comment">// si queremos que sea accesible desde el bloque catch.</span>
@@ -575,11 +625,11 @@ También podemos hacer <strong><code>Ctrl + &lt;click izquierdo del ratón&gt;</
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Lo siento, el valor '</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">textoNumero</span><span class="token punctuation">}</span></span><span class="token string">' no es Real."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Si lo ejecutamos e introducimos <strong>'veinticinco'</strong> ahora obtendremos...</p>
+</code></pre><p>Si lo ejecutamos e introducimos <strong>'veinticinco'</strong> ahora obtendremos...</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Introduce un número real: veinticinco
 Lo siento, el valor <span class="token string">'veinticinco'</span> no es Real.
 </code></pre><p>También tendremos la opción de mostrar el mensaje de error que devuelven las BCL a través del <strong>objeto</strong> <strong><code>e</code></strong> que contiene la información de la excepción y que se creó al generarse la misma en el <strong><code>throw</code></strong>.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-try">try</span>
     <span class="token punctuation">{</span>
@@ -592,19 +642,18 @@ Lo siento, el valor <span class="token string">'veinticinco'</span> no es Real.
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrando el mensaje.</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Si lo ejecutamos e introducimos <strong>'veinticinco'</strong> ahora obtendremos...</p>
+</code></pre><p>Si lo ejecutamos e introducimos <strong>'veinticinco'</strong> ahora obtendremos...</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Introduce un número real: veinticinco
 Input string was not <span class="token keyword keyword-in">in</span> a correct format.
 </code></pre><blockquote>
 <p>✋ <strong>Importante:</strong> Al especificar que capturamos solo la excepción <strong><code>FormatException</code></strong>, solo se entrará en este bloque catch si se produce la misma. Por tanto, cualquier otro error/excepción será capturado por el Runtime.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
 <h5 id="capturando-excepciones-diferentes">Capturando excepciones diferentes </h5>
 <p>Si <strong><code>catch (FormatException e)</code></strong> solo captura las excepciones de formato de entrada incorrecto.</p>
 <p><strong>¿Cómo haremos para controlar diferentes tipos errores/excepciones?</strong></p>
 <p>Supongamos el siguiente <strong>ejemplo</strong> donde hemos creado un método <strong><code>Divide</code></strong> que genera una excepción <strong><code>DivideByZeroException</code></strong> al intentar dividir por cero. Pero si nos fijamos en el <strong><code>Main</code></strong> solo gestionamos <strong><code>FormatException</code></strong>.<br>
 El programa principal nos pedirá 2 números e intentará dividirlos y si no puede finaliza.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">EjemploExcepciones</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">EjemploExcepciones</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Divide</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> numerador<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> divisor<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -629,7 +678,7 @@ El programa principal nos pedirá 2 números e intentará dividirlos y si no pue
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Al ejecutar el código e intentar dividir por cero obtendremos...</p>
+</code></pre><p>Al ejecutar el código e intentar dividir por cero obtendremos...</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Introduce el numerador: <span class="token number">4</span>
 Introduce el divisor: <span class="token number">0</span>
 Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.
@@ -649,8 +698,7 @@ Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.
 <span class="token punctuation">{</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"No se puede dividir por cero."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<p>Al ejecutar ahora con la misma entrada obtendremos...</p>
+</code></pre><p>Al ejecutar ahora con la misma entrada obtendremos...</p>
 <pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>Ejecución 1: 
     Introduce el numerador: 4
     Introduce el divisor: 0
@@ -667,10 +715,10 @@ Ejecución 3:
     La división es 2
 </code></pre><p>Fíjate que ahora capturamos '<em>nosotros</em>' los 2 errores.</p>
 <blockquote>
-<p>✋ Importante: Si el <strong>tipo</strong> del primer bloque <strong><code>catch</code></strong> es una <strong>superclase</strong> del tipo del segundo. <strong>El segundo bloque catch nunca se ejecutará</strong> y además nos avisará con un <strong>error de compilación</strong>.</p>
+<p>✋ <strong>Importante</strong>: Si el <strong>tipo</strong> del primer bloque <strong><code>catch</code></strong> es una <strong>superclase</strong> del tipo del segundo. <strong>El segundo bloque catch nunca se ejecutará</strong> y además nos avisará con un <strong>error de compilación</strong>.</p>
 </blockquote>
 <p>Por ejemplo el siguiente código ...</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-try">try</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-try">try</span>
 <span class="token punctuation">{</span>
     <span class="token comment">//...</span>
 <span class="token punctuation">}</span>
@@ -686,7 +734,7 @@ Ejecución 3:
 <span class="token punctuation">{</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"No se puede dividir por cero."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Generará el siguiente error ....</p>
+</code></pre><p>Generará el siguiente error ....</p>
 <blockquote>
 <p>❌ <strong>"Una cláusula catch previa ya detecta todas las excepciones de este tipo o de tipo superior ('Exception')"</strong></p>
 </blockquote>
@@ -698,9 +746,8 @@ Ejecución 3:
 <blockquote>
 <p>⚠️ <strong>Aviso:</strong> Microsoft no nos recomienda hacerlo** fuera del <strong><code>Main</code></strong>, indicándonos en su <a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/using-standard-exception-types#exception-and-systemexception">documentación</a> que no es una buena práctica.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
 <p>Por tanto, si probamos el siguiente código....</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-try">try</span>
     <span class="token punctuation">{</span>
@@ -715,7 +762,7 @@ Ejecución 3:
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>Ejecución 1:
+</code></pre><pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>Ejecución 1:
     Introduce el numerador: 4
     Introduce el divisor: 0
     Attempted to divide by zero.
@@ -759,7 +806,7 @@ Ejecución 3:
 <li>
 <p>Se <strong>ejecutará en último lugar</strong> respecto a sus bloques try-catch asociados en su ámbito, esto es, después del <strong><code>try</code></strong> si todo ha ido bien o después del <strong><code>catch</code></strong> correspondiente.</p>
 <blockquote>
-<p>✋ Se puede tener un bloque <strong><code>try</code></strong> seguido de un <strong><code>finally</code></strong> (sin bloques catch), y realizar la captura de la excepción en un catch de ámbito más externo o incluso por el Runtime. En este caso, el finally se ejecutará siempre y antes que el catch del ámbito superior.</p>
+<p>✋ <strong>Importante</strong>: Se puede tener un bloque <strong><code>try</code></strong> seguido de un <strong><code>finally</code></strong> (sin bloques catch), y realizar la captura de la excepción en un catch de ámbito más externo o incluso por el Runtime. En este caso, el finally se ejecutará siempre y antes que el catch del ámbito superior.</p>
 </blockquote>
 <p>Veámoslo en un simples ejemplos de código esquematizado.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Si correcto: BT -&gt; BF               // Si correcto: BT1 -&gt; BT2 -&gt; BF2       </span>
@@ -788,7 +835,7 @@ Ejecución 3:
 <blockquote>
 <p>📌 <strong>Nota:</strong> Cómo aún no hemos visto E/S con ficheros, lee los comentarios para entender que estamos haciendo en cada bloque y el porqué de cada uno. Este ejemplo <strong>solo pretende aplicar un esquema práctico de uso real de try - catch - finally</strong> y no abordar la lectura de ficheros en este punto del curso.</p>
 </blockquote>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">LeeFichero</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> posicion<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">LeeFichero</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> posicion<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-char">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> buffer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-char">char</span></span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token class-name">StreamReader<span class="token punctuation">?</span></span> streamReader <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
@@ -825,21 +872,21 @@ Ejecución 3:
             streamReader<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+</code></pre><div style="page-break-after:always;"></div>
 <h4 id="creando-nuestras-propias-excepciones">Creando nuestras propias excepciones </h4>
 <p>En ocasiones nos interesará crear nuestras propias excepciones para <strong>capturar errores de tipos de excepciones específicos</strong> en nuestras clases, a la hora de pasar test por ejemplo.</p>
 <p>En este caso las definiremos el tipo de la excepción nosotros y heredando de una excepción ya creada si queremos concertarla más o de la clase base para excepciones <strong><code>System.Exception</code></strong>.</p>
 <h5 id="ejemplo-de-creación-de-una-excepción-propia">Ejemplo de creación de una excepción propia </h5>
 <p>El convenio en C# es acabar el nombre del tipo de nuestra excepción con el sufijo <em><code>Exception</code></em> y en este ejemplo lo hemos hecho.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">DepartamentoException</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span>
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-public">public</span> <span class="token function">DepartamentoException</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> message<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword keyword-base">base</span> <span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></pre><ul>
+<pre data-role="codeBlock" data-info="cshar" class="language-cshar cshar"><code>class DepartamentoException : Exception
+{
+    public DepartamentoException(string message) : base (message) {}
+}
+</code></pre><ul>
 <li>En el código de arriba hemos creado una excepción <strong><code>ExcepcionDepartamento</code></strong> que usaré para saber cuando no he controlado algo en los departamentos de mi compañía.</li>
 <li>Ahora supongamos un método para imprimir nóminas de un departamento, donde no hemos contemplado uno de reciente creación como en el siguiente código.</li>
 </ul>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">ImprimeNominas</span><span class="token punctuation">(</span><span class="token class-name">Departamentos</span> departamento<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">ImprimeNominas</span><span class="token punctuation">(</span><span class="token class-name">Departamentos</span> departamento<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> datosNominas <span class="token operator">=</span> departamento <span class="token keyword keyword-switch">switch</span>
     <span class="token punctuation">{</span>
@@ -851,8 +898,8 @@ Ejecución 3:
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>datosNominas<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Otra posibilidad es crear excepciones personalizadas para una clase, podría ser definir la excepción de forma anidada dentro de la clase.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Departamento</span>
+</code></pre><p>Otra posibilidad es crear excepciones personalizadas para una clase, podría ser definir la excepción de forma anidada dentro de la clase.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Departamento</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">NominaGestionadaException</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span>
     <span class="token punctuation">{</span>
@@ -873,8 +920,7 @@ Ejecución 3:
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>datosNominas<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Fíjate que al estar anidada en el tipo <strong><code>Departamento.NoGestionadoException</code></strong> queda claro que es una excepción relacionada con la clase <strong><code>Departamento</code></strong>.</p>
-<div style="page-break-after:always;"></div>
+</code></pre><p>Fíjate que al estar anidada en el tipo <strong><code>Departamento.NoGestionadoException</code></strong> queda claro que es una excepción relacionada con la clase <strong><code>Departamento</code></strong>.</p>
 <h4 id="encadenamiento-de-excepciones-avanzado">Encadenamiento de excepciones (Avanzado) </h4>
 <p>En ocasiones, puedo tener la necesidad de crear un bloque <strong><code>catch</code></strong> para capturar una excepción en un ámbito, añadir un <strong>mensaje específico para ese ámbito</strong> y posteriormente <strong>relanzarla</strong> para ser capturada en otro ámbito superior. Además, este proceso se puede repetir de forma sucesiva.</p>
 <p>La mayoría de constructores de excepciones de las BCL, admiten una sobrecarga con el parámetro <strong>Exception <a href="https://docs.microsoft.com/es-es/dotnet/api/system.exception.innerexception?view=net-5.0">innerException</a></strong>. (a NULL por defecto).</p>
@@ -895,7 +941,7 @@ Ejecución 3:
 <p>Esto me permitirá recorrer todos los objetos excepción encadenados en el orden que se han ido relanzando y así acceder a mensajes específicos en cada ámbito.</p>
 <h5 id="caso-de-uso-de-encadenamiento-de-excepciones">Caso de uso de encadenamiento de excepciones </h5>
 <p>Veamos un caso de uso de encadenamiento de excepciones a través del siguiente esquema, donde desde el Main se iría llamando a métodos de diferentes objetos para realizar una tarea. Tenemos un <strong><code>Método_D</code></strong> que es usado en <strong>dos ramas diferentes de la pila de llamadas</strong> y que puede generar la excepción/error <strong><code>E</code></strong></p>
-<p></p><p align="center" style="zoom:0.65" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p></p><p align="center" style="zoom:0.7" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 9.0.0 (20230911.1827)
  -->
@@ -1291,7 +1337,7 @@ Ejecución 3:
 <p>Si sólo tuviera un punto de recuperación de errores (catch) en el <strong><code>Main</code></strong> al producirse el la excepción <strong><code>E(d)</code></strong> en <strong><code>Método_D</code></strong>, no sabría por donde se ha producido.</p>
 <p>Sin embargo, si vamos añadiendo <em>'<strong><code>catch</code></strong> de control'</em> donde relanzamos la misma excepción, añadiendo una capa de información de que proceso estamos haciendo en ese momento. El <em>'<strong><code>catch</code></strong> de contol'</em> en el <strong><code>Método_A</code></strong>, si nos fijamos, puede relanzar la excepción añadiendo información de cada uno de los <em>'<strong><code>catch</code></strong> de contol'</em> por donde ha pasado <strong><code>E(a+b+d) o E(a+c+d)</code></strong> y saber de forma más específica en un <em>'<strong><code>catch</code></strong> de mensaje o recuperación'</em> del <strong><code>Main</code></strong>, por donde se ha producido el error.</p>
 <p>Una posible implementación esquemática del la situación descrita en el diagrama, podría ser la siguiente:</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">EsquemaExcepcionesEncadenadas</span> <span class="token punctuation">{</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">EsquemaExcepcionesEncadenadas</span> <span class="token punctuation">{</span>
     <span class="token keyword keyword-class">class</span> <span class="token class-name">E</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Exception</span></span> <span class="token punctuation">{</span>
         <span class="token keyword keyword-public">public</span> <span class="token function">E</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> message<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword keyword-base">base</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
         <span class="token keyword keyword-public">public</span> <span class="token function">E</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> message<span class="token punctuation">,</span> <span class="token class-name">Exception</span> innerException<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword keyword-base">base</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> innerException<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
@@ -1332,7 +1378,7 @@ Ejecución 3:
                 <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">E</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword keyword-try">try</span> <span class="token punctuation">{</span>
                 <span class="token comment">// En algún punto de este código en su jerarquía de llamadas,</span>
                 <span class="token comment">// se llamará a Metodo_A()</span>
@@ -1352,8 +1398,7 @@ Ejecución 3:
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
-<h4 id="bulb-tips-de-uso-de-excepciones-en-net">💡 Tips de uso de excepciones en .NET </h4>
+</code></pre><h4 id="bulb-tips-de-uso-de-excepciones-en-net">💡 Tips de uso de excepciones en .NET </h4>
 <p>En ocasiones usar adecuadamente las excepciones es complicado incluso para programadores <strong>experimentados</strong>, y se han de establecer convenios y patrones en los equipos de desarrollo.</p>
 <p>Aunque en este curso no vamos tratar más que los conceptos básicos. Si deseas profundizar, en el siguiente enlace puedes encontrar una serie de instrucciones para la correcta generación  de excepciones descritas en la documentación de Microsoft. Que además de ser una lectura complementaria interesante, puede ser extrapolable a otros lenguajes.</p>
 <ul>
@@ -1365,7 +1410,16 @@ Ejecución 3:
 </blockquote>
 <p>Veamos <strong>un ejemplo similar al del inicio</strong> del tema, donde queríamos pedir dos números y mostrar su división.<br>
 Un código algo más modularizado, pero sin gestión de excepciones sería el siguiente:</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Consola</span>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">Truth can only be found in one place: the code.</div>
+        <div class="autor">- Robert C. Martin.</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Consola</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> etiqueta<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -1382,9 +1436,11 @@ Un código algo más modularizado, pero sin gestión de excepciones sería el si
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"La división es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">numerador <span class="token operator">/</span> divisor</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>Si ahora nos piden filtrar la entrada de datos, para que no se generase error al producirse una entrada correcta.<br>
-❌💀 Una tentación sería hacer la siguiente implementación...</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> etiqueta<span class="token punctuation">)</span>
+</code></pre><p>Si ahora nos piden filtrar la entrada de datos, para que no se generase error al producirse una entrada correcta.</p>
+<blockquote>
+<p>💀 <strong>Peligro</strong>: Una tentación sería hacer la siguiente implementación...</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> etiqueta<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> textoEntrada <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">?</span></span> valor <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
@@ -1407,11 +1463,10 @@ Un código algo más modularizado, pero sin gestión de excepciones sería el si
 
     <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">)</span>valor<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>En esta implementación, utilizamos excepciones para el <strong>control del flujo de código</strong> y no para una situación de error.</p>
-<div style="page-break-after:always;"></div>
+</code></pre><p>En esta implementación, utilizamos excepciones para el <strong>control del flujo de código</strong> y no para una situación de error.</p>
 <p><strong>¿Cual sería la implementación correcta del código anterior para no hacerlo?</strong></p>
 <p>✔️ 👍 Microsoft nos propone usar el <strong><a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/exceptions-and-performance#try-parse-pattern">patrón try-parse</a></strong> en su lugar, de la siguiente forma...</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> etiqueta<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Lee</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> etiqueta<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span></span> valor<span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> error<span class="token punctuation">;</span>
@@ -1429,8 +1484,8 @@ Un código algo más modularizado, pero sin gestión de excepciones sería el si
 
     <span class="token keyword keyword-return">return</span> valor<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>❌💀 De forma similar sucedería si intentásemos controlar la división por cero en el programa principal de la siguiente forma ....</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p>❌💀 De forma similar sucedería si intentásemos controlar la división por cero en el programa principal de la siguiente forma ....</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">?</span></span> division <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-do">do</span>
@@ -1452,14 +1507,14 @@ Un código algo más modularizado, pero sin gestión de excepciones sería el si
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>division <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>En esta implementación, estamos cometiendo un doble mal uso</p>
+</code></pre><p>En esta implementación, estamos cometiendo un doble mal uso</p>
 <ul>
 <li>❌ Utilizamos excepciones para el <strong>control del flujo de código</strong>.</li>
 <li>❌ En <strong>el mismo ámbito</strong> estámos lanzando una excepción (<strong><code>Línea 11</code></strong>) y capturándola (<strong><code>Línea 15</code></strong>) y esto, <mark><strong>nunca se debe producir</strong></mark>.</li>
 </ul>
 <p><strong>¿Cual sería la implementación correcta del código anterior para no hacerlo?</strong></p>
 <p>✔️ 👍 Usaríamos estructuras condicionales tradicionales.</p>
-<pre data-role="codeBlock" data-info="csharp {class=&quot;line-numbers&quot;}" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> errorDivisionPorCero<span class="token punctuation">;</span>
     <span class="token keyword keyword-do">do</span>
@@ -1474,15 +1529,14 @@ Un código algo más modularizado, pero sin gestión de excepciones sería el si
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>errorDivisionPorCero<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
-<h5 id="excepciones-estándar-en-net">Excepciones estándar en .NET </h5>
+</code></pre><h5 id="excepciones-estándar-en-net">Excepciones estándar en .NET </h5>
 <p>Además, Microsoft nos proporciona unas recomendaciones de uso de excepciones estándar ya definidas por las propias BCL.<br>
 Fíjate que algunas <strong>no</strong> son recomendables capturarlas, lanzarlas o derivarlas.</p>
 <ul>
 <li><a href="https://docs.microsoft.com/es-es/dotnet/standard/design-guidelines/using-standard-exception-types">Recomendaciones de uso de excepciones estándar</a></li>
 </ul>
 <p>Aunque cuando necesitemos lanzar algún tipo de excepción estándar se te indicará en el enunciado. En el siguiente diagramá tienes un resumen <strong>simplificado</strong> de las principales excepciones en .NET y las recomendaciones de uso del cuadro anterior.</p>
-<p></p><p align="center" style="zoom:0.5" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p></p><p align="center" style="zoom:0.4" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
 <!-- Generated by graphviz version 9.0.0 (20230911.1827)
  -->

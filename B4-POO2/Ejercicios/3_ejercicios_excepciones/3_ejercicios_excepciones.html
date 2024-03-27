@@ -3,545 +3,339 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview .slides > section {
-  height: 100%;
-  font-size: 90%;
-  overflow-y: auto !important;
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
-.markdown-preview.markdown-preview .slide code {
-  color: yellow;
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-excepciones">Ejercicios Excepciones</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-excepciones">Ejercicios Excepciones </h1>
 <p><a href="./3_ejercicios_excepciones.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#ejercicio-1">Ejercicio 1</a></li>
-<li><a href="#ejercicio-2">Ejercicio 2</a></li>
-<li><a href="#white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</a></li>
-<li><a href="#white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</a></li>
-<li><a href="#ejercicio-5">Ejercicio 5</a></li>
-</ol>
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2" class="md-toc-link">
+            <p>Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-3" class="md-toc-link">
+            <p>✅ Ejercicio 3</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-4" class="md-toc-link">
+            <p>✅ Ejercicio 4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5" class="md-toc-link">
+            <p>Ejercicio 5</p>
+
+          </a></div>
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
-
-<blockquote>
-<p>Crea un programa que tome un n&#xFA;mero <strong>como par&#xE1;metro en la l&#xED;nea de comandos</strong>, y que muestre el logaritmo en base diez de dicho n&#xFA;mero. Para ello vamos a seguir los siguiente pasos:</p>
+<div class="ejercicio">
+<h2 id="ejercicio-1">Ejercicio 1 </h2>
+<p>Crea un programa que tome un número <strong>como parámetro en la línea de comandos</strong>, y que muestre el logaritmo en base diez de dicho número. Para ello vamos a seguir los siguiente pasos:</p>
 <ol>
 <li>
-<p>Desde el <strong><code>Main</code></strong> se llamar&#xE1; a un m&#xE9;todo est&#xE1;tico <strong><code>CalculaLogaritmo</code></strong> al que se le pase un double como argumento de entrada, calcule el logaritmo y devuelva el resultado del c&#xE1;lculo al m&#xE9;todo <strong><code>Main</code></strong>.</p>
+<p>Desde el <strong><code>Main</code></strong> se llamará a un método estático <strong><code>CalculaLogaritmo</code></strong> al que se le pase un double como argumento de entrada, calcule el logaritmo y devuelva el resultado del cálculo al método <strong><code>Main</code></strong>.</p>
 </li>
 <li>
 <p>Compilar el programa y ejecutadlo de tres formas distintas:</p>
 <ul>
-<li>Sin par&#xE1;metros en la l&#xED;nea de comandos.</li>
-<li>Poniendo un par&#xE1;metro no num&#xE9;rico.</li>
-<li>Poniendo un par&#xE1;metro num&#xE9;rico.</li>
+<li>Sin parámetros en la línea de comandos.</li>
+<li>Poniendo un parámetro no numérico.</li>
+<li>Poniendo un parámetro numérico.</li>
 </ul>
 </li>
 <li>
 <p>Anotad las excepciones que se lanzan en cada caso (si se lanzan).</p>
 </li>
 <li>
-<p>Modificar el c&#xF3;digo de el  <strong><code>Main</code></strong> para que capture las excepciones producidas y muestre los errores correspondientes en cada caso.</p>
+<p>Modificar el código de el  <strong><code>Main</code></strong> para que capture las excepciones producidas y muestre los errores correspondientes en cada caso.</p>
 </li>
 <li>
 <p>Probad de nuevo el programa, comprobando que las excepciones son capturadas y tratadas.</p>
 </li>
 </ol>
-<p><strong>Nota:</strong> para pasar los argumentos desde la l&#xED;nea de comandos puedes ver el siguiente tutorial. <a href="https://youtu.be/1DaPWhQBwks">Paso de argumentos en l&#xED;nea de comandos</a></p>
-</blockquote>
-<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
-
 <blockquote>
-<p>Partiendo del ejercicio anterior, ahora vamos a trabajar con los problemas del m&#xE9;todo logaritmo. La funci&#xF3;n de las BCL que calcula el logaritmo, no comprueba si el valor<br>
-introducido es menor o igual que 0,  el problema es que para estos valores la funci&#xF3;n logaritmo no est&#xE1; definida, as&#xED; que tendremos que ser nosotros los que controlemos la entrada. Se pide:</p>
+<p><strong>Nota:</strong> para pasar los argumentos desde la línea de comandos puedes ver el siguiente tutorial. <strong><a href="https://youtu.be/1DaPWhQBwks">Paso de argumentos en línea de comandos</a></strong></p>
+</blockquote>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="ejercicio-2">Ejercicio 2 </h2>
+<p>Partiendo del ejercicio anterior, ahora vamos a trabajar con los problemas del método logaritmo. La función de las BCL que calcula el logaritmo, no comprueba si el valor introducido es menor o igual que 0,  el problema es que para estos valores la función logaritmo no está definida, así que tendremos que ser nosotros los que controlemos la entrada. Se pide:</p>
 <ol>
-<li>Busca entre las excepciones de la BCL, alguna que consideres adecuada para lanzar. Por ejemplo, una que indique que a un m&#xE9;todo se le ha pasado un argumento ilegal.</li>
-<li>Una vez elegida la excepci&#xF3;n adecuada, a&#xF1;ade el c&#xF3;digo (en el m&#xE9;todo logaritmo) para que en el caso de haber introducido un valor incorrecto se lance dicha<br>
-excepci&#xF3;n.</li>
-<li>Probar el programa para comprobar lo que ocurre cuando lanzas la excepci&#xF3;n.</li>
-<li>Captura y trata la excepci&#xF3;n en el Main.</li>
+<li>Busca entre las excepciones de la BCL, alguna que consideres adecuada para lanzar. Por ejemplo, una que indique que a un método se le ha pasado un argumento ilegal.</li>
+<li>Una vez elegida la excepción adecuada, añade el código (en el método logaritmo) para que en el caso de haber introducido un valor incorrecto se lance dicha<br>
+excepción.</li>
+<li>Probar el programa para comprobar lo que ocurre cuando lanzas la excepción.</li>
+<li>Captura y trata la excepción en el Main.</li>
 </ol>
-</blockquote>
-<h2 class="mume-header" id="white_check_mark-ejercicio-3">&#x2705; Ejercicio 3</h2>
-
-<blockquote>
-<p>Modifica el programa anterior para crear nuestro propio tipo de excepci&#xF3;n derivada de <strong><code>Exception</code></strong>. La excepci&#xF3;n se llamar&#xE1; <strong><code>ParametroNoValidoException</code></strong>, y le  definiremos 2 constructores:</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-3">✅ Ejercicio 3 </h2>
+<p>Modifica el programa anterior para crear nuestro propio tipo de excepción derivada de <strong><code>Exception</code></strong>. La excepción se llamará <strong><code>ParametroNoValidoException</code></strong>, y le definiremos 2 constructores:</p>
 <ol>
-<li>Vac&#xED;o.</li>
-<li>Pas&#xE1;ndole el mensaje de error que a su vez pasar&#xE1; a la clase base.</li>
+<li>Vacío.</li>
+<li>Pasándole el mensaje de error que a su vez pasará a la clase base.</li>
 </ol>
-<p>Deber&#xE1;s lanzar esta excepci&#xF3;n en lugar de la escogida en el punto anterior. La capturar&#xE1;s donde capturabas la anterior.</p>
-</blockquote>
-<h2 class="mume-header" id="white_check_mark-ejercicio-4">&#x2705; Ejercicio 4</h2>
-
-<blockquote>
+<p>Deberás lanzar esta excepción en lugar de la escogida en el punto anterior. La capturarás donde capturabas la anterior.</p>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-4">✅ Ejercicio 4 </h2>
 <p>Crea un programa a partir del siguiente diagrama de clases en UML</p>
-<p align="center" style="zoom:0.9"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="385px" preserveAspectRatio="none" style="width:600px;height:385px;background:#FFFFFF;" version="1.1" viewBox="0 0 600 385" width="600px" zoomAndPan="magnify"><defs><filter height="300%" id="fsqjkicnbbuvg" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[f2685546802bf452595a6a473f2e9d3d]
-class NumeroCuenta--><rect codeline="8" fill="#FFFAFA" filter="url(#fsqjkicnbbuvg)" height="172.5234" id="NumeroCuenta" style="stroke:#000000;stroke-width:1.5;" width="365" x="7" y="7"/><ellipse cx="142.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M145.5156,18.875 Q145.6719,18.6563 145.8594,18.5469 Q146.0469,18.4375 146.2656,18.4375 Q146.6406,18.4375 146.875,18.7031 Q147.1094,18.9531 147.1094,19.5625 L147.1094,21.0156 Q147.1094,21.625 146.875,21.8906 Q146.6406,22.1563 146.2656,22.1563 Q145.9219,22.1563 145.7188,21.9531 Q145.5156,21.7656 145.4063,21.25 Q145.3594,20.8906 145.1719,20.7031 Q144.8438,20.3281 144.2344,20.1094 Q143.625,19.8906 143,19.8906 Q142.2344,19.8906 141.5938,20.2188 Q140.9688,20.5469 140.4688,21.2969 Q139.9844,22.0469 139.9844,23.0781 L139.9844,24.1719 Q139.9844,25.4063 140.875,26.2344 Q141.7656,27.0469 143.3594,27.0469 Q144.2969,27.0469 144.9531,26.7969 Q145.3438,26.6406 145.7656,26.2031 Q146.0313,25.9375 146.1719,25.8594 Q146.3281,25.7813 146.5313,25.7813 Q146.8594,25.7813 147.1094,26.0469 Q147.375,26.2969 147.375,26.6406 Q147.375,26.9844 147.0313,27.3906 Q146.5313,27.9688 145.7344,28.2969 Q144.6563,28.75 143.3594,28.75 Q141.8438,28.75 140.6406,28.125 Q139.6563,27.625 138.9688,26.5625 Q138.2813,25.4844 138.2813,24.2031 L138.2813,23.0469 Q138.2813,21.7188 138.8906,20.5781 Q139.5156,19.4219 140.6094,18.8125 Q141.7031,18.1875 142.9375,18.1875 Q143.6719,18.1875 144.3125,18.3594 Q144.9688,18.5156 145.5156,18.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="85" x="163.25" y="27.9102">NumeroCuenta</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="371" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="13" y="54.4189">-entidad : string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="82" x="13" y="68.2549">-sucursal : string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="86" x="13" y="82.0908">-dcEntSuc : string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="13" y="95.9268">-dcNumero : string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="13" y="109.7627">-cuenta : string</text><line style="stroke:#000000;stroke-width:1.5;" x1="8" x2="371" y1="116.1797" y2="116.1797"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="168" x="13" y="131.5986">+NumeroCuenta(in numero : string)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="203" x="13" y="145.4346">-formatoCorrecto(in numero : string) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="353" x="13" y="159.2705">-dcCorrecto(in dc : string, in digitos : string, in ponderaciones : int[]) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="90" x="13" y="173.1064">+ToString() : string</text><!--MD5=[96f0d8a76804d87c4f63821ffd2c7d3b]
-class Cuenta--><rect codeline="20" fill="#FFFAFA" filter="url(#fsqjkicnbbuvg)" height="131.0156" id="Cuenta" style="stroke:#000000;stroke-width:1.5;" width="222" x="78.5" y="240"/><ellipse cx="165.25" cy="256" fill="#ADD1B2" rx="11" ry="11" style="stroke:#000000;stroke-width:1.0;"/><path d="M168.0156,251.875 Q168.1719,251.6563 168.3594,251.5469 Q168.5469,251.4375 168.7656,251.4375 Q169.1406,251.4375 169.375,251.7031 Q169.6094,251.9531 169.6094,252.5625 L169.6094,254.0156 Q169.6094,254.625 169.375,254.8906 Q169.1406,255.1563 168.7656,255.1563 Q168.4219,255.1563 168.2188,254.9531 Q168.0156,254.7656 167.9063,254.25 Q167.8594,253.8906 167.6719,253.7031 Q167.3438,253.3281 166.7344,253.1094 Q166.125,252.8906 165.5,252.8906 Q164.7344,252.8906 164.0938,253.2188 Q163.4688,253.5469 162.9688,254.2969 Q162.4844,255.0469 162.4844,256.0781 L162.4844,257.1719 Q162.4844,258.4063 163.375,259.2344 Q164.2656,260.0469 165.8594,260.0469 Q166.7969,260.0469 167.4531,259.7969 Q167.8438,259.6406 168.2656,259.2031 Q168.5313,258.9375 168.6719,258.8594 Q168.8281,258.7813 169.0313,258.7813 Q169.3594,258.7813 169.6094,259.0469 Q169.875,259.2969 169.875,259.6406 Q169.875,259.9844 169.5313,260.3906 Q169.0313,260.9688 168.2344,261.2969 Q167.1563,261.75 165.8594,261.75 Q164.3438,261.75 163.1406,261.125 Q162.1563,260.625 161.4688,259.5625 Q160.7813,258.4844 160.7813,257.2031 L160.7813,256.0469 Q160.7813,254.7188 161.3906,253.5781 Q162.0156,252.4219 163.1094,251.8125 Q164.2031,251.1875 165.4375,251.1875 Q166.1719,251.1875 166.8125,251.3594 Q167.4688,251.5156 168.0156,251.875 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="40" x="185.75" y="260.9102">Cuenta</text><line style="stroke:#000000;stroke-width:1.5;" x1="79.5" x2="299.5" y1="272" y2="272"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="84.5" y="287.4189">-titular : string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="84.5" y="301.2549">-saldo : double</text><line style="stroke:#000000;stroke-width:1.5;" x1="79.5" x2="299.5" y1="307.6719" y2="307.6719"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="210" x="84.5" y="323.0908">+Cuenta(in numero : string, in titular : string)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="172" x="84.5" y="336.9268">+Ingreso(in cantidad : double) : void</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="182" x="84.5" y="350.7627">+Reintegro(in cantidad : double) : void</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="86" x="84.5" y="364.5986">+Tostring(): string</text><path d="M407.5,59 L407.5,84.5273 L181,127.0977 L407.5,92.5273 L407.5,118.0547 A0,0 0 0 0 407.5,118.0547 L591.5,118.0547 A0,0 0 0 0 591.5,118.0547 L591.5,69 L581.5,59 L407.5,59 A0,0 0 0 0 407.5,59 " fill="#FBFB77" filter="url(#fsqjkicnbbuvg)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M581.5,59 L581.5,69 L591.5,69 L581.5,59 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134" x="413.5" y="77.4951">Si el n&#xFA;mero de cuenta</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87" x="413.5" y="93.8467">no es correcto,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="413.5" y="110.1982">generaremos una excepci&#xF3;n</text><path d="M335.5,271 L335.5,296.5273 L266.5,346.2617 L335.5,304.5273 L335.5,330.0547 A0,0 0 0 0 335.5,330.0547 L519.5,330.0547 A0,0 0 0 0 519.5,330.0547 L519.5,281 L509.5,271 L335.5,271 A0,0 0 0 0 335.5,271 " fill="#FBFB77" filter="url(#fsqjkicnbbuvg)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M509.5,271 L509.5,281 L519.5,281 L509.5,271 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="148" x="341.5" y="289.4951">Si el reintegro es superior</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="341.5" y="305.8467">al saldo,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="341.5" y="322.1982">generaremos una excepci&#xF3;n</text><!--MD5=[6c100bcd7283cce417cc5c859f82c0a5]
-link NumeroCuenta to Cuenta--><path codeline="30" d="M189.5,180.22 C189.5,195.66 189.5,211.67 189.5,226.86 " fill="none" id="NumeroCuenta-to-Cuenta" style="stroke:#000000;stroke-width:1.0;"/><polygon fill="#000000" points="189.5,239.97,193.5,233.97,189.5,227.97,185.5,233.97,189.5,239.97" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="182.232" y="200.9988">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="182.0953" y="228.9826">1</text><!--MD5=[72ebca744487fbb094615a04a4aee245]
-link NumeroCuenta to NumeroCuenta$$$RIGHT--><!--MD5=[e05e0a6633f0e60d377040c6863d0151]
-link Cuenta to Cuenta$$$RIGHT--><!--MD5=[4d3437a454accd6836fd033d181b7df4]
-@startuml
-
- skinparam classAttributeIconSize 0
- skinparam ArrowColor Black
- skinparam PackageBackgroundColor WhiteSmoke
- skinparam ClassBorderColor Black
- skinparam ClassBackgroundColor Snow
-
-class NumeroCuenta
-{
-- entidad : string
-- sucursal : string
--dcEntSuc : string
--dcNumero : string
--cuenta : string
-+NumeroCuenta(in numero : string)
--formatoCorrecto(in numero : string) : bool
--dcCorrecto(in dc : string, in digitos : string, in ponderaciones : int[]) : bool
-+ ToString() : string
-} 
-class Cuenta
-{ 
-- titular : string
-- saldo : double
-+ Cuenta(in numero : string, in titular : string)
-+ Ingreso(in cantidad : double) : void 
-+ Reintegro(in cantidad : double) : void 
-+ Tostring(): string
- }
-
-NumeroCuenta "1" - -* "1" Cuenta
-note right of NumeroCuenta::NumeroCuenta
- Si el número de cuenta
- no es correcto,
- generaremos una excepción
-end note
-note right of Cuenta::Reintegro
- Si el reintegro es superior
- al saldo,
- generaremos una excepción
-end note
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p><p>La aplicaci&#xF3;n permitir&#xE1; recoger datos de una cuenta bancaria. Deber&#xE1;s crear los siguientes m&#xE9;todos y comprobar que funcionan correctamente. Prueba la aplicaci&#xF3;n con m&#xE1;s de un n&#xFA;mero de cuenta y captura las posibles excepciones en el programa principal.</p>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="346.4px" preserveAspectRatio="none" style="width:567px;height:346px;" version="1.1" viewBox="0 0 567 346" width="567.2px" zoomAndPan="magnify"><defs></defs><g><!--class NumeroCuenta--><g id="elem_NumeroCuenta"><rect codeline="11" fill="#FFFAFA" height="165.1875" id="NumeroCuenta" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="380.8" x="5.6" y="5.6"></rect><ellipse cx="154.6" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M156.8125,15.1 Q156.9375,14.925 157.0875,14.8375 Q157.2375,14.75 157.4125,14.75 Q157.7125,14.75 157.9,14.9625 Q158.0875,15.1625 158.0875,15.65 L158.0875,16.8125 Q158.0875,17.3 157.9,17.5125 Q157.7125,17.725 157.4125,17.725 Q157.1375,17.725 156.975,17.5625 Q156.8125,17.4125 156.725,17 Q156.6875,16.7125 156.5375,16.5625 Q156.275,16.2625 155.7875,16.0875 Q155.3,15.9125 154.8,15.9125 Q154.1875,15.9125 153.675,16.175 Q153.175,16.4375 152.775,17.0375 Q152.3875,17.6375 152.3875,18.4625 L152.3875,19.3375 Q152.3875,20.325 153.1,20.9875 Q153.8125,21.6375 155.0875,21.6375 Q155.8375,21.6375 156.3625,21.4375 Q156.675,21.3125 157.0125,20.9625 Q157.225,20.75 157.3375,20.6875 Q157.4625,20.625 157.625,20.625 Q157.8875,20.625 158.0875,20.8375 Q158.3,21.0375 158.3,21.3125 Q158.3,21.5875 158.025,21.9125 Q157.625,22.375 156.9875,22.6375 Q156.125,23 155.0875,23 Q153.875,23 152.9125,22.5 Q152.125,22.1 151.575,21.25 Q151.025,20.3875 151.025,19.3625 L151.025,18.4375 Q151.025,17.375 151.5125,16.4625 Q152.0125,15.5375 152.8875,15.05 Q153.7625,14.55 154.75,14.55 Q155.3375,14.55 155.85,14.6875 Q156.375,14.8125 156.8125,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="76" x="171" y="22.9828">NumeroCuenta</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="6.4" x2="385.6" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="79.2" x="10.4" y="46.0266">-entidad : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="84" x="10.4" y="60.1141">-sucursal : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="89.6" x="10.4" y="74.2016">-dcEntSuc : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="92.8" x="10.4" y="88.2891">-dcNumero : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="76" x="10.4" y="102.3766">-cuenta : string</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="6.4" x2="385.6" y1="108.0375" y2="108.0375"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="178.4" x="10.4" y="122.8641">+NumeroCuenta(in numero : string)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="213.6" x="10.4" y="136.9516">-formatoCorrecto(in numero : string) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="371.2" x="10.4" y="151.0391">-dcCorrecto(in dc : string, in digitos : string, in ponderaciones : int[]) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="95.2" x="10.4" y="165.1266">+ToString() : string</text></g><!--class Cuenta--><g id="elem_Cuenta"><rect codeline="24" fill="#FFFAFA" height="122.925" id="Cuenta" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="232.8" x="79.6" y="218.4"></rect><ellipse cx="174.2" cy="231.2" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M176.4125,227.9 Q176.5375,227.725 176.6875,227.6375 Q176.8375,227.55 177.0125,227.55 Q177.3125,227.55 177.5,227.7625 Q177.6875,227.9625 177.6875,228.45 L177.6875,229.6125 Q177.6875,230.1 177.5,230.3125 Q177.3125,230.525 177.0125,230.525 Q176.7375,230.525 176.575,230.3625 Q176.4125,230.2125 176.325,229.8 Q176.2875,229.5125 176.1375,229.3625 Q175.875,229.0625 175.3875,228.8875 Q174.9,228.7125 174.4,228.7125 Q173.7875,228.7125 173.275,228.975 Q172.775,229.2375 172.375,229.8375 Q171.9875,230.4375 171.9875,231.2625 L171.9875,232.1375 Q171.9875,233.125 172.7,233.7875 Q173.4125,234.4375 174.6875,234.4375 Q175.4375,234.4375 175.9625,234.2375 Q176.275,234.1125 176.6125,233.7625 Q176.825,233.55 176.9375,233.4875 Q177.0625,233.425 177.225,233.425 Q177.4875,233.425 177.6875,233.6375 Q177.9,233.8375 177.9,234.1125 Q177.9,234.3875 177.625,234.7125 Q177.225,235.175 176.5875,235.4375 Q175.725,235.8 174.6875,235.8 Q173.475,235.8 172.5125,235.3 Q171.725,234.9 171.175,234.05 Q170.625,233.1875 170.625,232.1625 L170.625,231.2375 Q170.625,230.175 171.1125,229.2625 Q171.6125,228.3375 172.4875,227.85 Q173.3625,227.35 174.35,227.35 Q174.9375,227.35 175.45,227.4875 Q175.975,227.6125 176.4125,227.9 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="36.8" x="190.6" y="235.7828">Cuenta</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="80.4" x2="311.6" y1="244" y2="244"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="69.6" x="84.4" y="258.8266">-titular : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="75.2" x="84.4" y="272.9141">-saldo : double</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="80.4" x2="311.6" y1="278.575" y2="278.575"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="223.2" x="84.4" y="293.4016">+Cuenta(in numero : string, in titular : string)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="181.6" x="84.4" y="307.4891">+Ingreso(in cantidad : double) : void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="193.6" x="84.4" y="321.5766">+Reintegro(in cantidad : double) : void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="90.4" x="84.4" y="335.6641">+Tostring(): string</text></g><path d="M414.4,60.4 L414.4,80.8219 L188.8,118.2813 L414.4,87.2219 L414.4,107.6438 A0,0 0 0 0 414.4,107.6438 L561.6,107.6438 A0,0 0 0 0 561.6,107.6438 L561.6,68.4 L553.6,60.4 L414.4,60.4 A0,0 0 0 0 414.4,60.4 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.4000000000000001;"></path><path d="M553.6,60.4 L553.6,68.4 L561.6,68.4 L553.6,60.4 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.4000000000000001;"></path><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="107.2" x="419.2" y="75.1961">Si el número de cuenta</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="69.6" x="419.2" y="88.2773">no es correcto,</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="130.4" x="419.2" y="101.3586">generaremos una excepción</text><path d="M340.8,252.4 L340.8,272.8219 L278,316.9938 L340.8,279.2219 L340.8,299.6438 A0,0 0 0 0 340.8,299.6438 L488,299.6438 A0,0 0 0 0 488,299.6438 L488,260.4 L480,252.4 L340.8,252.4 A0,0 0 0 0 340.8,252.4 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.4000000000000001;"></path><path d="M480,252.4 L480,260.4 L488,260.4 L480,252.4 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.4000000000000001;"></path><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="118.4" x="345.6" y="267.1961">Si el reintegro es superior</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="39.2" x="345.6" y="280.2773">al saldo,</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="130.4" x="345.6" y="293.3586">generaremos una excepción</text><!--link NumeroCuenta to Cuenta--><g id="link_NumeroCuenta_Cuenta"><path codeline="34" d="M196,170.648 C196,186.576 196,193.408 196,208.52 " fill="none" id="NumeroCuenta-to-Cuenta" style="stroke:#000000;stroke-width:0.8000000000000002;"></path><polygon fill="#000000" points="196,218.12,199.2,213.32,196,208.52,192.8,213.32,196,218.12" style="stroke:#000000;stroke-width:0.8000000000000002;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="5.6" x="190.1944" y="187.9797">1</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="5.6" x="190.1331" y="209.6347">1</text></g><!--SRC=[ZLAnRjmm3Dtr5KIcN9ChqgsuBNVeaAKeuWCw51rq4kC89vC7Iag25lsgRbtpOvLj-Svs4Y1UP9AFV7mamzxHGOjkm7WTmdMCudOfuerXgjmlX2iLZf1h4NxSi6U1jTTcFmfzowQkSPsVMZYHxM7Vxrt4gk4zZh2RbcdDOb5UBzO3PgKguiSHPXxUYgQGGqXHgM2qpwr__AnK9mk-fWQ5Dob7jVgj87zBo8Qpsi8AGbPDTN67P984xMT-QxvGh99vuUvhpzocevewByPTd3i2ccOk-jGxbaP7th08ciYl0VFVZjaF7OoXzjJW9RIsgrtaC7KUcFBmjN5Cs8OSnHy_9rKlOCjLbt2-EAdu0yD0Xr526LfqCNajBsQflMtxjfns7albDmVGzJQlj2XPDrGBXawZqSVDzONR5X_OMIZOMyoAC9_7kz1R3aNfIQXIusN1sQSpM2u_T6-HJXmHnDNt4VXkSc2hrUJSe7A07kZvNoVM8fWI88OyVbEsTwcWHifh4MpomX9fm2U31-EU_v92ij1IpdW7ngFYWKu6HqiHqW75iIZ8Pztjv7ra_m40]--></g></svg></p><p>La aplicación permitirá recoger datos de una cuenta bancaria. Deberás crear los siguientes métodos y comprobar que funcionan correctamente. Prueba la aplicación con más de un número de cuenta y captura las posibles excepciones en el programa principal.</p>
 <ul>
 <li>
-<p>El constructor <strong><code>NumeroCuenta</code></strong> recibir&#xE1; un string con el n&#xFA;mero de cuenta completo y si este no se corresponde con un n&#xFA;mero de cuenta correcto se lanzara una excepci&#xF3;n <strong><code>NumeroCuentaIncorrectoException</code></strong>. Esta excepci&#xF3;n se puede lanzar por dos motivos:</p>
+<p>El constructor <strong><code>NumeroCuenta</code></strong> recibirá un string con el número de cuenta completo y si este no se corresponde con un número de cuenta correcto se lanzara una excepción <strong><code>NumeroCuentaIncorrectoException</code></strong>. Esta excepción se puede lanzar por dos motivos:</p>
 <ol>
-<li>Porque no cumple el patr&#xF3;n de un n&#xFA;mero de cuenta (para ello llamar&#xE1; al m&#xE9;todo formatoCorrecto)</li>
-<li>Porque la cuenta no se corresponde con los d&#xED;gitos de control (en este caso usara dcCorrecto).</li>
+<li>Porque no cumple el patrón de un número de cuenta (para ello llamará al método formatoCorrecto)</li>
+<li>Porque la cuenta no se corresponde con los dígitos de control (en este caso usara dcCorrecto).</li>
 </ol>
 </li>
 <li>
-<p>El m&#xE9;todo privado de <strong><code>NumeroDeCuenta</code></strong>, <strong><code>formatoCorrecto</code></strong>. Comprobar&#xE1; el formato del n&#xFA;mero de cuenta con expresiones regulares y si <strong>el formato</strong> es correcto rellenar&#xE1; los campos del objeto. En caso contrario lanzar&#xE1; una excepci&#xF3;n <strong><code>NumeroCuentaIncorrectoException</code></strong>, indicando que el formato de la cuenta no cumple las condiciones necesarias.</p>
+<p>El método privado de <strong><code>NumeroDeCuenta</code></strong>, <strong><code>formatoCorrecto</code></strong>. Comprobará el formato del número de cuenta con expresiones regulares y si <strong>el formato</strong> es correcto rellenará los campos del objeto. En caso contrario lanzará una excepción <strong><code>NumeroCuentaIncorrectoException</code></strong>, indicando que el formato de la cuenta no cumple las condiciones necesarias.</p>
 </li>
 <li>
-<p>El m&#xE9;todo privado <strong><code>dcCorrecto</code></strong>, comprobar&#xE1; si el d&#xED;gito de control corresponde a la cuenta, devolviendo false en caso contrario. Para ver como se hace esto, consulta la Nota y la Pista posterior.</p>
+<p>El método privado <strong><code>dcCorrecto</code></strong>, comprobará si el dígito de control corresponde a la cuenta, devolviendo false en caso contrario. Para ver como se hace esto, consulta la Nota y la Pista posterior.</p>
 </li>
 <li>
-<p>El m&#xE9;todo <strong><code>Reintegro</code></strong>, lanzar&#xE1; una exception <strong><code>SaldoInsuficienteException</code></strong>, cuando se intente retirar una cantidad y no haya suficiente saldo.</p>
+<p>El método <strong><code>Reintegro</code></strong>, lanzará una exception <strong><code>SaldoInsuficienteException</code></strong>, cuando se intente retirar una cantidad y no haya suficiente saldo.</p>
 </li>
 </ul>
-<p>El c&#xF3;digo cuenta corriente es un n&#xFA;mero de <strong>20</strong> cifras. Las <strong>4</strong> primeras de la izquierda identifican a la <strong>Entidad</strong>, las <strong>4</strong> siguientes, la <strong>Sucursal</strong>, luego vienen <strong>2 d&#xED;gitos de control</strong> y las <strong>10</strong> &#xFA;ltimas corresponden al <strong>n&#xFA;mero de la cuenta</strong> corriente.</p>
+<p>El código cuenta corriente es un número de <strong>20</strong> cifras. Las <strong>4</strong> primeras de la izquierda identifican a la <strong>Entidad</strong>, las <strong>4</strong> siguientes, la <strong>Sucursal</strong>, luego vienen <strong>2 dígitos de control</strong> y las <strong>10</strong> últimas corresponden al <strong>número de la cuenta</strong> corriente.</p>
 <ul>
-<li>El <strong>primero</strong> es el d&#xED;gito de control de <strong>Entidad/Sucursal</strong>.</li>
-<li>El <strong>segundo</strong> es el d&#xED;gito de control del <strong>n&#xFA;mero de la cuenta</strong> corriente.</li>
+<li>El <strong>primero</strong> es el dígito de control de <strong>Entidad/Sucursal</strong>.</li>
+<li>El <strong>segundo</strong> es el dígito de control del <strong>número de la cuenta</strong> corriente.</li>
 </ul>
-<p><strong>El siguiente ejemplo nos ense&#xF1;ar&#xE1; a calcularlos&#x2026;</strong></p>
-<p>Supongamos ahora <strong><code>2085</code></strong> el c&#xF3;digo de una hipot&#xE9;tica entidad y <strong><code>0103</code></strong> el c&#xF3;digo de una de sus sucursales.</p>
-<p>Para calcular el d&#xED;gito de control de <strong>Entidad/Sucursal</strong>:</p>
-<ul>
+<p><strong>El siguiente ejemplo nos enseñará a calcularlos…</strong></p>
+<p>Supongamos ahora <strong><code>2085</code></strong> el código de una hipotética entidad y <strong><code>0103</code></strong> el código de una de sus sucursales.</p>
+<p>Para calcular el dígito de control de <strong>Entidad/Sucursal</strong>:</p>
+<ol>
 <li>
-<p>Realizaremos la operaci&#xF3;n:<br>
-<strong><code>2*4 + 0*8 + 8*5 + 5*10 + 0*9 + 1*7 + 0*3 + 3*6 = 123</code></strong></p>
+<p>Realizaremos la operación <strong><code>2*4 + 0*8 + 8*5 + 5*10 + 0*9 + 1*7 + 0*3 + 3*6 = 123</code></strong><br>
+Es decir, cada una de las cifras de la entidad, seguidas de la sucursal, se han ido multiplicando por los números del array de ponderaciones <strong><code>4, 8, 5, 10, 9, 7, 3, 6</code></strong> y luego se han sumado estos resultados.</p>
 </li>
 <li>
-<p>Es decir, cada una de las cifras de la entidad, seguidas de la sucursal, se han ido multiplicando por los n&#xFA;meros del array de ponderaciones <strong><code>4, 8, 5, 10, 9, 7, 3, 6</code></strong> y luego se han sumado estos resultados.</p>
+<p>Ahora realizaremos la operación <strong><code>11 – (resultado % 11)</code></strong><br>
+El resultado será un número entre <strong><code>1</code></strong> y <strong><code>11</code></strong>. Si el número es menor que <strong><code>10</code></strong> será ya el valor del DC. Pero si es <strong><code>10</code></strong> el DC será <strong><code>1</code></strong> y si es <strong><code>11</code></strong> será <strong><code>0</code></strong>. En este caso <strong><code>11 – (123 % 11) = 9</code></strong> que será el DC de Entidad/sucursal.</p>
+</li>
+</ol>
+<p>Para calcular el dígito de control de <strong>número de cuenta corriente</strong>:</p>
+<ol>
+<li>
+<p>Si este es, por ejemplo, el <strong><code>0300731702</code></strong>, para calcular su dígito de control se realiza la operación: <strong><code>0*1 + 3*2 + 0*4 + 0*8 + 7*5 + 3*10 + 1*9 + 7*7 + 0*3 + 2*6 = 141</code></strong></p>
+<p>Es decir, cada una de las cifras del número de la cuenta, leídas de izquierda a derecha, se han ido multiplicando por <strong><code>1, 2, 4, 8, 5, 10, 9, 7, 3, 6</code></strong> y luego se han sumado estos resultados.</p>
 </li>
 <li>
-<p>Ahora realizaremos la operaci&#xF3;n <strong><code>11 &#x2013; (resultado % 11)</code></strong><br>
-El resultado ser&#xE1; un n&#xFA;mero entre <strong><code>1</code></strong> y <strong><code>11</code></strong>. Si el n&#xFA;mero es menor que <strong><code>10</code></strong> ser&#xE1; ya el valor del DC. Pero si es <strong><code>10</code></strong> el DC ser&#xE1; <strong><code>1</code></strong> y si es <strong><code>11</code></strong> ser&#xE1; <strong><code>0</code></strong>. En este caso <strong><code>11 &#x2013; (123 % 11) = 9</code></strong> que ser&#xE1; el DC de Entidad/sucursal.</p>
+<p>Realizaremos la misma operación que antes <strong><code>11 – (121 % 11) = 2</code></strong> que será el DC de número de cuenta.</p>
 </li>
-</ul>
-<p>Para calcular el d&#xED;gito de control de <strong>n&#xFA;mero de cuenta corriente</strong>:</p>
-<ul>
-<li>Si este es, por ejemplo, el <strong><code>0300731702</code></strong>, para calcular su d&#xED;gito de control se realiza la operaci&#xF3;n:<br>
-<strong><code>0*1 + 3*2 + 0*4 + 0*8 + 7*5 + 3*10 + 1*9 + 7*7 + 0*3 + 2*6 = 141</code></strong><br>
-Es decir, cada una de las cifras del n&#xFA;mero de la cuenta, le&#xED;das de izquierda a derecha, se han ido multiplicando por <strong><code>1, 2, 4, 8, 5, 10, 9, 7, 3, 6</code></strong> y luego se han sumado estos resultados.<br>
-Realizaremos la misma operaci&#xF3;n que antes <strong><code>11 &#x2013; (121 % 11) = 2</code></strong> que ser&#xE1; el DC de n&#xFA;mero de cuenta.</li>
-</ul>
+</ol>
 <p><strong>Algunas cuentas para poder probar son:</strong></p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">2085 0103 92 0300731702
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>2085 0103 92 0300731702
 2100 0721 09 0200601249
 0049 0345 31 2710611698
 2100 1162 43 0200084482
 2100 1516 05 0200306484
 2100 0811 79 0200947329
 9182 5005 04 0201520831
-</pre><p>&#x1F4A1; <strong>Pista:</strong> El m&#xE9;todo <strong>dcCorrecto</strong> calcula el d&#xED;gito de control de una string con N n&#xFA;meros a partir de un array de ponderaciones de tambi&#xE9;n N n&#xFA;meros. Y despu&#xE9;s comprueba el n&#xFA;mero resultante, con el DC pasado como argumento, el m&#xE9;todo devolver&#xE1; <strong><code>true</code></strong> si los d&#xED;gitos son iguales, <strong><code>false</code></strong> en caso contrario. Por tanto, este m&#xE9;todo ser&#xE1; llamada en dos ocasiones: para los 8 n&#xFA;mero anteriores a los 2 d&#xED;gitos de control, y para los 10 n&#xFA;meros posteriores. Usando cada vez el array de ponderaciones correspondiente que se describen arriba.</p>
+</code></pre><blockquote>
+<p>💡 <strong>Pista:</strong> El método <strong>dcCorrecto</strong> calcula el dígito de control de una string con N números a partir de un array de ponderaciones de también N números. Y después comprueba el número resultante, con el DC pasado como argumento, el método devolverá <strong><code>true</code></strong> si los dígitos son iguales, <strong><code>false</code></strong> en caso contrario. Por tanto, este método será llamada en dos ocasiones: para los 8 número anteriores a los 2 dígitos de control, y para los 10 números posteriores. Usando cada vez el array de ponderaciones correspondiente que se describen arriba.</p>
 </blockquote>
-<div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
-
-<blockquote>
-<p>Vamos ha realizar un programa que produzca una cadena de excepciones hasta un punto de recuperaci&#xF3;n, en el cual mostrar&#xE1; las excepciones que se han ido desencadenando. Para realizar el ejercicio implementaremos el siguiente diagrama de clases...</p>
-<p align="center" style="zoom:1"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="260.6597px" preserveAspectRatio="none" style="width:600px;height:260px;background:#FFFFFF;" version="1.1" viewBox="0 0 600 260" width="600.4827px" zoomAndPan="magnify"><defs><filter height="300%" id="f9j9j7889es6b" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.930812550281577"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="3.861625100563154" dy="3.861625100563154" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[8db60afef7a3447bbe27c5ed187fdac2]
-class Exception--><rect codeline="11" fill="#FFFAFA" filter="url(#f9j9j7889es6b)" height="30.893" id="Exception" style="stroke:#000000;stroke-width:1.4481094127111827;" width="82.0595" x="6.7578" y="24.1352"/><ellipse cx="21.2389" cy="39.5817" fill="#ADD1B2" rx="10.6195" ry="10.6195" style="stroke:#000000;stroke-width:0.9654062751407885;"/><path d="M23.9089,35.5994 Q24.0597,35.3882 24.2407,35.2826 Q24.4218,35.177 24.6329,35.177 Q24.995,35.177 25.2212,35.4334 Q25.4475,35.6748 25.4475,36.2631 L25.4475,37.6659 Q25.4475,38.2542 25.2212,38.5107 Q24.995,38.7671 24.6329,38.7671 Q24.3011,38.7671 24.105,38.571 Q23.9089,38.39 23.8033,37.8922 Q23.758,37.5453 23.577,37.3642 Q23.2603,37.0022 22.672,36.791 Q22.0837,36.5798 21.4803,36.5798 Q20.7412,36.5798 20.1227,36.8966 Q19.5193,37.2134 19.0366,37.9374 Q18.569,38.6615 18.569,39.6571 L18.569,40.713 Q18.569,41.9047 19.4288,42.7041 Q20.2886,43.4885 21.8272,43.4885 Q22.7323,43.4885 23.3658,43.2472 Q23.743,43.0963 24.1502,42.674 Q24.4067,42.4175 24.5424,42.3421 Q24.6933,42.2667 24.8894,42.2667 Q25.2062,42.2667 25.4475,42.5231 Q25.7039,42.7645 25.7039,43.0963 Q25.7039,43.4282 25.3721,43.8204 Q24.8894,44.3785 24.1201,44.6953 Q23.0792,45.1327 21.8272,45.1327 Q20.364,45.1327 19.2025,44.5294 Q18.2522,44.0467 17.5885,43.0209 Q16.9248,41.9801 16.9248,40.7432 L16.9248,39.6269 Q16.9248,38.3447 17.5131,37.2436 Q18.1165,36.1273 19.1724,35.539 Q20.2283,34.9356 21.42,34.9356 Q22.1289,34.9356 22.7474,35.1016 Q23.3809,35.2524 23.9089,35.5994 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.5849" lengthAdjust="spacing" textLength="51.1665" x="34.7546" y="44.322">Exception</text><!--MD5=[22f5a9737ba966f876d941936177618a]
-class NotFoundException--><rect codeline="12" fill="#FFFAFA" filter="url(#f9j9j7889es6b)" height="65.3309" id="NotFoundException" style="stroke:#000000;stroke-width:1.4481094127111827;" width="347.5463" x="123.0893" y="6.7578"/><ellipse cx="241.1102" cy="22.2043" fill="#ADD1B2" rx="10.6195" ry="10.6195" style="stroke:#000000;stroke-width:0.9654062751407885;"/><path d="M243.7802,18.222 Q243.931,18.0109 244.112,17.9053 Q244.293,17.7997 244.5042,17.7997 Q244.8663,17.7997 245.0925,18.0561 Q245.3188,18.2975 245.3188,18.8858 L245.3188,20.2886 Q245.3188,20.8769 245.0925,21.1333 Q244.8663,21.3898 244.5042,21.3898 Q244.1724,21.3898 243.9763,21.1937 Q243.7802,21.0127 243.6746,20.5149 Q243.6293,20.1679 243.4483,19.9869 Q243.1315,19.6249 242.5432,19.4137 Q241.9549,19.2025 241.3516,19.2025 Q240.6124,19.2025 239.994,19.5193 Q239.3906,19.8361 238.9079,20.5601 Q238.4403,21.2842 238.4403,22.2798 L238.4403,23.3357 Q238.4403,24.5274 239.3001,25.3268 Q240.1599,26.1112 241.6985,26.1112 Q242.6036,26.1112 243.2371,25.8699 Q243.6142,25.719 244.0215,25.2967 Q244.278,25.0402 244.4137,24.9648 Q244.5646,24.8894 244.7607,24.8894 Q245.0774,24.8894 245.3188,25.1458 Q245.5752,25.3872 245.5752,25.719 Q245.5752,26.0509 245.2434,26.4431 Q244.7607,27.0012 243.9914,27.318 Q242.9505,27.7554 241.6985,27.7554 Q240.2353,27.7554 239.0738,27.1521 Q238.1235,26.6693 237.4598,25.6436 Q236.7961,24.6028 236.7961,23.3658 L236.7961,22.2496 Q236.7961,20.9674 237.3844,19.8663 Q237.9877,18.75 239.0436,18.1617 Q240.0996,17.5583 241.2912,17.5583 Q242.0002,17.5583 242.6187,17.7243 Q243.2522,17.8751 243.7802,18.222 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.5849" lengthAdjust="spacing" textLength="103.2985" x="260.901" y="26.9446">NotFoundException</text><line style="stroke:#000000;stroke-width:1.4481094127111827;" x1="124.0547" x2="469.6702" y1="37.6508" y2="37.6508"/><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="196.9429" x="128.8817" y="52.5364">+NotFoundException(in menssage : string)</text><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="335.9614" x="128.8817" y="65.8937">+NotFoundException(in menssage : string, in innerException : Exception)</text><!--MD5=[341a0cf90b207ac5091f779c51e7b171]
-class Patron--><rect codeline="17" fill="#FFFAFA" filter="url(#f9j9j7889es6b)" height="99.9497" id="Patron" style="stroke:#000000;stroke-width:1.4481094127111827;" width="302.1722" x="270.3138" y="147.7072"/><ellipse cx="397.9887" cy="167.1058" fill="#ADD1B2" rx="10.6195" ry="10.6195" style="stroke:#000000;stroke-width:0.9654062751407885;"/><path d="M400.6587,163.1235 Q400.8095,162.9123 400.9905,162.8067 Q401.1716,162.7011 401.3827,162.7011 Q401.7448,162.7011 401.971,162.9576 Q402.1973,163.1989 402.1973,163.7872 L402.1973,165.1901 Q402.1973,165.7784 401.971,166.0348 Q401.7448,166.2912 401.3827,166.2912 Q401.0509,166.2912 400.8548,166.0951 Q400.6587,165.9141 400.5531,165.4163 Q400.5078,165.0694 400.3268,164.8884 Q400.0101,164.5263 399.4218,164.3152 Q398.8335,164.104 398.2301,164.104 Q397.4909,164.104 396.8725,164.4208 Q396.2691,164.7375 395.7864,165.4616 Q395.3188,166.1856 395.3188,167.1812 L395.3188,168.2371 Q395.3188,169.4288 396.1786,170.2283 Q397.0384,171.0127 398.577,171.0127 Q399.4821,171.0127 400.1156,170.7713 Q400.4928,170.6205 400.9,170.1981 Q401.1565,169.9417 401.2922,169.8663 Q401.4431,169.7908 401.6392,169.7908 Q401.956,169.7908 402.1973,170.0473 Q402.4537,170.2886 402.4537,170.6205 Q402.4537,170.9523 402.1219,171.3445 Q401.6392,171.9027 400.8699,172.2194 Q399.829,172.6569 398.577,172.6569 Q397.1138,172.6569 395.9523,172.0535 Q395.002,171.5708 394.3383,170.5451 Q393.6746,169.5042 393.6746,168.2673 L393.6746,167.151 Q393.6746,165.8689 394.2629,164.7677 Q394.8663,163.6514 395.9222,163.0632 Q396.9781,162.4598 398.1698,162.4598 Q398.8787,162.4598 399.4972,162.6257 Q400.1307,162.7765 400.6587,163.1235 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.5849" font-style="italic" lengthAdjust="spacing" textLength="42.4779" x="415.8488" y="164.5603">&#xAB;Utility&#xBB;</text><text fill="#000000" font-family="sans-serif" font-size="11.5849" lengthAdjust="spacing" textLength="34.7546" x="419.7104" y="179.1319">Patron</text><line style="stroke:#000000;stroke-width:1.4481094127111827;" x1="271.2792" x2="571.5205" y1="186.5044" y2="186.5044"/><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="290.5873" x="276.1062" y="201.39">-Obten(in cadenaDeConsumo : string, in patron : string): Match</text><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="91.7136" x="276.1062" y="214.7473">-PatronDNI() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="224.9397" x="276.1062" y="228.1046">+ObtenDNI(in cadenaDeConsumo: string) : string</text><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="272.2446" x="276.1062" y="241.4619">+CambiarFormatoDNI(in cadenaDeConsumo: string) : string</text><!--MD5=[bfe80886124190284096452d0cb4568d]
-class Principal--><rect codeline="24" fill="#FFFAFA" filter="url(#f9j9j7889es6b)" height="65.3309" id="Principal" style="stroke:#000000;stroke-width:1.4481094127111827;" width="83.0249" x="504.4248" y="6.7578"/><ellipse cx="521.5125" cy="22.2043" fill="#ADD1B2" rx="10.6195" ry="10.6195" style="stroke:#000000;stroke-width:0.9654062751407885;"/><path d="M524.1824,18.222 Q524.3333,18.0109 524.5143,17.9053 Q524.6953,17.7997 524.9065,17.7997 Q525.2685,17.7997 525.4948,18.0561 Q525.721,18.2975 525.721,18.8858 L525.721,20.2886 Q525.721,20.8769 525.4948,21.1333 Q525.2685,21.3898 524.9065,21.3898 Q524.5746,21.3898 524.3785,21.1937 Q524.1824,21.0127 524.0768,20.5149 Q524.0316,20.1679 523.8506,19.9869 Q523.5338,19.6249 522.9455,19.4137 Q522.3572,19.2025 521.7538,19.2025 Q521.0147,19.2025 520.3962,19.5193 Q519.7928,19.8361 519.3101,20.5601 Q518.8425,21.2842 518.8425,22.2798 L518.8425,23.3357 Q518.8425,24.5274 519.7023,25.3268 Q520.5621,26.1112 522.1008,26.1112 Q523.0058,26.1112 523.6394,25.8699 Q524.0165,25.719 524.4238,25.2967 Q524.6802,25.0402 524.816,24.9648 Q524.9668,24.8894 525.1629,24.8894 Q525.4797,24.8894 525.721,25.1458 Q525.9775,25.3872 525.9775,25.719 Q525.9775,26.0509 525.6456,26.4431 Q525.1629,27.0012 524.3936,27.318 Q523.3528,27.7554 522.1008,27.7554 Q520.6376,27.7554 519.4761,27.1521 Q518.5257,26.6693 517.862,25.6436 Q517.1983,24.6028 517.1983,23.3658 L517.1983,22.2496 Q517.1983,20.9674 517.7866,19.8663 Q518.39,18.75 519.4459,18.1617 Q520.5018,17.5583 521.6935,17.5583 Q522.4025,17.5583 523.0209,17.7243 Q523.6545,17.8751 524.1824,18.222 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="11.5849" lengthAdjust="spacing" textLength="46.3395" x="535.6074" y="26.9446">Principal</text><line style="stroke:#000000;stroke-width:1.4481094127111827;" x1="505.3902" x2="586.4843" y1="37.6508" y2="37.6508"/><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="71.4401" x="510.2172" y="52.5364">-Menu() : string</text><text fill="#000000" font-family="sans-serif" font-size="10.6195" lengthAdjust="spacing" textLength="57.9244" x="510.2172" y="65.8937">-Main(): void</text><!--MD5=[ee3844a690d45d74f7cda4d593ced738]
-link Principal to Patron--><path codeline="29" d="M520.4312,72.5696 C504.1545,93.0169 482.6549,120.0193 463.8391,143.6428 " fill="none" id="Principal-to-Patron" style="stroke:#000000;stroke-width:0.9654062751407885;"/><polygon fill="#000000" points="460.605,147.7072,469.0364,143.3122,463.6103,143.9298,462.9927,138.5037,460.605,147.7072" style="stroke:#000000;stroke-width:0.9654062751407885;"/><text fill="#000000" font-family="sans-serif" font-size="12.5503" lengthAdjust="spacing" textLength="33.7892" x="495.7361" y="115.3613">&#xAB;use&#xBB;</text><!--MD5=[bd85f1d62cf82420f2b2a99b36c3b8c9]
-link NotFoundException to Patron--><path codeline="30" d="M322.3685,72.5696 C336.9654,90.9027 355.7619,114.5165 373.0523,136.2188 " fill="none" id="NotFoundException-to-Patron" style="stroke:#000000;stroke-width:0.9654062751407885;"/><ellipse cx="377.3826" cy="141.6663" fill="#FFFFFF" rx="7.7233" ry="7.7233" style="stroke:#000000;stroke-width:0.9654062751407885;"/><line style="stroke:#000000;stroke-width:0.9654062751407885;" x1="372.5705" x2="382.1947" y1="135.6254" y2="147.7072"/><line style="stroke:#000000;stroke-width:0.9654062751407885;" x1="383.4235" x2="371.3417" y1="136.8542" y2="146.4784"/><!--MD5=[a1aac35fa879aea9eb12274655aae303]
-reverse link Exception to NotFoundException--><path codeline="32" d="M108.3572,39.5817 C113.2422,39.5817 118.1271,39.5817 123.0121,39.5817 " fill="none" id="Exception-backto-NotFoundException" style="stroke:#000000;stroke-width:0.9654062751407885;"/><polygon fill="none" points="108.2027,46.3395,88.8946,39.5817,108.2027,32.8238,108.2027,46.3395" style="stroke:#000000;stroke-width:0.9654062751407885;"/><!--MD5=[675d1a4658e417311b1b450e75e44b51]
-@startuml
-
- scale 600 width
- skinparam classAttributeIconSize 0
- skinparam ArrowColor Black
- skinparam PackageBackgroundColor WhiteSmoke
- skinparam ClassBorderColor Black
- skinparam ClassBackgroundColor Snow
-
-hide empty methods
-hide empty attributes 
-class Exception {}
-class NotFoundException
-{
-+NotFoundException(in menssage : string)
-+NotFoundException(in menssage : string, in innerException : Exception)
-} 
-class Patron <<Utility>>
-{ 
-- Obten(in cadenaDeConsumo : string, in patron : string): Match
-- PatronDNI() : string
-+ ObtenDNI(in cadenaDeConsumo: string) : string
-+ CambiarFormatoDNI(in cadenaDeConsumo: string) : string
- }
-class Principal
-{
-- Menu() : string
-- Main(): void
-}
-Principal - ->  Patron:<<use>>
- NotFoundException  - -+ Patron
-
-Exception <|- NotFoundException
-@enduml
-
-PlantUML version 1.2021.12(Tue Oct 05 18:01:58 CEST 2021)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: es
-Country: ES
---></g></svg></p><p>Clase <strong><code>Patr&#xF3;n</code></strong>:</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="ejercicio-5">Ejercicio 5 </h2>
+<p>Vamos ha realizar un programa que produzca una cadena de excepciones hasta un punto de recuperación, en el cual mostrará las excepciones que se han ido desencadenando. Para realizar el ejercicio implementaremos el siguiente diagrama de clases...</p>
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="230.4px" preserveAspectRatio="none" style="width:647px;height:230px;" version="1.1" viewBox="0 0 647 230" width="647.2px" zoomAndPan="magnify"><defs></defs><g><!--class Exception--><g id="elem_Exception"><rect codeline="13" fill="#FFFAFA" height="25.6" id="Exception" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="74.4" x="5.6" y="22.8"></rect><ellipse cx="17.6" cy="35.6" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M19.8125,32.3 Q19.9375,32.125 20.0875,32.0375 Q20.2375,31.95 20.4125,31.95 Q20.7125,31.95 20.9,32.1625 Q21.0875,32.3625 21.0875,32.85 L21.0875,34.0125 Q21.0875,34.5 20.9,34.7125 Q20.7125,34.925 20.4125,34.925 Q20.1375,34.925 19.975,34.7625 Q19.8125,34.6125 19.725,34.2 Q19.6875,33.9125 19.5375,33.7625 Q19.275,33.4625 18.7875,33.2875 Q18.3,33.1125 17.8,33.1125 Q17.1875,33.1125 16.675,33.375 Q16.175,33.6375 15.775,34.2375 Q15.3875,34.8375 15.3875,35.6625 L15.3875,36.5375 Q15.3875,37.525 16.1,38.1875 Q16.8125,38.8375 18.0875,38.8375 Q18.8375,38.8375 19.3625,38.6375 Q19.675,38.5125 20.0125,38.1625 Q20.225,37.95 20.3375,37.8875 Q20.4625,37.825 20.625,37.825 Q20.8875,37.825 21.0875,38.0375 Q21.3,38.2375 21.3,38.5125 Q21.3,38.7875 21.025,39.1125 Q20.625,39.575 19.9875,39.8375 Q19.125,40.2 18.0875,40.2 Q16.875,40.2 15.9125,39.7 Q15.125,39.3 14.575,38.45 Q14.025,37.5875 14.025,36.5625 L14.025,35.6375 Q14.025,34.575 14.5125,33.6625 Q15.0125,32.7375 15.8875,32.25 Q16.7625,31.75 17.75,31.75 Q18.3375,31.75 18.85,31.8875 Q19.375,32.0125 19.8125,32.3 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="48.8" x="28.8" y="40.1828">Exception</text></g><!--class NotFoundException--><g id="elem_NotFoundException"><rect codeline="14" fill="#FFFAFA" height="60.175" id="NotFoundException" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="375.2" x="108" y="5.6"></rect><ellipse cx="243" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M245.2125,15.1 Q245.3375,14.925 245.4875,14.8375 Q245.6375,14.75 245.8125,14.75 Q246.1125,14.75 246.3,14.9625 Q246.4875,15.1625 246.4875,15.65 L246.4875,16.8125 Q246.4875,17.3 246.3,17.5125 Q246.1125,17.725 245.8125,17.725 Q245.5375,17.725 245.375,17.5625 Q245.2125,17.4125 245.125,17 Q245.0875,16.7125 244.9375,16.5625 Q244.675,16.2625 244.1875,16.0875 Q243.7,15.9125 243.2,15.9125 Q242.5875,15.9125 242.075,16.175 Q241.575,16.4375 241.175,17.0375 Q240.7875,17.6375 240.7875,18.4625 L240.7875,19.3375 Q240.7875,20.325 241.5,20.9875 Q242.2125,21.6375 243.4875,21.6375 Q244.2375,21.6375 244.7625,21.4375 Q245.075,21.3125 245.4125,20.9625 Q245.625,20.75 245.7375,20.6875 Q245.8625,20.625 246.025,20.625 Q246.2875,20.625 246.4875,20.8375 Q246.7,21.0375 246.7,21.3125 Q246.7,21.5875 246.425,21.9125 Q246.025,22.375 245.3875,22.6375 Q244.525,23 243.4875,23 Q242.275,23 241.3125,22.5 Q240.525,22.1 239.975,21.25 Q239.425,20.3875 239.425,19.3625 L239.425,18.4375 Q239.425,17.375 239.9125,16.4625 Q240.4125,15.5375 241.2875,15.05 Q242.1625,14.55 243.15,14.55 Q243.7375,14.55 244.25,14.6875 Q244.775,14.8125 245.2125,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="98.4" x="259.4" y="22.9828">NotFoundException</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="108.8" x2="482.4" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="214.4" x="112.8" y="46.0266">+NotFoundException(in menssage : string)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="365.6" x="112.8" y="60.1141">+NotFoundException(in menssage : string, in innerException : Exception)</text></g><!--class Patron--><g id="elem_Patron"><rect codeline="20" fill="#FFFAFA" height="96.9125" id="Patron" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="328" x="314" y="128"></rect><ellipse cx="457.8" cy="145.0813" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M460.0125,141.7813 Q460.1375,141.6063 460.2875,141.5188 Q460.4375,141.4313 460.6125,141.4313 Q460.9125,141.4313 461.1,141.6438 Q461.2875,141.8438 461.2875,142.3313 L461.2875,143.4938 Q461.2875,143.9813 461.1,144.1938 Q460.9125,144.4063 460.6125,144.4063 Q460.3375,144.4063 460.175,144.2438 Q460.0125,144.0938 459.925,143.6813 Q459.8875,143.3938 459.7375,143.2438 Q459.475,142.9438 458.9875,142.7688 Q458.5,142.5938 458,142.5938 Q457.3875,142.5938 456.875,142.8563 Q456.375,143.1188 455.975,143.7188 Q455.5875,144.3188 455.5875,145.1438 L455.5875,146.0188 Q455.5875,147.0063 456.3,147.6688 Q457.0125,148.3188 458.2875,148.3188 Q459.0375,148.3188 459.5625,148.1188 Q459.875,147.9938 460.2125,147.6438 Q460.425,147.4313 460.5375,147.3688 Q460.6625,147.3063 460.825,147.3063 Q461.0875,147.3063 461.2875,147.5188 Q461.5,147.7188 461.5,147.9938 Q461.5,148.2688 461.225,148.5938 Q460.825,149.0563 460.1875,149.3188 Q459.325,149.6813 458.2875,149.6813 Q457.075,149.6813 456.1125,149.1813 Q455.325,148.7813 454.775,147.9313 Q454.225,147.0688 454.225,146.0438 L454.225,145.1188 Q454.225,144.0563 454.7125,143.1438 Q455.2125,142.2188 456.0875,141.7313 Q456.9625,141.2313 457.95,141.2313 Q458.5375,141.2313 459.05,141.3688 Q459.575,141.4938 460.0125,141.7813 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="35.2" x="473.4" y="141.9656">«Utility»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="33.6" x="474.2" y="155.7016">Patron</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="314.8" x2="641.2" y1="162.1625" y2="162.1625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="318.4" x="318.8" y="176.9891">-Obten(in cadenaDeConsumo : string, in patron : string): Match</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="100.8" x="318.8" y="191.0766">-PatronDNI() : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="247.2" x="318.8" y="205.1641">+ObtenDNI(in cadenaDeConsumo: string) : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="300.8" x="318.8" y="219.2516">+CambiarFormatoDNI(in cadenaDeConsumo: string) : string</text></g><!--class Principal--><g id="elem_Principal"><rect codeline="28" fill="#FFFAFA" height="60.175" id="Principal" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4000000000000001;" width="87.2" x="511.2" y="5.6"></rect><ellipse cx="531.48" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8000000000000002;"></ellipse><path d="M533.6925,15.1 Q533.8175,14.925 533.9675,14.8375 Q534.1175,14.75 534.2925,14.75 Q534.5925,14.75 534.78,14.9625 Q534.9675,15.1625 534.9675,15.65 L534.9675,16.8125 Q534.9675,17.3 534.78,17.5125 Q534.5925,17.725 534.2925,17.725 Q534.0175,17.725 533.855,17.5625 Q533.6925,17.4125 533.605,17 Q533.5675,16.7125 533.4175,16.5625 Q533.155,16.2625 532.6675,16.0875 Q532.18,15.9125 531.68,15.9125 Q531.0675,15.9125 530.555,16.175 Q530.055,16.4375 529.655,17.0375 Q529.2675,17.6375 529.2675,18.4625 L529.2675,19.3375 Q529.2675,20.325 529.98,20.9875 Q530.6925,21.6375 531.9675,21.6375 Q532.7175,21.6375 533.2425,21.4375 Q533.555,21.3125 533.8925,20.9625 Q534.105,20.75 534.2175,20.6875 Q534.3425,20.625 534.505,20.625 Q534.7675,20.625 534.9675,20.8375 Q535.18,21.0375 535.18,21.3125 Q535.18,21.5875 534.905,21.9125 Q534.505,22.375 533.8675,22.6375 Q533.005,23 531.9675,23 Q530.755,23 529.7925,22.5 Q529.005,22.1 528.455,21.25 Q527.905,20.3875 527.905,19.3625 L527.905,18.4375 Q527.905,17.375 528.3925,16.4625 Q528.8925,15.5375 529.7675,15.05 Q530.6425,14.55 531.63,14.55 Q532.2175,14.55 532.73,14.6875 Q533.255,14.8125 533.6925,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="43.2" x="544.52" y="22.9828">Principal</text><line style="stroke:#000000;stroke-width:0.4000000000000001;" x1="512" x2="597.6" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="77.6" x="516" y="46.0266">-Menu() : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="63.2" x="516" y="60.1141">-Main(): void</text></g><!--link Principal to Patron--><g id="link_Principal_Patron"><path codeline="34" d="M538.512,65.92 C528.608,83.88 518.039,103.0293 506.703,123.5733 " fill="none" id="Principal-to-Patron" style="stroke:#000000;stroke-width:0.8000000000000002;"></path><polygon fill="#000000" points="504.384,127.776,510.6643,123.018,506.3165,124.2738,505.0607,119.926,504.384,127.776" style="stroke:#000000;stroke-width:0.8000000000000002;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="28" x="523.6" y="101.1961">«use»</text></g><!--link NotFoundException to Patron--><g id="link_NotFoundException_Patron"><path codeline="35" d="M334.056,65.752 C357.68,83.776 378.3192,99.5325 405.3752,120.1725 " fill="none" id="NotFoundException-to-Patron" style="stroke:#000000;stroke-width:0.8000000000000002;"></path><ellipse cx="410.4636" cy="124.0542" fill="none" rx="6.4" ry="6.4" style="stroke:#000000;stroke-width:0.8000000000000002;"></ellipse><line style="stroke:#000000;stroke-width:0.8000000000000002;" x1="405.3752" x2="415.552" y1="120.1725" y2="127.936"></line><line style="stroke:#000000;stroke-width:0.8000000000000002;" x1="414.3453" x2="406.5818" y1="118.9658" y2="129.1427"></line></g><!--reverse link Exception to NotFoundException--><g id="link_Exception_NotFoundException"><path codeline="36" d="M94.48,35.6 C103.736,35.6 98.6,35.6 107.864,35.6 " fill="none" id="Exception-backto-NotFoundException" style="stroke:#000000;stroke-width:0.8000000000000002;"></path><polygon fill="none" points="80.08,35.6,94.48,40.4,94.48,30.8,80.08,35.6" style="stroke:#000000;stroke-width:0.8000000000000002;"></polygon></g><!--SRC=[bLB1Ri8m3BtdAtm4iKuxJbM516L87618RDhPJIs8Q9qgISSOuz-Nqgwmmc7BfOhVy_DxRknMSO46Sv0PMZjopgYaT3IJcbVga-11s9OoCaRlOfrf0-CCvVO2MlehhcdiFskZIqvhsjj6ELhbUaiNtBYQDDOc9NDRh2Pqf5QiTnUSBlnYaAs7Y9qGLcBchTy_2h5HAG7bXTj3Jdb2nWfnYWfF7v8AfpJ3uTYK5jfDAyaM4WS1_WokW9vYhyVM-j0GWlLhutN_F-Gxy5N5JEPi93oRweiZ_3XTeZCUZQ9NfpBbziEXEC1fLW3FYQFJ08afCKuercpBNF-UKzGAhT4GvkZafj6ezIUBMQ_VKkeejNo5N4zenRezCUQ9GZFL9aUd_znyREFwgrG5Pits0vWJbrrllegAUpxAkrPfrTtsGH0CeKaLHb5foM_iwgzuYM3GiCIv6dq5Dzx1Dm00]--></g></svg></p><p>Clase <strong><code>Patrón</code></strong>:</p>
 <ul>
-<li>Definir&#xE1; una clase anidada <strong><code>NotFoundException</code></strong> que heredar&#xE1; de <strong><code>Exception</code></strong> y que redefinir&#xE1; los constructores que ves en el diagrama.</li>
-<li>Ser&#xE1; una <strong>clase est&#xE1;tica</strong> que contendr&#xE1; los siguientes m&#xE9;todos est&#xE1;ticos de utilidad&#x2026;</li>
-<li><strong><code>Obten</code></strong>: M&#xE9;todo est&#xE1;tico privado que devolver&#xE1; el primer <strong>match</strong> del patr&#xF3;n en la cadena de consumo y generar&#xE1; un <strong><code>NotFoundException</code></strong> si &apos;<em>success</em>&apos; es igual a <strong>false</strong> con el mensaje &quot;<em>No se han obtenido coincidencias.</em>&quot;</li>
-<li><strong><code>PatronDNI</code></strong>: M&#xE9;todo est&#xE1;tico privado que devolver&#xE1; el patr&#xF3;n para buscar un DNI con los siguientes grupos etiquetados...
+<li>
+<p>Definirá una clase anidada <strong><code>NotFoundException</code></strong> que heredará de <strong><code>Exception</code></strong> y que redefinirá los constructores que ves en el diagrama.</p>
+</li>
+<li>
+<p>Será una <strong>clase estática</strong> que contendrá los siguientes métodos estáticos de utilidad…</p>
+</li>
+<li>
+<p><strong><code>Obten</code></strong>: Método estático privado que devolverá el primer <strong>match</strong> del patrón en la cadena de consumo y generará un <strong><code>NotFoundException</code></strong> si '<em>success</em>' es igual a <strong>false</strong> con el mensaje "<em>No se han obtenido coincidencias.</em>"</p>
+</li>
+<li>
+<p><strong><code>PatronDNI</code></strong>: Método estático privado que devolverá el patrón para buscar un DNI con los siguientes grupos etiquetados...</p>
 <ul>
-<li>8 d&#xED;gitos.</li>
-<li>Un separador que podr&#xE1; ser espacio, gui&#xF3;n o nada.</li>
-<li>Una letra may&#xFA;scula o min&#xFA;scula.</li>
+<li>8 dígitos.</li>
+<li>Un separador que podrá ser espacio, guión o nada.</li>
+<li>Una letra mayúscula o minúscula.</li>
 </ul>
 </li>
-<li><strong><code>ObtenDNI</code></strong>: M&#xE9;todo est&#xE1;tico p&#xFA;blico que busca la primera ocurrencia de un dni en la cadena de consumo usando los m&#xE9;todos privados definidos anteriormente. Adem&#xE1;s, capturar&#xE1; cualquier posible excepci&#xF3;n y lanzar&#xE1; una nueva <strong><code>NotFoundException</code></strong> (encadenando a la excepci&#xF3;n original) con el mensaje &quot;<em>Imposible de obtener un DNI.</em>&quot;</li>
-<li><strong><code>CambiaFormatoDNI</code></strong>: M&#xE9;todo est&#xE1;tico p&#xFA;blico que busca la primera ocurrencia de un dni en la cadena de consumo usando los m&#xE9;todos privados definidos anteriormente. Posteriormente reemplazar&#xE1; usando <strong><code>Regex.Replace</code></strong> la ocurrencia del DNI encontrada con un nuevo DNI con el formato <strong><code>&lt;8 digitos&gt;&lt;Letra may&#xFA;scula&gt;</code></strong>. Adem&#xE1;s, capturar&#xE1; cualquier posible excepci&#xF3;n y lanzar&#xE1; una nueva <strong><code>NotFoundException</code></strong> (encadenando a la excepci&#xF3;n original) con el mensaje &quot;<em>No se ha podido cambiar el formato del DNI.</em>&quot;</li>
+<li>
+<p><strong><code>ObtenDNI</code></strong>: Método estático público que busca la primera ocurrencia de un dni en la cadena de consumo usando los métodos privados definidos anteriormente. Además, capturará cualquier posible excepción y lanzará una nueva <strong><code>NotFoundException</code></strong> (encadenando a la excepción original) con el mensaje "<em>Imposible de obtener un DNI.</em>"</p>
+</li>
+<li>
+<p><strong><code>CambiaFormatoDNI</code></strong>: Método estático público que busca la primera ocurrencia de un dni en la cadena de consumo usando los métodos privados definidos anteriormente. Posteriormente reemplazará usando <strong><code>Regex.Replace</code></strong> la ocurrencia del DNI encontrada con un nuevo DNI con el formato <strong><code>&lt;8 digitos&gt;&lt;Letra mayúscula&gt;</code></strong>. Además, capturará cualquier posible excepción y lanzará una nueva <strong><code>NotFoundException</code></strong> (encadenando a la excepción original) con el mensaje "<em>No se ha podido cambiar el formato del DNI.</em>"</p>
+</li>
 </ul>
 <p>Clase <strong><code>Principal</code></strong>:</p>
 <ul>
 <li>
-<p>Define el m&#xE9;todo <strong>Menu()</strong> que devolver&#xE1; una cadena con las siguientes opciones de men&#xFA;.</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">1 - Introduce texto.
+<p>Define el método <strong>Menu()</strong> que devolverá una cadena con las siguientes opciones de menú.</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>1 - Introduce texto.
 2 - Muestra texto.
 3 - Obten DNI.
 4 - Cambia formato DNI.
 ESC - Salir.
-Selecciona una opci&#xF3;n: 
-</pre></li>
+Selecciona una opción: 
+</code></pre></li>
 <li>
-<p>Define el m&#xE9;todo principal <strong><code>Main</code></strong> donde gestionar&#xE1; el bucle del men&#xFA; de tal manera que si se produce una excepci&#xF3;n, mostrar&#xE1; el mensaje de todas las excepciones que se hayan podido encadenar y volver&#xE1; a mostrar el men&#xFA;.</p>
+<p>Define el método principal <strong><code>Main</code></strong> donde gestionará el bucle del menú de tal manera que si se produce una excepción, mostrará el mensaje de todas las excepciones que se hayan podido encadenar y volverá a mostrar el menú.</p>
 </li>
 </ul>
-</blockquote>
+</div> <!-- fin ejercicio -->
 
       </div>
       
       
-    
-    
     
     
     
