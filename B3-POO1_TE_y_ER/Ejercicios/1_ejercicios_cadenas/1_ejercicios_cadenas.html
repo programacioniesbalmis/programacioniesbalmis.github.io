@@ -3,337 +3,236 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-cadenas">Ejercicios Cadenas</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-cadenas">Ejercicios Cadenas </h1>
 <p><a href="./1_ejercicios_cadenas.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
+<h2 id="índice">Índice </h2>
 
-<ol>
-<li><a href="#ejercicio-1">Ejercicio 1</a></li>
-<li><a href="#white_check_mark-ejercicio-2">&#x2705; Ejercicio 2</a></li>
-<li><a href="#white_check_markejercicio-3">&#x2705;Ejercicio 3</a></li>
-</ol>
-<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
 
-<blockquote>
-<p>Realiza un programa que se repita hasta pulsar  <strong>ESC</strong>. En el aparecer&#xE1; un men&#xFA; con 8 opciones que corresponder&#xE1;n a los siguientes ejercicios. Utiliza un <strong>switch</strong> para seleccionar cada opci&#xF3;n y los m&#xE9;todos necesarios para que el programa quede claro y <strong>no se repita c&#xF3;digo</strong>:</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-2" class="md-toc-link">
+            <p>✅ Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_markejercicio-3" class="md-toc-link">
+            <p>✅Ejercicio 3</p>
+
+          </a></div>
+</div>
+<div class="ejercicio">
+<h2 id="ejercicio-1">Ejercicio 1 </h2>
+<p>Realiza un programa que se repita hasta pulsar  <strong>ESC</strong>. En el aparecerá un menú con 8 opciones que corresponderán a los siguientes ejercicios. Utiliza un <strong>switch</strong> para seleccionar cada opción y los métodos necesarios para que el programa quede claro y <strong>no se repita código</strong>:</p>
 <ol>
-<li>Lea una  cadena y a continuaci&#xF3;n muestra en pantalla su longitud.</li>
-<li>Introduce dos cadenas <strong>cadena1</strong> y <strong>cadena2</strong>. Muestra en que posici&#xF3;n comienza la &#xFA;ltima aparici&#xF3;n de la <strong>cadena2</strong> en la <strong>cadena1</strong> o un texto indicando que una no contiene a la otra.</li>
-<li>Introduce una cadena y luego muestra la cadena  pero con todas las letras en may&#xFA;sculas.</li>
-<li>Introduciremos una cadena por teclado y encadenaremos la cadena &#x201C;LA CADENA FIN HA SIDO A&#xD1;ADIDA A NUESTRA CADENA&#x201D; <strong><code>(utiliza un m&#xE9;todo de la clase String para resolverlo, no el operador +)</code></strong>. Visualizaremos el  resultado por pantalla.</li>
-<li>Introduce una cadena y elimina los N caracteres a partir de la posici&#xF3;n P indicada <strong><code>(estos dos n&#xFA;meros tambi&#xE9;n se introducir&#xE1;n por teclado)</code></strong>. Mostrando posteriormente el resultado.</li>
-<li>Introduce una cadena y elimina todos los car&#xE1;cteres de espaciado, saltos de l&#xED;nea o puntos que se puedan encontrar al final de ella (utiliza triming para resolverlo).</li>
-<li>Introduce una cadena y un n&#xFA;mero. A&#xF1;ade al final de la cadena tantos car&#xE1;cteres <strong>!</strong> como el n&#xFA;mero introducido (utiliza Padding para resolverlo).</li>
+<li>Lea una  cadena y a continuación muestra en pantalla su longitud.</li>
+<li>Introduce dos cadenas <strong>cadena1</strong> y <strong>cadena2</strong>. Muestra en que posición comienza la última aparición de la <strong>cadena2</strong> en la <strong>cadena1</strong> o un texto indicando que una no contiene a la otra.</li>
+<li>Introduce una cadena y luego muestra la cadena  pero con todas las letras en mayúsculas.</li>
+<li>Introduciremos una cadena por teclado y encadenaremos la cadena “LA CADENA FIN HA SIDO AÑADIDA A NUESTRA CADENA” <strong><code>(utiliza un método de la clase String para resolverlo, no el operador +)</code></strong>. Visualizaremos el  resultado por pantalla.</li>
+<li>Introduce una cadena y elimina los N caracteres a partir de la posición P indicada <strong><code>(estos dos números también se introducirán por teclado)</code></strong>. Mostrando posteriormente el resultado.</li>
 </ol>
-</blockquote>
 <div style="page-break-after:always;"></div>
-<blockquote>
-<ol start="8">
+<ol start="6">
+<li>Introduce una cadena y elimina todos los carácteres de espaciado, saltos de línea o puntos que se puedan encontrar al final de ella (utiliza triming para resolverlo).</li>
+<li>Introduce una cadena y un número. Añade al final de la cadena tantos carácteres <strong>!</strong> como el número introducido (utiliza Padding para resolverlo).</li>
 <li>Introduce un texto y posteriormente dos cadenas. Sustituye las apariciones de la primera cadena en el texto por la segunda cadena. Mostrando posteriormente el resultado.</li>
 </ol>
-<p><strong>Nota:</strong> Para no repetir c&#xF3;digo a la hora de recoger la c&#xE1;dena para los distintos puntos, puedes crear un m&#xE9;todo encargado de esa funci&#xF3;n.</p>
-</blockquote>
-<hr>
-<h2 class="mume-header" id="white_check_mark-ejercicio-2">&#x2705; Ejercicio 2</h2>
-
-<blockquote>
-<p>Programa para practicar con <strong>StringBuilder</strong> (obligatorio su uso). El programa deber&#xE1; recoger una cadena con un texto acabado en &apos;<strong>.</strong>&apos; y que pasaremos a codificar u ofuscar. Para ello crearemos tres tipos de codificaci&#xF3;n, cada una la realizaremos en un m&#xE9;todo diferente y se usar&#xE1; StringBuilder para desarrollarla. Consisten en lo siguiente:</p>
+<p>💡 <strong>Tips:</strong> Para no repetir código a la hora de recoger la cádena para los distintos puntos, puedes crear un método encargado de esa función.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h2 id="white_check_mark-ejercicio-2">✅ Ejercicio 2 </h2>
+<p>Programa para practicar con <strong>StringBuilder</strong> (obligatorio su uso). El programa deberá recoger una cadena con un texto acabado en '<strong>.</strong>' y que pasaremos a codificar u ofuscar. Para ello crearemos tres tipos de codificación, cada una la realizaremos en un método diferente y se usará StringBuilder para desarrollarla. Consisten en lo siguiente:</p>
 <ol>
-<li>Codificaci&#xF3;n <strong>especular</strong>, es la famosa manera que ten&#xED;a Leonardo Da Vinci de escribir volviendo las palabras del rev&#xE9;s, de forma que es m&#xE1;s sencillo su lectura mediante un espejo.</li>
+<li>
+<p>Codificación <strong>especular</strong>, es la famosa manera que tenía Leonardo Da Vinci de escribir volviendo las palabras del revés, de forma que es más sencillo su lectura mediante un espejo.</p>
+<p>👉<strong>Pista:</strong> puedes leer el texto hasta un espacio en blanco (fin de palabra), guardando la posición de inicio de palabra (carácter después de espacio o primero). Y hacer la sustitución entre los dos indices.</p>
+</li>
+<li>
+<p>Codificación <strong>ofuscación cambiando carácteres de puntuación</strong>,   esta manera de ofuscar la frase será mediante el cambio de los carácteres de puntuación (, : . ; ? ¿ ! ¡),  por algunos carácteres especiales generados aleatoriamente.</p>
+<p>👉<strong>Pista:</strong> puedes usar una cadena para guardar los carácteres especiales y el método Contains para saber si un caracter está entre ellos. Para generar los carácteres aleatorios puedes usar el rango de ASCII entre 224-238.</p>
+</li>
 </ol>
-<p>&#x1F449;<strong>Pista:</strong> puedes leer el texto hasta un espacio en blanco (fin de palabra), guardando la posici&#xF3;n de inicio de palabra (car&#xE1;cter despu&#xE9;s de espacio o primero). Y hacer la sustituci&#xF3;n entre los dos indices.</p>
-<ol start="2">
-<li>Codificaci&#xF3;n <strong>ofuscaci&#xF3;n cambiando car&#xE1;cteres de puntuaci&#xF3;n</strong>,   esta manera de ofuscar la frase ser&#xE1; mediante el cambio de los car&#xE1;cteres de puntuaci&#xF3;n (, : . ; ? &#xBF; ! &#xA1;),  por algunos car&#xE1;cteres especiales generados aleatoriamente.</li>
-</ol>
-<p>&#x1F449;<strong>Pista:</strong> puedes usar una cadena para guardar los car&#xE1;cteres especiales y el m&#xE9;todo Contains para saber si un caracter est&#xE1; entre ellos. Para generar los car&#xE1;cteres aleatorios puedes usar el rango de ASCII entre 224-238.</p>
+<div style="page-break-after:always;"></div>
 <ol start="3">
-<li>Codificaci&#xF3;n <strong>ofuscaci&#xF3;n quitando espacios en blanco</strong>, en este caso solamente se eliminar&#xE1;n los espacios en blanco que hayan en la frase.</li>
+<li>Codificación <strong>ofuscación quitando espacios en blanco</strong>, en este caso solamente se eliminarán los espacios en blanco que hayan en la frase.</li>
 </ol>
-<p>Un ejemplo de ejecuci&#xF3;n ser&#xED;a el siguiente:</p>
-<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {cmd}" class="language-bash">Introduce la frase a ofuscar:
+<p>Un ejemplo de ejecución sería el siguiente:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>Introduce la frase a ofuscar:
 La verdadera felicidad cuesta poco<span class="token punctuation">;</span> si es cara, no es de buena clase.
 aL aredadrev dadicilef atseuc <span class="token punctuation">;</span>ocop is se ,arac on se ed aneub esalc
-aL aredadrev dadicilef atseuc &#xEB;ocop is se &#xED;arac on se ed aneub esalc
-aLaredadrevdadicilefatseuc&#xE2;ocopisse&#xE7;araconseedaneubesalc
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div></blockquote>
-<hr>
-<h2 class="mume-header" id="white_check_markejercicio-3">&#x2705;Ejercicio 3</h2>
-
-<blockquote>
-<p>El programa a realizar es una versi&#xF3;n del famoso <strong>juego del ahorcado</strong>. Para ello el programa en primer lugar, pedir&#xE1; al usuario la palabra secreta y el m&#xE1;ximo de fallos permitido..</p>
-<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {cmd}" class="language-bash">Introduce la palabra a adivinar: BUCLE
-Introduce el n&#xFA;mero m&#xE1;ximo de fallos: <span class="token number">3</span> 
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ul>
-<li>Tras introducir estos datos, la pantalla se borrar&#xE1; y comenzaremos con el juego. Mostrando en cada iteraci&#xF3;n los huecos o aciertos de la palabra secreta, as&#xED; como las letras falladas hasta el momento.</li>
-<li>El usuario ir&#xE1; introduciendo letras hasta que acierte la palabra o supere el n&#xFA;mero de fallos.</li>
-<li>Tras introducir estos datos, la pantalla se borrar&#xE1; y comenzaremos con el juego. Mostrando en cada iteraci&#xF3;n los huecos o aciertos de la palabra secreta, as&#xED; como las letras falladas hasta el momento.</li>
-<li>El usuario ir&#xE1; introduciendo letras hasta que acierte la palabra o supere el n&#xFA;mero de fallos.</li>
+aL aredadrev dadicilef atseuc ëocop is se íarac on se ed aneub esalc
+aLaredadrevdadicilefatseucâocopisseçaraconseedaneubesalc
+</code></pre></div>
+<div class="ejercicio">
+<h2 id="white_check_markejercicio-3">✅Ejercicio 3 </h2>
+<p>El programa a realizar es una versión del famoso <strong>juego del ahorcado</strong>. Para ello el programa en primer lugar, pedirá al usuario la palabra secreta y el máximo de fallos permitido..</p>
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=0, cmd}" class="language-bash bash"><code>Introduce la palabra a adivinar: BUCLE
+Introduce el número máximo de fallos: <span class="token number">3</span> 
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ul>
+<li>Tras introducir estos datos, la pantalla se borrará y comenzaremos con el juego. Mostrando en cada iteración los huecos o aciertos de la palabra secreta, así como las letras falladas hasta el momento.</li>
+<li>El usuario irá introduciendo letras hasta que acierte la palabra o supere el número de fallos.</li>
+<li>Tras introducir estos datos, la pantalla se borrará y comenzaremos con el juego. Mostrando en cada iteración los huecos o aciertos de la palabra secreta, así como las letras falladas hasta el momento.</li>
+<li>El usuario irá introduciendo letras hasta que acierte la palabra o supere el número de fallos.</li>
 </ul>
-<p>Ejemplo de ejecuci&#xF3;n alcanzando el m&#xE1;ximo de fallos:</p>
-<div class="code-chunk" data-id="code-chunk-id-2" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {cmd}" class="language-bash">Palabra: _ _ _ _ _
+<p>Ejemplo de ejecución alcanzando el máximo de fallos:</p>
+<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=1, cmd}" class="language-bash bash"><code>Palabra: _ _ _ _ _
 Fallos:
 Introduce una letra: M
 
-Palabra: _ _ _ _ _
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><div class="code-chunk" data-id="code-chunk-id-2" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=2, cmd}" class="language-bash bash"><code>Palabra: _ _ _ _ _
 Fallos: M
 Introduce una letra: O
 
@@ -347,10 +246,10 @@ Introduce una letra: T
 
 Palabra: _ _ _ L _
 Fallos: M O T
-Lo siento has llegado al m&#xE1;ximo de fallos permitido.
+Lo siento has llegado al máximo de fallos permitido.
 La palabra a adivinar era: BUCLE.
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><p>Ejemplo de ejecuci&#xF3;n acertando:</p>
-<div class="code-chunk" data-id="code-chunk-id-3" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {cmd}" class="language-bash">Palabra: _ _ _ _ _
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><p>Ejemplo de ejecución acertando:</p>
+<div class="code-chunk" data-id="code-chunk-id-3" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=3, cmd}" class="language-bash bash"><code>Palabra: _ _ _ _ _
 Fallos:
 Introduce una letra: U
 
@@ -361,8 +260,7 @@ Introduce una letra: C
 Palabra: _ U C _ _
 Fallos:
 Introduce una letra: B
-
-Palabra: B U C _ _
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><div class="code-chunk" data-id="code-chunk-id-4" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=4, cmd}" class="language-bash bash"><code>Palabra: B U C _ _
 Fallos:
 Introduce una letra: L
 
@@ -373,255 +271,250 @@ Introduce una letra: E
 Palabra: B U C L E
 Fallos:
 ENHORABUENA LO HAS CONSEGUIDO
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div></blockquote>
-<blockquote>
-<p>&#x1F449;<strong>Pista:</strong> la rama del DEM que se encarga de <strong>pedir letra no repetida</strong>, solamente estar&#xE1; recogiendo car&#xE1;cteres al usuario hasta que introduzca uno no repetido. Ese car&#xE1;cter no lo guardar&#xE1; en ning&#xFA;n sitio. Los m&#xE9;todos que se encargan de a&#xF1;adir la letra a los StringBuilders correspondientes son A&#xF1;adeLetraALetrasParaMostrar o A&#xF1;adeLetraALetrasFalladas (aunque se tenga que volver a recorrer las cadenas).</p>
-</blockquote>
-<blockquote>
-<p><strong>Tips a seguir en la resoluci&#xF3;n del ejercicio:</strong></p>
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><p>👉<strong>Pista:</strong> la rama del DEM que se encarga de <strong>pedir letra no repetida</strong>, solamente estará recogiendo carácteres al usuario hasta que introduzca uno no repetido. Ese carácter no lo guardará en ningún sitio. Los métodos que se encargan de añadir la letra a los StringBuilders correspondientes son AñadeLetraALetrasParaMostrar o AñadeLetraALetrasFalladas (aunque se tenga que volver a recorrer las cadenas).</p>
+<p><strong>Tips a seguir en la resolución del ejercicio:</strong></p>
 <ol>
-<li>Tanto la palabra secreta, como las letras introducidas, las pasaremos a may&#xFA;sculas para no tener problemas a la hora de buscarlas y compararlas.</li>
+<li>Tanto la palabra secreta, como las letras introducidas, las pasaremos a mayúsculas para no tener problemas a la hora de buscarlas y compararlas.</li>
 <li>Utiliza StringBuilder para guardar las letras acertadas y las falladas.</li>
-<li>Sigue el siguiente DEM a la hora de dise&#xF1;ar tus m&#xF3;dulos o funciones:</li>
+<li>Sigue el siguiente DEM a la hora de diseñar tus módulos o funciones:</li>
 </ol>
-<p align="center" style="zoom:0.5"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<p align="center" style="zoom:0.5" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
 
-<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+<!-- Generated by graphviz version 9.0.0 (20230911.1827)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="665pt" height="510pt" viewBox="0.00 0.00 664.69 510.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<svg width="663pt" height="510pt" viewBox="0.00 0.00 662.72 510.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 506.2)">
 <title>G</title>
 <!-- main -->
 <g id="node1" class="node">
 <title>main</title>
-<polygon fill="none" stroke="#000000" points="225.9183,-498.2 156.5529,-498.2 156.5529,-462.2 225.9183,-462.2 225.9183,-498.2"/>
-<polygon fill="none" stroke="#000000" points="229.9011,-502.2 152.5701,-502.2 152.5701,-458.2 229.9011,-458.2 229.9011,-502.2"/>
-<text text-anchor="middle" x="191.2356" y="-476" font-family="Arial" font-size="14.00" fill="#000000">Principal</text>
+<polygon fill="none" stroke="black" points="226.09,-498.2 156.4,-498.2 156.4,-462.2 226.09,-462.2 226.09,-498.2"></polygon>
+<polygon fill="none" stroke="black" points="230.09,-502.2 152.4,-502.2 152.4,-458.2 230.09,-458.2 230.09,-502.2"></polygon>
+<text text-anchor="middle" x="191.25" y="-476" font-family="Arial" font-size="14.00">Principal</text>
 </g>
 <!-- n1 -->
 <g id="node2" class="node">
 <title>n1</title>
-<polygon fill="none" stroke="#000000" points="111.9757,-421.0019 12.4955,-421.0019 12.4955,-379.7981 111.9757,-379.7981 111.9757,-421.0019"/>
-<text text-anchor="middle" x="62.2356" y="-404.6" font-family="Arial" font-size="14.00" fill="#000000">Pedir palabra</text>
-<text text-anchor="middle" x="62.2356" y="-387.8" font-family="Arial" font-size="14.00" fill="#000000">a adivinar</text>
+<polygon fill="none" stroke="black" points="112.89,-421.2 13.61,-421.2 13.61,-379.6 112.89,-379.6 112.89,-421.2"></polygon>
+<text text-anchor="middle" x="63.25" y="-404.6" font-family="Arial" font-size="14.00">Pedir palabra</text>
+<text text-anchor="middle" x="63.25" y="-387.8" font-family="Arial" font-size="14.00">a adivinar</text>
 </g>
 <!-- main&#45;&gt;n1 -->
 <g id="edge1" class="edge">
 <title>main-&gt;n1</title>
-<path fill="none" stroke="#000000" d="M155.6443,-458.1831C139.9133,-448.4518 121.2896,-436.9311 104.8269,-426.7472"/>
-<polygon fill="#000000" stroke="#000000" points="106.281,-423.5312 95.9353,-421.2468 102.5984,-429.4842 106.281,-423.5312"/>
+<path fill="none" stroke="black" d="M155.93,-457.73C140.49,-448.35 122.24,-437.25 106.03,-427.41"></path>
+<polygon fill="black" stroke="black" points="107.91,-424.45 97.54,-422.25 104.27,-430.43 107.91,-424.45"></polygon>
 </g>
 <!-- n2 -->
 <g id="node3" class="node">
 <title>n2</title>
-<polygon fill="none" stroke="#000000" points="252.2834,-421.0019 130.1878,-421.0019 130.1878,-379.7981 252.2834,-379.7981 252.2834,-421.0019"/>
-<text text-anchor="middle" x="191.2356" y="-404.6" font-family="Arial" font-size="14.00" fill="#000000">Pedir n&#xFA;mero</text>
-<text text-anchor="middle" x="191.2356" y="-387.8" font-family="Arial" font-size="14.00" fill="#000000">m&#xE1;ximo de fallos</text>
+<polygon fill="none" stroke="black" points="251.77,-421.2 130.73,-421.2 130.73,-379.6 251.77,-379.6 251.77,-421.2"></polygon>
+<text text-anchor="middle" x="191.25" y="-404.6" font-family="Arial" font-size="14.00">Pedir número</text>
+<text text-anchor="middle" x="191.25" y="-387.8" font-family="Arial" font-size="14.00">máximo de fallos</text>
 </g>
 <!-- main&#45;&gt;n2 -->
 <g id="edge2" class="edge">
 <title>main-&gt;n2</title>
-<path fill="none" stroke="#000000" d="M191.2356,-457.9713C191.2356,-449.6845 191.2356,-440.1234 191.2356,-431.203"/>
-<polygon fill="#000000" stroke="#000000" points="194.7357,-431.1403 191.2356,-421.1403 187.7357,-431.1404 194.7357,-431.1403"/>
+<path fill="none" stroke="black" d="M191.25,-457.94C191.25,-450.23 191.25,-441.36 191.25,-432.95"></path>
+<polygon fill="black" stroke="black" points="194.75,-433.08 191.25,-423.08 187.75,-433.08 194.75,-433.08"></polygon>
 </g>
 <!-- n3 -->
 <g id="node4" class="node">
 <title>n3</title>
-<polygon fill="none" stroke="#000000" points="324.2356,-418.4 270.2356,-418.4 270.2356,-382.4 324.2356,-382.4 324.2356,-418.4"/>
-<text text-anchor="middle" x="297.2356" y="-396.2" font-family="Arial" font-size="14.00" fill="#000000">Jugar</text>
+<polygon fill="none" stroke="black" points="324.25,-418.4 270.25,-418.4 270.25,-382.4 324.25,-382.4 324.25,-418.4"></polygon>
+<text text-anchor="middle" x="297.25" y="-396.2" font-family="Arial" font-size="14.00">Jugar</text>
 </g>
 <!-- main&#45;&gt;n3 -->
 <g id="edge3" class="edge">
 <title>main-&gt;n3</title>
-<path fill="none" stroke="#000000" d="M220.4812,-458.1831C234.3123,-447.7706 250.8647,-435.3094 265.0513,-424.6293"/>
-<polygon fill="#000000" stroke="#000000" points="267.2084,-427.3864 273.0924,-418.5757 262.9982,-421.794 267.2084,-427.3864"/>
+<path fill="none" stroke="black" d="M220.49,-457.73C234.04,-447.79 250.19,-435.94 264.17,-425.68"></path>
+<polygon fill="black" stroke="black" points="266.24,-428.5 272.23,-419.76 262.1,-422.86 266.24,-428.5"></polygon>
 </g>
 <!-- n31 -->
 <g id="node5" class="node">
 <title>n31</title>
-<polygon fill="none" stroke="#000000" points="112.7078,-318.2019 -.2366,-318.2019 -.2366,-276.9981 112.7078,-276.9981 112.7078,-318.2019"/>
-<text text-anchor="middle" x="56.2356" y="-301.8" font-family="Arial" font-size="14.00" fill="#000000">Muestra estado</text>
-<text text-anchor="middle" x="56.2356" y="-285" font-family="Arial" font-size="14.00" fill="#000000">del juego</text>
+<polygon fill="none" stroke="black" points="112.5,-318.4 0,-318.4 0,-276.8 112.5,-276.8 112.5,-318.4"></polygon>
+<text text-anchor="middle" x="56.25" y="-301.8" font-family="Arial" font-size="14.00">Muestra estado</text>
+<text text-anchor="middle" x="56.25" y="-285" font-family="Arial" font-size="14.00">del juego</text>
 </g>
 <!-- n3&#45;&gt;n31 -->
 <g id="edge4" class="edge">
 <title>n3-&gt;n31</title>
-<path fill="none" stroke="#000000" d="M270.1861,-383.5065C267.2304,-382.0453 264.213,-380.7054 261.2356,-379.6 220.913,-364.6292 206.4445,-376.6388 166.1472,-361.6 140.8051,-352.1424 114.5489,-337.0815 94.0563,-323.9454"/>
-<polygon fill="#000000" stroke="#000000" points="95.933,-320.9908 85.646,-318.4554 92.1067,-326.8525 95.933,-320.9908"/>
-<text text-anchor="middle" x="192.2798" y="-349" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M270.15,-383.34C267.2,-381.94 264.2,-380.66 261.25,-379.6 220.77,-365.05 206.51,-376.5 166.16,-361.6 141.16,-352.37 115.2,-337.76 94.79,-324.93"></path>
+<polygon fill="black" stroke="black" points="96.83,-322.08 86.52,-319.63 93.05,-327.98 96.83,-322.08"></polygon>
+<text text-anchor="middle" x="192.29" y="-349" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n32 -->
 <g id="node6" class="node">
 <title>n32</title>
-<polygon fill="none" stroke="#000000" points="216.2622,-318.2019 130.209,-318.2019 130.209,-276.9981 216.2622,-276.9981 216.2622,-318.2019"/>
-<text text-anchor="middle" x="173.2356" y="-301.8" font-family="Arial" font-size="14.00" fill="#000000">Pide letra</text>
-<text text-anchor="middle" x="173.2356" y="-285" font-family="Arial" font-size="14.00" fill="#000000">no repetida</text>
+<polygon fill="none" stroke="black" points="216.28,-318.4 130.22,-318.4 130.22,-276.8 216.28,-276.8 216.28,-318.4"></polygon>
+<text text-anchor="middle" x="173.25" y="-301.8" font-family="Arial" font-size="14.00">Pide letra</text>
+<text text-anchor="middle" x="173.25" y="-285" font-family="Arial" font-size="14.00">no repetida</text>
 </g>
 <!-- n3&#45;&gt;n32 -->
 <g id="edge5" class="edge">
 <title>n3-&gt;n32</title>
-<path fill="none" stroke="#000000" d="M270.1045,-382.8413C260.7109,-376.4484 250.2585,-368.975 241.1472,-361.6 227.4085,-350.4795 213.0455,-337.2134 201.0855,-325.6504"/>
-<polygon fill="#000000" stroke="#000000" points="203.2017,-322.8245 193.6039,-318.3374 198.3086,-327.8304 203.2017,-322.8245"/>
-<text text-anchor="middle" x="267.2798" y="-349" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M269.83,-382.15C260.51,-375.97 250.18,-368.75 241.16,-361.6 227.57,-350.83 213.38,-337.95 201.51,-326.66"></path>
+<polygon fill="black" stroke="black" points="204.03,-324.23 194.4,-319.81 199.18,-329.27 204.03,-324.23"></polygon>
+<text text-anchor="middle" x="267.29" y="-349" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n33 -->
 <g id="node7" class="node">
 <title>n33</title>
-<polygon fill="none" stroke="#000000" points="359.9176,-327.0014 234.5536,-327.0014 234.5536,-268.1986 359.9176,-268.1986 359.9176,-327.0014"/>
-<text text-anchor="middle" x="297.2356" y="-310.2" font-family="Arial" font-size="14.00" fill="#000000">A&#xF1;ade letra a</text>
-<text text-anchor="middle" x="297.2356" y="-293.4" font-family="Arial" font-size="14.00" fill="#000000">letras de la</text>
-<text text-anchor="middle" x="297.2356" y="-276.6" font-family="Arial" font-size="14.00" fill="#000000">palabra a mostrar</text>
+<polygon fill="none" stroke="black" points="360.11,-326.8 234.39,-326.8 234.39,-268.4 360.11,-268.4 360.11,-326.8"></polygon>
+<text text-anchor="middle" x="297.25" y="-310.2" font-family="Arial" font-size="14.00">Añade letra a</text>
+<text text-anchor="middle" x="297.25" y="-293.4" font-family="Arial" font-size="14.00">letras de la</text>
+<text text-anchor="middle" x="297.25" y="-276.6" font-family="Arial" font-size="14.00">palabra a mostrar</text>
 </g>
 <!-- n3&#45;&gt;n33 -->
 <g id="edge6" class="edge">
 <title>n3-&gt;n33</title>
-<path fill="none" stroke="#000000" d="M297.2356,-382.0214C297.2356,-369.6337 297.2356,-352.8082 297.2356,-337.4377"/>
-<polygon fill="#000000" stroke="#000000" points="300.7357,-337.1013 297.2356,-327.1014 293.7357,-337.1014 300.7357,-337.1013"/>
-<text text-anchor="middle" x="323.2798" y="-349" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M297.25,-382.3C297.25,-370.3 297.25,-353.75 297.25,-338.53"></path>
+<polygon fill="black" stroke="black" points="300.75,-338.77 297.25,-328.77 293.75,-338.77 300.75,-338.77"></polygon>
+<text text-anchor="middle" x="323.29" y="-349" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n34 -->
 <g id="node8" class="node">
 <title>n34</title>
-<polygon fill="none" stroke="#000000" points="482.15,-318.2019 378.3212,-318.2019 378.3212,-276.9981 482.15,-276.9981 482.15,-318.2019"/>
-<text text-anchor="middle" x="430.2356" y="-301.8" font-family="Arial" font-size="14.00" fill="#000000">A&#xF1;ade letra a</text>
-<text text-anchor="middle" x="430.2356" y="-285" font-family="Arial" font-size="14.00" fill="#000000">letras falladas</text>
+<polygon fill="none" stroke="black" points="480.44,-318.4 378.06,-318.4 378.06,-276.8 480.44,-276.8 480.44,-318.4"></polygon>
+<text text-anchor="middle" x="429.25" y="-301.8" font-family="Arial" font-size="14.00">Añade letra a</text>
+<text text-anchor="middle" x="429.25" y="-285" font-family="Arial" font-size="14.00">letras falladas</text>
 </g>
 <!-- n3&#45;&gt;n34 -->
 <g id="edge7" class="edge">
 <title>n3-&gt;n34</title>
-<path fill="none" stroke="#000000" d="M324.3517,-382.3176C333.636,-375.9414 344.0058,-368.612 353.2356,-361.6 368.5088,-349.9968 384.9212,-336.5059 398.6531,-324.9103"/>
-<polygon fill="#000000" stroke="#000000" points="401.0437,-327.472 406.3997,-318.3306 396.5121,-322.1367 401.0437,-327.472"/>
-<text text-anchor="middle" x="399.2798" y="-349" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M324.11,-382.04C333.47,-375.79 343.95,-368.56 353.25,-361.6 368.21,-350.39 384.23,-337.29 397.68,-325.95"></path>
+<polygon fill="black" stroke="black" points="399.6,-328.91 404.95,-319.77 395.07,-323.58 399.6,-328.91"></polygon>
+<text text-anchor="middle" x="401.29" y="-349" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n35 -->
 <g id="node9" class="node">
 <title>n35</title>
-<polygon fill="none" stroke="#000000" points="622.0268,-318.2019 500.4444,-318.2019 500.4444,-276.9981 622.0268,-276.9981 622.0268,-318.2019"/>
-<text text-anchor="middle" x="561.2356" y="-301.8" font-family="Arial" font-size="14.00" fill="#000000">Comprueba si fin</text>
-<text text-anchor="middle" x="561.2356" y="-285" font-family="Arial" font-size="14.00" fill="#000000">de juego</text>
+<polygon fill="none" stroke="black" points="620.16,-318.4 498.33,-318.4 498.33,-276.8 620.16,-276.8 620.16,-318.4"></polygon>
+<text text-anchor="middle" x="559.25" y="-301.8" font-family="Arial" font-size="14.00">Comprueba si fin</text>
+<text text-anchor="middle" x="559.25" y="-285" font-family="Arial" font-size="14.00">de juego</text>
 </g>
 <!-- n3&#45;&gt;n35 -->
 <g id="edge8" class="edge">
 <title>n3-&gt;n35</title>
-<path fill="none" stroke="#000000" d="M324.469,-393.8049C351.4685,-386.9393 393.8085,-375.2867 429.2356,-361.6 457.9903,-350.4911 489.0619,-335.5801 513.8317,-322.9457"/>
-<polygon fill="#000000" stroke="#000000" points="515.7088,-325.916 522.9984,-318.2276 512.5053,-319.692 515.7088,-325.916"/>
-<text text-anchor="middle" x="493.2798" y="-349" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M324.67,-393.22C352.09,-386.68 395.25,-375.4 431.25,-361.6 458.95,-350.98 488.75,-336.51 512.62,-324.11"></path>
+<polygon fill="black" stroke="black" points="514.23,-327.21 521.46,-319.47 510.98,-321.02 514.23,-327.21"></polygon>
+<text text-anchor="middle" x="494.29" y="-349" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n321 -->
 <g id="node12" class="node">
 <title>n321</title>
-<polygon fill="none" stroke="#000000" points="237.8099,-207.0019 108.6613,-207.0019 108.6613,-165.7981 237.8099,-165.7981 237.8099,-207.0019"/>
-<text text-anchor="middle" x="173.2356" y="-190.6" font-family="Arial" font-size="14.00" fill="#000000">Est&#xE1; la letra en</text>
-<text text-anchor="middle" x="173.2356" y="-173.8" font-family="Arial" font-size="14.00" fill="#000000">letras introducidas</text>
+<polygon fill="none" stroke="black" points="238.05,-207.2 108.44,-207.2 108.44,-165.6 238.05,-165.6 238.05,-207.2"></polygon>
+<text text-anchor="middle" x="173.25" y="-190.6" font-family="Arial" font-size="14.00">Está la letra en</text>
+<text text-anchor="middle" x="173.25" y="-173.8" font-family="Arial" font-size="14.00">letras introducidas</text>
 </g>
 <!-- n32&#45;&gt;n321 -->
 <g id="edge9" class="edge">
 <title>n32-&gt;n321</title>
-<path fill="none" stroke="#000000" d="M173.2356,-276.9447C173.2356,-260.2758 173.2356,-236.5599 173.2356,-217.5811"/>
-<polygon fill="#000000" stroke="#000000" points="176.7357,-217.322 173.2356,-207.322 169.7357,-217.322 176.7357,-217.322"/>
-<text text-anchor="middle" x="199.2798" y="-237.8" font-family="Times,serif" font-size="14.00" fill="#000000">1... veces</text>
+<path fill="none" stroke="black" d="M173.25,-276.32C173.25,-260.23 173.25,-237.45 173.25,-218.98"></path>
+<polygon fill="black" stroke="black" points="176.75,-219.09 173.25,-209.09 169.75,-219.09 176.75,-219.09"></polygon>
+<text text-anchor="middle" x="199.29" y="-237.8" font-family="Times,serif" font-size="14.00">1... veces</text>
 </g>
 <!-- n351 -->
 <g id="node10" class="node">
 <title>n351</title>
-<polygon fill="none" stroke="#000000" points="555.3689,-207.0019 459.1023,-207.0019 459.1023,-165.7981 555.3689,-165.7981 555.3689,-207.0019"/>
-<text text-anchor="middle" x="507.2356" y="-190.6" font-family="Arial" font-size="14.00" fill="#000000">Ha acertado</text>
-<text text-anchor="middle" x="507.2356" y="-173.8" font-family="Arial" font-size="14.00" fill="#000000">ya la palabra</text>
+<polygon fill="none" stroke="black" points="553.33,-207.2 457.17,-207.2 457.17,-165.6 553.33,-165.6 553.33,-207.2"></polygon>
+<text text-anchor="middle" x="505.25" y="-190.6" font-family="Arial" font-size="14.00">Ha acertado</text>
+<text text-anchor="middle" x="505.25" y="-173.8" font-family="Arial" font-size="14.00">ya la palabra</text>
 </g>
 <!-- n35&#45;&gt;n351 -->
 <g id="edge14" class="edge">
 <title>n35-&gt;n351</title>
-<path fill="none" stroke="#000000" d="M551.2052,-276.9447C542.96,-259.9657 531.1641,-235.6751 521.8655,-216.5268"/>
-<polygon fill="#000000" stroke="#000000" points="524.9123,-214.7885 517.3956,-207.322 518.6155,-217.8464 524.9123,-214.7885"/>
+<path fill="none" stroke="black" d="M549.22,-276.32C541.07,-259.84 529.46,-236.36 520.22,-217.67"></path>
+<polygon fill="black" stroke="black" points="523.47,-216.34 515.9,-208.93 517.19,-219.45 523.47,-216.34"></polygon>
 </g>
 <!-- n352 -->
 <g id="node11" class="node">
 <title>n352</title>
-<polygon fill="none" stroke="#000000" points="656.6417,-215.8014 573.8295,-215.8014 573.8295,-156.9986 656.6417,-156.9986 656.6417,-215.8014"/>
-<text text-anchor="middle" x="615.2356" y="-199" font-family="Arial" font-size="14.00" fill="#000000">Ha llegado</text>
-<text text-anchor="middle" x="615.2356" y="-182.2" font-family="Arial" font-size="14.00" fill="#000000">al m&#xE1;ximo</text>
-<text text-anchor="middle" x="615.2356" y="-165.4" font-family="Arial" font-size="14.00" fill="#000000">de fallos</text>
+<polygon fill="none" stroke="black" points="654.72,-215.6 571.78,-215.6 571.78,-157.2 654.72,-157.2 654.72,-215.6"></polygon>
+<text text-anchor="middle" x="613.25" y="-199" font-family="Arial" font-size="14.00">Ha llegado</text>
+<text text-anchor="middle" x="613.25" y="-182.2" font-family="Arial" font-size="14.00">al máximo</text>
+<text text-anchor="middle" x="613.25" y="-165.4" font-family="Arial" font-size="14.00">de fallos</text>
 </g>
 <!-- n35&#45;&gt;n352 -->
 <g id="edge15" class="edge">
 <title>n35-&gt;n352</title>
-<path fill="none" stroke="#000000" d="M571.266,-276.9447C578.3174,-262.4241 587.9657,-242.5558 596.428,-225.1298"/>
-<polygon fill="#000000" stroke="#000000" points="599.7632,-226.2738 600.9832,-215.7494 593.4664,-223.216 599.7632,-226.2738"/>
+<path fill="none" stroke="black" d="M569.28,-276.32C576.25,-262.22 585.76,-242.99 594.15,-226.02"></path>
+<polygon fill="black" stroke="black" points="597.23,-227.68 598.53,-217.16 590.96,-224.58 597.23,-227.68"></polygon>
 </g>
 <!-- n3211 -->
 <g id="node13" class="node">
 <title>n3211</title>
-<polygon fill="none" stroke="#000000" points="165.8142,-120.0019 50.657,-120.0019 50.657,-78.7981 165.8142,-78.7981 165.8142,-120.0019"/>
-<text text-anchor="middle" x="108.2356" y="-103.6" font-family="Arial" font-size="14.00" fill="#000000">Est&#xE1; la letra en</text>
-<text text-anchor="middle" x="108.2356" y="-86.8" font-family="Arial" font-size="14.00" fill="#000000">letras acertadas</text>
+<polygon fill="none" stroke="black" points="167.05,-120.2 51.44,-120.2 51.44,-78.6 167.05,-78.6 167.05,-120.2"></polygon>
+<text text-anchor="middle" x="109.25" y="-103.6" font-family="Arial" font-size="14.00">Está la letra en</text>
+<text text-anchor="middle" x="109.25" y="-86.8" font-family="Arial" font-size="14.00">letras acertadas</text>
 </g>
 <!-- n321&#45;&gt;n3211 -->
 <g id="edge10" class="edge">
 <title>n321-&gt;n3211</title>
-<path fill="none" stroke="#000000" d="M157.8315,-165.7822C149.4738,-154.5957 139.0074,-140.5869 129.8462,-128.325"/>
-<polygon fill="#000000" stroke="#000000" points="132.5435,-126.0875 123.7544,-120.1713 126.9358,-130.2772 132.5435,-126.0875"/>
+<path fill="none" stroke="black" d="M158.08,-165.26C150.09,-154.64 140.14,-141.43 131.31,-129.7"></path>
+<polygon fill="black" stroke="black" points="134.25,-127.79 125.44,-121.9 128.66,-132 134.25,-127.79"></polygon>
 </g>
 <!-- n3212 -->
 <g id="node14" class="node">
 <title>n3212</title>
-<polygon fill="none" stroke="#000000" points="294.6332,-120.0019 183.838,-120.0019 183.838,-78.7981 294.6332,-78.7981 294.6332,-120.0019"/>
-<text text-anchor="middle" x="239.2356" y="-103.6" font-family="Arial" font-size="14.00" fill="#000000">Est&#xE1; la letra en</text>
-<text text-anchor="middle" x="239.2356" y="-86.8" font-family="Arial" font-size="14.00" fill="#000000">letras falladas.</text>
+<polygon fill="none" stroke="black" points="293.94,-120.2 184.56,-120.2 184.56,-78.6 293.94,-78.6 293.94,-120.2"></polygon>
+<text text-anchor="middle" x="239.25" y="-103.6" font-family="Arial" font-size="14.00">Está la letra en</text>
+<text text-anchor="middle" x="239.25" y="-86.8" font-family="Arial" font-size="14.00">letras falladas.</text>
 </g>
 <!-- n321&#45;&gt;n3212 -->
 <g id="edge11" class="edge">
 <title>n321-&gt;n3212</title>
-<path fill="none" stroke="#000000" d="M188.8767,-165.7822C197.363,-154.5957 207.9904,-140.5869 217.2925,-128.325"/>
-<polygon fill="#000000" stroke="#000000" points="220.2226,-130.2536 223.4781,-120.1713 214.6457,-126.0229 220.2226,-130.2536"/>
+<path fill="none" stroke="black" d="M188.89,-165.26C197.13,-154.64 207.39,-141.43 216.5,-129.7"></path>
+<polygon fill="black" stroke="black" points="219.19,-131.93 222.56,-121.89 213.66,-127.64 219.19,-131.93"></polygon>
 </g>
 <!-- n321X -->
 <g id="node15" class="node">
 <title>n321X</title>
-<polygon fill="none" stroke="#000000" points="211.3983,-41.4019 135.0729,-41.4019 135.0729,-.1981 211.3983,-.1981 211.3983,-41.4019"/>
-<text text-anchor="middle" x="173.2356" y="-25" font-family="Arial" font-size="14.00" fill="#000000">Est&#xE1; letra</text>
-<text text-anchor="middle" x="173.2356" y="-8.2" font-family="Arial" font-size="14.00" fill="#000000">en letras</text>
+<polygon fill="none" stroke="black" points="210.81,-41.6 135.68,-41.6 135.68,0 210.81,0 210.81,-41.6"></polygon>
+<text text-anchor="middle" x="173.25" y="-25" font-family="Arial" font-size="14.00">Está letra</text>
+<text text-anchor="middle" x="173.25" y="-8.2" font-family="Arial" font-size="14.00">en letras</text>
 </g>
 <!-- n3211&#45;&gt;n321X -->
 <g id="edge12" class="edge">
 <title>n3211-&gt;n321X</title>
-<path fill="none" stroke="#000000" d="M125.3136,-78.7488C132.7188,-69.7941 141.5147,-59.1578 149.5369,-49.4572"/>
-<polygon fill="#000000" stroke="#000000" points="152.3703,-51.523 156.046,-41.5862 146.9759,-47.062 152.3703,-51.523"/>
+<path fill="none" stroke="black" d="M126.06,-78.27C133.06,-69.9 141.32,-60.01 148.96,-50.87"></path>
+<polygon fill="black" stroke="black" points="151.63,-53.14 155.35,-43.22 146.25,-48.65 151.63,-53.14"></polygon>
 </g>
 <!-- n3212&#45;&gt;n321X -->
 <g id="edge13" class="edge">
 <title>n3212-&gt;n321X</title>
-<path fill="none" stroke="#000000" d="M221.8949,-78.7488C214.3757,-69.7941 205.4445,-59.1578 197.2989,-49.4572"/>
-<polygon fill="#000000" stroke="#000000" points="199.8006,-46.9937 190.6897,-41.5862 194.4399,-51.4951 199.8006,-46.9937"/>
+<path fill="none" stroke="black" d="M221.91,-78.27C214.61,-69.81 205.99,-59.8 198.05,-50.58"></path>
+<polygon fill="black" stroke="black" points="200.87,-48.5 191.69,-43.2 195.57,-53.06 200.87,-48.5"></polygon>
 </g>
 </g>
 </svg>
-</p><p>Una posible propuesta de algunos interfaces para modularizar el DEM de arriba puede ser&#x2026;</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">PidePalabraAAdivinar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">PideMaximoFallos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">EstaLetraEnLetras</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">char</span></span> letra<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> letras<span class="token punctuation">)</span> <span class="token comment">//Puedes usar IndexOf</span>
-<span class="token return-type class-name"><span class="token keyword">char</span></span> <span class="token function">PideLetraNoRepetida</span><span class="token punctuation">(</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> letrasFalladas<span class="token punctuation">)</span>
-<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">MuestraEstadoJuego</span><span class="token punctuation">(</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> letrasFalladas<span class="token punctuation">)</span>
-<span class="token keyword">void</span> A&#xF1;<span class="token function">adeLetraALetrasPalabraAMostrar</span><span class="token punctuation">(</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> palabraAAdivinar<span class="token punctuation">,</span>
-         <span class="token keyword">in</span> <span class="token class-name"><span class="token keyword">char</span></span> letra<span class="token punctuation">,</span>
+</p><div style="page-break-after:always;"></div>
+<p>Una posible propuesta de algunos interfaces para modularizar el DEM de arriba puede ser…</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">PidePalabraAAdivinar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">PideMaximoFallos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EstaLetraEnLetras</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-char">char</span></span> letra<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> letras<span class="token punctuation">)</span> <span class="token comment">//Puedes usar IndexOf</span>
+<span class="token return-type class-name"><span class="token keyword keyword-char">char</span></span> <span class="token function">PideLetraNoRepetida</span><span class="token punctuation">(</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> letrasFalladas<span class="token punctuation">)</span>
+<span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MuestraEstadoJuego</span><span class="token punctuation">(</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> letrasFalladas<span class="token punctuation">)</span>
+<span class="token keyword keyword-void">void</span> Añ<span class="token function">adeLetraALetrasPalabraAMostrar</span><span class="token punctuation">(</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraAAdivinar<span class="token punctuation">,</span>
+         <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-char">char</span></span> letra<span class="token punctuation">,</span>
          <span class="token class-name">StringBuilder</span> palabraParcialmenteAdivinada<span class="token punctuation">)</span>
-<span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">FinDeJuego</span><span class="token punctuation">(</span>
-         <span class="token class-name"><span class="token keyword">int</span></span> numFallos<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> maxFallos<span class="token punctuation">,</span>
-         <span class="token class-name"><span class="token keyword">string</span></span> palabraAAdivinar<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
-         <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">string</span></span> mensajeSiFin<span class="token punctuation">)</span>
-<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Jugar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> palabraAAdivinar<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> maximoFallos<span class="token punctuation">)</span>
-</pre></blockquote>
-<div style="page-break-after:always;"></div>
+<span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">FinDeJuego</span><span class="token punctuation">(</span>
+         <span class="token class-name"><span class="token keyword keyword-int">int</span></span> numFallos<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> maxFallos<span class="token punctuation">,</span>
+         <span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraAAdivinar<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraParcialmenteAdivinada<span class="token punctuation">,</span>
+         <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensajeSiFin<span class="token punctuation">)</span>
+<span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Jugar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> palabraAAdivinar<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> maximoFallos<span class="token punctuation">)</span>
+</code></pre></div>
+
       </div>
       
       
-    
-    
     
     
     
