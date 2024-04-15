@@ -21,6 +21,34 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +104,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -228,14 +295,14 @@ Pues suelen dar lugar a código ofuscado difícil de mantener 💀.</li>
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 395.78)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-395.78 450.39,-395.78 450.39,4 -4,4"></polygon>
-<g id="clust1" class="cluster">
-<title>cluster3</title>
-<polygon fill="none" stroke="black" points="259.39,-34.78 259.39,-192.78 438.39,-192.78 438.39,-34.78 259.39,-34.78"></polygon>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster1</title>
 <polygon fill="none" stroke="black" points="271.39,-200.78 271.39,-383.78 426.39,-383.78 426.39,-200.78 271.39,-200.78"></polygon>
 <text text-anchor="middle" x="348.89" y="-367.18" font-family="Arial" font-size="14.00">m : int[,]</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster3</title>
+<polygon fill="none" stroke="black" points="259.39,-34.78 259.39,-192.78 438.39,-192.78 438.39,-34.78 259.39,-34.78"></polygon>
 </g>
 <!-- i3 -->
 <g id="node1" class="node">
@@ -419,7 +486,8 @@ Pues suelen dar lugar a código ofuscado difícil de mantener 💀.</li>
         Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"\n\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Salto para cambiar de fila          </span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><h5 id="interpretar-tablas-multidimensionales-de-3-dimensiones">Interpretar tablas multidimensionales de 3 dimensiones </h5>
+</code></pre><div style="page-break-after:always;"></div>
+<h5 id="interpretar-tablas-multidimensionales-de-3-dimensiones">Interpretar tablas multidimensionales de 3 dimensiones </h5>
 <p>No es muy común encontrar este tipo de colecciones, pero nos pueden ayudar a entender un poco más las tablas multidimensionales. Supongamos por ejemplo la siguiente definición.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Trataremos de tabular la inicialización para ganar en claridad.</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span> tabla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-int">int</span></span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
@@ -441,12 +509,12 @@ Pues suelen dar lugar a código ofuscado difícil de mantener 💀.</li>
 <li>La segunda el <strong>3</strong> será: El número de <strong>filas</strong>.</li>
 <li>La tercera el <strong>2</strong> será: La profundidad o <strong>el número de matrices de x filas por y columnas</strong>.</li>
 </ol>
-<blockquote>
-<p><strong>🎓 Caso de estudio</strong></p>
+<div style="page-break-after:always;"></div>
+<div class="caso_estudio">
+<p>🎓 <strong>Caso de estudio:</strong></p>
 <p>El código siguiente define una matriz tri-dimensional de enteros no repetidos y selecciona en la misma un valor al azar. A continuación, le preguntará al usuario los valores de los índices para acceder al mismo. Si falla le indicará el fallo y los valores correctos que debería haber introducido.<br>
 El ejemplo es complejo y propone una representación de la '<em>profundidad</em>' o tercera dimensión dibujando a las derecha las matrices de mayor índice en la tabla.<br>
-<strong>Nota:</strong> Fíjate en los recorridos, la forma de acceder a un elemento, la forma de saber la longitud de cada dimensión, índices usados, la modularización e interfaces propuestos, etc.</p>
-</blockquote>
+📌 <strong>Nota:</strong> Fíjate en los recorridos, la forma de acceder a un elemento, la forma de saber la longitud de cada dimensión, índices usados, la modularización e interfaces propuestos, etc.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System</span><span class="token punctuation">;</span>
 
 <span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">Ejemplo</span>
@@ -482,8 +550,7 @@ El ejemplo es complejo y propone una representación de la '<em>profundidad</em>
                         ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MuestraResultado</span><span class="token punctuation">(</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MuestraResultado</span><span class="token punctuation">(</span>
                          <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span> tabla<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> i<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> j<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> k<span class="token punctuation">,</span>
                          <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> iUsuario<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> jUsuario<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> kUsuario<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
@@ -539,8 +606,7 @@ El ejemplo es complejo y propone una representación de la '<em>profundidad</em>
             <span class="token class-name"><span class="token keyword keyword-int">int</span></span> k <span class="token operator">=</span> <span class="token function">PideIndice</span><span class="token punctuation">(</span><span class="token string">"Índice columna"</span><span class="token punctuation">,</span> tabla<span class="token punctuation">.</span><span class="token function">GetLength</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
             <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span> tabla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span>
             <span class="token punctuation">{</span>
@@ -578,7 +644,8 @@ El ejemplo es complejo y propone una representación de la '<em>profundidad</em>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
+</code></pre></div>
+<div style="page-break-after:always;"></div>
 <h4 id="combinando-colecciones-homogéneas">Combinando colecciones homogéneas </h4>
 <ul>
 <li>
@@ -1029,7 +1096,7 @@ fila2<span class="token punctuation">[</span><span class="token number">2</span>
 <div style="page-break-after:always;"></div>
 <h5 id="recorrer-tablas-dentadas">Recorrer tablas dentadas </h5>
 <p>Lo haremos de forma análoga a como recorremos los arrays.</p>
-<pre data-role="codeBlock" data-info="csharp { class=&quot;line-numbers&quot; }" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> td <span class="token operator">=</span>
     <span class="token punctuation">{</span>
@@ -1052,7 +1119,7 @@ fila2<span class="token punctuation">[</span><span class="token number">2</span>
         Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"\n\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><blockquote>
+</code></pre><div class="caso_estudio">
 <p><strong>Ejemplo :</strong></p>
 <p>Vamos a representar una correspondencia entre comunidades autónomas y sus provincias. De tal manera que, las comunidades irán en un array y en el índice correspondiente en la tabla dentada, irán cada una de las provincias de esa comunidad...</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token punctuation">[</span>Comuniudad Valenciana<span class="token punctuation">]</span> -<span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token punctuation">[</span>Alicante<span class="token punctuation">]</span><span class="token punctuation">[</span>Castellón<span class="token punctuation">]</span><span class="token punctuation">[</span>Valencia<span class="token punctuation">]</span>
@@ -1070,8 +1137,7 @@ Galicia
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">|</span> Alicante    <span class="token operator">|</span> Castellón   <span class="token operator">|</span> Valencia    <span class="token operator">|</span>
 <span class="token operator">|</span> Almería     <span class="token operator">|</span> Cádiz       <span class="token operator">|</span> Córdoba     <span class="token operator">|</span> Granada     <span class="token operator">|</span> Huelva      <span class="token operator">|</span> Jaén        <span class="token operator">|</span> Málaga      <span class="token operator">|</span> Sevilla     <span class="token operator">|</span>
 <span class="token operator">|</span> Lugo        <span class="token operator">|</span> Pontevedra  <span class="token operator">|</span> Orense      <span class="token operator">|</span> La Coruña   <span class="token operator">|</span>
-</code></pre></blockquote>
-<pre data-role="codeBlock" data-info="csharp { class=&quot;line-numbers&quot; }" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
@@ -1112,7 +1178,8 @@ Galicia
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>texto<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+</code></pre></div>
+<div style="page-break-after:always;"></div>
 <h3 id="enumeraciones">Enumeraciones </h3>
 <ul>
 <li>
@@ -1254,12 +1321,11 @@ Me dice si value está en el enum en alguna de sus formas (enum, int, string).</
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplo:</strong></p>
 <p>Implementa un método denominado <strong>PresupuestoAnual</strong>, que devuelva el presupuesto anual en euros, de los diferentes departamentos de una empresa ficticia.<br>
-Los posibles departamentos serán <strong>Marketing</strong>, <strong>Compras</strong>, <strong>Ventas</strong>, <strong>RRHH</strong>, <strong>Administración</strong> y su presupuesto será un valor literal de tu elección.</p>
-<p><strong>Nota:</strong> Utiliza una <strong>instrucción switch</strong> para establecer el presupuesto a partir del departamento.</p>
-</blockquote>
+Los posibles departamentos serán <strong>Marketing</strong>, <strong>Compras</strong>, <strong>Ventas</strong>, <strong>RRHH</strong>, <strong>Administración</strong> y su presupuesto será un valor literal de tu elección.<br>
+📌 <strong>Nota:</strong> Utiliza una <strong>instrucción switch</strong> para establecer el presupuesto a partir del departamento.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">Departamento</span>
@@ -1287,8 +1353,7 @@ Los posibles departamentos serán <strong>Marketing</strong>, <strong>Compras</s
                 <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">NotImplementedException</span><span class="token punctuation">(</span><span class="token string">"Falta por tener en cuenta un departamento"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name">Departamento</span> departamento<span class="token punctuation">;</span>
         <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> enumCorrecto<span class="token punctuation">;</span>
@@ -1306,18 +1371,14 @@ Los posibles departamentos serán <strong>Marketing</strong>, <strong>Compras</s
                           <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">PresupuestoAnual</span><span class="token punctuation">(</span>departamento<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> euros."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
+</code></pre></div>
 <blockquote>
 <p>💡 <strong>Tip:</strong> Si seleccionamos el '<em>esqueleto</em>' de una instrucción <strong><code>switch</code></strong> que contenga un enumerado ...</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[1-4]}" class="language-csharp csharp" data-line="1-4"><code><span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>d<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-default">default</span><span class="token punctuation">:</span>
 <span class="token punctuation">}</span>
-</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1-4" data-start="1" data-end="4">
-
-
-
-</div></div></pre><p>y pulsamos vemos las propuestas de refactorización con VSCode (<strong><code>Ctrl+.</code></strong>). El editor nos ofrecerá la opción <strong>"<em>Agregar casos que faltan</em>"</strong> que añadirá automáticamente todos los case con los valores definidos en la enumeración.</p>
+</code></pre><p>y pulsamos vemos las propuestas de refactorización con VSCode (<strong><code>Ctrl+.</code></strong>). El editor nos ofrecerá la opción <strong>"<em>Agregar casos que faltan</em>"</strong> que añadirá automáticamente todos los case con los valores definidos en la enumeración.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
 <h4 id="enumeraciones-no-excluyentes-a-hrefhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencebuiltin-typesenumenumeration-types-as-bit-flags-target_blankflagsa">Enumeraciones NO excluyentes (<a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/builtin-types/enum#enumeration-types-as-bit-flags" target="_blank">Flags</a>) </h4>
@@ -1356,19 +1417,18 @@ Fíjate que al usar enumerados la operación es mucho más legible.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Hay que tener cuidado con la prioridad de &amp; y por eso ponemos paréntesis.</span>
 <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> tieneClimatizador <span class="token operator">=</span> <span class="token punctuation">(</span>extras <span class="token operator">&amp;</span> Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">)</span> <span class="token operator">==</span> Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>tieneClimatizador<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrará 'true'</span>
-</code></pre><p><strong>Si queremos quitar algún extra</strong> al coche usaremos el <strong>and de bit</strong> <strong><code>&amp;</code></strong> y la** negación de bit** <strong><code>~</code></strong></p>
+</code></pre><p><strong>Si queremos quitar algún extra</strong> al coche usaremos el <strong>and de bit</strong> <strong><code>&amp;</code></strong> y la <strong>negación de bit</strong> <strong><code>~</code></strong></p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>extras <span class="token operator">&amp;=</span> <span class="token operator">~</span>Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>extras<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrará 'FullLed'</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"{Convert.ToString((byte)extras, 2).PadLeft(8, '0')}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mostrará '00000100'</span>
 </code></pre></li>
 </ul>
 <div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>🎓 Caso de estudio</strong></p>
+<div class="caso_estudio">
+<p>🎓 <strong>Caso de estudio:</strong></p>
 <p>En el siguiente código vamos a definir una enumeración no excluyente para almacenar los estados combinados de un juego de plataformas. De tal manera que <strong>la primera letra</strong> del '<em>flag</em>' me va  a <strong>activar</strong> o <strong>desactivar</strong> dicho estado (<em>El enumerado del estado debería empezar por una letra diferente</em>). Mostrándome tras cada pulsación como se encuentran los flags, tanto el valor de enumerado como el valor interno en binario del enum.<br>
-Además, indicaremos que teclas activarán o desactivarán un deteminado estado.</p>
-<p><strong>Nota:</strong> Fíjate como el códgo se ha implementado para que funcione, independientemente del nombre que hemos asignado al flag en la enumeración y del número de flags que tengamos definidos.</p>
-</blockquote>
+Además, indicaremos que teclas activarán o desactivarán un deteminado estado.<br>
+<strong>Nota:</strong> Fíjate como el códgo se ha implementado para que funcione, independientemente del nombre que hemos asignado al flag en la enumeración y del número de flags que tengamos definidos.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
 <span class="token punctuation">{</span>  
     <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Flags</span></span><span class="token punctuation">]</span>
@@ -1428,7 +1488,8 @@ Además, indicaremos que teclas activarán o desactivarán un deteminado estado.
         <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> <span class="token char">'E'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
+</code></pre></div>
+
       </div>
       
       

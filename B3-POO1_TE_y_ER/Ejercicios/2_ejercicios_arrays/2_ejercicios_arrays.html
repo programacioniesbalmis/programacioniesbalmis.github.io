@@ -3,269 +3,161 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-      
-      
-      
-      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      /**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #333;
-  background: none;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.4;
-
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: .8em;
-  overflow: auto;
-  /* border: 1px solid #ddd; */
-  border-radius: 3px;
-  /* background: #fff; */
-  background: #f5f5f5;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
-  background: #f5f5f5;
-}
-
-.token.comment,
-.token.blockquote {
-  color: #969896;
-}
-
-.token.cdata {
-  color: #183691;
-}
-
-.token.doctype,
-.token.punctuation,
-.token.variable,
-.token.macro.property {
-  color: #333;
-}
-
-.token.operator,
-.token.important,
-.token.keyword,
-.token.rule,
-.token.builtin {
-  color: #a71d5d;
-}
-
-.token.string,
-.token.url,
-.token.regex,
-.token.attr-value {
-  color: #183691;
-}
-
-.token.property,
-.token.number,
-.token.boolean,
-.token.entity,
-.token.atrule,
-.token.constant,
-.token.symbol,
-.token.command,
-.token.code {
-  color: #0086b3;
-}
-
-.token.tag,
-.token.selector,
-.token.prolog {
-  color: #63a35c;
-}
-
-.token.function,
-.token.namespace,
-.token.pseudo-element,
-.token.class,
-.token.class-name,
-.token.pseudo-class,
-.token.id,
-.token.url-reference .token.variable,
-.token.attr-name {
-  color: #795da3;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.title,
-.token.title .token.punctuation {
-  font-weight: bold;
-  color: #1d3e81;
-}
-
-.token.list {
-  color: #ed6a43;
-}
-
-.token.inserted {
-  background-color: #eaffea;
-  color: #55a532;
-}
-
-.token.deleted {
-  background-color: #ffecec;
-  color: #bd2c00;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-
-/* JSON */
-.language-json .token.property {
-  color: #183691;
-}
-
-.language-markup .token.tag .token.punctuation {
-  color: #333;
-}
-
-/* CSS */
-code.language-css,
-.language-css .token.function {
-  color: #0086b3;
-}
-
-/* YAML */
-.language-yaml .token.atrule {
-  color: #63a35c;
-}
-
-code.language-yaml {
-  color: #183691;
-}
-
-/* Ruby */
-.language-ruby .token.function {
-  color: #333;
-}
-
-/* Markdown */
-.language-markdown .token.url {
-  color: #795da3;
-}
-
-/* Makefile */
-.language-makefile .token.symbol {
-  color: #795da3;
-}
-
-.language-makefile .token.variable {
-  color: #183691;
-}
-
-.language-makefile .token.builtin {
-  color: #0086b3;
-}
-
-/* Bash */
-.language-bash .token.keyword {
-  color: #0086b3;
-}
-
-/* highlight */
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
-}
-pre[data-line] .line-highlight-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-}
-
-pre[data-line] .line-highlight {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: inherit 0;
-  margin-top: 1em;
-  background: hsla(24, 20%, 50%,.08);
-  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-  pointer-events: none;
-  line-height: inherit;
-  white-space: pre;
-}
-
-pre[data-line] .line-highlight:before, 
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-start);
-  position: absolute;
-  top: .4em;
-  left: .6em;
-  min-width: 1em;
-  padding: 0 .5em;
-  background-color: hsla(24, 20%, 50%,.4);
-  color: hsl(24, 20%, 95%);
-  font: bold 65%/1.5 sans-serif;
-  text-align: center;
-  vertical-align: .3em;
-  border-radius: 999px;
-  text-shadow: none;
-  box-shadow: 0 1px white;
-}
-
-pre[data-line] .line-highlight[data-end]:after {
-  content: attr(data-end);
-  top: auto;
-  bottom: .4em;
-}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p,html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
 
       </style>
-    </head>
-    <body for="html-export">
-      <div class="mume markdown-preview  ">
-      <h1 class="mume-header undefined" id="ejercicios-arrays">Ejercicios Arrays</h1>
-
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-arrays">Ejercicios Arrays </h1>
 <p><a href="./2_ejercicios_arrays.pdf">Descargar estos ejercicios</a></p>
-<h2 class="mume-header undefined" id="%C3%ADndice">&#xCD;ndice</h2>
-
+<h2 id="índice">Índice </h2>
 
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
@@ -290,23 +182,23 @@ pre[data-line] .line-highlight[data-end]:after {
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#white_check_mark-ejercicio-6" class="md-toc-link">
-            <p>&#x2705; Ejercicio 6</p>
+            <p>✅ Ejercicio 6</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#ejercicio-7" class="md-toc-link">
             <p>Ejercicio 7</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#white_check_markejercicio-8" class="md-toc-link">
-            <p>&#x2705;Ejercicio 8</p>
+          <a href="#white_check_mark-ejercicio-8" class="md-toc-link">
+            <p>✅ Ejercicio 8</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#white_check_markejercicio-9" class="md-toc-link">
-            <p>&#x2705;Ejercicio 9</p>
+          <a href="#white_check_mark-ejercicio-9" class="md-toc-link">
+            <p>✅ Ejercicio 9</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#white_check_markejercicio-10" class="md-toc-link">
-            <p>&#x2705;Ejercicio 10</p>
+          <a href="#white_check_mark-ejercicio-10" class="md-toc-link">
+            <p>✅ Ejercicio 10</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#ejercicio-11" class="md-toc-link">
@@ -318,212 +210,149 @@ pre[data-line] .line-highlight[data-end]:after {
 
           </a></div>
 </div>
-<h2 class="mume-header" id="ejercicio-1">Ejercicio 1</h2>
-
-<blockquote>
-<p>Realiza un programa que asigne datos <strong>aleatoriamente</strong> a un array de n elementos, y a continuaci&#xF3;n muestre el contenido de dicho array utilizando la instrucci&#xF3;n <strong>foreach</strong>.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> Para generar un n&#xFA;mero aleatorio, puedes usar la funci&#xF3;n:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// Siempre que maxValue no sea el l&#xED;mite del rango para los enteros.</span>
+<div class="ejercicio">
+<h3 id="ejercicio-1">Ejercicio 1 </h3>
+<p>Realiza un programa que asigne datos <strong>aleatoriamente</strong> a un array de n elementos, y a continuación muestre el contenido de dicho array utilizando la instrucción <strong>foreach</strong>.</p>
+<p>📌 <strong>Nota:</strong> Para generar un número aleatorio, puedes usar la función:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Siempre que maxValue no sea el límite del rango para los enteros.</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> numero <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span>minValue<span class="token punctuation">,</span> maxValue <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre></blockquote>
+</code></pre></div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-2">Ejercicio 2</h2>
-
-<blockquote>
-<p>Rellena un array de <strong>10 n&#xFA;meros</strong> de tipo <strong>double</strong>, de forma aleatoria, y visual&#xED;za los que est&#xE9;n en una <strong>posici&#xF3;n</strong> que sea m&#xFA;ltiplo de cuatro.<br>
-Para generar un n&#xFA;mero real entre <strong>0 y 100</strong> puedes hacer:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name">Random</span> semilla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="ejercicio">
+<h3 id="ejercicio-2">Ejercicio 2 </h3>
+<p>Rellena un array de <strong>10 números</strong> de tipo <strong>double</strong>, de forma aleatoria, y visualíza los que estén en una <strong>posición</strong> que sea múltiplo de cuatro.<br>
+Para generar un número real entre <strong>0 y 100</strong> puedes hacer:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Random</span> semilla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-double">double</span></span> numeroReal <span class="token operator">=</span> semilla<span class="token punctuation">.</span><span class="token function">NextDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100d</span><span class="token punctuation">;</span>
-</pre></blockquote>
-<h2 class="mume-header" id="ejercicio-3">Ejercicio 3</h2>
-
-<blockquote>
+</code></pre></div>
+<div class="ejercicio">
+<h3 id="ejercicio-3">Ejercicio 3 </h3>
 <p>Programa que sume los <strong>valores</strong> de un array de 10 elementos reales.</p>
-</blockquote>
-<hr>
-<h2 class="mume-header" id="ejercicio-4">Ejercicio 4</h2>
-
-<blockquote>
-<p>Rellena un array de <strong>10 caracteres</strong> de forma aleatoria y luego sobre el mismo array modif&#xED;ca, de forma que los elementos que est&#xE9;n en may&#xFA;sculas pasen a ser min&#xFA;scula y los min&#xFA;scula a may&#xFA;scula. Visual&#xED;za el array con la instrucci&#xF3;n <strong>foreach</strong>.</p>
-<p><strong>Nota:</strong> Para generar car&#xE1;cteres aleatorios pod&#xE9;is generar n&#xFA;meros entre el rango de la tabla ASCII 65-122 y descartar los que no sean letras, y posteriormente castearlos a char. Para saber si un car&#xE1;cter est&#xE1; en may&#xFA;scula o  min&#xFA;sculas puedes usar:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">IsLower</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-char">char</span></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</div>
+<div class="ejercicio">
+<h3 id="ejercicio-4">Ejercicio 4 </h3>
+<p>Rellena un array de <strong>10 caracteres</strong> de forma aleatoria y luego sobre el mismo array modifíca, de forma que los elementos que estén en mayúsculas pasen a ser minúscula y los minúscula a mayúscula. Visualíza el array con la instrucción <strong>foreach</strong>.</p>
+<p><strong>Nota:</strong> Para generar carácteres aleatorios podéis generar números entre el rango de la tabla ASCII 65-122 y descartar los que no sean letras, y posteriormente castearlos a char. Para saber si un carácter está en mayúscula o  minúsculas puedes usar:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">IsLower</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-char">char</span></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">IsUpper</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-char">char</span></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre></blockquote>
-<hr>
-<h2 class="mume-header" id="ejercicio-5">Ejercicio 5</h2>
-
-<blockquote>
-<p>Carga un array num&#xE9;rico de diez elementos, primero visual&#xED;zalo con la instrucci&#xF3;n <strong>foreach</strong> y luego visualiza los elementos cuyo <strong>contenido</strong> sea par, indicando su posici&#xF3;n.</p>
-</blockquote>
+</code></pre></div>
+<div class="ejercicio">
+<h3 id="ejercicio-5">Ejercicio 5 </h3>
+<p>Carga un array numérico de diez elementos, primero visualízalo con la instrucción <strong>foreach</strong> y luego visualiza los elementos cuyo <strong>contenido</strong> sea par, indicando su posición.</p>
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="white_check_mark-ejercicio-6">&#x2705; Ejercicio 6</h2>
-
-<blockquote>
-<p>Crea un array de 10 elementos, visualiza <strong>el elemento mayor de la serie y la posici&#xF3;n que ocupa</strong>.  Si hay varios iguales, s&#xF3;lo el primero.</p>
-</blockquote>
-<hr>
-<h2 class="mume-header" id="ejercicio-7">Ejercicio 7</h2>
-
-<blockquote>
-<p>Crea un array aleatorio de enteros con 10 elementos y ll&#xE1;malo <strong>V</strong>.</p>
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-6">✅ Ejercicio 6 </h3>
+<p>Crea un array de 10 elementos, visualiza <strong>el elemento mayor de la serie y la posición que ocupa</strong>.  Si hay varios iguales, sólo el primero.</p>
+</div>
+<div class="ejercicio">
+<h3 id="ejercicio-7">Ejercicio 7 </h3>
+<p>Crea un array aleatorio de enteros con 10 elementos y llámalo <strong>V</strong>.</p>
 <ul>
-<li>Con los elementos <strong>pares</strong> crea un array <strong>P</strong>,  ord&#xE9;nalo en sentido <strong>creciente</strong> y  visual&#xED;zalo.</li>
-<li>Con los elementos <strong>impares</strong> crea un array <strong>I</strong> y tras ordenarlo en sentido <strong>decreciente</strong>,  visual&#xED;zalo.</li>
+<li>Con los elementos <strong>pares</strong> crea un array <strong>P</strong>,  ordénalo en sentido <strong>creciente</strong> y  visualízalo.</li>
+<li>Con los elementos <strong>impares</strong> crea un array <strong>I</strong> y tras ordenarlo en sentido <strong>decreciente</strong>,  visualízalo.</li>
 </ul>
-<p><strong>Nota 1:</strong> Crea los m&#xE9;todos necesarios para evitar repetir c&#xF3;digo.</p>
-<p><strong>Nota 2:</strong> Las siguientes funciones de utilidad te pueden ser &#xFA;tiles para ordenar&#x2026;</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> Array<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span>arrayAOrdenar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p><strong>Nota 1:</strong> Crea los métodos necesarios para evitar repetir código.</p>
+<p><strong>Nota 2:</strong> Las siguientes funciones de utilidad te pueden ser útiles para ordenar…</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> Array<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span>arrayAOrdenar<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> Array<span class="token punctuation">.</span><span class="token function">Reverse</span><span class="token punctuation">(</span>arrayAinvertir<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre></blockquote>
-<hr>
-<h2 class="mume-header" id="white_check_markejercicio-8">&#x2705;Ejercicio 8</h2>
-
-<blockquote>
-<p>Implementa un programa en C#, que dado un n&#xFA;mero entero sin signo introducido por teclado, me diga si es <strong>capic&#xFA;a</strong>. Un ejemplo de ejecuci&#xF3;n ser&#xED;a...</p>
-<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash{cmd}" class="language-bash">N&#xFA;mero: <span class="token number">1234321</span>
-Es capic&#xFA;a.
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><p><strong>Nota:</strong> Puedes usar el siguiente c&#xF3;digo para leer un n&#xFA;mero en forma de array de caracteres.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp"><span class="token class-name"><span class="token keyword keyword-char">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numero <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</pre></blockquote>
+</code></pre></div>
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-8">✅ Ejercicio 8 </h3>
+<p>Implementa un programa en C#, que dado un número entero sin signo introducido por teclado, me diga si es <strong>capicúa</strong>. Un ejemplo de ejecución sería...</p>
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash{code_chunk_offset=0, cmd}" class="language-bash bash"><code>Número: <span class="token number">1234321</span>
+Es capicúa.
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><p><strong>Nota:</strong> Puedes usar el siguiente código para leer un número en forma de array de caracteres.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-char">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> numero <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="white_check_markejercicio-9">&#x2705;Ejercicio 9</h2>
-
-<blockquote>
-<p>Crea  un men&#xFA; con tres opciones:</p>
-<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {cmd}" class="language-bash"><span class="token number">1</span>. Registrarse en el sistema.
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-9">✅ Ejercicio 9 </h3>
+<p>Crea  un menú con tres opciones:</p>
+<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="bash"><div class="input-div"><pre data-role="codeBlock" data-info="bash {code_chunk_offset=1, cmd}" class="language-bash bash"><code><span class="token number">1</span>. Registrarse en el sistema.
 <span class="token number">2</span>. Entrar al sistema.
 <span class="token number">3</span>. Salir del programa.
-</pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ol>
+</code></pre><div class="code-chunk-btn-group"><div class="run-btn btn btn-xs btn-primary"><span>▶︎</span></div><div class="run-all-btn btn btn-xs btn-primary">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ol>
 <li>
-<p>Si seleccionamos la opci&#xF3;n <em>&apos;Registrarse en el sistema&apos;</em>, aparecer&#xE1; una ventana que te pida una contrase&#xF1;a, que tendr&#xE1;s que repetir para darla c&#xF3;mo v&#xE1;lida.<br>
-Mientras que est&#xE1;s escribiendo la contrase&#xF1;a solamente se ver&#xE1;n los caracteres *****</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">________________________________________
+<p>Si seleccionamos la opción <em>'Registrarse en el sistema'</em>, aparecerá una ventana que te pida una contraseña, que tendrás que repetir para darla cómo válida.<br>
+Mientras que estás escribiendo la contraseña solamente se verán los caracteres *****</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>________________________________________
 Registrarse:
 
-  Contrase&#xF1;a: ****
-  Comprobar Contrase&#xF1;a: *****
+  Contraseña: ****
+  Comprobar Contraseña: *****
 ________________________________________
-</pre><p>Las contrase&#xF1;as se leer&#xE1;n directamente en un <strong>array de caracteres de longitud m&#xE1;xima 20</strong> y tras la validar el proceso de registro viendo que las dos contrase&#xF1;as son iguales, <strong>la contrase&#xF1;a la guardaremos un array de caracteres</strong> no almacenandose ni como String o StringBuilder en ning&#xFA;n momento.</p>
+</code></pre><p>Las contraseñas se leerán directamente en un <strong>array de caracteres de longitud máxima 20</strong> y tras la validar el proceso de registro viendo que las dos contraseñas son iguales, <strong>la contraseña la guardaremos un array de caracteres</strong> no almacenandose ni como String o StringBuilder en ningún momento.</p>
 </li>
 <li>
-<p>En la opci&#xF3;n de <em>&apos;Entrar al sistema&apos;</em>, introduciremos una cadena por teclado, se comprobar&#xE1; si la cadena introducida es igual a la contrase&#xF1;a guardada en el array.<br>
-Se avisar&#xE1; con un texto si la entrada ha sido correcta.</p>
-<pre data-role="codeBlock" data-info="txt" class="language-txt">______________________________________________
+<p>En la opción de <em>'Entrar al sistema'</em>, introduciremos una cadena por teclado, se comprobará si la cadena introducida es igual a la contraseña guardada en el array.<br>
+Se avisará con un texto si la entrada ha sido correcta.</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>______________________________________________
 Entrar:
-
-  Introduce Contrase&#xF1;a: **
-  La contrase&#xF1;a es correcta/incorrecta
+ 
+  Introduce Contraseña: **
+  La contraseña es correcta/incorrecta
 _______________________________________________
-</pre><p>No podremos entrar en esta opci&#xF3;n sin habernos registrado en el sistema y si lo hacemos deberemos indicarle al usuario que antes deber&#xED;a registrarse.</p>
+</code></pre><p>No podremos entrar en esta opción sin habernos registrado en el sistema y si lo hacemos deberemos indicarle al usuario que antes debería registrarse.</p>
 </li>
 </ol>
-<p>&#x1F4CC; <strong>Nota:</strong> tendremos un m&#xE9;todo llamado <strong><code>RecogeContrase&#xF1;a</code></strong> que leer&#xE1; un texto de forma oculta y al que llamaremos las veces necesarias en ambas opciones.</p>
-<p>Para recoger contrase&#xF1;a utilizaremos <strong><code>Console.ReadKey(true)</code></strong>, que permite leer un car&#xE1;cter de teclado.con la opci&#xF3;n <strong>true</strong> no se mostrar&#xE1; por pantalla el eco de la tecla pulsada. Al mismo tiempo puedes mostrar un asterisco, y tenemos el efecto deseado. M&#xE1;s o menos un boceto de lo qeu deber&#xED;amos hacer ser&#xED;a lo siguiente ...</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[7,8,13,14]}" class="language-csharp" data-line="7,8,13,14"><span class="token class-name">ConsoleKeyInfo</span> teclaFisica<span class="token punctuation">;</span>
+<p>📌 <strong>Nota:</strong> tendremos un método llamado <strong><code>RecogeContraseña</code></strong> que leerá un texto de forma oculta y al que llamaremos las veces necesarias en ambas opciones.</p>
+<p>Para recoger contraseña utilizaremos <strong><code>Console.ReadKey(true)</code></strong>, que permite leer un carácter de teclado.con la opción <strong>true</strong> no se mostrará por pantalla el eco de la tecla pulsada. Al mismo tiempo puedes mostrar un asterisco, y tenemos el efecto deseado. Más o menos un boceto de lo qeu deberíamos hacer sería lo siguiente ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">ConsoleKeyInfo</span> teclaFisica<span class="token punctuation">;</span>
 <span class="token keyword keyword-do">do</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// Leo una tecla &apos;f&#xED;sica&apos; del teclado sin eco por pantalla</span>
+    <span class="token comment">// Leo una tecla 'física' del teclado sin eco por pantalla</span>
     teclaFisica <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// teclaFisica.Key contiene tecla &apos;f&#xED;sica&apos; y si no es intro me la guardo</span>
+    <span class="token comment">// teclaFisica.Key contiene tecla 'física' y si no es intro me la guardo</span>
     <span class="token comment">// y muestro un asterisco</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>teclaFisica<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token comment">// Hago yo su eco</span>
-        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token comment">// teclaFisica.KeyChar contiene el caracter que representa la tecla</span>
-        <span class="token comment">// f&#xED;sica pulsada.</span>
+        <span class="token comment">// física pulsada.</span>
         <span class="token class-name"><span class="token keyword keyword-char">char</span></span> caracter <span class="token operator">=</span> teclaFisica<span class="token punctuation">.</span>KeyChar<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token comment">// Leo mientras no sea intro</span>
 <span class="token punctuation">}</span> <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>teclaFisica<span class="token punctuation">.</span>Key <span class="token operator">!=</span> ConsoleKey<span class="token punctuation">.</span>Enter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<div class="line-highlight-wrapper">
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="8" data-start="8">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="13" data-start="13">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="14" data-start="14">
-</div></div></pre></blockquote>
-<hr>
+</code></pre></div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="white_check_markejercicio-10">&#x2705;Ejercicio 10</h2>
-
-<blockquote>
-<p>Introduce por teclado una secuencia de <strong>calificaciones</strong> de los alumnos de un instituto (n&#xFA;meros enteros entre cero y diez).</p>
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-10">✅ Ejercicio 10 </h3>
+<p>Introduce por teclado una secuencia de <strong>calificaciones</strong> de los alumnos de un instituto (números enteros entre cero y diez).</p>
 <ul>
-<li>La secuencia termina con la introducci&#xF3;n de un n&#xFA;mero <strong>menor que cero o mayor que diez</strong>.</li>
-<li>Se supone que como m&#xE1;ximo podemos tener <strong>25 alumnos</strong>.</li>
-<li>Se trata de obtener <strong>la frecuencia</strong> de las notas (<em>n&#xFA;mero de veces que cada nota aparece</em>).</li>
+<li>La secuencia termina con la introducción de un número <strong>menor que cero o mayor que diez</strong>.</li>
+<li>Se supone que como máximo podemos tener <strong>25 alumnos</strong>.</li>
+<li>Se trata de obtener <strong>la frecuencia</strong> de las notas (<em>número de veces que cada nota aparece</em>).</li>
 </ul>
-<p>&#x1F4A1; <strong>Pista:</strong> Puedes usar un array para guardar las frecuencias, relacionando la posici&#xF3;n del array con la nota del alumno. Incrementando el contenido de la posici&#xF3;n <strong><code>i</code></strong>, cada vez que salga una nota <strong><code>n</code></strong>.<br>
+<p>💡 <strong>Pista:</strong> Puedes usar un array para guardar las frecuencias, relacionando la posición del array con la nota del alumno. Incrementando el contenido de la posición <strong><code>i</code></strong>, cada vez que salga una nota <strong><code>n</code></strong>.<br>
 <strong>Ejemplo:</strong> Imagina que tengo 10 notas <strong><code>notas = [2][4][4][5][5][5][6][7][7][9]</code></strong><br>
-En un array <strong>de tama&#xF1;o 11</strong> llamado <strong><code>frecuenciaNotas = [0][0][0][0][0][0][0][0][0][0][0]</code></strong> guardaremos la cuenta de cada una de ellas. F&#xED;jate, que los &#xED;ndices en ese array van del <strong>0</strong> al <strong>10</strong> que son los posibles valores v&#xE1;lidos de notas. Por tanto, en la posici&#xF3;n de &#xED;ndice <strong>5</strong> guardaremos la cuenta de las veces que ha aparecido la <strong>nota 5</strong> en <strong><code>notas</code></strong> que es <strong>3</strong>.</p>
-<p>Al final del proceso de <strong><code>notas</code></strong> el array <strong><code>frecuenciaNotas</code></strong> quedar&#xE1; ...</p>
-<pre data-role="codeBlock" data-info="text" class="language-text">  0    1    2    3    4    5    6    7    8    9   10
+En un array <strong>de tamaño 11</strong> llamado <strong><code>frecuenciaNotas = [0][0][0][0][0][0][0][0][0][0][0]</code></strong> guardaremos la cuenta de cada una de ellas. Fíjate, que los índices en ese array van del <strong>0</strong> al <strong>10</strong> que son los posibles valores válidos de notas. Por tanto, en la posición de índice <strong>5</strong> guardaremos la cuenta de las veces que ha aparecido la <strong>nota 5</strong> en <strong><code>notas</code></strong> que es <strong>3</strong>.</p>
+<p>Al final del proceso de <strong><code>notas</code></strong> el array <strong><code>frecuenciaNotas</code></strong> quedará ...</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>  0    1    2    3    4    5    6    7    8    9   10
 [ 0 ][ 0 ][ 1 ][ 0 ][ 2 ][ 3 ][ 1 ][ 2 ][ 0 ][ 1 ][ 0 ]
-</pre></blockquote>
-<hr>
-<h2 class="mume-header" id="ejercicio-11">Ejercicio 11</h2>
-
-<blockquote>
-<p>Introduce un array de 10 elementos y <strong>desplaza</strong> todos sus componentes una posici&#xF3;n hacia la derecha, colocando el &#xFA;ltimo en la primera posici&#xF3;n. Visualiza el array antes y despu&#xE9;s del desplazamiento.</p>
-</blockquote>
-<hr>
+</code></pre></div>
+<div class="ejercicio">
+<h3 id="ejercicio-11">Ejercicio 11 </h3>
+<p>Introduce un array de 10 elementos y <strong>desplaza</strong> todos sus componentes una posición hacia la derecha, colocando el último en la primera posición. Visualiza el array antes y después del desplazamiento.</p>
+</div>
 <div style="page-break-after:always;"></div>
-<h2 class="mume-header" id="ejercicio-12">Ejercicio 12</h2>
-
-<blockquote>
-<p>Dado el array de enteros <strong><code>int[] pol1 = new int[]{5, -7, -3, 0, 9}</code></strong>, que representa al polinomio <code>9x4 - 3x2 - 7x + 5</code> donde el &#xED;ndice representa al exponente del monomio y el valor su coeficiente y el array <strong><code>int[] pol2 = new int[]{-1, 0, 4}</code></strong> que representa al polinomio <strong><code>4x2 - 1</code></strong>.</p>
-<p>&#x1F4CC; <strong>Nota:</strong> F&#xED;jate que cuando el coeficiente es 0 el monomio correspondiente no se representa:</p>
-<pre data-role="codeBlock" data-info class="language-"><code>+9x4 +0x3 -3x2 -7x1 +5x0
+<div class="ejercicio">
+<h3 id="ejercicio-12">Ejercicio 12 </h3>
+<p>Dado el array de enteros <strong><code>int[] pol1 = new int[]{5, -7, -3, 0, 9}</code></strong>, que representa al polinomio <code>9x4 - 3x2 - 7x + 5</code> donde el índice representa al exponente del monomio y el valor su coeficiente y el array <strong><code>int[] pol2 = new int[]{-1, 0, 4}</code></strong> que representa al polinomio <strong><code>4x2 - 1</code></strong>.</p>
+<p>📌 <strong>Nota:</strong> Fíjate que cuando el coeficiente es 0 el monomio correspondiente no se representa:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>+9x4 +0x3 -3x2 -7x1 +5x0
           +4x2 +0x1 -1x0
 ________________________
 +9x4 +0x3 +1x2 -7x1 +4x0
 </code></pre><p>Implementa un algoritmo que sume los polinomios, meta el resultado en otro array y  muestre el resultado de la suma.</p>
-</blockquote>
+</div>
 
       </div>
       
       
-    
-    
     
     
     

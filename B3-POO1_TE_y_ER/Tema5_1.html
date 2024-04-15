@@ -1288,13 +1288,13 @@ t<span class="token punctuation">[</span>texto<span class="token punctuation">.<
 </p><p></p>
 <h4 id="recorrer-los-caracteres-de-una-cadena">Recorrer los caracteres de una cadena </h4>
 <p>Básicamente podremos hacerlo a través de un <strong>bucle</strong> <strong><code>for</code></strong> y un <strong>bucle</strong> <a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/foreach-in" target="_blank">foreach</a></p>
-<pre data-role="codeBlock" data-info="csharp { class=&quot;line-numbers&quot; }" class="language-csharp csharp line-numbers"><code><span class="token comment">// Recorrido con for</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Recorrido con for</span>
 <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-char">char</span></span> c <span class="token operator">=</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>La instrucción <strong><code>foreach</code></strong> es una variante del <strong><code>for</code></strong> pensada, especialmente, para compactar la escritura de códigos donde se realice algún tratamiento a todos los elementos de una <strong>secuencia de datos</strong>.</p>
+</code></pre><p>La instrucción <strong><code>foreach</code></strong> es una variante del <strong><code>for</code></strong> pensada, especialmente, para compactar la escritura de códigos donde se realice algún tratamiento a todos los elementos de una <strong>secuencia de datos</strong>.</p>
 <ul>
 <li>
 <p>Tendremos un bucle con tantas iteraciones como elementos en la secuencia.</p>
@@ -1642,7 +1642,6 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     <span class="token keyword keyword-return">return</span> sNormalizada<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></div>
-<div style="page-break-after:always;"></div>
 <h4 id="operaciones-de-interés-sobre-objetos-cadena-mutable">Operaciones de interés sobre objetos cadena mutable </h4>
 <blockquote>
 <p>✋ <strong>Importante:</strong> Se crean dimensionándose a una <strong>capacidad</strong> de caracteres por defecto aunque la cadena esté vacía y por tanto su <strong>longitud</strong> cero. Además, si en vez de modificar un carácter ya existente, queremos añadir algo al final de la cadena usaremos el método <strong><code>cadenaMutable</code></strong>. <a href="https://docs.microsoft.com/es-es/dotnet/api/system.text.stringbuilder.append?view=netcore-3.1" target="_blank"><b>Append(...)</b></a>.</p>
@@ -1665,8 +1664,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     sb<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'I'</span><span class="token punctuation">;</span>                
 
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Longitud = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Length</span><span class="token punctuation">}</span></span><span class="token string"> Capacidad = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Capacity</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra Longitud = 1 Capacidad = 16</span>
-
-    <span class="token comment">// Reservamos un espacio previo para 2 caracteres.</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token comment">// Reservamos un espacio previo para 2 caracteres.</span>
     sb <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Longitud = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Length</span><span class="token punctuation">}</span></span><span class="token string"> Capacidad = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Capacity</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra Longitud = 0 Capacidad = 2</span>
 
@@ -1680,8 +1678,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     sb<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span><span class="token char">'3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Longitud = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Length</span><span class="token punctuation">}</span></span><span class="token string"> Capacidad = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">sb<span class="token punctuation">.</span>Capacity</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Longitud = 3 Capacidad = 4</span>
-</code></pre><div style="page-break-after:always;"></div>
-<ul>
+</code></pre><ul>
 <li>
 <p><strong><code>StringBuilder cadenaMutable.Insert(int indice, &lt;elemento&gt;)</code></strong></p>
 <p>Inserta elementos en una cadena mutable.</p>
@@ -2047,7 +2044,6 @@ Supongamos que elegimos aleatoriamente el índice <strong>3</strong> donde se en
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></div>
-<div style="page-break-after:always;"></div>
 <div class="caso_estudio">
 <p><strong>🎓 Caso de estudio</strong><br>
 A continuación tienes un programa que irá pidiendo frases hasta que se introduzca la frase <strong><code>"fin"</code></strong>.<br>
@@ -2087,7 +2083,7 @@ Puedes probar las frases:</p>
             <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esLetraSiguienteAoO <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> frase<span class="token punctuation">.</span>Length <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>frase<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'a'</span> <span class="token operator">||</span> frase<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'o'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esLetraAnteriorVocal <span class="token operator">=</span> i <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> VOCAL<span class="token punctuation">.</span><span class="token function">IndexOf</span><span class="token punctuation">(</span>frase<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
             <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esUltimaLetra <span class="token operator">=</span> i <span class="token operator">==</span> frase<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>            <span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span>
             <span class="token punctuation">{</span>
                 <span class="token keyword keyword-case">case</span> <span class="token char">'h'</span><span class="token punctuation">:</span>
                 <span class="token keyword keyword-case">case</span> <span class="token char">'¿'</span><span class="token punctuation">:</span>
@@ -2105,14 +2101,14 @@ Puedes probar las frases:</p>
                 <span class="token keyword keyword-case">case</span> <span class="token char">'c'</span> <span class="token keyword keyword-when">when</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
                     sustitución <span class="token operator">=</span> <span class="token string">"k"</span><span class="token punctuation">;</span>
                     <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
-                <span class="token keyword keyword-case">case</span> <span class="token char">'c'</span> <span class="token keyword keyword-when">when</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> frase<span class="token punctuation">.</span>Length <span class="token operator">&amp;&amp;</span> frase<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'h'</span><span class="token punctuation">:</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>                <span class="token keyword keyword-case">case</span> <span class="token char">'c'</span> <span class="token keyword keyword-when">when</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> frase<span class="token punctuation">.</span>Length <span class="token operator">&amp;&amp;</span> frase<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token char">'h'</span><span class="token punctuation">:</span>
                     sustitución <span class="token operator">=</span> <span class="token string">"x"</span><span class="token punctuation">;</span>
                     <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
                 <span class="token keyword keyword-case">case</span> <span class="token char">'c'</span> <span class="token keyword keyword-when">when</span> esLetraSiguienteEoI<span class="token punctuation">:</span>
                     sustitución <span class="token operator">=</span> <span class="token string">"s"</span><span class="token punctuation">;</span>
                     <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
-</code></pre><div style="page-break-after:always;"></div>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>                <span class="token keyword keyword-default">default</span><span class="token punctuation">:</span>
+
+                <span class="token keyword keyword-default">default</span><span class="token punctuation">:</span>
                     <span class="token punctuation">{</span>
                         <span class="token class-name">StringBuilder</span> auxiliar <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                         <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esUnaPalabraQueAcabaEnVocal <span class="token operator">=</span> i <span class="token operator">&lt;</span> frase<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span> 
@@ -2137,6 +2133,7 @@ Puedes probar las frases:</p>
             <span class="token punctuation">}</span>
             fraseTiko<span class="token punctuation">.</span><span class="token function">Append</span><span class="token punctuation">(</span>sustitución<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+
         <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> PORCENTAJE_DE_MAYÚCULAS_EN_FRASE <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
         <span class="token function">PasaLetrasAMayusculasAleatoriamente</span><span class="token punctuation">(</span>
                             fraseTiko<span class="token punctuation">.</span><span class="token function">Replace</span><span class="token punctuation">(</span><span class="token string">" por "</span><span class="token punctuation">,</span> <span class="token string">" x "</span><span class="token punctuation">)</span>
@@ -2419,7 +2416,6 @@ Puedes probar las frases:</p>
 </g>
 </svg>
 </p><p></p>
-<div style="page-break-after:always;"></div>
 <h5 id="indexación-o-acceso-a-los-elementos-de-un-array">Indexación o acceso a los elementos de un array </h5>
 <p><strong>Será completamente análoga a la de las cadenas</strong>. Recordemos...</p>
 <ul>
@@ -2454,6 +2450,7 @@ Recorrido de una array de doubles para sumar los valores que guarda.</p>
   suma <span class="token operator">+=</span> elemento<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></div>
+<div style="page-break-after:always;"></div>
 <h5 id="operaciones-de-interés-con-arrays">Operaciones de interés con arrays </h5>
 <ul>
 <li>
@@ -2483,9 +2480,6 @@ Recorrido de una array de doubles para sumar los valores que guarda.</p>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></li>
-</ul>
-<div style="page-break-after:always;"></div>
-<ul>
 <li>
 <p>Podemos ver ahora un par de métodos de utilidad en <strong>System.string</strong> relacionados con arrays...</p>
 <ul>
@@ -2648,33 +2642,29 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <p><strong>🎓 Caso de estudio</strong></p>
 <p>Aunque ya hemos visto que el lenguaje ya implementa un método de utilidad para ordenación de arrays como es <strong><code>Array.Sort()</code></strong>. Vamos a ver un ejemplo de recorrido e intercambio de elementos en un array a través de un ejemplo y estudiando uno de los algoritmos básicos de ordenación de arrays, como es el de la <em>'<strong>burbuja</strong>'</em> (<a href="https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja" target="_blank">bubble sort</a>).<br>
 En este algoritmo, recorreremos el array <strong>comparando 2 a 2 los elementos contiguos del mismo</strong>. De forma que intercambiaremos cuando un elemento sea mayor que su sucesor, así en un recorrido el elemento mayor promocionará hasta el final del array, por esto se denomina de burbuja porque se dice que '<em>asciende</em>' dentro del array como si lo fuera.<br>
-Una vez ha ascendido un elemento este queda <strong>fijo</strong>, y volveremos ha comparar 2 a 2 los elementos sin tomar el último, de tal manera que ahora ascenderá o promocionará el elemento anterior.<br>
-Este proceso se repetirá sucesivamente, teniendo en cuenta que <strong>no tenemos que comparar con los ya promocionados o fijados</strong>.</p>
+Una vez ha ascendido un elemento este queda <strong>fijo</strong>, y volveremos ha comparar 2 a 2 los elementos sin tomar el último, de tal manera que ahora ascenderá o promocionará el elemento anterior.  Este proceso se repetirá sucesivamente, teniendo en cuenta que <strong>no tenemos que comparar con los ya promocionados o fijados</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">Ordena</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> array<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arrayOrdenado <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-int">int</span></span><span class="token punctuation">[</span>array<span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
     Array<span class="token punctuation">.</span><span class="token function">Copy</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> arrayOrdenado<span class="token punctuation">,</span> array<span class="token punctuation">.</span>Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arrayOrdenado<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> arrayOrdenado<span class="token punctuation">.</span>Length <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
-            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>arrayOrdenado<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arrayOrdenado<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>arrayOrdenado<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arrayOrdenado<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                 <span class="token comment">// Proceso de intercambio o swap de dos 'celdas' contiguas del array</span>
                 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> auxiliar <span class="token operator">=</span> arrayOrdenado<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
                 arrayOrdenado<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arrayOrdenado<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                arrayOrdenado<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> auxiliar<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+                arrayOrdenado<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> auxiliar<span class="token punctuation">;</span><span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-return">return</span> arrayOrdenado<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
 <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> array <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> arrayOrdenado <span class="token operator">=</span> <span class="token function">Ordena</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Array original: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> array<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Array ordenado: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> arrayOrdenado<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 </code></pre><p><strong>Recorrido 1 (</strong><code>i = 0</code><strong>)</strong>---------------------------------<br>
 [<strong>5</strong>, <strong>6</strong>, 4, 2, 3, 1]<br>
 [5, <strong>6</strong>, <strong>4</strong>, 2, 3, 1] → [5, <strong>4</strong>, <strong>6</strong>, 2, 3, 1] Intercambio<br>
@@ -2697,7 +2687,6 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 [<strong>2</strong>, <strong>1</strong>, <mark><strong>3</strong></mark>, <mark><strong>4</strong></mark>, <mark><strong>5</strong></mark>, <mark><strong>6</strong></mark>] -&gt; [<strong>1</strong>, <strong>2</strong>, <mark><strong>3</strong></mark>, <mark><strong>4</strong></mark>, <mark><strong>5</strong></mark>, <mark><strong>6</strong></mark>] Intercambio<br>
 [<mark><strong>1</strong></mark>, <mark><strong>2</strong></mark>, <mark><strong>3</strong></mark>, <mark><strong>4</strong></mark>, <mark><strong>5</strong></mark>, <mark><strong>6</strong></mark>]</p>
  </div>
-<div style="page-break-after:always;"></div>
 <h4 id="los-tipos-index-y-range">Los tipos Index y Range </h4>
 <h5 id="el-tipo-index">El tipo Index </h5>
 <p>Además de con enteros, vamos a poder indexar arrays con un tipo denominado <a href="https://docs.microsoft.com/es-ES/dotnet/api/system.index">Index</a> que me permitirá definir una posición en un array empezando desde el comienzo o desde el final.</p>
@@ -2821,7 +2810,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> finSemana3 <span class="token operator">=</span> diasSemana<span class="token punctuation">[</span><span class="token number">5</span><span class="token range operator">..</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Fin de semana: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> finSemana3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>Además, <strong>se pueden usar variables</strong> para los índices y rangos:</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p>Además, <strong>se pueden usar variables</strong> para los índices y rangos:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Index</span> ultimoDiaSemana <span class="token operator">=</span> <span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token class-name">Index</span> primerDiaSemana <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"El primer día de la semana es: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">diasSemana<span class="token punctuation">[</span>primerDiaSemana<span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2834,8 +2824,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> finSemana4 <span class="token operator">=</span> diasSemana<span class="token punctuation">[</span>diasFinSemana<span class="token punctuation">]</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Fin de semana: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> finSemana4<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><div style="page-break-after:always;"></div>
-<blockquote>
+</code></pre><blockquote>
 <p>💡 <strong>Tips:</strong></p>
 <ul>
 <li>
@@ -2848,8 +2837,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <p>Fíjate que <strong><code>[..n]</code></strong> es lo mismo que <strong><code>[0..n]</code></strong> y que <strong><code>[n..]</code></strong> es lo mismo que <strong><code>[n..0]</code></strong></p>
 </li>
 <li>
-<p>Fíjate que podemos deducir una forma muy simple de copiar un array de forma simple utilizando el rango <strong><code>[..]</code></strong></p>
-<p>En lugar de hacer:</p>
+<p>Fíjate que podemos deducir una forma muy simple de copiar un array de forma simple utilizando el rango <strong><code>[..]</code></strong><br>
+En lugar de hacer:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> v <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">"be"</span><span class="token punctuation">,</span> <span class="token string">"eat"</span><span class="token punctuation">,</span> <span class="token string">"see"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>        
 <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> copiaV <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-string">string</span></span><span class="token punctuation">[</span>v<span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
 Array<span class="token punctuation">.</span><span class="token function">Copy</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> copiaV<span class="token punctuation">,</span> copiaV<span class="token punctuation">.</span>Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2871,9 +2860,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token comment">// Console.WriteLine($"Toda la cadena : {cadena[^1..^6]}");</span>
 <span class="token comment">// La sentencia anterior en lenguajes como Python escribiría la </span>
 <span class="token comment">// cadena invertida pero nn C# nos producirá un error.</span>
-</code></pre></blockquote>
-<blockquote>
-<p>📌 <strong>Nota:</strong> En la <strong><a href="https://docs.microsoft.com/es-ES/dotnet/csharp/whats-new/tutorials/ranges-indexes">documentación oficial</a></strong> podrás encontrar más información sobre el tema.</p>
+</code></pre><p>📌 <strong>Nota:</strong> En la <strong><a href="https://docs.microsoft.com/es-ES/dotnet/csharp/whats-new/tutorials/ranges-indexes">documentación oficial</a></strong> podrás encontrar más información sobre el tema.</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
 <div class="caso_estudio">
@@ -2948,7 +2935,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 <span class="token comment">// Una posible solución es combinar una vez más el operador ?. con ??</span>
 <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">?</span></span> saludo <span class="token keyword keyword-in">in</span> saludos<span class="token punctuation">)</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>saludo<span class="token punctuation">?.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"No hay dato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>💀 Pero el operador <strong><code>[]?</code></strong> entonces. ¿Cuándo se usaría?. En el ejemplo anterior además de los objetos que contiene el array de cadenas, es el propio array de cadenas el que puede estar sin inicializar. Imaginemos el siguiente código ...</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p>💀 Pero el operador <strong><code>[]?</code></strong> entonces. ¿Cuándo se usaría?. En el ejemplo anterior además de los objetos que contiene el array de cadenas, es el propio array de cadenas el que puede estar sin inicializar. Imaginemos el siguiente código ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">?</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> saludos <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
 <span class="token range operator">..</span><span class="token punctuation">.</span>
 <span class="token comment">// Tanto el array como el contenido del array podrían estar a Null.</span>

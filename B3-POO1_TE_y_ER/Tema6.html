@@ -21,6 +21,34 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .contenedor {
   display: flex;
   justify-content: center;
@@ -76,6 +104,45 @@
   position: absolute;
   top: 83%;
   font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
 }
 
       </style>
@@ -270,19 +337,19 @@ A través de la expresión regular es posible interpretar rápidamente vastas ca
 <p>C# los denomina también <a href="https://docs.microsoft.com/es-es/dotnet/standard/base-types/character-classes-in-regular-expressions#positive-character-group--">'grupo de caracteres positivos'</a>.<br>
 La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&gt;...]</code></strong></p>
 <blockquote>
-<p><strong>Nota:</strong> Los metacaracteres en el corchete no será interpretados como tales sino como los caracteres tal cual <strong><code>*, $, +, ?, |</code></strong> … salvo el caso de algunas clases de carácter como <strong><code>\d, \D, \w, \W, \s, \S</code></strong> y por tanto la barra de escape <strong><code>\</code></strong> deberemos escaparla si queremos que se interpreta tal cual.</p>
+<p>📌 <strong>Nota:</strong> Los metacaracteres en el corchete no será interpretados como tales sino como los caracteres tal cual <strong><code>*, $, +, ?, |</code></strong> … salvo el caso de algunas clases de carácter como <strong><code>\d, \D, \w, \W, \s, \S</code></strong> y por tanto la barra de escape <strong><code>\</code></strong> deberemos escaparla si queremos que se interpreta tal cual.</p>
 <p>✋ <strong>Importante:</strong> En ocasiones en C# si queremos definir alternancia de caracteres o un grupo de caracteres positivos donde tengamos clases de caracter estas <strong>deberán ir al principio del grupo</strong>. Por ejemplo, <strong><code>@"[\sa-z]"</code></strong> sería alternancia de un caracter de espacio o una letra minúscula. Sin embargo, <strong><code>@"[a-z\s]"</code></strong> que funcionaría en otros lenguajes podría generarnos errores en ejecución 💀</p>
 </blockquote>
 <div style="page-break-after:always;"></div>
 <h4 id="alternancia-de-expresiones">Alternancia de expresiones </h4>
 <p>Nos sirve para indicar una de varias opciones entre varias expresiones regulares, separadas por el metacaracter barra vertical <strong><code>|</code></strong> (<code>Alt + 124</code> o <code>Alt Gr + 4 y espacio</code>).</p>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>este|oeste|norte|sur</code></strong> → Permitirá encontrar cualquiera de los nombres de los puntos cardinales.</li>
 <li><strong><code>\b(mi|[ts]u)\b</code></strong> → Permitirá encontrar pronombres posesivos.</li>
 </ol>
-</blockquote>
+</div>
 <h4 id="aserciones-atómicas-de-ancho-cero">Aserciones atómicas de ancho cero </h4>
 <p>No hacen avanzar el motor a través de la cadena de consumo. Simplemente producen coincidencia o error en función de la posición actual en la cadena.</p>
 <table>
@@ -319,14 +386,14 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 </tr>
 </tbody>
 </table>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>^\d$</code></strong> → Permite asegurar de que la cadena a verificar representa un único dígito, sin nada antes y después.</li>
 <li><strong><code>^\d\d\/\d\d\/\d\d\d\d$</code></strong> → Permite validar un formato de fecha, aunque no permite verificar si es una fecha válida, ya que 99/99/9999 también sería válido en este formato.<br>
-<strong>Nota:</strong> Aunque C# no lo necesita, es conveniente escapar la barra <strong><code>"/"</code></strong> ya que en otros lenguajes cómo JavaScript es necesario por tanto pondremos <strong><code>@"\/"</code></strong>.</li>
+📌 <strong>Nota:</strong> Aunque C# no lo necesita, es conveniente escapar la barra <strong><code>"/"</code></strong> ya que en otros lenguajes cómo JavaScript es necesario por tanto pondremos <strong><code>@"\/"</code></strong>.</li>
 </ol>
-</blockquote>
+</div>
 <div style="page-break-after:always;"></div>
 <h4 id="construcciones-de-agrupamiento-o-grupos">Construcciones de agrupamiento o grupos </h4>
 <p>Las construcciones de agrupamiento <strong>permiten capturar grupos de sub-expresiones</strong>.</p>
@@ -348,15 +415,19 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 </tr>
 </tbody>
 </table>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplos:</strong></p>
 <ol>
-<li><strong><code>al (norte|sur) de</code></strong> → Permite crear un grupo sin captura para norte y sur representando las cadenas <em>…al <strong>norte</strong> de…</em> y <em>…al <strong>sur</strong> de…</em><br>
-<img src="assets\norte_sur.png?0.41371182235546833" alt=""></li>
-<li><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;año&gt;\d\d\d\d)$</code></strong> → Busca la coincidencia exacta con una fecha. Pero <strong>además tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y año.<br>
-✋ <strong>Importante:</strong> En C# en el momento que etiquetamos un grupo, <strong>deberemos etiquetar el resto también</strong> o la expresión no será válida.</li>
+<li>
+<p><strong><code>al (norte|sur) de</code></strong> → Permite crear un grupo sin captura para norte y sur representando las cadenas <em>…al <strong>norte</strong> de…</em> y <em>…al <strong>sur</strong> de…</em><br>
+<img src="assets\norte_sur.png?0.889669541322287" alt=""></p>
+</li>
+<li>
+<p><strong><code>^(?&lt;dia&gt;\d\d)\/(?&lt;mes&gt;\d\d)\/(?&lt;año&gt;\d\d\d\d)$</code></strong> → Busca la coincidencia exacta con una fecha. Pero <strong>además tendremos 3 grupos etiquetados</strong> con las sub-expresiones encontradas en dia, mes y año.</p>
+<p>✋ <strong>Importante:</strong> En C# en el momento que etiquetamos un grupo, <strong>deberemos etiquetar el resto también</strong> o la expresión no será válida.</p>
+</li>
 </ol>
-</blockquote>
+</div>
 <div style="page-break-after:always;"></div>
 <h4 id="cuantificadores">Cuantificadores </h4>
 <p>Los cuantificadores agregan datos de cantidades opcionales a una expresión regular. Una expresión de cuantificador se aplica al carácter, grupo o clase de caracteres que lo precede inmediatamente.</p>
@@ -394,17 +465,17 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 </tr>
 </tbody>
 </table>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>^bo+m{1,4}$</code></strong> → Onomatopeya de explosión.<br>
-<img src="assets\boom.png?0.3204548025643623" alt="" height="100"></li>
+<img src="assets\boom.png?0.14865586946760745" alt="" height="100"></li>
 <li><strong><code>^\d{1,2}\/\d{1,2}\/\d{4}$</code></strong> → Fecha.<br>
-<img src="assets\fecha.png?0.532103264630915" alt="" height="90"></li>
+<img src="assets\fecha.png?0.613838833254291" alt="" height="90"></li>
 <li><strong><code>\b(?&lt;usuario&gt;[\w._%-]+)@(?&lt;dominio&gt;[\w._]+\.[a-zA-Z]{2,4})\b</code></strong> → Correo electrónico (Simplificado).<br>
-<img src="assets\correo.png?0.49982197852387156" alt="" height="200"></li>
+<img src="assets\correo.png?0.6997489966603943" alt="" height="200"></li>
 </ol>
-</blockquote>
+</div>
 <div style="page-break-after:always;"></div>
 <h4 id="construcciones-de-referencia-inversa">Construcciones de referencia inversa </h4>
 <p>Una <a href="https://docs.microsoft.com/es-es/dotnet/standard/base-types/backreference-constructs-in-regular-expressions" target="_blank">construcción referencia inversa</a> permite identificar una sub-expresión coincidente previamente más adelante en la misma expresión regular.</p>
@@ -426,7 +497,7 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 </tr>
 </tbody>
 </table>
-<blockquote>
+<div class="caso_estudio">
 <p><strong>Ejemplos:</strong></p>
 <ol>
 <li><strong><code>(\w)\1</code></strong> → Devolverá '<em>aa</em>' en <em>'<strong>aa</strong>ron'</em></li>
@@ -437,23 +508,22 @@ La obtendremos con los corchetes <strong><code>[&lt;caracter1&gt;&lt;caracter2&g
 <li>Lo que quiero ver si se repite o no más adelante, lo pondré en un grupo.</li>
 <li>Haré referencia al grupo con los ejemplos que hemos visto más adelante.<br>
 Tendremos pues la espresión <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1\d{2,4}$</code></strong><br>
-<img src="assets\fecha2.png?0.5411850797406654" alt="" height="150"></li>
+<img src="assets\fecha2.png?0.5087048617354442" alt="" height="150"></li>
 </ul>
 </li>
 </ol>
-</blockquote>
+</div>
 <div style="page-break-after:always;"></div>
 <h3 id="uso-de-expresiones-regulares-en-el-lenguaje">Uso de expresiones regulares en el lenguaje </h3>
 <p>Utilizaremos la clase de las BCL <strong><code>Regex</code></strong> definida en el espacio de nombres <strong><code>System.Text.RegularExpressions</code></strong>, que contendrá métodos estáticos para usarlas.</p>
-<p>A la hora de usar el patrón podemos indicar mediante una serie de flags definidos en el enumerado <a href="https://docs.microsoft.com/es-es/dotnet/api/system.text.regularexpressions.regexoptions?redirectedfrom=MSDN&amp;view=netcore-3.1#campos" target="_blank"><b>RegexOptions</b></a>, cómo se va a comportar el motor de expresiones regulares.</p>
-<blockquote>
-<p><strong>Ejemplo 1:</strong></p>
-<p>Comprobación símple de la e.r. para comprobar un e-mail anterior.</p>
+<p>A la hora de usar el patrón podemos indicar mediante una serie de flags definidos en el enumerado <a href="https://docs.microsoft.com/es-es/dotnet/api/system.text.regularexpressions.regexoptions?redirectedfrom=MSDN&amp;view=netcore-3.1#campos">RegexOptions</a>, cómo se va a comportar el motor de expresiones regulares.</p>
+<div class="caso_estudio">
+<p><strong>Ejemplos:</strong><br>
+Comprobación símple de la e.r. para comprobar un e-mail anterior.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce una e-mail: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> correo <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Las opciones del enumerado para el motor de e.r. serán un grupo de flags.</span>
     <span class="token class-name">RegexOptions</span> opciones <span class="token operator">=</span> RegexOptions<span class="token punctuation">.</span>Compiled <span class="token operator">|</span> RegexOptions<span class="token punctuation">.</span>IgnoreCase<span class="token punctuation">;</span> 
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> patron <span class="token operator">=</span> <span class="token string">@"^[\w.%-]+@[\w.-]+\.[a-zA-Z]{2,4}$"</span><span class="token punctuation">;</span>
@@ -461,11 +531,12 @@ Tendremos pues la espresión <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1\d{2,4}$</c
     <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> correoValido <span class="token operator">=</span> Regex<span class="token punctuation">.</span><span class="token function">IsMatch</span><span class="token punctuation">(</span>correo<span class="token punctuation">,</span> patron<span class="token punctuation">,</span> opciones<span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"El correo </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">correo</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span><span class="token operator">!</span>correoValido <span class="token punctuation">?</span> <span class="token string">"no "</span> <span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">es válido."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre></div>
+<div style="page-break-after:always;"></div>
 <p>También también podemos instanciar un objeto de la clase RegEx por si nos interesara aplicar diferentes operaciones sobre el mismo patrón.</p>
-<blockquote>
-<p><strong>Ejemplo 2:</strong></p>
-<p>Igual que el <strong>ejemplo 1</strong> pero rehusando un objeto instanciado de <strong><code>RegEx</code></strong>.</p>
+<div class="caso_estudio">
+<p><strong>Ejemplos:</strong><br>
+Igual que el <strong>ejemplo 1</strong> pero rehusando un objeto instanciado de <strong><code>RegEx</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> correoValido<span class="token punctuation">;</span>
@@ -480,7 +551,7 @@ Tendremos pues la espresión <strong><code>^\d{1,2}([\s\/-])\d{1,2}\1\d{2,4}$</c
             Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">correo</span><span class="token punctuation">}</span></span><span class="token string"> no es un correo válido."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>correoValido<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
+</code></pre></div>
 <div style="page-break-after:always;"></div>
 <h4 id="métodos-de-utilidad-sobre-cadenas-usando-er">Métodos de utilidad sobre cadenas usando ER </h4>
 <p>Destacaremos un par de ellos,  tendremos la posibilidad de usarlos tanto sobre un objeto instanciado o como métodos de clase estáticos (nosotros vamos a ver estos últimos).</p>
@@ -529,11 +600,10 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 </li>
 </ul>
 <div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>Ejemplo:</strong></p>
+<div class="caso_estudio">
+<p><strong>Ejemplos:</strong></p>
 <p>Veamos su funcionamiento a través de un programa de ejemplo en el que vamos a pedir una fecha con formato <strong><code>dd/mm/aaaa</code></strong> y además de ver si es correcta la entrada, vamos a mostrar los valores de día, més y año introducidos.</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="csharp { class=&quot;line-numbers&quot; }" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce una fecha dd/mm/aaaa: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> fecha <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">""</span><span class="token punctuation">;</span>
@@ -555,10 +625,11 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     <span class="token keyword keyword-else">else</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"No ha introducido un formato de fecha válido."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><div style="page-break-after:always;"></div>
+</code></pre></div>
+<div style="page-break-after:always;"></div>
 <h5 id="buscar-una-ocurrencia-concreta-con-un-patrón">Buscar una ocurrencia concreta con un patrón </h5>
 <p>Vamos a modificar ligéramente el ejemplo anterior, para que a partir de la cadena <strong>"<em>El 11/9/2001 fueron derribadas las torres gemelas de NY y el 20/7/1969 llegó el hombre a la luna</em>"</strong> me diga si en la misma se encuentra la fecha de la llegada del hombre a la luna con formato <strong><code>dd/mm/aaaa</code></strong> pero esta vez <strong><code>dd</code></strong> y <strong><code>mm</code></strong> pueden estar formados también por una solo dígito y <strong>los grupos NO estarán etiquetados</strong>.</p>
-<pre data-role="codeBlock" data-info="csharp { class=&quot;line-numbers&quot; }" class="language-csharp csharp line-numbers"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto  <span class="token operator">=</span> <span class="token string">"El 11/9/2001 fueron derribadas las torres gemelas "</span> <span class="token operator">+</span> 
                     <span class="token string">"de NY y el 20/7/1969 llegó el ombre a la luna"</span><span class="token punctuation">;</span>
@@ -585,7 +656,8 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"La fecha de la llegada a la luna </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>fechaEncontrada<span class="token punctuation">?</span><span class="token string">"no se"</span><span class="token punctuation">:</span><span class="token string">"se"</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> "</span></span> <span class="token operator">+</span>
                        <span class="token string">"encuentra en el texto"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><h5 id="buscar-todas-las-ocurrencias-de-un-patrón">Buscar todas las ocurrencias de un patrón </h5>
+</code></pre><div style="page-break-after:always;"></div>
+<h5 id="buscar-todas-las-ocurrencias-de-un-patrón">Buscar todas las ocurrencias de un patrón </h5>
 <ul>
 <li>Usaremos el método <strong><code>Regex.Matches(cadena, patrón, ...)</code></strong> que me devolverá una colección indexable y recorrible con <strong><code>foreach</code></strong> con todas las coincidencias.</li>
 <li>Este caso será útil, si queremos obtener <strong>todas</strong> las coincidencias, y no una en concreto que puede que la encontremos justo al principio, con lo cual esta opción sería más costosa.</li>
@@ -598,13 +670,12 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
     <span class="token keyword keyword-ushort">ushort</span> año <span class="token operator">=</span> <span class="token keyword keyword-ushort">ushort</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>coincidencia<span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">;</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Fecha encontrada </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">fecha</span><span class="token punctuation">}</span></span><span class="token string"> Dia = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dia</span><span class="token punctuation">}</span></span><span class="token string">, Mes = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">mes</span><span class="token punctuation">}</span></span><span class="token string"> y Año = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">año</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>🎓 Caso de estudio</strong></p>
+</code></pre><div class="caso_estudio">
+<p>🎓 <strong>Caso de estudio:</strong></p>
 <p>Supongamos que queremos hacer un método de utilidad que nos diga si una <strong>IP</strong> de entrada es correcta.<br>
-Además, usaremos ese método como apoyo a otro que lea una IP desde teclado y filtre solo valores válidos.</p>
-<p><strong>Nota:</strong> Una <strong>IP</strong> esta formada por <strong>cuatro bytes</strong> separados por punto de <strong><code>0</code></strong> a <strong><code>255</code></strong> por ejemplo <strong><code>10.0.2.254</code></strong></p>
-<p>Una primera aproximación, podría ser dar como válidas tres secuencias de <strong>1 a 3 dígitos</strong> separadas por un <strong><code>.</code></strong> con nada antes <strong><code>^</code></strong> y después <strong><code>$</code></strong>. Por tanto el patrón podría quedar algo así:<br>
+Además, usaremos ese método como apoyo a otro que lea una IP desde teclado y filtre solo valores válidos.<br>
+<strong>Nota:</strong> Una <strong>IP</strong> esta formada por <strong>cuatro bytes</strong> separados por punto de <strong><code>0</code></strong> a <strong><code>255</code></strong> por ejemplo <strong><code>10.0.2.254</code></strong><br>
+Una primera aproximación, podría ser dar como válidas tres secuencias de <strong>1 a 3 dígitos</strong> separadas por un <strong><code>.</code></strong> con nada antes <strong><code>^</code></strong> y después <strong><code>$</code></strong>. Por tanto el patrón podría quedar algo así:<br>
 <strong><code>^\d{1,3}\.\d{1,3}\.\d{1,3}.\d{1,3}$</code></strong>.<br>
 Fíjate, que hemos escapado el caracter <strong><code>'.'</code></strong> por ser un metacaracter de las clase de caracter y queremos se interprete de forma literal.<br>
 A primera vista, se repiten tres partes en la expresión compuestas por el caracter <strong><code>'.'</code></strong> seguido de 3 dígitos, por lo que podríamos simplificar la expresión así:<br>
@@ -641,17 +712,17 @@ Una vez hemos decidido la expresión regular nuestro código podría quedar así
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"La IP introducida es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ip</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Pero... <strong>¿Es posible controlar que los bytes estén entre 0 y 255 en la propia expresión?</strong></p>
-<p>En este caso tendremos que indicar algún tipo de alternancia de posibilidades para incluir rángos excluyentes en la expresión...</p>
+</code></pre><p>Pero... <strong>¿Es posible controlar que los bytes estén entre 0 y 255 en la propia expresión?</strong><br>
+En este caso tendremos que indicar algún tipo de alternancia de posibilidades para incluir rángos excluyentes en la expresión...</p>
 <ol>
 <li>Podemos asegurar que cualquier byte de 1 o 2 dígitos es válido <strong>0 a 99</strong>, pero de 3 dígitos no es cualquiera válidos ya que los números mayores a 255 no lo son. Luego <strong><code>\d{1,2}</code></strong> sería válida para byte pero nos dejamos fuera del rango de 100 a 255.</li>
 <li>Si empieza por 1 el byte, después cualesquier  combinación de 2 dígitos son válidos, esto es: de <strong>100 a 199</strong>. Luego <strong><code>1\d{2}</code></strong> añadiría el rango de 100 a 199 dejando fuera de 200 a 255.</li>
 <li>Si empieza por 2 el byte el siguiente dígito va de 0 a 4 el tercer dígito podrá ir de 0 a 9 → <strong><code>\d</code></strong>, ya que si es 5 el tercer dígito solo podrá ir de 0 a 5. Luego <strong><code>2[0-4]\d</code></strong> añadiría el rango de <strong>200 a 249</strong> dejando fuera de 250 a 255.</li>
-<li>Ya nos queda añadir el último rango de valores válidos de <strong>250 a 255</strong> a través de la expresión <strong><code>25[0-5]</code></strong></li>
+<li>Ya nos queda añadir el último rango de valores válidos de <strong>250 a 255</strong> a través de la expresión <strong><code>25[0-5]</code></strong><br>
+Podemos concluir que la expresión final para un byte válido será <strong><code>(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])</code></strong> con lo cual la expresión final será...<br>
+<strong><code>^(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])){3}$</code></strong></li>
 </ol>
-<p>Podemos concluir que la expresión final para un byte válido será <strong><code>(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])</code></strong> con lo cual la expresión final será...<br>
-<strong><code>^(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])){3}$</code></strong><br>
-<strong>Nos queda una ER muy larga y ofuscada de leer</strong>, con partes repetidas y donde cometer un error es bastante sencillo. Una posible solución será definir los sub-grupos en variables separadas y así auto-documentar y simplificar quedando la función de arriba así.</p>
+<p><strong>Nos queda una ER muy larga y ofuscada de leer</strong>, con partes repetidas y donde cometer un error es bastante sencillo. Una posible solución será definir los sub-grupos en variables separadas y así auto-documentar y simplificar quedando la función de arriba así.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> entrada<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> patronByteIP <span class="token operator">=</span> <span class="token string">@"(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])"</span><span class="token punctuation">;</span>
@@ -660,11 +731,8 @@ Una vez hemos decidido la expresión regular nuestro código podría quedar así
                     <span class="token operator">+</span> patronByteIP <span class="token operator">+</span> <span class="token string">"){3}$"</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> Regex<span class="token punctuation">.</span><span class="token function">IsMatch</span><span class="token punctuation">(</span>entrada<span class="token punctuation">,</span> patronIP<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p>Pero... <strong>¿Sería posible obtener los bytes de la IP?</strong></p>
-<p>Supongamos que los vamos a devolver en un array de bytes subordinado a si es correcta o no. Por tanto nuestro interfaz quedaría así:<br>
+</code></pre><p>Pero... <strong>¿Sería posible obtener los bytes de la IP?</strong><br>
+Supongamos que los vamos a devolver en un array de bytes subordinado a si es correcta o no. Por tanto nuestro interfaz quedaría así:<br>
 <strong><code>static bool IPCorrecta(string entrada, out byte[]? bytes)</code></strong><br>
 y si quisiéramos ver si la IP es correcta sin obtener los bytes, podríamos llamar a la función de siguiente manera:<br>
 <strong><code>bool correcta = IPCorrecta(entrada, out _);</code></strong><br>
@@ -689,7 +757,7 @@ En este caso sería más simple hacer un Split de la cadena correcta por el cara
         bytes <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> ipCorrecta<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> <span class="token function">LeeIP</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> <span class="token function">LeeIP</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> bytes<span class="token punctuation">;</span>
     <span class="token keyword keyword-bool">bool</span> válida<span class="token punctuation">;</span>
@@ -710,9 +778,7 @@ En este caso sería más simple hacer un Split de la cadena correcta por el cara
                       <span class="token punctuation">?</span> <span class="token interpolation-string"><span class="token string">$"La IP introducida es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token char">'.'</span><span class="token punctuation">,</span> ip<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span> 
                       <span class="token punctuation">:</span> <span class="token string">"IP incorrecta."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
+</code></pre><div style="page-break-after:always;"></div>
 <p>Pero... <strong>¿Sería posible hacerlo definido grupos en la expresión?</strong></p>
 <p>Tendríamos que etiquetar cada grupo y con la expresión actual donde agrupamos los 3 últimos grupos no sería posible. Por lo tanto deberíamos desagrupar la ER y el código podría quedar ....</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> bytes<span class="token punctuation">)</span>
@@ -737,9 +803,7 @@ En este caso sería más simple hacer un Split de la cadena correcta por el cara
 
     <span class="token keyword keyword-return">return</span> m<span class="token punctuation">.</span>Success<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
+</code></pre><div style="page-break-after:always;"></div>
 <p>Pero... ya que vamos a sacar grupos, <strong>la comprobación de que el byte esta entre 0 y 255 la podríamos hacer al extraer el byte, y así simplificar bastante la ER haciéndola más legible</strong>.</p>
 <p>El código quedaría más legible, pues no tendríamos que pensar tanto la ER. Una posible propuesta podría ser la siguiente:</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> bytes<span class="token punctuation">)</span>
@@ -772,11 +836,9 @@ En este caso sería más simple hacer un Split de la cadena correcta por el cara
 
     <span class="token keyword keyword-return">return</span> ipCorrecta<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></blockquote>
-<div style="page-break-after:always;"></div>
-<blockquote>
-<p><strong>¿Podríamos llevar este último planteamiento a la expresión anterior con el Split?</strong></p>
-<p>Por supuesto y el código también quedaría simple y legible.</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p><strong>¿Podríamos llevar este último planteamiento a la expresión anterior con el Split?</strong><br>
+Por supuesto y el código también quedaría simple y legible.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">IPCorrecta</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> entrada<span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> <span class="token class-name"><span class="token keyword keyword-byte">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">?</span></span> bytes<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> patronIP <span class="token operator">=</span> <span class="token string">@"^\d{1,3}(\.(\d{1,3})){3}$"</span><span class="token punctuation">;</span>
@@ -803,7 +865,7 @@ En este caso sería más simple hacer un Split de la cadena correcta por el cara
 <span class="token punctuation">}</span>
 </code></pre><p>A través, de este caso de estudio, hemos visto variar formas de abordar el problema. Siempre tratando de refactorizar y mantera el código lo más legible y simple posible. Con ello ganaremos mantenibilidad y evitaremos errores.<br>
 <strong>¿Qué versión crees que es la mejor?</strong></p>
-</blockquote>
+</div>
 
       </div>
       
