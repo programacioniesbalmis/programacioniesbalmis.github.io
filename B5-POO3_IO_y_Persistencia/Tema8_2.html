@@ -30,6 +30,15 @@
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
 }
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .ejercicio {
   background-color: #f5faf5;
   border: 2px solid #969b96;
@@ -2585,22 +2594,21 @@ sw<span class="token punctuation">.</span><span class="token function">WriteLine
 sw<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><p>Cómo una vez adaptado <strong><code>StreamWriter</code></strong> ya no tiene sentido usar el <strong><code>FileStream</code></strong>, nos ofrece un constructor para hacer la adaptación de forma completamente transparente, abriendo el fichero directamente en modo escritura para creación o añadir al final. Por ejemplo, el siguiente código sería equivalente al anterior.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-bool">bool</span> AÑADIR_AL_FINAL <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token class-name">StreamWriter</span> sw <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamWriter</span><span class="token punctuation">(</span><span class="token string">"ejemplo.txt"</span><span class="token punctuation">,</span> AÑADIR_AL_FINAL<span class="token punctuation">,</span> Encoding<span class="token punctuation">.</span>Unicode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">StreamWriter</span> sw <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamWriter</span><span class="token punctuation">(</span><span class="token string">"ejemplo.txt"</span><span class="token punctuation">,</span> AÑADIR_AL_FINAL<span class="token punctuation">,</span> Encoding<span class="token punctuation">.</span>Unicode<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// UTF-16</span>
 sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Línea de texto con salto al final codificada en Unicode"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"限定桶「冬凪」「高雅」キャンペーン掲載"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 sw<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>Si abrimos el fichero con un editor de texto, lo podremos leer cláramente con los saltos de línea correspondiente. Pero si lo <strong>abrimos con editor hexadecimal</strong> para ber que secuencia de bytes ha escrito nos encontraremos lo siguiente...</p>
-<pre data-role="codeBlock" data-info="hex" class="language-hex hex"><code>00000000: FF FE 4C 00 ED 00 6E 00 65 00 61 00 20 00 64 00    .~L.m.n.e.a...d.
-00000010: 65 00 20 00 74 00 65 00 78 00 74 00 6F 00 20 00    e...t.e.x.t.o...
-00000020: 63 00 6F 00 6E 00 20 00 73 00 61 00 6C 00 74 00    c.o.n...s.a.l.t.
-00000030: 6F 00 20 00 61 00 6C 00 20 00 66 00 69 00 6E 00    o...a.l...f.i.n.
-00000040: 61 00 6C 00 20 00 63 00 6F 00 64 00 69 00 66 00    a.l...c.o.d.i.f.
-00000050: 69 00 63 00 61 00 64 00 61 00 20 00 65 00 6E 00    i.c.a.d.a...e.n.
-00000060: 20 00 55 00 6E 00 69 00 63 00 6F 00 64 00 65 00    ..U.n.i.c.o.d.e.
-00000070: 0D 00 0A 00 50 96 9A 5B 76 68 0C 30 AC 51 EA 51    ....P..[vh.0,QjQ
-00000080: 0D 30 0C 30 D8 9A C5 96 0D 30 AD 30 E3 30 F3 30    .0.0X.E..0-0c0s0
-00000090: DA 30 FC 30 F3 30 B2 63 09 8F 0D 00 0A 00          Z0|0s02c......
-</code></pre><p>Donde <strong><code>FF FE</code></strong> serán los <strong><code>bytes de BOM</code></strong> indicando que los caracteres a continuación están codificados en Unicode, esto es, cada caracter está codificado con 16 bits (2 bytes). Así pues, el caracter <strong><code>'L'</code></strong> se ha adaptado a la secuencia de bytes <strong><code>4C 00</code></strong>.</p>
+</code></pre><p>Si abrimos el fichero con un editor de texto, lo podremos leer claramente con los saltos de línea correspondiente. Pero si lo <strong>abrimos con un editor hexadecimal</strong> como el plugin de VSCode Hex Editor de Microsoft para ver que secuencia de bytes ha escrito nos encontraremos que cada carácter ocupa <strong>2 bytes</strong> (16 bits).</p>
+<p><img src="assets/utf16.png" alt="alt text"></p>
+<p>Donde <strong><code>FF FE</code></strong> serán los <strong><code>bytes de BOM</code></strong> indicando que los caracteres a continuación están codificados en Unicode (UTF-16), esto es, cada caracter está codificado con 16 bits (2 bytes). Así pues, el caracter <strong><code>'L'</code></strong> se ha adaptado a la secuencia de bytes <strong><code>4C 00</code></strong>.</p>
+<blockquote>
+<p>📌 <strong>Nota</strong>: <strong><code>FF FE</code></strong> es el BOM por defecto de <strong>UTF-16</strong> en <strong>Little Endian</strong> (UTF-16 LE). Si fuera <strong>UTF-16</strong> en <strong>Big Endian</strong> (UTF-16 BE) sería <strong><code>FE FF</code></strong> y el caracter <strong><code>'L'</code></strong> del ejemplo anterior se codificaría <strong><code>00 4C</code></strong>. Si fuera <strong>UTF8</strong> el BOM sería <strong><code>EF BB BF</code></strong> y aunque parezca que no es necesario porque UTF-8 solo ocupa un byte esto no es así porque algunos símbolos pueden ocupar más de un byte.</p>
+<p>Este tema del BOM es más complejo de lo que en este tema se ha intentado resumir y simplificar, por lo que puede ser un poco confuso ya es el resultado de diferentes convenios a lo largo del tiempo. Puedes ahondar más en el tema en los siguientes enlaces:</p>
+<ul>
+<li><strong><a href="https://es.wikipedia.org/wiki/Marca_de_orden_de_bytes">Marca de orden de bytes en Wikipedia</a></strong>.</li>
+<li><strong><a href="https://datatracker.ietf.org/doc/html/rfc3629">RFC-3629 de la IETF</a></strong></li>
+</ul>
+</blockquote>
 <p>Además, si nos fijamos al principio de la <strong><code>línea 8</code></strong> están los caracteres que que definen el salto de línea en los Sistemas Windows <strong><code>0D 00 0A 00</code></strong>. Donde, <strong><code>0D 00</code></strong> esl <em>Carriage Return</em> (<strong>CR</strong>) y <strong><code>0A 00</code></strong> es el <em>Line Feed</em> (<strong>LF</strong>) codificados en Unicode. (También aparecen al final del fichero porque hemos escrito 2 líneas).</p>
 <blockquote>
 <p>📌 <strong>Nota:</strong> Dependiendo del SO este <strong><a href="https://es.wikipedia.org/wiki/Nueva_l%C3%ADnea">salto de línea</a></strong> o <strong><code>\n</code></strong> se codificará de diferente manera.</p>
@@ -2624,44 +2632,37 @@ sw<span class="token punctuation">.</span><span class="token function">Close</sp
 <td style="text-align:left"><strong><code>0A</code></strong></td>
 </tr>
 <tr>
-<td style="text-align:left">Hasta Mac OS 9</td>
+<td style="text-align:left">Hasta Mac OS 9 (Ya no se usa)</td>
 <td style="text-align:left">CR</td>
 <td style="text-align:left"><strong><code>0D</code></strong></td>
 </tr>
 </tbody>
 </table>
 </blockquote>
-<p>Si usamos otra codificación como <strong>UTF8</strong>, ya no podremos usar caracteres asiáticos porque no son soportados pero sin embargo cada caracter ocuparía 1 byte (8 bits) y el fichero ocuparía menos a pesar de tener más caracteres. Por <strong>ejemplo</strong>, si hacemos ...</p>
+<p>Si usamos otra codificación como <strong>UTF-8</strong>, <strong>La mayoría</strong> de los caracteres ocuparían un solo byte, pero <strong>algunos caracteres especiales</strong> ocuparían más de un byte. De esta manera el fichero ocupará menos espacio en disco si es un texto en inglés o español, donde la mayoría de los caracteres ocupan un solo byte y el segundo se rellenaría a ceros como en el ejemplo de antes donde <strong><code>00 4C = L</code></strong> en UTF-16 y <strong><code>4C = L</code></strong> en UTF-8.</p>
+<p>Por <strong>ejemplo</strong>, si guardamos en <strong>UTF-8</strong> ...</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-bool">bool</span> AÑADIR_AL_FINAL <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token class-name">StreamWriter</span> sw <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamWriter</span><span class="token punctuation">(</span><span class="token string">"ejemplo.txt"</span><span class="token punctuation">,</span> AÑADIR_AL_FINAL<span class="token punctuation">,</span> Encoding<span class="token punctuation">.</span>UTF8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-using">using</span> <span class="token class-name">StreamWriter</span> sw <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamWriter</span><span class="token punctuation">(</span><span class="token string">"ejemplo.txt"</span><span class="token punctuation">,</span> AÑADIR_AL_FINAL<span class="token punctuation">,</span> Encoding<span class="token punctuation">.</span>UTF8<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// UTF-8</span>
 sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Línea de texto con salto al final codificada en Unicode"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Ya no podríamos escribir caracteres asiáticos en esta codificación"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-sw<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>Ahora tendremos la siguiente secuencia de bytes en el fichero, en la cual ya no tenemos tantos bytes a <strong><code>00</code></strong>.</p>
-<pre data-role="codeBlock" data-info="" class="language-text"><code>00000000: EF BB BF 4C C3 AD 6E 65 61 20 64 65 20 74 65 78    o;?LC-nea.de.tex
-00000010: 74 6F 20 63 6F 6E 20 73 61 6C 74 6F 20 61 6C 20    to.con.salto.al.
-00000020: 66 69 6E 61 6C 20 63 6F 64 69 66 69 63 61 64 61    final.codificada
-00000030: 20 65 6E 20 55 6E 69 63 6F 64 65 0D 0A 59 61 20    .en.Unicode..Ya.
-00000040: 6E 6F 20 70 6F 64 72 C3 AD 61 6D 6F 73 20 65 73    no.podrC-amos.es
-00000050: 63 72 69 62 69 72 20 63 61 72 61 63 74 65 72 65    cribir.caractere
-00000060: 73 20 61 73 69 C3 A1 74 69 63 6F 73 20 65 6E 20    s.asiC!ticos.en.
-00000070: 65 73 74 61 20 63 6F 64 69 66 69 63 61 63 69 C3    esta.codificaciC
-00000080: B3 6E 0D 0A                                        3n..
-</code></pre><p>Fíjate que los bytes de BOM para representar UTF8 ahora son 3 <strong><code>EF BB BF</code></strong> y los saltos de línea si has ejecutado en un SO Windows son <strong><code>0D 0A</code></strong>. Para nosotros todo esto es <strong>'<em>transparente</em>'</strong> si usamos <strong><code>StreamWriter</code></strong>.</p>
+sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Podremos escribir también caracteres de más de 1 byte "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sw<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"con la codificación UTF8 como emoticonos 😃"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p><img src="assets/utf8.png" alt="alt text"></p>
+<p>Ahora tendremos la siguiente secuencia de bytes en el fichero, en la cual ya no tenemos tantos bytes a <strong><code>00</code></strong>.</p>
+<p>Fíjate que los bytes de BOM para representar UTF8 ahora son los que se comentaban en la nota anterior <strong><code>EF BB BF</code></strong> y los saltos de línea si has ejecutado en un SO Windows son <strong><code>0D 0A</code></strong>. Sin embargo, el carater que representaba el emoticono 😃 ocupará <strong>4 bytes</strong> en UTF-8 <strong><code>F0 9F 98 83</code></strong> y en la lectura C# sabrá por el BOM que tiene que leer los 4.Para nosotros, todo esto es <strong>'<em>transparente</em>'</strong> si usamos <strong><code>StreamWriter</code></strong>.</p>
 <p>Aunque en los ejemplos hemos usado el método <strong><code>WriteLine(string texto)</code></strong> que escribe con un salto de línea al final, también podemos usar <strong><code>Write(string texto)</code></strong> para escribir un texto <strong>sin</strong> salto de línea al final.</p>
 <p><strong>Adaptador</strong> <strong><code>StreamReader</code></strong></p>
 <p>Hará el proceso inverso al <strong><code>StreamWriter</code></strong> y me ayudará a leer flujos de texto de forma <strong>trasparente</strong> a la la codificación usada para los caracteres y los saltos de línea.</p>
 <p>Tendremos varias posibilidades de lectura de caracteres con este adaptador:</p>
 <ol>
 <li>
-<p><strong>De uno en uno</strong>: El método <strong>int Read()</strong> devuelve el próximo carácter del flujo como <strong>entero</strong>, o un –1 si se ha llegado a su final.<br>
-Por si sólo quisiésemos consultar el carácter actual pero no pasar al siguiente también se ha incluido un método <strong>int Peek()</strong>.</p>
+<p><strong>De uno en uno</strong>: El método <strong>int Read()</strong> devuelve el próximo carácter del flujo como <strong>entero</strong>, o un –1 si se ha llegado a su final.</p>
+<p>Por si sólo quisiésemos consultar el carácter actual pero no pasar al siguiente también se ha incluido un método <strong><code>int Peek()</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Abrimos la secuencia.</span>
 <span class="token class-name">FileStream</span> fs <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span><span class="token string">"ejemplo.txt"</span><span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">;</span>            
 <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> AUTODETECTAR_CODIFICACION_BOM <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 <span class="token comment">// Adaptamos la secuencia para leer texto codificado. </span>
-<span class="token comment">// Si el fichero contiene BOM lo leerá con la codificacón indicada en el mismo.</span>
-<span class="token comment">// sino contiene BOM lo leerá con la codificación indicada</span>
+<span class="token comment">// Si el fichero contiene BOM lo leerá con la codificación indicada en el mismo.</span>
+<span class="token comment">// sino contiene BOM lo leerá con la codificación indicada por nosotros.</span>
 <span class="token class-name">StreamReader</span> sr <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StreamReader</span><span class="token punctuation">(</span>fs<span class="token punctuation">,</span> Encoding<span class="token punctuation">.</span>Unicode<span class="token punctuation">,</span> AUTODETECTAR_CODIFICACION_BOM<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Leo carácter a carácter y lo muestro.</span>

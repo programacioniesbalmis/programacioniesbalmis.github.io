@@ -30,6 +30,15 @@
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
 }
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .ejercicio {
   background-color: #f5faf5;
   border: 2px solid #969b96;
@@ -184,6 +193,49 @@
             </a><p><a href="#sintaxis-y-ejemplo-de-uso-de-yieldhttpsdocsmicrosoftcomes-esdotnetcsharplanguage-referencekeywordsyield" class="md-toc-link">Sintaxis y ejemplo de uso de </a><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/yield">yield</a></p>
 
           </div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#serialización-de-objetos-definiciones" class="md-toc-link"><p>Serialización de Objetos (Definiciones)</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#persistencia" class="md-toc-link"><p>Persistencia</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#concepto-de-anotación-o-atributo" class="md-toc-link">
+            <p>Concepto de Anotación o Atributo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#serialización-a-json" class="md-toc-link"><p>Serialización a JSON</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#qué-es-json" class="md-toc-link">
+            <p>¿Qué es JSON?</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#json-en-csharp" class="md-toc-link">
+            <p>JSON en CSharp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#propiedades-opcionales" class="md-toc-link">
+            <p>Propiedades Opcionales</p>
+
+          </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
@@ -772,6 +824,320 @@ El 4to multiplo es 326
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></div> <!-- fin caso de estudio -->
+<div style="page-break-after:always;"></div>
+<h3 id="serialización-de-objetos-definiciones">Serialización de Objetos (Definiciones) </h3>
+<h4 id="persistencia">Persistencia </h4>
+<p>Se define por persistencia en el mundo de la POO, como la <strong>capacidad que tienen los objetos de sobrevivir al proceso padre que los creo</strong>. Esto decir, que su ciclo de vida excede de la del programa que lo instanció.</p>
+<p>La persistencia permite al programador pues almacenar, transferir y recuperar fácilmente el estado de los objetos.</p>
+<p><strong>¿Cómo podemos conseguir la persistencia?</strong></p>
+<p>La forma más común de conseguirlo es mediante la <strong>serialización</strong>.</p>
+<p>La serialización es el proceso de convertir el estado de un objeto a un formato que se pueda <strong>almacenar</strong> o <strong>transportar</strong>. Normalmente el proceso producirá una <strong>secuencia</strong> de bytes o texto de marcado.</p>
+<p>El complemento de la serialización es la <strong>deserialización</strong>, que convierte una secuencia de bytes o texto de marcado a un objeto. Ambos procesos pues permiten almacenar y transferir fácilmente datos.</p>
+<p><strong>¿A qué serializaremos una clase?</strong></p>
+<p>.NET ofrece dos tecnologías de serialización:</p>
+<ul>
+<li>
+<p>La <strong>serialización binaria</strong> conserva la fidelidad de tipos, lo que resulta útil para conservar el estado de un objeto entre distintas llamadas a una aplicación. Puedes serializar un objeto en una secuencia de bytes que cómo hemos visto podemos pasar a disco, la memoria, a través de la red, etc. Ejemplos ...</p>
+<ul>
+<li>Compartir un objeto entre distintas aplicaciones '<em>serializándolo</em>' en el Portapapeles.</li>
+<li>Hacer <strong>streaming</strong> de vídeo serializando objetos con información de<br>
+vídeo comprimido a través de la red.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Aviso</strong>: En las últimas versiones de .NET se recomienda usar la serialización binaria sólo para casos muy específicos, como la comunicación entre aplicaciones .NET y ha sido marcada como <strong>peligrosa</strong> y <strong>obsoleta</strong>. Es por eso que en estos apuntes no se tratará la serialización binaria.</p>
+</blockquote>
+</li>
+<li>
+<p>La <strong>serialización a lenguajes de marcado</strong> como:</p>
+<ul>
+<li>
+<p>La <strong>serialización a XML</strong> sólo serializa las propiedades públicas y los campos, y no conserva la fidelidad de tipos. Esto resulta útil cuando desea proporcionar o consumir datos sin restringir la aplicación que utiliza los datos.</p>
+</li>
+<li>
+<p>La <strong>serialización a alguna notación de objetos</strong> estándar cada vez más comunes y cuya función sería la misma que el XML pero menos '<em>verbosas</em>' y más fáciles de leer y/o modificar para humanos. Los más comunes son:</p>
+<ul>
+<li><strong>JSON</strong>: Definir configuraciones o consumo de datos a través de microservicios web o bases de datos NoSQL.</li>
+<li><strong>YAML</strong>: Muy usado para definir archivos de configuración de sistemas.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>La gran mayoría de librerías de serialización de objetos en .NET y en otros lenguajes utilizan el concepto de <strong>anotaciones</strong> o <strong>atributos</strong> para definir cómo se serializará un objeto. Es por eso, que antes de empezar a serializar un objeto, deberemos entender qué son las anotaciones o atributos.</p>
+<h5 id="concepto-de-anotación-o-atributo">Concepto de Anotación o Atributo </h5>
+<blockquote>
+<p>✋ <strong>Importante</strong>: Las <strong>anotaciones</strong> son muy comunes en lenguajes como Java o Kotlin y básicamente son metadatos que se pueden añadir a clases, métodos, campos, etc. y <strong>modificar el comportamiento justo del elemento al que antecede</strong>. En C# se les denomina <strong>atributos</strong> aunque este término <strong>puede ser confuso</strong>, pues también es usado en la Programación Orientada a Objetos para hacer referencia a los que nosotros hemos llamado <strong>campos</strong> y <strong>propiedades</strong>.</p>
+</blockquote>
+<p>Una <strong><a href="https://learn.microsoft.com/es-es/dotnet/csharp/advanced-topics/reflection-and-attributes/attribute-tutorial">atributo</a></strong> pues en .NET, es una etiqueta de la sintaxis <strong><code>[nombre]</code></strong> que podremos aplicar a un ensamblado, clase, constructor, enumeración, campo, interfaz, método, etc… y que <strong>genera información en el ensamblado</strong> en forma de metadatos heredando de la clase <strong><code>Attribute</code></strong>.</p>
+<p>Por ejemplo, el atributo <strong><code>[Obsolete]</code></strong> es un atributo que se puede aplicar a un método o a una clase y que indica que el método o la clase están obsoletos y que no deberían usarse.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Obsolete</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"Este método está obsoleto. Utilice en su lugar el método X"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+<span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoObsoleto</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Código del método }</span>
+</code></pre><p>Otro ejemplo sería el atributo <strong><code>[NotNull]</code></strong> que se puede aplicar a un parámetro de un método y que indica que el parámetro no puede ser nulo incluso si el tipo de dato del parámetro es un tipo de dato que puede ser nulo.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">NotNull</span></span><span class="token punctuation">]</span> <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">?</span></span> parametro<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Código del método }</span>
+</code></pre><p>En el ejemplo anterior, el atributo <strong><code>[NotNull]</code></strong> indica que el parámetro <strong><code>parametro</code></strong> no puede ser nulo.</p>
+<h4 id="serialización-a-json">Serialización a JSON </h4>
+<p>La serialización a JSON es un proceso que convierte un objeto en una cadena JSON y viceversa. JSON es un formato de texto que es fácil de leer y escribir para los humanos y fácil de analizar y generar para las máquinas.</p>
+<h5 id="qué-es-json">¿Qué es JSON? </h5>
+<p>Aunque este tema se tratará con más profundidad en el módulo de LM y en segundo curso. Vamos ha realizar un resumen rápido sobre dicho formato para entenderlo por por encima.</p>
+<p><strong>JSON</strong> (Javascript Object Notation) es un formato ligero de intercambio de datos entre clientes y servidores, basado en la sintaxis de Javascript para representar estructuras en forma organizada. Es un formato en texto plano independiente de todo lenguaje de programación, es más, soporta el intercambio de datos en gran variedad de lenguajes. El estándar de JSON se especifica en el <strong><a href="https://datatracker.ietf.org/doc/html/rfc7159">RFC 7159</a></strong> y se ha estandarizado en la <strong><a href="https://ecma-international.org/publications-and-standards/standards/ecma-404/">ECMA-404</a></strong>. Así pues, puedes consultar la especificación del RFC para profundizar más en él.</p>
+<h6 id="tipos-de-datos-en-json">Tipos de datos en JSON </h6>
+<p>Similar a la estructuración de datos primitivos y complejos en los lenguajes de programación, JSON establece varios tipos de datos: <strong><code>cadenas</code></strong>, <strong><code>números</code></strong>, <strong><code>booleanos</code></strong>, <strong><code>arrays</code></strong> y <strong><code>objetos</code></strong>. El propósito es crear objetos que contengan varios atributos compuestos como pares clave valor. Donde la clave es un nombre que identifique el uso del valor que lo acompaña. Veamos un ejemplo:</p>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<p>El JSON de ejemplo estña compuesto por los datos de un <strong>estudiante</strong>. Los objetos JSON contienen sus atributos entre llaves <strong><code>{}</code></strong>, al igual que un bloque de código en Javascript, donde cada atributo debe ir separado por coma <strong><code>,</code></strong> para diferenciar cada par. La sintaxis de los pares debe contener dos puntos <strong><code>:</code></strong> para dividir la clave del valor. El nombre del par debe tratarse como cadena y añadirle <strong>comillas dobles</strong>.</p>
+</div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+   <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">101</span><span class="token punctuation">,</span>
+   <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Carlos"</span><span class="token punctuation">,</span>
+   <span class="token property">"estaActivo"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   <span class="token property">"notas"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">2.3</span><span class="token punctuation">,</span> <span class="token number">4.3</span><span class="token punctuation">,</span> <span class="token number">5.0</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Si te fijas en nuestro ejemplo, este trae un ejemplo de cada tipo de dato:</p>
+<ul>
+<li>
+<p><strong><code>id</code></strong> es de tipo entero, ya que contiene un número que representa el código del estudiante.</p>
+</li>
+<li>
+<p><strong><code>nombre</code></strong> es un string. Usa comillas dobles para definirlas.</p>
+</li>
+<li>
+<p><strong><code>estaActivo</code></strong> es un tipo booleano que representa si el estudiante se encuentra en la institución educativa o no. Usa las palabras reservadas <strong><code>true</code></strong> y <strong><code>false</code></strong> para declarar el valor.</p>
+</li>
+<li>
+<p><strong><code>notas</code></strong> es un arreglo de números reales. El conjunto de sus elementos debes incluirlos dentro de corchetes <strong><code>[ ]</code></strong> y separarlos por coma.</p>
+</li>
+</ul>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<p>Básicamente esta sería la sintaxis, pero en los documentos se pueden dar casos más complejos como objetos anidados, arrays de objetos, etc. Por ejemplo si modificamos el ejemplo anterior para que el estudiante en lugar de una array de notas numérico tenga un array de objetos con las asignaturas y sus notas, el documento JSON quedaría así:</p>
+<p>Fíjate que el documento tiene un <strong>objeto raíz</strong> que contiene el resto de objetos. En nuestro caso el objeto raíz es un estudiante. Pero también podríamos tener un array de estudiantes directamente en el documento JSON.</p>
+</div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+   <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">101</span><span class="token punctuation">,</span>
+   <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Carlos"</span><span class="token punctuation">,</span>
+   <span class="token property">"estaActivo"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   <span class="token property">"asignaturas"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+         <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Matemáticas"</span><span class="token punctuation">,</span>
+         <span class="token property">"nota"</span><span class="token operator">:</span> <span class="token number">4.5</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+         <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Lengua"</span><span class="token punctuation">,</span>
+         <span class="token property">"nota"</span><span class="token operator">:</span> <span class="token number">5.0</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<h5 id="json-en-csharp">JSON en CSharp </h5>
+<p>C# dentro de las BCL y dentro del espacio de nombres <strong><code>System.Text.Json</code></strong> define una serie de clases que nos permiten trabajar con JSON. EN concreto nos centraremos en la clase <strong><code>JsonSerializer</code></strong> que nos permitirá serializar y deserializar objetos a JSON y se define en el espacio de nombres <strong><code>System.Text.Json.Serialization</code></strong>.</p>
+<p>Supongamos el siguiente <strong><code>record</code></strong> con datos de un estudiante:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Estudiante</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Apellido<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<p>Si la serializamos tal cual a JSON, obtendremos un JSON como el del ejemplo usando como claves los nombres de las propiedades del record en PascalCase y el convenio en JSON es usar camelCase. Para cambiar el nombre de la clave asociada a una propiedad, podemos usar la anotación/atributo <strong><code>[JsonPropertyName]</code></strong> de la siguiente manera ...</p>
+</div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"Nombre"</span><span class="token operator">:</span> <span class="token string">"Carlos"</span><span class="token punctuation">,</span>
+  <span class="token property">"Apellido"</span><span class="token operator">:</span> <span class="token string">"García"</span><span class="token punctuation">,</span>
+  <span class="token property">"Edad"</span><span class="token operator">:</span> <span class="token number">18</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Estudiante</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"apellido"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Apellido<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"edad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+  <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Carlos"</span><span class="token punctuation">,</span>
+  <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"García"</span><span class="token punctuation">,</span>
+  <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">18</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Si quisiéramos serializar los datos de varios estudiantes en un documento JSON con un único objeto raíz, podríamos hacerlo a través de un <strong><code>record</code></strong> que contenga una colección de estudiantes como puede ser una clase completa con un nombre de clase, un tutor y una colección de estudiantes.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Clase</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"tutor"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Tutor<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"alumnos"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">IEnumerable<span class="token punctuation">&lt;</span>Estudiante<span class="token punctuation">&gt;</span></span> Estudiantes<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Tutor</span><span class="token punctuation">}</span></span><span class="token string">)\n\n"</span></span> <span class="token operator">+</span>
+        <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">,</span> Estudiantes<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Para aplicar algunos de los conceptos que hemos visto en otros temas, como son el principio OCP (SOLID) y los métodos de extensión. Vamos a definir los métodos de serialización y deserialización en una clase estática que llamaremos <strong><code>ClaseJson</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseJson</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Clase<span class="token punctuation">?</span></span> <span class="token function">Recupera</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> path<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name">FileStream</span> s <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Deserializamos el objeto JSON en el documento a un objeto de la clase o tipo Clase</span>
+        <span class="token keyword keyword-return">return</span> JsonSerializer<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Deserialize</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Clase<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// Método de extensión que serializa un objeto de la clase Clase a un documento JSON</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Guarda</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token class-name">Clase</span> clase<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> path<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name">FileStream</span> s <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Create<span class="token punctuation">,</span> FileAccess<span class="token punctuation">.</span>Write<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">JsonSerializerOptions</span> options <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Indentará la cadena con el JSON para hacerla más legible</span>
+            WriteIndented <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token comment">// No permitirá comas al final de los arrays</span>
+            AllowTrailingCommas <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token comment">// Codificará los caracteres Unicode básicos y los de la página de códigos ISO-8859-1 (Latin-1)</span>
+            Encoder <span class="token operator">=</span> JavaScriptEncoder<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>
+                UnicodeRanges<span class="token punctuation">.</span>BasicLatin<span class="token punctuation">,</span>
+                UnicodeRanges<span class="token punctuation">.</span>Latin1Supplement<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token comment">// Ignorará una propiedad si su valor es null </span>
+            DefaultIgnoreCondition <span class="token operator">=</span> JsonIgnoreCondition<span class="token punctuation">.</span>WhenWritingNull
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        JsonSerializer<span class="token punctuation">.</span><span class="token function">Serialize</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> clase<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Ahora ya podríamos serializar y deserializar objetos de la clase <strong><code>Clase</code></strong> a JSON de la siguiente manera:</p>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Clase</span> clase <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+            <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"1º DAM"</span><span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Tutor</span><span class="token punctuation">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Estudiantes</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+                <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Pepa"</span><span class="token punctuation">,</span> <span class="token string">"Pérez"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"María"</span><span class="token punctuation">,</span> <span class="token string">"Peláez"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Rosa"</span><span class="token punctuation">,</span> <span class="token string">"López"</span><span class="token punctuation">,</span> <span class="token number">26</span><span class="token punctuation">)</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        clase<span class="token punctuation">.</span><span class="token function">Guarda</span><span class="token punctuation">(</span><span class="token string">"1DAM.json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Clase<span class="token punctuation">?</span></span> c <span class="token operator">=</span> ClaseJson<span class="token punctuation">.</span><span class="token function">Recupera</span><span class="token punctuation">(</span><span class="token string">"1DAM.json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>
+            c<span class="token punctuation">?.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+            <span class="token operator">??</span> <span class="token string">"No se ha podido recuperar la clase"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"1º DAM"</span><span class="token punctuation">,</span>
+    <span class="token property">"tutor"</span><span class="token operator">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+    <span class="token property">"alumnos"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Pepa"</span><span class="token punctuation">,</span>
+            <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"Pérez"</span><span class="token punctuation">,</span>
+            <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">25</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"María"</span><span class="token punctuation">,</span>
+            <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"Peláez"</span><span class="token punctuation">,</span>
+            <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">22</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Rosa"</span><span class="token punctuation">,</span>
+            <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"López"</span><span class="token punctuation">,</span>
+            <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">26</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Podremos comprobar que al recuperar el objeto de la clase <strong><code>Clase</code></strong> de un documento JSON, se ha recuperado correctamente.</p>
+<div style="page-break-after:always;"></div>
+<h5 id="propiedades-opcionales">Propiedades Opcionales </h5>
+<p>Pude darse el caso de que queramos que una propiedad de un objeto sea opcional. Para ello, fíjate que en las opciones de serialización hemos añadido la propiedad <strong><code>DefaultIgnoreCondition</code></strong> con el valor <strong><code>JsonIgnoreCondition.WhenWritingNull</code></strong>. Esto hará que si una propiedad de un objeto es <strong><code>null</code></strong>, no se serialice en el documento JSON. Además, al deserializar el objeto, si esta propiedad no existe en el documento JSON, se inicializará a <strong><code>null</code></strong>.</p>
+<p>Por ejemplo, supongamos que modificamos el record <strong><code>Estudiante</code></strong> para que tenga una propiedad que será un objeto de tipo <strong><code>Direccion</code></strong> que <strong>sera opcional y por tanto anulable con valor por defecto a null</strong>.</p>
+<div class="flotante" ,="" style="align-items: center;">
+<div class="flotante_izq">
+<pre data-role="codeBlock" data-info="csharp {highlight=9}" class="language-csharp csharp" data-line="9"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Estudiante</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"apellido"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Apellido<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"edad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"direccion"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">Direccion<span class="token punctuation">?</span></span> Direccion <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="9" data-start="9">
+</div></div></pre></div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Direccion</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"calle"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Calle<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"numero"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Numero<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"ciudad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Ciudad<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"pais"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Pais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+</div>
+<p>Básicamente ya podríamos serializar y deserializar objetos de la clase <strong><code>Estudiante</code></strong> igual que antes. Teniendo en cuenta eso sí que la propiedad <strong><code>Direccion</code></strong> es opcional y por tanto podría ser <strong><code>null</code></strong> al leerse del documento JSON.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Clase</span> clase <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+    <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"1º DAM"</span><span class="token punctuation">,</span>
+    <span class="token named-parameter punctuation">Tutor</span><span class="token punctuation">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+    <span class="token named-parameter punctuation">Estudiantes</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Rosa"</span><span class="token punctuation">,</span> <span class="token string">"López"</span><span class="token punctuation">,</span> <span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Juan"</span><span class="token punctuation">,</span> <span class="token string">"Gómez"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Calle Falsa"</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token string">"Elche"</span><span class="token punctuation">,</span> <span class="token string">"España"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="flotante" ,="" style="align-items: top;">
+<div class="flotante_izq">
+<p>Se añadirán un objeto JSON anidado para la propiedad <strong><code>direccion</code></strong> en aquellos estudiantes que la tengan distinta de <strong><code>null</code></strong> y a la hora de deserializar el objeto, si la propiedad <strong><code>direccion</code></strong> no existe en el documento JSON, se inicializará a <strong><code>null</code></strong> y es por eso que sea anulable.</p>
+<p>Por ejemplo si la edad fuera opcional, como es un campo numérico tendremos dos opciones, o bien lo inicializamos a <strong><code>null</code></strong> y el campo pasaría a ser de tipo <strong><code>int?</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"edad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+<span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">?</span></span> Edad <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">,</span>
+</code></pre></div>
+<div class="flotante_der">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"1º DAM"</span><span class="token punctuation">,</span>
+    <span class="token property">"tutor"</span><span class="token operator">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+    <span class="token property">"alumnos"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Rosa"</span><span class="token punctuation">,</span>
+            <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"López"</span><span class="token punctuation">,</span>
+            <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">26</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+            <span class="token property">"apellido"</span><span class="token operator">:</span> <span class="token string">"Gómez"</span><span class="token punctuation">,</span>
+            <span class="token property">"edad"</span><span class="token operator">:</span> <span class="token number">24</span><span class="token punctuation">,</span>
+            <span class="token property">"direccion"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"calle"</span><span class="token operator">:</span> <span class="token string">"Calle Falsa"</span><span class="token punctuation">,</span>
+                <span class="token property">"numero"</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">,</span>
+                <span class="token property">"ciudad"</span><span class="token operator">:</span> <span class="token string">"Elche"</span><span class="token punctuation">,</span>
+                <span class="token property">"pais"</span><span class="token operator">:</span> <span class="token string">"España"</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
 
       </div>
       
