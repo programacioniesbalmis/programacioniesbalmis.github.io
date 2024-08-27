@@ -30,6 +30,15 @@
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
 }
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 .markdown-preview.markdown-preview .ejercicio {
   background-color: #f5faf5;
   border: 2px solid #969b96;
@@ -181,6 +190,10 @@
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#definiendo-una-solución-para-asociar-nuestro-proyecto" class="md-toc-link">
             <p>Definiendo una solución para asociar nuestro proyecto</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#qué-pasa-si-tenemos-más-de-una-versión-de-net-instalada" class="md-toc-link">
+            <p>¿Qué pasa si tenemos más de una versión de .NET instalada?</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#integración-con-vs-code" class="md-toc-link">
@@ -336,20 +349,20 @@ Ejecutando <span class="token string">"dotnet restore"</span> en B:<span class="
   Se ha restaurado  B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>ejemplo.csproj <span class="token punctuation">(</span>en <span class="token number">77</span> ms<span class="token punctuation">)</span>.
 Restauración realizada correctamente.
 </code></pre><p>Tras ejecutar este comando, se creará un proyecto definido en el fichero <strong>ejemplo.csproj</strong> donde, si no especificamos la versión de .NET, nos lo creará con la que hemos instalado y el lenguaje será C# con la última versión posible de esa plataforma.<br>
-Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET 6 y la versión de C# es la 10 (aunque no lo indica porque es la de defecto para .NET 6)</strong></p>
+Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET 8 y la versión de C# es la 12 (aunque no lo indica porque es la de defecto para .NET 8)</strong></p>
 <pre data-role="codeBlock" data-info="xml" class="language-xml xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OutputType</span><span class="token punctuation">&gt;</span></span>Exe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>OutputType</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>net6.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>net8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Nullable</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Nullable</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
-</code></pre><div class="admonition note">
-<p class="admonition-title">más información ver <a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new#console">la documentación oficial</a>.</p>
-</div>
+</code></pre><blockquote>
+<p>📌 <strong>Nota</strong>: Para más información ver <strong><a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new#console">la documentación oficial</a></strong>.</p>
+</blockquote>
 <div style="page-break-after:always;"></div>
 <h3 id="definiendo-una-solución-para-asociar-nuestro-proyecto">Definiendo una solución para asociar nuestro proyecto </h3>
 <p>Un proyecto debería estar asociado a una solución. Así mismo, una solución podría tener más de un archivo asociado. De hecho, si hubiéramos creado el proyecto de consola con el Visual Studio Community nos crearía por defecto una solución a la que estaría asociado el mismo.</p>
@@ -367,15 +380,17 @@ B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&g
 Proyectos
 ---------
 ejemplo.csproj
-</code></pre><p>Además, siempre es interesante añadir un fichero de metainformación para el <strong>control de versiones de git</strong>.</p>
+</code></pre><p>Además, siempre es interesante añadir un fichero de metainformación para el <strong>control de versiones de git</strong> y la <strong>versión de .NET esperada</strong>. Para ello usaremos...</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new gitignore
 The template <span class="token string">"dotnet gitignore file"</span> was created successfully.
-</code></pre><p>También es posible compilar el proyecto y generar el ensamblado con <strong><code>dotnet build</code></strong> y ejecutar el programa usando <strong><code>dotnet run</code></strong>. Aunque este proceso lo podremos hacer a través de <strong>VS Code</strong> usando la <strong>extensión para C# de OmniSharp</strong>.</p>
+B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new globaljson
+La plantilla <span class="token string">"archivo global.json"</span> se creó correctamente.
+</code></pre><p>Nos habrá creado los ficheros <strong><code>.gitignore</code></strong> y <strong><code>global.json</code></strong> que añadirá información extra importante al proyecto.</p>
+<p>También es posible compilar el proyecto y generar el ensamblado con <strong><code>dotnet build</code></strong> y ejecutar el programa usando <strong><code>dotnet run</code></strong>. Aunque este proceso lo podremos hacer a través de <strong>VS Code</strong> usando la <strong>extensión oficial para C# de Microsoft</strong>.</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet build
-Microsoft <span class="token punctuation">(</span>R<span class="token punctuation">)</span> Build Engine versión <span class="token number">17.2</span>.0+41abc5629 para .NET Core
-Copyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> Microsoft Corporation. Todos los derechos reservados.
-  Determinando los proyectos que se van a restaurar<span class="token punctuation">..</span>.
-  ejemplo -<span class="token operator">&gt;</span> B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>bin<span class="token punctuation">\</span>Debug<span class="token punctuation">\</span>net6.0<span class="token punctuation">\</span>ejemplo.dll
+Determining projects to restore<span class="token punctuation">..</span>.
+Todos los proyectos están actualizados para la restauración.
+ejemplo -<span class="token operator">&gt;</span> B:<span class="token punctuation">\</span>ejemplo<span class="token punctuation">\</span>bin<span class="token punctuation">\</span>Debug<span class="token punctuation">\</span>net8.0<span class="token punctuation">\</span>ejemplo.dll
 Compilación correcta.
     <span class="token number">0</span> Advertencia<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
     <span class="token number">0</span> Errores
@@ -383,22 +398,59 @@ Tiempo transcurrido 00:00:00.64
 
 B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet run
 Hello World<span class="token operator">!</span>
-</code></pre><div style="page-break-after:always;"></div>
+</code></pre><h3 id="qué-pasa-si-tenemos-más-de-una-versión-de-net-instalada">¿Qué pasa si tenemos más de una versión de .NET instalada? </h3>
+<p>Podemos tener más de una versión instalada del .NET SDK en nuestro sistema. Para saber cuáles tenemos instaladas y cuál es la que se está usando por defecto, podemos usar el comando <strong><code>dotnet --info</code></strong>. Entre otras cosas nos mostraría la siguiente información.</p>
+<blockquote>
+<p>📌 <strong>Nota</strong>: Fíjate que hablamos del SDK y no del Runtime. Ya que del Runtime podríamos tener muchas más instaladas.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>SDK DE .NET:
+ Version:           8.0.301
+ Commit:            1a0e9c0300
+ Workload version:  8.0.300-manifests.f6879a9a
+ MSBuild version:   17.10.4+10fbfbf2e
+
+...
+
+.NET SDKs installed:
+  6.0.406 [C:\Program Files\dotnet\sdk]
+  8.0.301 [C:\Program Files\dotnet\sdk]
+</code></pre><p>Donde nos indica que tenemos las LTS 6 y 8 instaladas y que la que se está usando por defecto es la 8.</p>
+<p>Como si no indicamos nada, <strong><code>dotnet</code></strong> usará la versión por defecto. Si queremos usar una versión concreta, deberemos indicarlo al crear el proyecto con el parámetro <strong><code>--framework o -f</code></strong>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>B:<span class="token punctuation">\</span>ejemplo<span class="token operator">&gt;</span>dotnet new console <span class="token parameter variable">-f</span> <span class="token string">"net6.0"</span> <span class="token parameter variable">-n</span> ejemplo
+</code></pre><p>y dentro de la carpeta del proyecto <strong><code>ejemplo</code></strong> deberemos crear un fichero <strong><code>global.json</code></strong> con la siguiente información.</p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"sdk"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"6.0.406"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Para indicarle que use ese SDK en concreto en lugar de el por defecto para compilar al hacer <strong><code>dotnet build</code></strong> o <strong><code>dotnet run</code></strong>, previamente con <strong><code>dotnet --info</code></strong> deberemos asegurar que la versión que hemos indicado en el <strong><code>global.json</code></strong> está instalada en nuestro sistema.</p>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Deberemos asegurarnos de que durante el curso no tenemos instala una versión de .NET posterior a la 8 y si es así deberemos desinstalarla o crear el fichero en la versión 8 con el <strong><code>global.json </code></strong> orrespondiente.</p>
+</div>
+<div style="page-break-after:always;"></div>
 <h3 id="integración-con-vs-code">Integración con VS Code </h3>
 <p>Para abrir una proyecto de VSCode deberemos abrir la carpeta donde se encuentra el proyecto. En nuestro caso <strong><code>C:\ejemplo</code></strong>.</p>
-<div class="admonition note">
-<p class="admonition-title">dispones de un enlace con la documentación oficial sobre <a href="https://docs.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code">la integración con VS Code</a>.</p>
-</div>
+<blockquote>
+<p>📌 <strong>Nota</strong>: Aquí dispones de un enlace con la documentación oficial sobre <strong><a href="https://learn.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code?pivots=dotnet-8-0">la integración con VS Code</a></strong>.</p>
+</blockquote>
 <p>Básicamente se recomienda instalar las siguientes extensiones:</p>
 <ol>
 <li>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit</a> Como indica su nombre es una extensión de extensiones. Nos instalará las <strong>siguientes extensiones</strong> que son las que realmente nos permitirán trabajar con C# en VS Code.</p>
 <ul>
 <li>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime">.NET Runtime Install Tool</a> Como su nombre indica nos instalará automáticamente la última versión el CLR de .NET de esta forma no haría falta instalarlo manualmente como hemos hecho en puntos anteriores.</p>
-<blockquote>
-<p>✋ <strong>Importante</strong>: Al instalarnos la última versión darse el caso de que tengamos más de una versión de .NET instalada en nuestro equipo y deberemos llevar cuidado con qué versiones estamos creando nuestros proyectos.</p>
-</blockquote>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime">.NET Runtime Install Tool</a> Como su nombre indica nos instalará automáticamente la versión de .NET para que las extensiones funcionen correctamente.</p>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Con el fin de que la extensión no esté constantemente instalando versiones de .NET, es recomendable indicarle a la extensiones de VSCode que usen ya la versión de .NET que tenemos instalada en nuestro sistema. Por ejemplo, si hemos instalado .NET 8 para todos los usuarios.</p>
+<ul>
+<li>Iremos a la configuaración de VSCode.</li>
+<li>Buscaremos <strong><code>Shared Existing Dotnet Path</code></strong></li>
+<li>Indicaremos la ruta <strong><code>C:\Program Files\dotnet\sdk\8.0.301</code></strong> o la la versión <strong><code>8.0.xyz</code></strong> que tengamos instalada nosotros.<br>
+<img src="Img/extension.png" alt="alt text"></li>
+</ul>
+</div>
 </li>
 <li>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# Microsoft</a> Anteriormente conocida como <strong>OmniSharp</strong>, es la extensión oficial del Microsoft para VSCode para el desarrollo de aplicaciones en .NET con C#.</p>
@@ -448,7 +500,7 @@ Hello World<span class="token operator">!</span>
 </ul>
 </li>
 <li>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscodeintellicode-csharp">IntelliCode for C# Dev Kit</a> Nos ayudará a escribir código de forma más rápida y eficiente. Si tenemos algún tro asistente de código instalado como GitHub Copilot, deberemos desactivarlo para que no interfiera con IntelliCode.</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscodeintellicode-csharp">IntelliCode for C# Dev Kit</a> Nos ayudará a escribir código de forma más rápida y eficiente. Si tenemos algún otro asistente de código mediante IA instalado como GitHub Copilot o Google Gemini, deberemos desactivarlo para que no interfiera con IntelliCode.</p>
 </li>
 </ul>
 </li>
@@ -456,6 +508,7 @@ Hello World<span class="token operator">!</span>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vs-keybindings">Visual Studio Keymap</a> Me permitirá configurar el teclado como si estuviéramos usando "su hermano mayor" el IDE de Visual Studio.</p>
 </li>
 </ol>
+<div style="page-break-after:always;"></div>
 <h2 id="bulb-tips-de-teclado-para-visual-studio-y-otros-editores">💡 '<em>Tips</em>' de teclado para Visual Studio (y otros editores) </h2>
 <p>A lo largo del curso se darán diferentes tips de uso del teclado y atajos para refactorizar.</p>
 <p>Puesto que hemos instalado "<em>Visual Studio Keymap</em>". Se nos habrán configurados automáticamente las siguientes extensiones de teclado.</p>
@@ -1162,7 +1215,7 @@ Ejemplo: int <strong>n</strong>umero<strong>D</strong>e<strong>P</strong>lantas;
 <span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto <span class="token operator">=</span> <span class="token string">"El precio es 20 \\u20AC\\nGRACIAS"</span><span class="token punctuation">;</span>
 </code></pre></li>
 <li>
-<p>A partir de C# 6 se pueden <a href="https://docs.microsoft.com/es-es/dotnet/csharp/tutorials/string-interpolation" target="_blank">interpolar cadenas</a> con las reglas de formato que ya hemos visto en la salida por pantalla.<br>
+<p>A partir de <strong>C# 6</strong> se pueden <a href="https://docs.microsoft.com/es-es/dotnet/csharp/tutorials/string-interpolation">interpolar cadenas</a> con las reglas de formato que ya hemos visto en la salida por pantalla.<br>
 Para ello colocaremos el carácter <strong><code>$</code></strong> delante de la misma.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-string">string</span></span> t1 <span class="token operator">=</span> <span class="token string">"derecha"</span><span class="token punctuation">;</span>
 <span class="token class-name"><span class="token keyword keyword-int">int</span></span> n <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
@@ -1174,11 +1227,21 @@ Para ello colocaremos el carácter <strong><code>$</code></strong> delante de la
 <span class="token class-name"><span class="token keyword keyword-string">string</span></span> t <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"Formato entero - </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">n</span><span class="token format-string"><span class="token punctuation">:</span>D5</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span> 
 <span class="token comment">// Salida</span>
 <span class="token comment">// "Formato entero – 00088"</span>
-</code></pre></li>
-</ul>
-<blockquote>
+</code></pre><blockquote>
 <p>✋ <strong>Importante:</strong> A partir de ahora usaremos este formato pues, además de hacer más legibles las cadenas, nos evitará errores derivados de una mala indexación en la sustitución.</p>
 </blockquote>
+</li>
+<li>
+<p>A partir de <strong>C# 11</strong> se han incluido los <a href="https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/tokens/raw-string">literales de cadena sin formato</a> que pueden contener varias líneas y no hará falta usar caracteres de escape por lo podremos incluir cualquier carácter incluida la propia comillas doble. Son ideales para definir cadenas con objetos en formato JSON, XML, YAML etc.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> json <span class="token operator">=</span> <span class="token string">""</span>"
+<span class="token punctuation">{</span>
+    <span class="token string">"nombre"</span><span class="token punctuation">:</span> <span class="token string">"Juan"</span><span class="token punctuation">,</span>
+    <span class="token string">"edad"</span><span class="token punctuation">:</span> <span class="token number">25</span>
+<span class="token punctuation">}</span>
+<span class="token string">""</span>"<span class="token punctuation">;</span>
+</code></pre><p>Como puedes ver se definen con tres comillas dobles y se cierran con otras tres comillas dobles. Esta sintaxis es similar a la de otros lenguajes como <strong><a href="https://kotlinlang.org/docs/strings.html#multiline-strings">Kotlin</a></strong>.</p>
+</li>
+</ul>
 <div style="page-break-after:always;"></div>
 <div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
@@ -1223,15 +1286,15 @@ Manzanas     2,00 Kg
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 111)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-111 262,-111 262,4 -4,4"></polygon>
-<g id="clust2" class="cluster">
-<title>cluster2</title>
-<polygon fill="LightSteelBlue" stroke="black" points="176,-8 176,-99 250,-99 250,-8 176,-8"></polygon>
-<text text-anchor="middle" x="213" y="-82.4" font-family="Arial" font-size="14.00">HEAP</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster1</title>
 <polygon fill="SteelBlue" stroke="black" points="8,-8 8,-99 82,-99 82,-8 8,-8"></polygon>
 <text text-anchor="middle" x="45" y="-82.4" font-family="Arial" font-size="14.00" fill="white">STACK</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="LightSteelBlue" stroke="black" points="176,-8 176,-99 250,-99 250,-8 176,-8"></polygon>
+<text text-anchor="middle" x="213" y="-82.4" font-family="Arial" font-size="14.00">HEAP</text>
 </g>
 <!-- stack -->
 <g id="node1" class="node">
@@ -1612,15 +1675,15 @@ c <span class="token operator">=</span> <span class="token keyword keyword-null"
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 417)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-417 460.96,-417 460.96,4 -4,4"></polygon>
-<g id="clust2" class="cluster">
-<title>cluster2</title>
-<polygon fill="LightSteelBlue" stroke="black" points="330,-35 330,-378 448.96,-378 448.96,-35 330,-35"></polygon>
-<text text-anchor="middle" x="389.48" y="-361.4" font-family="Arial" font-size="14.00">HEAP</text>
-</g>
 <g id="clust1" class="cluster">
 <title>cluster1</title>
 <polygon fill="SteelBlue" stroke="black" points="82,-8 82,-405 236,-405 236,-8 82,-8"></polygon>
 <text text-anchor="middle" x="159" y="-388.4" font-family="Arial" font-size="14.00" fill="white">STACK</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="LightSteelBlue" stroke="black" points="330,-35 330,-378 448.96,-378 448.96,-35 330,-35"></polygon>
+<text text-anchor="middle" x="389.48" y="-361.4" font-family="Arial" font-size="14.00">HEAP</text>
 </g>
 <!-- stack -->
 <g id="node1" class="node">
