@@ -262,12 +262,8 @@
 <li>
 <p>Primero vamos a practicar con el concepto '<em>de tipos anónimos</em>' para guardar solo los datos referentes a un préstamo de un <strong><code>Libro</code></strong> en un fichero. <strong>Sin definir una nueva clase o tipo Préstamo</strong>.</p>
 <ul>
-<li>
-<p>Para ello, vamos a crear un método público en la clase Biblioteca denominado <strong><code>Presta</code></strong>. Este método recibirá dos <strong><code>string</code></strong>: <strong><code>dni</code></strong> del socio <strong><code>ISBN</code></strong> del libro a &gt; prestar.</p>
-</li>
-<li>
-<p>Buscaremos el <strong><code>ISBN</code></strong> en la lista de libros y si lo encontramos, crearemos un nuevo objeto anónimo var préstamo con las propiedades <strong><code>DNI</code></strong>, <strong><code>Titulo</code></strong> e <strong><code>ISBN</code></strong>.</p>
-</li>
+<li>Para ello, vamos a crear un método público en la clase Biblioteca denominado <strong><code>Presta</code></strong>. Este método recibirá dos <strong><code>string</code></strong>: <strong><code>dni</code></strong> del socio <strong><code>ISBN</code></strong> del libro a prestar.</li>
+<li>Buscaremos el <strong><code>ISBN</code></strong> en la lista de libros y si lo encontramos, crearemos un nuevo objeto anónimo var préstamo con las propiedades <strong><code>DNI</code></strong>, <strong><code>Titulo</code></strong> e <strong><code>ISBN</code></strong>.</li>
 </ul>
 <blockquote>
 <p>📌 <strong>Nota:</strong> En caso de no existir el lSBN en la biblioteca generaremos una BliblitecaException con el mensaje correspondiente.</p>
@@ -295,8 +291,25 @@
 <p>Redefine el método <strong><code>ToString()</code></strong> en <strong><code>Libro</code></strong> <strong>creando un tipo anónimo</strong> con <strong><code>Libro</code></strong>, <strong><code>Autor</code></strong>, e <strong><code>ISBN</code></strong> y devolviendo su ToString.</p>
 </li>
 <li>
-<p>Redefine un método <strong>AutorTitulo</strong> al que le llega un ISB y devuelve el libro de la biblioteca que coincida con el ISB, pero esta vez solo nos interesará sacar la información de Título y Autor, por lo que se creará un <strong>Tipo Record</strong> para hacerlo.</p>
+<p>Redefine un método <strong><code>AutorTitulo</code></strong> al que le llega un ISB y devuelve el libro de la biblioteca que coincida con el ISB, pero esta vez solo nos interesará sacar la información de Título y Autor, por lo que se creará un <strong>Tipo Record</strong> para hacerlo.</p>
 </li>
+<li>
+<p>Define la clase estática BibliotecaJson con un <strong>método extensor de la clase Biblioteca</strong> <strong><code>Guarda</code></strong> que reciba un <strong><code>string</code></strong> con el nombre del fichero y guarde la biblioteca en formato JSON. Deberás <strong>añadir las anotaciones necesarias</strong> a las propiedades de los <strong><code>record</code></strong> para que se genere correctamente el fichero <strong><code>biblioteca.json</code></strong> con el siguiente formato:</p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"EL RINCÓN DE LEER"</span><span class="token punctuation">,</span>
+    <span class="token property">"libros"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"titulo"</span><span class="token operator">:</span> <span class="token string">"Don Quijote de la Mancha"</span><span class="token punctuation">,</span>
+            <span class="token property">"autor"</span><span class="token operator">:</span> <span class="token string">"Miguel de Cervantes"</span><span class="token punctuation">,</span>
+            <span class="token property">"editorial"</span><span class="token operator">:</span> <span class="token string">"Editorial EDAF, S.A"</span><span class="token punctuation">,</span>
+            <span class="token property">"numPaginas"</span><span class="token operator">:</span> <span class="token number">765</span><span class="token punctuation">,</span>
+            <span class="token property">"isbn"</span><span class="token operator">:</span> <span class="token string">"9788441405298"</span><span class="token punctuation">,</span>
+            <span class="token property">"reseña"</span><span class="token operator">:</span> <span class="token string">"El libro, sinopsis… "</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        ...
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
 </ul>
 <p>Crea una aplicación para probar estos métodos. Por ejemplo …</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Biblioteca</span> biblioteca <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Biblioteca</span><span class="token punctuation">(</span><span class="token string">"EL RINCÓN DE LEER"</span><span class="token punctuation">,</span> libros<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -311,6 +324,7 @@ Console<span class="token punctuation">.</span><span class="token function">Writ
 biblioteca<span class="token punctuation">.</span><span class="token function">EliminaPorAutor</span><span class="token punctuation">(</span><span class="token string">"Miguel Delibes"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>biblioteca<span class="token punctuation">.</span><span class="token function">BuscaPorISBN</span><span class="token punctuation">(</span><span class="token string">"9788467023664"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>biblioteca<span class="token punctuation">.</span><span class="token function">AutorTitulo</span><span class="token punctuation">(</span><span class="token string">"9788431533441"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+biblioteca<span class="token punctuation">.</span><span class="token function">Guarda</span><span class="token punctuation">(</span><span class="token string">"biblioteca.json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div> <!-- Fin ejercicio -->
 <div class="ejercicio">
 <h3 id="ejercicio-3">Ejercicio 3 </h3>
@@ -343,7 +357,7 @@ El método se llamará <strong><code>ISBNS</code></strong> y devolverá un array
 <ol>
 <li>No se deben repetir las secuencias.</li>
 <li>No debes repetir código en la implementación de tus métodos extensores.</li>
-<li><strong><code>numeros.SecuenciaAleatoriaConRepeticiones(15)</code></strong> no debe producir excepciones aunque la lista de números sea menor que la nueva secuencia &gt; porque admite repeticiones.</li>
+<li><strong><code>numeros.SecuenciaAleatoriaConRepeticiones(15)</code></strong> no debe producir excepciones aunque la lista de números sea menor que la nueva secuencia porque admite repeticiones.</li>
 <li><strong><code>numeros.SecuenciaAleatoria(15)</code></strong> debe producir excepción porque tiene menos elementos en la secuencia a elegir que los solicitados.</li>
 </ol>
 </div> <!-- Fin ejercicio -->
