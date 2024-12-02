@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
       
       
       
@@ -144,6 +144,28 @@
     width: auto;
   }
 }
+.markdown-preview.markdown-preview .cabeceras_examen {
+  background-color: #fcfcfc;
+  border: 2px solid #b7bbb7;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+  color: black;
+  font-size: 8pt;
+}
+.markdown-preview.markdown-preview .ejercicio_control {
+  background-color: #f9faf9;
+  border: 2px solid #b4b7b4;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -173,12 +195,16 @@
             <p>✅ Ejercicio 3</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-4" class="md-toc-link">
-            <p>Ejercicio 4</p>
+          <a href="#white_check_mark-ejercicio-4" class="md-toc-link">
+            <p>✅ Ejercicio 4</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#white_check_mark-ejercicio-5" class="md-toc-link">
             <p>✅ Ejercicio 5</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-6" class="md-toc-link">
+            <p>Ejercicio 6</p>
 
           </a></div>
 </div>
@@ -235,15 +261,54 @@ Este método tendrá la siguiente signatura:</p>
 </div>
 <div style="page-break-after:always;"></div>
 <div class="ejercicio">
-<h3 id="ejercicio-4">Ejercicio 4 </h3>
-<p>Crea una enumeración para gestionar una respuesta, que  puede ser <strong>Si, No, Nose</strong>.</p>
-<p>Para eso se necesitaran tres métodos LeePregunta, VisualizaRespuesta y LeeEnum (del ejercicio 3 que no se modificará).</p>
+<h3 id="white_check_mark-ejercicio-4">✅ Ejercicio 4 </h3>
+<p>Se va a diseñar un programa que genere de manera aleatoria una dieta semanal para las cenas, basada en una lista de platos vegetarianos. Para ello se deberá definir:</p>
 <ul>
-<li>Al método <strong><code>LeePregunta</code></strong> que pedirá que se introduzca una pregunta y la devolverá a la Main.</li>
-<li>La Main se encargará de mandar la pregunta a LeeEnum y quedará a la espera de la respuesta.</li>
-<li>A <strong><code>VisualizarRespuesta</code></strong> se le pasará la respuesta obtenida desde LeeEnum para ser mostrada.</li>
+<li>
+<p>Una enumeración <strong>DiaSemana</strong> que incluya los días de la semana (Lunes a Domingo).</p>
+</li>
+<li>
+<p>Una enumeración <strong>PlatoVegetariano</strong>  que te pasamos a continuación para que sea más rápida la implementación.</p>
+<pre data-role="codeBlock" data-info="kotlin" class="language-kotlin kotlin"><code><span class="token keyword keyword-enum">enum</span> PlatoVegetariano
+<span class="token punctuation">{</span>
+    EnsaladaDeQuinoa<span class="token punctuation">,</span> CurryDeGarbanzos<span class="token punctuation">,</span> HamburguesaVegetal<span class="token punctuation">,</span>
+    SopaDeLentejas<span class="token punctuation">,</span> PastaConPesto<span class="token punctuation">,</span> FalafelConEnsalada<span class="token punctuation">,</span>
+    TortillaDeEspinacas<span class="token punctuation">,</span> CremaDeCalabaza<span class="token punctuation">,</span> SushiVegetariano<span class="token punctuation">,</span>
+    PizzaVegetariana<span class="token punctuation">,</span> BowlDeAvenaConFrutas<span class="token punctuation">,</span> SmoothieVerde<span class="token punctuation">,</span>
+    WrapDeVerdurasYHummus<span class="token punctuation">,</span> ArrozFritoConTofu<span class="token punctuation">,</span> CazuelaDeVegetales<span class="token punctuation">,</span>
+    ChilesRellenosDeQueso<span class="token punctuation">,</span> GnocchiConSalsaDeTomate<span class="token punctuation">,</span> BerenjenasAlHornoConQueso
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p>Una array con las calorías de cada plato, relacionado por posición (en la posición 0 del array estarán las calorías del primer plato EnsaladaDeQuinoa - 350):</p>
+<pre data-role="codeBlock" data-info="kotlin" class="language-kotlin kotlin"><code>    int<span class="token punctuation">[</span><span class="token punctuation">]</span> caloriasPlatos <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> <span class="token number">350</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">250</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">350</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">350</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">,</span> <span class="token number">250</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></li>
 </ul>
+<p>Las funcionalidades que se deberán crear son las siguientes:</p>
+<ul>
+<li>
+<p>Método <strong>GeneraDietaSemana</strong>: que devolverá un array con 7 platos asignados aleatoriamente. No se deberán de repetir los platos en la semana.</p>
+</li>
+<li>
+<p><strong>MuestraDietaSemana</strong>: Muestra en pantalla los platos asignados a cada día con el siguiente formato, para lo que deberás de usar la enumaración de DiaSemana.</p>
+<pre data-role="codeBlock" data-info="console" class="language-console console"><code>Lunes: PastaConPesto
+Martes: PizzaVegetariana
+Miércoles: SopaDeLentejas
+Jueves: CazuelaDeVegetales
+Viernes: SushiVegetariano
+Sábado: WrapDeVerdurasYHummus
+Domingo: BerenjenasAlHornoConQueso
+</code></pre></li>
+<li>
+<p>Método <strong>DiaConMenosCalorias</strong> que devolverá el día de la semana tiene el plato con menor cantidad de calorías.</p>
+</li>
+<li>
+<p><strong>CaloriasDieta</strong> que calcula las calorías totales que se consumirán durante esa semana y las devuelve.</p>
+</li>
+</ul>
+<p>Además deberás crear un pequeño Test en la Main para probar el funcionamiento de todos los métodos.</p>
 </div>
+<div style="page-break-after:always;"></div>
 <div class="ejercicio">
 <h3 id="white_check_mark-ejercicio-5">✅ Ejercicio 5 </h3>
 <p>Crea una aplicación para gestionar la personalización de coches en un determinado taller.</p>
@@ -253,6 +318,16 @@ Este método tendrá la siguiente signatura:</p>
 <li>El programa comenzará mostrando un menú, con las tres opciónes y la que nos permita salir.</li>
 </ul>
 <p><strong>Nota:</strong> Deberás usar el método LeeEnum, para introducir los datos que se piden al usuario y tendrás que crear, como mínimo, un método para cada una de las posibles opciones del menú.</p>
+</div>
+<div class="ejercicio">
+<h3 id="ejercicio-6">Ejercicio 6 </h3>
+<p>Crea una enumeración para gestionar una respuesta, que  puede ser <strong>Si, No, Nose</strong>.</p>
+<p>Para eso se necesitaran tres métodos LeePregunta, VisualizaRespuesta y LeeEnum (del ejercicio 3 que no se modificará).</p>
+<ul>
+<li>Al método <strong><code>LeePregunta</code></strong> que pedirá que se introduzca una pregunta y la devolverá a la Main.</li>
+<li>La Main se encargará de mandar la pregunta a LeeEnum y quedará a la espera de la respuesta.</li>
+<li>A <strong><code>VisualizarRespuesta</code></strong> se le pasará la respuesta obtenida desde LeeEnum para ser mostrada.</li>
+</ul>
 </div>
 
       </div>
