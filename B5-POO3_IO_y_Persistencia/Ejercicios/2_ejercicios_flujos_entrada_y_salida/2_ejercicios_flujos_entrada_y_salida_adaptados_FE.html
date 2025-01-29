@@ -1,0 +1,316 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Flujos de Entrada y Salida</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v19/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+.markdown-preview.markdown-preview .caso_estudio {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .resumen {
+  background-color: #d6d6d6;
+  border: 2px solid #b0b0b0;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .ejercicio {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://programacioniesbalmis.github.io/Imagenes/BannersMoodle/banner.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .cabeceras_examen {
+  background-color: #fcfcfc;
+  border: 2px solid #b7bbb7;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+  color: black;
+  font-size: 8pt;
+}
+.markdown-preview.markdown-preview .ejercicio_control {
+  background-color: #f9faf9;
+  border: 2px solid #b4b7b4;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="ejercicios-flujos-de-entrada-y-salida">Ejercicios Flujos de Entrada y Salida </h1>
+<p><a href="./2_ejercicios_flujos_entrada_y_salida.pdf">Descargar estos ejercicios</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1" class="md-toc-link">
+            <p>Ejercicio 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2" class="md-toc-link">
+            <p>Ejercicio 2</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-4" class="md-toc-link">
+            <p>Ejercicio 4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark--ejercicio-5" class="md-toc-link">
+            <p>✅  Ejercicio 5</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark--ejercicio-6" class="md-toc-link">
+            <p>✅  Ejercicio 6</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-7" class="md-toc-link">
+            <p>Ejercicio 7</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark-ejercicio-8" class="md-toc-link">
+            <p>✅ Ejercicio 8</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#white_check_mark--ejercicio-9" class="md-toc-link">
+            <p>✅  Ejercicio 9</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-10" class="md-toc-link">
+            <p>Ejercicio 10</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-11" class="md-toc-link">
+            <p>Ejercicio 11</p>
+
+          </a></div>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h3 id="ejercicio-1">Ejercicio 1 </h3>
+<p>Realiza una programa que pida la ruta con el nombre del fichero incluido. El programa creará el fichero, le introducirá la información que desee el usuario y posteriormente lo abrirá para su lectura  y  visualización por pantalla. Realiza la gestión de errores adecuada (captura excepciones, comprueba ruta...)</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="ejercicio-2">Ejercicio 2 </h3>
+<p>Realiza un programa llamado <strong><code>mycp</code></strong> que funcione parecido al comando <strong><code>cp</code></strong> del <strong>Linux</strong>.<br>
+El programa hará la copia de un archivo origen en otro destino. Introduciendo ambos como argumentos de la línea de comando.</p>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h3 id="ejercicio-4">Ejercicio 4 </h3>
+<p>Dado un fichero de <strong>texto</strong> con codificación <strong>UTF8</strong>, escribe un programa que convierta los caracteres alfabéticos que aparecen en mayúscula por caracteres alfabéticos en minúscula y viceversa.<br>
+Deberás controlar las entradas correctas, como por ejemplo controlar que exista el archivo o controla la excepción que se lanza cuando se intenta modificar una archivo y el acceso no está autorizado.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="white_check_mark--ejercicio-5">✅  Ejercicio 5 </h3>
+<p>Escribe un programa que cree un fichero de texto de nombre <strong><code>datos.txt</code></strong>, que se encuentre en la carpeta <strong><code>datos</code></strong> del directorio raíz de la unidad <strong>C:</strong>.<br>
+El programa deberá comprobar si la carpeta existe y si no es así la creará. Si el fichero ya existía, se añadirá el contenido.</p>
+<p>En ese fichero iremos guardando <strong>carácter a carácter</strong> lo que se introduzca por teclado .Finalizaremos la introducción de caracteres al pulsar la tecla <strong><code>ESC</code></strong>.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="white_check_mark--ejercicio-6">✅  Ejercicio 6 </h3>
+<p>Crea una clase <strong>Microprocesador</strong> con tres atributos privados <strong>modelo, nucleos y frecuencia</strong>. La clase tendrá el constructor necesario para crear un microprocesador con todos los datos y la anulación del ToString para mostrar la instancia de la forma:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>Modelo: Intel Core I7
+Nucleos: 4
+Frecuencia: 3.6
+</code></pre><p>En la clase también crearemos un método <strong>ACSV</strong> que devolverá un string con los datos del microprocesador separados por <strong><code>;</code></strong>, para la instancia anterior la salida sería: <strong><code>Intel Core I7;4;3.6</code></strong><br>
+Otro de los métodos será <strong>AMicroprocesador</strong>, este método será de clase, le llegará una cadena con el formato anterior y se encargará de sacar la información para crear un microprocesador (puedes usar el método Split de cadena). Este método retornará el Microprocesador creado.</p>
+<p>Por otro lado, en la clase del programa principal tendremos los métodos necesarios que permitan:</p>
+<ul>
+<li>Devolver un array de microprocesadores con los datos recogidos por teclado.</li>
+<li>Guardar en un fichero llamado <strong>microprocesadores.csv</strong> cada uno de los microprocesadores en líneas distintas y con sus datos separados por <strong><code>;</code></strong>, para ello usaremos el método de la clase Microprocesador <strong>ACSV</strong>. Este método guardará un microprocesador cada vez, por lo que tendrá que abrir el fichero para añadir al final.</li>
+<li>Leer todo el fichero <strong>microprocesadores.csv</strong> y devolverá un array con los microprocesadores leídos, para ello usará el método <strong>AMicroprocesador</strong> de la clase Microprocesador.</li>
+</ul>
+<p>Realiza un programa principal que permita recoger, guardar y leer de fichero y mostrar los microprocesadores leídos.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="ejercicio-7">Ejercicio 7 </h3>
+<p>Realiza un programa que cuente el número de caracteres de texto <strong>unicode</strong> de un fichero. Para hacer la lectura del fichero debes usar un adaptador <strong><code>StreamReader</code></strong>.<br>
+El nombre del fichero será pasado como argumento en la <strong>línea de comandos</strong>.</p>
+</div> <!-- fin ejercicio -->
+<div style="page-break-after:always;"></div>
+<div class="ejercicio">
+<h3 id="white_check_mark-ejercicio-8">✅ Ejercicio 8 </h3>
+<p>Programa que permita <strong>buscar una palabra</strong> en uno o más ficheros de texto (introducidos en la línea de comandos).</p>
+<p>Se necesitará un método <strong><code>BuscaEnFichero(string ruta, string palabra)</code></strong>, que extraerá las <strong>líneas</strong> del fichero y llamará a la función <strong><code>BuscaEnCadena(string cadena, string palabra)</code></strong> que comprobará si las cadenas son iguales.</p>
+<p>En la línea de comandos introducirás la palabra y los nombres de fichero a buscar y te mostrará un mensaje para cada fichero, en el que te indicará si ha sido encontrada en ese fichero.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="white_check_mark--ejercicio-9">✅  Ejercicio 9 </h3>
+<p>Programa que muestre <strong>el/los número/os de línea/as</strong> que contengan una subcadena pedida al usuario en un fichero indicado.<br>
+Además del número de línea, nos indicará el <strong>número de apariciones</strong> de la subcadena en dicha línea.<br>
+Si no encuentra la subcadena en todo el fichero, nos mostrará un mensaje de "<em>CADENA NO ENCONTRADA</em>".</p>
+<p>Para hacer este programa crearemos una <strong>expresión regular</strong> a partir de la cadena que nosotros indiquemos, que será la que se busque con las líneas del fichero.</p>
+</div> <!-- fin ejercicio -->
+<div class="ejercicio">
+<h3 id="ejercicio-10">Ejercicio 10 </h3>
+<p>Un diptongo está formado por dos vocales, una fuerte y una débil, o dos débiles. Las vocales fuertes son <strong><code>a, e, o</code></strong>; las vocales débiles son <strong><code>i, u</code></strong>. La acentuación de <strong><code>u</code></strong> o <strong><code>i</code></strong> destruye el diptongo.</p>
+<p>Crea un programa que, a partir de un archivo que nosotros indiquemos desde teclado y usando expresiones regulares, nos permita:</p>
+<ol>
+<li>Mostrar todas las palabras con diptongo formado por dos vocales débiles, <strong>ordenadas</strong> y <strong>sin repetir</strong>.</li>
+<li>Mostrar del mismo modo todos los diptongos con <strong><code>a</code></strong>.</li>
+<li>Buscar una <strong>expresión regular mínima</strong> que muestre <strong>todos los diptongos</strong>.</li>
+</ol>
+</div> <!-- fin ejercicio -->
+<h3 id="ejercicio-11">Ejercicio 11 </h3>
+<p>Nos interesa detectar y analizar  correos electrónicos en un archivo de texto. Para ello haz una aplicación que:</p>
+<ul>
+<li>Solicite la ruta de un archivo de texto y verifique su existencia.</li>
+<li>Busque en el archivo todas las direcciones de correo usando expresiones regulares. (Obligatorio usar Match.Groups)</li>
+<li>Genere un informe con los resultados, indicando:</li>
+<li>Las direcciones de correo encontradas y su línea en el archivo.</li>
+<li>Un resumen de estadísticas, incluyendo:<br>
+Número de correos por dominio (sólo se admiten <a href="http://gmail.com">gmail.com</a>, <a href="http://iesdoctorbalmis.com">iesdoctorbalmis.com</a>).</li>
+<li>Cantidad de correos españoles (.es) vs. internacionales (otros dominios).</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
