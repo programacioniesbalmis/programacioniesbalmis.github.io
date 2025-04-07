@@ -214,29 +214,8 @@
 <div style="font-size: 75%; border-style: solid; border-width: thin; padding: 3pt;">
 <p><strong>Instrucciones para la realización de la prueba:</strong></p>
 <ul>
-<li>
-<p>Duración de la prueba <strong>2 h 45 m</strong> desde el comienzo de la misma.</p>
-</li>
-<li>
-<p>Lee atentamente el enunciado y no formules tus preguntas en voz alta, levanta la mano y espera a que el profesor te diga que tienes que hacer.</p>
-</li>
-<li>
-<p>Si te atascas en un apartado déjalo y pasa al siguiente. Cada apartado tiene su puntuación, independientemente del funcionamiento del programa final y el orden propuesto en el enunciado.</p>
-</li>
-<li>
-<p>Penalizará con <strong>0,1 décimas</strong> en cada uno de los siguientes casos:</p>
-<ul>
-<li>Llaves mal puestas e instrucciones mal tabuladas dentro de un bloque.</li>
-<li>No seguir las reglas de nomenclatura de C#.</li>
-<li>Identificador de variable o método que a juicio del profesor no esté bien puesto porque no sigue las reglas descritas en clase.</li>
-</ul>
-</li>
-<li>
-<p><strong>No se puede usar ningún tipo de dispositivo USB, ni código de ejercicios o ejemplos realizados en clase. Solo los pdf de apuntes que se te proporcionarán para la ocasión</strong>.</p>
-</li>
-<li>
-<p>En caso de pillar a algún alumno copiando o usando material no autorizado se le retirará el examen y su calificación en la evaluación será un suspenso.</p>
-</li>
+<li>Duración de la prueba <strong>2 h 45 m</strong> desde el comienzo de la misma.</li>
+<li><strong><a href="./ejemplo2.pdf">DESCARGAR ENUNCIADO</a></strong></li>
 </ul>
 </div>
 <div style="padding: 3pt; font-weight: bold; background-color: gainsboro; margin: 5pt 0pt 5pt 0pt;">
@@ -330,9 +309,6 @@ Cliente: Paco 88888888 H
 <p>Definiremos un método de instancia <strong><code>Llegada</code></strong> que reciba un <em><strong><code>Cliente</code></strong></em> y que <strong>encole un informe de ITV</strong> a la línea de vehículos <strong>menos ocupada</strong> que encontraremos usando el método anteriormente implementado. Para asignar un inspector al informe, lo <strong>desencolaremos</strong> de la cola de inspectores disponibles y si la cola está vacía se lanzará una excepción de tipo <strong><code>ItvException</code></strong>.</p>
 </li>
 <li>
-<p>Define un <strong>evento privado</strong> dentro de la clase denominado <strong><code>ItvPasada</code></strong> que será un delegado predefinido que recibirá un <strong><code>InformeItv</code></strong>. Lógicamente este evento servirá para que la ITV (publicador) notifique a un suscriptor de que un vehículo ha pasado la ITV pasándole su informe. Además, como el evento es privado, para suscribirnos a él, lo haremos mediante el método <strong><code>AñadeReceptorInformes</code></strong> que será público y recibirá el suscriptor de tipo <strong><code>IReceptorInformesItvAutorizado&lt;...&gt;</code></strong>.(Mira el programa principal de ejemplo)</p>
-</li>
-<li>
 <p>Definiremos un método de instancia <strong>privado</strong> denominado <strong><code>PasaItvAlSiguienteVehiculoEnLaLinea</code></strong> que recibirá una <strong><code>Linea</code></strong> y se encargará de pasar la Itv al siguiente vehículo en la misma siguiendo las siguientes especificaciones:</p>
 <ol>
 <li>
@@ -351,12 +327,10 @@ Cliente: Paco 88888888 H
 <p>Realizaremos las <strong>comprobaciones del informe</strong>. Donde las tres primeras serán son los porcentajes de <strong>Frenada</strong>, <strong>Integridad Estructural</strong> y <strong>Emisiones</strong>. Además, tendremos la comprobación de <strong>Luces</strong> que me devolverá una cadena que si es distinta de null recuerda que me indicará que la comprobación '<em>No es apta</em>'.<br>
 Para cada una de ellas crearemos una instancia de la clase <strong><code>Comprobacion</code></strong> y la añadiremos al informe.</p>
 <blockquote>
-<p>📌 <strong>Nota</strong>: Ten en cuenta que solo podremos pedirle <strong>una  sola vez</strong> el valor de la comprobación al vehículo deinforme ya que se genera aleatoriamente y si lo hiciéramos más deuna vez obtendríamos valores diferentes. Además, el porcentaje deemisiones solo podremos saberlo si el vehículo es un vehículo conemisiones. Los mensajes a añadir en el parámetro <strong><code>Observacion</code></strong> los puedesdeducir del ejemplo en el punto   7 de la clase <strong><code>InformeItv</code></strong>.</p>
+<p>📌 <strong>Nota</strong>: Ten en cuenta que solo podremos pedirle <strong>una sola vez</strong> el valor de la comprobación al vehículo deinforme ya que se genera aleatoriamente y si lo hiciéramos más deuna vez obtendríamos valores diferentes. Además, el porcentaje deemisiones solo podremos saberlo si el vehículo es un vehículo conemisiones. Los mensajes a añadir en el parámetro <strong><code>Observacion</code></strong> los puedesdeducir del ejemplo en el punto   7 de la clase <strong><code>InformeItv</code></strong>.</p>
 </blockquote>
-<p>Tras realizar las comprobaciones debes <strong>cerrar el informe</strong> y volver a <strong>encolar al inspector que lo lleva</strong> en la cola de inspectores como disponible.</p>
-</li>
-<li>
-<p>Por último debes '<em>disparar</em>' o desencadenar el evento <strong><code>ItvPasada</code></strong> para notificar el informe de la ITV a aquellos suscriptores de informe autorizados que se suscribieran mediante <strong><code>AñadeReceptorInformes</code></strong></p>
+<p>Tras realizar las comprobaciones debes <strong>cerrar el informe</strong> y volver a <strong>encolar al inspector que lo lleva</strong> en la cola de inspectores como disponible.<br>
+Además, debes crear una instancia de la clase <strong><code>DireccionGeneralDeTrafico</code></strong> y llamar al método <strong><code>Recibe</code></strong> pasándole el informe que acabamos de cerrar.</p>
 </li>
 </ol>
 </li>
