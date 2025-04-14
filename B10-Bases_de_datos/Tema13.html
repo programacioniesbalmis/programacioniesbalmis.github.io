@@ -166,6 +166,23 @@
   border-radius: 5px;
   box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
 }
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
@@ -428,7 +445,7 @@ comando<span class="token punctuation">.</span><span class="token function">Exec
 </code></pre><p>Si nos fijamos la forma de ejecutarlas es idéntica a las <strong>DDL</strong>.</p>
 <p>También podremos <strong>parametrizar las consultas</strong> para evitar <strong>SQL Injection</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-string">string</span></span> sql <span class="token operator">=</span> <span class="token string">""</span>"
-INSERT <span class="token return-type class-name">INTO</span> persona <span class="token return-type class-name"><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> apellidos<span class="token punctuation">,</span> edad<span class="token punctuation">)</span></span> VALUES <span class="token punctuation">(</span>@nombre<span class="token punctuation">,</span> @apellidos<span class="token punctuation">,</span> @edad<span class="token punctuation">)</span>"<span class="token punctuation">;</span>
+INSERT <span class="token return-type class-name">INTO</span> persona <span class="token return-type class-name"><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> apellidos<span class="token punctuation">,</span> edad<span class="token punctuation">)</span></span> VALUES <span class="token punctuation">(</span>@nombre<span class="token punctuation">,</span> @apellidos<span class="token punctuation">,</span> @edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token string">""</span>"<span class="token punctuation">;</span>
 
 <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -467,102 +484,79 @@ comando<span class="token punctuation">.</span><span class="token function">Exec
 <p>Es importante también que <strong>tengamos en cuenta si el campo es nullable o no</strong> para tenerlo en cuenta en el casting a realizar.</p>
 <h3 id="transacciones">Transacciones </h3>
 <p>Las transacciones son un conjunto de operaciones que se ejecutan como una sola unidad. Si una de las operaciones falla, se deshacen todas las operaciones anteriores. Esto garantiza la integridad de los datos y evita inconsistencias.</p>
-<p>Esto es especialmente importante a la hora de mantener la integridad referencial en las relaciones entre tablas. Imaginemos que queremos insertar una mascota y su dueño en la tabla <strong><code>persona</code></strong>. Primero insertaremos la persona y después la mascota. Si la inserción de la <strong><code>mascota</code></strong> en la tabla mascota falla, deberemos deshacer la inserción de la persona.</p>
-<p>Para el siguiente ejemplo vamos a suponer que el <strong>id</strong> de persona ya no es autonumérico sino que es de tipo cadena y se genera en la aplicación mediante un <strong>UUID</strong>.</p>
-<pre data-role="codeBlock" data-info="csharp {highlight=[27,30,34]}" class="language-csharp csharp" data-line="27,30,34"><code><span class="token keyword keyword-try">try</span>
+<p>Esto es especialmente importante a la hora de mantener la integridad referencial en las relaciones entre tablas.<br>
+Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona</code></strong> y queremos que se inserten las dos o ninguna. Si la segunda inserción falla, queremos que se deshaga la otra.</p>
+<p>Para el siguiente ejemplo vamos a suponer que el <strong>id</strong> de persona ya no es autonumérico sino que es de tipo cadena y se genera en la aplicación mediante un <strong>UUID</strong> y vamos a usar el mismo uuid para ambas inserciones.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Principal</span>
 <span class="token punctuation">{</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> id <span class="token operator">=</span> UUId<span class="token punctuation">.</span><span class="token function">NewGuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"N"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> sql <span class="token operator">=</span> <span class="token string">""</span>"
-    INSERT <span class="token return-type class-name">INTO</span> persona <span class="token return-type class-name"><span class="token punctuation">(</span>id<span class="token punctuation">,</span> nombre<span class="token punctuation">,</span> apellidos<span class="token punctuation">,</span> edad<span class="token punctuation">)</span></span> VALUES <span class="token punctuation">(</span>@id<span class="token punctuation">,</span> @nombre<span class="token punctuation">,</span> @apellidos<span class="token punctuation">,</span> @edad<span class="token punctuation">)</span>"<span class="token punctuation">;</span>
-    <span class="token string">""</span>"<span class="token punctuation">;</span>
-    <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> insertaPersona <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaPersona<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@id"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaPersona<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@nombre"</span><span class="token punctuation">,</span> <span class="token string">"Juan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaPersona<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@apellidos"</span><span class="token punctuation">,</span> <span class="token string">"García"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaPersona<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@edad"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Hacemos una pequeñas modificaciones en la tabla persona.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">CrearTablaPersona</span><span class="token punctuation">(</span><span class="token class-name">SqliteConnection</span> conexion<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> sql <span class="token operator">=</span> <span class="token string">""</span>"
+        CREATE TABLE IF NOT <span class="token return-type class-name">EXISTS</span> persona <span class="token punctuation">(</span>
+            <span class="token return-type class-name">id</span> <span class="token function">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> PRIMARY KEY <span class="token class-name">NOT</span> NULL<span class="token punctuation">,</span>
+            <span class="token return-type class-name">nombre</span> <span class="token function">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token class-name">NOT</span> NULL<span class="token punctuation">,</span> 
+            <span class="token return-type class-name">apellidos</span> <span class="token function">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token class-name">NOT</span> NULL<span class="token punctuation">,</span>
+            <span class="token class-name">edad</span> INTEGER
+        <span class="token punctuation">)</span>
+        <span class="token string">""</span>"<span class="token punctuation">;</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        comando<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion <span class="token operator">=</span> <span class="token string">"Data Source=personas.db"</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteConnection</span> conexion <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>cadenaConexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        conexion<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">SqliteTransaction<span class="token punctuation">?</span></span> transaction <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-try">try</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">CrearTablaPersona</span><span class="token punctuation">(</span>conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> sqlMascota <span class="token operator">=</span> <span class="token string">""</span>"
-    INSERT <span class="token return-type class-name">INTO</span> mascota <span class="token return-type class-name"><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> especie<span class="token punctuation">,</span> idPersona<span class="token punctuation">)</span></span> VALUES <span class="token punctuation">(</span>@nombre<span class="token punctuation">,</span> @especie<span class="token punctuation">,</span> @idPersona<span class="token punctuation">)</span>"<span class="token punctuation">;</span>
-    <span class="token string">""</span>"<span class="token punctuation">;</span>
-    <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> insertaMascota <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sqlMascota<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaMascota<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@nombre"</span><span class="token punctuation">,</span> <span class="token string">"Rex"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaMascota<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@especie"</span><span class="token punctuation">,</span> <span class="token string">"Perro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaMascota<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@idPersona"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword keyword-string">string</span></span> id <span class="token operator">=</span> Guid<span class="token punctuation">.</span><span class="token function">NewGuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"N"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword keyword-string">string</span></span> sql <span class="token operator">=</span> <span class="token string">""</span>"
+                        INSERT <span class="token return-type class-name">INTO</span> persona <span class="token return-type class-name"><span class="token punctuation">(</span>id<span class="token punctuation">,</span> nombre<span class="token punctuation">,</span> apellidos<span class="token punctuation">,</span> edad<span class="token punctuation">)</span></span>
+                        VALUES <span class="token punctuation">(</span>@id<span class="token punctuation">,</span> @nombre<span class="token punctuation">,</span> @apellidos<span class="token punctuation">,</span> @edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token string">""</span>"<span class="token punctuation">;</span>
+            <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> insertaPersona1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona1<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@id"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona1<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@nombre"</span><span class="token punctuation">,</span> <span class="token string">"Juan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona1<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@apellidos"</span><span class="token punctuation">,</span> <span class="token string">"García"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona1<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@edad"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> insertaPersona2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// Descomentar la siguiente línea para provocar un error de clave duplicada</span>
+            <span class="token comment">// id = Guid.NewGuid().ToString("N");</span>
+            insertaPersona2<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@id"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona2<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@nombre"</span><span class="token punctuation">,</span> <span class="token string">"María"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona2<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@apellidos"</span><span class="token punctuation">,</span> <span class="token string">"Sánchez"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona2<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@edad"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    conexion<span class="token punctuation">.</span><span class="token function">BeginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaPersona<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    insertaMascota<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    conexion<span class="token punctuation">.</span><span class="token function">Commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// Inicio una transacción en la conexión y signo la transacción a los comandos</span>
+            transaction <span class="token operator">=</span> conexion<span class="token punctuation">.</span><span class="token function">BeginTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona1<span class="token punctuation">.</span>Transaction <span class="token operator">=</span> transaction<span class="token punctuation">;</span>
+            insertaPersona2<span class="token punctuation">.</span>Transaction <span class="token operator">=</span> transaction<span class="token punctuation">;</span>
+            <span class="token comment">// Ejecuto los comandos</span>
+            insertaPersona1<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            insertaPersona2<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// Si todo va bien, confirmo la transacción</span>
+            transaction<span class="token punctuation">.</span><span class="token function">Commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">SqliteException</span> e<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Si ocurre un error, deshago todos los cambios realizados en la transacción hasta el error.</span>
+            transaction<span class="token punctuation">?.</span><span class="token function">Rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">SqliteException</span> e<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    conexion<span class="token punctuation">.</span><span class="token function">Rollback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="27" data-start="27">
-</div></div><div class="line-highlight-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div aria-hidden="true" class="line-highlight" data-range="30" data-start="30">
-</div></div></pre><div style="page-break-after:always;"></div>
+</code></pre><div style="page-break-after:always;"></div>
 <p>Si nos fijamos hacemos los siguiente:</p>
 <ol>
-<li><strong><code>BeginTransaction()</code></strong></li>
-<li>Hago los <strong><code>INSERT</code></strong>, <strong><code>DELETE</code></strong> o <strong><code>UPDATE</code></strong> que se se quedan en una caché.</li>
-<li>Si durante la ejecución de las operaciones ocurre alguna excepción, se ejecuta <strong><code>Rollback()</code></strong> para deshacer todas las operaciones desde el <strong><code>BeginTransaction()</code></strong>.</li>
-<li><strong><code>Commit()</code></strong> para dar por válidas todas las operaciones en caché.</li>
+<li>Obtengo la transacción con <strong><code>transaction = conexion.BeginTransaction();</code></strong></li>
+<li>La asocio con los comandos <strong><code>SqliteCommand</code></strong> que voy a ejecutar.</li>
+<li>Hago los <strong><code>INSERT</code></strong>, <strong><code>DELETE</code></strong> o <strong><code>UPDATE</code></strong> con los comando que he asociado a la transacción.</li>
+<li>Si durante la ejecución de los comandos ocurre alguna excepción, se ejecuta <strong><code>transaction?.Rollback()</code></strong> para deshacer todas las operaciones desde el <strong><code>BeginTransaction()</code></strong>.</li>
+<li><strong><code>transaction.Commit()</code></strong> para dar por válidas todas los comandos.</li>
 </ol>
 <div class="caso_estudio">
 <p>🎓 <strong>Caso de estudio:</strong></p>
