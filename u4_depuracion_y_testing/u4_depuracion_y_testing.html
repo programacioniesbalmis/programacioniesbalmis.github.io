@@ -1,0 +1,721 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 4</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-4">Unidad 4 </h1>
+<p>Descargar estos apunte en <a href="./u4_depuracion_y_testing.pdf">pdf</a> o <a href="./u4_depuracion_y_testing.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#proyecto-de-ejemplo-para-trabajar-el-tema" class="md-toc-link">
+            <p>Proyecto de ejemplo para trabajar el tema</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#diferencias-entre-versión-de-desarrollo-y-producción" class="md-toc-link">
+            <p>Diferencias entre versión de desarrollo y producción</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#depurando-la-ejecución-con-vs-code" class="md-toc-link"><p>Depurando la ejecución con VS Code</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#puntos-de-ruptura-breakpoints" class="md-toc-link">
+            <p>Puntos de ruptura (breakpoints)</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#aserciones" class="md-toc-link"><p>Aserciones</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#utilidad-de-las-aserciones" class="md-toc-link">
+            <p>Utilidad de las aserciones</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usando-aserciones-en-csharp" class="md-toc-link">
+            <p>Usando Aserciones en CSharp</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#testing-a-través-de-test-unitarios" class="md-toc-link"><p>Testing a través de Test Unitarios</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#importancia-de-los-test-unitarios-el-proceso-de-desarrollo" class="md-toc-link">
+            <p>Importancia de los test unitarios el proceso de desarrollo</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción-al-desarrollo-guiado-por-pruebas-tdd" class="md-toc-link">
+            <p>Introducción al Desarrollo Guiado por Pruebas (TDD)</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#test-unitarios-en-csharp" class="md-toc-link">
+            <p>Test unitarios en CSharp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#crear-un-proyecto-de-test-unitarios-con-xunit" class="md-toc-link">
+            <p>Crear un Proyecto de Test Unitarios con xUnit</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#creando-nuestro-primer-test-unitario" class="md-toc-link">
+            <p>Creando nuestro primer test unitario</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#gestionando-errores-en-los-tests-unitarios" class="md-toc-link">
+            <p>Gestionando errores en los tests unitarios</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="introducción">Introducción </h2>
+<p>El proceso de depuración es una parte esencial del desarrollo de software. Consiste en identificar y corregir errores o "bugs" en el código, asegurando que el programa funcione como se espera.</p>
+<div class="row">
+<div class="col-sm-7 my-auto">
+<p>Este proceso se puede realizar de varias formas, como:</p>
+<ul>
+<li>Utilizando <strong>herramientas de depuración</strong> que permiten ejecutar el programa paso a paso, inspeccionar variables y evaluar expresiones.</li>
+<li>Utilizando <strong>aserciones</strong> para validar supuestos en el código.</li>
+<li>Utilizando <strong>pruebas automatizadas</strong> para verificar el comportamiento del código.</li>
+</ul>
+<p>Existen más formas pero quedarán fuera del alcance del módulo y se tratarán en <strong>Entronos de Desarrollo</strong>.</p>
+</div>
+<div class="col-sm-5 my-auto">
+<p><img src="assets/imagenes/temas/depurar.png" alt="nombre"></p>
+</div>
+</div>
+<p>Además, la depuración no solo se trata de encontrar errores, sino también de comprender el flujo del programa y cómo interactúan las diferentes partes del código y examinar el contenido de las variables. Esto es especialmente importante en lenguajes como C#, donde la sintaxis y las estructuras de control pueden ser complejas.</p>
+<p>En este tema, exploraremos cómo depurar y testar un proyecto en C# utilizando Visual Studio Code (VS Code).</p>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.</div>
+        <div class="autor">- Brian Kernighan</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="proyecto-de-ejemplo-para-trabajar-el-tema">Proyecto de ejemplo para trabajar el tema </h2>
+<p>Para ver las diferentes formas de depurar y testear un proyecto en C#, vamos a utilizar un proyecto de ejemplo que ya hemos visto en el tema anterior. Este proyecto es una aplicación de consola que calcula el área de un triángulo a partir de su base y altura.</p>
+<div class="box_bg_lightgray">
+<p><strong>Enunciado:</strong></p>
+<div class="row">
+<div class="col-sm-10 my-auto">
+<p>Algoritmo que toma como dato de entrada la base y la altura de un triángulo  en centímetros y calcula el área del mismo. El resultado se mostrará por pantalla. Para calcular el área de un triángulo debes aplicar la fórmula indicada.</p>
+</div>
+<div class="col-sm-2 my-auto">
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle mathsize="1.2em"><mi>A</mi><mo>=</mo><mfrac><mrow><mi>b</mi><mo>⋅</mo><mi>h</mi></mrow><mn>2</mn></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\large A = \frac {b \cdot h} {2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.82em;"></span><span class="mord mathnormal sizing reset-size6 size7">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel sizing reset-size6 size7">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4689em;vertical-align:-0.8232em;"></span><span class="mord sizing reset-size6 size7"><span class="mopen nulldelimiter sizing reset-size7 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.514em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.43em;"><span class="pstrut" style="height:3.2em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.877em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size7 size6"></span></span></span></span></span></span></p>
+</div>
+</div>
+<p>La ejecución <strong>debe cumplir la siguiente especificación de entrada y salida</strong>:</p>
+<pre class="salida_consola">Introduce la base del triángulo en cm: 8
+Introduce la altura del triángulo en cm: 9
+El área del triángulo es: 36 cm²
+</pre>
+</div> <!-- fin ejemplo -->
+<div class="row">
+<div class="col-sm-8 my-auto">
+<p>Supongamos que <strong>creamos una solución</strong>, como hemos visto en la Unidad 2, denominada <strong><code>proyecto</code></strong> con <strong>una aplicación de consola como proyecto</strong> denominado <strong><code>aplicacion</code></strong>. La estructura de nuestro proyecto sería la siguiente:</p>
+<p>Para crearlo, puedes utilizar VS Code como se explica en la Unidad 2 o utilizar la terminal de Windows con los siguientes comandos:</p>
+</div>
+<div class="col-sm-4 my-auto">
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="165.6px" preserveAspectRatio="none" style="width:168px;height:165px;background:#FFFFFF;" version="1.1" viewBox="0 0 168 165" width="168px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="47.4609">[proyecto]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="74.4" x="43.2" y="65.5734">[aplicacion]</text><path d="M44.4,73.65 L44.4,74.85 L54,74.85 L54,73.65 L44.4,73.65 M44.4,76.05 L44.4,83.142 C44.4,83.202 44.448,83.25 44.508,83.25 L53.88,83.25 C53.94,83.25 53.988,83.202 53.988,83.142 L53.988,76.05 L50.424,76.05 L50.424,77.286 L47.988,77.286 L47.988,76.05 L44.388,76.05 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="55.2" y="83.6859">[bin]</text><path d="M44.4,91.7625 L44.4,92.9625 L54,92.9625 L54,91.7625 L44.4,91.7625 M44.4,94.1625 L44.4,101.2545 C44.4,101.3145 44.448,101.3625 44.508,101.3625 L53.88,101.3625 C53.94,101.3625 53.988,101.3145 53.988,101.2545 L53.988,94.1625 L50.424,94.1625 L50.424,95.3985 L47.988,95.3985 L47.988,94.1625 L44.388,94.1625 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="55.2" y="101.7984">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="116.4" x="43.2" y="119.9109">aplicacion.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8" x="43.2" y="138.0234">Program.cs</text><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="84" x="31.2" y="156.1359">proyecto.sln</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="58.4812"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="77.7938" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="114.0188" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="132.1313" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="150.2438"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="150.2438" y2="150.2438"></line><!--SRC=[POzVIyCm5CNVyodkasoHbMvs8aLak3z2xLYntLxKGPh6cj4c9KcBO-oxcrNQFPYNUpc_d7FldMb3bD6aC0XGJ4d1OEnCR7z2ODz-xd_is-wKjEKM7czI-VFqNYbvPDJ8pp-vrqbLS4eebw8ZFKhvVqscXwk6yTNjK6r7733kQQHahaXfGJSIusuBHnS2OsZ16PtHZ8ciFGf51H5ckmwXOKhRtCjvxiHpxWR9Tmqhbi9u2XFNzrpVdS9ycS053z7W9Gf1orfH1XdNHl6qDjO_H05f2BpLml2I-R2fc0WMhvq0Iz5m9KN9X471RdtzSE-Ddhc1c2cx2UpMQC6-I5qOww0ouoBtOPkiHWye92AlIMwpcKPpQNFLqOTb_0i0]--></g></svg></p></div>
+</div>
+<pre class="salida_consola">&gt; mkdir proyecto
+&gt; cd proyecto
+proyecto&gt; dotnet new sln -n proyecto
+proyecto&gt; dotnet new console -n aplicacion
+proyecto&gt; dotnet sln add aplicacion/aplicacion.csproj
+</pre> <!-- fin salida consola -->
+<div style="page-break-after:always;"></div>
+<p>La implementación correcta en <strong><code>Program.cs</code></strong> de nuestro proyecto de aplicación sería la siguiente:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce la base del triángulo en cm: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> baseTriangulo_cm <span class="token operator">=</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce la altura del triángulo en cm: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> alturaTriangulo_cm <span class="token operator">=</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> areaTriangulo_cm <span class="token operator">=</span> baseTriangulo_cm <span class="token operator">*</span> alturaTriangulo_cm <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> salida <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"El área del triángulo es: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">areaTriangulo_cm</span><span class="token punctuation">}</span></span><span class="token string"> cm²"</span></span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="diferencias-entre-versión-de-desarrollo-y-producción">Diferencias entre versión de desarrollo y producción </h2>
+<div class="row">
+<div class="col-sm-7 my-auto">
+<p>Hasta hora cuando compilamos un programa, este se ejecuta en modo <strong>debug</strong>. En este modo el compilador <strong>genera información adicional para ayudar a depurar el código</strong>. Por ejemplo, los <strong>nombres de las variables y los números de línea</strong>. Esto hace que el programa sea más lento, tenga más tamaño y consuma más memoria. Esta versión es la que se genera por defecto al compilar y como se ve en el árbol de directorios de un proyecto de C#, genera una carpeta <strong><code>bin/Debug/netX.0</code></strong> donde <strong><code>X.0</code></strong> es la versión de .NET que estés usando.</p>
+</div>
+<div class="col-sm-5">
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="201.6px" preserveAspectRatio="none" style="width:163px;height:201px;background:#FFFFFF;" version="1.1" viewBox="0 0 163 201" width="163.2px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="47.4609">[proyecto]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="74.4" x="43.2" y="65.5734">[aplicacion]</text><path d="M44.4,73.65 L44.4,74.85 L54,74.85 L54,73.65 L44.4,73.65 M44.4,76.05 L44.4,83.142 C44.4,83.202 44.448,83.25 44.508,83.25 L53.88,83.25 C53.94,83.25 53.988,83.202 53.988,83.142 L53.988,76.05 L50.424,76.05 L50.424,77.286 L47.988,77.286 L47.988,76.05 L44.388,76.05 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="30" x="55.2" y="83.6859">[bin]</text><path d="M56.4,91.7625 L56.4,92.9625 L66,92.9625 L66,91.7625 L56.4,91.7625 M56.4,94.1625 L56.4,101.2545 C56.4,101.3145 56.448,101.3625 56.508,101.3625 L65.88,101.3625 C65.94,101.3625 65.988,101.3145 65.988,101.2545 L65.988,94.1625 L62.424,94.1625 L62.424,95.3985 L59.988,95.3985 L59.988,94.1625 L56.388,94.1625 " fill="#0000FF" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#0000FF" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="52.8" x="67.2" y="101.7984">[Debug]</text><path d="M68.4,109.875 L68.4,111.075 L78,111.075 L78,109.875 L68.4,109.875 M68.4,112.275 L68.4,119.367 C68.4,119.427 68.448,119.475 68.508,119.475 L77.88,119.475 C77.94,119.475 77.988,119.427 77.988,119.367 L77.988,112.275 L74.424,112.275 L74.424,113.511 L71.988,113.511 L71.988,112.275 L68.388,112.275 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="48" x="79.2" y="119.9109">[netX.0]</text><path d="M44.4,127.9875 L44.4,129.1875 L54,129.1875 L54,127.9875 L44.4,127.9875 M44.4,130.3875 L44.4,137.4795 C44.4,137.5395 44.448,137.5875 44.508,137.5875 L53.88,137.5875 C53.94,137.5875 53.988,137.5395 53.988,137.4795 L53.988,130.3875 L50.424,130.3875 L50.424,131.6235 L47.988,131.6235 L47.988,130.3875 L44.388,130.3875 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="55.2" y="138.0234">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="111.6" x="43.2" y="156.1359">aplicacion.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8" x="43.2" y="174.2484">Program.cs</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="79.2" x="31.2" y="192.3609">proyecto.sln</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="58.4812"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="34.8" y="76.5938"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="77.7938" y2="77.7938"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="46.8" y="94.7063"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="36" y1="80.1938" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="45.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="48" x2="48" y1="98.3062" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="48" x2="57.6" y1="114.0188" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="132.1313" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="150.2438"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="150.2438" y2="150.2438"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="168.3563"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="168.3563" y2="168.3563"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="186.4688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="186.4688" y2="186.4688"></line><!--SRC=[JP1RQm8n48NVyolcgUYAosfjAKiHgPU2LIfrbKAha8tJRIGcaejKnF_Uk7LtcvSCtpbpCfcUiLHRGuKbGEQC2eHMsFRrYO0_wtxykSwhKv9V3NYyITLFzsElrH6PLQi_N7Aw5vnHnfKib0O4mLLCkLm5GS5z3rD2wJWL3hkbQO2fo_xRIb-cwR5xTKcqxs5KlN75AjrMh9ebPCOFl2sLcLO-RETnCNxndz08cRCpEPCUoas-6p8JLDh5T087rCO7NhOKjJlXRItvTZ3255ftq8xYJXH7Tz0V9d2HwwJsF9k0KKupX0qtLlFKMTzV9sDweF3cfEKxZE5rZt8yU2a03EM1QoLtA2qPBwULuRxJVE8MvgZz9B2SaW5-KIUixs1gmsKMmo8PDH_8XChCqSndeo5zvNFrCORX_1S0]--></g></svg></p></div>
+</div>
+<p>Sin embargo, al cliente le entregamos una versión <strong>release</strong>. En este modo el compilador <strong>optimiza el código</strong> para que sea más rápido y consuma menos recursos. Por lo que no genera información adicional para depurar el código. Esta versión es la que se genera al compilar en modo <strong>release</strong> y como se ve en el árbol de directorios de un proyecto de C#, genera una carpeta <strong><code>bin/Release/netX.0</code></strong> donde <strong><code>X.0</code></strong> es la versión de .NET que estés usando.</p>
+<div class="row">
+<div class="col-sm-7 my-auto">
+<p>Para generar esta versión, deberemos hacerlo a través del CLI de dos formas posibles:</p>
+<ol>
+<li><strong><code>dotnet build -c Release</code></strong>: Nos compilará para Release y el resultado estará en la carpeta <strong><code>bin/Release/netX.0</code></strong>.</li>
+<li><strong><code>dotnet publish -c Release -o ./deploy</code></strong>: Nos compilará para Release y el resultado estará en la carpeta <strong><code>deploy</code></strong> en la raíz de nuestro proyecto. Esta opción es la que se suele usar para subir a producción un programa.</li>
+</ol>
+</div>
+<div class="col-sm-5">
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="237.6px" preserveAspectRatio="none" style="width:163px;height:237px;background:#FFFFFF;" version="1.1" viewBox="0 0 163 237" width="163.2px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="47.4609">[proyecto]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="74.4" x="43.2" y="65.5734">[aplicacion]</text><path d="M44.4,73.65 L44.4,74.85 L54,74.85 L54,73.65 L44.4,73.65 M44.4,76.05 L44.4,83.142 C44.4,83.202 44.448,83.25 44.508,83.25 L53.88,83.25 C53.94,83.25 53.988,83.202 53.988,83.142 L53.988,76.05 L50.424,76.05 L50.424,77.286 L47.988,77.286 L47.988,76.05 L44.388,76.05 " fill="#0000FF" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#0000FF" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="54" x="55.2" y="83.6859">[deploy]</text><path d="M44.4,91.7625 L44.4,92.9625 L54,92.9625 L54,91.7625 L44.4,91.7625 M44.4,94.1625 L44.4,101.2545 C44.4,101.3145 44.448,101.3625 44.508,101.3625 L53.88,101.3625 C53.94,101.3625 53.988,101.3145 53.988,101.2545 L53.988,94.1625 L50.424,94.1625 L50.424,95.3985 L47.988,95.3985 L47.988,94.1625 L44.388,94.1625 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="30" x="55.2" y="101.7984">[bin]</text><path d="M56.4,109.875 L56.4,111.075 L66,111.075 L66,109.875 L56.4,109.875 M56.4,112.275 L56.4,119.367 C56.4,119.427 56.448,119.475 56.508,119.475 L65.88,119.475 C65.94,119.475 65.988,119.427 65.988,119.367 L65.988,112.275 L62.424,112.275 L62.424,113.511 L59.988,113.511 L59.988,112.275 L56.388,112.275 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="51.6" x="67.2" y="119.9109">[Debug]</text><path d="M56.4,127.9875 L56.4,129.1875 L66,129.1875 L66,127.9875 L56.4,127.9875 M56.4,130.3875 L56.4,137.4795 C56.4,137.5395 56.448,137.5875 56.508,137.5875 L65.88,137.5875 C65.94,137.5875 65.988,137.5395 65.988,137.4795 L65.988,130.3875 L62.424,130.3875 L62.424,131.6235 L59.988,131.6235 L59.988,130.3875 L56.388,130.3875 " fill="#0000FF" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#0000FF" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="64.8" x="67.2" y="138.0234">[Release]</text><path d="M68.4,146.1 L68.4,147.3 L78,147.3 L78,146.1 L68.4,146.1 M68.4,148.5 L68.4,155.592 C68.4,155.652 68.448,155.7 68.508,155.7 L77.88,155.7 C77.94,155.7 77.988,155.652 77.988,155.592 L77.988,148.5 L74.424,148.5 L74.424,149.736 L71.988,149.736 L71.988,148.5 L68.388,148.5 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="48" x="79.2" y="156.1359">[netX.0]</text><path d="M44.4,164.2125 L44.4,165.4125 L54,165.4125 L54,164.2125 L44.4,164.2125 M44.4,166.6125 L44.4,173.7045 C44.4,173.7645 44.448,173.8125 44.508,173.8125 L53.88,173.8125 C53.94,173.8125 53.988,173.7645 53.988,173.7045 L53.988,166.6125 L50.424,166.6125 L50.424,167.8485 L47.988,167.8485 L47.988,166.6125 L44.388,166.6125 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="55.2" y="174.2484">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="111.6" x="43.2" y="192.3609">aplicacion.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8" x="43.2" y="210.4734">Program.cs</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="79.2" x="31.2" y="228.5859">proyecto.sln</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="58.4812"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="77.7938" y2="77.7938"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="34.8" y="94.7063"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="36" y1="98.3062" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="45.6" y1="114.0188" y2="114.0188"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="46.8" y="130.9313"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="36" y1="98.3062" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="36" x2="45.6" y1="132.1313" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="48" x2="48" y1="134.5313" y2="150.2438"></line><line style="stroke:#888888;stroke-width:1.2;" x1="48" x2="57.6" y1="150.2438" y2="150.2438"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="168.3563"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="168.3563" y2="168.3563"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="186.4688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="186.4688" y2="186.4688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="62.0813" y2="204.5812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="204.5812" y2="204.5812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="222.6938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="222.6938" y2="222.6938"></line><!--SRC=[RP1VQy8m5CNVyodkqz0EItKwHXaYyy_0AHEjCjWKqlQkYyH4abHMnE- -M6tjm_AIo- -SUxZtzhIXocZA3G6oY2X7QBejMny9sBVf-r-Rl3e6-NSFptUX_Er-xfNCC39oVS4bftlE8XenAGh5If7aKlaXJx7hE5TZZ7ikixNZbBPI2fcey39wW66Qh2lulzWvSgGQg_sbCr4qwrvz0is7wrLcl60PRc_ijeiRQRlmjbHcIjgmdSN5-iKzNCq5vF14JgI78iwFIsQS2hESJk20Ijl4yvczLjjzg0K_AOmmX6O7MfxVzdol0_rX06UvJcglimbecQe88MRQA1QcnlRNoPWUACnJOTWEVNZVenWFtWe0Gt5WIeeT2aF6g-dDyDXkl3032rHs4bXDoG2_QSgDxOXap4JYmp8ODPx8X8eafOdDHatwqkQgp8VXuWy0]--></g></svg></p></div>
+</div>
+<p>Puedes probar las a generar en nuestro proyecto de ejemplo con los siguientes comandos:</p>
+<pre class="salida_consola">proyecto&gt; cd .\aplicacion
+<b>proyecto\aplicacion&gt; dotnet build</b>
+Restauración completada (0,5s)
+  aplicacion realizado correctamente (0,7s) → bin\Debug\netX.0\aplicacion.dll
+
+Compilación realizado correctamente en 1,9s
+<b>proyecto\aplicacion&gt; dotnet publish -c Release -o ./deploy</b>
+Restauración completada (0,5s)
+  aplicacion realizado correctamente (3,7s) → deploy\
+
+Compilación realizado correctamente en 4,9s
+</pre> <!-- fin salida consola -->
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En realidad el proceso tiene más pasos y es algo más complejo, pero este ejemplo es solo para entender la idea general y ver la diferencia entre ambas versiones.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="depurando-la-ejecución-con-vs-code">Depurando la ejecución con VS Code </h2>
+<p>El proceso de depuración es muy similar en todos los lenguajes y entornos de desarrollo. En C#, Visual Studio Code (VS Code) proporciona herramientas integradas para depurar aplicaciones de consola, lo que facilita la identificación y corrección de errores en el código.</p>
+<p>Veamos cuales son estas herramientas y cómo podemos utilizarlas para depurar nuestro proyecto de ejemplo...</p>
+<p><img src="assets/imagenes/temas/depuracion1.png" alt="alt text" style="display:block;margin:0 auto;width:100%;max-width:650px;"></p>
+<p>1️⃣ Deberemos seleccionar el programa principal del proyecto que queremos depurar.<br>
+2️⃣ Desplegamos en la parte superior derecha las opciones de ejecución.<br>
+3️⃣ Seleccionamos "<em>Depurar proyecto asociado a este archivo</em>".</p>
+<p><img src="assets/imagenes/temas/depuracion2.png" alt="alt text" style="display:block;margin:0 auto;width:100%;max-width:650px;"></p>
+<p>4️⃣ Nada más pulsar el botón de depuración abandonaremos la opción de explorador de archivos y nos aparecerá la pestaña de <strong>Depuración</strong> (debug) con diferentes secciones como: <strong><code>VARIABLES</code></strong>, <strong><code>INSPECCIÓN</code></strong>, <strong><code>PILA DE LLAMADAS</code></strong>, etc.<br>
+5️⃣ En la parte superior nos aparecerá una barra de herramientas con diferentes opciones como: <strong><code>Continuar</code></strong>, <strong><code>Detener</code></strong>, <strong><code>Paso a paso</code></strong>, <strong><code>Paso a paso por entrada</code></strong>, etc. Estas opciones nos permiten controlar la ejecución del programa durante la depuración.<br>
+6️⃣ Por último, puedes comprobar que la ejecución en el terminal se ha detenido a la espera de introducir la base del triángulo.</p>
+<h3 id="puntos-de-ruptura-breakpoints">Puntos de ruptura (breakpoints) </h3>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<p><img src="assets/imagenes/temas/berak_point1.png" alt="alt text"></p>
+</div>
+<div class="col-sm-6 my-auto">
+<p><img src="assets/imagenes/temas/berak_point2.png" alt="alt text"></p>
+</div>
+</div>
+<p>1️⃣ Nos situamos a la izquierda de la línea de código donde queremos poner el punto de ruptura (breakpoint) y nos ofrecerá hacer click izquierdo para añadirlo.<br>
+2️⃣ Una vez añadido, veremos un punto rojo que indica que se ha añadido correctamente. Si hacemos click derecho sobre él, nos ofrecerá un menú contextual con diferentes opciones.</p>
+<p>Si volvemos a ejecutar el programa en modo depuración, la ejecución se detendrá en el punto de ruptura que hemos añadido en la línea 12. Esto nos permitirá inspeccionar el estado del programa en ese momento, ver el valor de las variables y evaluar expresiones...</p>
+<p><img src="assets/imagenes/temas/depuracion3.png" alt="alt text" style="display:block;margin:0 auto;width:100%;max-width:650px;"></p>
+<p><img src="assets/imagenes/temas/depuracion4.png" alt="alt text" style="display:block;margin:0 auto;width:100%;max-width:650px;"></p>
+<p>1️⃣ Al ejecutar para que llegue al punto de interrupción deberemos introducir en el terminal la base y la altura del triángulo. En este caso, hemos introducido <strong><code>5</code></strong> y <strong><code>9</code></strong>.<br>
+2️⃣ Una vez que el programa se detiene en el punto de ruptura, podemos ver el valor de las variables en la sección de <strong><code>VARIABLES</code></strong> y se resaltará la línea de código donde estamos detenidos.<br>
+3️⃣ Si pulsamos el botón de <strong><code>Paso a paso</code></strong> o <strong><code>F10</code></strong> (step over), la ejecución avanzará a la siguiente línea de código. En este caso, se ejecutará la línea que calcula el área del triángulo y se detendrá en la siguiente línea.<br>
+4️⃣ Ahora la variable <strong><code>areaTriangulo_cm</code></strong> tendrá el valor de <strong><code>22.5</code></strong> y se resaltará la nueva línea de código donde estamos detenidos que es donde vamos a asignar el string de <strong><code>salida</code></strong> a mostrar por pantalla.</p>
+<div class="admonition info">
+<p class="admonition-title">Enlaces</p>
+<p>Si quieres profundizar más a cerca del proceso de depuración en Visual Studio Code, puedes consultar la documentación oficial en el <strong><a href="https://code.visualstudio.com/docs/csharp/debugging#_debug-with-editor-debugrun-buttons">siguiente enlace</a></strong>. En él podrás encontrar otras formas de depuración más avanzadas y sobre cómo gestionar breakpoints, inspeccionar variables, evaluar expresiones, etc.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="aserciones">Aserciones </h2>
+<p>A parte de los test unitarios que verás durante el curso, las aserciones son una herramienta muy útil para el desarrollo de software.</p>
+<h3 id="utilidad-de-las-aserciones">Utilidad de las aserciones </h3>
+<p>Se usan para detectar errores de programación (bugs) <strong>durante la fase el desarrollo y la depuración</strong>. Sirven como una red de seguridad interna para el desarrollador. Con ellos verificamos <strong>suposiciones que el programador hace sobre el estado del programa</strong> en un punto concreto.</p>
+<p>Los usos más comunes son en:</p>
+<ol>
+<li><strong>Precondiciones</strong>: Condiciones que deben cumplirse antes de ejecutar un código (ej: un argumento no debe ser nulo).</li>
+<li><strong>Postcondiciones</strong>: Condiciones que deben cumplirse después de ejecutar un código (ej: el resultado debe ser positivo).</li>
+<li><strong>Invariantes</strong>: Condiciones que siempre deben ser ciertas en ciertos puntos (ej: un contador nunca debe ser negativo).</li>
+</ol>
+<p>En esencia, fuera de los tests, los asserts ayudan a asegurar la corrección interna del programa y a documentar suposiciones críticas del desarrollador. Si un assert falla, indica un problema lógico en el código que debe ser arreglado, no un error esperado del usuario o del entorno. Por eso, <strong>a menudo se pueden deshabilitar en las versiones de producción</strong> para mejorar el rendimiento. Esto es, en el cliente sale un error de ejecución y nosotros con la versión de desarrollo y las aserciones activadas podemos obtener más información sobre las causas reales del error mucho antes de donde se ha producido.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las aserciones no sirven para validar entradas de usuario o manejar errores esperados. <strong>No deben ser usadas como sustituto de la gestión de excepciones que veremos más adelante</strong>. En su lugar, son herramientas para ayudar a los desarrolladores a detectar y corregir errores lógicos en el código.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="usando-aserciones-en-csharp">Usando Aserciones en CSharp </h3>
+<p>Se encuentra definida en el espacio de nombres <strong><code>System.Diagnostics</code></strong> y se usa a través de la clase <strong><code>Debug</code></strong>. Para ello deberemos importar el espacio de nombres al principio del programa:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Diagnostics</span><span class="token punctuation">;</span>
+</code></pre><p><strong><code>Debug.Assert</code></strong> nos permite "<strong>afirmar</strong>" (assert) que esa condición es verdadera. Si resulta ser falsa mientras estás ejecutando tu programa en modo de depuración (Debug), el programa se detendrá y te mostrará un mensaje, indicándote exactamente dónde falló tu suposición. Esto es increíblemente útil para pillar errores lógicos temprano durante el desarrollo.</p>
+<p>La forma de usarlo es simple: escribes <strong><code>Debug.Assert(condicion, "mensaje opcional");</code></strong>. La condicion es <strong>cualquier expresión que evalúe a verdadero o falso</strong>. Si la condición es <strong><code>true</code></strong>, el programa sigue como si nada. Si es <strong><code>false</code></strong>, se muestra una ventana de error con tu "<em>mensaje opcional</em>" (que deberías usar para explicar qué condición esperabas) y la pila de llamadas, ayudándote a entender qué salió mal.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Estas comprobaciones Assert <strong>solo se ejecutan en las compilaciones</strong> de '<em><strong>Debug</strong></em>'. Cuando compilas tu aplicación para '<em><strong>Release</strong></em>', todas las llamadas a Debug.Assert se eliminan automáticamente, por lo que no afectan al rendimiento del programa final.</p>
+</div>
+<p>Veamos un ejemplo de uso como <strong>precondiciones</strong> en un programa que calcula el área de un triángulo. En este caso, la precondición es que la base y la altura deben ser mayores que cero.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Diagnostics</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce la base del triángulo en cm: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> baseTriangulo_cm <span class="token operator">=</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce la altura del triángulo en cm: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> alturaTriangulo_cm <span class="token operator">=</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Precondiciones</span>
+        Debug<span class="token punctuation">.</span><span class="token function">Assert</span><span class="token punctuation">(</span>baseTriangulo_cm <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"La base debe ser mayor que cero."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Debug<span class="token punctuation">.</span><span class="token function">Assert</span><span class="token punctuation">(</span>alturaTriangulo_cm <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"La altura debe ser mayor que cero."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> areaTriangulo_cm <span class="token operator">=</span> baseTriangulo_cm <span class="token operator">*</span> alturaTriangulo_cm <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> salida <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"El área del triángulo es: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">areaTriangulo_cm</span><span class="token punctuation">}</span></span><span class="token string"> cm²"</span></span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Volviendo a nuestra proyecto de ejemplo:</p>
+<ul>
+<li>
+<p>Si ejecuto la versión de <strong>Debug</strong> desde el CLI con <strong><code>dotnet run -c Debug</code></strong> y la altura es cero, obtendremos...</p>
+  <pre class="salida_consola">  <b>proyecto\aplicacion&gt; dotnet run -c Debug</b>
+  Introduce la base del triángulo en cm: 5
+  Introduce la altura del triángulo en cm: 0
+  Process terminated. Assertion failed.
+  La altura debe ser mayor que cero.
+      at Program.Main() in proyecto\aplicacion\Program.cs:line 13</pre>
+<p>Nos muestra un error de aserción y nos indica la línea donde se ha producido el error con el mensaje que nos indica la precondición que no se ha cumplido.</p>
+</li>
+<li>
+<p>Si ejecuto la versión de <strong>Release</strong> desde el CLI con <strong><code>dotnet run -c Release</code></strong> y la altura es cero, obtendremos...</p>
+  <pre class="salida_consola">  <b>proyecto\aplicacion&gt; dotnet run -c Release</b>
+  Introduce la base del triángulo en cm: 5
+  Introduce la altura del triángulo en cm: 0
+  El área del triángulo es: 0 cm²</pre>
+<p>El programa se ejecuta sin problemas y no se detiene. Esto es porque las aserciones no están activas en la versión de <strong>Release</strong>. Por lo que no se evalúan y no se muestran.</p>
+</li>
+</ul>
+<p>A lo largo del curso veremos más ejemplos de aserciones y su uso en el desarrollo de software. En este caso, solo hemos visto un ejemplo básico para entender su utilidad y cómo se usan en C#.</p>
+<div class="box_bg_lightgray">
+<p>🚀 <strong>Ampliación opcional:</strong></p>
+<p>Este mismo sistema de depuración, lo podremos usar en otros lenguajes como <strong>Python</strong>, <strong>Kotlin</strong>, <strong>Java</strong>, <strong>JavaScript</strong>, <strong>C++</strong>, <strong>PHP</strong>, etc. En cada uno de ellos con su propia sintaxis y forma de uso.</p>
+<p><strong>Kotlin:</strong></p>
+<pre data-role="codeBlock" data-info="kotlin" class="language-kotlin kotlin"><code><span class="token keyword keyword-fun">fun</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Introduce la base del triángulo: "</span></span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-val">val</span> baseTriangulo <span class="token operator">=</span> <span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!!</span><span class="token punctuation">.</span><span class="token function">toDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Introduce la altura del triángulo: "</span></span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-val">val</span> alturaTriangulo <span class="token operator">=</span> <span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!!</span><span class="token punctuation">.</span><span class="token function">toDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token function">assert</span><span class="token punctuation">(</span>baseTriangulo <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token string-literal singleline"><span class="token string">"La base debe ser mayor que cero."</span></span><span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-val">val</span> areaTriangulo <span class="token operator">=</span> <span class="token number">0.5</span> <span class="token operator">*</span> baseTriangulo <span class="token operator">*</span> alturaTriangulo
+
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string-literal singleline"><span class="token string">"Área del triángulo: %.2f"</span></span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>areaTriangulo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Python:</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>base_triangulo <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Introduce la base del triángulo: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+altura_triangulo <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Introduce la altura del triángulo: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-assert">assert</span> base_triangulo <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"La base debe ser mayor que cero."</span>
+<span class="token keyword keyword-assert">assert</span> altura_triangulo <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"La altura debe ser mayor que cero."</span>
+
+area_triangulo <span class="token operator">=</span> <span class="token number">0.5</span> <span class="token operator">*</span> base_triangulo <span class="token operator">*</span> altura_triangulo
+
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Área del triángulo: </span><span class="token interpolation"><span class="token punctuation">{</span>area_triangulo<span class="token punctuation">:</span><span class="token format-spec">.2f</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</code></pre></div> <!-- fin ampliación -->
+<div style="page-break-after:always;"></div>
+<h2 id="testing-a-través-de-test-unitarios">Testing a través de Test Unitarios </h2>
+<p>El objetivo, no es aprender a crear proyectos de test, ni profundizar en el uso de herramientas de testing, sino que es <strong>entender cómo funcionan los tests y cómo pasarlos en C#</strong>. Para ello, vamos a ver una introducción conceptual a los Test Unitarios, el TDD, cómo está configurada una solución con un proyecto de test. Posteriormente veremos cómo pasarlos y entender si pasan correctamente y si fallan saber qué esta fallando.</p>
+<p>Un <strong>test unitario</strong> es un procedimiento automatizado que valida el correcto funcionamiento de una "unidad" de código aislada. Una unidad es el componente de software más pequeño que se puede probar, como una función, un método de una clase o, en ocasiones, una clase completa. El objetivo es verificar que, para un conjunto de entradas específicas, la unidad produce el resultado esperado. Muchos de estos conceptos como módulo, función, clase, etc. los iremos viendo a lo largo del curso.</p>
+<h3 id="importancia-de-los-test-unitarios-el-proceso-de-desarrollo">Importancia de los test unitarios el proceso de desarrollo </h3>
+<p>La integración de tests unitarios en el ciclo de vida del desarrollo de software es fundamental por las siguientes razones:</p>
+<ol>
+<li>
+<p><strong>Detección Temprana de Errores</strong>: Identifican fallos en la lógica de componentes individuales en la fase de desarrollo, cuando el coste de su corrección es significativamente menor.</p>
+</li>
+<li>
+<p><strong>Documentación Técnica</strong>: Los tests unitarios actúan como una forma de documentación ejecutable. Ilustran el comportamiento esperado de una unidad de código y sirven como ejemplos de su uso, mostrando las entradas que acepta y las salidas que produce.</p>
+</li>
+<li>
+<p><strong>Mejora del Diseño del Código</strong>: Escribir código "testable" (que se pueda probar) fomenta un diseño de bajo acoplamiento y alta cohesión. Obliga a los desarrolladores a pensar en las dependencias y en la modularidad de sus componentes, resultando en una arquitectura más limpia y mantenible.</p>
+</li>
+<li>
+<p><strong>Cumplimiento de Especificaciones</strong>: Los tests unitarios ayudan a garantizar que el código cumple con las especificaciones y requisitos definidos. Esto es especialmente importante en entornos regulados o críticos, donde la precisión y la fiabilidad son esenciales.</p>
+</li>
+</ol>
+<h3 id="introducción-al-desarrollo-guiado-por-pruebas-tdd">Introducción al Desarrollo Guiado por Pruebas (TDD) </h3>
+<p>El Desarrollo Guiado por Pruebas (Test-Driven Development - TDD) es una metodología de desarrollo de software que invierte el ciclo de desarrollo tradicional. En lugar de escribir el código primero y los tests después (si es que se escriben), el TDD sigue un ciclo corto y repetitivo.</p>
+<div class="row">
+<div class="col-sm-7 my-auto">
+<p>El ciclo en TDD se conoce como "<strong>Rojo-Verde-Refactorizar</strong>":</p>
+<ol>
+<li>
+<p><strong>Rojo (Red)</strong>: Se escribe un test para una funcionalidad específica que aún no ha sido implementada. Al ejecutar el test, este debe fallar, ya que el código de producción correspondiente no existe. <strong>Nosotros os proporcionaremos el test que debéis pasar del ejercicio que fallará al principio</strong>.</p>
+</li>
+<li>
+<p><strong>Verde (Green)</strong>: Se escribe el código necesario según las especificaciones y la salida esperada en el test para que ahora pase. El objetivo en este paso no es la optimización ni la elegancia, sino únicamente satisfacer el requisito del test.</p>
+</li>
+<li>
+<p><strong>Refactorizar (Refactor)</strong>: Una vez que el test está en verde, el código se puede mejorar, limpiar y optimizar. Volveremos a pasar el test para asegurarnos de que los cambios no rompen la funcionalidad existente. <strong>Este paso es crucial para mantener un código limpio y mantenible a lo largo del tiempo.</strong></p>
+</li>
+</ol>
+</div>
+<div class="col-sm-5 my-auto">
+<p><img src="assets/imagenes/temas/tdd.png" alt="tdd"></p>
+</div>
+</div>
+<p>Este proceso se repite para cada nueva funcionalidad o especificación añadida. El resultado es un código completamente cubierto por tests desde su concepción, lo que conduce a sistemas más robustos y a una reducción significativa del tiempo dedicado a la depuración.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Nosotros vamos a seguir una metodología parecida para realizar los ejercicios de programación. Aunque no vamos a seguir estrictamente el TDD, <strong>sí que vamos a daros los tests antes de implementar la funcionalidad requerida</strong>. Esto nos ayudará a entender mejor cómo funcionan los tests y a asegurarnos de que nuestro código cumple exactamente las especificaciones desde el principio.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="test-unitarios-en-csharp">Test unitarios en CSharp </h3>
+<p>En C#, los tests unitarios se implementan comúnmente utilizando frameworks como <strong>NUnit</strong>, <strong>xUnit</strong> o <strong>MSTest</strong>. Estos frameworks proporcionan herramientas y convenciones para escribir, organizar y ejecutar tests de manera eficiente. Nosotros vamos a utilizar <strong>xUnit</strong> en este curso, que es uno de los frameworks más populares y ampliamente utilizados en la comunidad de desarrollo de C#.</p>
+<p>Aunque no vas a tener que crearlos, vamos a ver el proceso de creación de un proyecto de test unitario en C# para que entiendas cómo funcionan y cómo puedes ejecutarlos.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="crear-un-proyecto-de-test-unitarios-con-xunit">Crear un Proyecto de Test Unitarios con xUnit </h3>
+<p>Para añadir un proyecto de test unitario a nuestra solución, podemos utilizar el siguiente comando en la terminal:</p>
+<pre class="salida_consola">proyecto&gt; dotnet new xunit -n aplicacion.test
+proyecto&gt; dotnet sln add aplicacion.test/aplicacion.test.csproj
+</pre>
+<p>Ahora añadiremos una referencia al proyecto de aplicación desde el proyecto de test. Este paso lo entenderemos más adelante en el curso, pero básicamente <strong>es para que el proyecto de test pueda acceder al código de la aplicación y probarlo</strong>. Utilizaremos el siguiente comando en la terminal:</p>
+<pre class="salida_consola">proyecto&gt; dotnet add aplicacion.test/aplicacion.test.csproj reference aplicacion/aplicacion.csproj
+</pre>
+<p>Si abrimos la solución en Visual Studio Code, deberíamos tener lo siguiente:</p>
+<p><img src="assets/imagenes/temas/proyecto_test.png" alt="nombre" style="display:block;margin:0 auto;width:100%;max-width:700px;"></p>
+<p>1️⃣ Tenemos la solución <strong><code>proyecto.sln</code></strong> abierta en el "<em>EXPLORADOR DE SOLUCIONES</em>".<br>
+2️⃣ Además del proyecto de aplicación <strong><code>aplicacion</code></strong>, nos aparece el proyecto de test <strong><code>aplicacion.test</code></strong> añadido a la solución.<br>
+3️⃣ Dentro del proyecto de test, en <strong><code>Dedencias &gt; Proyectos</code></strong>, tenemos una referencia al proyecto de aplicación <strong><code>aplicacion</code></strong> que es el que queremos testear.<br>
+4️⃣ Al detectar el proyecto de test, Visual Studio Code nos ofrecerá ahora un nuevo icono en la barra lateral izquierda para acceder a los tests con el icono de una probeta.</p>
+<h3 id="creando-nuestro-primer-test-unitario">Creando nuestro primer test unitario </h3>
+<p>Supongamos que nos piden crear test unitarios para el programa que calcula el área de un triángulo que he mos tratado a lo largo del tema. Para ello, vamos a crear un simple test que verifique que el programa imprime correctamente el área del triángulo cuando se le proporcionan entradas válidas.</p>
+<p>A continuación, iremos a <strong><code>UnitTest1.cs</code></strong> y escribiremos el siguiente código de test que de momento carece de sentido para nosotros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">aplicacion<span class="token punctuation">.</span>test</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">UnitTest1</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Fact</span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main_ImprimeAreaCorrecta_ConEntradasValidas</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Simulamos la entrada del usuario (base=8, altura=9)</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> input <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StringWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        input<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// base válida</span>
+        input<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"9"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// altura válida</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> reader <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StringReader</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> writer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">StringWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> originalIn <span class="token operator">=</span> Console<span class="token punctuation">.</span>In<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> originalOut <span class="token operator">=</span> Console<span class="token punctuation">.</span>Out<span class="token punctuation">;</span>
+        <span class="token keyword keyword-try">try</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetIn</span><span class="token punctuation">(</span>reader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetOut</span><span class="token punctuation">(</span>writer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Program<span class="token punctuation">.</span><span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-finally">finally</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetIn</span><span class="token punctuation">(</span>originalIn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetOut</span><span class="token punctuation">(</span>originalOut<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> output <span class="token operator">=</span> writer<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Assert<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"Introduce la base del triángulo en cm:"</span><span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Assert<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"Introduce la altura del triángulo en cm:"</span><span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Assert<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"El área del triángulo es: 36 cm²"</span><span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Si ejecutamos los test obtendremos el siguiente resultado:</p>
+<pre class="salida_consola">proyecto&gt; dotnet test
+Restauración completada (1,3s)
+  aplicacion realizado correctamente (0,3s) → aplicacion\bin\Debug\netX.0\aplicacion.dll
+  aplicacion.test realizado correctamente (3,4s) → aplicacion.test\bin\Debug\netX.0\aplicacion.test.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET X.0.0)
+[xUnit.net 00:00:00.10]   Discovering: aplicacion.test
+[xUnit.net 00:00:00.14]   Discovered:  aplicacion.test                                                                                                  
+[xUnit.net 00:00:00.14]   Starting:    aplicacion.test
+[xUnit.net 00:00:00.24]   Finished:    aplicacion.test
+  aplicacion.test pruebarealizado correctamente (1,3s)
+
+Resumen de pruebas: total: 1; con errores: 0; correcto: 1; omitido: 0; duración: 1,3 s
+Compilación realizado correctamente en 6,8s
+</pre>
+<p>Si pasamos el test con el VSCode:</p>
+<ul>
+<li>1️⃣ Vamos a la pestaña de <strong><code>Pruebas</code></strong> (probeta) en la barra lateral izquierda.</li>
+<li>2️⃣ Hacemos clic en el botón de <strong><code>Ejecutar prueba</code></strong> (play) para ejecutar todos los tests.</li>
+<li>3️⃣ Veremos que el test pasa correctamente con el icono de check verde y si hacemos click izquierdo sobre él podremos volver a pasar el test y click derecho nos mostrará un menú contextual con opciones adicionales.</li>
+</ul>
+<p><img src="assets/imagenes/temas/ejemplo1.png" alt="alt text"></p>
+<h3 id="gestionando-errores-en-los-tests-unitarios">Gestionando errores en los tests unitarios </h3>
+<p>Supongamos que hacemos estos cambios en el código de <strong><code>Program.cs</code></strong> para que falle el test:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// En double areaTriangulo_cm = baseTriangulo_cm * alturaTriangulo_cm / 2;</span>
+<span class="token comment">// Dividimos el área del triángulo por 3 para que falle el test</span>
+<span class="token class-name"><span class="token keyword keyword-double">double</span></span> areaTriangulo_cm <span class="token operator">=</span> baseTriangulo_cm <span class="token operator">*</span> alturaTriangulo_cm <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token comment">// En string salida = $"El área del triángulo es: {areaTriangulo_cm} cm²";</span>
+<span class="token comment">// Quitamos la tilde de "área" para que falle el test al ser la salida diferente</span>
+<span class="token class-name"><span class="token keyword keyword-string">string</span></span> salida <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"El area del triángulo es: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">areaTriangulo_cm</span><span class="token punctuation">}</span></span><span class="token string"> cm²"</span></span><span class="token punctuation">;</span>
+</code></pre><p>Si volvemos a pasar el test desde VSCode, veremos que el test falla obteniendo una salida como la siguiente:</p>
+<p><img src="assets/imagenes/temas/ejemplo2.png" alt="alt text"></p>
+<ul>
+<li>
+<p>1️⃣ Nos indica donde está fallado el test. En concreto en:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>Assert<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token string">"El área del triángulo es: 36 cm²"</span><span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>2️⃣ En este caso no se ha encontrado el texto <em><strong><code>"El área del triángulo es: 36 cm²"</code></strong></em> en la salida del programa <em><strong><code>"Introduce la base del triángulo en cm: In"···</code></strong></em>. Pero como la cadena es muy larga aparecen puntos suspensivos al final.</p>
+<pre data-role="codeBlock" data-info="plaintext" class="language-plaintext plaintext"><code>String:    "Introduce la base del triángulo en cm: In"···
+Not found: "El área del triángulo es: 36 cm²"
+</code></pre></li>
+<li>
+<p>3️⃣ Si queremos verla completa, añadiremos un punto de interrupción (breakpoint) haciendo click izquierdo en el margen izquierdo del editor de código en la línea 30 y nos aparecerá un punto rojo.</p>
+</li>
+<li>
+<p>4️⃣ Ahora pasamos el test pulsando el icono resaltado de <strong><code>Depurar prueba</code></strong> (debug) en lugar del de <strong><code>Ejecutar prueba</code></strong> (play). Esto hará que se ejecute el test y se detenga en el punto de interrupción.</p>
+</li>
+</ul>
+<p>Tras ejecutar de nuevo el test en modo depuración obtendremos el siguiente resultado:</p>
+<p><img src="assets/imagenes/temas/ejemplo3.png" alt="alt text"></p>
+<ul>
+<li>1️⃣ El programa se detendrá donde se produce el error el VSCode irá a la pestaña de <strong><code>Depuración</code></strong> (debug) Nos aparecerá resaltada la línea donde estamos y en la parae izquierda veremos el <strong><code>VARIABLES</code></strong> donde podremos ver el valor de las variables en ese momento.</li>
+<li>2️⃣ La variable <strong><code>output</code></strong> contiene la salida del programa que se ha ejecutado hasta ese momento. Pero como sigue siendo larga puede que no veamos el texto completo. Una opción es situarnos sobre dicho texto y nos aparecerá un tooltip con el texto completo. Haremos scroll hasta encontrar donde está el texto que no coincide con el esperado en el test: <em><strong><code>"El área del triángulo es: 36 cm²"</code></strong></em><br>
+Podemos comprobar que la palabra <strong>"area"</strong> no tiene tilde en nuestra salida conforme a la esperada y que el área del triángulo es <strong>24</strong> en lugar de 36 y por tanto no está bien calculada.</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

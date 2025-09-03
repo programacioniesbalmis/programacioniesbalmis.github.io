@@ -1,0 +1,674 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Unidad 15 - Herencia</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="índice">Índice </h1>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1-herencia-con-herramientas-de-carpintería" class="md-toc-link">
+            <p>Ejercicio 1. Herencia con herramientas de carpintería</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2-herencia-con-locales-y-cines" class="md-toc-link">
+            <p>Ejercicio 2. Herencia con locales y cines</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3-herencia-con-personajes-de-un-juego" class="md-toc-link">
+            <p>Ejercicio 3. Herencia con Personajes de un juego</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-4-polimorfismo-de-datos-con-herramientas-avanzadas" class="md-toc-link">
+            <p>Ejercicio 4. Polimorfismo de datos con herramientas avanzadas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5-red-de-albergues-de-viaje" class="md-toc-link">
+            <p>Ejercicio 5. Red de albergues de viaje</p>
+
+          </a></div>
+</div>
+<h2 id="ejercicios-unidad-15---herencia">Ejercicios Unidad 15 - Herencia </h2>
+<p><a href="./1_ejercicios_poo_roles_herencia.pdf">Descargar estos ejercicios</a></p>
+<div class="admonition info">
+<p class="admonition-title">Antes de empezar</p>
+<p>Para realizar estos ejercicios, deberás descargar los recursos del enlace de <a href="./recursos/1_ejercicios_poo_roles_herencia_recurso.zip">proyecto_poo_roles_herencia</a>. Como puedes ver, la solución está compuesta de varios proyectos. Cada uno de ellos corresponde con un ejercicio, deberás implementar todo el código, tanto de la Main como de los métodos que se piden en cada ejercicio. Cada proyecto contiene el test correspondiente, que deberás pasar para comprobar que has hecho el ejercicio correctamente.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-1-herencia-con-herramientas-de-carpintería">Ejercicio 1. Herencia con herramientas de carpintería </h2>
+<p>Implementa un sistema de herramientas de carpintería donde tengas una clase base <code>Herramienta</code> y una clase derivada <code>Taladro</code>. La clase hija debe sobrescribir tanto una propiedad como un método de la clase padre. Para este y el resto de ejercicios, si es posible usar las propiedades autoimplementadas, serán las que elegiremos para que el código quede más compacto.</p>
+<pre class="salida_consola">Ejercicio 1: Sistema de herramientas de carpintería
+
+Creando herramientas ....
+
+Martillo, Marca: Stanley, Peso: 0.5, Precio: 25
+
+Taladro Percutor, Marca: Bosch, Peso: 2.3, Precio: 89.25, Potencia: 750, Velocidad Máxima: 3000
+
+Presiona cualquier tecla para salir...
+</pre>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="426.4px" preserveAspectRatio="none" style="width:564px;height:426px;" version="1.1" viewBox="0 0 564 426" width="564.8px" zoomAndPan="magnify"><defs></defs><g><!--class Herramienta--><g id="elem_Herramienta"><rect codeline="12" fill="#FFFAFA" height="216.0125" id="Herramienta" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="400.2383" x="82.8" y="5.6"></rect><ellipse cx="248.7082" cy="22.6813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M247.7957,23.3188 L247.7957,25.3188 L251.2582,25.3188 L251.2582,24.5813 Q251.2582,24.0938 251.4457,23.8813 Q251.6457,23.6688 251.9457,23.6688 Q252.2457,23.6688 252.4332,23.8813 Q252.6207,24.0938 252.6207,24.5813 L252.6207,26.6813 L246.2207,26.6813 Q245.7207,26.6813 245.5082,26.4938 Q245.3082,26.3063 245.3082,25.9938 Q245.3082,25.6938 245.5207,25.5063 Q245.7332,25.3188 246.2207,25.3188 L246.4332,25.3188 L246.4332,19.9938 L246.2207,19.9938 Q245.7207,19.9938 245.5082,19.8063 Q245.3082,19.6188 245.3082,19.3063 Q245.3082,19.0063 245.5082,18.8188 Q245.7207,18.6313 246.2207,18.6313 L252.3207,18.6313 L252.3207,20.7063 Q252.3207,21.1938 252.1332,21.4063 Q251.9582,21.6063 251.6457,21.6063 Q251.3457,21.6063 251.1582,21.4063 Q250.9707,21.1938 250.9707,20.7063 L250.9707,19.9938 L247.7957,19.9938 L247.7957,21.9563 L248.9832,21.9563 Q248.9832,21.4313 249.0832,21.2813 Q249.2957,20.9563 249.6707,20.9563 Q249.9707,20.9563 250.1582,21.1688 Q250.3457,21.3688 250.3457,21.8563 L250.3457,23.4313 Q250.3457,23.8688 250.2457,24.0188 Q250.0332,24.3313 249.6707,24.3313 Q249.2957,24.3313 249.0832,24.0063 Q248.9832,23.8563 248.9832,23.3188 L247.7957,23.3188 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="34.6875" x="278.5754" y="19.5656">«Entity»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="61.6219" x="265.1082" y="33.3016">Herramienta</text><line style="stroke:#000000;stroke-width:0.4;" x1="83.6" x2="482.2383" y1="39.7625" y2="39.7625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="42.3281" x="87.6" y="54.5891">-id: Guid</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="75.3156" x="87.6" y="68.6766">-nombre: string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="68.4578" x="87.6" y="82.7641">-marca: string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="67.8727" x="87.6" y="96.8516">-peso: double</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="99.6188" x="87.6" y="110.9391">-precioBase: double</text><line style="stroke:#000000;stroke-width:0.4;" x1="83.6" x2="482.2383" y1="116.6" y2="116.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="390.6383" x="87.6" y="131.4266">+Herramienta(nombre: string, marca: string, peso: double, precioBase: double)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="71.2742" x="87.6" y="145.5141">+GetId(): Guid</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="87.6" y="159.6016">+GetNombre(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="96.7805" x="87.6" y="173.6891">+GetMarca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="97.4367" x="87.6" y="187.7766">+GetPeso(): double</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="144.1234" x="87.6" y="201.8641">+{virtual} GetPrecio(): double</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="134.7828" x="87.6" y="215.9516">+{virtual} ACadena(): string</text></g><!--class Taladro--><g id="elem_Taladro"><rect codeline="27" fill="#FFFAFA" height="137.0125" id="Taladro" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="554.0141" x="5.6" y="284"></rect><ellipse cx="260.2195" cy="296.8" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M262.432,293.5 Q262.557,293.325 262.707,293.2375 Q262.857,293.15 263.032,293.15 Q263.332,293.15 263.5195,293.3625 Q263.707,293.5625 263.707,294.05 L263.707,295.2125 Q263.707,295.7 263.5195,295.9125 Q263.332,296.125 263.032,296.125 Q262.757,296.125 262.5945,295.9625 Q262.432,295.8125 262.3445,295.4 Q262.307,295.1125 262.157,294.9625 Q261.8945,294.6625 261.407,294.4875 Q260.9195,294.3125 260.4195,294.3125 Q259.807,294.3125 259.2945,294.575 Q258.7945,294.8375 258.3945,295.4375 Q258.007,296.0375 258.007,296.8625 L258.007,297.7375 Q258.007,298.725 258.7195,299.3875 Q259.432,300.0375 260.707,300.0375 Q261.457,300.0375 261.982,299.8375 Q262.2945,299.7125 262.632,299.3625 Q262.8445,299.15 262.957,299.0875 Q263.082,299.025 263.2445,299.025 Q263.507,299.025 263.707,299.2375 Q263.9195,299.4375 263.9195,299.7125 Q263.9195,299.9875 263.6445,300.3125 Q263.2445,300.775 262.607,301.0375 Q261.7445,301.4 260.707,301.4 Q259.4945,301.4 258.532,300.9 Q257.7445,300.5 257.1945,299.65 Q256.6445,298.7875 256.6445,297.7625 L256.6445,296.8375 Q256.6445,295.775 257.132,294.8625 Q257.632,293.9375 258.507,293.45 Q259.382,292.95 260.3695,292.95 Q260.957,292.95 261.4695,293.0875 Q261.9945,293.2125 262.432,293.5 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="37.975" x="276.6195" y="301.3828">Taladro</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="558.8141" y1="309.6" y2="309.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="117.682" x="10.4" y="324.4266">-potencia: int {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="161.8641" x="10.4" y="338.5141">-velocidadMaxima: int {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="558.8141" y1="344.175" y2="344.175"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="544.4141" x="10.4" y="359.0016">+Taladro(nombre: string, marca: string, peso: double, precioBase: double, potencia: int, velocidadMaxima: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="93.6906" x="10.4" y="373.0891">+GetPotencia(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="138.5016" x="10.4" y="387.1766">+GetVelocidadMaxima(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="112.0219" x="10.4" y="401.2641">+^/GetPrecio(): double</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="97.0813" x="10.4" y="415.3516">+^Acadena(): string</text></g><!--reverse link Herramienta to Taladro--><g id="link_Herramienta_Taladro"><path codeline="37" d="M282.8,236.296 C282.8,257.376 282.8,264.536 282.8,283.864 " fill="transparent" id="Herramienta-backto-Taladro" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="282.8,221.896,278,236.296,287.6,236.296,282.8,221.896" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="46.8406" x="283.6" y="257.1961">hereda de</text></g><!--SRC=[fL91Jy8m6BtlLpJn0d4eDmqX98C0Sj2GOFH6yj5-WOQk9Lyx497_RZS6hcHwSPUkxxs-x_LjTYtr1WXInXLOcpX7Sf4vd72ZP_8JMJko5qb2P7O3emonlWA-hb1JluKbzlso99DfSPAzhwJ3MMhMMD4EyabzGmAftkmakBAQQREhQAxfLm9jFONQHL5aEIYV_UxHlnSNOqz8_fZqDB1kjp6CRqQZXuTskyc6sactx_KE4VDFYqdHOUDCYdAhJReWx33hcz7B4ao1E5nX6xIcmuJ95WhF426NfWyM0-AscgOH3eX3xpYmZMiScwNb6Dr4D9gLx0NsKhZdU2LimJpdS-g8gP-Ouq7YmrQIoq0T2qMHuWzDCW21kkf-F7-8Lr0WoB1ptHlZK7FfRoorOmT244Qh_R6ajwWCbmB4Ctp8j5vrUpRzRvTnc2QkdLufV5ggytjwveTu2y-5_Fp-zmhd2QzfBlXvlrgjIuaTja920KnWz0q0]--></g></svg></p><p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Clase Herramienta</strong>:</p>
+<ul>
+<li>Propiedad virtual <code>Precio</code> (double) que por defecto devuelve <code>precioBase</code></li>
+<li>Método <code>ACadena()</code> que devuelve una representación de la herramienta</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Taladro</strong>:</p>
+<ul>
+<li>Métodos getter para las propiedades específicas</li>
+<li>Propiedad <code>Precio</code>  calculada   que aplica un descuento del 15% sobre el precio base.</li>
+<li><code>Acadena</code> debe incluir información técnica: "Taladro percutor profesional - Potencia: {potencia}W, Velocidad: {velocidadMaxima} RPM"</li>
+</ul>
+</li>
+<li>
+<p><strong>Programa principal</strong>:</p>
+<ul>
+<li>Crear un método estático <code>GestionHerramientas()</code> que:
+<ul>
+<li>Cree una herramienta básica (Martillo, Stanley, 0.5kg, 25.00€)</li>
+<li>Cree un taladro (Taladro Percutor, Bosch, 2.3kg, 105.00€, 750W, 3000 RPM)</li>
+<li>Muestre la información de ambas herramientas como en la salida.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-2-herencia-con-locales-y-cines">Ejercicio 2. Herencia con locales y cines </h2>
+<p>Implementa un sistema de gestión de locales, locales comerciales y cines utilizando herencia. La clase <code>LocalComercial</code> heredará de <code>Local</code>, y la clase <code>Cine</code> heredará de <code>LocalComercial</code>. Deberás sobrescribir el método <code>ACadena</code> en cada nivel de la jerarquía para mostrar la información completa de cada tipo de entidad.</p>
+<pre class="salida_consola">Ejercicio 2: Sistema de gestión de cines
+
+=== Creando y mostrando cines ===
+
+--- Cine 1 ---
+Local:
+  Ciudad: Alicante
+  Calle: Calle de las Setas
+  Número de plantas: 1
+  Dimensiones: 500 m²
+Local Comercial:
+  Razón Social: Cinesa
+  Número de Licencia: 12345
+Cine:
+  Aforo de la sala: 200 personas
+
+--- Cine 2 ---
+Local:
+  Ciudad: Madrid
+  Calle: Gran Vía
+  Número de plantas: 3
+  Dimensiones: 1200 m²
+Local Comercial:
+  Razón Social: Yelmo Cines
+  Número de Licencia: 67890
+Cine:
+  Aforo de la sala: 350 personas
+
+--- Cine 3 ---
+Local:
+  Ciudad: Valencia
+  Calle: Plaza del Ayuntamiento
+  Número de plantas: 2
+  Dimensiones: 800 m²
+Local Comercial:
+  Razón Social: Kinépolis
+  Número de Licencia: 54321
+Cine:
+  Aforo de la sala: 450 personas
+
+Presiona cualquier tecla para salir...
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p>Value Object <strong>Dimension</strong> con las propiedades <code>Ancho</code> y <code>Largo</code> (float).</p>
+</li>
+<li>
+<p><strong>Clase Local</strong> (clase base):</p>
+<ul>
+<li>Propiedades privadas <code>Ciudad</code>, <code>Calle</code>,  <code>NumeroPlantas</code> (string), <code>Dimensiones</code> (Dimension) con relación de composición.</li>
+<li>Constructor al que le llegarán los valores de las propiedades necesarios, en el caso de la dimensión llegarán dos valores para crearla.</li>
+<li>Método virtual <code>ACadena()</code> que devolverá un string con los datos de un local. Al mostrar la salida de la dimensión, se multiplicará el ancho por el largo para calcular los metros cuadrados.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase LocalComercial</strong> (hereda de <code>Local</code>):</p>
+<ul>
+<li>Propiedades adicionales: <code>RazonSocial</code>, <code>NumeroLicencia</code> (string)</li>
+<li>Anula <code>ACadena()</code> para devolver un string con los datos de un local comercial, aprovechando el código de la clase padre</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Cine</strong> (hereda de <code>LocalComercial</code>):</p>
+<ul>
+<li>Campo adicional: <code>AforoSala</code> (int)</li>
+<li>Operación <code>ACadena()</code> que devolverá un string con los datos de un cine, aprovechando el código de las clases padre</li>
+</ul>
+</li>
+<li>
+<p><strong>Programa principal</strong>:</p>
+<ul>
+<li>Crear un método estático <code>GestionCines()</code> que:
+<ul>
+<li>Cree una <code>List&lt;Cine&gt;</code></li>
+<li>Inicialice la lista con datos de 3 cines</li>
+<li>Muestre por pantalla la información completa de cada uno de los cines mediante un <code>foreach</code>, utilizando el método <code>ACadena</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-3-herencia-con-personajes-de-un-juego">Ejercicio 3. Herencia con Personajes de un juego </h2>
+<p>Implementa un sistema de personajes para un juego de rol. Tendrás una clase base <code>Personaje</code> y dos clases derivadas, <code>Guerrero</code> y <code>Mago</code>. Deberás usar herencia, propiedades protegidas, propiedades calculadas y métodos virtuales. Además, la clase base se relacionará con un <code>record</code> para definir una habilidad especial.</p>
+<pre class="salida_consola">Ejercicio 3: Sistema de Personajes
+
+=== Creando un Guerrero ===
+Guerrero creado: Personaje: Conan, Nivel: 10, Energía: 100
+  Habilidades:
+    * Furia (Daño: 50)
+    * Golpe Giratorio (Daño: 30)
+  Fuerza: 20
+
+=== Creando un Mago ===
+Mago creado: Personaje: Gandalf, Nivel: 12, Energía: 120
+  Habilidades:
+    * Rayo (Daño: 40)
+    * Bola de Fuego (Daño: 70)
+    * Escarcha (Daño: 25)
+  Maná: 50
+
+Mago con nueva habilidad añadida: Personaje: Gandalf, Nivel: 12, Energía: 120
+  Habilidades:
+    * Rayo (Daño: 40)
+    * Bola de Fuego (Daño: 70)
+    * Escarcha (Daño: 25)
+    * Telequinesis (Daño: 10)
+  Maná: 50
+
+=== Acciones de los personajes ===
+--- Guerrero ---
+Conan ataca con Furia! (fuerza 20 + mitad habilidades = 60)
+
+--- Mago ---
+Gandalf ataca con Bola de Fuego! lanza Rayo con fuerza 40 y se apoya con: (maná 50 + total habilidades = 195)
+
+Presiona cualquier tecla para salir...
+</pre>
+<div class="landscape" align="center" style="page-break-after:always;">
+<p class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="342.4px" preserveAspectRatio="none" style="width:858px;height:342px;" version="1.1" viewBox="0 0 858 342" width="858.4px" zoomAndPan="magnify"><defs></defs><g><!--class Personaje--><g id="elem_Personaje"><rect codeline="11" fill="#FFFAFA" height="159.6625" id="Personaje" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="311.2398" x="409.6" y="5.6"></rect><ellipse cx="536.6035" cy="22.6813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M535.691,23.3188 L535.691,25.3188 L539.1535,25.3188 L539.1535,24.5813 Q539.1535,24.0938 539.341,23.8813 Q539.541,23.6688 539.841,23.6688 Q540.141,23.6688 540.3285,23.8813 Q540.516,24.0938 540.516,24.5813 L540.516,26.6813 L534.116,26.6813 Q533.616,26.6813 533.4035,26.4938 Q533.2035,26.3063 533.2035,25.9938 Q533.2035,25.6938 533.416,25.5063 Q533.6285,25.3188 534.116,25.3188 L534.3285,25.3188 L534.3285,19.9938 L534.116,19.9938 Q533.616,19.9938 533.4035,19.8063 Q533.2035,19.6188 533.2035,19.3063 Q533.2035,19.0063 533.4035,18.8188 Q533.616,18.6313 534.116,18.6313 L540.216,18.6313 L540.216,20.7063 Q540.216,21.1938 540.0285,21.4063 Q539.8535,21.6063 539.541,21.6063 Q539.241,21.6063 539.0535,21.4063 Q538.866,21.1938 538.866,20.7063 L538.866,19.9938 L535.691,19.9938 L535.691,21.9563 L536.8785,21.9563 Q536.8785,21.4313 536.9785,21.2813 Q537.191,20.9563 537.566,20.9563 Q537.866,20.9563 538.0535,21.1688 Q538.241,21.3688 538.241,21.8563 L538.241,23.4313 Q538.241,23.8688 538.141,24.0188 Q537.9285,24.3313 537.566,24.3313 Q537.191,24.3313 536.9785,24.0063 Q536.8785,23.8563 536.8785,23.3188 L535.691,23.3188 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="34.6875" x="560.8762" y="19.5656">«Entity»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="50.4328" x="553.0035" y="33.3016">Personaje</text><line style="stroke:#000000;stroke-width:0.4;" x1="410.4" x2="720.0398" y1="39.7625" y2="39.7625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="61.6438" x="414.4" y="54.5891">#energia: int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="143.8281" x="414.4" y="68.6766">-habilidades: List&lt;Habilidad&gt;</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="80.6258" x="414.4" y="82.7641">+Nivel: int «get»</text><line style="stroke:#000000;stroke-width:0.4;" x1="410.4" x2="720.0398" y1="88.425" y2="88.425"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="301.6398" x="414.4" y="103.2516">+Personaje(nombre: string, energia: int, habilidad: Habilidad)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="414.4" y="117.3391">+GetNombre(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="214.5008" x="414.4" y="131.4266">+AñadeHabilidad(habilidad:Habilidad): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="116.7195" x="414.4" y="145.5141">+{virtual} Ataca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="134.7828" x="414.4" y="159.6016">+{virtual} ACadena(): string</text></g><!--class Guerrero--><g id="elem_Guerrero"><rect codeline="22" fill="#FFFAFA" height="108.8375" id="Guerrero" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="361.0273" x="5.6" y="228"></rect><ellipse cx="160.3055" cy="240.8" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M162.518,237.5 Q162.643,237.325 162.793,237.2375 Q162.943,237.15 163.118,237.15 Q163.418,237.15 163.6055,237.3625 Q163.793,237.5625 163.793,238.05 L163.793,239.2125 Q163.793,239.7 163.6055,239.9125 Q163.418,240.125 163.118,240.125 Q162.843,240.125 162.6805,239.9625 Q162.518,239.8125 162.4305,239.4 Q162.393,239.1125 162.243,238.9625 Q161.9805,238.6625 161.493,238.4875 Q161.0055,238.3125 160.5055,238.3125 Q159.893,238.3125 159.3805,238.575 Q158.8805,238.8375 158.4805,239.4375 Q158.093,240.0375 158.093,240.8625 L158.093,241.7375 Q158.093,242.725 158.8055,243.3875 Q159.518,244.0375 160.793,244.0375 Q161.543,244.0375 162.068,243.8375 Q162.3805,243.7125 162.718,243.3625 Q162.9305,243.15 163.043,243.0875 Q163.168,243.025 163.3305,243.025 Q163.593,243.025 163.793,243.2375 Q164.0055,243.4375 164.0055,243.7125 Q164.0055,243.9875 163.7305,244.3125 Q163.3305,244.775 162.693,245.0375 Q161.8305,245.4 160.793,245.4 Q159.5805,245.4 158.618,244.9 Q157.8305,244.5 157.2805,243.65 Q156.7305,242.7875 156.7305,241.7625 L156.7305,240.8375 Q156.7305,239.775 157.218,238.8625 Q157.718,237.9375 158.593,237.45 Q159.468,236.95 160.4555,236.95 Q161.043,236.95 161.5555,237.0875 Q162.0805,237.2125 162.518,237.5 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="44.8164" x="176.7055" y="245.3828">Guerrero</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="365.8273" y1="253.6" y2="253.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="52.9102" x="10.4" y="268.4266">-fuerza: int</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="365.8273" y1="274.0875" y2="274.0875"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="351.4273" x="10.4" y="288.9141">+Guerrero(nombre: string, energia: int, habilidad: Habilidad, fuerza: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="84.9625" x="10.4" y="303.0016">+GetFuerza(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="81.5063" x="10.4" y="317.0891">+^Ataca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="99.5695" x="10.4" y="331.1766">+^ACadena(): string</text></g><!--class Mago--><g id="elem_Mago"><rect codeline="30" fill="#FFFAFA" height="108.8375" id="Mago" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="341.1156" x="394.8" y="228"></rect><ellipse cx="547.9496" cy="240.8" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M550.1621,237.5 Q550.2871,237.325 550.4371,237.2375 Q550.5871,237.15 550.7621,237.15 Q551.0621,237.15 551.2496,237.3625 Q551.4371,237.5625 551.4371,238.05 L551.4371,239.2125 Q551.4371,239.7 551.2496,239.9125 Q551.0621,240.125 550.7621,240.125 Q550.4871,240.125 550.3246,239.9625 Q550.1621,239.8125 550.0746,239.4 Q550.0371,239.1125 549.8871,238.9625 Q549.6246,238.6625 549.1371,238.4875 Q548.6496,238.3125 548.1496,238.3125 Q547.5371,238.3125 547.0246,238.575 Q546.5246,238.8375 546.1246,239.4375 Q545.7371,240.0375 545.7371,240.8625 L545.7371,241.7375 Q545.7371,242.725 546.4496,243.3875 Q547.1621,244.0375 548.4371,244.0375 Q549.1871,244.0375 549.7121,243.8375 Q550.0246,243.7125 550.3621,243.3625 Q550.5746,243.15 550.6871,243.0875 Q550.8121,243.025 550.9746,243.025 Q551.2371,243.025 551.4371,243.2375 Q551.6496,243.4375 551.6496,243.7125 Q551.6496,243.9875 551.3746,244.3125 Q550.9746,244.775 550.3371,245.0375 Q549.4746,245.4 548.4371,245.4 Q547.2246,245.4 546.2621,244.9 Q545.4746,244.5 544.9246,243.65 Q544.3746,242.7875 544.3746,241.7625 L544.3746,240.8375 Q544.3746,239.775 544.8621,238.8625 Q545.3621,237.9375 546.2371,237.45 Q547.1121,236.95 548.0996,236.95 Q548.6871,236.95 549.1996,237.0875 Q549.7246,237.2125 550.1621,237.5 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="28.0164" x="564.3496" y="245.3828">Mago</text><line style="stroke:#000000;stroke-width:0.4;" x1="395.6" x2="735.1156" y1="253.6" y2="253.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="49.7984" x="399.6" y="268.4266">-mana: int</text><line style="stroke:#000000;stroke-width:0.4;" x1="395.6" x2="735.1156" y1="274.0875" y2="274.0875"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="331.5156" x="399.6" y="288.9141">+Mago(nombre: string, energia: int, habilidad: Habilidad, mana: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="78.1211" x="399.6" y="303.0016">+GetMana(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="81.5063" x="399.6" y="317.0891">+^Ataca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="99.5695" x="399.6" y="331.1766">+^ACadena(): string</text></g><!--class Habilidad--><g id="elem_Habilidad"><rect codeline="39" fill="#FFFAFA" height="68.7375" id="Habilidad" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="89.5859" x="763.6" y="248"></rect><ellipse cx="783.3797" cy="265.0813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M783.8547,267.6938 L785.8297,262.9938 L785.5172,262.9938 Q785.0297,262.9938 784.8172,262.8063 Q784.6047,262.6188 784.6047,262.3063 Q784.6047,262.0063 784.8172,261.8188 Q785.0297,261.6313 785.5172,261.6313 L787.3422,261.6313 Q787.8297,261.6313 788.0422,261.8188 Q788.2547,262.0063 788.2547,262.3063 Q788.2547,262.6813 787.9297,262.8938 Q787.7797,262.9938 787.3047,262.9938 L784.5172,269.6813 L783.2047,269.6813 L780.4172,262.9938 Q779.9422,262.9938 779.7922,262.8938 Q779.4672,262.6813 779.4672,262.3063 Q779.4672,262.0063 779.6797,261.8188 Q779.8922,261.6313 780.3797,261.6313 L782.2172,261.6313 Q782.7047,261.6313 782.9047,261.8188 Q783.1172,262.0063 783.1172,262.3063 Q783.1172,262.6188 782.9047,262.8063 Q782.7047,262.9938 782.2172,262.9938 L781.8922,262.9938 L783.8547,267.6938 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="41.625" x="798.8449" y="261.9656">«Record»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="46.6977" x="796.3086" y="275.7016">Habilidad</text><line style="stroke:#000000;stroke-width:0.4;" x1="764.4" x2="852.3859" y1="282.1625" y2="282.1625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="79.9859" x="768.4" y="296.9891">+Nombre: string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="51.368" x="768.4" y="311.0766">+Daño: int</text></g><!--reverse link Personaje to Guerrero--><g id="link_Personaje_Guerrero"><path codeline="44" d="M398.4368,172.2467 C357.8128,193.1587 327.728,208.648 290.4,227.856 " fill="transparent" id="Personaje-backto-Guerrero" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="411.24,165.656,396.2399,167.979,400.6337,176.5145,411.24,165.656" style="stroke:#000000;stroke-width:0.8;"></polygon></g><!--reverse link Personaje to Mago--><g id="link_Personaje_Mago"><path codeline="45" d="M565.2,180.192 C565.2,201.096 565.2,208.752 565.2,227.936 " fill="transparent" id="Personaje-backto-Mago" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="565.2,165.792,560.4,180.192,570,180.192,565.2,165.792" style="stroke:#000000;stroke-width:0.8;"></polygon></g><!--reverse link Personaje to Habilidad--><g id="link_Personaje_Habilidad"><path codeline="46" d="M678.7905,171.5311 C704.6305,191.4831 724.376,207.264 749.2,228 C756.752,234.312 764.672,241.24 772.168,247.968 " fill="transparent" id="Personaje-backto-Habilidad" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="671.192,165.664,673.0356,171.1304,678.7905,171.5311,676.9469,166.0647,671.192,165.664" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="52.6195" x="721.2" y="201.1961">habilidades</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="15.6102" x="749.7435" y="239.2298">0..*</text></g><!--SRC=[dPFFJW8n4CRl-nGJkO3y2JVDXf00Yfge8MBqHZBiZajbjpLjmGZoK3w3BsQtiDr2Y0TEctupyvklirCrP_m39MOGfQXKJsl9fWjDTv7WOxOYQ0VAfVIa59y3aGe9_HIZkHSQcICcr3UVH8e5ZxTfhpEcQPo9ENcvWxnJNyYOv77ODk40DURYqyiv33zBvCg4YEiW25I4gV7UkWm2UoyOaLI2upj1frEzRbI6mukBThi6rrmp_TNjmZe0g01naWd349Z103HXXbEMiXXZKY7SCwKxjuNIDGdr4bpb8fjA2a6P4VAaiSTgbA0G7A5c2JUa7srfjLOKM_sHBIcrrSPpGhgxRTZx_J5k7ADQWajk24l1Ofk-NZAf5vXkeASnmeCUNdHWgDoFRuhPtIn8IfB2pgW9R-QuSYEgk_090sZuC3UDeTLo9qMBoJ7latyiFs1IsCsGUsRpm4b67SRPV41-giaPYwc4GqPw9cAryrxg-Qw-bBlwH95vDBjTDVknTmihNU7lZzWwCbsydVzkDjr_EjJpaNYQCD9PkzKwF_ESXFv32Fu0]--></g></svg></p></div>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Record Habilidad</strong>: Propiedades de solo lectura <code>Nombre</code> y <code>Daño</code>.</p>
+</li>
+<li>
+<p><strong>Clase Personaje</strong>:</p>
+<ul>
+<li>El constructor recibe: <code>nombre</code>, <code>energia</code>, <code>List&lt;Habilidad&gt; habilidades</code>. Valida que haya al menos una; en caso contrario se creará una habilidad por defecto con daño <code>0</code> y nombre <code>No Hábil</code>.</li>
+<li>Propiedad calculada <code>Nivel = energia / 10</code>.</li>
+<li>Método virtual <code>Ataca()</code> que usará la habilidad principal para el cálculo del ataque.  La habilidad principal será la que mayor daño tenga.</li>
+<li><code>ACadena()</code> debe usar un <code>StringBuilder</code> para construir la salida multi‑línea de las habilidades, como se muestra en la salida.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Guerrero</strong>:</p>
+<ul>
+<li>Añade propiedad <code>Fuerza</code> como entero.</li>
+<li><code>Ataca()</code> a partir del ataque base del personaje, se le añade la <code>fuerza + (el total de las habilidades / 2)</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Mago</strong>:</p>
+<ul>
+<li>Añade propiedad <code>Mana</code> como entero.</li>
+<li><code>Ataca()</code> a partir del ataque base del personaje, lanza la primera habilidad con su fuerza y se apoya con : <code>mana + habilidadPrincipal.Daño</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Programa principal (<code>GestionPersonajes</code>)</strong>:</p>
+<ul>
+<li>Crear listas de habilidades para cada personaje (mínimo 2 para ejemplificar):
+<ul>
+<li>Guerrero: Furia (50), Golpe Giratorio (30).</li>
+<li>Mago: Bola de Fuego (70), Rayo (40), Escarcha (25).</li>
+</ul>
+</li>
+<li>Instanciar personajes y mostrar su representación (<code>ACadena()</code>).</li>
+<li>Añade una habilidad más al personaje Mago.</li>
+<li>Mostrar ataques indicando el uso de la habilidad principal (la primera en la lista).</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-4-polimorfismo-de-datos-con-herramientas-avanzadas">Ejercicio 4. Polimorfismo de datos con herramientas avanzadas </h2>
+<p>Extiende el sistema de herramientas del Ejercicio 1 añadiendo nuevas subclases y un nuevo método virtual común que permita <strong>demostrar el polimorfismo de datos</strong>.</p>
+<pre class="salida_consola">Ejercicio 4: Polimorfismo con herramientas
+
+Creando inventario...
+
+Martillo, Marca: Stanley, Peso: 0,5, Precio: 25
+Taladro Percutor, Marca: Bosch, Peso: 2,3, Precio: 89,25, Potencia: 750, Velocidad Máxima: 3000
+Sierra Circular, Marca: Makita, Peso: 4,1, Precio: 132, Potencia: 1400, Hoja: 185mm
+Lijadora Orbital, Marca: Dewalt, Peso: 1,8, Precio: 54, RPM: 12000, Disco: 125mm
+
+Mostrando usos...
+Martillo: Golpea superficies para ensamblar o fijar piezas.
+Taladro Percutor: Perfora materiales duros a alta velocidad.
+Sierra Circular: Realiza cortes rectos en madera y tableros.
+Lijadora Orbital: Lija y suaviza superficies de madera.
+
+Accediendo a métodos específicos:
+
+Taladro Percutor =&gt; Perforar 8mm diámetro, 60mm profundidad OK
+Sierra Circular =&gt; Cortar("Madera", 18mm) OK
+Lijadora Orbital =&gt; Pulir(2.5 m2) tarda 2fs
+
+Presiona cualquier tecla para salir...
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p>Debes reutilizar el código del ejercicio 1 y añadir en la clase padre un <strong>método virtual nuevo</strong> <code>Usa</code> que devuelva una descripción genérica del uso según la salida anterior en las clases correspondientes.</p>
+</li>
+<li>
+<p>Nuevas subclases a añadir:</p>
+<ol>
+<li><strong>SierraElectrica</strong> con las propiedades específicas <code>potenciaW</code> (int), <code>diametroHojaMm</code> (int) y un método propio <code>Corta(material: string, grosorMm: int): string</code>. En el Precio, aplica un recargo ambiental del 10% sobre el <code>precioBase</code> si la potencia es &gt; 1300W; si no, deja el precio base.</li>
+<li><strong>Lijadora</strong> con las propiedades específicas <code>rpm</code> (int), <code>diametroDiscoMm</code> (int) y un método propio <code>Pule(superficieM2: double): double</code> que devuelve los segundos estimados (tiempoSeg = (superficieM2 * 60) / (rpm * 0.012)). En cuanto al Precio, aplicará un descuento ecológico del 10% si <code>rpm &lt; 10000</code>, si no mantiene el precio base.</li>
+<li>A la clase <strong>Taladro</strong> se le añadirá un método propio <code>Perfora(diametroMm: int, profundidadMm: int): string</code>.</li>
+</ol>
+</li>
+<li>
+<p><strong>Programa principal</strong>: (<code>GestionHerramientasPolimorfismo</code>)</p>
+<ul>
+<li>Crear una lista con las instancias de las siguientes herramientas:
+<ul>
+<li>Martillo (sin cambios respecto al Ej.1)</li>
+<li>Taladro Percutor (como Ej.1)</li>
+<li>Sierra Circular (Makita, peso 4.1kg, base 120€, potencia 1400W, hoja 185mm) =&gt; precio final 132€ (recargo 10%)</li>
+<li>Lijadora Orbital (Dewalt, peso 1.8kg, base 54€, rpm 9000, disco 125mm) =&gt; precio final 48.60€ (con descuento, se muestra con dos decimales)</li>
+</ul>
+</li>
+<li>Recorre la lista con un foreach mostrando la información de las herramientas conforme se ve en la salida (extraída del ACadena).</li>
+<li>Muestra los usos de todas las herramientas, mediante un foreach</li>
+<li>Intenta usar los métodos específicos de cada herramientas.  Explica (en comentarios junto al uso) que métodos como <code>Pulir</code>, <code>Cortar</code>, <code>Perforar</code> NO se pueden llamar desde la referencia <code>Herramienta</code>.</li>
+<li>Usa (<code>switch</code> o <code>is</code>) para invocar los métodos específicos y mostrar resultados reales.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-5-red-de-albergues-de-viaje">Ejercicio 5. Red de albergues de viaje </h2>
+<p>Implementa un sistema simplificado de gestión de una pequeña red de albergues de viaje. Se desea almacenar distintos tipos de albergues y calcular de forma polimórfica si admiten una reserva y el precio final por noche según su tipo, temporada y ocupación.</p>
+<pre class="salida_consola">Ejercicio 5: Red de albergues (versión interactiva)
+
+--- MENÚ GESTIÓN ALBERGUES ---
+[1] Añadir albergue
+[2] Registrar reserva
+[3] Mostrar estado
+[4] Mostrar información complementaria
+[ESC] Salir
+Seleccione opción: 3
+
+=== ESTADO ACTUAL ===
+Montaña Verde -&gt; Ocupación: 3/40 (7%) Precio base: 22.00€ Precio actual: 25.30€
+City Hostel   -&gt; Ocupación: 5/80 (6%) Precio base: 18.00€ Precio actual: 18.00€
+Surf Point    -&gt; Ocupación: 10/55 (18%) Precio base: 20.00€ Precio actual: 23.00€
+
+Pulse una tecla para continuar...
+--- MENÚ GESTIÓN ALBERGUES ---
+{se omite el menú por simplificación}
+Seleccione opción: 2
+Listado de albergues:
+ (0) Montaña Verde
+ (1) City Hostel
+ (2) Surf Point
+Elija índice: 0
+Plazas a reservar: 8
+¿Temporada alta? (S/N): S
+[Reserva] Montaña Verde: 8 plazas (ALTA) =&gt; ACEPTADA. Ocupación ahora 11/40 (27%)
+
+--- MENÚ GESTIÓN ALBERGUES ---
+{se omite el menú por simplificación}
+Seleccione opción: 4
+Información complementaria:
+Montaña Verde =&gt; Clima previsto: Nieve ligera
+City Hostel =&gt; Sin información complementaria
+Surf Point =&gt; Oleaje estimado: Moderado
+
+--- MENÚ GESTIÓN ALBERGUES ---
+{se omite el menú por simplificación}
+Seleccione opción: ESC
+Saliendo del gestor...
+</pre>
+<p><strong>Descripción general:</strong><br>
+Se parte de una clase base <code>Albergue</code> y tres subclases: <code>AlbergueRural</code>, <code>AlbergueUrbano</code> y <code>AlbergueCostero</code>. Todas comparten la capacidad, reservas y cálculo del porcentaje de ocupación; cada una aplica reglas distintas para aceptar reservas y ajustar el precio final por noche.</p>
+<p><strong>Entidades de tipo Value Object:</strong></p>
+<ul>
+<li><code>Direccion</code> con las propiedades Ciudad (string) y Pais (string).</li>
+<li><code>Reserva</code> con las propiedades  Plazas (int) y EsTemporadaAlta (bool)</li>
+</ul>
+<p><strong>Clase base Albergue:</strong></p>
+<ul>
+<li>
+<p>Que tendrá las siguientes propiedades privadas si no se especifica lo contrario:</p>
+<ul>
+<li><code>Nombre</code> (string, readonly)</li>
+<li><code>Capacidad</code> (int, readonly, &gt; 0)</li>
+<li><code>Direccion</code> (Direccion, composición y readonly)</li>
+<li><code>Servicios</code> (List<string>)</string></li>
+<li><code>Reservas</code> (List<reserva>, protegida y de tipo agregación)</reserva></li>
+<li><code>PrecioBase</code> (double y protegida)</li>
+<li><code>Precio</code> propiedad pública calculada (double, readonly y redefinible)</li>
+<li><code>PlazasOcupadas</code> propiedad calculada (int, readonly y protegida) que devolverá el número total de reservas.</li>
+<li><code>PorcentajeOcupacion</code> propiedad calculada (int, readonly  y pública) que devolverá el porcentaje de ocupación.</li>
+</ul>
+</li>
+<li>
+<p>Métodos públicos si no se especifica lo contrario:</p>
+<ul>
+<li><code>AgregaServicio</code> que agrega un servicio que le llega como entrada al albergue, evitando duplicados.</li>
+<li><code>AñadeReservaInterna</code> método privado al que le llega una reserva y actualiza la ocupación.</li>
+<li><code>AdmiteReserva</code> método protegido y redefinible al que le llega el número de plazas y un boolean indicando si es temporada alta, devolverá un boolean admitiendo o no la reserva dependiendo de si todavía quedan plazas en el albergue (teniendo en cuenta las que se quieren reservar), o si la reserva es válida <em>plazas &gt; 0</em>:</li>
+<li><code>RegistraReserva</code> método público al que le llega el número de plazas y un boolean indicando si es temporada Alta, con esta información llamará a <code>AdmiteReserva</code> y si la reserva es posible la añadirá y devolverá un boolean confirmando que ha sido registrada o false en caso contrario.</li>
+<li><code>CalculaPrecioActual</code> método público y redefinible que devolverá el precio como doble. Por defecto devolverá el precio base.</li>
+<li><code>InformacionComplementaria</code> método público y redefinible que devolverá una cadena con datos de contexto externo (clima, oleaje, eventos urbanos, etc.). Devolverá como base "Sin información complementaria".</li>
+<li><code>Anula el ToString</code> para que conseguir una salida como la que se muestra con: nombre, tipo, capacidad, porcentaje y servicios.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Reglas específicas:</strong></p>
+<ol>
+<li><code>AlbergueRural</code>:
+<ul>
+<li>Precio: si temporada alta en alguna reserva (existe alguna <code>EsTemporadaAlta</code>) y ocupación &gt; 20% =&gt; <code>PrecioBase * 2.15</code> si no <code>PrecioBase * 1.15</code> ya aplicado por incluir desayuno y cena.</li>
+<li>AdmiteReserva: además de la base, rechaza peticiones &gt; 50% de la capacidad total en una sola reserva.</li>
+<li>InformacionComplementaria devuelve un texto de clima simulado.</li>
+</ul>
+</li>
+<li><code>AlbergueUrbano</code>:
+<ul>
+<li>Precio: si ocupación &gt;= 60% =&gt; <code>PrecioBase * 1.10</code> si no <code>PrecioBase</code>.</li>
+<li>AdmiteReserva: permite reservas grandes mientras queden plazas (no añade restricciones extra).</li>
+</ul>
+</li>
+<li><code>AlbergueCostero</code>:
+<ul>
+<li>Precio: si es temporada alta en la última reserva registrada =&gt; <code>PrecioBase + 3</code> y si ocupación &gt; 40% añade +2 extra.</li>
+<li>AdmiteReserva: rechaza si temporada ALTA y plazas solicitadas &gt; 60% de la capacidad restante.</li>
+<li>InformacionComplementaria devuelve un texto sobre el oleaje.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Programa principal:</strong></p>
+<ul>
+<li>
+<p>En el programa principal inicializa una lista con los 3 albergues de ejemplo y sus servicios, y registra las reservas iniciales.</p>
+</li>
+<li>
+<p>Crea un método <code>GestionAlbergues</code> que muestra un MENÚ hasta que el usuario pulse la tecla ESC que permita:</p>
+<ol>
+<li>"Añadir albergue", que llamará a un método <code>AñadeAlbergue</code> que pedirá los datos y añadirá un albergue a la lista.</li>
+</ol>
+<ul>
+<li>Pedir tipo (R/U/C).</li>
+<li>Pedir nombre, capacidad (&gt;0), precio base (&gt;0), ciudad y país.</li>
+<li>Permitir introducir servicios separados por coma.</li>
+</ul>
+<ol start="2">
+<li>"Registrar reserva", que llamará a un método <code>ReguistraReserva</code> que:</li>
+</ol>
+<ul>
+<li>Listar albergues con índice.</li>
+<li>Pedir índice válido, plazas (int &gt;0) y si es temporada alta (S/N).</li>
+<li>Llamar a <code>RegistraReserva</code> e indicar ACEPTADA o RECHAZADA.</li>
+</ul>
+<ol start="3">
+<li>"Mostrar estado", muestra directamente el estado como en salida.</li>
+<li>"Mostrar información complementaria", muestra la información complementaria.</li>
+<li>"ESC",Finaliza el bucle.</li>
+</ol>
+</li>
+</ul>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

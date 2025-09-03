@@ -1,0 +1,868 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 7</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<div class="box_bg_lightgray">
+<p>🎓 <strong>Caso de estudio:</strong></p>
+<p><strong>Ejemplo de modularización de un programa ya hecho</strong></p>
+<p>Supongamos el siguiente enunciado:</p>
+<blockquote>
+<p>Deberemos mostrar un tablero de ajedrez y sobre él, marcar con <strong><code>*</code></strong> las celdas a las que se puede mover un alfil desde una posición <strong>dada por el usuario</strong>.</p>
+<p>Para indicar la posición de la casilla vamos a utilizar índices <strong>del 1 al 8</strong> tanto para las filas como para las columnas, de tal manera que la casilla <strong>(1, 1)</strong> es la esquina superior izquierda del tablero y la casilla <strong>(8, 8)</strong> es la esquina inferior derecha.</p>
+<p>Vamos imprimir colores en el terminal puedes usar las propiedades de consola:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Color<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Color<span class="token punctuation">;</span>
+</code></pre><p>Además, puedes imprimir en una posición específica en pantalla con.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>Columna<span class="token punctuation">,</span> Fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Para más información sobre la clase <a href="https://docs.microsoft.com/es-es/dotnet/api/system.console?view=netcore-3.1#definition">Console</a></p>
+<p><strong>Ejemplo de ejecución:</strong></p>
+<pre class="salida_consola">Introduce fila: 4
+Introduce columna: 4
+ 12345678
+1*     *
+2 *   *
+3  * *
+4   A    
+5  * *    
+6 *   *
+7*     *
+8       *
+</pre>
+</blockquote>
+<p>Una propuesta de solución válida sería el siguiente código '<em>monolítico</em>', largo y susceptible de ser modularizado puede ser el siguiente:<br>
+📌 <strong>Nota</strong>: Puedes descargarlo con desde el <strong><a href="assets/codigo/caso_estudio/Programa_inicial.cs">siguiente enlace</a></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Programa</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fila <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> fila<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> columna <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> columna<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esCasillaNegra<span class="token punctuation">;</span>
+
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    esCasillaNegra <span class="token operator">=</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-else">else</span>
+                    esCasillaNegra <span class="token operator">=</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>esCasillaNegra<span class="token punctuation">)</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>DarkGray<span class="token punctuation">;</span>
+                <span class="token keyword keyword-else">else</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaAlfil<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaAlfil<span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce fila: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filaAlfil <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce columna: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        columnaAlfil <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fila <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> fila<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> columna <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> columna<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esDiagonalAlfil <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>filaAlfil <span class="token operator">-</span> fila<span class="token punctuation">)</span> <span class="token operator">==</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>columnaAlfil <span class="token operator">-</span> columna<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>esDiagonalAlfil<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esCasillaNegra<span class="token punctuation">;</span>
+
+                    Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                        esCasillaNegra <span class="token operator">=</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                    <span class="token keyword keyword-else">else</span>
+                        esCasillaNegra <span class="token operator">=</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+                    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>esCasillaNegra<span class="token punctuation">)</span>
+                    <span class="token punctuation">{</span>
+                        Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>DarkGray<span class="token punctuation">;</span>
+                        Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword keyword-else">else</span>
+                    <span class="token punctuation">{</span>
+                        Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                        Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Gray<span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Lo primero sería <strong>identificar los bloques de código relacionado</strong> y que hace una única funcionalidad y tratar de ponerles nombre y pasarles todos los datos que precisen por parámetro. Además, durante el proceso vamos a...</p>
+<ol>
+<li><strong>Refactorizar el código</strong> para simplificar patrones y ver cómo se hace.</li>
+<li>Seguir las reglas de modularización, cohesión y acoplamiento. Lo cual nos mejorará el código porque lo hará más <strong>genérico</strong> y <strong>reusable</strong>.</li>
+<li>En este ejemplo, solo realizaremos <strong>un par de refinamientos</strong> de modularización, puesto que posiblemente en un segundo siempre sea posible de modularizar aún más y mejorar un poco.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title"><strong>Importante</strong></p>
+<p>Este caso de estudio es simplemente para que veamos un ejemplo de una de las posibles formas de plantear la modularización de un código ya implementado. Quizá un programador experimentado es capaz de realizar ambos refinamientos de una sola vez, pero eso se logra con la práctica y la experiencia.<br>
+Este proceso es interesante abordarlo porque en la realidad la mayoría de casos de modularización se nos darán refactorizando código nuestro o de un compañero al que le estemos añadiendo nuevas características.</p>
+</div>
+<p><strong>Paso 1 - Dibujo del tablero vacío:</strong></p>
+<p>Si analizamos los dos primeros bucles, cláramente se hace un proceso de dibujo del tablero vacío, tanto de la numeración, como de las casillas.<br>
+📌 <strong>Nota:</strong> Lee los comentarios en el código.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaNumeracion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaCuadricula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Nos guardamos el color de fondo para restaurarlo al final</span>
+    <span class="token comment">// aunque el nombre del identificador autodocumenta ahorrándonos este comentario.</span>
+    <span class="token class-name">ConsoleColor</span> copiaRespaldoDeColorDeFondo <span class="token operator">=</span> Console<span class="token punctuation">.</span>BackgroundColor<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fila <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> fila<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> columna <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> columna<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Refactorizamos simplificando las expresiones </span>
+            <span class="token comment">// y la lógica a partir del código dado.</span>
+            <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esCasillaNegra <span class="token operator">=</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">:</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> esCasillaNegra 
+                    <span class="token punctuation">?</span> ConsoleColor<span class="token punctuation">.</span>Black 
+                    <span class="token punctuation">:</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Dibuja una casilla del fondo en una posición.</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Restauramos el color.</span>
+    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> copiaRespaldoDeColorDeFondo<span class="token punctuation">;</span>         
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Guardo los colores de la consola y la limpio.</span>
+    <span class="token class-name">ConsoleColor</span> fondo <span class="token operator">=</span> Console<span class="token punctuation">.</span>BackgroundColor<span class="token punctuation">;</span>
+    <span class="token class-name">ConsoleColor</span> primerPlano <span class="token operator">=</span> Console<span class="token punctuation">.</span>ForegroundColor<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         
+    <span class="token comment">// Pasamos la dimensión de tablero a través de una cte. en lugar de usar un número 'mágico'.</span>
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> DIMENSION_TABLERO <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token function">DibujaTablero</span><span class="token punctuation">(</span>DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>       
+</code></pre><p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="500pt" height="200pt" viewBox="0.00 0.00 500.00 200.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.8 0.8) rotate(0) translate(216.4 224.6)">
+<title>G</title>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="none" stroke="black" points="124.73,-195.2 70.73,-195.2 70.73,-159.2 124.73,-159.2 124.73,-195.2"></polygon>
+<polygon fill="none" stroke="black" points="128.73,-199.2 66.73,-199.2 66.73,-155.2 128.73,-155.2 128.73,-199.2"></polygon>
+<text text-anchor="middle" x="97.73" y="-173" font-family="Arial" font-size="14.00">main</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="#c6e2ff" stroke="black" points="129.47,-119.2 66,-119.2 66,-77.6 129.47,-77.6 129.47,-119.2"></polygon>
+<text text-anchor="middle" x="97.73" y="-102.6" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="97.73" y="-85.8" font-family="Arial" font-size="14.00">Tablero</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="black" d="M97.73,-154.81C97.73,-147.41 97.73,-138.96 97.73,-130.93"></path>
+<polygon fill="black" stroke="black" points="101.23,-131.14 97.73,-121.14 94.23,-131.14 101.23,-131.14"></polygon>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="#b9d3ee" stroke="black" points="91.47,-41.6 0,-41.6 0,0 91.47,0 91.47,-41.6"></polygon>
+<text text-anchor="middle" x="45.73" y="-25" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="45.73" y="-8.2" font-family="Arial" font-size="14.00">Numeración</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1-&gt;n2</title>
+<path fill="none" stroke="black" d="M83.8,-77.14C78.33,-69.2 71.96,-59.92 66,-51.26"></path>
+<polygon fill="black" stroke="black" points="68.94,-49.36 60.39,-43.1 63.17,-53.32 68.94,-49.36"></polygon>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="#b9d3ee" stroke="black" points="192.2,-41.6 109.27,-41.6 109.27,0 192.2,0 192.2,-41.6"></polygon>
+<text text-anchor="middle" x="150.73" y="-25" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="150.73" y="-8.2" font-family="Arial" font-size="14.00">Cuadricula</text>
+</g>
+<!-- n1&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n1-&gt;n3</title>
+<path fill="none" stroke="black" d="M111.94,-77.14C117.51,-69.2 124.01,-59.92 130.08,-51.26"></path>
+<polygon fill="black" stroke="black" points="132.93,-53.29 135.81,-43.09 127.2,-49.27 132.93,-53.29"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<div style="page-break-after:always;"></div>
+<p><strong>Paso 2 - Pedir la casilla donde se encuentra el álfil:</strong></p>
+<p>El código a continuación del dibujo del tablero está pidiendo la fila y columna de la casilla según la numeración dibujada. En este primer refinamiento de modularización nos vamos a limitar a pasarlo a un módulo que devuelva ambos valores en forma de tupla ya que están relacionados.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> columna<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> fila<span class="token punctuation">)</span></span> <span class="token function">CasillaAlfil</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce fila: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> f <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce columna: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> c <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>c<span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="admonition note">
+<p class="admonition-title"><strong>Importante</strong></p>
+<p>Fíjate que estamos dibujando en posiciones absolutas (10, 4) y (10, 5).<br>
+<strong>¿Cómo sabemos que no estamos dibujando encima del tablero?</strong><br>
+Este módulo necesita saber donde está dibujando otro módulo del mismo nivel lo cual nos indica un <strong>claro acoplamiento</strong>. Para solucionarlo haremos le pasaremos la posición absoluta donde dibujar ...</p>
+</div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> columna<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> fila<span class="token punctuation">)</span></span> <span class="token function">CasillaAlfil</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce fila: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> f <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce columna: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> c <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>c<span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>        
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> DIMENSION_TABLERO <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token function">DibujaTablero</span><span class="token punctuation">(</span>DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Realizamos la entrada de datos en función de la dimensión del tablero...</span>
+    <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaAlfil<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaAlfil<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">CasillaAlfil</span><span class="token punctuation">(</span>DIMENSION_TABLERO <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">,</span> DIMENSION_TABLERO <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>       
+</code></pre><p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="500pt" height="200pt" viewBox="0.00 0.00 500.00 200.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.8 0.8) rotate(0) translate(193.65 224.6)">
+<title>G</title>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="none" stroke="black" points="171.73,-195.2 117.73,-195.2 117.73,-159.2 171.73,-159.2 171.73,-195.2"></polygon>
+<polygon fill="none" stroke="black" points="175.73,-199.2 113.73,-199.2 113.73,-155.2 175.73,-155.2 175.73,-199.2"></polygon>
+<text text-anchor="middle" x="144.73" y="-173" font-family="Arial" font-size="14.00">main</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="none" stroke="black" points="129.47,-119.2 66,-119.2 66,-77.6 129.47,-77.6 129.47,-119.2"></polygon>
+<text text-anchor="middle" x="97.73" y="-102.6" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="97.73" y="-85.8" font-family="Arial" font-size="14.00">Tablero</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="black" d="M131.64,-154.81C126.8,-146.9 121.22,-137.78 116,-129.25"></path>
+<polygon fill="black" stroke="black" points="119.11,-127.62 110.9,-120.91 113.13,-131.27 119.11,-127.62"></polygon>
+</g>
+<!-- n5 -->
+<g id="node5" class="node">
+<title>n5</title>
+<polygon fill="#c6e2ff" stroke="black" points="237.7,-119.2 147.77,-119.2 147.77,-77.6 237.7,-77.6 237.7,-119.2"></polygon>
+<text text-anchor="middle" x="192.73" y="-102.6" font-family="Arial" font-size="14.00">Pide Casilla</text>
+<text text-anchor="middle" x="192.73" y="-85.8" font-family="Arial" font-size="14.00">Alfil</text>
+</g>
+<!-- n0&#45;&gt;n5 -->
+<g id="edge4" class="edge">
+<title>n0-&gt;n5</title>
+<path fill="none" stroke="black" d="M158.11,-154.81C163.05,-146.9 168.75,-137.78 174.08,-129.25"></path>
+<polygon fill="black" stroke="black" points="176.96,-131.24 179.29,-120.91 171.03,-127.53 176.96,-131.24"></polygon>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="none" stroke="black" points="91.47,-41.6 0,-41.6 0,0 91.47,0 91.47,-41.6"></polygon>
+<text text-anchor="middle" x="45.73" y="-25" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="45.73" y="-8.2" font-family="Arial" font-size="14.00">Numeración</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1-&gt;n2</title>
+<path fill="none" stroke="black" d="M83.8,-77.14C78.33,-69.2 71.96,-59.92 66,-51.26"></path>
+<polygon fill="black" stroke="black" points="68.94,-49.36 60.39,-43.1 63.17,-53.32 68.94,-49.36"></polygon>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="none" stroke="black" points="192.2,-41.6 109.27,-41.6 109.27,0 192.2,0 192.2,-41.6"></polygon>
+<text text-anchor="middle" x="150.73" y="-25" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="150.73" y="-8.2" font-family="Arial" font-size="14.00">Cuadricula</text>
+</g>
+<!-- n1&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n1-&gt;n3</title>
+<path fill="none" stroke="black" d="M111.94,-77.14C117.51,-69.2 124.01,-59.92 130.08,-51.26"></path>
+<polygon fill="black" stroke="black" points="132.93,-53.29 135.81,-43.09 127.2,-49.27 132.93,-53.29"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<div style="page-break-after:always;"></div>
+<p><strong>Paso 3 - Dibujar las posiciones del álfil a partir de la casilla dada:</strong></p>
+<p>El último bucle en el <strong><code>Main</code></strong> dibujará las casillas alcanzables por el álfil a partir de la casilla dada.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaDiagonalesAlfil</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaPieza<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaPieza<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fila <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> fila<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> columna <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> columna<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Asignamos la expresión a un identificados booleano para autodocumentarla.</span>
+            <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> estanEnLaMismaDiagonal <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>filaPieza <span class="token operator">-</span> fila<span class="token punctuation">)</span> <span class="token operator">==</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>columnaPieza <span class="token operator">-</span> columna<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>estanEnLaMismaDiagonal<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span> 
+                <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> esCasillaNegra <span class="token operator">=</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">:</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">//Línea 11</span>
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>esCasillaNegra<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword keyword-else">else</span>
+                <span class="token punctuation">{</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>            
+<span class="token punctuation">}</span>
+</code></pre><p>Si nos fijamos en la línea <strong>11</strong>, la expresión para saber si una casilla es negra o no, se repetía en <strong><code>DibujaCuadricula</code></strong>. Esto nos está diciendo que podemos <strong>aumentar la cohesión</strong> del código llevándola a un módulo común usado por ambos para evitar así repetir la lógica.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EsCasillaNegra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">:</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Ahora en ambas líneas donde se repetía la expresión podremos poner directamente...</span>
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">EsCasillaNegra</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token range operator">..</span><span class="token punctuation">.</span>    
+</code></pre><p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="500pt" height="250pt" viewBox="0.00 0.00 500.00 250.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.8 0.8) rotate(0) translate(155.4 294.65)">
+<title>G</title>
+<!-- n0 -->
+<g id="node1" class="node">
+<title>n0</title>
+<polygon fill="none" stroke="black" points="167.73,-272.8 113.73,-272.8 113.73,-236.8 167.73,-236.8 167.73,-272.8"></polygon>
+<polygon fill="none" stroke="black" points="171.73,-276.8 109.73,-276.8 109.73,-232.8 171.73,-232.8 171.73,-276.8"></polygon>
+<text text-anchor="middle" x="140.73" y="-250.6" font-family="Arial" font-size="14.00">main</text>
+</g>
+<!-- n1 -->
+<g id="node2" class="node">
+<title>n1</title>
+<polygon fill="none" stroke="black" points="77.47,-196.8 14,-196.8 14,-155.2 77.47,-155.2 77.47,-196.8"></polygon>
+<text text-anchor="middle" x="45.73" y="-180.2" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="45.73" y="-163.4" font-family="Arial" font-size="14.00">Tablero</text>
+</g>
+<!-- n0&#45;&gt;n1 -->
+<g id="edge1" class="edge">
+<title>n0-&gt;n1</title>
+<path fill="none" stroke="black" d="M114.27,-232.41C103.53,-223.72 90.99,-213.58 79.59,-204.37"></path>
+<polygon fill="black" stroke="black" points="81.9,-201.74 71.93,-198.17 77.5,-207.18 81.9,-201.74"></polygon>
+</g>
+<!-- n5 -->
+<g id="node6" class="node">
+<title>n5</title>
+<polygon fill="none" stroke="black" points="185.7,-196.8 95.77,-196.8 95.77,-155.2 185.7,-155.2 185.7,-196.8"></polygon>
+<text text-anchor="middle" x="140.73" y="-180.2" font-family="Arial" font-size="14.00">Pide Casilla</text>
+<text text-anchor="middle" x="140.73" y="-163.4" font-family="Arial" font-size="14.00">Alfil</text>
+</g>
+<!-- n0&#45;&gt;n5 -->
+<g id="edge5" class="edge">
+<title>n0-&gt;n5</title>
+<path fill="none" stroke="black" d="M140.73,-232.41C140.73,-225.01 140.73,-216.56 140.73,-208.53"></path>
+<polygon fill="black" stroke="black" points="144.23,-208.74 140.73,-198.74 137.23,-208.74 144.23,-208.74"></polygon>
+</g>
+<!-- n6 -->
+<g id="node7" class="node">
+<title>n6</title>
+<polygon fill="#c6e2ff" stroke="black" points="314.2,-196.8 203.27,-196.8 203.27,-155.2 314.2,-155.2 314.2,-196.8"></polygon>
+<text text-anchor="middle" x="258.73" y="-180.2" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="258.73" y="-163.4" font-family="Arial" font-size="14.00">Diagonales Álfil</text>
+</g>
+<!-- n0&#45;&gt;n6 -->
+<g id="edge6" class="edge">
+<title>n0-&gt;n6</title>
+<path fill="none" stroke="black" d="M172.05,-233.42C186.16,-224.23 203.01,-213.27 218.08,-203.46"></path>
+<polygon fill="black" stroke="black" points="219.94,-206.42 226.42,-198.03 216.13,-200.56 219.94,-206.42"></polygon>
+</g>
+<!-- n2 -->
+<g id="node3" class="node">
+<title>n2</title>
+<polygon fill="none" stroke="black" points="91.47,-119.2 0,-119.2 0,-77.6 91.47,-77.6 91.47,-119.2"></polygon>
+<text text-anchor="middle" x="45.73" y="-102.6" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="45.73" y="-85.8" font-family="Arial" font-size="14.00">Numeración</text>
+</g>
+<!-- n1&#45;&gt;n2 -->
+<g id="edge2" class="edge">
+<title>n1-&gt;n2</title>
+<path fill="none" stroke="black" d="M45.73,-154.74C45.73,-147.39 45.73,-138.91 45.73,-130.83"></path>
+<polygon fill="black" stroke="black" points="49.23,-130.97 45.73,-120.97 42.23,-130.97 49.23,-130.97"></polygon>
+</g>
+<!-- n3 -->
+<g id="node4" class="node">
+<title>n3</title>
+<polygon fill="#b9d3ee" stroke="black" points="211.2,-119.2 128.27,-119.2 128.27,-77.6 211.2,-77.6 211.2,-119.2"></polygon>
+<text text-anchor="middle" x="169.73" y="-102.6" font-family="Arial" font-size="14.00">Dibuja</text>
+<text text-anchor="middle" x="169.73" y="-85.8" font-family="Arial" font-size="14.00">Cuadricula</text>
+</g>
+<!-- n1&#45;&gt;n3 -->
+<g id="edge3" class="edge">
+<title>n1-&gt;n3</title>
+<path fill="none" stroke="black" d="M77.67,-155.53C92.64,-146.4 110.71,-135.39 126.85,-125.54"></path>
+<polygon fill="black" stroke="black" points="128.6,-128.58 135.32,-120.38 124.96,-122.6 128.6,-128.58"></polygon>
+</g>
+<!-- n4 -->
+<g id="node5" class="node">
+<title>n4</title>
+<polygon fill="#9fb6cd" stroke="black" points="242.85,-41.6 164.61,-41.6 164.61,0 242.85,0 242.85,-41.6"></polygon>
+<text text-anchor="middle" x="203.73" y="-25" font-family="Arial" font-size="14.00">Es Casilla</text>
+<text text-anchor="middle" x="203.73" y="-8.2" font-family="Arial" font-size="14.00">Negra</text>
+</g>
+<!-- n3&#45;&gt;n4 -->
+<g id="edge4" class="edge">
+<title>n3-&gt;n4</title>
+<path fill="none" stroke="black" d="M178.85,-77.14C182.3,-69.45 186.32,-60.52 190.11,-52.1"></path>
+<polygon fill="black" stroke="black" points="193.19,-53.79 194.09,-43.23 186.8,-50.92 193.19,-53.79"></polygon>
+</g>
+<!-- n6&#45;&gt;n4 -->
+<g id="edge7" class="edge">
+<title>n6-&gt;n4</title>
+<path fill="none" stroke="black" d="M251.54,-154.97C242.16,-128.82 225.63,-82.8 214.68,-52.3"></path>
+<polygon fill="black" stroke="black" points="218.11,-51.49 211.44,-43.26 211.52,-53.85 218.11,-51.49"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<p><strong>Paso 4 - Completando las llamadas en el programa principal:</strong></p>
+<p>Si nos fijamos en las líneas 10, 12 y 16 tendremos las llamadas resultado de la modularización.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Guardo los colores de la consola y la limpio.</span>
+    <span class="token class-name">ConsoleColor</span> fondo <span class="token operator">=</span> Console<span class="token punctuation">.</span>BackgroundColor<span class="token punctuation">;</span>
+    <span class="token class-name">ConsoleColor</span> primerPlano <span class="token operator">=</span> Console<span class="token punctuation">.</span>ForegroundColor<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> DIMENSION_TABLERO <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+
+    <span class="token function">DibujaTablero</span><span class="token punctuation">(</span>DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//10</span>
+
+    <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaAlfil<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaAlfil<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">CasillaAlfil</span><span class="token punctuation">(</span>DIMENSION_TABLERO<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> DIMENSION_TABLERO<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span>CursorVisible <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// Ocultamos el cursor para que no se vea.</span>
+
+    <span class="token function">DibujaDiagonales</span><span class="token punctuation">(</span>columnaAlfil<span class="token punctuation">,</span> filaAlfil<span class="token punctuation">,</span> DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//16</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Leemos una tecla sin eco para finalizar</span>
+    Console<span class="token punctuation">.</span>CursorVisible <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// Restauro el cursor.</span>
+
+    <span class="token comment">// Restauro los colores de la consola y la limpio.</span>
+    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> fondo<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> primerPlano<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Pero si nos fijamos, debemos saber donde coloca el tablero en la consola <strong><code>DibujaTablero</code></strong> para después los valores correctos a <strong><code>CasillaAlfil</code></strong> y eso es una forma de <strong>acoplamiento</strong>.<br>
+Así mismo, <strong><code>DibujaCuadricula</code></strong> y <strong><code>DibujaNumeracion</code></strong> que son módulos en <strong>el mismo nivel</strong>, <strong>están acoplados</strong> porque uno debe saber donde ha situado las cosas el otro para que encajen.</p>
+<p>Por tanto en este segundo refinamiento, vamos a refactorizar el código para que las cosas se dibujen relativas a una posición en consola absoluta que se recibirá por parámetro.</p>
+<p>📌 <strong>Nota:</strong> En este refinamiento el DEM no se modificará y solo pasaremos la información necesaria para evitar los acoplamientos descritos.</p>
+<div style="page-break-after:always;"></div>
+<p><strong>Paso 5 - Pasando posiciones absolutas de dibujo para eliminar acoplamientos:</strong></p>
+<p>📌 <strong>Nota</strong>: Puedes descargar el resultado final desde el <strong><a href="assets/codigo/caso_estudio/Programa_final.cs">siguiente enlace</a></strong>. <strong>Debes ejecutar el programa en una consola externa para que funcione correctamente</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EsCasillaNegra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>fila <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">:</span> columna <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Recibirá columna y fila absolutas de dibujo para evitar acoplamiento yo dibujo desde </span>
+<span class="token comment">// donde me dicen. El no solaparse ahora es responsabilidad del módulo padre.</span>
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaNumeracion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Añado los desplazamientos absolutos a las posiciones relativas anteriores</span>
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>i <span class="token operator">+</span> columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> i <span class="token operator">+</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Recibirá columna y fila absolutas de dibujo para evitar acoplamiento</span>
+<span class="token comment">// yo dibujo desde donde me dicen. El no solaparse ahora es responsabilidad del</span>
+<span class="token comment">// módulo padre.</span>
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaCuadricula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">ConsoleColor</span> copiaRespaldoDeColorDeFondo <span class="token operator">=</span> Console<span class="token punctuation">.</span>BackgroundColor<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fRelativa <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fRelativa <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> fRelativa<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> cRelativa <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> cRelativa <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> cRelativa<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> <span class="token function">EsCasillaNegra</span><span class="token punctuation">(</span>cRelativa<span class="token punctuation">,</span> fRelativa<span class="token punctuation">)</span>
+                                        <span class="token punctuation">?</span> ConsoleColor<span class="token punctuation">.</span>Black
+                                        <span class="token punctuation">:</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+            <span class="token comment">// Añado los desplazamientos absolutos a las posiciones relativas anteriores</span>
+            Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>cRelativa <span class="token operator">+</span> columna<span class="token punctuation">,</span> fRelativa <span class="token operator">+</span> fila<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> copiaRespaldoDeColorDeFondo<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Recibirá columna y fila absolutas de dibujo para evitar acoplamiento</span>
+<span class="token comment">// yo dibujo desde donde me dicen. El no solaparse ahora es responsabilidad del</span>
+<span class="token comment">// módulo padre.</span>
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaTablero</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// DibujaTablero ahora se encarga de que el dibujo de ambos módulos por debajo encaje.</span>
+    <span class="token function">DibujaNumeracion</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">,</span> dimensionTablero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">DibujaCuadricula</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">,</span> dimensionTablero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Recibirá columna y fila absolutas de dibujo para evitar acoplamiento</span>
+<span class="token comment">// yo dibujo desde donde me dicen. El que las posiciones del tablero coincidan </span>
+<span class="token comment">// con el tablero es responsabilidad del módulo padre.</span>
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">DibujaDiagonalesAlfil</span><span class="token punctuation">(</span>
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaTablero<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaTablero<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaPieza<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaPieza<span class="token punctuation">,</span> 
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> dimensionTablero<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> fila <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> fila <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> fila<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columna <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> columna <span class="token operator">&lt;=</span> dimensionTablero<span class="token punctuation">;</span> columna<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// Asignamos la expresióin a un identificados booleano para autodocumentarla.</span>
+            <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> estanEnLaMismaDiagonal <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>filaPieza <span class="token operator">-</span> fila<span class="token punctuation">)</span> <span class="token operator">==</span> Math<span class="token punctuation">.</span><span class="token function">Abs</span><span class="token punctuation">(</span>columnaPieza <span class="token operator">-</span> columna<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>estanEnLaMismaDiagonal<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">EsCasillaNegra</span><span class="token punctuation">(</span>columna<span class="token punctuation">,</span> fila<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword keyword-else">else</span>
+                <span class="token punctuation">{</span>
+                    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+                    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> ConsoleColor<span class="token punctuation">.</span>Black<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment">// Añado los desplazamientos absolutos a las posiciones relativas anteriores</span>
+                Console<span class="token punctuation">.</span><span class="token function">SetCursorPosition</span><span class="token punctuation">(</span>columna <span class="token operator">+</span> columnaTablero<span class="token punctuation">,</span> fila <span class="token operator">+</span> filaTablero<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Guardo los colores de la consola y la limpio.</span>
+    <span class="token class-name">ConsoleColor</span> fondo <span class="token operator">=</span> Console<span class="token punctuation">.</span>BackgroundColor<span class="token punctuation">;</span>
+    <span class="token class-name">ConsoleColor</span> primerPlano <span class="token operator">=</span> Console<span class="token punctuation">.</span>ForegroundColor<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> DIMENSION_TABLERO <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Defino las dimensiones de la consola como constantes</span>
+    <span class="token comment">// y las establezco en la que me estoy ejecutando.</span>
+    <span class="token comment">// Puede que solo funcione en Windows 10 y ejecutando en una consola externa.</span>
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> COLUMNAS_CONSOLA <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> FILAS_CONSOLA <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">SetWindowSize</span><span class="token punctuation">(</span>COLUMNAS_CONSOLA<span class="token punctuation">,</span> FILAS_CONSOLA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Decido que el tablero se va a dibujar ahora en el centro de la consola.</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaSuperiorIzquierdaTablero <span class="token operator">=</span> COLUMNAS_CONSOLA <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> DIMENSION_TABLERO <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaSuperiorIzquierdaTablero <span class="token operator">=</span> FILAS_CONSOLA <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> DIMENSION_TABLERO <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// El Main tiene la responsabilidad o es el encargado ahora de coordinar las posiciones</span>
+    <span class="token comment">// absolutas de todos los dibujos de tal manera que no se solapen.</span>
+    <span class="token comment">// Cada método solo sabe donde le ha dicho el Main que se dibuje.</span>
+    <span class="token function">DibujaTablero</span><span class="token punctuation">(</span>
+        columnaSuperiorIzquierdaTablero<span class="token punctuation">,</span> filaSuperiorIzquierdaTablero<span class="token punctuation">,</span> 
+        DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnaAlfil<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filaAlfil<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">CasillaAlfil</span><span class="token punctuation">(</span>
+        columnaSuperiorIzquierdaTablero <span class="token operator">+</span> DIMENSION_TABLERO <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">,</span> 
+        filaSuperiorIzquierdaTablero <span class="token operator">+</span> DIMENSION_TABLERO <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span>CursorVisible <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// Ocultamos el cursor para que no se vea.</span>
+
+    <span class="token function">DibujaDiagonalesAlfil</span><span class="token punctuation">(</span>
+        columnaSuperiorIzquierdaTablero<span class="token punctuation">,</span> filaSuperiorIzquierdaTablero<span class="token punctuation">,</span>
+        columnaAlfil<span class="token punctuation">,</span> filaAlfil<span class="token punctuation">,</span> DIMENSION_TABLERO<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Leemos una tecla sin eco para finalizar</span>
+    Console<span class="token punctuation">.</span>CursorVisible <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// Restauro el cursor.</span>
+
+    <span class="token comment">// Restauro los colores de la consola y la limpio.</span>
+    Console<span class="token punctuation">.</span>BackgroundColor <span class="token operator">=</span> fondo<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span>ForegroundColor <span class="token operator">=</span> primerPlano<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

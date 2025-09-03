@@ -1,0 +1,648 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 9</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-9">Unidad 9 </h1>
+<p>Descargar estos apunte en <a href="./u9_enumerados.pdf">pdf</a> o <a href="./u9_enumerados.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipos-enumerados" class="md-toc-link"><p>Tipos Enumerados</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#sintaxis" class="md-toc-link">
+            <p>Sintaxis</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#conversiones-con-enumeraciones" class="md-toc-link">
+            <p>Conversiones con enumeraciones</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#métodos-de-utilidad-para-enumeraciones" class="md-toc-link">
+            <p>Métodos de utilidad para enumeraciones</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#enumeraciones-no-excluyentes-máscara-de-bits-de-estado-o-flags" class="md-toc-link">
+            <p>Enumeraciones NO excluyentes (Máscara de Bits de estado o Flags)</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="tipos-enumerados">Tipos Enumerados </h2>
+<h3 id="introducción">Introducción </h3>
+<ul>
+<li>Internamente se gestionan como objetos de tipo entero. Por tanto, son <strong>tipos valor</strong> y esto significa que en las asignaciones haremos una copia de su valor.</li>
+<li>Son útiles para <strong>auto-documentar el código</strong> y evitar <strong><a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">números mágicos</a></strong>.</li>
+<li>Los utilizaremos siempre que queramos definir un conjunto finito de objetos o estados, <strong>en lugar de definir constantes numéricas</strong>.</li>
+<li>Solo podrán tomar valores, <strong>mútuamente excluyentes</strong>, dentro del rango definido, por lo que nos evitará errores derivados de valores inesperados.</li>
+</ul>
+<h3 id="sintaxis">Sintaxis </h3>
+<ul>
+<li>El identificador del tipo se escribirá en <strong>PascalCasing</strong> y debería estar en singular.</li>
+<li>Los identificadores de la enumeración se escribirán en <strong>PascalCasing</strong>.</li>
+<li>El <tipobase> si no lo especificamos por defecto es un <strong>int</strong> aunque podemos especificar otro tipos base enteros como: <strong><code>byte</code></strong>, <strong><code>ushort</code></strong>, etc.</tipobase></li>
+<li>Para acceder a los valores pondremos: <strong><code>NombreDelEmun.Identificador</code></strong></li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token operator">&lt;</span>NombreEnumeración<span class="token operator">&gt;</span> <span class="token punctuation">:</span> <span class="token operator">&lt;</span>tipoBase<span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token operator">&lt;</span>Identificadores que definen el conjunto enumerado por extensión<span class="token operator">&gt;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="box_bg_lightgray">
+<p><strong>Ejemplos:</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Tama</span>ño
+<span class="token punctuation">{</span>
+    Pequeño<span class="token punctuation">,</span> Mediano<span class="token punctuation">,</span> Grande
+<span class="token punctuation">}</span>
+
+Tamaño tamaño <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span> <span class="token comment">// Equivale a hacer tamaño Pequeño</span>
+tamaño <span class="token operator">=</span> Tamaño<span class="token punctuation">.</span>Grande<span class="token punctuation">;</span>
+</code></pre><div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token class-name">EstadoOrdenador</span>
+<span class="token punctuation">{</span> 
+    Encendido<span class="token punctuation">,</span> Apagado<span class="token punctuation">,</span> Suspendido<span class="token punctuation">,</span> Hibernado 
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-enum">enum</span> <span class="token class-name">Estaci</span>ón
+<span class="token punctuation">{</span>
+    Primavera<span class="token punctuation">,</span> Verano<span class="token punctuation">,</span> Otoño<span class="token punctuation">,</span> Invierno
+<span class="token punctuation">}</span>  
+</code></pre></div> <!-- fin ejemplo -->
+<p>Si no se especifica valor inicial para cada constante, el compilador les dará por defecto valores que empiecen desde 0 y se incrementen en una unidad para cada constante, según su orden de aparición en la definición de la enumeración. Así, el ejemplo del principio del tema es equivalente a escribir:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Tama</span>ño <span class="token punctuation">:</span> <span class="token keyword keyword-int">int</span>
+<span class="token punctuation">{</span>
+    Pequeño <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> Mediano <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> Grande <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Es posible <strong>modificar el tipo base entero</strong> y los valores iniciales de cada constante indicándolos explícitamente, como en el código recién mostrado. Otra posibilidad es alterar el valor base a partir del cual se va calculando el valor de las siguientes constantes, como en este otro ejemplo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Tama</span>ño <span class="token punctuation">:</span> <span class="token keyword keyword-ushort">ushort</span>
+<span class="token punctuation">{</span>
+    Pequeño<span class="token punctuation">,</span> Mediano <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> Grande
+<span class="token punctuation">}</span>
+</code></pre><p>En este último ejemplo mis enumerados ocuparán menos espacio en memoria por ser entero subyacente <strong><code>ushort</code></strong>. El valor asociado a <strong><code>Pequeño</code></strong> será <strong>0</strong>, el asociado a <strong><code>Mediano</code></strong> será <strong>5</strong>, y el asociado a Grande será 6, ya que como no se le indica explícitamente ningún otro, se considera que este valor es el de la constante anterior más 1.</p>
+<p>Se puede especificarse el valor de un identificador en función del valor de otros como muestra este ejemplo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-enum">enum</span> <span class="token class-name">Tama</span>ño
+<span class="token punctuation">{</span>
+    Pequeño<span class="token punctuation">,</span> Mediano<span class="token punctuation">,</span> Grande <span class="token operator">=</span> Pequeño <span class="token operator">+</span> Mediano
+<span class="token punctuation">}</span>
+</code></pre><h3 id="conversiones-con-enumeraciones">Conversiones con enumeraciones </h3>
+<ol>
+<li><strong><code>enumerado.ToString()</code></strong><br>
+Pasa un enum a cadena.</li>
+<li><strong><code>Enum.Parse(Type typeofDelEnum, string id, bool ignoraMayúsculas)</code></strong><br>
+<strong><code>Enum.Parse(Type typeofDelEnum, string id)</code></strong><br>
+Pasa una cadena a enum.</li>
+<li><strong><code>bool Enum.TryParse(string? id, , bool ignoraMayúsculas, out &lt;MiTipoEnum&gt; valorDelEnum)</code></strong><br>
+Intenta asociar una cadena a uno de los id definidos en el enum. Si lo consigue devuelve <strong><code>true</code></strong> y el enum a través de <strong><code>valorDelEnum</code></strong>.</li>
+</ol>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplos:</strong></p>
+<p>En los siguiente ejemplos vamos a ver cómo convertir entre un enum y una cadena, entre un enum y un entero, y viceversa...</p>
+<p>Supongamos que tenemos el siguiente enum con los días de la semana:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">DiaSemana</span> 
+<span class="token punctuation">{</span> 
+    Lunes<span class="token punctuation">,</span> Martes<span class="token punctuation">,</span> Mircoles<span class="token punctuation">,</span> Jueves<span class="token punctuation">,</span> Viernes<span class="token punctuation">,</span> Sábado<span class="token punctuation">,</span> Domingo
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Caso 1</strong>: Pasar de <strong>enum a cadena</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DiaSemana</span> dia <span class="token operator">=</span> DiaSemana<span class="token punctuation">.</span>Domingo<span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-string">string</span></span> textoDia <span class="token operator">=</span> dia<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>textoDia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>DiaSemana<span class="token punctuation">.</span>Martes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">Domingo
+Martes</pre>
+<p><strong>Caso 2</strong>: Pasar de <strong>cadena a enum</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DiaSemana</span> dia<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Enum<span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span><span class="token string">"Viernes"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> dia<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>dia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+dia <span class="token operator">=</span> <span class="token punctuation">(</span>DiaSemana<span class="token punctuation">)</span>Enum<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">enumType</span><span class="token punctuation">:</span> <span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DiaSemana</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-value">value</span><span class="token punctuation">:</span> <span class="token string">"lunes"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">ignoreCase</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>dia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+dia <span class="token operator">=</span> <span class="token punctuation">(</span>DiaSemana<span class="token punctuation">)</span>Enum<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">enumType</span><span class="token punctuation">:</span> <span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DiaSemana</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-value">value</span><span class="token punctuation">:</span> <span class="token string">"Monday"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">ignoreCase</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ❌ ERROR</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>dia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">Viernes
+Lunes
+Unhandled exception. System.ArgumentException: Requested value 'Monday' was not found.</pre>
+<p>Fíjate que al convertir de cadena a enum, si la cadena no está en el enum se producirá un error, por lo que es recomendable usar <strong><code>Enum.TryParse</code></strong> para evitar excepciones.</p>
+<p><strong>Caso 3</strong>: Pasar de <strong>enum a entero</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DiaSemana</span> dia <span class="token operator">=</span> DiaSemana<span class="token punctuation">.</span>Sábado<span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-int">int</span></span> valorDia <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span>dia<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>valorDia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">5</pre>
+<p><strong>Caso 4</strong>: Pasar de <strong>entero a enum</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DiaSemana</span> dia<span class="token punctuation">;</span>
+dia <span class="token operator">=</span> <span class="token punctuation">(</span>DiaSemana<span class="token punctuation">)</span><span class="token number">5</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>dia<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">Sábado</pre>
+</div> <!-- fin ejemplo -->
+<div style="page-break-after:always;"></div>
+<h3 id="métodos-de-utilidad-para-enumeraciones">Métodos de utilidad para enumeraciones </h3>
+<ul>
+<li><strong><code>static Array Enum.GetValues(Type enum)</code></strong><br>
+Me devuelve un array del valor enumerado del tipo.</li>
+<li><strong><code>static string[] Enum.GetNames(Type enum)</code></strong><br>
+Me devuelve un array de cadenas con los valores posibles del enum.</li>
+<li><strong><code>static bool Enum.IsDefined(Type enum, object value)</code></strong><br>
+Me dice si value está en el enum en alguna de sus formas (enum, int, string).</li>
+</ul>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo 1:</strong></p>
+<p>Supongamos que tenemos el siguiente enum con los días de la semana donde hemos asignado un valor explícito a cada día empezando por 1.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">DiaSemana</span> 
+    <span class="token punctuation">{</span> 
+        Lunes <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> Martes <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> Miércoles <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> Jueves <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span> Viernes <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> Sábado <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">,</span> Domingo <span class="token operator">=</span> <span class="token number">7</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">DiaSemana<span class="token punctuation">[</span><span class="token punctuation">]</span></span> diasSemana <span class="token operator">=</span> <span class="token punctuation">(</span>DiaSemana<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>Enum<span class="token punctuation">.</span><span class="token function">GetValues</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DiaSemana</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">DiaSemana</span> dia <span class="token keyword keyword-in">in</span> diasSemana<span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dia</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span>dia</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> nombresDiasSemana <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DiaSemana</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> nombresDiasSemana<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> diaBuscado <span class="token operator">=</span> <span class="token string">"Juernes"</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> existe <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token function">IsDefined</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">DiaSemana</span><span class="token punctuation">)</span><span class="token punctuation">,</span> diaBuscado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>
+            <span class="token interpolation-string"><span class="token string">$"El día '</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">diaBuscado</span><span class="token punctuation">}</span></span><span class="token string">' </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>existe <span class="token punctuation">?</span> <span class="token string">"sí"</span> <span class="token punctuation">:</span> <span class="token string">"no"</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> está definido en el enum DiaSemana."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">Lunes = 1
+Martes = 2
+Miércoles = 3
+Jueves = 4
+Viernes = 5
+Sábado = 6
+Domingo = 7
+Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo
+El día 'Juernes' no está definido en el enum DiaSemana.</pre>
+</div> <!-- fin ejemplo -->
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo 2:</strong></p>
+<p>Vamos a implementar un método denominado <strong>PresupuestoAnual</strong>, que devuelva el presupuesto anual en euros, de los diferentes departamentos de una empresa ficticia.<br>
+Los posibles departamentos serán <strong>Marketing</strong>, <strong>Compras</strong>, <strong>Ventas</strong>, <strong>RRHH</strong>, <strong>Administración</strong> y su presupuesto será un valor literal de tu elección.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">Departamento</span>
+    <span class="token punctuation">{</span>
+        Marketing<span class="token punctuation">,</span> Compras<span class="token punctuation">,</span> Ventas<span class="token punctuation">,</span> RRHH<span class="token punctuation">,</span> Administración
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">PresupuestoAnual</span><span class="token punctuation">(</span><span class="token keyword keyword-in">in</span> <span class="token class-name">Departamento</span> d<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> d <span class="token keyword keyword-switch">switch</span>
+    <span class="token punctuation">{</span>
+        Departamento<span class="token punctuation">.</span>Marketing <span class="token operator">=&gt;</span> <span class="token number">30000d</span><span class="token punctuation">,</span>
+        Departamento<span class="token punctuation">.</span>Compras <span class="token keyword keyword-or">or</span> Departamento<span class="token punctuation">.</span>Ventas <span class="token operator">=&gt;</span> <span class="token number">40000d</span><span class="token punctuation">,</span>
+        Departamento<span class="token punctuation">.</span>RRHH <span class="token operator">=&gt;</span> <span class="token number">10000d</span><span class="token punctuation">,</span>
+        Departamento<span class="token punctuation">.</span>Administración <span class="token operator">=&gt;</span> <span class="token number">25000d</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// Si en el futuro añadimos un nuevo departamento a nuestra enumeración</span>
+        <span class="token comment">// nos avisará con un error.</span>
+        <span class="token comment">// Nota: El tratamiento de errores lo veremos más adelante.</span>
+        _ <span class="token operator">=&gt;</span> <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">NotImplementedException</span><span class="token punctuation">(</span><span class="token string">"Falta por tener en cuenta un departamento"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Departamento</span> departamento<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> enumCorrecto<span class="token punctuation">;</span>
+        <span class="token keyword keyword-do">do</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Departamento: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            enumCorrecto <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token function">TryParse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> departamento<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>enumCorrecto<span class="token punctuation">)</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Prueba otra vez con "</span> <span class="token operator">+</span>
+                                  <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span>Enum<span class="token punctuation">.</span><span class="token function">GetNames</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">Departamento</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>enumCorrecto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"El presupuesto anual para "</span> <span class="token operator">+</span>
+                          <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">departamento<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToLower</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> es de "</span></span> <span class="token operator">+</span>
+                          <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token function">PresupuestoAnual</span><span class="token punctuation">(</span>departamento<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> euros."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Mostrará por la consola:</p>
+<pre class="salida_consola">Departamento: Finanzas
+Prueba otra vez con Marketing, Compras, Ventas, RRHH, Administración
+Departamento: Compras
+El presupuesto anual para compras es de 40000 euros.</pre>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<p>🚀 <strong>Ampliación opcional:</strong></p>
+<p>Aunque el tipo enumerado como entero de C# es equivalente al de C y C++. En otros lenguajes se implementa de otras formas de forma conceptual. Por ejemplo en <strong>Kotlin</strong> y <strong>Python</strong> son clases con un conjunto de constantes, y por tanto se comportan como objetos. Pero la palabra <strong>enum</strong> sigue apareciendo y solo tendremos que averiguar cómo se definen y usan. Veamos pues cómo definir el enum del ejemplo anterior y la función <strong><code>PresupuestoAnual</code></strong> en otros lenguajes como <strong>Kotlin</strong> y <strong>Python</strong> para que puedas <strong>reconocer equivalencias</strong> con <strong>C#</strong>.</p>
+<p><strong>Kotlin:</strong></p>
+<pre data-role="codeBlock" data-info="kotlin" class="language-kotlin kotlin"><code><span class="token keyword keyword-enum">enum</span> <span class="token keyword keyword-class">class</span> Departamento <span class="token punctuation">{</span>
+    Marketing<span class="token punctuation">,</span> Compras<span class="token punctuation">,</span> Ventas<span class="token punctuation">,</span> RRHH<span class="token punctuation">,</span> Administracion
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-fun">fun</span> <span class="token function">presupuestoAnual</span><span class="token punctuation">(</span>d<span class="token operator">:</span> Departamento<span class="token punctuation">)</span><span class="token operator">:</span> Double <span class="token operator">=</span> <span class="token keyword keyword-when">when</span> <span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Departamento<span class="token punctuation">.</span>MARKETING <span class="token operator">-&gt;</span> <span class="token number">30000.0</span>
+    Departamento<span class="token punctuation">.</span>COMPRAS<span class="token punctuation">,</span> Departamento<span class="token punctuation">.</span>VENTAS <span class="token operator">-&gt;</span> <span class="token number">40000.0</span>
+    Departamento<span class="token punctuation">.</span>RRHH <span class="token operator">-&gt;</span> <span class="token number">10000.0</span>
+    Departamento<span class="token punctuation">.</span>ADMINISTRACION <span class="token operator">-&gt;</span> <span class="token number">25000.0</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Python:</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> enum <span class="token keyword keyword-import">import</span> Enum<span class="token punctuation">,</span> auto
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Departamento</span><span class="token punctuation">(</span>Enum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    Marketing <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    Compras <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    Ventas <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    RRHH <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    Administracion <span class="token operator">=</span> auto<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-def">def</span> <span class="token function">presupuesto_anual</span><span class="token punctuation">(</span>d<span class="token punctuation">:</span> Departamento<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">float</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-match">match</span> d<span class="token punctuation">:</span>
+        <span class="token keyword keyword-case">case</span> Departamento<span class="token punctuation">.</span>Marketing<span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">30000.0</span>
+        <span class="token keyword keyword-case">case</span> Departamento<span class="token punctuation">.</span>Compras <span class="token operator">|</span> Departamento<span class="token punctuation">.</span>Ventas<span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">40000.0</span>
+        <span class="token keyword keyword-case">case</span> Departamento<span class="token punctuation">.</span>RRHH<span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">10000.0</span>
+        <span class="token keyword keyword-case">case</span> Departamento<span class="token punctuation">.</span>Administracion<span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">25000.0</span>
+        <span class="token keyword keyword-case">case</span> <span class="token keyword keyword-_">_</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-raise">raise</span> NotImplementedError<span class="token punctuation">(</span><span class="token string">"Falta por tener en cuenta un departamento"</span><span class="token punctuation">)</span>
+</code></pre></div> <!-- fin ampliación -->
+<h3 id="enumeraciones-no-excluyentes-máscara-de-bits-de-estado-o-flags">Enumeraciones NO excluyentes (Máscara de Bits de estado o Flags) </h3>
+<div class="admonition info">
+<p class="admonition-title">Enlaces</p>
+<p><strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/builtin-types/enum#enumeration-types-as-bit-flags">Enumeraciones como bits de estado o flags</a></strong></p>
+</div>
+<p>El concepto es muy similar al de flag que vimos con booleanos. Por tanto,<br>
+es una forma <strong>compacta</strong> y <strong>muy rápida</strong> de guardar varios <strong>flag de estado</strong> asociándolos a un <strong>bit</strong> en memoria en lugar de a una variable booleana.</p>
+<p>Por ejemplo, el valor binario de un byte en memoria puede ser <strong><code>01100111</code></strong> y cada bit puede ser un '<em>flag</em>' con un significado donde  el <strong><code>1</code></strong> significa que se cumple y el <strong><code>0</code></strong> que no.</p>
+<p>Además, <strong>para nombrar o identificar</strong> el significado de <strong>los '<em>flags</em>' asociados a un bit</strong> utilizaremos una <strong>enumeración</strong>.</p>
+<p>Veamos la sintaxis y uso a través de un ejemplo...</p>
+<p>Supongamos la siguiente enumeración <strong>no excluyente</strong> para gestionar los extras en cierto modelo de coche...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Flags</span></span><span class="token punctuation">]</span>
+<span class="token keyword keyword-enum">enum</span> <span class="token class-name">Extra</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token keyword keyword-byte">byte</span></span>
+<span class="token punctuation">{</span>
+    None              <span class="token operator">=</span> <span class="token number">0b_0000_0000</span><span class="token punctuation">,</span>   <span class="token comment">// 0</span>
+    Climatizador      <span class="token operator">=</span> <span class="token number">0b_0000_0001</span><span class="token punctuation">,</span>   <span class="token comment">// 1</span>
+    Navegador         <span class="token operator">=</span> <span class="token number">0b_0000_0010</span><span class="token punctuation">,</span>   <span class="token comment">// 2</span>
+    FullLed           <span class="token operator">=</span> <span class="token number">0b_0000_0100</span><span class="token punctuation">,</span>   <span class="token comment">// 4</span>
+    LlantasDeportivas <span class="token operator">=</span> <span class="token number">0b_0000_1000</span><span class="token punctuation">,</span>   <span class="token comment">// 8</span>
+<span class="token punctuation">}</span>  
+</code></pre><p>Fíjate que hemos añadidos el <strong><a href="%22https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/concepts/attributes/%22">atributo</a></strong> o '<em><strong>anotación</strong></em>' <strong><code>[Flags]</code></strong> sobre la definición de la enumeración para indicar que vamos a definir los nombres de los flags.</p>
+<p>Además, hemos hecho que el entero subyacente sea de tipo <strong><code>byte</code></strong> y <strong>hemos definido por extensión con un literal binario (</strong><code>0b_</code><strong>)</strong>, los valores de cada byte a las <strong>potencias de 2</strong> de tal manera que realizará la asociación entre el valor enumerado y el '<em>flag</em>' que representa en la byte.</p>
+<p>En un principio la byte estará todo a ceros, a trevés de la asignación y para cambiarlo utilizaremos <strong><a href="https://es.wikipedia.org/wiki/Operador_a_nivel_de_bits">operaciones de bit</a></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Extra</span> extras <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span> <span class="token comment">// default equivale a Extra.None</span>
+</code></pre><ol>
+<li>
+<p><strong>Si queremos añadir uno o varios extras</strong> al coche usaremos el <strong>or de bit</strong> <strong><code>|</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>extras <span class="token operator">|=</span> Extra<span class="token punctuation">.</span>Climatizador <span class="token operator">|</span> Extra<span class="token punctuation">.</span>FullLed<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>extras<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"{Convert.ToString((byte)extras, 2).PadLeft(8, '0')}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Estaremos haciendo la operación:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>   00000000 (None)
+   00000001 (Climatizador)
+OR 00000100 (FullLed)
+___________
+   00000101 (Climatizador | FullLed)
+</code></pre><p>Mostrará por la consola:</p>
+ <pre class="salida_consola"> Climatizador, FullLed
+ 00000101</pre>
+</li>
+<li>
+<p><strong>Si queremos ver si hemos establecido algún extra</strong> al coche usaremos el <strong>and de bit</strong> <strong><code>&amp;</code></strong><br>
+Fíjate que al usar enumerados la operación es mucho más legible.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Hay que tener cuidado con la prioridad de &amp; y por eso ponemos paréntesis.</span>
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> tieneClimatizador <span class="token operator">=</span> <span class="token punctuation">(</span>extras <span class="token operator">&amp;</span> Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">)</span> <span class="token operator">==</span> Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>tieneClimatizador<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Estaremos haciendo la operación:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>    00000101 (Climatizador | FullLed)
+AND 00000001 (Climatizador)
+____________
+    00000001 (Climatizador)
+</code></pre><p>Mostrará por la consola:</p>
+ <pre class="salida_consola"> True</pre>
+</li>
+<li>
+<p><strong>Si queremos quitar algún extra</strong> al coche usaremos el <strong>and de bit</strong> <strong><code>&amp;</code></strong> y la <strong>negación de bit</strong> <strong><code>~</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>extras <span class="token operator">&amp;=</span> <span class="token operator">~</span>Extra<span class="token punctuation">.</span>Climatizador<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>extras<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"{Convert.ToString((byte)extras, 2).PadLeft(8, '0')}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Estaremos haciendo la operación:</p>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>    00000101 (Climatizador | FullLed)
+AND 11111110 (~Climatizador)
+____________
+    00000100 (FullLed)
+</code></pre><p>Mostrará por la consola:</p>
+ <pre class="salida_consola"> FullLed
+ 00000100</pre>
+</li>
+</ol>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo:</strong></p>
+<p>En el siguiente código vamos a definir una enumeración no excluyente para almacenar los estados combinados de un juego de plataformas. De tal manera que <strong>la primera letra</strong> del '<em>flag</em>' me va  a <strong>activar</strong> o <strong>desactivar</strong> dicho estado (<em>El enumerado del estado debería empezar por una letra diferente</em>). Mostrándome tras cada pulsación como se encuentran los flags, tanto el valor de enumerado como el valor interno en binario del enum.<br>
+Además, indicaremos que teclas activarán o desactivarán un deteminado estado.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Fíjate como el código se ha implementado para que funcione, independientemente del nombre que hemos asignado al flag en la enumeración y del número de flags que tengamos definidos.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>  
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Flags</span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-enum">enum</span> <span class="token class-name">PlayerState</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token keyword keyword-byte">byte</span></span>
+    <span class="token punctuation">{</span>
+        None      <span class="token operator">=</span> <span class="token number">0b_0000_0000</span><span class="token punctuation">,</span>   <span class="token comment">// 0</span>
+        PowerUp   <span class="token operator">=</span> <span class="token number">0b_0000_0001</span><span class="token punctuation">,</span>   <span class="token comment">// 1</span>
+        Walking   <span class="token operator">=</span> <span class="token number">0b_0000_0010</span><span class="token punctuation">,</span>   <span class="token comment">// 2</span>
+        Jumping   <span class="token operator">=</span> <span class="token number">0b_0000_0100</span><span class="token punctuation">,</span>   <span class="token comment">// 4</span>
+        Attacking <span class="token operator">=</span> <span class="token number">0b_0000_1000</span><span class="token punctuation">,</span>   <span class="token comment">// 8</span>
+        Shield    <span class="token operator">=</span> <span class="token number">0b_0001_0000</span><span class="token punctuation">,</span>   <span class="token comment">// 16</span>
+    <span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">GameOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> options <span class="token operator">=</span> <span class="token string">"Game keys ( "</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">PlayerState</span> playerState <span class="token keyword keyword-in">in</span> Enum<span class="token punctuation">.</span><span class="token function">GetValues</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">PlayerState</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            options <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"'</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">playerState<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string">' = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">playerState</span><span class="token punctuation">}</span></span><span class="token string"> "</span></span><span class="token punctuation">;</span>
+        options <span class="token operator">+=</span> <span class="token string">") Press E to Exit."</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> options<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">PlayerState</span> <span class="token function">StateAccordingToKey</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-char">char</span></span> key<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">PlayerState</span> stateForKey <span class="token operator">=</span> PlayerState<span class="token punctuation">.</span>None<span class="token punctuation">;</span>
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">PlayerState</span> s <span class="token keyword keyword-in">in</span> <span class="token punctuation">(</span>PlayerState<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>Enum<span class="token punctuation">.</span><span class="token function">GetValues</span><span class="token punctuation">(</span><span class="token keyword keyword-typeof">typeof</span><span class="token punctuation">(</span><span class="token type-expression class-name">PlayerState</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                stateForKey <span class="token operator">=</span> s<span class="token punctuation">;</span>
+                <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> stateForKey<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span>CursorVisible <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-char">char</span></span> key<span class="token punctuation">;</span>
+        <span class="token class-name">PlayerState</span> state <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> gameOptions <span class="token operator">=</span> <span class="token function">GameOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-do">do</span>
+        <span class="token punctuation">{</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"PlayerStarte = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">state</span><span class="token punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Convert<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword keyword-byte">byte</span><span class="token punctuation">)</span>state<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">PadLeft</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token char">'0'</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">)"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>gameOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            key <span class="token operator">=</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadKey</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">.</span>KeyChar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">PlayerState</span> stateToSwitch <span class="token operator">=</span> <span class="token function">StateAccordingToKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>state <span class="token operator">&amp;</span> stateToSwitch<span class="token punctuation">)</span> <span class="token operator">==</span> stateToSwitch<span class="token punctuation">)</span>
+                state <span class="token operator">&amp;=</span> <span class="token operator">~</span>stateToSwitch<span class="token punctuation">;</span>
+            <span class="token keyword keyword-else">else</span>
+                state <span class="token operator">|=</span> stateToSwitch<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> <span class="token char">'E'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

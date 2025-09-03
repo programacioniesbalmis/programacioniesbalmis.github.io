@@ -1,0 +1,978 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 18</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-18">Unidad 18 </h1>
+<p>Descargar estos apunte en <a href="./u18_poo_genericos_y_extensores.pdf">pdf</a> o <a href="./u18_poo_genericos_y_extensores.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#genéricos-o-clases-parametrizadas" class="md-toc-link"><p>Genéricos o clases parametrizadas</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#clases-parametrizadas-en-csharp" class="md-toc-link"><p>Clases parametrizadas en CSharp</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#inicializar-un-dato-genérico-a-su-valor-por-defecto" class="md-toc-link">
+            <p>Inicializar un dato genérico a su valor por defecto</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#consideraciones-especiales-al-definir-clases-parametrizadas" class="md-toc-link">
+            <p>Consideraciones especiales al definir clases parametrizadas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ejemplo-de-clase-parametrizada-con-un-solo-parámetro-tipo" class="md-toc-link">
+            <p>Ejemplo de clase parametrizada con un solo parámetro tipo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#métodos-parametrizados-en-csharp" class="md-toc-link">
+            <p>Métodos parametrizados en CSharp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-parametrizados-en-la-bcl" class="md-toc-link">
+            <p>Tipos parametrizados en la BCL</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#restricciones-en-tipos-parametrizados" class="md-toc-link"><p>Restricciones en tipos parametrizados</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ejemplo-restricción-en-tipos-parametrizados" class="md-toc-link">
+            <p>Ejemplo restricción en tipos parametrizados</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#extensores-o-métodos-de-extensión" class="md-toc-link">
+            <p>Extensores o métodos de extensión</p>
+
+          </a></div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="genéricos-o-clases-parametrizadas">Genéricos o clases parametrizadas </h2>
+<h3 id="introducción">Introducción </h3>
+<p>En ocasiones se nos darán clases o métodos cuya funcionalidad y lógica es idéntica cambiando únicamente uno o más tipos usados. En estos casos se nos generará <strong>código prácticamente repetido</strong>, donde cambian únicamente algunos tipos usados. Está situación es poco deseable y necesitaremos de algún mecanismo para poder <strong>generalizar</strong> el código, de forma que podamos reutilizarlo con diferentes tipos sin necesidad de repetirlo.</p>
+<p>Muchos lenguajes orientados a objetos, incluido C#, nos permiten <strong>definir los tipos dentro de una clase de forma parametrizada al instanciar un objeto de la misma</strong>. Expresaremos pues, el tipo o los tipos genéricos a través de <strong>una o más letras mayúsculas usadas a lo largo de la definición de la clase</strong>. Aunque se suele usar la letra <strong><code>T</code></strong>, podremos usar cualquier otra que nos represente el tipo parametrizado. A estas letras se les denomina <strong>parámetros tipo</strong> y podremos usarlas en clases, métodos y más estructuras que veremos más adelante.</p>
+<div class="row">
+<div class="col-sm-8 my-auto">
+<p>A través de este tipo de definiciones, se aparecerá un nuevo tipo de polimorfismo en la POO, denominado <strong>polimorfismo paramétrico</strong> y lo definiremos como aquel que nos permite definir el tipo dentro de una clase de forma parametrizada, al instanciar un objeto de la misma. De tal manera que, para objetos diferentes, el tipo con el que se instancia podrá cambiar.</p>
+<p>La forma de representar el tipo parametrizado en los diagramas de clases UML, es a través de un recuadro en la parte superior derecha de la definición.</p>
+</div>
+<div class="col-sm-4 my-auto">
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="104px" preserveAspectRatio="none" style="width:107px;height:104px;background:#FFFFFF;" version="1.1" viewBox="0 0 107 104" width="107px" zoomAndPan="magnify"><defs></defs><g><!--class A--><g class="entity" data-entity="A" data-source-line="7" data-uid="ent0002" id="entity_A"><rect fill="#FFFAFA" height="83.2188" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="86.3066" x="7" y="7"></rect><ellipse cx="37.1374" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M39.903,18.875 Q40.0593,18.6563 40.2468,18.5469 Q40.4343,18.4375 40.653,18.4375 Q41.028,18.4375 41.2624,18.7031 Q41.4968,18.9531 41.4968,19.5625 L41.4968,21.0156 Q41.4968,21.625 41.2624,21.8906 Q41.028,22.1563 40.653,22.1563 Q40.3093,22.1563 40.1062,21.9531 Q39.903,21.7656 39.7937,21.25 Q39.7468,20.8906 39.5593,20.7031 Q39.2312,20.3281 38.6218,20.1094 Q38.0124,19.8906 37.3874,19.8906 Q36.6218,19.8906 35.9812,20.2188 Q35.3562,20.5469 34.8562,21.2969 Q34.3718,22.0469 34.3718,23.0781 L34.3718,24.1719 Q34.3718,25.4063 35.2624,26.2344 Q36.153,27.0469 37.7468,27.0469 Q38.6843,27.0469 39.3405,26.7969 Q39.7312,26.6406 40.153,26.2031 Q40.4187,25.9375 40.5593,25.8594 Q40.7155,25.7813 40.9187,25.7813 Q41.2468,25.7813 41.4968,26.0469 Q41.7624,26.2969 41.7624,26.6406 Q41.7624,26.9844 41.4187,27.3906 Q40.9187,27.9688 40.1218,28.2969 Q39.0437,28.75 37.7468,28.75 Q36.2312,28.75 35.028,28.125 Q34.0437,27.625 33.3562,26.5625 Q32.6687,25.4844 32.6687,24.2031 L32.6687,23.0469 Q32.6687,21.7188 33.278,20.5781 Q33.903,19.4219 34.9968,18.8125 Q36.0905,18.1875 37.3249,18.1875 Q38.0593,18.1875 38.6999,18.3594 Q39.3562,18.5156 39.903,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="9.3379" x="54.5013" y="28.7285">A</text><rect fill="#FFFAFA" height="17.0938" style="stroke:#000000;stroke-width:1;stroke-dasharray:2,2;" width="9.3301" x="86.9766" y="4"></rect><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="7.3301" x="87.9766" y="17.457">T</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="92.3066" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.1309" x="13" y="57.5332">-dato : T</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="92.3066" y1="64.6094" y2="64.6094"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74.3066" x="13" y="83.1426">+A(dato : T)</text></g><!--SRC=[ROv12y8m38Nl-HKvAY9u5X6wdRm97NYkRPcbNJFIZe7YVxTkA4FCvV6IZ_UIl8kzOjMX3YebaJExwv3jILEKxcvn1-cB26OQQmh4M0Mb_U9qBbQrjYhICWtHpDZbvhAL7NcxOEjtKqLiBFyFcu6VA1bf19Y-H75eZlW0BBD5epBX7fl9Rb2iFeirmXDU]--></g></svg></p><p></p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="clases-parametrizadas-en-csharp">Clases parametrizadas en CSharp </h3>
+<p>Veamos como se define en C# para acabar de dar forma al concepto.</p>
+<p><strong>Definición:</strong> Definiremos los tipos genéricos <strong>justo después del identificador</strong> de la clase, entre <strong><code>&lt; &gt;</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token comment">// Un parámetro genérico</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">T</span> Dato <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token class-name">T</span> dato<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Dato <span class="token operator">=</span> dato<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Uso:</strong> Cuando yo instáncie un objeto de la clase genérica A  …</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">A<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> objA <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>En tiempo de ejecución C# construirá una objeto de la clase <strong><code>A</code></strong> como <strong>sustituyendo el tipo parametrizado por el que le estamos indicando</strong> en el momento de la instanciación. En nuestra instancia será un <strong><code>int</code></strong> como se ve en el código de ejemplo.</p>
+</div>
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">A</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Dato <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> dato<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Dato <span class="token operator">=</span> dato<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Si vamos a usar <strong>más de un tipo a parametrizar</strong>. Los separaremos por comas.</p>
+<div class="row">
+<div class="col-sm-4 my-auto">
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="121px" preserveAspectRatio="none" style="width:180px;height:121px;background:#FFFFFF;" version="1.1" viewBox="0 0 180 121" width="180px" zoomAndPan="magnify"><defs></defs><g><!--class A--><g class="entity" data-entity="A" data-source-line="7" data-uid="ent0002" id="entity_A"><rect fill="#FFFAFA" height="100.8281" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="159.4443" x="7" y="7"></rect><ellipse cx="64.4653" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M67.231,18.875 Q67.3872,18.6563 67.5747,18.5469 Q67.7622,18.4375 67.981,18.4375 Q68.356,18.4375 68.5903,18.7031 Q68.8247,18.9531 68.8247,19.5625 L68.8247,21.0156 Q68.8247,21.625 68.5903,21.8906 Q68.356,22.1563 67.981,22.1563 Q67.6372,22.1563 67.4341,21.9531 Q67.231,21.7656 67.1216,21.25 Q67.0747,20.8906 66.8872,20.7031 Q66.5591,20.3281 65.9497,20.1094 Q65.3403,19.8906 64.7153,19.8906 Q63.9497,19.8906 63.3091,20.2188 Q62.6841,20.5469 62.1841,21.2969 Q61.6997,22.0469 61.6997,23.0781 L61.6997,24.1719 Q61.6997,25.4063 62.5903,26.2344 Q63.481,27.0469 65.0747,27.0469 Q66.0122,27.0469 66.6685,26.7969 Q67.0591,26.6406 67.481,26.2031 Q67.7466,25.9375 67.8872,25.8594 Q68.0435,25.7813 68.2466,25.7813 Q68.5747,25.7813 68.8247,26.0469 Q69.0903,26.2969 69.0903,26.6406 Q69.0903,26.9844 68.7466,27.3906 Q68.2466,27.9688 67.4497,28.2969 Q66.3716,28.75 65.0747,28.75 Q63.5591,28.75 62.356,28.125 Q61.3716,27.625 60.6841,26.5625 Q59.9966,25.4844 59.9966,24.2031 L59.9966,23.0469 Q59.9966,21.7188 60.606,20.5781 Q61.231,19.4219 62.3247,18.8125 Q63.4185,18.1875 64.6528,18.1875 Q65.3872,18.1875 66.0278,18.3594 Q66.6841,18.5156 67.231,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="9.3379" x="84.9653" y="28.7285">A</text><rect fill="#FFFAFA" height="17.0938" style="stroke:#000000;stroke-width:1;stroke-dasharray:2,2;" width="24.6758" x="144.7686" y="4"></rect><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="22.6758" x="145.7686" y="17.457">K, V</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="165.4443" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58.3516" x="13" y="57.5332">-clave : K</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56.0137" x="13" y="75.1426">-valor : V</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="165.4443" y1="82.2188" y2="82.2188"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="147.4443" x="13" y="100.752">+GetValor(clave : K) : V</text></g><!--SRC=[ROv12y8m38Nl_HKvAYfu7Y9iEuZi8WpckMvXbdQDfDq6Yl_TTPCnn5n2NhwyFAULVKYM3PH6EXTxp-hMUZoNP7FrHDWBDoCnC_Kf6M98Z2prOdKPHbbZChIQgRNLX5tlocFUaCO5cuPF2N65_Dzi0dwiSakz46DAY0_P5eeZl0GCjGlPEuG8ik_SoN0HGI56OGCdz4NGLZEv7jTlyG40]--></g></svg></p><p></p>
+</div>
+<div class="col-sm-8 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>K<span class="token punctuation">,</span> V<span class="token punctuation">&gt;</span></span> <span class="token comment">// Dos parámetros genéricos</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">K</span> clave<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">V</span> valor<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">V</span> <span class="token function">GetValor</span><span class="token punctuation">(</span><span class="token class-name">K</span> clave<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<div style="page-break-after:always;"></div>
+<h4 id="inicializar-un-dato-genérico-a-su-valor-por-defecto">Inicializar un dato genérico a su valor por defecto </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">T</span> Dato <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span> <span class="token comment">// Es correcto ¿?</span>
+<span class="token punctuation">}</span>
+</code></pre><p>En principio no sabemos si el tipo que le vamos a indicar a la clase es valor o referencia. Por lo que deberíamos usar la expresión <strong><code>default(T)</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">T</span> Dato <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword keyword-default">default</span><span class="token punctuation">(</span><span class="token type-expression class-name">T</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="consideraciones-especiales-al-definir-clases-parametrizadas">Consideraciones especiales al definir clases parametrizadas </h4>
+<ol>
+<li>
+<p>No podremos usar los parámetros tipo (<strong><code>T</code></strong>, <strong><code>U</code></strong>, <strong><code>K</code></strong>, etc..) como nombre o identificadores de clases, propiedades o campos.</p>
+</li>
+<li>
+<p>Deberemos llevar cuidado con el <strong>polimorfismo funcional</strong>. Por ejemplo supongamos la siguiente definición...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">IdMetodo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> p1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> p2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">IdMetodo</span><span class="token punctuation">(</span><span class="token class-name">T</span> p1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> p2<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Si instanciamos <strong><code>A</code></strong> de la siguiente forma ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">A<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> obj <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>sería correcto y tendríamos dos signaturas. Una con <strong>p1</strong> como <strong><code>int</code></strong> y otra con <strong>p1</strong> como <strong><code>string</code></strong>. Pero ... <strong>¿Qué pasa si declaramos?</strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">A<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> obj <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>En este caso tendremos <strong>dos signaturas iguales</strong> y aunque no se produzca error, cuando llamemos a <strong><code>IdMetodo</code></strong> se ejecutará la <strong>no genérica</strong>.</p>
+</li>
+<li>
+<p>A un objeto declarado a partir de un parámetro tipo:</p>
+<ul>
+<li>En principio, solo podremos aplicarle operaciones como si fuera de tipo <strong><code>object</code></strong> y <strong>no podremos usar operadores</strong>.</li>
+<li>No podremos realizarle un cast explícito, sin pasar previamente a <strong><code>object</code></strong>.</li>
+</ul>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h4 id="ejemplo-de-clase-parametrizada-con-un-solo-parámetro-tipo">Ejemplo de clase parametrizada con un solo parámetro tipo </h4>
+<div class="row">
+<div class="col-sm-6">
+<p>Vamos a definir una clase <strong><code>Matriz</code></strong> que haga de envoltorio o <em>'Wrapper'</em> sobre tabla dentada de <strong>cualquier tipo</strong>. Esta clase nos permitirá definir operaciones de utilidad para este tipo de matrices. Por ejemplo, <strong>obtener su traspuesta</strong> como se ve en la imagen.</p>
+<p>Un diagrama que represente la clase descrita tendría una propiedad privada de solo lectura que contendrá la tabla dentada donde guardaremos la matriz original. Fíjate que además, la clase es genérica y por tanto, el tipo de la tabla dentada también lo es <strong><code>T[][]</code></strong>.</p>
+<p>Para seguir ejemplo, puedes descargar el código desde el siguiente enlace: <strong><a href="./assets/codigo/matriz_generica_ejemplo.cs">matriz_generica.cs</a></strong>.</p>
+</div>
+<div class="col-sm-6 my-auto">
+<p><img src="assets/imagenes/traspuesta.png" alt="alt text"></p>
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="174px" preserveAspectRatio="none" style="width:204px;height:174px;background:#FFFFFF;" version="1.1" viewBox="0 0 204 174" width="204px" zoomAndPan="magnify"><defs></defs><g><!--class Matriz--><g class="entity" data-entity="Matriz" data-source-line="7" data-uid="ent0002" id="entity_Matriz"><rect fill="#FFFAFA" height="153.6563" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.5;" width="183.1582" x="7" y="7"></rect><ellipse cx="69.6089" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M72.3745,18.875 Q72.5308,18.6563 72.7183,18.5469 Q72.9058,18.4375 73.1245,18.4375 Q73.4995,18.4375 73.7339,18.7031 Q73.9683,18.9531 73.9683,19.5625 L73.9683,21.0156 Q73.9683,21.625 73.7339,21.8906 Q73.4995,22.1563 73.1245,22.1563 Q72.7808,22.1563 72.5776,21.9531 Q72.3745,21.7656 72.2651,21.25 Q72.2183,20.8906 72.0308,20.7031 Q71.7026,20.3281 71.0933,20.1094 Q70.4839,19.8906 69.8589,19.8906 Q69.0933,19.8906 68.4526,20.2188 Q67.8276,20.5469 67.3276,21.2969 Q66.8433,22.0469 66.8433,23.0781 L66.8433,24.1719 Q66.8433,25.4063 67.7339,26.2344 Q68.6245,27.0469 70.2183,27.0469 Q71.1558,27.0469 71.812,26.7969 Q72.2026,26.6406 72.6245,26.2031 Q72.8901,25.9375 73.0308,25.8594 Q73.187,25.7813 73.3901,25.7813 Q73.7183,25.7813 73.9683,26.0469 Q74.2339,26.2969 74.2339,26.6406 Q74.2339,26.9844 73.8901,27.3906 Q73.3901,27.9688 72.5933,28.2969 Q71.5151,28.75 70.2183,28.75 Q68.7026,28.75 67.4995,28.125 Q66.5151,27.625 65.8276,26.5625 Q65.1401,25.4844 65.1401,24.2031 L65.1401,23.0469 Q65.1401,21.7188 65.7495,20.5781 Q66.3745,19.4219 67.4683,18.8125 Q68.562,18.1875 69.7964,18.1875 Q70.5308,18.1875 71.1714,18.3594 Q71.8276,18.5156 72.3745,18.875 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38.1104" x="90.1089" y="28.7285">Matriz</text><rect fill="#FFFAFA" height="17.0938" style="stroke:#000000;stroke-width:1;stroke-dasharray:2,2;" width="9.3301" x="183.8281" y="4"></rect><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="7.3301" x="184.8281" y="17.457">T</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="189.1582" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74.6895" x="13" y="57.5332">-datos : T[][]</text><line style="stroke:#000000;stroke-width:0.5;" x1="8" x2="189.1582" y1="64.6094" y2="64.6094"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="171.1582" x="13" y="83.1426">-Copia(in datos : T[][]) : T[][]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140.4238" x="13" y="100.752">+Matriz(in datos : T[][])</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162.2168" x="13" y="118.3613">+Traspuesta() : Matriz&lt;T&gt;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.9033" x="13" y="135.9707">-GetDatos() : T[][]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126.7725" x="13" y="153.5801">^+ ToString() : string</text></g><!--SRC=[ROv12u9048Nl-olcQ4JGEI98W-WG10eTec3InHPrHsPN1AF_tceYMkrbT_PzxyqpcT8bCXOGvsZCrbfMzyhAGqmwL8s4fJ03icMcEg2S6FmSusmadTo8gVJTbJ9LElbWvuUoCYmeaoCsQ3Vvn8da_s4Vu2igr5GBqRM48xgQpJhQm5E0Emj8q9A15KINw-NQ_JsDHQlY5om2AXLwIa-XsOIUzvc_M2z7ZAQif0lrMkVGeD-_btRNshnfxCqPANIeJZl5T4_n4cy0]--></g></svg></p><p></p>
+</div>
+</div>
+<p>Parametrizamos la clase Matriz con un solo parámetro de tipo genérico <strong><code>T</code></strong> que será el tipo de los datos que contendrá la matriz. Fíjate que el constructor recibe una tabla dentada para y se asegura de que las <strong>dimensiones sean compatibles con una matriz</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token return-type class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> Datos <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">Matriz</span><span class="token punctuation">(</span><span class="token class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> datos<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>datos<span class="token punctuation">.</span>Length <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> 
+            <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"Debes proporcionar al menos una fila de datos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword keyword-null">null</span> <span class="token operator">||</span> datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"Debes proporcionar al menos una columna de datos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> datos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>datos<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> 
+                <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"Ninguna fila puede ser null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>datos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>Length <span class="token operator">!=</span> datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
+                <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"Todas las filas deben tener las mismas columnas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Datos <span class="token operator">=</span> datos<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div style="page-break-after:always;"></div>
+<p>Definimos la propiedad <strong><code>Traspuesta</code></strong> que nos devolverá <strong>una nueva matriz con la traspuesta de la original</strong>. Fíjate que el tipo de la traspuesta es también <strong><code>Matriz&lt;T&gt;</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//... código omitido por abreviar</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> Traspuesta
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-get">get</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filas <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnas <span class="token operator">=</span> Datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+            <span class="token class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> transpuesta <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">T</span><span class="token punctuation">[</span>columnas<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> columnas<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                transpuesta<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">T</span><span class="token punctuation">[</span>filas<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> filas<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    transpuesta<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">j</span></span><span class="token punctuation">]</span> <span class="token operator">=</span> Datos<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">i</span></span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>transpuesta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Por último, invalidamos el método <strong><code>ToString</code></strong> para que nos muestre la matriz de forma adecuada.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//... código omitido por abreviar</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> resultado <span class="token operator">=</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-var">var</span></span> fila <span class="token keyword keyword-in">in</span> Datos<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            resultado <span class="token operator">+=</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> fila<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> resultado<span class="token punctuation">.</span><span class="token function">TrimEnd</span><span class="token punctuation">(</span><span class="token char">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+</code></pre><div style="page-break-after:always;"></div>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> m1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Matriz enteros original:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> m1t <span class="token operator">=</span> m1<span class="token punctuation">.</span>Traspuesta<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Matriz enteros traspuesta:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m1t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span><span class="token keyword keyword-char">char</span><span class="token punctuation">&gt;</span></span> m2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span><span class="token char">'a'</span><span class="token punctuation">,</span> <span class="token char">'b'</span><span class="token punctuation">,</span> <span class="token char">'c'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token char">'d'</span><span class="token punctuation">,</span> <span class="token char">'e'</span><span class="token punctuation">,</span> <span class="token char">'f'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token char">'g'</span><span class="token punctuation">,</span> <span class="token char">'h'</span><span class="token punctuation">,</span> <span class="token char">'i'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token char">'j'</span><span class="token punctuation">,</span> <span class="token char">'k'</span><span class="token punctuation">,</span> <span class="token char">'l'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Matriz caracteres original:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span><span class="token keyword keyword-char">char</span><span class="token punctuation">&gt;</span></span> m2t <span class="token operator">=</span> m2<span class="token punctuation">.</span>Traspuesta<span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Matriz caracteres traspuesta:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m2t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</code></pre></div>
+<div class="col-sm-6">
+<p>Si ejecutamos el siguiente código de ejemplo, donde se crea una matriz de enteros y otra de caracteres, y se obtiene su traspuesta...</p>
+<p><strong>Mostrará por la consola:</strong></p>
+<pre class="salida_consola">Matriz enteros original:
+1, 2, 3, 4
+5, 6, 7, 8
+9, 10, 11, 12
+Matriz enteros traspuesta:
+1, 5, 9
+2, 6, 10
+3, 7, 11
+4, 8, 12
+
+Matriz caracteres original:
+a, b, c
+d, e, f
+g, h, i
+j, k, l
+Matriz caracteres traspuesta:
+a, d, g, j
+b, e, h, k
+c, f, i, l
+</pre>
+</div>
+</div>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">Generics allow you to define type-safe data structures, without committing to actual dasta types.</div>
+        <div class="autor">- Anders Hejlsberg</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo doble parametrización:</strong></p>
+<p>En el siguiente ejemplo, vamos a definir un <em><strong>patrón 'Union-Type'</strong></em> similar al del tema de abstracción, a través de una clase denominada <strong><code>Resultado&lt;T, E&gt;</code></strong> que nos permita representar el resultado de una operación que puede ser exitosa o fallida. En caso de éxito, contendrá un valor del tipo <strong><code>T</code></strong> y en caso de fallo, un error del tipo <strong><code>E</code></strong>.</p>
+<p>Básicamente, definiremos dos clases anidadas dentro de <strong><code>Resultado&lt;T, E&gt;</code></strong> denominadas <strong><code>Exito</code></strong> y <strong><code>Fallo</code></strong> que contendrán el estado de éxito o fallo respectivamente usando los tipos genéricos <strong><code>T</code></strong> y <strong><code>E</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-abstract">abstract</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> Resultado<span class="token operator">&lt;</span>T<span class="token punctuation">,</span> E<span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Exito</span><span class="token punctuation">(</span><span class="token class-name">T</span> Value<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Resultado<span class="token punctuation">&lt;</span>T<span class="token punctuation">,</span> E<span class="token punctuation">&gt;</span></span></span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Value</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Fallo</span><span class="token punctuation">(</span><span class="token class-name">E</span> Error<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Resultado<span class="token punctuation">&lt;</span>T<span class="token punctuation">,</span> E<span class="token punctuation">&gt;</span></span></span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"Fallo: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Error</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Definimos una clase de utilidad denominada <strong><code>Calculadora</code></strong> que demomento definirá dos tipos de división.</p>
+<ol>
+<li>Una para <strong>enteros</strong> donde devolverá un <strong><code>Resultado&lt;int, string&gt;</code></strong> el resultado será otro <strong>entero</strong> en caso de éxito o un <strong>texto de error</strong> en caso de fallo.</li>
+<li>Una para <strong>números reales</strong> donde devolverá un <strong><code>Resultado&lt;double, Exception&gt;</code></strong> el resultado será otro <strong>double</strong> en caso de éxito o una <strong>excepción</strong> en caso de fallo.</li>
+</ol>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Calculadora</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> <span class="token function">Divide</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> dividendo<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> divisor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        divisor <span class="token operator">==</span> <span class="token number">0</span>
+        <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span><span class="token punctuation">.</span>Fallo</span><span class="token punctuation">(</span><span class="token string">"No se puede dividir por cero."</span><span class="token punctuation">)</span>
+        <span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span><span class="token punctuation">.</span>Exito</span><span class="token punctuation">(</span>dividendo <span class="token operator">/</span> divisor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Fíjate que en caso de fallo devolvemos una instáncia de DivideByZeroException</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> Exception<span class="token punctuation">&gt;</span></span> <span class="token function">Divide</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> dividendo<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> divisor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        divisor <span class="token operator">&lt;</span> <span class="token number">1e-5</span>
+        <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> Exception<span class="token punctuation">&gt;</span><span class="token punctuation">.</span>Fallo</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DivideByZeroException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> Exception<span class="token punctuation">&gt;</span><span class="token punctuation">.</span>Exito</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">.</span><span class="token function">Round</span><span class="token punctuation">(</span>dividendo <span class="token operator">/</span> divisor<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Definimos un sencillo programa principal de test que gestionará los dos tipos de resultados...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> resultado1 <span class="token operator">=</span> Calculadora<span class="token punctuation">.</span><span class="token function">Divide</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>resultado1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> resultado2 <span class="token operator">=</span> Calculadora<span class="token punctuation">.</span><span class="token function">Divide</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>resultado2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> Exception<span class="token punctuation">&gt;</span></span> resultado3 <span class="token operator">=</span> Calculadora<span class="token punctuation">.</span><span class="token function">Divide</span><span class="token punctuation">(</span><span class="token number">10d</span><span class="token punctuation">,</span> <span class="token number">0d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>resultado3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Resultado<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> Exception<span class="token punctuation">&gt;</span></span> resultado4 <span class="token operator">=</span> Calculadora<span class="token punctuation">.</span><span class="token function">Divide</span><span class="token punctuation">(</span><span class="token number">10d</span><span class="token punctuation">,</span> <span class="token number">3d</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>resultado4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Mostrará por la consola:</strong></p>
+<pre class="salida_consola">Fallo: No se puede dividir por cero.
+3
+
+Fallo: System.DivideByZeroException: Attempted to divide by zero.
+3,33
+</pre>
+</div>
+<h3 id="métodos-parametrizados-en-csharp">Métodos parametrizados en CSharp </h3>
+<p>C# permite definir no sólo clases genéricas, sino que también puede hacerse genéricos <strong>métodos individuales</strong>, tanto de instancia como estáticos, sin necesidad de que lo sea la clase o estructura en la que el método está definido.</p>
+<p>La sintaxis para parametrizar un método será análoga a la que hemos usado para las clases.</p>
+<p>En la mayoría de los casos, <strong>este tipo de parametrización de métodos, tendrá más sentido con métodos de utilidad estáticos</strong>. Ya que como operaciones sobre un objeto no será '<em>inmediato</em>' relacionarlos con los tipos de los campos que definen el estado de la clase.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// La clase puede o no estar parametrizada.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">A</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token generic-method"><span class="token function">Metodo</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> parametro<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span> 
+        <span class="token comment">// Podremos usar el tipo genérico T tanto en </span>
+        <span class="token comment">// los parámetros formales, como en el cuerpo</span>
+        <span class="token comment">// del método.</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> parametro<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Para C# aunque este método tenga el mismo id</span>
+        <span class="token comment">// que el anterior, tendrán signaturas diferentes</span>
+        <span class="token comment">// y por tanto sabrá distinguirlos como diferentes.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Por ejemplo, vamos a definir un método genérico denominado <strong><code>CreaArrayInicializado&lt;T&gt;</code></strong> que nos permita crear un array de cualquier tipo <strong><code>T</code></strong> e inicializarlo con un valor por defecto.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token generic-method"><span class="token function">CreaArrayInicializado</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> tamaño<span class="token punctuation">,</span> <span class="token class-name">T</span> valorInicial<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span></span> array <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">T</span><span class="token punctuation">[</span>tamaño<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tamaño<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> valorInicial<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> array<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Fíjate que no hace falta indicar el tipo <strong><code>T</code></strong> al llamar al método, ya que el compilador es capaz de inferirlo a partir del tipo del parámetro <strong><code>valorInicial</code></strong>. De todas formas, si lo deseamos, podríamos indicarlo explícitamente como en el último ejemplo del array de booleanos.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> args<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> integerArray <span class="token operator">=</span> <span class="token function">CreaArrayInicializado</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Array de enteros: [</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> integerArray<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">]"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> stringArray <span class="token operator">=</span> <span class="token function">CreaArrayInicializado</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"vacio"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Array de cadenas: [</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> stringArray<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">]"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword keyword-bool">bool</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> boolArray <span class="token operator">=</span> <span class="token generic-method"><span class="token function">CreaArrayInicializado</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-bool">bool</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Array de booleanos: [</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> boolArray<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">]"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div style="page-break-after:always;"></div>
+<h3 id="tipos-parametrizados-en-la-bcl">Tipos parametrizados en la BCL </h3>
+<p>Supongamos que tenemos la clase <strong><code>Hora</code></strong> que implementa el interfaz <strong><code>IComparable</code></strong> que vimos anteriormente en el tema. Recordemos que esto supondría que podremos pasar cualquier objeto, pues todos heredan de <strong><code>object</code></strong>. Por esta razón, deberemos hacer un downcast del objeto al comparar a <strong><code>Hora</code></strong> pero no se puede asegurar que el objeto que estamos comparando es una hora, por tanto deberemos añadir algún tipo de código de control de errores...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Hora</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparable</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> H <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> M <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">Hora</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> h<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> m<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        H <span class="token operator">=</span> h<span class="token punctuation">;</span>
+        M <span class="token operator">=</span> m<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>  <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">H</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">M</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">CompareTo</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span><span class="token punctuation">?</span></span> objHora<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Nadie nos asegura que el downcast se pueda realizar.</span>
+        <span class="token class-name">Hora</span> hora <span class="token operator">=</span> objHora <span class="token keyword keyword-as">as</span> <span class="token class-name">Hora
+        <span class="token punctuation">?</span></span><span class="token punctuation">?</span> <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"El objeto a comparar no es una hora."</span><span class="token punctuation">,</span> <span class="token string">"obj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token class-name"><span class="token keyword keyword-int">int</span></span> comparacion <span class="token operator">=</span> H <span class="token operator">-</span> hora<span class="token punctuation">.</span>H<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>comparacion <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            comparacion <span class="token operator">=</span> M <span class="token operator">-</span> hora<span class="token punctuation">.</span>M<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> comparacion<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Sin embargo, C# añadió una definición parametrizada para dicho interfaz <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.icomparable-1">IComparable&lt;T&gt;</a></strong> y si la utilizamos, nos avisará en tiempo de compilación de que no estamos pasando el tipo correcto y además, no necesitaremos hacer el repetitivo código de control anterior.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>A lo largo de los temas usaremos otras implementaciones de interfaces genéricas como  <strong><code>IComparer&lt;T&gt;</code></strong>, <strong><code>IEnumerable&lt;T&gt;</code></strong> o <strong><code>IEquatable&lt;T&gt;</code></strong> definidos en las BCL aunque existen muchas más.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Hora</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparable<span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ... código omitido para abreviar.</span>
+
+    <span class="token comment">// Ahora tenemos seguridad de que nos llega una hora.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">CompareTo</span><span class="token punctuation">(</span><span class="token class-name">Hora<span class="token punctuation">?</span></span> hora<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Si no quisiéramos permitir null</span>
+        <span class="token comment">// ArgumentNullException.ThrowIfNull(hora);</span>
+        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> comparacion <span class="token operator">=</span> <span class="token punctuation">(</span>hora <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token punctuation">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> H <span class="token operator">-</span> hora<span class="token punctuation">.</span>H<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>comparacion <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> hora <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span>
+            comparacion <span class="token operator">=</span> M <span class="token operator">-</span> hora<span class="token operator">!</span><span class="token punctuation">.</span>M<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> comparacion<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Como hemos comentado, dispondremos de métodos estáticos de utilidad que estarán parametrizados, definiendo los tipos de entrada en el momento de su utilización.</p>
+<p>Por ejemplo, si queremos ordenar una lista o un array de horas, podremos usar el método estático <strong><code>Array.Sort&lt;T&gt;</code></strong> o el método de instancia <strong><code>List&lt;T&gt;.Sort()</code></strong>. Ambos ordenarán los elementos de la colección usando el método <strong><code>CompareTo</code></strong> definido en la clase.</p>
+<p>Si leemos la <strong><a href="https://learn.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.sort?view=net-8.0#system-collections-generic-list-1-sort">documentación oficial</a></strong> de la clase <strong><code>List&lt;T&gt;</code></strong> veremos que el método <strong><code>Sort()</code></strong> generará una excepción <strong><code>InvalidOperationException</code></strong> en tiempo de ejecución si el tipo <strong><code>T</code></strong> no implementa el interfaz <strong><code>IComparable&lt;T&gt;</code></strong> puesto que no sabrá como ordenar Horas.</p>
+<p>Puesto que nuestra clase <strong><code>Hora</code></strong> implementa dicho interfaz, podremos usar ambos métodos para ordenar una lista o un array de horas. Puedes descargar el código desde el siguiente enlace: <strong><a href="./assets/codigo/hora_comparable_ejemplo.cs">hora_comparable.cs</a></strong>.</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span> horas <span class="token operator">=</span> 
+    <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token class-name">Hora<span class="token punctuation">[</span><span class="token punctuation">]</span></span> aHoras <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token range operator">..</span> horas<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    horas<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> horas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Array<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Sort</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>aHoras<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Join</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> aHoras<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="col-sm-6">
+<p>Fíjate que el método <strong><code>String.Join&lt;T&gt;</code></strong> es parametrizado. Lo que sucede es que en el <strong>caso de la listas</strong> <strong><code>String.Join&lt;T&gt;</code></strong>, es capaz de inferir el tipo <strong><code>T</code></strong> a partir del tipo de la colección que le pasamos como segundo parámetro. Además, en el <strong>caso de ordenación de un array</strong> debemos usar el <strong>método de clase parametrizado</strong> <strong><code>Array.Sort&lt;Hora&gt;</code></strong> para que espere como entrada un <strong><code>Hora[]</code></strong>. No hace falta que indiquemos el tipo en el caso de la lista, pues <strong>es un método de instancia y el tipo ya lo conoce</strong>.</p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="restricciones-en-tipos-parametrizados">Restricciones en tipos parametrizados </h3>
+<p>Podremos definir restricciones de tipo asociadas a su definición para los parámetros tipo. Se especifican con la palabra reservada <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/language-reference/keywords/where-generic-type-constraint">where</a></strong> al final de la definición.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token keyword keyword-where">where</span> <span class="token class-name">T</span> <span class="token punctuation">:</span> restricción
+</code></pre><p>Por ejemplo, si queremos que el tipo genérico <strong><code>T</code></strong> sólo pueda ser un <strong>tipo valor</strong>, lo indicaremos de la siguiente manera...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">A<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token keyword keyword-where">where</span> <span class="token class-name">T</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token keyword keyword-struct">struct</span></span>
+</code></pre><p>Tendremos diferentes tipos de restricciones entre las que podemos destacar las siguientes ...</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Tipo Restricción</th>
+<th style="text-align:left">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">De herencia</td>
+<td style="text-align:left">El tipo debe heredar de una clase base determinada.<br><strong><code>&lt;T&gt; where T : ClaseBaseDeT</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">De interfaz ⭐</td>
+<td style="text-align:left">El tipo debe implementar una <strong>interfaz</strong> determinada.<br><strong><code>&lt;T&gt; where T : IinterfazAImplementar</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">De tipo referencia</td>
+<td style="text-align:left">El tipo debe ser <strong>referencia</strong>.<br><strong><code>&lt;T&gt; where T : class</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">De tipo valor</td>
+<td style="text-align:left">El tipo debe ser <strong>valor</strong>.<br><strong><code>&lt;T&gt; where T : struct</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">De constructor</td>
+<td style="text-align:left">El tipo debe tener un constructor sin parámetros.<br><strong><code>&lt;T&gt; where T : new</code></strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ejemplo-restricción-en-tipos-parametrizados">Ejemplo restricción en tipos parametrizados </h4>
+<p>Vamos a recuperar la clase <strong><code>class Matriz&lt;T&gt;</code></strong> y a usarla junto a la clase <strong><code>Hora : IComparable&lt;Hora&gt;</code></strong>. Para ello, vamos a invalidar los métodos de la clase <strong><code>object</code></strong> <strong><code>int GetHashCode()</code></strong> y <strong><code>bool Equals(object obj)</code></strong> que me devolverá <strong><code>true</code></strong> si <strong>todos los elementos de la matriz contenida son iguales</strong> a los de la que me llegan para comparar. Devolviendo <strong><code>false</code></strong> en caso contrario.</p>
+<p>Pero... ¿Cómo comparo los elementos de de la matriz si son de tipo <strong><code>T</code></strong>?</p>
+<p>Lo que haremos es añadir la restricción de que los <strong><code>T</code></strong> con se instáncie <strong><code>Matriz&lt;T&gt;</code></strong> implementen el interfaz <strong><code>IComparable&lt;T&gt;</code></strong> de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token keyword keyword-where">where</span> <span class="token class-name">T</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparable<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token return-type class-name">T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> Datos <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token comment">// ... código omitido por abreviar.</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>Datos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-object">object</span><span class="token punctuation">?</span></span> obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> sonIguales <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>obj <span class="token keyword keyword-is">is</span> <span class="token keyword keyword-not">not</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> otraMatriz<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            sonIguales <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Datos<span class="token punctuation">.</span>Length <span class="token operator">!=</span> otraMatriz<span class="token punctuation">.</span>Datos<span class="token punctuation">.</span>Length <span class="token operator">||</span> Datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length <span class="token operator">!=</span> otraMatriz<span class="token punctuation">.</span>Datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            sonIguales <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-else">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> filas <span class="token operator">=</span> Datos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+            <span class="token class-name"><span class="token keyword keyword-int">int</span></span> columnas <span class="token operator">=</span> Datos<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> filas <span class="token operator">&amp;&amp;</span> sonIguales<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+                <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> columnas <span class="token operator">&amp;&amp;</span> sonIguales<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+                    sonIguales <span class="token operator">=</span> Datos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">j</span></span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>otraMatriz<span class="token punctuation">.</span>Datos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">j</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword keyword-return">return</span> sonIguales<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Ahora, además de poder crear matrices de <strong><code>int</code></strong> o <strong><code>string</code></strong> que implementan <strong><code>IComparable&lt;...&gt;</code></strong>, podré crear matrices de objetos <strong><code>Hora</code></strong> ya que dicha clase también implementa dicho interfaz. Sin embargo, <strong>al crearla de cualquier otro tipo que no lo implemente, obtendremos un error</strong>.</p>
+<p>Por último, vamos a crear un simple <strong>programa principal que cree dos matrices de horas iguales y me confirme su igualdad</strong>.</p>
+<p>Cuando ejecutemos el programa, mostrará por la consola <strong><code>True</code></strong>. Puesto que, además de tener las mismas dimensiones, todos los elementos son iguales porque hemos usado el método <strong><code>CompareTo</code></strong> de la clase <strong><code>Hora</code></strong> para compararlos.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span> m1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>Hora<span class="token punctuation">&gt;</span></span> m2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>  <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>m1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>m2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Puedes descargar el código desde el siguiente enlace: <strong><a href="./assets/codigo/matriz_generica_comparable_ejemplo.cs">matriz_generica_comparable.cs</a></strong>.</p>
+<p>En ocasiones estas restricciones pueden ser confusas de leer si la clase implementa a su vez varias interfaces y el tipo genérico tiene varias restricciones de interfaz. Por ejemplo, <strong>¿Qué significará esta definición?</strong> ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparable<span class="token punctuation">&lt;</span>Matriz<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">,</span> <span class="token class-name">ICloneable</span></span> <span class="token keyword keyword-where">where</span> <span class="token class-name">T</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparable<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span><span class="token punctuation">,</span> <span class="token class-name">ICloneable</span></span> <span class="token punctuation">{</span> <span class="token range operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">}</span> <span class="token comment">// 😕</span>
+</code></pre><p>Pues que la clase <strong><code>Matriz&lt;T&gt;</code></strong> implementa los interfaces <strong><code>IComparable&lt;Matriz&lt;T&gt;&gt;</code></strong> e <strong><code>ICloneable</code></strong> y que el tipo genérico <strong><code>T</code></strong> debe implementar los interfaces <strong><code>IComparable&lt;T&gt;</code></strong> e <strong><code>ICloneable</code></strong>.</p>
+<h2 id="extensores-o-métodos-de-extensión">Extensores o métodos de extensión </h2>
+<p>Funcionalidad <strong>interesantísima</strong> de C# para <strong>extender la funcionalidad en clases selladas o de las que no disponemos el código</strong> porque es una librería de terceros, incluso para <strong>evitar dependencias</strong> y acoplamientos <strong>en <a href="https://www.adictosaltrabajo.com/2019/07/02/capas-cebollas-y-colmenas-arquitecturas-en-el-backend/">arquitecturas de capas</a></strong>. De hecho, otros lenguajes modernos como <strong>Kotlin</strong> o <strong>Swift</strong> también los permiten.</p>
+<p>Pero dejando a un lado consideraciones complejas y de diseño, en este tema vamos definir simplemente el concepto y su sintaxis en C#. Siendo importante destacar que, desde la <strong><a href="https://docs.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/extension-methods#general-guidelines">documentación oficial</a></strong> del lenguaje, <strong>se recomienda no abusar del uso de este tipos de métodos</strong>, y por tanto usarlos en los casos anteriormente descritos.</p>
+<p><strong>Características básicas</strong> de los métodos de extensión:</p>
+<ol>
+<li>Me permiten '<em>agregar</em>' operaciones sobre los tipos existentes, sin crear un nuevo tipo derivado y sin modificar el original.</li>
+<li>Se definen de forma especial a través de un método estático, pero se les llama como si fueran métodos de instancia en el tipo extendido.</li>
+<li>No tendré acceso a los miembros privados del tipo extendido.</li>
+</ol>
+<p>Una propuesta de plantilla básica de sintaxis de definición de estos métodos podría definir los en un fichero <strong>fuente independiente</strong> de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span>Extensions<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span>Extension 
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">IdMetodoExtensor</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token operator">&lt;</span>Tipo<span class="token operator">&gt;</span> o<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Operaciones sobre o.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="row">
+<div class="col-sm-5">
+<p>Veámoslo a través de un ejemplo sencillo pero bastante '<em>esclarecedor</em>'...</p>
+<p>Supongamos que queremos añadir métodos de utilidad sobre objetos cadena <strong><code>string</code></strong> que nos proporcionan las BCL. Sin embargo, <strong>nosotros no podemos modificar la implementación en la clase <code>string</code></strong> para añadir nuevas operaciones.</p>
+<p>Crearemos un fuente llamado <strong><code>StringExtension.cs</code></strong> que contendrá la clase estática <strong><code>StringExtension</code></strong> donde añadiremos todos los métodos de extensión sobre <strong><code>string</code></strong>.</p>
+<p>En el siguiente ejemplo hemos añadido el método <strong><code>Capitaliza</code></strong> que pasa a mayúsculas la primera letra de cada palabra y el método <strong><code>CuentaPalabras</code></strong> que me retorna el número de palabras en una cadena.</p>
+</div>
+<div class="col-sm-7 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">StringExtensions</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">StringExtension</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">Capitaliza</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> s<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> sCapitalizada<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">StringBuilder</span> sb <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            sb<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>sb<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+                sb<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">IsWhiteSpace</span><span class="token punctuation">(</span>sb<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> 
+                        <span class="token punctuation">?</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>sb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> sb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            sCapitalizada <span class="token operator">=</span> sb<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-else">else</span>
+            sCapitalizada <span class="token operator">=</span> s<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> sCapitalizada<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">CuentaPalabras</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> s<span class="token punctuation">)</span> 
+    <span class="token operator">=&gt;</span> s<span class="token punctuation">.</span><span class="token function">Split</span><span class="token punctuation">(</span>
+                <span class="token punctuation">[</span> <span class="token char">' '</span><span class="token punctuation">,</span> <span class="token char">'.'</span><span class="token punctuation">,</span> <span class="token char">'?'</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                StringSplitOptions<span class="token punctuation">.</span>RemoveEmptyEntries
+              <span class="token punctuation">)</span><span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Aparentemente son métodos de utilidad son estáticos y que reciben como parámetro un objeto de la clase sobre la que queremos añadir la funcionalidad. <strong>Pero fíjate que, el tipo a extender <code>string</code>, tiene la palabra reservada <code>this</code> delante</strong>. Esto es lo que indica a C# que se trata de un método de extensión.</p>
+<p>Ahora si quisiéramos utilizar estos métodos adicionales en un programa simplemente tendríamos que hacer un <strong><code>using StringExtensions;</code></strong> para que nos los ofrezca el '<em>IntelliSense</em>' al ver las la operaciones posibles sobre un objeto cadena.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">StringExtensions</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> s <span class="token operator">=</span> <span class="token string">"hola caracola"</span><span class="token punctuation">;</span>
+        <span class="token comment">// Si no hacemos el using StringExtensions; los métodos Capitaliza </span>
+        <span class="token comment">// y CuentaPalabras no nos los ofrecerá.</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">s<span class="token punctuation">.</span><span class="token function">Capitaliza</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> tiene </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"> s<span class="token punctuation">.</span><span class="token function">CuentaPalabras</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> palabras."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Puedes descargar el código desde el siguiente enlace: <strong><a href="assets/ejemplos/extensores_cadena_ejemplo.cs">extensores_cadena.cs</a></strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div class="row mt-3">
+<div class="col-sm-6">
+<p>Dependiendo del IDE que estemos usando, el Intellisense normalmente nos ofrece un símbolo (ej. 🔹) al lado del método publico de la clase y si este es un método de extensión lo indicará con una flecha hacia abajo (ej. 🔹↓) y/o la etiqueta <strong><code>(Extensión)</code></strong> precediendo a la descripción del método.</p>
+</div>
+<div class="col-sm-6 my-auto">
+<p><img src="assets/imagenes/ExtensorCuentaPalabras.png" alt="nombre"></p>
+</div>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo:</strong></p>
+<p>Supongamos que tenemos dos clases <strong><code>Jugador</code></strong> y <strong><code>Alumno</code></strong> que representan respectivamente a un jugador de fútbol y a un alumno de una escuela. Ambas clases tienen <strong>propiedades similares pero no iguales</strong> y además están definidas en librerías de terceros y no podemos modificarlas. Piensa que, incluso aunque pudiéramos modificarlas y añadir nuevos métodos, nos obligaría a añadir dependencias a dichas librerías y por tanto a aumentar el acoplamiento entre capas.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Jugador</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Apellido<span class="token punctuation">,</span> <span class="token class-name">DateOnly</span> Nacimiento<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Alumno</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name">DateTime</span> Nacimiento<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Quiero añadir métodos de utilidad para convertir un <strong><code>Jugador</code></strong> en un <strong><code>Alumno</code></strong> y viceversa. Fíjate que no son del todo equivalentes, ya que el <strong><code>Alumno</code></strong> tiene una sola propiedad <strong><code>Nombre</code></strong> mientras que el <strong><code>Jugador</code></strong> la tiene dividida en <strong><code>Nombre</code></strong> y <strong><code>Apellido</code></strong>. Además, la propiedad <strong><code>Nacimiento</code></strong> es de diferente tipo en ambas clases. Por lo que cada vez que queramos hacer una conversión deberemos escribir el mismo código repetidamente.</p>
+<p>La solución es definir dos métodos de extensión siguiendo el esquema que hemos visto anteriormente. Estos métodos los podríamos definir en un mismo fichero fuente llamado <strong><code>ConversionExtensions.cs</code></strong> con un namespace <strong><code>ConversionExtensions</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">ConversionExtensions</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">AlumnoExtension</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Jugador</span> <span class="token function">ToJugador</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token class-name">Alumno</span> alumno<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+        <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> alumno<span class="token punctuation">.</span>Nombre<span class="token punctuation">.</span><span class="token function">Split</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token named-parameter punctuation">Apellido</span><span class="token punctuation">:</span> alumno<span class="token punctuation">.</span>Nombre<span class="token punctuation">.</span><span class="token function">Split</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">^</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token named-parameter punctuation">Nacimiento</span><span class="token punctuation">:</span> DateOnly<span class="token punctuation">.</span><span class="token function">FromDateTime</span><span class="token punctuation">(</span>alumno<span class="token punctuation">.</span>Nacimiento<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">JugadorExtension</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Alumno</span> <span class="token function">ToAlumno</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span> <span class="token class-name">Jugador</span> jugador<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+        <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugador<span class="token punctuation">.</span>Nombre</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">jugador<span class="token punctuation">.</span>Apellido</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+        <span class="token named-parameter punctuation">Nacimiento</span><span class="token punctuation">:</span> jugador<span class="token punctuation">.</span>Nacimiento<span class="token punctuation">.</span><span class="token function">ToDateTime</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">TimeOnly</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Ahora ya solo nos quedaría usar estos métodos donde los necesitemos. Para ello, deberemos hacer un <strong><code>using ConversionExtensions;</code></strong> en el fichero fuente donde los vayamos a usar.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[11, 20]}" class="language-csharp csharp" data-line="11,20"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">ConversionExtensions</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Jugador</span> jugador1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+            <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Lionel"</span><span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Apellido</span><span class="token punctuation">:</span> <span class="token string">"Messi"</span><span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Nacimiento</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DateOnly</span><span class="token punctuation">(</span><span class="token number">1987</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Alumno</span> alumno1 <span class="token operator">=</span> jugador1<span class="token punctuation">.</span><span class="token function">ToAlumno</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>jugador1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>alumno1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Alumno</span> alumno2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>
+            <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Cristiano Ronaldo"</span><span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Nacimiento</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DateTime</span><span class="token punctuation">(</span><span class="token number">1985</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Jugador</span> jugador2 <span class="token operator">=</span> alumno2<span class="token punctuation">.</span><span class="token function">ToJugador</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>alumno2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>jugador2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="20" data-start="20">
+</div></div></pre><p>Puedes descargar el código desde el siguiente enlace: <strong><a href="assets/ejemplos/extensores_conversion_ejemplo.cs">extensores_conversion.cs</a></strong></p>
+<p><strong>Mostrará por la consola:</strong></p>
+<pre class="salida_consola">Jugador { Nombre = Lionel, Apellido = Messi, Nacimiento = 24/06/1987 }
+Alumno { Nombre = Lionel Messi, Nacimiento = 24/06/1987 0:00:00 }
+Alumno { Nombre = Cristiano Ronaldo, Nacimiento = 05/02/1985 0:00:00 }
+Jugador { Nombre = Cristiano, Apellido = Ronaldo, Nacimiento = 05/02/1985 }
+</pre>
+<div class="admonition summary">
+<p class="admonition-title">Resumen</p>
+<p>Para el usuario de estas clases, los métodos <strong><code>ToAlumno()</code></strong> y <strong><code>ToJugador()</code></strong> parecerán métodos de instancia de las clases originales. Sin embargo, no lo son y no han modificado el código original de dichas clases. Además, solo aparecerán si hacemos el <strong><code>using ConversionExtensions;</code></strong>.</p>
+</div>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

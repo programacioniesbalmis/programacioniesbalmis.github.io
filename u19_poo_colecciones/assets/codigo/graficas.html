@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Algoritmos de Búsqueda</title>
+    <!-- Incluye Tailwind CSS para un estilo moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Incluye Chart.js para generar los gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilo base de la tipografía */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8">
+        <!-- Contenedores para las gráficas, con un diseño responsivo -->
+        <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+            <div class="w-full md:w-1/2 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-center mb-4 text-gray-700">`Contains()` (Búsqueda Lineal)</h2>
+                <canvas id="containsChart"></canvas>
+            </div>
+            <div class="w-full md:w-1/2 rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-center mb-4 text-gray-700">`BinarySearch()` (Búsqueda Binaria)</h2>
+                <canvas id="binarySearchChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de los datos para las gráficas
+        const maxElements = 1000;
+        const labels = [];
+        const linearData = [];
+        const logarithmicData = [];
+
+        // Genera los puntos de datos para ambos algoritmos
+        for (let i = 1; i <= maxElements; i++) {
+            labels.push(i);
+            // La complejidad lineal O(n) se representa como f(n) = n
+            linearData.push(i);
+            // La complejidad logarítmica O(log n) se representa como f(n) = log₂(n)
+            logarithmicData.push(Math.log2(i));
+        }
+
+        // Dibuja el gráfico de `Contains()` (búsqueda lineal)
+        const containsCtx = document.getElementById('containsChart').getContext('2d');
+        const containsChart = new Chart(containsCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Operaciones vs. N° de elementos',
+                    data: linearData,
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                aspectRatio: 1, // Hace que la gráfica sea cuadrada
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Complejidad Lineal O(n)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Número de Elementos (n)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Número de Operaciones'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Dibuja el gráfico de `BinarySearch()` (búsqueda binaria)
+        const binarySearchCtx = document.getElementById('binarySearchChart').getContext('2d');
+        const binarySearchChart = new Chart(binarySearchCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Operaciones vs. N° de elementos',
+                    data: logarithmicData,
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                aspectRatio: 1, // Hace que la gráfica sea cuadrada
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Complejidad Logarítmica O(log n)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Número de Elementos (n)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Número de Operaciones'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

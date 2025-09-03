@@ -1,0 +1,767 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 12</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-12">Unidad 12 </h1>
+<p>Descargar estos apunte en <a href="./u12_poo_tipos_valor.pdf">pdf</a> o <a href="./u12_poo_tipos_valor.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipos-valor-vs-tipos-referencia-en-poo" class="md-toc-link"><p>Tipos valor vs Tipos referencia en POO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipos-valor-relacionados-con-fechas-y-tiempo" class="md-toc-link"><p>Tipos valor relacionados con fechas y tiempo</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#formas-de-instanciar-objetos-valor-fecha" class="md-toc-link">
+            <p>Formas de instanciar objetos valor fecha</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#operaciones-más-comunes-con-fechas" class="md-toc-link">
+            <p>Operaciones más comunes con fechas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#fechas-y-cadenas" class="md-toc-link">
+            <p>Fechas y cadenas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#qué-pasa-si-solo-queremos-guardar-la-hora-o-la-fecha" class="md-toc-link">
+            <p>¿Qué pasa si solo queremos guardar la hora o la fecha?</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipo-valor-guid" class="md-toc-link">
+            <p>Tipo valor GUID</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="tipos-valor-vs-tipos-referencia-en-poo">Tipos valor vs Tipos referencia en POO </h2>
+<h3 id="introducción">Introducción </h3>
+<p>Muchos lenguajes de programación utilizan tanto <strong><a href="https://en.wikipedia.org/wiki/Value_type_and_reference_type">tipos por valor y tipos por referencia</a></strong> para gestionar la memoria y el comportamiento de las variables. La diferencia fundamental radica en cómo se almacena y se pasa la información. Básicamente podemos decir que:</p>
+<ul>
+<li>
+<p><strong>Tipos por Valor (Value Types)</strong>: La variable contiene directamente el dato. Al asignarla o pasarla a una función, se crea una copia independiente.</p>
+</li>
+<li>
+<p><strong>Tipos por Referencia (Reference Types)</strong>: La variable contiene una "referencia" a la ubicación en memoria donde se almacena el dato. Al asignarla o pasarla, se copia la referencia, pero ambas apuntan al mismo dato original.</p>
+</li>
+</ul>
+<p>Es importante entender cómo funcionan y cuándo se utilizan cada uno de ellos. Pues la forma de pasar datos, el manejo de la memoria, la eficiencia y la robustez del código pueden variar significativamente entre ambos tipos. En el siguiente diagrama, podemos ver la diferencia de gestión de la que hemos ido tratando en las unidades anteriores...</p>
+<div class="row">
+<div class="col-sm-5 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Tipo valor</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> n1 <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    <span class="token comment">// Copia del valor de n1</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> n2 <span class="token operator">=</span> n1<span class="token punctuation">;</span> 
+
+    <span class="token comment">// Tipo referencia</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> saludo1 <span class="token operator">=</span> <span class="token string">"Hola"</span><span class="token punctuation">;</span>
+    <span class="token comment">// Copia de la referencia a saludo1</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> saludo2 <span class="token operator">=</span> saludo1<span class="token punctuation">;</span>
+
+    <span class="token comment">// Objeto tipo referencia</span>
+    <span class="token class-name">StringBuilder</span> despedida <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"Adiós"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Tipo referencia</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> datos <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="col-sm-7 my-auto">
+<p></p><p class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="300pt" height="275pt" viewBox="0.00 0.00 300.00 275.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.5 0.5) rotate(0) translate(6.33 533.5)">
+<title>G</title>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="SteelBlue" stroke="black" points="82,-30 82,-487 309.6,-487 309.6,-30 82,-30"></polygon>
+<text text-anchor="middle" x="195.8" y="-470.4" font-family="Arial" font-size="14.00" fill="white">STACK</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="LightSteelBlue" stroke="black" points="403.6,-8 403.6,-509 579.34,-509 579.34,-8 403.6,-8"></polygon>
+<text text-anchor="middle" x="491.47" y="-492.4" font-family="Arial" font-size="14.00">HEAP</text>
+</g>
+<!-- stack -->
+<g id="node1" class="node">
+<title>stack</title>
+<text text-anchor="start" x="146.79" y="-418.4" font-family="Arial" font-size="14.00" fill="white">int[]</text>
+<text text-anchor="start" x="139.41" y="-404.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">datos</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-382 218.15,-450 293.6,-450 293.6,-382 218.15,-382"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-382 218.15,-450 293.6,-450 293.6,-382 218.15,-382"></polygon>
+<text text-anchor="start" x="239.15" y="-411.8" font-family="Arial" font-size="14.00" fill="white">(ref3)</text>
+<text text-anchor="start" x="118" y="-350.4" font-family="Arial" font-size="14.00" fill="white">StringBuilder</text>
+<text text-anchor="start" x="123.46" y="-336.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">despedida</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-314 218.15,-382 293.6,-382 293.6,-314 218.15,-314"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-314 218.15,-382 293.6,-382 293.6,-314 218.15,-314"></polygon>
+<text text-anchor="start" x="239.15" y="-343.8" font-family="Arial" font-size="14.00" fill="white">(ref2)</text>
+<text text-anchor="start" x="140.96" y="-282.4" font-family="Arial" font-size="14.00" fill="white">string</text>
+<text text-anchor="start" x="131.62" y="-268.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">saludo2</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-246 218.15,-314 293.6,-314 293.6,-246 218.15,-246"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-246 218.15,-314 293.6,-314 293.6,-246 218.15,-246"></polygon>
+<text text-anchor="start" x="239.15" y="-275.8" font-family="Arial" font-size="14.00" fill="white">(ref1)</text>
+<text text-anchor="start" x="140.96" y="-214.4" font-family="Arial" font-size="14.00" fill="white">string</text>
+<text text-anchor="start" x="131.62" y="-200.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">saludo1</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-178 218.15,-246 293.6,-246 293.6,-178 218.15,-178"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-178 218.15,-246 293.6,-246 293.6,-178 218.15,-178"></polygon>
+<text text-anchor="start" x="239.15" y="-207.8" font-family="Arial" font-size="14.00" fill="white">(ref1)</text>
+<text text-anchor="start" x="150.68" y="-146.4" font-family="Arial" font-size="14.00" fill="white">int</text>
+<text text-anchor="start" x="149.91" y="-132.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">n2</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-110 218.15,-178 293.6,-178 293.6,-110 218.15,-110"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-110 218.15,-178 293.6,-178 293.6,-110 218.15,-110"></polygon>
+<text text-anchor="start" x="251.98" y="-139.8" font-family="Arial" font-size="14.00" fill="white">4</text>
+<text text-anchor="start" x="150.68" y="-78.4" font-family="Arial" font-size="14.00" fill="white">int</text>
+<text text-anchor="start" x="149.91" y="-64.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">n1</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-42 218.15,-110 293.6,-110 293.6,-42 218.15,-42"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-42 218.15,-110 293.6,-110 293.6,-42 218.15,-42"></polygon>
+<text text-anchor="start" x="251.98" y="-71.8" font-family="Arial" font-size="14.00" fill="white">4</text>
+</g>
+<!-- heap -->
+<g id="node2" class="node">
+<title>heap</title>
+<polygon fill="none" stroke="black" points="419.6,-380.6 419.6,-472.2 563.34,-472.2 563.34,-380.6 419.6,-380.6"></polygon>
+<text text-anchor="start" x="453.03" y="-434.6" font-family="Arial" font-size="14.00" fill="slategray">0</text>
+<text text-anchor="start" x="483.68" y="-434.6" font-family="Arial" font-size="14.00" fill="slategray">1</text>
+<text text-anchor="start" x="518.23" y="-434.6" font-family="Arial" font-size="14.00" fill="slategray">2</text>
+<polygon fill="none" stroke="black" points="441.6,-402.6 441.6,-427.4 472.25,-427.4 472.25,-402.6 441.6,-402.6"></polygon>
+<text text-anchor="start" x="453.03" y="-410.8" font-family="Arial" font-size="14.00">9</text>
+<polygon fill="none" stroke="black" points="472.25,-402.6 472.25,-427.4 502.9,-427.4 502.9,-402.6 472.25,-402.6"></polygon>
+<text text-anchor="start" x="483.68" y="-410.8" font-family="Arial" font-size="14.00">5</text>
+<polygon fill="none" stroke="black" points="502.9,-402.6 502.9,-427.4 541.34,-427.4 541.34,-402.6 502.9,-402.6"></polygon>
+<text text-anchor="start" x="514.34" y="-410.8" font-family="Arial" font-size="14.00">23</text>
+<polygon fill="none" stroke="black" points="440.6,-401.6 440.6,-451.2 542.34,-451.2 542.34,-401.6 440.6,-401.6"></polygon>
+<polygon fill="none" stroke="black" points="419.6,-321.8 419.6,-380.6 563.34,-380.6 563.34,-321.8 419.6,-321.8"></polygon>
+<text text-anchor="start" x="485.64" y="-347" font-family="Arial" font-size="14.00">...</text>
+<polygon fill="none" stroke="black" points="419.6,-255 419.6,-321.8 563.34,-321.8 563.34,-255 419.6,-255"></polygon>
+<polygon fill="none" stroke="black" points="440.6,-276 440.6,-300.8 463.28,-300.8 463.28,-276 440.6,-276"></polygon>
+<text text-anchor="start" x="444.6" y="-284.2" font-family="Arial" font-size="14.00">'A'</text>
+<polygon fill="none" stroke="black" points="463.28,-276 463.28,-300.8 484.42,-300.8 484.42,-276 463.28,-276"></polygon>
+<text text-anchor="start" x="467.28" y="-284.2" font-family="Arial" font-size="14.00">'d'</text>
+<polygon fill="none" stroke="black" points="484.42,-276 484.42,-300.8 500.87,-300.8 500.87,-276 484.42,-276"></polygon>
+<text text-anchor="start" x="488.42" y="-284.2" font-family="Arial" font-size="14.00">'i'</text>
+<polygon fill="none" stroke="black" points="500.87,-276 500.87,-300.8 522,-300.8 522,-276 500.87,-276"></polygon>
+<text text-anchor="start" x="504.87" y="-284.2" font-family="Arial" font-size="14.00">'ó'</text>
+<polygon fill="none" stroke="black" points="522,-276 522,-300.8 542.34,-300.8 542.34,-276 522,-276"></polygon>
+<text text-anchor="start" x="526" y="-284.2" font-family="Arial" font-size="14.00">'s'</text>
+<polygon fill="none" stroke="black" points="419.6,-196.2 419.6,-255 563.34,-255 563.34,-196.2 419.6,-196.2"></polygon>
+<text text-anchor="start" x="485.64" y="-221.4" font-family="Arial" font-size="14.00">...</text>
+<polygon fill="none" stroke="black" points="419.6,-137.4 419.6,-196.2 563.34,-196.2 563.34,-137.4 419.6,-137.4"></polygon>
+<text text-anchor="start" x="472.1" y="-162.6" font-family="Arial" font-size="14.00">"Hola"</text>
+<polygon fill="none" stroke="black" points="419.6,-78.6 419.6,-137.4 563.34,-137.4 563.34,-78.6 419.6,-78.6"></polygon>
+<text text-anchor="start" x="485.64" y="-103.8" font-family="Arial" font-size="14.00">...</text>
+<polygon fill="none" stroke="black" points="419.6,-19.8 419.6,-78.6 563.34,-78.6 563.34,-19.8 419.6,-19.8"></polygon>
+<text text-anchor="start" x="485.64" y="-45" font-family="Arial" font-size="14.00">...</text>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge2" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M293.6,-416C293.6,-416 377.58,-422.93 408.42,-425.48"></path>
+<polygon fill="#36648b" stroke="#36648b" points="407.84,-428.94 418.09,-426.28 408.41,-421.96 407.84,-428.94"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge3" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M293.6,-212C293.6,-212 378.39,-181.58 408.86,-170.65"></path>
+<polygon fill="#36648b" stroke="#36648b" points="409.94,-173.98 418.17,-167.31 407.58,-167.39 409.94,-173.98"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge4" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M293.6,-348C293.6,-348 379.2,-307.51 409.29,-293.28"></path>
+<polygon fill="#36648b" stroke="#36648b" points="410.69,-296.49 418.23,-289.05 407.7,-290.16 410.69,-296.49"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge5" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M293.6,-280C293.6,-280 383.3,-199.41 411.33,-174.23"></path>
+<polygon fill="#36648b" stroke="#36648b" points="413.37,-177.1 418.47,-167.81 408.7,-171.89 413.37,-177.1"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge6" class="edge">
+<title>stack-&gt;heap</title>
+<path fill="none" stroke="none" d="M309.6,-246C339.76,-246 371.92,-246 400.68,-246"></path>
+<polygon fill="none" stroke="none" points="392.09,-249.5 402.09,-246 392.09,-242.5 392.09,-249.5"></polygon>
+</g>
+<!-- Cima\nPila -->
+<g id="node3" class="node">
+<title>Cima\nPila</title>
+<text text-anchor="middle" x="27" y="-454.2" font-family="Arial" font-size="14.00">Cima</text>
+<text text-anchor="middle" x="27" y="-437.4" font-family="Arial" font-size="14.00">Pila</text>
+</g>
+<!-- Cima\nPila&#45;&gt;stack -->
+<g id="edge1" class="edge">
+<title>Cima\nPila-&gt;stack:nw</title>
+<path fill="none" stroke="#36648b" stroke-dasharray="5,2" d="M53.64,-450.13C95.61,-450.36 177.27,-450.79 206.99,-450.94"></path>
+<polygon fill="#36648b" stroke="#36648b" points="206.62,-454.44 216.64,-450.99 206.66,-447.44 206.62,-454.44"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para ver la diferencia en entre Pila (Stack) y Montón (Heap) puede  ver o repasar el <strong>Anexo I de la unidad 3</strong>, donde tratábamos el tema.</p>
+</div>
+<p>En <strong><a href="https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/builtin-types/value-types">CSharp</a></strong>, Además de los <strong>tipos primitivos que hemos usado</strong> en las primeras unidades cómo <strong><code>int</code></strong>, <strong><code>double</code></strong>, <strong><code>char</code></strong>, <strong><code>bool</code></strong>, etc (Todos excepto <strong><code>string</code></strong>). C# define una serie de tipos valor más complejos como <strong><code>DateTime</code></strong>, <strong><code>TimeOnly</code></strong>, <strong><code>DateOnly</code></strong>, <strong><code>TimeSpan</code></strong>, <strong><code>Guid</code></strong>, <strong><code>ValeTuple</code></strong>, <strong><code>Enum</code></strong>, etc. Además, <strong>no es habitual definir tipos valor personalizados</strong>, ya que la mayoría de las veces se usan los tipos predefinidos ya mencionados.</p>
+<p>Debemos destacar que en muchos lenguajes de programación no se pueden definir tipos valor personalizados. Sin embargo, más adelante ahondaremos en el concepto de uso, características y definición desde el punto de vista de la POO moderna en C# y otros lenguajes.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="tipos-valor-relacionados-con-fechas-y-tiempo">Tipos valor relacionados con fechas y tiempo </h3>
+<p>Uno de los objetos valor predefinidos en las BCL y que más vamos usar, es el tipo de dato <strong>fecha</strong>: <strong><a href="https://docs.microsoft.com/en-us/dotnet/api/system.datetime">System.DateTime</a></strong>. Son <strong>objetos inmutables</strong> que representan un instante en el tiempo. El objeto <strong><code>DateTime</code></strong> almacena la fecha y la hora, y puede representar fechas desde el 1 de enero del año 0001 hasta el 31 de diciembre del año 9999.</p>
+<h4 id="formas-de-instanciar-objetos-valor-fecha">Formas de instanciar objetos valor fecha </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">2026</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 19/03/2026 a las 00:00:00</span>
+<span class="token class-name">DateTime</span> f2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token number">2026</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 19/03/2026 a las 8:30:00</span>
+<span class="token class-name">DateTime</span> f3 <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>Today<span class="token punctuation">;</span>                <span class="token comment">// Hoy a las 00:00:00</span>
+<span class="token class-name">DateTime</span> f4 <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">;</span>                  <span class="token comment">// Hoy a a la hora actual en mi zona horaria.</span>
+<span class="token class-name">DateTime</span> f5 <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>UtcNow<span class="token punctuation">;</span>               <span class="token comment">// Hoy a a la hora actual en zona UTC.</span>
+</code></pre><div class="row">
+<div class="col-sm-5 my-auto">
+<p>Al <strong>compararlo con la instancia y asignación de un tipo referencia</strong> como <strong><code>StringBuilder</code></strong>. El comportamiento en memoria es diferente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token number">2026</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">DateTime</span> f2 <span class="token operator">=</span> f1<span class="token punctuation">;</span>
+
+<span class="token class-name">StringBuilder</span> sb1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"HOLA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">StringBuilder</span> sb2 <span class="token operator">=</span> sb1<span class="token punctuation">;</span>
+</code></pre></div>
+<div class="col-sm-7 my-auto">
+<p></p><p class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="300pt" height="175pt" viewBox="0.00 0.00 300.00 175.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.5 0.5) rotate(0) translate(-6.86 351)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="6.86,-1 6.86,-351 606.86,-351 606.86,-1 6.86,-1"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="SteelBlue" stroke="black" points="82,-8 82,-344 346.22,-344 346.22,-8 82,-8"></polygon>
+<text text-anchor="middle" x="214.11" y="-327.4" font-family="Arial" font-size="14.00" fill="white">STACK</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="LightSteelBlue" stroke="black" points="440.22,-30 440.22,-322 605.73,-322 605.73,-30 440.22,-30"></polygon>
+<text text-anchor="middle" x="522.97" y="-305.4" font-family="Arial" font-size="14.00">HEAP</text>
+</g>
+<!-- stack -->
+<g id="node1" class="node">
+<title>stack</title>
+<text text-anchor="start" x="118" y="-276" font-family="Arial" font-size="14.00" fill="white">StringBuilder</text>
+<text text-anchor="start" x="146.01" y="-262" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">sb2</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-239.6 218.15,-307.6 330.22,-307.6 330.22,-239.6 218.15,-239.6"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-239.6 218.15,-307.6 330.22,-307.6 330.22,-239.6 218.15,-239.6"></polygon>
+<text text-anchor="start" x="257.46" y="-269.4" font-family="Arial" font-size="14.00" fill="white">(ref1)</text>
+<text text-anchor="start" x="118" y="-208" font-family="Arial" font-size="14.00" fill="white">StringBuilder</text>
+<text text-anchor="start" x="146.01" y="-194" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">sb1</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-171.6 218.15,-239.6 330.22,-239.6 330.22,-171.6 218.15,-171.6"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-171.6 218.15,-239.6 330.22,-239.6 330.22,-171.6 218.15,-171.6"></polygon>
+<text text-anchor="start" x="257.46" y="-201.4" font-family="Arial" font-size="14.00" fill="white">(ref1)</text>
+<text text-anchor="start" x="127.73" y="-136.2" font-family="Arial" font-size="14.00" fill="white">DateTime</text>
+<text text-anchor="start" x="151.85" y="-122.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">f2</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-96 218.15,-171.6 330.22,-171.6 330.22,-96 218.15,-96"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-96 218.15,-171.6 330.22,-171.6 330.22,-96 218.15,-96"></polygon>
+<text text-anchor="start" x="239.15" y="-138" font-family="Arial" font-size="14.00" fill="white">11/12/2026</text>
+<text text-anchor="start" x="246.94" y="-121.2" font-family="Arial" font-size="14.00" fill="white">00:00:00</text>
+<text text-anchor="start" x="127.73" y="-60.6" font-family="Arial" font-size="14.00" fill="white">DateTime</text>
+<text text-anchor="start" x="151.85" y="-46.6" font-family="Arial" font-weight="bold" font-size="14.00" fill="white">f1</text>
+<polygon fill="CornflowerBlue" stroke="none" points="218.15,-20.4 218.15,-96 330.22,-96 330.22,-20.4 218.15,-20.4"></polygon>
+<polygon fill="none" stroke="white" points="218.15,-20.4 218.15,-96 330.22,-96 330.22,-20.4 218.15,-20.4"></polygon>
+<text text-anchor="start" x="239.15" y="-62.4" font-family="Arial" font-size="14.00" fill="white">11/12/2026</text>
+<text text-anchor="start" x="246.94" y="-45.6" font-family="Arial" font-size="14.00" fill="white">00:00:00</text>
+</g>
+<!-- heap -->
+<g id="node2" class="node">
+<title>heap</title>
+<polygon fill="none" stroke="black" points="456.22,-218.8 456.22,-285.6 589.73,-285.6 589.73,-218.8 456.22,-218.8"></polygon>
+<polygon fill="none" stroke="black" points="477.22,-239.8 477.22,-264.6 500.68,-264.6 500.68,-239.8 477.22,-239.8"></polygon>
+<text text-anchor="start" x="481.22" y="-248" font-family="Arial" font-size="14.00">'H'</text>
+<polygon fill="none" stroke="black" points="500.68,-239.8 500.68,-264.6 524.91,-264.6 524.91,-239.8 500.68,-239.8"></polygon>
+<text text-anchor="start" x="504.68" y="-248" font-family="Arial" font-size="14.00">'O'</text>
+<polygon fill="none" stroke="black" points="524.91,-239.8 524.91,-264.6 546.04,-264.6 546.04,-239.8 524.91,-239.8"></polygon>
+<text text-anchor="start" x="528.91" y="-248" font-family="Arial" font-size="14.00">'L'</text>
+<polygon fill="none" stroke="black" points="546.04,-239.8 546.04,-264.6 568.73,-264.6 568.73,-239.8 546.04,-239.8"></polygon>
+<text text-anchor="start" x="550.04" y="-248" font-family="Arial" font-size="14.00">'A'</text>
+<polygon fill="none" stroke="black" points="456.22,-160 456.22,-218.8 589.73,-218.8 589.73,-160 456.22,-160"></polygon>
+<text text-anchor="start" x="517.14" y="-185.2" font-family="Arial" font-size="14.00">...</text>
+<polygon fill="none" stroke="black" points="456.22,-101.2 456.22,-160 589.73,-160 589.73,-101.2 456.22,-101.2"></polygon>
+<text text-anchor="start" x="517.14" y="-126.4" font-family="Arial" font-size="14.00">...</text>
+<polygon fill="none" stroke="black" points="456.22,-42.4 456.22,-101.2 589.73,-101.2 589.73,-42.4 456.22,-42.4"></polygon>
+<text text-anchor="start" x="517.14" y="-67.6" font-family="Arial" font-size="14.00">...</text>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge2" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M330.22,-205.6C330.22,-205.6 415.01,-236.96 445.48,-248.23"></path>
+<polygon fill="#36648b" stroke="#36648b" points="444.21,-251.49 454.8,-251.67 446.64,-244.92 444.21,-251.49"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge3" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="#36648b" d="M330.22,-273.6C330.22,-273.6 414.2,-259.34 445.04,-254.1"></path>
+<polygon fill="#36648b" stroke="#36648b" points="445.45,-257.58 454.73,-252.45 444.28,-250.68 445.45,-257.58"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge4" class="edge">
+<title>stack-&gt;heap</title>
+<path fill="none" stroke="none" d="M346.21,-164C376.92,-164 408.82,-164 436.94,-164"></path>
+<polygon fill="none" stroke="none" points="428.71,-167.5 438.71,-164 428.71,-160.5 428.71,-167.5"></polygon>
+</g>
+<!-- Cima\nPila -->
+<g id="node3" class="node">
+<title>Cima\nPila</title>
+<text text-anchor="middle" x="27" y="-311.2" font-family="Arial" font-size="14.00">Cima</text>
+<text text-anchor="middle" x="27" y="-294.4" font-family="Arial" font-size="14.00">Pila</text>
+</g>
+<!-- Cima\nPila&#45;&gt;stack -->
+<g id="edge1" class="edge">
+<title>Cima\nPila-&gt;stack:nw</title>
+<path fill="none" stroke="#36648b" stroke-dasharray="5,2" d="M53.64,-307.22C95.61,-307.57 177.27,-308.26 206.99,-308.51"></path>
+<polygon fill="#36648b" stroke="#36648b" points="206.61,-312 216.64,-308.59 206.67,-305 206.61,-312"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+</div>
+</div>
+<h4 id="operaciones-más-comunes-con-fechas">Operaciones más comunes con fechas </h4>
+<p>Podemos usar todos los operadores de comparación <strong><code>==, != , &gt; , &lt;, &gt;= y &lt;=</code></strong></p>
+<p>En las operaciones de suma <strong><code>+</code></strong> y resta <strong><code>-</code></strong>, interviene otro tipo de dato valor denominado <strong><a href="https://docs.microsoft.com/en-us/dotnet/api/system.timespan">TimeSpan</a></strong> que representará un periodo de tiempo que podremos representar en las siguiente magnitudes <strong><code>años, meses, días, horas, minutos, segundos</code></strong> según la precisión que necesitemos.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">year</span><span class="token punctuation">:</span> <span class="token number">2026</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">month</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">day</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// Periodo de tiempo con precisión de 25 días</span>
+<span class="token class-name">TimeSpan</span> periodo <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">days</span><span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">hours</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">minutes</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">seconds</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">DateTime</span> f2 <span class="token operator">=</span> f1 <span class="token operator">+</span> periodo<span class="token punctuation">;</span>
+
+<span class="token comment">// Muestra Del 19/03/2026 al 13/04/2026 hay 25 días</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Del </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f1<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> al </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f2<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"> hay </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token punctuation">(</span>f2 <span class="token operator">-</span> f1<span class="token punctuation">)</span><span class="token punctuation">.</span>Days</span><span class="token punctuation">}</span></span><span class="token string"> días"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Estas operaciones también las podremos hacer, a través de diferentes métodos <strong><code>f.AddHours(...)</code></strong>, <strong><code>f.AddDays(...)</code></strong>, etc. y así evitarnos usar <strong><code>TimeSpan</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">year</span><span class="token punctuation">:</span> <span class="token number">2026</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">month</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">day</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Recuerda el método no cambia el estado de f1, </span>
+<span class="token comment">// sino que devuelve un objeto valor fecha que copiamos en f2</span>
+<span class="token class-name">DateTime</span> f2 <span class="token operator">=</span> f1<span class="token punctuation">.</span><span class="token function">AddDays</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Muestra: "01/08/2026"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>f1<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">// Muestra: "miércoles, 26 de agosto de 2026"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>f2<span class="token punctuation">.</span><span class="token function">ToLongDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre><h4 id="fechas-y-cadenas">Fechas y cadenas </h4>
+<p>Una aproximación sencilla es usar las propiedades del objeto para dar el formato:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">year</span><span class="token punctuation">:</span> <span class="token number">2026</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">month</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">day</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Day</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Month</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">f<span class="token punctuation">.</span>Year</span><span class="token format-string"><span class="token punctuation">:</span>D4</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra 19-03-2020</span>
+</code></pre><p>Pero el lenguaje provee una sintaxis especial para cadenas de fecha y hora personalizadas de DateTime a string y viceversa. Usaremos los siguientes <strong><a href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings">formatos definidos por el lenguaje</a></strong>.</p>
+<div style="page-break-after:always;"></div>
+<p>Aquí dispones un <strong>cuadro resumen</strong> de los principales formatos descritos en el enlace:</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Descripción</th>
+<th>Formato</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>d</strong></td>
+<td>Día del mes con el mínimo de dígitos</td>
+<td><strong>/</strong></td>
+<td>Separador fecha según el país</td>
+</tr>
+<tr>
+<td><strong>dd</strong></td>
+<td>Día del mes con 2 dígitos</td>
+<td><strong>gg</strong></td>
+<td>Indicar la era según el país AC/DC</td>
+</tr>
+<tr>
+<td><strong>ddd</strong></td>
+<td>Día de la semana abreviado según el país</td>
+<td><strong>h</strong></td>
+<td>Hora de 0 a 12 horas</td>
+</tr>
+<tr>
+<td><strong>dddd</strong></td>
+<td>Día de la semana completo según el país</td>
+<td><strong>hh</strong></td>
+<td>Hora de 00 a 12 horas</td>
+</tr>
+<tr>
+<td><strong>M</strong></td>
+<td>Mes con el mínimo de dígitos</td>
+<td><strong>z</strong></td>
+<td>Indicador Zona Horaria</td>
+</tr>
+<tr>
+<td><strong>MM</strong></td>
+<td>Mes con 2 dígitos</td>
+<td><strong>H</strong></td>
+<td>Hora de 0 a 23 horas</td>
+</tr>
+<tr>
+<td><strong>MMM</strong></td>
+<td>Nombre del mes abreviado según el país</td>
+<td><strong>HH</strong></td>
+<td>Hora de 00 a 23 horas</td>
+</tr>
+<tr>
+<td><strong>MMMM</strong></td>
+<td>Nombre del mes completo según el país</td>
+<td><strong>mm</strong></td>
+<td>Minutos con 2 dígitos</td>
+</tr>
+<tr>
+<td><strong>yyyy</strong></td>
+<td>Año con 4 dígitos</td>
+<td><strong>ss</strong></td>
+<td>Segundos con 2 dígitos</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Aquellos caracteres que tienen un significado especial como <strong>d</strong>, <strong>h</strong>, <strong>M</strong>, etc. si queremos que se representen tal cual y no sean sustituidos por un valor de DateTime deberemos escaparlos con <strong><code>\\</code></strong>. Por ejemplo, <strong><code>\\d</code></strong> es el caracter <strong><code>d</code></strong> y no el día del mes en formato numérico.</p>
+</div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">DateTime</span> f <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">year</span><span class="token punctuation">:</span> <span class="token number">2026</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">month</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">day</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">hour</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">minute</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">second</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">kind</span><span class="token punctuation">:</span> DateTimeKind<span class="token punctuation">.</span>Utc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Muestra: "19-03-2026"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"dd-MM-yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Muestra: "jueves 19 de marzo de 2026 a las 19 horas UTC+0"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">@"dddd d \de MMMM \de yyyy a la\s H \hora\s UTCz"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Fíjate que en el ejemplo anterior hemos usado <strong><code>DateTimeKind.Utc</code></strong> para indicar que la fecha es en formato UTC. Esto es importante <strong>si queremos hacer operaciones con fechas y horas en diferentes zonas horarias</strong>. <strong>UTC</strong> es el <strong>Tiempo Universal Coordinado</strong> y es la referencia estándar para todas las zonas horarias del mundo, vendría a representar la <strong>hora en el meridiano de Greenwich</strong> (GMT+0). Si no especificamos el tipo de fecha, por defecto se usará <strong><code>DateTimeKind.Unspecified</code></strong> y el lenguaje no sabrá si la fecha es UTC o local. El otro tipo de fecha que podemos usar es <strong><code>DateTimeKind.Local</code></strong> que indica que la fecha es en la <strong>zona horaria local del sistema</strong>.</p>
+<p>Para transformar un DateTime Local a UTC, podemos usar el método <strong><code>ToUniversalTime()</code></strong>.<br>
+Por ejemplo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// DateTime.Now() devuelve la fecha y </span>
+<span class="token comment">// hora actual en la zona horaria local del sistema.</span>
+<span class="token class-name">DateTime</span> fechaUtc <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">.</span><span class="token function">ToUniversalTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Equivaldría ha haer lo siguiente...</span>
+<span class="token class-name">DateTime</span> fechaUtc2 <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>UtcNow<span class="token punctuation">;</span>
+</code></pre><p>Tendremos también la conversión en sentido inverso si hacemos un Parse. Aunque en este último caso <strong>también podemos utilizar ER</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce una fecha con formato (dd/MM/yyyy): "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>DateTime<span class="token punctuation">.</span><span class="token function">TryParseExact</span><span class="token punctuation">(</span>texto<span class="token punctuation">,</span> <span class="token string">"dd/MM/yyyy"</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">,</span>
+                                System<span class="token punctuation">.</span>Globalization<span class="token punctuation">.</span>DateTimeStyles<span class="token punctuation">.</span>AllowWhiteSpaces
+                                <span class="token operator">|</span> System<span class="token punctuation">.</span>Globalization<span class="token punctuation">.</span>DateTimeStyles<span class="token punctuation">.</span>AdjustToUniversal<span class="token punctuation">,</span>
+                                <span class="token keyword keyword-out">out</span> <span class="token class-name">DateTime</span> fecha<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Has introducido </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">fecha<span class="token punctuation">.</span><span class="token function">ToShortDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-else">else</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">texto</span><span class="token punctuation">}</span></span><span class="token string"> es un fecha incorrecta."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="qué-pasa-si-solo-queremos-guardar-la-hora-o-la-fecha">¿Qué pasa si solo queremos guardar la hora o la fecha? </h4>
+<p>AL igual que sucede en otros lenguajes <strong><code>DateTime</code></strong> me obliga a guardar una fecha asociada si solo quiero guardar una hora. Para solucionar esto, disponemos también de los tipos valor <strong><code>TimeOnly</code></strong> y <strong><code>DateOnly</code></strong> similares a <strong><code>DateTime</code></strong> pero solo guardaremos u hora o fecha respectivamente.</p>
+<p>Debemos tener en cuenta que estos tipos valor también son <strong>inmutables</strong> y no permiten modificar su estado una vez creados. Además, para crearlos <strong>a partir de los datos de fecha y hora actuales</strong> tanto local como UTC, podemos usar los métodos <strong><code>TimeOnly.FromDateTime(DateTime)</code></strong> y <strong><code>DateOnly.FromDateTime(DateTime)</code></strong> y al revés, para convertirlos a <strong><code>DateTime</code></strong> podemos usar los métodos <strong><code>TimeOnly.ToDateTime()</code></strong> y <strong><code>DateOnly.ToDateTime()</code></strong>.</p>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo:</strong></p>
+<p>Vamos a crear un programa que muestre la hora actual en diferentes zonas horarias del mundo de forma aproximada sin tener en cuenta horarios de verano o cambios de hora. Para ello, usaremos el tipo valor <strong><code>TimeOnly</code></strong> para representar la hora local y las horas en diferentes ciudades del mundo.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span> horarios <span class="token operator">=</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">(</span><span class="token string">"Los Ángeles"</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// UTC-7            </span>
+            <span class="token punctuation">(</span><span class="token string">"Nueva York"</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">// UTC-4</span>
+            <span class="token punctuation">(</span><span class="token string">"Londres"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>      <span class="token comment">// UTC+0</span>
+            <span class="token punctuation">(</span><span class="token string">"Berlín"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>       <span class="token comment">// UTC+2</span>
+            <span class="token punctuation">(</span><span class="token string">"Moscú"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token comment">// UTC+3</span>
+            <span class="token punctuation">(</span><span class="token string">"Pekín"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token comment">// UTC+8</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">TimeOnly</span> horaLocal <span class="token operator">=</span> TimeOnly<span class="token punctuation">.</span><span class="token function">FromDateTime</span><span class="token punctuation">(</span>DateTime<span class="token punctuation">.</span>Now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Hora local: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">horaLocal</span><span class="token format-string"><span class="token punctuation">:</span>HH:mm:ss</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Para trabajar con zonas horarios lo hago respecto a UTC</span>
+        <span class="token class-name">TimeOnly</span> horaUtc <span class="token operator">=</span> TimeOnly<span class="token punctuation">.</span><span class="token function">FromDateTime</span><span class="token punctuation">(</span>DateTime<span class="token punctuation">.</span>UtcNow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token keyword keyword-var">var</span> <span class="token punctuation">(</span>ciudad<span class="token punctuation">,</span> offset<span class="token punctuation">)</span> <span class="token keyword keyword-in">in</span> horarios<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">TimeOnly</span> horaCiudad <span class="token operator">=</span> horaUtc<span class="token punctuation">.</span><span class="token function">AddHours</span><span class="token punctuation">(</span>offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"En </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">ciudad</span><span class="token punctuation">}</span></span><span class="token string"> son las </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">horaCiudad</span><span class="token format-string"><span class="token punctuation">:</span>HH:mm:ss</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div style="page-break-after:always;"></div>
+<h3 id="tipo-valor-guid">Tipo valor GUID </h3>
+<p>Otro tipo valor que vamos a usar mucho es <strong><code>Guid</code></strong>. Un <strong><a href="https://docs.microsoft.com/en-us/dotnet/api/system.guid">GUID (Globally Unique Identifier)</a></strong> es un identificador único global que se utiliza para identificar de forma única objetos, registros o entidades en sistemas distribuidos. En C#, el tipo <strong><code>Guid</code></strong> es un tipo valor que representa un GUID y proporciona métodos para crear, comparar y manipular GUIDs.</p>
+<p>Está compuesto por 128 bits (16 bytes) y se representa comúnmente como una cadena de 32 caracteres hexadecimales, divididos en cinco grupos separados por guiones. Por ejemplo: <strong><code>bce3fec8-e3d2-4b77-af17-56f38dde4589</code></strong>.</p>
+<p>En C# se puede generar un GUID de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Para generar un GUID, usamos el método estático NewGuid()</span>
+<span class="token class-name">Guid</span> guid <span class="token operator">=</span> Guid<span class="token punctuation">.</span><span class="token function">NewGuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Versión del GUID: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">guid<span class="token punctuation">.</span>Version</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Variante del GUID: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">guid<span class="token punctuation">.</span>Variant</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// "N" es el formato de 32 caracteres sin guiones</span>
+<span class="token class-name"><span class="token keyword keyword-string">string</span></span> textoGuidSinSeparar <span class="token operator">=</span> guid<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"N"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"GUID sin separar: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">textoGuidSinSeparar</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// "D" es el formato de 32 caracteres con guiones</span>
+<span class="token comment">// Es el formato por defecto</span>
+<span class="token class-name"><span class="token keyword keyword-string">string</span></span> textoGuidSeparadoPorGuiones <span class="token operator">=</span> guid<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"D"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"GUID separado por guiones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">textoGuidSeparadoPorGuiones</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p><strong>Mostrará por consola algo como:</strong></p>
+<pre class="salida_consola">Versión del GUID: 4
+Variante del GUID: 2
+GUID sin separar: bce3fec8e3d24b77af1756f38dde4589
+GUID separado por guiones: bce3fec8-e3d2-4b77-af17-56f38dde4589 </pre> <!-- fin salida consola -->
+<p>Fíjate que el GUID tiene una <strong>versión</strong>. La versión está indicada en el propio GUID y se describen en el estándar <strong><a href="https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.3">RFC 4122 (Version)</a></strong>.</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 2</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-2">Unidad 2 </h1>
+<p>Descargar estos apunte en <a href="./u2_instalacion_y_primer_proyecto.pdf">pdf</a> o <a href="./u2_instalacion_y_primer_proyecto.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#instalación-y-entorno" class="md-toc-link"><p>Instalación y entorno</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#kit-de-desarrollo" class="md-toc-link">
+            <p>Kit de desarrollo</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#entornos-de-desarrollo" class="md-toc-link">
+            <p>Entornos de desarrollo</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#instalando-vscode" class="md-toc-link">
+            <p>Instalando VSCode</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#instalando-extensiones" class="md-toc-link">
+            <p>Instalando extensiones</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#configurando-extensiones" class="md-toc-link">
+            <p>Configurando Extensiones</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#creación-desde-la-línea-de-comandos-cli" class="md-toc-link"><p>Creación desde la línea de comandos (CLI)</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definiendo-una-solución-para-asociar-nuestro-proyecto" class="md-toc-link">
+            <p>Definiendo una solución para asociar nuestro proyecto</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#qué-pasa-si-tenemos-más-de-una-versión-de-net-instalada" class="md-toc-link">
+            <p>¿Qué pasa si tenemos más de una versión de .NET instalada?</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#creando-una-solución-desde-vs-code" class="md-toc-link"><p>Creando una solución desde VS Code</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#solución-simple-desde-un-proyecto-de-consola" class="md-toc-link">
+            <p>Solución simple desde un proyecto de consola</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#solución-con-varios-proyectos-desde-consola" class="md-toc-link">
+            <p>Solución con varios proyectos desde consola</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#anexo-i-atajos-de-teclado-para-visual-studio-y-otros-editores" class="md-toc-link">
+            <p>Anexo I: Atajos de teclado para Visual Studio (y otros editores)</p>
+
+          </a></div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="instalación-y-entorno">Instalación y entorno </h2>
+<h3 id="kit-de-desarrollo">Kit de desarrollo </h3>
+<p>Además, del .NET Runtime que es lo mínimo necesario para ejecutar una aplicación, dispondremos del <strong>Kit de Desarrollo</strong> o SDK <a href="https://dotnet.microsoft.com/download">.NET SDK</a>. Esta trae las herramientas y librerías necesarias para el desarrollo y depuración de aplicaciones.</p>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Para cuando vayas a descargar esta versión probablemente esté aún una versión de transición cómo la 9.0. Pero en el més de diciembre de 2025 ya estará disponible la versión <strong>LTS 10.0</strong> de .NET y <strong>C# 14.0</strong> que será la versión estable y recomendada para el desarrollo de aplicaciones y  que por tanto utilizaremos a partir de ese momento en el curso.</p>
+</div>
+<h3 id="entornos-de-desarrollo">Entornos de desarrollo </h3>
+<h4 id="editores-de-desarrollo-generalistas">Editores de desarrollo generalistas </h4>
+<p>Si queremos <strong>trabajar en cualquier SO e incluso On-Line</strong> la mejor opción seria <strong>Visual Studio Code</strong> pues es un editor <strong>Open Source</strong> bastante ligero con una gran cantidad de plugins creados por la <em>'comunidad'</em>. Aunque no es tán potente como un IDE, nos permitirá afrontar una <strong>gran cantidad de desarrollos en lenguajes y tecnologías diferentes</strong>.</p>
+<p>Aunque el uso de un IDE hace transparente para nosotros los comandos y los flujos de trabajo del proceso de desarrollo, siempre es interesante tener claro como son los procesos para así gestionar su automatización a través de herramientas de <a href="https://es.wikipedia.org/wiki/CI/CD">CI/CD</a>.</p>
+<p>Nosotros vamos a utilizar este último y más adelante daremos instrucciones para su instalación y uso</p>
+<h4 id="entornos-integrados-de-desarrollo">Entornos integrados de desarrollo </h4>
+<p>El <a href="https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado">IDE</a> oficial '<em>gratuito</em>' sería <a href="https://visualstudio.microsoft.com/es/downloads/">Visual Studio Community</a>. Este, aunque gratuito, es muy potente y sería la opción adecuada si nos especializamos únicamente en desarrollos con .NET.<br>
+Tiene varios inconvenientes:</p>
+<ul>
+<li>Instalación pesada en tamaño y tiempo.</li>
+<li>Solo está disponible para <strong>Windows</strong> y <strong>Mac</strong>.</li>
+</ul>
+<p>Otro IDE bastante popular es <a href="https://www.jetbrains.com/rider/">Rider</a>. Desarrollado por JetBrains, se trata de un IDE multiplataforma disponible también en Linux. Pero con el inconveniente de que no es gratuito.</p>
+<h3 id="instalando-vscode">Instalando VSCode </h3>
+<p>Puedes descargar Visual Studio Code desde su <strong><a href="https://code.visualstudio.com/Download">página oficial</a></strong>.</p>
+<p><img src="assets/imagenes/temas/download.png" alt="descargar VSCode" style="display:block;margin:0 auto;width:100%;max-width:700px;"></p>
+<p>Como puede ver, podemos descargar para todos los sistemas operativos. En nuestro caso, como estamos en Windows, descargaremos la versión <strong><code>x64</code></strong>. Además, disponemos de diferentes versiones de instalación: Por usuario, para todos los usuarios o portable (ZIP).</p>
+<div class="admonition tip">
+<p class="admonition-title">Importante</p>
+<p>1️⃣ Nosotros vamos a elegir la versión <strong><code>x64</code></strong> <strong><a href="https://code.visualstudio.com/docs/editor/portable">zip o portable</a></strong>, lo cual nos permitirá tener nuestra propia versión del editor sin que interfiera con otras versiones que podamos tener instaladas en el sistema. Además, podremos copiarla en un pendrive y llevarla a cualquier otro equipo <strong>sin necesidad de tener permisos de instalación</strong>.</p>
+</div>
+<div class="row">
+<div class="col-sm-8 my-auto">
+<p>Tras descomprimirla tendremos un árbol de carpetas como el del esquema de la derecha donde <strong>deberemos crear una carpeta</strong> <strong><code>data</code></strong> donde se guardarán los datos de configuración del editor.</p>
+<p>Si al ejecutar VS Code detecta la carpeta <strong><code>data</code></strong>, dentro de la misma creara la carpeta <strong><code>user-data</code></strong> donde se guardarán los datos de configuración del editor y la carpeta <strong><code>extensions</code></strong> donde se guardarán las extensiones que instalemos.</p>
+</div>
+<div class="col-sm-4 my-auto">
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="86.4px" preserveAspectRatio="none" style="width:183px;height:86px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 86" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.6" x="43.2" y="58.3734">[data]</text><path d="M32.4,66.45 L32.4,67.65 L42,67.65 L42,66.45 L32.4,66.45 M32.4,68.85 L32.4,75.942 C32.4,76.002 32.448,76.05 32.508,76.05 L41.88,76.05 C41.94,76.05 41.988,76.002 41.988,75.942 L41.988,68.85 L38.424,68.85 L38.424,70.086 L35.988,70.086 L35.988,68.85 L32.388,68.85 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="76.4859">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="70.5938" y2="70.5938"></line><!--SRC=[LKvDQuD04BtlhvXJIGoACIOKAINKc88rD5JZHN9OTMeNp6vPLsi9-UzP8w5qBZFpldZhHb6f6beh0YGkQ8qmjnnzdmdeEIUtDOEdXrpqpraQ-w94yuVnXMFsAzUohEEecC70MDZZ_HyjXf6LLD6ZOVp7ivpnqNeX5x96NjvAa7rDkJhi8kXGDapmeOxjkDPYadoriCKSvajmRC-rFNi9Vf30G4_9v7KVGIDQMI2Kh56IvQtI_Ya9QKVXe-MAdT23zs_auURj3a30EoO5Fo5N94ntVuALQxum1J5AtGJI7TdW9srhfHs5A1clF3WaM_EHH9HNBQrqDZR45pfN_deGn5S0]--></g></svg></p><p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="122.4px" preserveAspectRatio="none" style="width:183px;height:122px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 122" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.6" x="43.2" y="58.3734">[data]</text><path d="M44.4,66.45 L44.4,67.65 L54,67.65 L54,66.45 L44.4,66.45 M44.4,68.85 L44.4,75.942 C44.4,76.002 44.448,76.05 44.508,76.05 L53.88,76.05 C53.94,76.05 53.988,76.002 53.988,75.942 L53.988,68.85 L50.424,68.85 L50.424,70.086 L47.988,70.086 L47.988,68.85 L44.388,68.85 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="70.8" x="55.2" y="76.4859">[user-data]</text><path d="M44.4,84.5625 L44.4,85.7625 L54,85.7625 L54,84.5625 L44.4,84.5625 M44.4,86.9625 L44.4,94.0545 C44.4,94.1145 44.448,94.1625 44.508,94.1625 L53.88,94.1625 C53.94,94.1625 53.988,94.1145 53.988,94.0545 L53.988,86.9625 L50.424,86.9625 L50.424,88.1985 L47.988,88.1985 L47.988,86.9625 L44.388,86.9625 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="79.2" x="55.2" y="94.5984">[extensions]</text><path d="M32.4,102.675 L32.4,103.875 L42,103.875 L42,102.675 L32.4,102.675 M32.4,105.075 L32.4,112.167 C32.4,112.227 32.448,112.275 32.508,112.275 L41.88,112.275 C41.94,112.275 41.988,112.227 41.988,112.167 L41.988,105.075 L38.424,105.075 L38.424,106.311 L35.988,106.311 L35.988,105.075 L32.388,105.075 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="112.7109">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="51.2813"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="70.5938" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="88.7063" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="106.8188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="106.8188" y2="106.8188"></line><!--SRC=[VKzRQy8m57xFhpXFGoijjLOPPOYiwi0faxNw8dr8sxCkK9EHYwk8_tsf5yPUbfVaVBUJRw8qbLhHMXCWIK5hXBuNsFU9W3sdz7BruEaX5yrujqrYKQBxpVWWS9jHw7bUTbNqe6KyRF0-NosEiokfffdZt71B5A8MCgeaFOvlkKQXT2-w_rJOQEIA2QwolqjsEUDNw4pEP8Ayl3GYwvfolLajuO2ozRNT_23q1ftqqy0SS-WF8V2Zq8_y8SIp55gwIpelwoKeOMI1K3Ab9SkDjlukMT03XNV3DTjZ16zVo1VJrpi0CtvWKl0zSaqMszMlO1Iwpqn3WjB-1BOhCiKFQcfj7OKe6QyYsAHpzv4iAQyChMmsAX8BcokF4SoI7m00]--></g></svg></p></div>
+</div>
+<p>Si <strong>quisiéramos actualizar</strong> la versión de VS Code, solo tendríamos que copiar la nueva versión en la carpeta <strong><code>VSCode-win32-x64...</code></strong> y no perderíamos los datos de configuración ni las extensiones instaladas. También podríamos descomprimir en una nueva ubicación y copiar la carpeta <strong><code>data</code></strong> a la nueva ubicación.</p>
+<h3 id="instalando-extensiones">Instalando extensiones </h3>
+<div class="admonition info">
+<p class="admonition-title">Enlaces</p>
+<p>Aquí dispones de un enlace con la documentación oficial sobre <strong><a href="https://learn.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code">la integración con VS Code</a></strong>.</p>
+</div>
+<p>Básicamente deberemos seguir los siguientes pasos:</p>
+<p><img src="assets/imagenes/temas/plugins.png" alt="nombre" style="display:block;margin:0 auto;width:100%;max-width: 800px;"></p>
+<p>1️⃣ Abriremos VSCode y pulsaremos <strong><code>Ctrl+Shift+X</code></strong> o haremos clic en el icono de extensiones de la barra lateral izquierda.</p>
+<p>2️⃣ Buscaremos e instalaremos la extensión <strong><a href="https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-es">Spanish Language Pack for Visual Studio Code</a></strong> para traducir VSCode al Castellano. Aunque no es necesario, es recomendable para los que no tienen un buen nivel de inglés.</p>
+<p>3️⃣ Buscaremos e instalaremos el paquete de extensiones <strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit</a></strong> Como indica su nombre es una extensión de extensiones. Nos instalará las <strong>siguientes extensiones</strong> que son las que realmente nos permitirán trabajar con C# en VS Code.</p>
+<ul>
+<li>
+<p><strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime">.NET Runtime Install Tool</a></strong> Como su nombre indica nos instalará automáticamente la versión de .NET para que las extensiones funcionen correctamente.</p>
+</li>
+<li>
+<p><strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# Microsoft</a></strong> Anteriormente conocida como <strong>OmniSharp</strong>, es la extensión oficial del Microsoft para VSCode para el desarrollo de aplicaciones en .NET con C#.</p>
+<p>Básicamente, la extensión detectará que tenemos abierta una carpeta (workspace) con un proyecto o solución de .NET y <strong>arrancará C# Microsoft automáticamente</strong>. Si el <strong><code>Servidor del Lenguaje</code></strong> arrancado correctamente, nos aparecerá en la <strong>esquina inferior derecha</strong> a el símbolo de <strong><code>C#</code></strong> en un hexágono (4️⃣).</p>
+</li>
+</ul>
+<p>5️⃣ <strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vs-keybindings">Visual Studio Keymap</a></strong> Me permitirá configurar el teclado como si estuviéramos usando "<em>su hermano mayor</em>" el IDE de Visual Studio.</p>
+<p>6️⃣ <strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscodeintellicode-csharp">IntelliCode for C# Dev Kit</a></strong> (<em><strong>Opcional</strong></em>) Nos ayudará a escribir código de forma más rápida y eficiente. Si tenemos algún otro asistente de código mediante IA instalado como GitHub Copilot, Google Gemini, etc. deberemos desactivarlo para que no interfiera con IntelliCode.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="configurando-extensiones">Configurando Extensiones </h3>
+<p>Para configurar las diferentes extensiones instaladas, iremos a la opción de menú <strong><code>Archivo → Preferencias → Configuración</code></strong> donde aparecerá la siguiente pantalla...</p>
+<p><img src="assets/imagenes/temas/configuracion.png" alt="configuracion" style="display:block;margin:0 auto;width:100%;max-width: 800px;"></p>
+<p>1️⃣ Si tenemos un proyecto cargado nos aparecerá la pestaña <strong><code>Área de Trabajo</code></strong>, de tal manera, que los cambios de configuración que hagamos afectarán solo a ese proyecto. Si no tenemos ningún proyecto abierto, nos aparecerá solo la pestaña <strong><code>Usuario</code></strong> donde los cambios afectarán a todos los proyectos de C#.</p>
+<p>2️⃣ En el apartado <strong><code>Extensiones</code></strong>, del árbol de configuración podremos ver todas las extensiones instaladas y configurarlas a nuestro gusto. En nuestro caso, hemos seleccionado la extensión <strong><code>C#</code></strong> y dentro de la misma las opciones de <strong><code>Debugger</code></strong>.</p>
+<p>3️⃣ Vamos a sustituir la opción <strong><code>InternalConsole</code></strong> por <strong><code>IntegratedTerminal</code></strong>. De esta forma, cuando ejecutemos el programa, se abrirá una terminal integrada en la parte inferior de VSCode y no una ventana de consola independiente. Esto nos permitirá depurar de una forma más intuitiva y similar a la ejecución normal.</p>
+<div style="page-break-after:always;"></div>
+<h2 id="creación-desde-la-línea-de-comandos-cli">Creación desde la línea de comandos (CLI) </h2>
+<p>La gestión de proyectos se hace con la CLI <strong>dotnet</strong>, así pues para crear un proyecto desde consola usaremos <a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new">dotnet new</a> y en concreto para crea una aplicación de consola ejecutaremos <strong><code>dotnet new console -n &lt;nombre&gt;</code></strong></p>
+<pre class="salida_consola">B:\&gt;dotnet new console -n ejemplo
+La plantilla "Aplicación de consola" se creó correctamente.
+
+Procesando acciones posteriores a la creación...
+Ejecutando "dotnet restore" en C:\ejemplo\ejemplo.csproj...
+  Determinando los proyectos que se van a restaurar...
+  Se ha restaurado  C:\ejemplo\ejemplo.csproj (en 77 ms).
+Restauración realizada correctamente.
+</pre>
+<p>Tras ejecutar este comando, se creará un proyecto definido en el fichero <strong>ejemplo.csproj</strong> donde, si no especificamos la versión de .NET, nos lo creará con la que hemos instalado y el lenguaje será C# con la última versión posible de esa plataforma.<br>
+Como podemos ver, para nuestro ejemplo <strong>la plataforma de destino es .NET 10 y la versión de C# es la 14 (aunque no lo indica porque es la de defecto para .NET 10)</strong></p>
+<pre data-role="codeBlock" data-info="xml {highlight=4}" class="language-xml xml" data-line="4"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OutputType</span><span class="token punctuation">&gt;</span></span>Exe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>OutputType</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>net10.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Nullable</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Nullable</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
+</code><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div></pre><p>Si estamos en una versión intermedia como .NET 9, y <strong>queremos ver las nuevas funcionalidades del lenguaje</strong> el fichero <strong>ejemplo.csproj</strong> deberemos indicar en la etiqueta <strong><code>&lt;LangVersion&gt;</code></strong> el valor <strong><code>preview</code></strong> para que el compilador use nuevas características del lenguaje que aún no están disponibles en la versión estable de .NET 9.0.</p>
+<pre data-role="codeBlock" data-info="xml {highlight=[4,7]}" class="language-xml xml" data-line="4,7"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span> <span class="token attr-name">Sdk</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Microsoft.NET.Sdk<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OutputType</span><span class="token punctuation">&gt;</span></span>Exe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>OutputType</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>net9.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TargetFramework</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ImplicitUsings</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Nullable</span><span class="token punctuation">&gt;</span></span>enable<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Nullable</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LangVersion</span><span class="token punctuation">&gt;</span></span>preview<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>LangVersion</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">&gt;</span></span>
+</code><div class="line-highlight-wrapper">
+
+
+<div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><blockquote>
+<p>📌 <strong>Nota</strong>: Para más información ver <strong><a href="https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new#console">la documentación oficial</a></strong>.</p>
+</blockquote>
+<h3 id="definiendo-una-solución-para-asociar-nuestro-proyecto">Definiendo una solución para asociar nuestro proyecto </h3>
+<p>Un proyecto <strong>debería estar asociado a una solución</strong>. Así mismo, una solución podría tener más de un archivo asociado. De hecho, si hubiéramos creado el proyecto de consola con el Visual Studio Community nos crearía por defecto una solución a la que estaría asociado el mismo.</p>
+<ul>
+<li>Con <strong><code>dotnet new sln -n &lt;nombre&gt;</code></strong> crearemos una solución.</li>
+<li>Con <strong><code>dotnet sln &lt;nombre&gt;.sln add &lt;nombre&gt;.csproj</code></strong> añadiremos una proyecto a una solución.</li>
+</ul>
+<pre class="salida_consola">B:\&gt;cd ejemplo
+C:\ejemplo&gt;dotnet new sln -n ejemplo
+The template "Solution File" was created successfully.
+
+C:\ejemplo&gt;dotnet sln ejemplo.sln add ejemplo.csproj
+Se ha agregado el proyecto "ejemplo.csproj" a la solución.
+C:\ejemplo&gt;dotnet sln list
+Proyectos
+---------
+ejemplo.csproj
+</pre>
+<blockquote>
+<p>🧠 <strong>Recuerda</strong>: Todo proyecto debe estar asociado a una solución. Además, podemos tener además más de una proyecto asociado a una solución.</p>
+</blockquote>
+<p>También es posible compilar el proyecto y generar el ensamblado con <strong><code>dotnet build</code></strong> y ejecutar el programa usando <strong><code>dotnet run</code></strong>. Aunque este proceso lo podremos hacer a través de <strong>VS Code</strong> usando la <strong>extensión oficial para C# de Microsoft</strong>.</p>
+<pre class="salida_consola">C:\ejemplo&gt;dotnet build
+Determining projects to restore...
+Todos los proyectos están actualizados para la restauración.
+ejemplo -&gt; C:\ejemplo\bin\Debug\net8.0\ejemplo.dll
+Compilación correcta.
+    0 Advertencia(s)
+    0 Errores
+Tiempo transcurrido 00:00:00.64
+
+C:\ejemplo&gt;dotnet run
+Hello World!
+</pre>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Ya veremos más adelante como realizar esta asociación de forma automática al crear un nuevo proyecto desde <strong>VS Code</strong>.</p>
+</blockquote>
+<h3 id="qué-pasa-si-tenemos-más-de-una-versión-de-net-instalada">¿Qué pasa si tenemos más de una versión de .NET instalada? </h3>
+<p>Podemos tener más de una versión instalada del .NET SDK en nuestro sistema. Para saber cuáles tenemos instaladas y cuál es la que se está usando por defecto, podemos usar el comando <strong><code>dotnet --info</code></strong>. Entre otras cosas nos mostraría la siguiente información.</p>
+<p>Fíjate que hablamos del SDK y no del Runtime. Ya que del Runtime podríamos tener muchas más instaladas.</p>
+<pre class="salida_consola">C:\ejemplo&gt;dotnet --info
+SDK DE .NET:
+ Version:           8.0.301
+ Commit:            1a0e9c0300
+ Workload version:  8.0.300-manifests.f6879a9a
+ MSBuild version:   17.10.4+10fbfbf2e
+...
+.NET SDKs installed:
+  6.0.406 [C:\Program Files\dotnet\sdk]
+  8.0.301 [C:\Program Files\dotnet\sdk]
+</pre>
+<p>Donde nos indica que tenemos las LTS 6 y 8 instaladas y que <strong>la que se está usando por defecto es la 8</strong>.</p>
+<p>Como si no indicamos nada, <strong><code>dotnet</code></strong> usará la versión por defecto. Si queremos usar una versión concreta, deberemos indicarlo al crear el proyecto con el parámetro <strong><code>--framework o -f</code></strong>.</p>
+<pre class="salida_consola">C:\ejemplo&gt;dotnet new console -f "net6.0" -n ejemplo
+</pre>
+<p>y dentro de la carpeta del proyecto <strong><code>ejemplo</code></strong> deberemos crear un fichero <strong><code>global.json</code></strong> con la siguiente información.</p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"sdk"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"6.0.406"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Este fichero se puede crear con el comando <strong><code>dotnet new globaljson</code></strong> tras crear el proyecto con la versión del SDK especificada.</p>
+<pre class="salida_consola">C:\ejemplo&gt;dotnet new console -f "net6.0" -n ejemplo
+C:\ejemplo&gt;dotnet new globaljson
+</pre>
+<p>Para indicarle que use ese SDK en concreto en lugar de el por defecto para compilar al hacer <strong><code>dotnet build</code></strong> o <strong><code>dotnet run</code></strong>, previamente con <strong><code>dotnet --info</code></strong> deberemos asegurar que <strong>la versión concreta que hemos indicado</strong> en el <strong><code>global.json</code></strong> está instalada en nuestro sistema. <strong>En caso contrario obtendremos un error</strong>.</p>
+<blockquote>
+<p>✋ <strong>Importante</strong>: Deberemos asegurarnos de que durante el curso no tenemos instala la de .NET 10 y si es así deberemos desinstalarla o crear el fichero en la versión 8 con el <strong><code>global.json</code></strong> correspondiente.</p>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h2 id="creando-una-solución-desde-vs-code">Creando una solución desde VS Code </h2>
+<h3 id="solución-simple-desde-un-proyecto-de-consola">Solución simple desde un proyecto de consola </h3>
+<div class="row">
+<div class="col-sm-8 my-auto">
+<p>Lo más simple para abrir un proyecto creado desde la consola, sería abrir o arrastrar a VS Code la carpeta donde se encuentra el proyecto. En nuestro caso <strong><code>C:\ejemplo</code></strong>. Automáticamente nos abrirá el proyecto y la solución si existe. Si no existe, <strong>creará una solución con el mismo nombre que el proyecto</strong> y añadirá el proyecto a la solución.</p>
+</div>
+<div class="col-sm-4 my-auto">
+<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="147.6px" preserveAspectRatio="none" style="width:138px;height:147px;background:#FFFFFF;" version="1.1" viewBox="0 0 138 147" width="138px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="63.6" x="31.2" y="47.4609">[ejemplo]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="65.5734">[bin]</text><path d="M32.4,73.65 L32.4,74.85 L42,74.85 L42,73.65 L32.4,73.65 M32.4,76.05 L32.4,83.142 C32.4,83.202 32.448,83.25 32.508,83.25 L41.88,83.25 C41.94,83.25 41.988,83.202 41.988,83.142 L41.988,76.05 L38.424,76.05 L38.424,77.286 L35.988,77.286 L35.988,76.05 L32.388,76.05 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="83.6859">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="98.4" x="31.2" y="101.7984">ejemplo.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="78" x="31.2" y="119.9109">ejemplo.sln</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8" x="31.2" y="138.0234">Program.cs</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="77.7938" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="114.0188" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="132.1313" y2="132.1313"></line><!--SRC=[NOxTQi9048NlzodcgkYA4cqi9PGYzQTW4ofDzAPLsCHfkY7PbTrDg8ZltargAdHkPlZEdCEPQCEKqImt14YOi1nXE1ZP-qJ0pcxgVUoQwnGrgmUKFjp4ylln7JCi3hdSKlghzE0Yn5ni_o4PPt_euXia-g1arb9AMwvpSOrSAPagLjXdswbcPt8c4nJxfZ9PvKoOTU13XKfpAUhopiWTt7QYhn8M6CDm32F7SntF6SDq7a4jTqddUUM3bgLA4FPS6yNZqbX_bonPnU2j58ONwC7h0SLozj82c8kAAoaA58OiDy7ruSxjFt438IhR13O1cU4dAtDZ7OdSSv5wi8uM_NlYCv6MBBNPgCbKsbnrz60U_W00]--></g></svg></p></div>
+</div>
+<h3 id="solución-con-varios-proyectos-desde-consola">Solución con varios proyectos desde consola </h3>
+<p>Veamos cómo sería el proceso, paso a paso:</p>
+<ol>
+<li>
+<p>Crearemos una carpeta o <em><strong>workspace</strong></em> con el <strong>nombre de la solución</strong> y que contendrá todos los proyectos. Por ejemplo, <strong><code>C:\ejemplos</code></strong></p>
+</li>
+<li>
+<p>Dentro de la carpeta creamos los proyectos desde la consola de comandos.</p>
+ <pre class="salida_consola"> C:\ejemplos&gt;dotnet new console -n ejemplo1
+ C:\ejemplos&gt;dotnet new console -n ejemplo2
+ C:\ejemplos&gt;dotnet new gitignore</pre>
+<p>Fíjate que hemos ejecutado <strong><code>dotnet new gitignore</code></strong>. Esto, aunque no es necesario, nos creará un fichero <strong><code>.gitignore</code></strong> que nos será útil si en el futuro queremos crear un <strong>repositorio de Git</strong> y subir la solución a un repositorio de <em>GitHub</em> o <em>GitLab</em>. En él se especifican los ficheros y carpetas de los que no queremos llevar un control de versiones.</p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> En adelante, vamos a crearlo aunque de momento no sabemos que es Git ni para que sirve. Pero es una buena práctica y nos evitará problemas en el futuro.</p>
+</blockquote>
+</li>
+<li>
+<p>Abrimos la carpeta <strong><code>C:\ejemplos</code></strong> desde VS Code. En este caso, como antes al no existir una solución, la creará y añadirá los proyectos a la misma de forma automática.</p>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<div class="row d-flex">
+<div class="col-sm-5">
+<p>Si pulsamos en el explorador 1️⃣. Además del <strong>explorador de archivos normal</strong>, en la parte de arriba, que nos mostrará la jerarquía de carpetas y ficheros. Al encontrar la solución <strong><code>ejemplos.sln</code></strong> (2️⃣) nos abajo una pestaña depletable denominada <strong><code>EXPLORADOR DE SOLUCIONES</code></strong> (<code>SOLUTION EXPLORER</code>) que nos permitirá crear soluciones y proyectos de forma sencilla sin usar el CLI., así como añadir referencias a otros proyectos y librerías como veremos más adelante en el curso.</p>
+</div>
+<div class="col-sm-7 my-auto">
+<p><img src="assets/imagenes/temas/solucion_dos_proyectos.png" alt="alt text"></p>
+</div>
+</div>
+<blockquote>
+<p>✋ <strong>Importante</strong>: Además, con la combinación de teclas <strong><code>Ctrl + Shift + P</code></strong>, VSCode nos <strong>ofrecerá ejecutar comandos y acciones de las extensiones instaladas</strong>. Si escribimos <strong><code>.NET</code></strong> nos ofrecerá todas la opciones posibles de la extensión según el contexto.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong><code>Ctrl + Shift + P</code></strong> → <strong><code>.NET: New Project</code></strong></p>
+<p>Este comando creará un nuevo proyecto de C# sin necesidad de usar el CLI. Si no existe una solución en el espacio de trabajo, nos creará una nueva solución y nos añadirá el proyecto al mismo automáticamente. Pero si ya existe una solución, nos preguntará si queremos añadir el proyecto a la solución existente.</p>
+</li>
+<li>
+<p><strong><code>Ctrl + Shift + P</code></strong> → <strong><code>.NET: Abrir Solución</code></strong> Abrirá una solución ya existente.</p>
+</li>
+<li>
+<p><strong><code>Ctrl + Shift + P</code></strong> → <strong><code>.NET: Cerrar Solución</code></strong> Cerrará una de las soluciones abiertas.</p>
+</li>
+</ul>
+<p>Además, cuando <strong>tengamos una solución ya abierta</strong> en el <strong>explorador de soluciones</strong>, al pulsar <strong><code>Ctrl + Shift + P</code></strong> nos ofrecerá nuevos comandos tales como:</p>
+<ul>
+<li><strong><code>.NET: Compilar</code></strong> todas las soluciones abiertas.</li>
+<li><strong><code>.NET: Recompilar</code></strong> todas las soluciones abiertas.</li>
+<li><strong><code>.NET: Limpiar</code></strong> todas las soluciones abiertas.</li>
+</ul>
+<blockquote>
+<p>📌 <strong>Nota</strong>: Para no alargar en exceso el tema, recuerda que en <strong><a href="https://learn.microsoft.com/es-es/dotnet/core/tutorials/with-visual-studio-code">la integración con VS Code</a></strong> tienes una guía actualizada por Microsoft sobre el uso de la extensión de C# para VS Code. Además, en clase veremos profundizaremos en el entrono y en cómo realizar la ejecución y depuración de aplicaciones.</p>
+</blockquote>
+<div class="landscape" style="page-break-after:always;">
+<h2 id="anexo-i-atajos-de-teclado-para-visual-studio-y-otros-editores">Anexo I: Atajos de teclado para Visual Studio (y otros editores) </h2>
+<p>A lo largo del curso se darán diferentes tips de uso del teclado y atajos para refactorizar.</p>
+<p>Puesto que hemos instalado "<em>Visual Studio Keymap</em>". Se nos habrán configurados automáticamente las siguientes extensiones de teclado.</p>
+<blockquote>
+<p>💡 <strong>Tip</strong>: Es importantísimo que empieces a utilizarla ya si quieres coger cierta soltura desarrollando código. Tarde o temprano lo tendrás que hacer.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Teclado</th>
+<th>Acción</th>
+<th>Teclado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Salta letra</td>
+<td><strong><code>→/←</code></strong></td>
+<td>Salta palabra</td>
+<td><strong><code>Ctrl+→</code></strong> o <strong><code>Ctrl+←</code></strong></td>
+</tr>
+<tr>
+<td>Salta al inicio</td>
+<td><strong><code>Ctrl+Inicio</code></strong></td>
+<td>Salta al final</td>
+<td><strong><code>Ctrl+Fin</code></strong></td>
+</tr>
+<tr>
+<td>Selecciona letra</td>
+<td><strong><code>Shift+→</code></strong> o  <strong><code>Shift+←</code></strong></td>
+<td>Selecciona palabra</td>
+<td><strong><code>Shift+Ctrl+→</code></strong> o <strong><code>Shift+Ctrl+←</code></strong></td>
+</tr>
+<tr>
+<td>Selecciona línea</td>
+<td><strong><code>Inicio</code></strong>, <strong><code>Shift+↓</code></strong></td>
+<td>Selecciona <strong>columna</strong></td>
+<td><strong><code>Shift+Alt+↓</code></strong> y/o <strong><code>Ctrl+Alt+→</code></strong></td>
+</tr>
+<tr>
+<td>Selecciona hasta inicio</td>
+<td><strong><code>Ctrl+Shift+Inicio</code></strong></td>
+<td>Selecciona todo</td>
+<td><strong><code>Ctrl+A</code></strong> o <strong><code>Ctrl+Inicio</code></strong>, <strong><code>Ctrl+Shift+Fin</code></strong></td>
+</tr>
+<tr>
+<td>Selecciona hasta fin</td>
+<td><strong><code>Ctrl+Shift+Fin</code></strong></td>
+<td>Copiar linea o selección</td>
+<td><strong><code>Ctrl+C</code></strong></td>
+</tr>
+<tr>
+<td>Mover línea o selección actual</td>
+<td><strong><code>Alt+↑</code></strong> o <strong><code>Alt+↓</code></strong></td>
+<td>Pegar</td>
+<td><strong><code>Ctrl+V</code></strong></td>
+</tr>
+<tr>
+<td>Cortar linea o selección</td>
+<td><strong><code>Ctrl+X</code></strong></td>
+<td>Duplica selección</td>
+<td><strong><code>Ctrl+D</code></strong></td>
+</tr>
+<tr>
+<td>Pegar sin formato</td>
+<td><strong><code>Ctrl+Shift+V</code></strong></td>
+<td>Des-tabula selección</td>
+<td><strong><code>Shft+Tab</code></strong></td>
+</tr>
+<tr>
+<td>Tabula selección</td>
+<td><strong><code>Tab</code></strong></td>
+<td>Buscar en todo</td>
+<td><strong><code>Ctrl+Shift+F</code></strong></td>
+</tr>
+<tr>
+<td>Buscar</td>
+<td><strong><code>Ctrl+F</code></strong></td>
+<td>Buscar y Reemplazar</td>
+<td><strong><code>Ctrl+H</code></strong></td>
+</tr>
+<tr>
+<td>Buscar siguiente</td>
+<td><strong><code>F3</code></strong></td>
+<td>Formatea Código</td>
+<td><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+D</code></strong></td>
+</tr>
+<tr>
+<td>Buscar y Reemplazar en todo</td>
+<td><strong><code>Ctrl+Shift+H</code></strong></td>
+<td>Des-comenta Selección</td>
+<td><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+U</code></strong></td>
+</tr>
+<tr>
+<td>Comenta Selección</td>
+<td><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+C</code></strong></td>
+<td>Ejecuta sin depurar</td>
+<td><strong><code>Ctrl+F5</code></strong></td>
+</tr>
+<tr>
+<td>Ir a siguiente error o aviso</td>
+<td><strong><code>F8</code></strong></td>
+<td><strong>Re-nombra identificador</strong></td>
+<td><strong><code>Ctrl+R</code></strong>, <strong><code>Ctrl+R</code></strong></td>
+</tr>
+<tr>
+<td>Ejecuta depurando</td>
+<td><strong><code>F5</code></strong></td>
+<td>Ir a la definición</td>
+<td><strong><code>F12</code></strong></td>
+</tr>
+<tr>
+<td>Ir a la declaración</td>
+<td><strong><code>Ctrl+F12</code></strong></td>
+<td><strong>Ver Información sobrecargas</strong></td>
+<td><strong><code>Ctrl+shift+Space</code></strong></td>
+</tr>
+<tr>
+<td><strong>Ver Sugerencia contextual</strong></td>
+<td><strong><code>Ctrl+Space</code></strong></td>
+<td><strong>Ver Refactorización contextual</strong></td>
+<td><strong><code>Ctrl+.</code></strong></td>
+</tr>
+<tr>
+<td><strong>Muestra información in-line</strong></td>
+<td><strong><code>Ctrl+K</code></strong>, <strong><code>Ctrl+I</code></strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

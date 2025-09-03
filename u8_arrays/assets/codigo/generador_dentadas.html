@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Matriz Dentada</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #1a1a1a; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display:block;
+            color: #ffffff;
+            font-family: monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Arrastra con el ratón para rotar. Usa la rueda para hacer zoom.</div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // --- DATOS DE ENTRADA ---
+        // Estructura de datos dentada bidimensional.
+        // Eje Y (altura), Eje X (anchura)
+        const t = [
+            [3, 4, 77],
+            [1, 2]
+        ];
+
+        // --- CONFIGURACIÓN BÁSICA DE LA ESCENA ---
+        let scene, camera, renderer, controls;
+
+        function init() {
+            // Crear la escena
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a1a);
+
+            // Crear la cámara
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(4, 5, 7); // Posición inicial para una buena perspectiva
+
+            // Crear el renderizador
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.body.appendChild(renderer.domElement);
+
+            // --- LUCES ---
+            // Luz ambiental para iluminar toda la escena de manera uniforme
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            // Luz direccional para crear sombras y dar profundidad
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+            directionalLight.position.set(5, 10, 7.5);
+            scene.add(directionalLight);
+
+            // --- CONTROLES DE LA CÁMARA ---
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Efecto de "arrastre" suave
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 3;
+            controls.maxDistance = 50;
+            // Centrar la vista en el nuevo objeto 2D
+            controls.target.set(1.5, 0.75, 0); 
+
+            // --- CREACIÓN DE LOS CUBOS ---
+            createCubesFromData(t);
+
+            // --- MANEJADOR DE REDIMENSIONAMIENTO DE VENTANA ---
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Iniciar el bucle de animación
+            animate();
+        }
+
+        /**
+         * Función para crear una textura de lienzo con un número.
+         * Esta textura se aplicará a las caras de cada cubo.
+         * @param {number} number - El número a dibujar en la textura.
+         * @returns {THREE.CanvasTexture} - La textura generada.
+         */
+        function createNumberTexture(number) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const size = 128; // Tamaño de la textura
+            canvas.width = size;
+            canvas.height = size;
+
+            // Fondo del cubo
+            if (number != 77)
+                context.fillStyle = '#4a90e2'; // Un color azul agradable
+            else
+                context.fillStyle = '#1111e2'; // Un color azul agradable
+
+            context.fillRect(0, 0, size, size);
+            
+            // Borde para dar definición
+            context.strokeStyle = '#ffffff';
+            context.lineWidth = 8;
+            context.strokeRect(0, 0, size, size);
+
+            // Propiedades del texto
+            context.fillStyle = '#ffffff'; // Color del texto
+            context.font = 'bold 64px Arial, sans-serif';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            
+            // Dibujar el número en el centro
+            context.fillText(number.toString(), size / 2, size / 2);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.colorSpace = THREE.SRGBColorSpace;
+            return texture;
+        }
+
+        /**
+         * Itera sobre la estructura de datos 2D y crea un cubo para cada entero.
+         * @param {number[][]} data - La matriz 2D dentada.
+         */
+        function createCubesFromData(data) {
+            const spacing = 1.5; // Espacio entre cubos
+            const cubeSize = 1; // Tamaño de cada cubo
+            const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+
+            // Usamos un caché de materiales para no recrear la textura para el mismo número
+            const materialCache = {};
+
+            // Recorremos los datos: y (altura), x (anchura)
+            for (let y = 0; y < data.length; y++) {
+                for (let x = 0; x < data[y].length; x++) {
+                    const value = data[y][x];
+
+                    // Obtener o crear el material para este valor
+                    if (!materialCache[value]) {
+                        materialCache[value] = new THREE.MeshLambertMaterial({
+                            map: createNumberTexture(value),
+                        });
+                    }
+                    const material = materialCache[value];
+
+                    // Crear la malla del cubo
+                    const cube = new THREE.Mesh(geometry, material);
+
+                    // Posicionar el cubo en la escena según sus índices, con Z fijo en 0
+                    cube.position.set(
+                        x * spacing,
+                        y * spacing,
+                        0 
+                    );
+
+                    // Añadir el cubo a la escena
+                    scene.add(cube);
+                }
+            }
+        }
+
+        /**
+         * Maneja el evento de redimensionamiento de la ventana del navegador.
+         */
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        /**
+         * Bucle de animación que se ejecuta en cada fotograma.
+         */
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Actualizar los controles en cada fotograma
+            renderer.render(scene, camera);
+        }
+
+        // Iniciar la aplicación
+        init();
+    </script>
+</body>
+</html>

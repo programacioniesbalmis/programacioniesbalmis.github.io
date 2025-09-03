@@ -1,0 +1,728 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Unidad 13 - Definir tipos POO</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="índice">Índice </h1>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1-clase-empleado-con-métodos-getset-tradicionales" class="md-toc-link">
+            <p>Ejercicio 1. Clase Empleado con métodos Get/Set tradicionales</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2-clase-producto-con-propiedades-no-autoimplementadas" class="md-toc-link">
+            <p>Ejercicio 2. Clase Producto con propiedades no autoimplementadas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3-sistema-de-dibujo-con-herramientas" class="md-toc-link">
+            <p>Ejercicio 3. Sistema de dibujo con herramientas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-4-clase-vehiculo-con-propiedades-autoimplementadas" class="md-toc-link">
+            <p>Ejercicio 4. Clase Vehiculo con propiedades autoimplementadas</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5-records-como-value-objects" class="md-toc-link">
+            <p>Ejercicio 5. Records como Value Objects</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-6-diagrama-uml-con-diferentes-tipos-de-definición" class="md-toc-link">
+            <p>Ejercicio 6: Diagrama UML con diferentes tipos de definición</p>
+
+          </a></div>
+</div>
+<h2 id="ejercicios-unidad-13---definir-tipos-poo">Ejercicios Unidad 13 - Definir tipos POO </h2>
+<p><a href="./1_ejercicios_poo_definir_tipos.pdf">Descargar estos ejercicios</a></p>
+<div class="admonition info">
+<p class="admonition-title">Antes de empezar</p>
+<p>Para realizar estos ejercicios, deberás descargar los recursos del enlace de <a href="./recursos/1_ejercicios_poo_definir_tipos_recurso.zip">proyecto_definir_tipos</a>. Como puedes ver, la solución está compuesta de varios proyectos. Cada uno de ellos corresponde con un ejercicio, deberás implementar todo el código, tanto de la Main como de los métodos que se piden en cada ejercicio. Cada proyecto contiene el test correspondiente, que deberás pasar para comprobar que has hecho el ejercicio correctamente.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-1-clase-empleado-con-métodos-getset-tradicionales">Ejercicio 1. Clase Empleado con métodos Get/Set tradicionales </h2>
+<p>A partir del siguiente diagrama de clases, crea la clase necesaria que permita reflejar los elementos que ves representados en él, y la aplicación para probarla. Las categorías de los trabajadores pueden ser: <strong><code>Subalterno = 10, Administrativo = 20, JefeDepartamento = 40, Gerente = 60</code></strong>.</p>
+<p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="419.2px" preserveAspectRatio="none" style="width:308px;height:419px;" version="1.1" viewBox="0 0 308 419" width="308px" zoomAndPan="magnify"><defs></defs><g><!--class Empleado--><g id="elem_Empleado"><rect codeline="12" fill="#FFFAFA" height="291.975" id="Empleado" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="297.5078" x="5.6" y="5.6"></rect><ellipse cx="125.7375" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M127.95,15.1 Q128.075,14.925 128.225,14.8375 Q128.375,14.75 128.55,14.75 Q128.85,14.75 129.0375,14.9625 Q129.225,15.1625 129.225,15.65 L129.225,16.8125 Q129.225,17.3 129.0375,17.5125 Q128.85,17.725 128.55,17.725 Q128.275,17.725 128.1125,17.5625 Q127.95,17.4125 127.8625,17 Q127.825,16.7125 127.675,16.5625 Q127.4125,16.2625 126.925,16.0875 Q126.4375,15.9125 125.9375,15.9125 Q125.325,15.9125 124.8125,16.175 Q124.3125,16.4375 123.9125,17.0375 Q123.525,17.6375 123.525,18.4625 L123.525,19.3375 Q123.525,20.325 124.2375,20.9875 Q124.95,21.6375 126.225,21.6375 Q126.975,21.6375 127.5,21.4375 Q127.8125,21.3125 128.15,20.9625 Q128.3625,20.75 128.475,20.6875 Q128.6,20.625 128.7625,20.625 Q129.025,20.625 129.225,20.8375 Q129.4375,21.0375 129.4375,21.3125 Q129.4375,21.5875 129.1625,21.9125 Q128.7625,22.375 128.125,22.6375 Q127.2625,23 126.225,23 Q125.0125,23 124.05,22.5 Q123.2625,22.1 122.7125,21.25 Q122.1625,20.3875 122.1625,19.3625 L122.1625,18.4375 Q122.1625,17.375 122.65,16.4625 Q123.15,15.5375 124.025,15.05 Q124.9,14.55 125.8875,14.55 Q126.475,14.55 126.9875,14.6875 Q127.5125,14.8125 127.95,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="50.4328" x="142.1375" y="22.9828">Empleado</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="302.3078" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="111.4367" x="10.4" y="46.0266">-dni : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="134.4656" x="10.4" y="60.1141">-nombre : string {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="155.6406" x="10.4" y="74.2016">-añoNacimiento : int {readOnly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="104.5898" x="10.4" y="88.2891">-categoria: Categoria</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" text-decoration="underline" textLength="174.9617" x="10.4" y="102.3766">+SALARIO_BASE : double  = 1200</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="302.3078" y1="108.0375" y2="108.0375"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="287.9078" x="10.4" y="122.8641">+Empleado( dni : string,  nombre : string,  nacimiento : int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="133.5414" x="10.4" y="136.9516">+Empleado( e : Empleado)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="108.6094" x="10.4" y="151.0391">+GetNombre() : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="129.1664" x="10.4" y="165.1266">+GetAñoNacimiento() : int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="85.5805" x="10.4" y="179.2141">+GetDni() : string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="138.5125" x="10.4" y="193.3016">+GetCategoria() : Categoria</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="216.3383" x="10.4" y="207.3891">+SetCategoria( categoria : Categoria) : void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="91.8313" x="10.4" y="221.4766">+Salario() : double</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="98.6727" x="10.4" y="235.5641">+CalculaEdad() : int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="220.6859" x="10.4" y="249.6516">+TieneMayorSalario( otro : Empleado) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="219.4391" x="10.4" y="263.7391">+EsMayorCategoria( otro : Empleado) : bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="231.2734" x="10.4" y="277.8266">+CalculaDiferenciaEdad( otro : Empleado) : int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="10.4" y="291.9141">+ACadena(): string</text></g><!--class Categoria--><g id="elem_Categoria"><rect codeline="37" fill="#FFFAFA" height="88.35" id="Categoria" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="126.9648" x="90.8" y="326"></rect><ellipse cx="126.6012" cy="338.8" fill="#EB937F" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M125.6887,339.4375 L125.6887,341.4375 L129.1512,341.4375 L129.1512,340.7 Q129.1512,340.2125 129.3387,340 Q129.5387,339.7875 129.8387,339.7875 Q130.1387,339.7875 130.3262,340 Q130.5137,340.2125 130.5137,340.7 L130.5137,342.8 L124.1137,342.8 Q123.6137,342.8 123.4012,342.6125 Q123.2012,342.425 123.2012,342.1125 Q123.2012,341.8125 123.4137,341.625 Q123.6262,341.4375 124.1137,341.4375 L124.3262,341.4375 L124.3262,336.1125 L124.1137,336.1125 Q123.6137,336.1125 123.4012,335.925 Q123.2012,335.7375 123.2012,335.425 Q123.2012,335.125 123.4012,334.9375 Q123.6137,334.75 124.1137,334.75 L130.2137,334.75 L130.2137,336.825 Q130.2137,337.3125 130.0262,337.525 Q129.8512,337.725 129.5387,337.725 Q129.2387,337.725 129.0512,337.525 Q128.8637,337.3125 128.8637,336.825 L128.8637,336.1125 L125.6887,336.1125 L125.6887,338.075 L126.8762,338.075 Q126.8762,337.55 126.9762,337.4 Q127.1887,337.075 127.5637,337.075 Q127.8637,337.075 128.0512,337.2875 Q128.2387,337.4875 128.2387,337.975 L128.2387,339.55 Q128.2387,339.9875 128.1387,340.1375 Q127.9262,340.45 127.5637,340.45 Q127.1887,340.45 126.9762,340.125 Q126.8762,339.975 126.8762,339.4375 L125.6887,339.4375 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="48.5625" x="143.0012" y="343.3828">Categoria</text><line style="stroke:#000000;stroke-width:0.4;" x1="91.6" x2="216.9648" y1="351.6" y2="351.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="79.3953" x="95.6" y="366.4266">Subalterno = 10</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="95.5555" x="95.6" y="380.5141">Administrativo = 20</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="117.3648" x="95.6" y="394.6016">JefeDepartamento = 40</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="65.6906" x="95.6" y="408.6891">Gerente = 60</text></g><!--reverse link Empleado to Categoria--><g id="link_Empleado_Categoria"><path codeline="44" d="M154.4,310.4 C154.4,319.816 154.4,316.432 154.4,325.848 " fill="transparent" id="Empleado-backto-Categoria" style="stroke:#000000;stroke-width:0.8;"></path><ellipse cx="154.4" cy="304" fill="transparent" rx="6.4" ry="6.4" style="stroke:#000000;stroke-width:0.8;"></ellipse><line style="stroke:#000000;stroke-width:0.8;" x1="154.4" x2="154.4" y1="310.4" y2="297.6"></line><line style="stroke:#000000;stroke-width:0.8;" x1="148" x2="160.8" y1="304" y2="304"></line></g><!--SRC=[VPDDRjj038NtEWMN2T8KJb0KHO0iv1y42Tgag09qML0QsYOyCpH6emIkuKFr3BrOASco5SMeLYE-Zvn7Yh8qZn050Y-M4Gm7AYABJyeL-pK6T51OBCiqni1v5Uc-49_nRu9H3qb3aDU9M0amjbYiUj9ONnT1AczQ_JcWBrKY7tlKTwLmGKFuvv8ZPKvMr6CdjP-n14FXz9KjC2YLUNbDah90gzO_VacIfYsOkRKbD99i4z3d4endk85Ik_KBs0RLdhpTx60lUt5ve5F47i2_V-GH2tQi7Og2xEDxgi182mcCDp3fZerq0TioOkHY1rdwDVrn__Hhd6OphMEaojKxtCBLzMW4oHxl6ZXxu_m339tMaO6jytSbQhnxwzGxYezDgRFpGx6ZbBvfjq6qyb6VUZwPT-YwKOSpoFh0SLXziavx4JPT1beCt1fe9xKN9cYBokBCe1cuUrRBz0qt4hfaa1YaFm8zvoAscrFPq3rd_-VtLqzvJhhk1RScJYKTJQKJDEHrAeUHxVHB9qis1EJMSGEEN4wXJCXNhZUuTd-pAaSRANYfzsJKn5BZsBDMqxLwgUFNRVo1vZGb_MKYkcOfRk5JgzpLVYDfuFD8x- -SmiNbyS9_]--></g></svg></p><blockquote>
+<p>📌 <strong>Nota:</strong> El salario del empleado se calculará a partir de la categoría de trabajo que desempeñe, las categorías tienen asociadas el incremento en porcentaje que se tiene que hacer al salario base, que será una constante con el valor de 1200.</p>
+</blockquote>
+<pre class="salida_consola">Ejercicio 1: Clase Empleado con métodos Get/Set
+
+=== CREACIÓN DE EMPLEADOS ===
+Introduce datos del primer empleado:
+DNI: 12345678A
+Nombre: Ana García Martín
+Año de nacimiento: 1985
+Categoría (Subalterno/Administrativo/JefeDepartamento/Gerente): Administrativo
+
+Introduce datos del segundo empleado:
+DNI: 87654321B
+Nombre: Carlos López Ruiz  
+Año de nacimiento: 1978
+Categoría (Subalterno/Administrativo/JefeDepartamento/Gerente): JefeDepartamento
+
+=== INFORMACIÓN DE EMPLEADOS ===
+--- Empleado 1 ---
+DNI: 12345678A
+Nombre: Ana García Martín
+Año de nacimiento: 1985
+Edad: 40 años
+Categoría: Administrativo
+Salario: 1440.00€ (base: 1200€ + 20% incremento)
+
+--- Empleado 2 ---
+DNI: 87654321B
+Nombre: Carlos López Ruiz
+Año de nacimiento: 1978
+Edad: 47 años
+Categoría: JefeDepartamento
+Salario: 1680.00€ (base: 1200€ + 40% incremento)
+
+=== PROMOCIONES Y CAMBIOS ===
+Promocionando a Ana García a JefeDepartamento...
+Promocionando a Carlos López a Gerente...
+
+--- Estado después de promociones ---
+Empleado 1:
+DNI: 12345678A
+Nombre: Ana García Martín
+Año de nacimiento: 1985
+Edad: 40 años
+Categoría: JefeDepartamento
+Salario: 1680.00€ (base: 1200€ + 40% incremento)
+
+Empleado 2:
+DNI: 87654321B
+Nombre: Carlos López Ruiz
+Año de nacimiento: 1978
+Edad: 47 años
+Categoría: Gerente
+Salario: 1920.00€ (base: 1200€ + 60% incremento)
+
+=== CREACIÓN DE COPIA ===
+Creando copia de Ana García...
+Empleado copiado:
+DNI: 12345678A
+Nombre: Ana García Martín
+Año de nacimiento: 1985
+Edad: 40 años
+Categoría: JefeDepartamento
+Salario: 1680.00€ (base: 1200€ + 40% incremento)
+
+=== COMPARACIONES ===
+¿Ana García tiene mayor salario que Carlos López? False
+¿Carlos López es de mayor categoría que Ana García? True
+Diferencia de edad: 7 años
+
+Console.WriteLine("Presiona cualquier tecla para salir...");
+Console.ReadKey();
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p>Al crear un empleado por primera vez, se le asignará la categoría Subalterno.</p>
+</li>
+<li>
+<p><code>Salario</code> método con cuerpo de expresión que devuelva el salario <em>(SALARIO_BASE + porcentaje según categoría)</em>.</p>
+</li>
+<li>
+<p><code>CalculaEdad</code> método con cuerpo de expresión que devuelva el salario <em>(año actual - año nacimiento)</em>.</p>
+</li>
+<li>
+<p><code>TieneMayorSalario</code> método con cuerpo de expresión que devolverá true si el empleado objeto tiene más salario que el pasado como parámetro.</p>
+</li>
+<li>
+<p><code>EsMayorCategoria</code> método con cuerpo de expresión que devolverá true si el empleado objeto tiene una categoría mayor que la pasada por parámetro.</p>
+</li>
+<li>
+<p>Método <code>CalculaDiferenciaEdad</code> método con cuerpo de expresión que devolverá los años de diferencia entre ambos empleados.</p>
+</li>
+<li>
+<p><code>ACadena()</code> devuelve una cadena con la información completa del empleado.</p>
+</li>
+</ul>
+<p><strong>Métodos staticos en clase Program</strong>:</p>
+<ul>
+<li>
+<p><code>PideEmpleado()</code> método estático que solicita datos por consola y retorna un nuevo empleado. Importante!!, para mostrar las categorías existentes se deberá usar <code>GetNames</code> de la clase <code>Enum</code> y <code>Join</code> de la clase <code>String</code>.</p>
+</li>
+<li>
+<p><code>ParseaCategoria(string)</code>. Convierte un string (ej: "Administrativo") al enum correspondiente. Debe ser case-insensitive (no distinguir mayús/minús). Si el texto no corresponde a ninguna categoría válida, retorna <code>Categoria.Subalterno</code> por defecto. Aceptará tanto el nombre completo como valores numéricos: "20" → <code>Categoria.Administrativo</code></p>
+</li>
+<li>
+<p>Programa principal creando los objetos necesarios y llamadas a los métodos para conseguir el resultado de la salida</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-2-clase-producto-con-propiedades-no-autoimplementadas">Ejercicio 2. Clase Producto con propiedades no autoimplementadas </h2>
+<p>Crea una clase <code>Producto</code> que represente productos de un inventario, usando propiedades con lógica de validación en los setters.</p>
+<pre class="salida_consola">Ejercicio 2: Clase Producto con propiedades no autoimplementadas
+
+=== CREACIÓN DE PRODUCTOS ===
+Creando productos del inventario...
+
+Producto 1: Laptop Gaming
+- Código: PRD001
+- Precio inicial: 1200.00€
+- Stock inicial: 15
+
+Producto 2: Mouse Inalámbrico  
+- Código: PRD002
+- Precio inicial: 25.50€
+- Stock inicial: 50
+
+=== OPERACIONES CON STOCK ===
+--- Venta de productos ---
+Vendiendo 5 unidades de Laptop Gaming...
+Stock actualizado: 10 unidades
+
+Vendiendo 20 unidades de Mouse Inalámbrico...
+Stock actualizado: 30 unidades
+
+--- Reposición de stock ---
+Reponiendo 8 unidades de Laptop Gaming...
+Stock actualizado: 18 unidades
+
+Intentando vender 25 unidades de Laptop Gaming...
+ERROR: Stock insuficiente. Stock actual: 18, solicitado: 25
+
+=== CAMBIOS DE PRECIO ===
+--- Aplicar descuentos ---
+Aplicando 10% de descuento a Laptop Gaming...
+Precio anterior: 1200.00€
+Precio nuevo: 1080.00€
+
+Aplicando 20% de descuento a Mouse Inalámbrico...
+Precio anterior: 25.50€
+Precio nuevo: 20.40€
+
+--- Intentar precio inválido ---
+Intentando establecer precio negativo en Laptop Gaming...
+ERROR: El precio no puede ser negativo o cero
+
+=== ESTADO FINAL DEL INVENTARIO ===
+Producto 1:
+- Código: PRD001
+- Nombre: Laptop Gaming
+
+Console.WriteLine("Presiona cualquier tecla para salir...");
+Console.ReadKey();
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Campos privados</strong>:</p>
+<ul>
+<li><code>_codigo</code> (string): Código único generado automáticamente</li>
+<li><code>_nombre</code> (string): Nombre del producto</li>
+<li><code>_precio</code> (double): Precio unitario del producto</li>
+<li><code>_stock</code> (int): Cantidad en inventario</li>
+<li><code>codigosGenerados</code> (string[]): variable estática que guardará cada uno de los códigos generados, para comprobar que no se repitan.</li>
+</ul>
+</li>
+<li>
+<p><strong>Constructor</strong>:</p>
+<ul>
+<li><code>Producto(string nombre, double precio, int stock)</code>.  Generará un código único con las letras PR un número y tres letras mayúsculas(PR2MXC, PR9LÑK, PR9LLL, etc). Antes de asignarse el código, se tendrá que haber comprobado que no se había asignado con anterioridad. Importante, se deberán usar las propiedades para validar precio y stock iniciales.</li>
+</ul>
+</li>
+<li>
+<p><strong>Propiedades no autoimplementadas públicas</strong>:</p>
+<ul>
+<li><code>Codigo</code> readonly, devuelve el código</li>
+<li><code>Nombre</code> readonly, devuelve el nombre</li>
+<li><code>Precio</code> propiedad accesora y mutadora. Validará que sea &gt; 0, o asignará un precio por defecto de 20 euros.</li>
+<li><code>Stock</code> propiedad accesora y mutadora que validará que sea &gt;= 0, o asignando un valor de 1 en caso contrario.</li>
+<li><code>CodigosGenerados</code> propiedad estática y pública de acceso sobre el campo de tipo array codigosGenerados.</li>
+</ul>
+</li>
+<li>
+<p><strong>Propiedades calculadas públicas</strong>:</p>
+<ul>
+<li><code>ValorTotal</code> de tipo double (precio × stock)</li>
+<li><code>Estado</code> → string ("Sin stock", "Stock bajo" si &lt; 10, "En stock")</li>
+</ul>
+</li>
+<li>
+<p><strong>Métodos</strong>:</p>
+<ul>
+<li><code>Vende(int cantidad)</code> método que reduce el stock en la cantidad que llega como parámetro, solo si hay suficiente stock. Retorna true si es posible.</li>
+<li><code>Repone(int cantidad)</code> método que aumenta el stock en la cantidad que llega como parámetro.</li>
+<li><code>AplicaDescuento(double porcentaje)</code> método que reduce el precio al porcentaje dado.</li>
+<li><code>ACadena</code> método que devuelve una cadena con la información del producto</li>
+</ul>
+</li>
+<li>
+<p><strong>Métodos staticos en clase Program</strong>:</p>
+<ul>
+<li><code>CreaProducto()</code> método que pide los datos necesarios para crear un producto y lo devuelve.</li>
+<li>Programa principal creando los objetos necesarios y llamadas a los métodos para conseguir el resultado de la salida.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-3-sistema-de-dibujo-con-herramientas">Ejercicio 3. Sistema de dibujo con herramientas </h2>
+<p>Crea un proyecto con <strong>los TAD necesarios</strong> para que el siguiente código perteneciente a la Main, pueda ser ejecutado sin problemas:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Compas</span> compas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Compas</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Circulo</span> circulo <span class="token operator">=</span> compas<span class="token punctuation">.</span><span class="token function">DibujaCirculo</span><span class="token punctuation">(</span><span class="token number">3.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Rotulador</span> rotulador <span class="token operator">=</span> Estuche<span class="token punctuation">.</span><span class="token function">GetRotuladores</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                      <span class="token punctuation">[</span>
+                          <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Estuche<span class="token punctuation">.</span>NUMERO_ROTULADORES<span class="token punctuation">)</span>
+                      <span class="token punctuation">]</span><span class="token punctuation">;</span>
+rotulador<span class="token punctuation">.</span><span class="token function">Rotula</span><span class="token punctuation">(</span>circulo<span class="token punctuation">.</span><span class="token function">Perimetro</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Pincel</span> pincel <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Pincel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+pincel<span class="token punctuation">.</span><span class="token function">SetColor</span><span class="token punctuation">(</span>Color<span class="token punctuation">.</span>Verde<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pincel<span class="token punctuation">.</span><span class="token function">Pinta</span><span class="token punctuation">(</span>circulo<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+</code></pre><pre class="salida_consola">Ejercicio 3: Sistema de dibujo con herramientas
+
+Dibujado un círculo de radio 3,5 cm
+Rotulado el perímetro de 21,99 cm de color Rojo.
+Pintada el área de 38,48 cm² de color Verde.
+
+¡Dibujo completado con éxito!
+Presiona cualquier tecla para salir...
+</pre>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-4-clase-vehiculo-con-propiedades-autoimplementadas">Ejercicio 4. Clase Vehiculo con propiedades autoimplementadas </h2>
+<p>Crea una clase <code>Vehiculo</code> que represente vehículos de un concesionario usando propiedades autoimplementadas.</p>
+<pre class="salida_consola">Ejercicio 4: Clase Vehículo con propiedades autoimplementadas
+
+=== CREACIÓN DE VEHÍCULOS ===
+Registrando vehículos en el concesionario...
+
+Vehículo 1:
+- Matrícula: 1234ABC
+- Marca: Toyota
+- Modelo: Corolla
+- Año: 2022
+- Precio: 25000.00€
+- Kilómetros: 15000
+- Estado: Usado
+
+Vehículo 2:
+- Matrícula: 5678DEF
+- Marca: BMW
+- Modelo: Serie 3
+- Año: 2025
+- Precio: 45000.00€
+- Kilómetros: 0
+- Estado: Nuevo
+
+=== OPERACIONES CON VEHÍCULOS ===
+--- Actualizaciones de kilometraje ---
+Toyota Corolla recorre 5000 km adicionales...
+Kilómetros totales: 20000 km
+
+BMW Serie 3 recorre 1200 km (entrega a cliente)...
+Kilómetros totales: 1200 km
+
+--- Cambios de precio ---
+Aplicando descuento del 8% al Toyota Corolla...
+Precio anterior: 25000.00€
+Precio actual: 23000.00€
+
+Aplicando descuento del 5% al BMW Serie 3...
+Precio anterior: 45000.00€
+Precio actual: 42750.00€
+
+=== ANÁLISIS DEL INVENTARIO ===
+--- Depreciación por uso ---
+Toyota Corolla:
+- Depreciación por kilómetros: 2000.00€ (20000 km × 0.10€/km)
+- Valor con depreciación: 21000.00€
+
+BMW Serie 3:
+- Depreciación por kilómetros: 120.00€ (1200 km × 0.10€/km)
+- Valor con depreciación: 42630.00€
+
+=== ESTADO FINAL DEL INVENTARIO ===
+Vehículo 1:
+- Matrícula: 1234ABC
+- Vehículo: Toyota Corolla (2022)
+- Precio de venta: 23000.00€
+- Kilómetros: 20000 km
+- Estado: Usado
+- Valor real: 21000.00€
+- Antigüedad: 3 años
+
+Vehículo 2:
+- Matrícula: 5678DEF
+- Vehículo: BMW Serie 3 (2025)
+- Precio de venta: 42750.00€
+- Kilómetros: 1200 km
+- Estado: Nuevo
+- Valor real: 42630.00€
+- Antigüedad: 0 años
+
+Console.WriteLine("Presiona cualquier tecla para salir...");
+Console.ReadKey();
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Propiedades autoimplementadas</strong>:</p>
+<ul>
+<li><code>Matricula</code>  string</li>
+<li><code>Marca</code> string</li>
+<li><code>Modelo</code> string</li>
+<li><code>Año</code>  int</li>
+<li><code>Precio</code> double</li>
+<li><code>Kilometros</code> int<br>
+<em>Debes tener en cuenta que los set serán privados para que solo pueda modificarse el objeto a través de los métodos capacitados para ello.</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Propiedades calculadas</strong>:</p>
+<ul>
+<li><code>Estado</code> string ("Nuevo" si km ≤ 1000, "Usado" si &gt; 1000)</li>
+<li><code>Antigüedad</code> int (año actual - año del vehículo)</li>
+<li><code>DepreciacionKilometraje</code> double (kilómetros × 0.10€)</li>
+<li><code>ValorReal</code> double (precio - depreciación por kilometraje)</li>
+<li><code>NombreCompleto</code> string ("Marca Modelo (Año)")</li>
+</ul>
+</li>
+<li>
+<p><strong>Métodos</strong>:</p>
+<ul>
+<li><code>Vehiculo(string matricula, string marca, string modelo, int año, double precio, int kilometros)</code></li>
+<li><code>AñadeKilometros(int km)</code> método que suma los kilómetros de entrada al total.</li>
+<li><code>AplicaDescuento(double porcentaje)</code> método que reduce el precio aplicando el porcentaje de entrada.</li>
+<li><code>ActualizaPrecio(double nuevoPrecio)</code>  modifica el precio del vehículo, a el nuevo precio de entrada.</li>
+<li><code>ACadena</code> que devuelve una cadena con la información del vehículo.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-5-records-como-value-objects">Ejercicio 5. Records como Value Objects </h2>
+<p>Implementa un sistema que use dos tipos de <code>record</code> como Value Objects: uno simplificado y otro extendido. El programa debe demostrar el uso de <code>with</code> para crear copias modificadas en el record simplificado, y la creación de nuevos objetos en el record extendido.</p>
+<pre class="salida_consola">Ejercicio 5: Records como Value Objects
+
+=== RECORDS SIMPLIFICADOS (Value Objects sin validación) ===
+Creando juguetes con records simplificados...
+
+Juguete original: Juguete { Nombre = "Pelota", Precio = 15.50 }
+Juguete con descuento usando 'with': Juguete { Nombre = "Pelota", Precio = 12.40 }
+Juguete renombrado usando 'with': Juguete { Nombre = "Pelota Roja", Precio = 15.50 }
+Juguete modificado completamente: Juguete { Nombre = "Muñeca", Precio = 25.99 }
+
+--- Operaciones con juguetes ---
+Precio promedio entre juguete original y con descuento: 13.95€
+Diferencia de precio: 3.10€
+
+=== RECORDS EXTENDIDOS (Value Objects con validación) ===
+Creando temperaturas con records extendidos y validación...
+
+--- Creación exitosa ---
+Temperatura ambiente: Temperatura { Grados = 22.5, Escala = Celsius }
+Temperatura agua hirviendo: Temperatura { Grados = 100.0, Escala = Celsius }
+Temperatura agua congelando: Temperatura { Grados = 32.0, Escala = Fahrenheit }
+
+--- Conversiones de temperatura (creando nuevos objetos) ---
+22.5°C convertido a Fahrenheit: Temperatura { Grados = 72.5, Escala = Fahrenheit }
+100°C convertido a Kelvin: Temperatura { Grados = 373.15, Escala = Kelvin }
+32°F convertido a Celsius: Temperatura { Grados = 0.0, Escala = Celsius }
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Record simplificado Juguete</strong>:</p>
+<ul>
+<li>Crea el recor <code>Juguete</code> con las propiedades Nombre de tipo string y Precio de tipo double.</li>
+<li><code>CalculaDescuento(double porcentaje)</code> método que devuelve el Juguete con el precio modificado con el descuento.</li>
+</ul>
+</li>
+<li>
+<p><strong>Record extendido Temperatura</strong>:<br>
+Este Value Object tendrá una propiedad de tipo enumerado <code>EscalaTemperatura</code> con los valores (Celsius, Fahrenheit, Kelvin)</p>
+<ul>
+<li>Record <code>Temperatura</code> con las propiedades  Grados de tipo double y Escala de tipo EscalaTemperatura.</li>
+<li>Constructor con validación (no permite temperaturas bajo cero absoluto). Validaremos según la información de la ayuda.</li>
+</ul>
+<div class="admonition help">
+<p class="admonition-title">"Valores del cero absoluto según la escala"</p>
+<ul>
+<li><strong>Celsius</strong>: -273.15°C (cero absoluto)</li>
+<li><strong>Fahrenheit</strong>: -459.67°F (cero absoluto)</li>
+<li><strong>Kelvin</strong>: 0.0ºK (cero absoluto)</li>
+</ul>
+<p>Si intentas crear una temperatura inferior a estos valores, el constructor debe asignar automáticamente el valor del cero absoluto correspondiente a la escala.</p>
+</div>
+<ul>
+<li>Métodos <code>ConvierteA(EscalaTemperatura nueva)</code> que devolverá la nueva Temperatura calculada a partir de la escala que llega.</li>
+</ul>
+</li>
+<li>
+<p><strong>En el programa principal</strong>:</p>
+<ul>
+<li>Tendremos el método <code>GestionJuguete</code>, que crea un juguetes base y se modifica con <code>with</code> para conseguir la salida. Además de calcular descuentos y comparar precios.</li>
+<li>Tendremos el método <code>GestionTemperatura</code> que creará temperaturas válidas e inválidas, convertirá entre escalas de temperatura.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-6-diagrama-uml-con-diferentes-tipos-de-definición">Ejercicio 6: Diagrama UML con diferentes tipos de definición </h2>
+<p>Implementa el siguiente diagrama UML que muestra los <strong>tres tipos de definición</strong> que hemos visto en esta unidad:</p>
+<ul>
+<li>Una <strong>clase tradicional</strong> (Entity)</li>
+<li>Un <strong>value object por valor</strong> (struct)</li>
+<li>Un <strong>value object por referencia</strong> (record)</li>
+</ul>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="284.8px" preserveAspectRatio="none" style="width:502px;height:284px;" version="1.1" viewBox="0 0 502 284" width="502.4px" zoomAndPan="magnify"><defs></defs><g><!--class Producto--><g id="elem_Producto"><rect codeline="11" fill="#FFFAFA" height="108.8375" id="Producto" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="259.5328" x="5.6" y="5.6"></rect><ellipse cx="109.5527" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M111.7652,15.1 Q111.8902,14.925 112.0402,14.8375 Q112.1902,14.75 112.3652,14.75 Q112.6652,14.75 112.8527,14.9625 Q113.0402,15.1625 113.0402,15.65 L113.0402,16.8125 Q113.0402,17.3 112.8527,17.5125 Q112.6652,17.725 112.3652,17.725 Q112.0902,17.725 111.9277,17.5625 Q111.7652,17.4125 111.6777,17 Q111.6402,16.7125 111.4902,16.5625 Q111.2277,16.2625 110.7402,16.0875 Q110.2527,15.9125 109.7527,15.9125 Q109.1402,15.9125 108.6277,16.175 Q108.1277,16.4375 107.7277,17.0375 Q107.3402,17.6375 107.3402,18.4625 L107.3402,19.3375 Q107.3402,20.325 108.0527,20.9875 Q108.7652,21.6375 110.0402,21.6375 Q110.7902,21.6375 111.3152,21.4375 Q111.6277,21.3125 111.9652,20.9625 Q112.1777,20.75 112.2902,20.6875 Q112.4152,20.625 112.5777,20.625 Q112.8402,20.625 113.0402,20.8375 Q113.2527,21.0375 113.2527,21.3125 Q113.2527,21.5875 112.9777,21.9125 Q112.5777,22.375 111.9402,22.6375 Q111.0777,23 110.0402,23 Q108.8277,23 107.8652,22.5 Q107.0777,22.1 106.5277,21.25 Q105.9777,20.3875 105.9777,19.3625 L105.9777,18.4375 Q105.9777,17.375 106.4652,16.4625 Q106.9652,15.5375 107.8402,15.05 Q108.7152,14.55 109.7027,14.55 Q110.2902,14.55 110.8027,14.6875 Q111.3277,14.8125 111.7652,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="44.8273" x="125.9527" y="22.9828">Producto</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="264.3328" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="95.8836" x="10.4" y="46.0266">-id: Guid {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="10.4" y="60.1141">-nombre: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="125.7594" x="10.4" y="74.2016">-precio: Precio {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="264.3328" y1="79.8625" y2="79.8625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="249.9328" x="10.4" y="94.6891">+Producto(id: Guid, nombre: string, precio: Precio)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="221.9219" x="10.4" y="108.7766">+ActualizarPrecio(nuevoPrecio: Precio): void</text></g><!--class Precio--><g id="elem_Precio"><rect codeline="19" fill="#FFFAFA" height="89.225" id="Precio" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="204.7469" x="292.8" y="15.2"></rect><ellipse cx="368.0211" cy="32.2813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M368.4961,34.8938 L370.4711,30.1938 L370.1586,30.1938 Q369.6711,30.1938 369.4586,30.0063 Q369.2461,29.8188 369.2461,29.5063 Q369.2461,29.2063 369.4586,29.0188 Q369.6711,28.8313 370.1586,28.8313 L371.9836,28.8313 Q372.4711,28.8313 372.6836,29.0188 Q372.8961,29.2063 372.8961,29.5063 Q372.8961,29.8813 372.5711,30.0938 Q372.4211,30.1938 371.9461,30.1938 L369.1586,36.8813 L367.8461,36.8813 L365.0586,30.1938 Q364.5836,30.1938 364.4336,30.0938 Q364.1086,29.8813 364.1086,29.5063 Q364.1086,29.2063 364.3211,29.0188 Q364.5336,28.8313 365.0211,28.8313 L366.8586,28.8313 Q367.3461,28.8313 367.5461,29.0188 Q367.7586,29.2063 367.7586,29.5063 Q367.7586,29.8188 367.5461,30.0063 Q367.3461,30.1938 366.8586,30.1938 L366.5336,30.1938 L368.4961,34.8938 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="50.7047" x="382.8211" y="29.1656">«dataType»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="31.7461" x="392.3004" y="42.9016">Precio</text><line style="stroke:#000000;stroke-width:0.4;" x1="293.6" x2="496.7469" y1="49.3625" y2="49.3625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.2477" x="297.6" y="64.1891">-Valor: decimal {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="131.3703" x="297.6" y="78.2766">-Moneda: string {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="293.6" x2="496.7469" y1="83.9375" y2="83.9375"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="195.1469" x="297.6" y="98.7641">+Precio(valor: decimal, moneda: string)</text></g><!--class Color--><g id="elem_Color"><rect codeline="26" fill="#FFFAFA" height="117.4" id="Color" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="161.1773" x="54.8" y="162.4"></rect><ellipse cx="102.902" cy="179.4813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M100.9395,182.1188 L100.9395,176.7938 Q100.502,176.7813 100.2895,176.5938 Q100.0895,176.4063 100.0895,176.1063 Q100.0895,175.8063 100.302,175.6188 Q100.5145,175.4313 101.002,175.4313 L103.852,175.4313 Q104.5145,175.4313 105.152,175.6813 Q105.7895,175.9188 106.177,176.3063 Q106.4645,176.5938 106.777,177.0938 Q107.0895,177.5813 107.252,178.0813 Q107.4145,178.5688 107.4145,179.2813 L107.4145,179.9313 Q107.4145,180.7938 107.1145,181.4688 Q106.827,182.1313 106.352,182.5563 Q105.877,182.9688 105.4645,183.1688 Q104.802,183.4813 103.7395,183.4813 L101.002,183.4813 Q100.5145,183.4813 100.302,183.2938 Q100.0895,183.1063 100.0895,182.7938 Q100.0895,182.4938 100.302,182.3063 Q100.5145,182.1188 100.9395,182.1188 Z M102.302,182.1188 L103.752,182.1188 Q104.552,182.1188 104.9645,181.8813 Q105.502,181.5813 105.777,181.1188 Q106.052,180.6438 106.052,179.8938 L106.052,179.2438 Q106.052,178.6063 105.802,178.1188 Q105.4145,177.3563 104.927,177.0813 Q104.452,176.7938 103.7395,176.7938 L102.302,176.7938 L102.302,182.1188 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="61.3734" x="117.702" y="176.3656">«valueObject»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="26.7641" x="135.0066" y="190.1016">Color</text><line style="stroke:#000000;stroke-width:0.4;" x1="55.6" x2="215.1773" y1="196.5625" y2="196.5625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="95.5773" x="59.6" y="211.3891">+R: byte {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="96.2008" x="59.6" y="225.4766">+G: byte {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.9594" x="59.6" y="239.5641">+B: byte {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="55.6" x2="215.1773" y1="245.225" y2="245.225"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="151.5773" x="59.6" y="260.0516">+Color(r: byte, g: byte, b: byte)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="80.5984" x="59.6" y="274.1391">+ToHex(): string</text></g><!--SRC=[TL5DRu904BtlhvYa5uYqyMP3Z8dOQ7jeQggnvsLtGhV2ZbaMhHh_UrSHLAXSTk6zUHz3lbHwnGtFGAGypuVM6XKN5jy4wPdQ8NHPNbE6nj1cH2aPY58kbbVGrBto12Dt98OABKlQrxUoECjeYLVSqT4f8YFH_2zM4XfICqsRAquJdXkkSmUXjeonNF3KPNzwPkpK2wQ6P24imPw1Unv1oH0cXPAmDyWbwNHxE2EQijXW2BbRXKxQ-CgWK1GwoUFPn3krbLTP10t9e27XdmU7mXOyLJjkok-UBd1Dqrjk26jIaXqknKuf-drl4JoCnxrUj-k3v9RFjoiS3Eg-2-ws589qx8odxLRlf57oUwqxPnzlVICJG7OpvhDBiFAtk5mlbrnkki2F-0U5hQDru3E4U6knxJbf0G1dABetSxBrJ0a7a5INkBnKkvxJA_vwVXNSnVu3]--></g></svg></p><pre class="salida_consola">Ejercicio 6: Diagrama UML con diferentes tipos de definición
+
+PRODUCTO (Clase tradicional):
+Producto: Laptop Gaming - 1299,99 EUR
+
+PRECIO (Value Object por valor):
+Precio: 1299,99 EUR - Válido: True
+
+COLOR (Value Object por referencia):
+Color RGB: (255, 0, 0) - Hex: FF0000
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p>Implementa los tres tipos del uml como se ha explicado en los apuntes.</p>
+</li>
+<li>
+<p>Método <code>ToHex()</code> que retorne el color en formato hexadecimal (ej: "#FF0000") a partir de las propiedades.</p>
+</li>
+<li>
+<p>En el <code>Main</code>, crea instancias de los tres tipos y muestra sus valores.</p>
+</li>
+</ul>
+</div>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

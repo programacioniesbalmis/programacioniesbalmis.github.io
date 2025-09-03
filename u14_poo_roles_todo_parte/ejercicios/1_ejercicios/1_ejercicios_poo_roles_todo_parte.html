@@ -1,0 +1,624 @@
+<!DOCTYPE html><html><head>
+      <title>Ejercicios Unidad 14 - Roles entre clases</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="índice">Índice </h1>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-1-composición-vehículo-y-motor" class="md-toc-link">
+            <p>Ejercicio 1. Composición: Vehículo y Motor</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-2-agregación-curso-y-estudiantes" class="md-toc-link">
+            <p>Ejercicio 2. Agregación: Curso y Estudiantes</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-3-sistema-de-coordenadas-con-records" class="md-toc-link">
+            <p>Ejercicio 3. Sistema de coordenadas con records</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-4-sistema-de-gestión-de-teléfonos" class="md-toc-link">
+            <p>Ejercicio 4. Sistema de gestión de teléfonos</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5-agregación-múltiple-sistema-de-refugio-de-animales" class="md-toc-link">
+            <p>Ejercicio 5. Agregación múltiple: Sistema de refugio de animales</p>
+
+          </a></div>
+</div>
+<h2 id="ejercicios-unidad-14---roles-entre-clases-todo-o-parte">Ejercicios Unidad 14 - Roles entre clases. Todo o Parte </h2>
+<p><a href="./1_ejercicios_poo_roles_todo_parte.pdf">Descargar estos ejercicios</a></p>
+<div class="admonition info">
+<p class="admonition-title">Antes de empezar</p>
+<p>Para realizar estos ejercicios, deberás descargar los recursos del enlace de <a href="./recursos/1_ejercicios_poo_roles_todo_parte_recurso.zip">proyecto_roles_todo_parte</a>. Como puedes ver, la solución está compuesta de varios proyectos. Cada uno de ellos corresponde con un ejercicio, deberás implementar todo el código, tanto de la Main como de los métodos que se piden en cada ejercicio. Cada proyecto contiene el test correspondiente, que deberás pasar para comprobar que has hecho el ejercicio correctamente.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-1-composición-vehículo-y-motor">Ejercicio 1. Composición: Vehículo y Motor </h2>
+<p>Implementa una relación de <strong>composición</strong> entre las clases <code>Vehiculo</code> y <code>Motor</code>. El motor es parte integral del vehículo y no puede existir sin él.</p>
+<pre class="salida_consola">Ejercicio 1: Composición Vehículo-Motor
+
+Creando vehículo con motor integrado...
+
+Vehículo: Toyota Corolla
+Motor: 120 CV - Estado: Apagado
+
+Arrancando el vehículo...
+
+Vehículo: Toyota Corolla  
+Motor: 120 CV - Estado: Encendido
+
+Presiona cualquier tecla para salir...
+</pre>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="190.4px" preserveAspectRatio="none" style="width:556px;height:190px;" version="1.1" viewBox="0 0 556 190" width="556.8px" zoomAndPan="magnify"><defs></defs><g><!--class Vehiculo--><g id="elem_Vehiculo"><rect codeline="11" fill="#FFFAFA" height="137.0125" id="Vehiculo" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="274.4789" x="5.6" y="26.8"></rect><ellipse cx="117.9582" cy="39.6" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M120.1707,36.3 Q120.2957,36.125 120.4457,36.0375 Q120.5957,35.95 120.7707,35.95 Q121.0707,35.95 121.2582,36.1625 Q121.4457,36.3625 121.4457,36.85 L121.4457,38.0125 Q121.4457,38.5 121.2582,38.7125 Q121.0707,38.925 120.7707,38.925 Q120.4957,38.925 120.3332,38.7625 Q120.1707,38.6125 120.0832,38.2 Q120.0457,37.9125 119.8957,37.7625 Q119.6332,37.4625 119.1457,37.2875 Q118.6582,37.1125 118.1582,37.1125 Q117.5457,37.1125 117.0332,37.375 Q116.5332,37.6375 116.1332,38.2375 Q115.7457,38.8375 115.7457,39.6625 L115.7457,40.5375 Q115.7457,41.525 116.4582,42.1875 Q117.1707,42.8375 118.4457,42.8375 Q119.1957,42.8375 119.7207,42.6375 Q120.0332,42.5125 120.3707,42.1625 Q120.5832,41.95 120.6957,41.8875 Q120.8207,41.825 120.9832,41.825 Q121.2457,41.825 121.4457,42.0375 Q121.6582,42.2375 121.6582,42.5125 Q121.6582,42.7875 121.3832,43.1125 Q120.9832,43.575 120.3457,43.8375 Q119.4832,44.2 118.4457,44.2 Q117.2332,44.2 116.2707,43.7 Q115.4832,43.3 114.9332,42.45 Q114.3832,41.5875 114.3832,40.5625 L114.3832,39.6375 Q114.3832,38.575 114.8707,37.6625 Q115.3707,36.7375 116.2457,36.25 Q117.1207,35.75 118.1082,35.75 Q118.6957,35.75 119.2082,35.8875 Q119.7332,36.0125 120.1707,36.3 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="42.9625" x="134.3582" y="44.1828">Vehiculo</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="279.2789" y1="52.4" y2="52.4"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="122.0133" x="10.4" y="67.2266">-marca: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="127.6297" x="10.4" y="81.3141">-modelo: string {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="279.2789" y1="86.975" y2="86.975"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="264.8789" x="10.4" y="101.8016">+Vehiculo(marca: string, modelo: string, potencia: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="96.7805" x="10.4" y="115.8891">+GetMarca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="102.3969" x="10.4" y="129.9766">+GetModelo(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="79.9859" x="10.4" y="144.0641">+Arranca(): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="10.4" y="158.1516">+ACadena(): string</text></g><!--class Motor--><g id="elem_Motor"><rect codeline="21" fill="#FFFAFA" height="179.275" id="Motor" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="199.2016" x="352" y="5.6"></rect><ellipse cx="433.8863" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M436.0988,15.1 Q436.2238,14.925 436.3738,14.8375 Q436.5238,14.75 436.6988,14.75 Q436.9988,14.75 437.1863,14.9625 Q437.3738,15.1625 437.3738,15.65 L437.3738,16.8125 Q437.3738,17.3 437.1863,17.5125 Q436.9988,17.725 436.6988,17.725 Q436.4238,17.725 436.2613,17.5625 Q436.0988,17.4125 436.0113,17 Q435.9738,16.7125 435.8238,16.5625 Q435.5613,16.2625 435.0738,16.0875 Q434.5863,15.9125 434.0863,15.9125 Q433.4738,15.9125 432.9613,16.175 Q432.4613,16.4375 432.0613,17.0375 Q431.6738,17.6375 431.6738,18.4625 L431.6738,19.3375 Q431.6738,20.325 432.3863,20.9875 Q433.0988,21.6375 434.3738,21.6375 Q435.1238,21.6375 435.6488,21.4375 Q435.9613,21.3125 436.2988,20.9625 Q436.5113,20.75 436.6238,20.6875 Q436.7488,20.625 436.9113,20.625 Q437.1738,20.625 437.3738,20.8375 Q437.5863,21.0375 437.5863,21.3125 Q437.5863,21.5875 437.3113,21.9125 Q436.9113,22.375 436.2738,22.6375 Q435.4113,23 434.3738,23 Q433.1613,23 432.1988,22.5 Q431.4113,22.1 430.8613,21.25 Q430.3113,20.3875 430.3113,19.3625 L430.3113,18.4375 Q430.3113,17.375 430.7988,16.4625 Q431.2988,15.5375 432.1738,15.05 Q433.0488,14.55 434.0363,14.55 Q434.6238,14.55 435.1363,14.6875 Q435.6613,14.8125 436.0988,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="28.6289" x="450.2863" y="22.9828">Motor</text><line style="stroke:#000000;stroke-width:0.4;" x1="352.8" x2="550.4016" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="117.682" x="356.8" y="46.0266">-potencia: int {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="82.8188" x="356.8" y="60.1141">-encendido: bool</text><line style="stroke:#000000;stroke-width:0.4;" x1="352.8" x2="550.4016" y1="65.775" y2="65.775"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="103.0258" x="356.8" y="80.6016">+Motor(potencia: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="93.6906" x="356.8" y="94.6891">+GetPotencia(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="112.3828" x="356.8" y="108.7766">+GetEncendido(): bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="189.6016" x="356.8" y="122.8641">+SetEncendido(encendido: bool): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="87.4727" x="356.8" y="136.9516">+Enciende(): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="73.1555" x="356.8" y="151.0391">+Apaga(): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="116.7414" x="356.8" y="165.1266">+EstaEncendido(): bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="356.8" y="179.2141">+ACadena(): string</text></g><!--reverse link Vehiculo to Motor--><g id="link_Vehiculo_Motor"><path codeline="34" d="M289.728,95.2 C313.928,95.2 329.096,95.2 352,95.2 " fill="transparent" id="Vehiculo-backto-Motor" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="#000000" points="280.128,95.2,284.928,98.4,289.728,95.2,284.928,92,280.128,95.2" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="22.552" x="304.8" y="92.3961">tiene</text></g><!--SRC=[TP91Ry8m38Nl_HK-mWRJZXCtG6ZQ0GcfqtOEYTT611kbPcX3_FUvqB9Ge9Ue-PwV_Qm4_18GXkYBKi3vY5OyKrQjF6rCD6kmmLJLM2JwvLRmpJBb_XVXEP6CO-JTb0D7c0HZLmbQwAyfSA974NbBxYJxBBrWlkOL9jfftMd2qM6yRNOITAnoubsYwUBtQAXIX2HPLbaJTFIdbomxne8FBBtT1ePz1leDOMsYDIEeD2uLi8ze75FuERIO7GQ-nn_FVhqBdq6dRW0R5YJhLU59-atnAygyBklrMs42ZWPNH3Tlw5JnpTwrjrFZa5AVGnjupg9BQTDUZ76TLXcIyqu7NpA7nlreqRkNOD7SrysL_8DPQrQJn2vFKQVZPIoLUQNOJRinHNS3iqhClOOtjtD-20_3OREa4OYsmpy0]--></g></svg></p><p><strong>Requisitos:</strong></p>
+<ul>
+<li>Crea las clases necesarias para implementar correctamente el diagrama de clases. Sobre todo, fíjate en la relación entre clases y lo que conlleva.</li>
+<li>En el programa principal, crea las instancias de los objetos necesarias y Muestra el estado inicial como se ve en la salida</li>
+<li>Arrancar el vehículo y muestra el estado del vehículo después de arrancado.</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-2-agregación-curso-y-estudiantes">Ejercicio 2. Agregación: Curso y Estudiantes </h2>
+<p>Implementa una relación de <strong>agregación</strong> 1 a muchos entre las clases <code>Curso</code> y <code>Estudiante</code>. Un curso puede tener varios estudiantes matriculados, pero los estudiantes existen independientemente del curso.</p>
+<pre class="salida_consola">Ejercicio 2: Agregación Curso-Estudiantes (1 a muchos)
+
+Creando curso independiente...
+Curso: Programación (6 créditos) - 0 estudiantes matriculados
+
+Matriculando estudiantes en el curso...
+Matriculando a Ana García...
+Matriculando a Luis Pérez...
+Matriculando a María López...
+
+Curso después de las matriculaciones:
+Curso: Programación (6 créditos) - 3 estudiantes matriculados
+Estudiantes:
+  - Ana García (20 años)
+  - Luis Pérez (19 años)
+  - María López (21 años)
+
+Matriculando estudiantes en el curso...
+Matriculando a Pedro Sanchez...
+Lo siento, este estudiante no tiene la edad adecuada, debe ser mayor de 17 años.
+
+Matriculando a Marisa Rodríguez...
+Matriculando a Rosa Palacios...
+Lo siento, ya no se pueden matricular más estudiantes, el curso está completo.
+
+Curso después de las matriculaciones:
+Curso: Programación (6 créditos) - 3 estudiantes matriculados
+Estudiantes:
+  - Ana García (20 años)
+  - Luis Pérez (19 años)
+  - María López (21 años)
+  - Marisa Rodríguez (32 años)
+  
+Presiona cualquier tecla para salir...
+</pre>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="240.8px" preserveAspectRatio="none" style="width:810px;height:240px;" version="1.1" viewBox="0 0 810 240" width="810.4px" zoomAndPan="magnify"><defs></defs><g><!--class Curso--><g id="elem_Curso"><rect codeline="11" fill="#FFFAFA" height="230.1" id="Curso" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="446.8922" x="5.6" y="5.6"></rect><ellipse cx="209.9023" cy="22.6813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M208.9898,23.3188 L208.9898,25.3188 L212.4523,25.3188 L212.4523,24.5813 Q212.4523,24.0938 212.6398,23.8813 Q212.8398,23.6688 213.1398,23.6688 Q213.4398,23.6688 213.6273,23.8813 Q213.8148,24.0938 213.8148,24.5813 L213.8148,26.6813 L207.4148,26.6813 Q206.9148,26.6813 206.7023,26.4938 Q206.5023,26.3063 206.5023,25.9938 Q206.5023,25.6938 206.7148,25.5063 Q206.9273,25.3188 207.4148,25.3188 L207.6273,25.3188 L207.6273,19.9938 L207.4148,19.9938 Q206.9148,19.9938 206.7023,19.8063 Q206.5023,19.6188 206.5023,19.3063 Q206.5023,19.0063 206.7023,18.8188 Q206.9148,18.6313 207.4148,18.6313 L213.5148,18.6313 L213.5148,20.7063 Q213.5148,21.1938 213.3273,21.4063 Q213.1523,21.6063 212.8398,21.6063 Q212.5398,21.6063 212.3523,21.4063 Q212.1648,21.1938 212.1648,20.7063 L212.1648,19.9938 L208.9898,19.9938 L208.9898,21.9563 L210.1773,21.9563 Q210.1773,21.4313 210.2773,21.2813 Q210.4898,20.9563 210.8648,20.9563 Q211.1648,20.9563 211.3523,21.1688 Q211.5398,21.3688 211.5398,21.8563 L211.5398,23.4313 Q211.5398,23.8688 211.4398,24.0188 Q211.2273,24.3313 210.8648,24.3313 Q210.4898,24.3313 210.2773,24.0063 Q210.1773,23.8563 210.1773,23.3188 L208.9898,23.3188 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="34.6875" x="224.7023" y="19.5656">«Entity»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="29.8758" x="227.1082" y="33.3016">Curso</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="451.6922" y1="39.7625" y2="39.7625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="61.6383" x="10.4" y="54.5891">-id: Guid {id}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="10.4" y="68.6766">-nombre: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="114.5539" x="10.4" y="82.7641">-creditos: int {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="213.8555" x="10.4" y="96.8516">+numeroMaximoEstudiantes: int {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="149.4172" x="10.4" y="110.9391">-edadMinima: short {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="451.6922" y1="116.6" y2="116.6"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="437.2922" x="10.4" y="131.4266">+Curso(nombre: string, creditos: int, numeromaximoEstudiantes: int, edadMinima: short)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="71.2742" x="10.4" y="145.5141">+GetId(): Guid</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="10.4" y="159.6016">+GetNombre(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="91.8094" x="10.4" y="173.6891">+GetCreditos(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="187.6711" x="10.4" y="187.7766">+GetNumeroMaximoEstudiantes(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="125.4258" x="10.4" y="201.8641">+GetEdadMinima(): short</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="197.668" x="10.4" y="215.9516">+Matricula(estudiante: Estudiante): bool</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="10.4" y="230.0391">+ACadena(): string</text></g><!--class Estudiante--><g id="elem_Estudiante"><rect codeline="27" fill="#FFFAFA" height="151.1" id="Estudiante" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="252.0844" x="552.8" y="45.2"></rect><ellipse cx="648.9789" cy="58" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M651.1914,54.7 Q651.3164,54.525 651.4664,54.4375 Q651.6164,54.35 651.7914,54.35 Q652.0914,54.35 652.2789,54.5625 Q652.4664,54.7625 652.4664,55.25 L652.4664,56.4125 Q652.4664,56.9 652.2789,57.1125 Q652.0914,57.325 651.7914,57.325 Q651.5164,57.325 651.3539,57.1625 Q651.1914,57.0125 651.1039,56.6 Q651.0664,56.3125 650.9164,56.1625 Q650.6539,55.8625 650.1664,55.6875 Q649.6789,55.5125 649.1789,55.5125 Q648.5664,55.5125 648.0539,55.775 Q647.5539,56.0375 647.1539,56.6375 Q646.7664,57.2375 646.7664,58.0625 L646.7664,58.9375 Q646.7664,59.925 647.4789,60.5875 Q648.1914,61.2375 649.4664,61.2375 Q650.2164,61.2375 650.7414,61.0375 Q651.0539,60.9125 651.3914,60.5625 Q651.6039,60.35 651.7164,60.2875 Q651.8414,60.225 652.0039,60.225 Q652.2664,60.225 652.4664,60.4375 Q652.6789,60.6375 652.6789,60.9125 Q652.6789,61.1875 652.4039,61.5125 Q652.0039,61.975 651.3664,62.2375 Q650.5039,62.6 649.4664,62.6 Q648.2539,62.6 647.2914,62.1 Q646.5039,61.7 645.9539,60.85 Q645.4039,59.9875 645.4039,58.9625 L645.4039,58.0375 Q645.4039,56.975 645.8914,56.0625 Q646.3914,55.1375 647.2664,54.65 Q648.1414,54.15 649.1289,54.15 Q649.7164,54.15 650.2289,54.2875 Q650.7539,54.4125 651.1914,54.7 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="52.9266" x="665.3789" y="62.5828">Estudiante</text><line style="stroke:#000000;stroke-width:0.4;" x1="553.6" x2="804.0844" y1="70.8" y2="70.8"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.8422" x="557.6" y="85.6266">-dni: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="557.6" y="99.7141">-nombre: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="100.2531" x="557.6" y="113.8016">-edad: int {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="553.6" x2="804.0844" y1="119.4625" y2="119.4625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="242.4844" x="557.6" y="134.2891">+Estudiante(dni: string, nombre: string, edad: int)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="82.4688" x="557.6" y="148.3766">+GetDni(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="557.6" y="162.4641">+GetNombre(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="76.2617" x="557.6" y="176.5516">+GetEdad(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="557.6" y="190.6391">+ACadena(): string</text></g><!--reverse link Curso to Estudiante--><g id="link_Curso_Estudiante"><path codeline="38" d="M462.616,120.8 C496.84,120.8 521.496,120.8 552.584,120.8 " fill="transparent" id="Curso-backto-Estudiante" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="453.016,120.8,457.816,124,462.616,120.8,457.816,117.6,453.016,120.8" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="50.8625" x="477.6" y="117.9961">matricula a</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="15.6102" x="530.9102" y="131.9153">0..*</text></g><!--SRC=[XLB1Rk903BtdAwps4hO1SMiLLPKWfQW7gfMejESXumMBn5xDJCIsgF- -4nB8G8CsboX-p-_PpodmjmCdO6YzSQ39OEv8EB9RuZ_Ag1BoGbaxSSxGgdBucWilwHDX750cniWkaq8CJ0kLRmFef_zKQvpwrzf8nRgX_TgGmsKfMmouMUqq5QFHz8irX0kf9Siku5p2xqQnzH2oYoARgyAFFdg8eiDQa5N62i3ZOpnBRbzUxk_7um7Cs97xU7hQH-2V8P1EOLwHXZtfhxR6KguCfc1zBho6lK6bXOkF8vuRrEJ4fa3iBk4xuAf48mlrbqgPMLTfKkomdpq4r4elYAbKtd0ZfaVmi4XyFbLoFaNIkfQzhibtbq6hFKVtgkD14q9NUpkOrVN6haEorhR6l7JGqh_sDzxiDCf1lXwc1HVAU-LLeM8yzQVGQNdwIgHesPDCQMGLpFXrl7pN0iSxQwRh1_tVmUlqhXoxiue3YmGkhtMI289_PkfB-7hsTNJdUVQ6qFpuCXp2pNWq-d4Jvf52UKmPr3y0]--></g></svg></p><p><strong>Requisitos:</strong></p>
+<ul>
+<li>La relación la representaremos con una lista privada de estudiantes matriculados, como se puede ver en el tema.</li>
+<li>Método <code>Matricula(Estudiante estudiante)</code> para matriculaf un nuevo estudiante, deberán de quedar plazas y el estudiante debe tener la edad adecuada. Devolviendo true en caso de que la matrícula sea exitosa.</li>
+<li>El programa principal, tendrá un método público y estático <code>GestionMatricula</code> que creara los objetos necesarios y las llamadas a los métodos para conseguir la salida especificada.</li>
+</ul>
+</div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-3-sistema-de-coordenadas-con-records">Ejercicio 3. Sistema de coordenadas con records </h2>
+<p>Implementa un sistema de coordenadas geográficas usando records para representar Value Objects inmutables.</p>
+<pre class="salida_consola">Ejercicio 3: Sistema de coordenadas con records
+
+Creando puntos de interés turístico...
+Punto 1: Torre Eiffel
+Coordenadas: 48.8584° N, 2.2945° E
+Altitud: 300 metros
+
+Punto 2: Sagrada Familia
+Coordenadas: 41.4036° N, 2.1744° E  
+Altitud: 170 metros
+
+Punto 3: Big Ben
+Coordenadas: 51.4994° N, -0.1245° E
+Altitud: 96 metros
+
+Calculando distancias entre puntos...
+Distancia entre Torre Eiffel y Sagrada Familia: 831.45 km
+Distancia entre Torre Eiffel y Big Ben: 344.12 km
+Distancia entre Sagrada Familia y Big Ben: 1137.89 km
+
+--- Verificación de hemisferios ---
+Torre Eiffel: Hemisferio Norte (true), Hemisferio Este (true)
+Sagrada Familia: Hemisferio Norte (true), Hemisferio Este (true)
+Big Ben: Hemisferio Norte (true), Hemisferio Este (false)
+
+--- Movimiento individual de coordenadas ---
+Torre Eiffel movida 0.01° al Norte: 48.8684° N, 2.2945° E, 300m
+Sagrada Familia movida 0.05° al Este: 41.4036° N, 2.2244° E, 170m
+
+Creando ruta Europa Occidental...
+Agregando Torre Eiffel a la ruta...
+Agregando Sagrada Familia a la ruta...
+Agregando Big Ben a la ruta...
+
+--- Estado inicial de la ruta ---
+Ruta Europa Occidental:
+1. Torre Eiffel (París) - 48.8584° N, 2.2945° E, 300m
+2. Sagrada Familia (Barcelona) - 41.4036° N, 2.1744° E, 170m  
+3. Big Ben (Londres) - 51.4994° N, -0.1245° E, 96m
+
+--- Cálculos generales ---
+Distancia total de la ruta: 1175.57 km
+Altitud promedio de la ruta: 188.67 metros
+¿La ruta tiene más puntos al Este? true (2 puntos en hemisferio Este vs 1 en Oeste)
+
+--- Moviendo toda la ruta 0.1° al Norte ---
+Aplicando movimiento a todos los puntos...
+
+--- Estado después del movimiento ---
+Ruta Europa Occidental (movida al Norte):
+1. Torre Eiffel (París) - 48.9584° N, 2.2945° E, 300m
+2. Sagrada Familia (Barcelona) - 41.5036° N, 2.1744° E, 170m  
+3. Big Ben (Londres) - 51.5994° N, -0.1245° E, 96m
+
+--- Nuevos cálculos tras el movimiento ---
+Nueva distancia total: 1175.32 km
+Nueva altitud promedio: 188.67 metros (sin cambios)
+¿La ruta modificada sigue teniendo más puntos al Este? true
+
+"Presiona cualquier tecla para salir..."
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Record Coordenada</strong>:</p>
+<ul>
+<li>
+<p>Con dos propiedades de tipo double Latitud, Longitud y una entera Altitud.</p>
+</li>
+<li>
+<p>Este record deberá validar las entradas por lo que será de tipo extendido. Validará latitud entre -90 y 90 grados, validará longitud entre -180 y 180 grados y validará altitud &gt;= 0. De forma que si alguno de los valores sobrepasa los límites, se asignará por defecto el valor del límite.</p>
+</li>
+<li>
+<p><strong>Métodos en Coordenada</strong>:</p>
+<ul>
+<li><code>DistanciaA(Coordenada otra)</code> método que devuelve un double con la distancia entre dos coordenada usando la fórmula de Haversine en km (busca en la nube como es esta fórmula).</li>
+<li><code>EsHemisferioNorte()</code> método que devolverá true si la latitud &gt;= 0.</li>
+<li><code>EsHemisferioEste()</code>  método que devolverá true si la longitud &gt;= 0.</li>
+<li><code>MueveNorte(double grados)</code> Crea una nueva Coordenada y la devuelve con, solo, la latitud modificada.</li>
+<li><code>MueveEste(double grados)</code> Crea una nueva Coordenada y la devuelve con, solo, la longitud modificada.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Record PuntoInteres de tipo simplificado</strong>:</p>
+<ul>
+<li>Con las propiedades de tipo string, Nombre y de tipo Coordenada, Ubicacion.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase RutaTuristica</strong>:</p>
+<ul>
+<li>Contiene unà propiedad id privada y autoimplementada de tipo Guid.</li>
+<li>Contiene una lista privada de <code>PuntoInteres</code> que representará la relación de agregación.</li>
+<li>Contiene una propiedad de solo lectura <code>Nombre</code> y pública de acceso.</li>
+<li>Contiene una propiedad de solo lectura <code>Descripción</code> y pública de acceso.</li>
+<li><code>AgregaPunto(PuntoInteres punto)</code> método que añade un punto de interes a la ruta.</li>
+<li><code>CalculaDistanciaTotal()</code> método que devuelve un doble con la distancia total de toda la ruta.</li>
+<li><code>CalculaAltitudPromedio()</code> método que devuelve un doble con la altitud promedio de toda la ruta.</li>
+<li><code>MueveNorteRuta(double grados)</code> método que mueve al norte todos los puntos de la ruta, con los grados de entrada.</li>
+<li><code>RutaMasAlEste</code> método que devolverá true, si hay más puntos situados en el Hemisferio Este.</li>
+<li><code>MuestraRuta()</code> método que muestra los datos de la ruta.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Program</strong>:<br>
+Crear un método en el programa principal <code>GestionRutas</code> que realice las siguientes funciones:</p>
+<ul>
+<li>cree los 3 puntos de interés indicados</li>
+<li>Calcular distancias entre puntos usando <code>DistanciaA()</code></li>
+<li>Verificar hemisferios con <code>EsHemisferioNorte()</code> y <code>EsHemisferioEste()</code></li>
+<li>Demostrar movimientos individuales con <code>MueveNorte()</code> y <code>MueveEste()</code></li>
+<li>Crear ruta turística y agregar puntos con <code>AgregaPunto()</code></li>
+<li>Calcular estadísticas de ruta con <code>CalculaDistanciaTotal()</code> y <code>CalculaAltitudPromedio()</code></li>
+<li>Verificar distribución hemisférica con <code>RutaMasAlEste()</code></li>
+<li>Aplicar movimiento a toda la ruta con <code>MueveNorteRuta()</code></li>
+<li>Mostrar ruta completa con <code>MuestraRuta()</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-4-sistema-de-gestión-de-teléfonos">Ejercicio 4. Sistema de gestión de teléfonos </h2>
+<p>Implementa un sistema de gestión de teléfonos con diferentes tipos de relaciones entre clases: agregación (1:1), composición (1:n), asociación (1:n) y uso de tipos valor.</p>
+<pre class="salida_consola">Ejercicio 4: Sistema de gestión de teléfonos
+
+Creando propietario del teléfono...
+Propietario: Ana García
+DNI: 12345678A
+Fecha de nacimiento: 15/05/1990
+
+Creando compañía telefónica...
+Compañía: Movistar
+Código: ES001
+
+Creando teléfono con propietario...
+Teléfono ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+Marca: iPhone
+Modelo: 15 Pro
+Fecha de compra: 15/08/2025
+Propietario: Ana García
+Compañía: Movistar
+
+Añadiendo contactos al teléfono...
+Contacto añadido: Luis Pérez - 666111222
+Contacto añadido: María López - 677333444
+Contacto añadido: Pedro Ruiz - 688555666
+
+Registrando teléfono en la compañía...
+Teléfono registrado en Movistar
+Teléfonos registrados en Movistar: 1
+
+=== ESTADO FINAL DEL SISTEMA ===
+--- Teléfono ---
+Teléfono ID: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+Marca: iPhone, Modelo: 15 Pro
+Fecha de compra: 15/08/2025
+Propietario: Ana García (DNI: 12345678A)
+Compañía: Movistar (ES001)
+Contactos almacenados: 3
+  - Luis Pérez: 666111222
+  - María López: 677333444
+  - Pedro Ruiz: 688555666
+--- Compañía ---
+Compañía: Movistar (ES001)
+Teléfonos registrados: 1
+
+"Presiona cualquier tecla para salir...
+</pre>
+<p align="center" class="plantuml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="454.4px" preserveAspectRatio="none" style="width:688px;height:454px;" version="1.1" viewBox="0 0 688 454" width="688.8px" zoomAndPan="magnify"><defs></defs><g><!--class Telefono--><g id="elem_Telefono"><rect codeline="12" fill="#FFFAFA" height="221.5375" id="Telefono" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="618.1133" x="38.4" y="5.6"></rect><ellipse cx="322.2637" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M324.4762,15.1 Q324.6012,14.925 324.7512,14.8375 Q324.9012,14.75 325.0762,14.75 Q325.3762,14.75 325.5637,14.9625 Q325.7512,15.1625 325.7512,15.65 L325.7512,16.8125 Q325.7512,17.3 325.5637,17.5125 Q325.3762,17.725 325.0762,17.725 Q324.8012,17.725 324.6387,17.5625 Q324.4762,17.4125 324.3887,17 Q324.3512,16.7125 324.2012,16.5625 Q323.9387,16.2625 323.4512,16.0875 Q322.9637,15.9125 322.4637,15.9125 Q321.8512,15.9125 321.3387,16.175 Q320.8387,16.4375 320.4387,17.0375 Q320.0512,17.6375 320.0512,18.4625 L320.0512,19.3375 Q320.0512,20.325 320.7637,20.9875 Q321.4762,21.6375 322.7512,21.6375 Q323.5012,21.6375 324.0262,21.4375 Q324.3387,21.3125 324.6762,20.9625 Q324.8887,20.75 325.0012,20.6875 Q325.1262,20.625 325.2887,20.625 Q325.5512,20.625 325.7512,20.8375 Q325.9637,21.0375 325.9637,21.3125 Q325.9637,21.5875 325.6887,21.9125 Q325.2887,22.375 324.6512,22.6375 Q323.7887,23 322.7512,23 Q321.5387,23 320.5762,22.5 Q319.7887,22.1 319.2387,21.25 Q318.6887,20.3875 318.6887,19.3625 L318.6887,18.4375 Q318.6887,17.375 319.1762,16.4625 Q319.6762,15.5375 320.5512,15.05 Q321.4262,14.55 322.4137,14.55 Q323.0012,14.55 323.5137,14.6875 Q324.0387,14.8125 324.4762,15.1 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="43.5859" x="338.6637" y="22.9828">Telefono</text><line style="stroke:#000000;stroke-width:0.4;" x1="39.2" x2="655.7133" y1="31.2" y2="31.2"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="43.2" y="46.0266">-numero: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="122.0133" x="43.2" y="60.1141">-marca: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="127.6297" x="43.2" y="74.2016">-modelo: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="177.4281" x="43.2" y="88.2891">-fechaCompra: DateOnly {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="39.2" x2="655.7133" y1="93.95" y2="93.95"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="608.5133" x="43.2" y="108.7766">+Telefono(marca: string, modelo: string, fechaCompra: DateOnly, propietario: Propietario, compañia: CompañiaTelefonica)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="43.2" y="122.8641">+GetNumero(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="96.7805" x="43.2" y="136.9516">+GetMarca(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="102.3969" x="43.2" y="151.0391">+GetModelo(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="155.925" x="43.2" y="165.1266">+GetFechaCompra(): DateOnly</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="146.6008" x="43.2" y="179.2141">+GetPropietario(): Propietario</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="192.0516" x="43.2" y="193.3016">+GetCompañia(): CompañiaTelefonica</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="211.3727" x="43.2" y="207.3891">+AñadeContacto(contacto: Contacto): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="43.2" y="221.4766">+ACadena(): string</text></g><!--class Propietario--><g id="elem_Propietario"><rect codeline="28" fill="#FFFAFA" height="94.75" id="Propietario" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="204.1289" x="5.6" y="322.4"></rect><ellipse cx="77.1832" cy="335.2" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M79.3957,331.9 Q79.5207,331.725 79.6707,331.6375 Q79.8207,331.55 79.9957,331.55 Q80.2957,331.55 80.4832,331.7625 Q80.6707,331.9625 80.6707,332.45 L80.6707,333.6125 Q80.6707,334.1 80.4832,334.3125 Q80.2957,334.525 79.9957,334.525 Q79.7207,334.525 79.5582,334.3625 Q79.3957,334.2125 79.3082,333.8 Q79.2707,333.5125 79.1207,333.3625 Q78.8582,333.0625 78.3707,332.8875 Q77.8832,332.7125 77.3832,332.7125 Q76.7707,332.7125 76.2582,332.975 Q75.7582,333.2375 75.3582,333.8375 Q74.9707,334.4375 74.9707,335.2625 L74.9707,336.1375 Q74.9707,337.125 75.6832,337.7875 Q76.3957,338.4375 77.6707,338.4375 Q78.4207,338.4375 78.9457,338.2375 Q79.2582,338.1125 79.5957,337.7625 Q79.8082,337.55 79.9207,337.4875 Q80.0457,337.425 80.2082,337.425 Q80.4707,337.425 80.6707,337.6375 Q80.8832,337.8375 80.8832,338.1125 Q80.8832,338.3875 80.6082,338.7125 Q80.2082,339.175 79.5707,339.4375 Q78.7082,339.8 77.6707,339.8 Q76.4582,339.8 75.4957,339.3 Q74.7082,338.9 74.1582,338.05 Q73.6082,337.1875 73.6082,336.1625 L73.6082,335.2375 Q73.6082,334.175 74.0957,333.2625 Q74.5957,332.3375 75.4707,331.85 Q76.3457,331.35 77.3332,331.35 Q77.9207,331.35 78.4332,331.4875 Q78.9582,331.6125 79.3957,331.9 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="54.1625" x="93.5832" y="339.7828">Propietario</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="208.9289" y1="348" y2="348"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.8422" x="10.4" y="362.8266">-dni: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="10.4" y="376.9141">-nombre: string {readonly}</text><line style="stroke:#000000;stroke-width:0.4;" x1="6.4" x2="208.9289" y1="382.575" y2="382.575"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="194.5289" x="10.4" y="397.4016">+Propietario(dni: string, nombre: string)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="10.4" y="411.4891">+ACadena(): string</text></g><!--class Compa?iaTelefonica--><g id="elem_CompañiaTelefonica"><rect codeline="35" fill="#FFFAFA" height="159.6625" id="CompañiaTelefonica" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="270.7492" x="238" y="289.6"></rect><ellipse cx="318.6121" cy="306.6813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M317.6996,307.3188 L317.6996,309.3188 L321.1621,309.3188 L321.1621,308.5813 Q321.1621,308.0938 321.3496,307.8813 Q321.5496,307.6688 321.8496,307.6688 Q322.1496,307.6688 322.3371,307.8813 Q322.5246,308.0938 322.5246,308.5813 L322.5246,310.6813 L316.1246,310.6813 Q315.6246,310.6813 315.4121,310.4938 Q315.2121,310.3063 315.2121,309.9938 Q315.2121,309.6938 315.4246,309.5063 Q315.6371,309.3188 316.1246,309.3188 L316.3371,309.3188 L316.3371,303.9938 L316.1246,303.9938 Q315.6246,303.9938 315.4121,303.8063 Q315.2121,303.6188 315.2121,303.3063 Q315.2121,303.0063 315.4121,302.8188 Q315.6246,302.6313 316.1246,302.6313 L322.2246,302.6313 L322.2246,304.7063 Q322.2246,305.1938 322.0371,305.4063 Q321.8621,305.6063 321.5496,305.6063 Q321.2496,305.6063 321.0621,305.4063 Q320.8746,305.1938 320.8746,304.7063 L320.8746,303.9938 L317.6996,303.9938 L317.6996,305.9563 L318.8871,305.9563 Q318.8871,305.4313 318.9871,305.2813 Q319.1996,304.9563 319.5746,304.9563 Q319.8746,304.9563 320.0621,305.1688 Q320.2496,305.3688 320.2496,305.8563 L320.2496,307.4313 Q320.2496,307.8688 320.1496,308.0188 Q319.9371,308.3313 319.5746,308.3313 Q319.1996,308.3313 318.9871,308.0063 Q318.8871,307.8563 318.8871,307.3188 L317.6996,307.3188 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="34.6875" x="369.0309" y="303.5656">«Entity»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="102.725" x="335.0121" y="317.3016">CompañiaTelefonica</text><line style="stroke:#000000;stroke-width:0.4;" x1="238.8" x2="507.9492" y1="323.7625" y2="323.7625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="61.6383" x="242.8" y="338.5891">-id: Guid {id}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="128.8711" x="242.8" y="352.6766">-nombre: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="173.0695" x="242.8" y="366.7641">-telefonosRegistrados: List&lt;string&gt;</text><line style="stroke:#000000;stroke-width:0.4;" x1="238.8" x2="507.9492" y1="372.425" y2="372.425"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="261.1492" x="242.8" y="387.2516">+CompañiaTelefonica(codigo: string, nombre: string)</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="105.4977" x="242.8" y="401.3391">+GetNombre(): string</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="203.8859" x="242.8" y="415.4266">+GetCantidadTelefonosRegistrados(): int</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="215.7258" x="242.8" y="429.5141">+RegistraTelefono(telefono: Telefono): void</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="94.3141" x="242.8" y="443.6016">+ACadena(): string</text></g><!--class Contacto--><g id="elem_Contacto"><rect codeline="47" fill="#FFFAFA" height="68.7375" id="Contacto" rx="2" ry="2" style="stroke:#000000;stroke-width:0.4;" width="146.893" x="536.4" y="335.2"></rect><ellipse cx="584.0328" cy="352.2813" fill="#FF7700" rx="8.8" ry="8.8" style="stroke:#181818;stroke-width:0.8;"></ellipse><path d="M584.5078,354.8938 L586.4828,350.1938 L586.1703,350.1938 Q585.6828,350.1938 585.4703,350.0063 Q585.2578,349.8188 585.2578,349.5063 Q585.2578,349.2063 585.4703,349.0188 Q585.6828,348.8313 586.1703,348.8313 L587.9953,348.8313 Q588.4828,348.8313 588.6953,349.0188 Q588.9078,349.2063 588.9078,349.5063 Q588.9078,349.8813 588.5828,350.0938 Q588.4328,350.1938 587.9578,350.1938 L585.1703,356.8813 L583.8578,356.8813 L581.0703,350.1938 Q580.5953,350.1938 580.4453,350.0938 Q580.1203,349.8813 580.1203,349.5063 Q580.1203,349.2063 580.3328,349.0188 Q580.5453,348.8313 581.0328,348.8313 L582.8703,348.8313 Q583.3578,348.8313 583.5578,349.0188 Q583.7703,349.2063 583.7703,349.5063 Q583.7703,349.8188 583.5578,350.0063 Q583.3578,350.1938 582.8703,350.1938 L582.5453,350.1938 L584.5078,354.8938 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="37.8891" x="603.902" y="349.1656">«record»</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="44.8273" x="600.4328" y="362.9016">Contacto</text><line style="stroke:#000000;stroke-width:0.4;" x1="537.2" x2="682.493" y1="369.3625" y2="369.3625"></line><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="133.5414" x="541.2" y="384.1891">+Nombre: string {readonly}</text><text fill="#000000" font-family="sans-serif" font-size="11.2" lengthAdjust="spacing" textLength="137.293" x="541.2" y="398.2766">+Telefono: string {readonly}</text></g><!--reverse link Telefono to Propietario--><g id="link_Telefono_Propietario"><path codeline="52" d="M207.96,233.9598 C199.904,241.8558 198.952,243.16 191.6,251.2 C171.624,273.048 152.216,299.744 137.096,322.168 " fill="transparent" id="Telefono-backto-Propietario" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="214.816,227.24,209.1481,228.3146,207.96,233.9598,213.628,232.8852,214.816,227.24" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="74.5824" x="192.4" y="262.7961">tiene propietario</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="5.784" x="134.7529" y="313.5991">1</text></g><!--reverse link Telefono to Compa?iaTelefonica--><g id="link_Telefono_CompañiaTelefonica"><path codeline="53" d="M272.1101,236.7601 C269.9981,249.5681 272.272,253.064 277.2,265.6 C280.424,273.8 284.64,281.728 289.504,289.312 " fill="transparent" id="Telefono-backto-CompañiaTelefonica" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="transparent" points="273.672,227.288,269.7337,231.5034,272.1101,236.7601,276.0484,232.5447,273.672,227.288" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="102.9133" x="278" y="262.7961">pertenece a compañia</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="5.784" x="277.5459" y="280.9647">1</text></g><!--reverse link Compa?iaTelefonica to Telefono--><g id="link_CompañiaTelefonica_Telefono"><path codeline="55" d="M383.1024,284.6419 C383.7984,276.6099 383.984,273.336 384.4,265.6 C385.08,253.08 384.248,240.12 382.456,227.32 " fill="transparent" id="CompañiaTelefonica-backto-Telefono" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="#000000" points="382.688,289.424,386.4976,282.5271,383.0333,285.4389,380.1215,281.9746,382.688,289.424" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="117.9293" x="386" y="262.7961">registra números teléfono</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="15.6102" x="367.6349" y="280.8153">0..*</text></g><!--reverse link Telefono to Contacto--><g id="link_Telefono_Contacto"><path codeline="54" d="M492.5653,233.7312 C501.2933,241.6512 502.712,243.216 510.8,251.2 C537.704,277.744 565.168,310.88 584.36,335.2 " fill="transparent" id="Telefono-backto-Contacto" style="stroke:#000000;stroke-width:0.8;"></path><polygon fill="#000000" points="485.456,227.28,486.8603,232.8754,492.5653,233.7312,491.161,228.1358,485.456,227.28" style="stroke:#000000;stroke-width:0.8;"></polygon><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="69.9563" x="522.8" y="262.7961">tiene contactos</text><text fill="#000000" font-family="sans-serif" font-size="10.4" lengthAdjust="spacing" textLength="15.6102" x="563.714" y="326.4671">0..*</text></g><!--SRC=[ZLHDRzf04BtxLupe1O91z9JAGaZWXgXIcqO5jUTbTm8hx1rhlJHAKNvGZxdsoX_h67-6E25SsFLxC_DcTcOS9U08LkGSnQ2qHUaq6I_TQfC8AsAGaKZJgNDMhtOElqWo2_q7OTIWJAsb-v0YiZ2BXDmse5k-YZNE-6zjQMTKJlkrqGuNCMsnmGspI3Eo2csxivnmucfXwBx1EOMNLfYK8JJEyr8f8fO-_EHvtZ4lM6A4TsG8zXxmRm1c5wEb059EsAnXRr4eCj73Ou77mahn1amAepVCxr1kH4XnOjd9P-7mEuEdj7ubg_iid7_YtcztvqDYAT7eXDNClQqlFaZcYiEJPdfO7ejWMefU4VuQtSsn3jrU6Qj6lcMIMe6Zk3PaNilCu59eJMXep0YDQysfz6QC5l45Stfu4Wf3Cav8HrrP73AJ_CJMlqchaXuospJpUInxew6YQWzbzEkFQoXUMNmDxpSTTXkE_1F3tdbfBUd3UDozyZ_CvvUNer4FhepJxc4ogPHh5S3rJYlOQ_K-mGDmHHkcFt2jcSHe6i1NFevpaqaXjKKFLrxfDPrBCckr8z3MDw7WB9HGonOT6L_pKEVa4gW6fvGULBFqZdVVQ8LLdq2CRaCghKfUVEOw_wphp0kJDrPLvpxSd6c2PINi9OCbL0k91WFeVEmywy80d4Q3pVb-QT3M6m4aQ1sRIWHHBu7Q-28p7Ws75vqwqJ9QEKAfr-Qwi1gpWtgR1boN_4707FvbcoJDckdmDqF_0m00]--></g></svg></p><p><strong>Requisitos:</strong></p>
+<ul>
+<li>En la clase <strong>CompañiaTelefonica</strong>:
+<ul>
+<li>Se deberá crear una lista privada de strings con números de teléfonos registrados representará la (asociación).</li>
+<li>Método <code>RegistraTelefono</code> que <strong>extrae el número del teléfono</strong> y lo añade a la lista de strings. La relación de asociación se produce únicamente a través de este método ya que en este método se usa el TAD Teléfono.</li>
+</ul>
+</li>
+<li>En el programa principal se creará un método público y estático <code>GestionTelefono</code>. En el que se implementarán los objetos y las llamadas a los métodos necesarios para conseguir la salida.</li>
+</ul>
+</div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-5-agregación-múltiple-sistema-de-refugio-de-animales">Ejercicio 5. Agregación múltiple: Sistema de refugio de animales </h2>
+<p>Implementa un sistema de refugio de animales con agregación múltiple (muchos a muchos) entre <code>Animal</code> y <code>Cuidador</code>, donde un animal puede tener varios cuidadores y un cuidador puede cuidar varios animales. Esta relación se traspasa a una clase nueva Refugio.</p>
+<pre class="salida_consola">Ejercicio 5: Sistema de refugio con agregación múltiple
+
+Creando refugio...
+Refugio creado: Hogar Feliz
+
+Registrando cuidadores en el refugio...
+Cuidador añadido: Ana López (Veterinaria) - Máximo 5 mascotas
+Cuidador añadido: Carlos Ruiz (Entrenador) - Máximo 3 mascotas
+Cuidador añadido: María Pérez (Voluntaria) - Máximo 2 mascotas
+
+Registrando animales en el refugio...
+Animal añadido: Max (Perro) - Edad: 3 años
+Animal añadido: Luna (Gato) - Edad: 2 años
+
+Realizando asignaciones de cuidadores...
+Asignando Max a Ana López...
+  - Verificando disponibilidad de Ana López... Disponible
+  - Max ha sido asignado correctamente
+Asignando Max a Carlos Ruiz...
+  - Verificando disponibilidad de Carlos Ruiz... Disponible
+  - Max ha sido asignado correctamente
+Asignando Luna a Ana López...
+  - Verificando disponibilidad de Ana López... Disponible
+  - Luna ha sido asignado correctamente
+Asignando Luna a María Pérez...
+  - Verificando disponibilidad de María Pérez... Disponible
+  - Luna ha sido asignado correctamente
+
+Estado actual del refugio:
+Refugio: Hogar Feliz
+Total de animales: 2
+Total de cuidadores: 3
+Total de asignaciones: 4
+--- Información de animales ---
+Animal: Max (Perro) - 3 años
+  Estado: Asignado
+  Número de cuidadores: 2
+
+Animal: Luna (Gato) - 2 años
+  Estado: Asignado
+  Número de cuidadores: 2
+
+--- Información de cuidadores ---
+Cuidador: Ana López (Veterinaria)
+  Mascotas asignadas: 2/5
+  Disponible para más asignaciones: Sí
+Cuidador: Carlos Ruiz (Entrenador)
+  Mascotas asignadas: 1/3
+  Disponible para más asignaciones: Sí
+Cuidador: María Pérez (Voluntaria)
+  Mascotas asignadas: 1/2
+  Disponible para más asignaciones: Sí
+--- Resumen del refugio ---
+Detalle de asignaciones:
+  - Max  Ana López
+  - Max  Carlos Ruiz
+  - Luna  Ana López
+  - Luna  María Pérez
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>
+<p><strong>Clase Animal</strong>:</p>
+<ul>
+<li>Propiedades <code>id</code> (Guid), <code>Nombre</code>, <code>Especie</code> (string) de solo lectura.</li>
+<li>Propiedad privada <code>Asignado</code> (bool).</li>
+<li>Proiedad  <code>Edad</code> (int) pública de acceso y modificación.</li>
+<li>Método <code>EstaAsignado()</code> para notificar al refugio que la mascota ha sido asignada mediante un boolean.</li>
+<li>Método <code>Libera</code> que modifica la propiedad Asignado a false.</li>
+<li>Método <code>Asigna</code> que permite asignar la propiedad a true.</li>
+<li>Métodos <code>ACadena()</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Cuidador</strong>:</p>
+<ul>
+<li>Propiedades <code>Dni</code>, <code>Nombre</code>, <code>NumeroMaximoMascotas</code> y <code>Especialidad</code> (string) de solo lectura.</li>
+<li>Propiedad privada <code>NumeroMascotasAsignadas</code> de tipo entero y que se incrementará mediante el método <code>Disponible</code>.</li>
+<li>Método público <code>AsignaMascotaSiDisponible</code> que comprueba si todavía puede ser asignado a una mascota. Devolviendo true en caso afirmativo e incrementando el número de mascotas asignadas.</li>
+<li>Método públic <code>Libera</code> que decrementará el número de mascotas asignadas en uno.</li>
+<li>Métodos <code>ACadena()</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Clase Refugio</strong> (entidad externa gestora):</p>
+<ul>
+<li>Propiedad <code>id</code>(Guid)</li>
+<li>Propiedad <code>Nombre</code> (string, readonly)</li>
+<li>Lista privada de animales gestionados (agregación)</li>
+<li>Lista privada de cuidadores gestionados (agregación)</li>
+<li>Lista privada de asignaciones (animal-cuidador) tipo tupla.</li>
+<li>Métodos públicos <code>AñadeCuidador</code>, <code>EliminaCuidador</code>. Añadirá un cuidador a la lista siempre que no se haya añadido antes.</li>
+<li>Métodos públicos <code>AñadeMascota</code>, <code>EliminaMascota</code>. Idénticos a los anteriores pero con las mascotas.</li>
+<li>Método <code>AsignaAnimalACuidador()</code> que gestiona la relación entre animal y cuidador. Teniendo en cuenta los métodos creados en las anteriores clases para gestionar los cuidados de forma correcta.</li>
+<li>Propiedad calculada <code>NumeroAsignaciones</code> para contar las asignaciones</li>
+<li>Constructores necesarios y método a <code>ACadena()</code> que devuelva una cadena con toda las información que se muestra en la salida.</li>
+<li><strong>Importante!!</strong>  Se deberá gestionar correctamente la integridad referencial de las listas, es decir, si se elimina una mascota o cuidador, deberemos gestionar correctamente la lista de asignaciones.</li>
+</ul>
+</li>
+</ul>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

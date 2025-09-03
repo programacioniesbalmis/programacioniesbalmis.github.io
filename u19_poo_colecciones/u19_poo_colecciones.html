@@ -1,0 +1,950 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 19</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-19">Unidad 19 </h1>
+<p>Descargar estos apunte en <a href="./u19_poo_colecciones.pdf">pdf</a> o <a href="./u19_poo_colecciones.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#colecciones" class="md-toc-link"><p>Colecciones</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#lista-simple-listt" class="md-toc-link"><p>Lista simple List&lt;T&gt;</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#crear-una-lista" class="md-toc-link">
+            <p>Crear una lista</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#añadir-elementos-listt" class="md-toc-link">
+            <p>Añadir elementos List&lt;T&gt;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#acceder-y-modificar-elementos-listt" class="md-toc-link">
+            <p>Acceder y modificar elementos List&lt;T&gt;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#eliminar-elementos-listt" class="md-toc-link">
+            <p>Eliminar elementos List&lt;T&gt;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ordenar-elementos-listt" class="md-toc-link">
+            <p>Ordenar elementos List&lt;T&gt;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#buscar-lineal-elementos-listt" class="md-toc-link">
+            <p>Buscar lineal elementos List&lt;T&gt;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#buscar-binaria-elementos-listt" class="md-toc-link">
+            <p>Buscar binaria elementos List&lt;T&gt;</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tablas-hash-o-diccionarios" class="md-toc-link">
+            <p>Tablas Hash o Diccionarios</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#crear-e-inicializar-un-diccionario" class="md-toc-link"><p>Crear e inicializar un Diccionario</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#profundizando-en-el-uso-de-los-diccionarios" class="md-toc-link"><p>Profundizando en el uso de los diccionarios</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usando-tipos-propios-como-claves" class="md-toc-link">
+            <p>Usando tipos propios como claves</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#listas-enlazadas" class="md-toc-link">
+            <p>Listas enlazadas</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="colecciones">Colecciones </h2>
+<h3 id="introducción">Introducción </h3>
+<p>Uno de los casos más comunes de usu de tipos genéricos o parametrizados, son el de las <strong>colecciones</strong>. Donde se nos pide que implementemos una colección de objetos de un tipo concreto, pero las operaciones de añadir, eliminar, buscar, etc. son idénticas independientemente del tipo de objeto que se almacene en la colección. Por esta razón, C# utilizará el mecanismo de <strong>clases parametrizadas</strong> o <strong>clases genéricas</strong> para poder solucionar este problema.</p>
+<p>Una <strong>colección</strong> es un tipo de dato cuyos objetos almacenan otros objetos. Un ejemplo típico son las tablas, aunque en la BCL se incluyen muchas otras clases de colecciones que iremos viendo a lo largo de este tema. En las versiones recientes de C# las podemos encontrar en <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic">System.Collections.Generic</a></strong>.</p>
+<p>Aunque las colecciones predefinidas incluidas en la BCL disponen de miembros propios con los que manipularlas, todas incluyen al menos los miembros de <strong><code>ICollection&lt;T&gt;</code></strong>. En realidad la interfaz <strong><code>ICollection&lt;T&gt;</code></strong> hereda de:</p>
+<ol>
+<li>La interfaz <strong><code>IEnumerable&lt;T&gt;</code></strong> que permite que sean recorridas con la instrucción <strong><code>foreach</code></strong> usando el <strong><a href="https://es.wikipedia.org/wiki/Iterador_(patr%C3%B3n_de_dise%C3%B1o)">patrón iterador</a></strong>.</li>
+<li>La interfaz <strong><code>IClonable</code></strong>, formada por un único método <strong><code>object Clone()</code></strong> que devuelve una copia del objeto sobre el que se aplica.</li>
+</ol>
+<p>A lo largo del tema veremos que <strong>hay muchas colecciones parecidas, donde la única diferencia es la '<em>eficiencia</em>' de un cierto tipo de operaciones sobre otras</strong>. Por eso, deberemos escoger cuidadosamente el tipo de colección dependiendo de las casuísticas que se nos puedan dar en nuestro programa.</p>
+<p>Con esto en mente, veamos algunas de las colecciones más utilizadas en C# y cuando utilizarlas.</p>
+<h3 id="lista-simple-listt">Lista simple List&lt;T&gt; </h3>
+<p>Ya hemos hablado de ellas y las venimos usando desde la unidad 14 donde vimos las relaciones todo-parte.<br>
+Recordemos que se implementan a través del tipo <strong><code>List&lt;T&gt;</code></strong>, que <strong>son equivalentes a los arrays</strong>.  Esto es, internamente se almacenan como un array, y <strong>su tamaño crecerá automáticamente</strong> cuando se añadan más elementos de los que puede almacenar el array interno. Pero estos cambios de tamaño estarán optimizados para que no se realicen con demasiada frecuencia y serán transparentes para el usuario.</p>
+<p>por esta razón, <strong>permitirá accesos y modificaciones eficientes</strong> a través del operador <strong><code>[]</code></strong> y un índice entero. Sin embargo, <strong>añadir y borrar elementos puede ser más costoso</strong>. Recordemos por encima su uso...</p>
+<h4 id="crear-una-lista">Crear una lista </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> numeros1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Lista vacía de enteros</span>
+<span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> numeros2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Lista de enteros con 5 elementos</span>
+<span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> numeros3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token range operator">..</span>numeros1<span class="token punctuation">,</span> <span class="token range operator">..</span>numeros2<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Lista de enteros con los elementos de numeros1 y numeros2</span>
+</code></pre><h4 id="añadir-elementos-listt">Añadir elementos List&lt;T&gt; </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>numeros1<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Añade el elemento 6 al final de la lista</span>
+numeros1<span class="token punctuation">.</span><span class="token function">AddRange</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Añade los elementos 7 y 8 al final de la lista</span>
+numeros1<span class="token punctuation">.</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Inserta el elemento 5 en la posición 0</span>
+numeros1<span class="token punctuation">.</span><span class="token function">InsertRange</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Inserta los elementos 1,2,3 y 4 en la posición 0</span>
+
+<span class="token comment">// numeros1 ahora es [1,2,3,4,5,6,7,8]</span>
+</code></pre><h4 id="acceder-y-modificar-elementos-listt">Acceder y modificar elementos List&lt;T&gt; </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-int">int</span></span> primero <span class="token operator">=</span> numeros1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// primero es 1</span>
+numeros1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// Modifica el primer elemento a 10</span>
+
+<span class="token comment">// numeros1 ahora es [10,2,3,4,5,6,7,8]</span>
+</code></pre><h4 id="eliminar-elementos-listt">Eliminar elementos List&lt;T&gt; </h4>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>numeros1<span class="token punctuation">.</span><span class="token function">Remove</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Elimina el elemento 10</span>
+numeros1<span class="token punctuation">.</span><span class="token function">RemoveAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Elimina el elemento en la posición 0</span>
+numeros1<span class="token punctuation">.</span><span class="token function">RemoveRange</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Elimina 2 elementos a partir de la posición 0</span>
+<span class="token comment">// numeros1 ahora es [3,4,5,6,7,8]</span>
+</code></pre><h4 id="ordenar-elementos-listt">Ordenar elementos List&lt;T&gt; </h4>
+<p>Ya hemos visto en unidades anteriores y cuando explicamos los interfaces que podemos ordenarlas con el método <strong><code>Sort()</code></strong>. Si el tipo de dato almacenado implementa la interfaz <strong><code>IComparable&lt;T&gt;</code></strong> (como los tipos numéricos y cadenas) se ordenarán de forma natural.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> nombres <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Juan"</span><span class="token punctuation">,</span> <span class="token string">"Pedro"</span><span class="token punctuation">,</span> <span class="token string">"Luis"</span><span class="token punctuation">,</span> <span class="token string">"Ana"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+nombres<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Pero,... ¿Qué sucede si el tipo de dato es una clase que no hemos definido nosotros o no podemos modificar porque está en una librería y por tanto no podemos implementar la interfaz <strong><code>IComparable&lt;T&gt;</code></strong>?</p>
+<p>En este caso, podemos usar el patrón '<em>Strategy</em>' pasándole al método <strong><code>Sort()</code></strong> un objeto que implemente la interfaz <strong><code>IComparer&lt;T&gt;</code></strong>. Esta interfaz define el método <strong><code>int Compare(T x, T y)</code></strong> que devuelve un valor negativo si <strong><code>x &lt; y</code></strong>, cero si son iguales y un valor positivo si <strong><code>x &gt; y</code></strong>.</p>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo:</strong></p>
+<p>Supongamos que tenemos la siguiente clase <strong><code>Empleado</code></strong> que no implementa la interfaz <strong><code>IComparable&lt;T&gt;</code></strong> y la cual no podemos modificar:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Empleado</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> Sueldo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Si ejecutamos el siguiente código:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span> empleados <span class="token operator">=</span>
+    <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Juanjo"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Sueldo</span><span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Carmen"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Sueldo</span><span class="token punctuation">:</span> <span class="token number">2800</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Xusa"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Sueldo</span><span class="token punctuation">:</span> <span class="token number">2400</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    empleados<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">,</span> empleados<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>❌ <strong>Obtendremos un error en tiempo de ejecución:</strong></p>
+<pre class="salida_consola">System.InvalidOperationException: 'Failed to compare two elements in the array.'
+</pre>
+<p>Ahora implementamos la clase <strong><code>OrdenaPorSueldo</code></strong> que implementa la interfaz <strong><code>IComparer&lt;Empleado&gt;</code></strong> y la usamos para ordenar la lista de empleados por sueldo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ComparaEmpleadoPorSueldo</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparer<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">Compare</span><span class="token punctuation">(</span><span class="token class-name">Empleado<span class="token punctuation">?</span></span> x<span class="token punctuation">,</span> <span class="token class-name">Empleado<span class="token punctuation">?</span></span> y<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword keyword-switch">switch</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>_<span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        _ <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span>Sueldo<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>Sueldo<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Ahora si ejecutamos el siguiente código...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>empleados<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ComparaEmpleadoPorSueldo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>✅ <strong>Obtendremos la lista de empleados ordenada por sueldo.</strong></p>
+</div>
+<h4 id="buscar-lineal-elementos-listt">Buscar lineal elementos List&lt;T&gt; </h4>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Es importante destacar que más adelante en el curso, <strong>cuando veamos programación funcional</strong>, veremos que en C# las listas implementan muchos otros métodos de extensión para buscar, filtrar, transformar, etc. como <strong><code>Find()</code></strong>, <strong><code>FindAll()</code></strong>, <strong><code>Where()</code></strong>, <strong><code>Select()</code></strong>, etc y que <strong>de momento no podemos usar</strong>.</p>
+</div>
+<p><strong><code>Contains(T item)</code></strong>: nos permite saber si un elemento está en la lista haciendo una <strong>búsqueda lineal o secuencial</strong>. Solo deberíamos usarla si:</p>
+<ol>
+<li>Es un tipo de dato simple como un número o una cadena.</li>
+<li>Es una un <strong><code>record class</code></strong> o <strong><code>record struct</code></strong>.</li>
+<li>Es una clase que hemos definido nosotros y hemos implementado la interfaz <strong><code>IEquatable&lt;T&gt;</code></strong></li>
+<li>Es una clase que hemos definido nosotros y hemos sobrescrito los métodos <strong><code>Equals(object? obj)</code></strong> y <strong><code>GetHashCode()</code></strong>.</li>
+</ol>
+<p>En el siguiente ejemplo, la clase <strong><code>Empleado</code></strong> es un <strong><code>record class</code></strong> y por tanto podemos usar el método <strong><code>Contains()</code></strong> para buscar un empleado en la lista:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name">Empleado</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> Sueldo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+empleados<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> <span class="token string">"Carmen"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">Sueldo</span><span class="token punctuation">:</span> <span class="token number">2800</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Pero..., ¿Qué sucede si no podemos modificar la clase <strong><code>Empleado</code></strong> es una clase con estado, no tiene implementada la interfaz <strong><code>IEquatable&lt;T&gt;</code></strong> y no hemos sobrescrito los métodos <strong><code>Equals(object? obj)</code></strong> y <strong><code>GetHashCode()</code></strong>?</p>
+<div class="row">
+<div class="col-sm-4">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Empleado</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Id <span class="token punctuation">{</span><span class="token keyword keyword-get">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span><span class="token keyword keyword-get">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> Sueldo <span class="token punctuation">{</span><span class="token keyword keyword-get">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token function">Empleado</span><span class="token punctuation">(</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> id<span class="token punctuation">,</span> 
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> nombre<span class="token punctuation">,</span> 
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> sueldo<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Id <span class="token operator">=</span> id<span class="token punctuation">;</span>
+        Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        Sueldo <span class="token operator">=</span> sueldo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="col-sm-8 my-auto">
+<p>Usaremos el patrón '<em>Strategy</em>' pasándole al método <strong><code>Contains()</code></strong> un objeto que implemente la interfaz <strong><code>IEqualityComparer&lt;T&gt;</code></strong> como por ejemplo:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">IgualdadEmpleadosPorId</span><span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IEqualityComparer<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name">Empleado<span class="token punctuation">?</span></span> x<span class="token punctuation">,</span> <span class="token class-name">Empleado<span class="token punctuation">?</span></span> y<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword keyword-switch">switch</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>_<span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        _ <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span>Id <span class="token operator">==</span> y<span class="token punctuation">.</span>Id   <span class="token comment">// Compara por el Id</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token class-name">Empleado</span> obj<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> obj<span class="token punctuation">.</span>Id<span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Ahora el siguiente programa principal funcionaria correctamente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span> empleados <span class="token operator">=</span>
+    <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token string">"001"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">nombre</span><span class="token punctuation">:</span> <span class="token string">"Juanjo"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">sueldo</span><span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token string">"002"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">nombre</span><span class="token punctuation">:</span> <span class="token string">"Carmen"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">sueldo</span><span class="token punctuation">:</span> <span class="token number">2800</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token string">"003"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">nombre</span><span class="token punctuation">:</span> <span class="token string">"Xusa"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">sueldo</span><span class="token punctuation">:</span> <span class="token number">2400</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> encontrado <span class="token operator">=</span> empleados<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span>
+                                <span class="token keyword keyword-value">value</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token string">"002"</span><span class="token punctuation">,</span> <span class="token string">"Carmen"</span><span class="token punctuation">,</span> <span class="token number">2800</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                <span class="token named-parameter punctuation">comparer</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">IgualdadEmpleadosPorId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong><code>IndexOf(T item)</code></strong>: Si queremos encontrar un elemento por posición. El esquema de pasar una clase que implemente la estrategia de búsqueda no sería posible. Deberíamos poder modificar el tipo <strong><code>T</code></strong> para que implemente <strong><code>EqualityComparer&lt;T&gt;</code></strong> o debería ya implementarlo. Por lo que no es un método tan flexible como <strong><code>Contains(T item)</code></strong>.</p>
+<h4 id="buscar-binaria-elementos-listt">Buscar binaria elementos List&lt;T&gt; </h4>
+<p><strong><code>BinarySearch(T item)</code></strong>: Nos devolverá <strong>el índice del elemento buscado si lo encuentra</strong> o un valor negativo si no lo encuentra. Para ello usará <strong>una búsqueda binaria</strong> como su nombre indica, pero <strong>solo funcionará si la lista está ordenada</strong> y el tipo de dato almacenado implementa la interfaz <strong><code>IComparable&lt;T&gt;</code></strong> o le pasamos un objeto que implemente la interfaz <strong><code>IComparer&lt;T&gt;</code></strong> al método <strong><code>BinarySearch(T item, IComparer&lt;T&gt; comparer)</code></strong> como sucedió con el método <strong><code>Sort()</code></strong>. Por tanto, deberemos usarlo en combinación con este último método. Por ejemplo, si partimos del ejemplo de la clase <strong><code>Empleado</code></strong> que no implementa la interfaz <strong><code>IComparable&lt;T&gt;</code></strong> y no podemos modificarla, podríamos <strong>ordenas y buscar un empleado por su <code>Id</code></strong> de la siguiente forma:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ComparaEmpleado</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparer<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">Compare</span><span class="token punctuation">(</span><span class="token class-name">Empleado<span class="token punctuation">?</span></span> x<span class="token punctuation">,</span> <span class="token class-name">Empleado<span class="token punctuation">?</span></span> y<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword keyword-switch">switch</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span>_<span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        _ <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span>Id<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>Id<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">IComparer<span class="token punctuation">&lt;</span>Empleado<span class="token punctuation">&gt;</span></span> comparaEmpleados <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ComparaEmpleado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+empleados<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span>comparaEmpleados<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> encontrado <span class="token operator">=</span> empleados<span class="token punctuation">.</span><span class="token function">BinarySearch</span><span class="token punctuation">(</span>
+                <span class="token named-parameter punctuation">item</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Empleado</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token string">"002"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">nombre</span><span class="token punctuation">:</span> <span class="token string">"Carmen"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">sueldo</span><span class="token punctuation">:</span> <span class="token number">2800</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token named-parameter punctuation">comparer</span><span class="token punctuation">:</span> comparaEmpleados<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</code></pre><p><strong>¿Qué ventaja nos aporta <code>BinarySearch()</code> frente a <code>Contains()</code> si tengo que ordenar antes?</strong></p>
+<p>Pues que <strong><code>BinarySearch()</code></strong> tiene una <strong>complejidad logarítmica</strong> frente a la <strong>complejidad de lineal</strong> de <strong><code>Contains()</code></strong>. Por tanto, si vamos a realizar muchas búsquedas en una lista o esta tiene muchos elementos, es mejor ordenarla y usar <strong><code>BinarySearch()</code></strong>.</p>
+<div class="row">
+<div class="col-sm-4">
+<p>Fíjate que el número de operaciones que realiza <strong><code>BinarySearch()</code></strong> apenas crece al aumentar el número de elementos, mientras que el número de operaciones de <strong><code>Contains()</code></strong> crece linealmente.</p>
+</div>
+<div class="col-sm-8 my-auto">
+<p><img src="assets/imagenes/graficas.png" alt="nombre" style="display:block;margin:0 auto;width:100%;max-width:450px;"></p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="tablas-hash-o-diccionarios">Tablas Hash o Diccionarios </h3>
+<p>Las tablas hash o <strong>Diccionarios</strong>, son otro tipo de colecciones, pero que tienen un comportamiento particular.</p>
+<p>Hasta ahora, todos los elementos de una colección se acceden a través de un <strong>índice numérico</strong>. Si tenemos una lista, el primer elemento ocupa la posición 0, el siguiente la 1, etc. Si queremos acceder al cuarto elemento de una lista llamada <strong><code>miLista</code></strong>, tenemos que poner <strong><code>miLista[3]</code></strong>, y <strong>si no sabemos la posición</strong> debemos usar un bucle.</p>
+<p>Para evitar el bucle y <strong>realizar un acceso directo podemos usar tablas hash</strong>. En este tipo de colecciones, cada dato que agregamos a ella no tiene asociado un índice numérico, sino un objeto <strong>clave</strong> que lo identifica. De esta manera, si conocemos la <strong>clave</strong> del dato, podemos acceder directamente a sus datos sin tener que recorrer toda la lista.</p>
+<p>Por ejemplo, podemos asociar el dni de cada persona con sus datos completos, teniendo al final una tabla como esta:</p>
+<table>
+<thead>
+<tr>
+<th>Clave</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11224441K</td>
+<td>Nombre = "Pepe" Edad = 30</td>
+</tr>
+<tr>
+<td>11335499M</td>
+<td>Nombre = "María" Edad = 22</td>
+</tr>
+<tr>
+<td>12345678O</td>
+<td>Nombre = "Juan" Edad = 33</td>
+</tr>
+<tr>
+<td>13898743Y</td>
+<td>Nombre = "Sara" Edad = 27</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Importante</p>
+<p>Si quiero consultar los datos de María, buscaré por su clave que es su dni. Fíjate que la clave puede ser cualquier tipo de dato. En este caso es un <strong><code>string</code></strong>, pero podrían ser enteros u otro tipo cualquiera, siempre que nos aseguremos que <strong>no haya dos claves repetidas</strong>.</p>
+</div>
+<p>Si nos fijamos, el funcionamiento es similar a un diccionario real. Si quiero consultar el significado de una palabra y sé cuál es esa palabra, voy a la página donde está y la consulto, sin tener que ir palabra a palabra comprobando si es esa la que busco.</p>
+<p>Como ya hemos comentado, las tablas hash en C# se manejan con el TAD <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.dictionary-2">Dictionary&lt;K, V&gt;</a></strong> y <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.sorteddictionary-2">SortedDictionary&lt;K, V&gt;</a></strong>. La diferencia entre ambos es que el primero no garantiza ningún orden en los elementos, mientras que el segundo los <strong>mantiene ordenados por la clave</strong>. Se pierde un poco más de tiempo insertando elementos, pero se gana en rapidez en las búsquedas porque <strong>todas las búsquedas por clave serán binarias</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para los ejemplos de diccionarios vamos a partir de la clase <strong><code>Empleado</code></strong> y el código que usamos en la búsqueda lineal y binaria en listas. Puedes ver el código completo aquí: <strong><a href="assets/ejemplos/busquedas_list_ejemplo.cs">busquedas_list.cs</a></strong></p>
+</div>
+<h3 id="crear-e-inicializar-un-diccionario">Crear e inicializar un Diccionario </h3>
+<p>Es importante tener en cuenta que los elementos de esta colección serán objetos del tipo <strong><code>KeyValuePair&lt;TClave, TValor&gt;</code></strong> que guardará una clave y su valor. No obstante, muy raramente los vamos a trabajar a través de él.</p>
+<p>Podemos crear un diccionario en C# inicializándolo de la siguiente forma...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>TClave<span class="token punctuation">,</span> TValor<span class="token punctuation">&gt;</span></span> tabla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span>TClave<span class="token punctuation">,</span> TValor<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>TClave<span class="token punctuation">,</span> TValor<span class="token punctuation">&gt;</span></span> tabla <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>TClave<span class="token punctuation">,</span> TValor<span class="token punctuation">&gt;</span></span> tabla <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span>clave1<span class="token punctuation">,</span> valor1<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>clave2<span class="token punctuation">,</span> valor2<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token range operator">..</span><span class="token punctuation">.</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li>
+<p><strong>Añadir</strong> un dato al diccionario creado, se puede realizar de varias formas, una de ellas es usar el método <strong><code>Add</code></strong>, indicando la clave que queremos asociar a cada elemento y el elemento en sí.</p>
+<blockquote>
+<p>💀 La operación <strong><code>Add</code></strong> generará una excepción si añadimos una clave ya existente.</p>
+</blockquote>
+<p>Si por ejemplo estamos haciendo una tabla de elementos de tipo <strong><code>Persona</code></strong>, la clave puede ser el <strong>dni</strong> de la persona en sí, y el elemento a guardar el resto de datos podríamos hacer...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span> <span class="token function">LeeDatos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span> personas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token string">"Introduce las persona a leer: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> numeroPersonas <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numeroPersonas<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"DNI </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i <span class="token operator">+</span> <span class="token number">1</span></span><span class="token punctuation">}</span></span><span class="token string">: "</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> dni <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Nombre </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i <span class="token operator">+</span> <span class="token number">1</span></span><span class="token punctuation">}</span></span><span class="token string">: "</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> nombre <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Edad </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">i <span class="token operator">+</span> <span class="token number">1</span></span><span class="token punctuation">}</span></span><span class="token string">: "</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> edad <span class="token operator">=</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Añadir con el método add.</span>
+        personas<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>dni<span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> edad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> personas<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p><strong>Eliminar</strong> un dato de la lista, para ello usamos el método <strong>Remove</strong> con la clave del valor que queremos eliminar como argumento. Si no existe la clave obtendremos una excepción.<br>
+<strong><code>personas.Remove("11223314L")</code></strong></p>
+</li>
+<li>
+<p><strong>Modificar/Añadir</strong> el valor de un dato almacenado en el diccionario. También se accede indizando la clave y se asigna el objeto.<br>
+<strong><code>personas["11224441K"] = new Persona("Pepe", 31)</code></strong></p>
+<blockquote>
+<p>✋ <strong>Importante:</strong> Funciona igual que el <strong><code>Add</code></strong> solo que si la clave existe modificará su valor asociado sin generar una excepción.<br>
+💀 Además, como en el caso del borrado, si intentamos acceder a un valor del Dictionary del que no existe la clave el sistema lanzará una excepción. Por lo que es buena práctica utilizar el método <strong><code>ContainsKey(clave)</code></strong>, para comprobar si existe la clave antes de acceder al valor a través de ella.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Para obtener claves y valores por separado</strong> dispondremos de las propiedades <strong><code>Keys</code></strong> y <strong><code>Values</code></strong> que me devolverán una secuencia que implementa <strong><code>IEnumerable&lt;T&gt;</code></strong> y que por ende puedo transformar a algún tipo de colección de las que conocemos ya sea un array o una lista como hemos visto a lo largo del tema.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> litaDNIs <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>personas<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Persona<span class="token punctuation">[</span><span class="token punctuation">]</span></span> arrayPersonas <span class="token operator">=</span> Enumerable<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">ToArray</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>personas<span class="token punctuation">.</span>Values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p><strong>Recorrer</strong> diccionarios no es lo común, ya que su acceso es mediante clave. Aunque se puede realizar el acceso a todos los elementos usando un <strong><code>foreach</code></strong>.</p>
+<p>Por ejemplo, este bucle saca las edades de todas las personas:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> dni <span class="token keyword keyword-in">in</span> personas<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span> 
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>personas<span class="token punctuation">[</span>dni<span class="token punctuation">]</span><span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>📌 <strong>Nota:</strong> Es posible que el orden de salida no sea el mismo que cuando se introdujeron los datos, ya que las tablas hash tienen un mecanismo de ordenación diferente.</p>
+</blockquote>
+<p>Realmente si tenemos en cuenta que nuestro diccionario realmente es una secuencia de valores del tipo <strong><code>KeyValuePair&lt;string, Persona&gt;</code></strong>. Podríamos recorrer sus valores también de la siguiente forma...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">KeyValuePair<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span> par <span class="token keyword keyword-in">in</span> personas<span class="token punctuation">)</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">par<span class="token punctuation">.</span>Key</span><span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">par<span class="token punctuation">.</span>Value</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ul>
+<h4 id="profundizando-en-el-uso-de-los-diccionarios">Profundizando en el uso de los diccionarios </h4>
+<p>Para entender alguna de las propiedades y métodos que implementa la clase <strong><code>Dictionary&lt;K, V&gt;</code></strong> deberemos entender como funcionan los mismos internamente. Para ello, supongamos la tabla de pares clave-valor que hemos puesto antes de ejemplo. Donde la clave era un <strong><code>string</code></strong> con el DNI y el valor un objeto de tipo <strong><code>Persona</code></strong>.</p>
+<p>Una posible <strong>aproximación</strong> a como se organiza la información internamente podría ser el siguiente....</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Para simplificar no hemos representado las referencias a los objetos <strong><code>string</code></strong> y <strong><code>persona</code></strong></p>
+</blockquote>
+<p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="500pt" height="300pt" viewBox="0.00 0.00 500.00 300.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.75 0.75) rotate(0) translate(-12.36 406.5)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="12.36,-6.5 12.36,-406.5 679.03,-406.5 679.03,-6.5 12.36,-6.5"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster0</title>
+<polygon fill="none" stroke="Transparent" points="8,-82 8,-321 123.89,-321 123.89,-82 8,-82"></polygon>
+<text text-anchor="middle" x="65.95" y="-304.4" font-family="Arial" font-size="14.00">Claves</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster1</title>
+<polygon fill="none" stroke="Transparent" points="216.17,-8 216.17,-405 331.03,-405 331.03,-8 216.17,-8"></polygon>
+<text text-anchor="middle" x="273.6" y="-388.4" font-family="Arial" font-size="14.00">Tabla de</text>
+<text text-anchor="middle" x="273.6" y="-371.6" font-family="Arial" font-size="14.00">capacidad 1000</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster2</title>
+<polygon fill="none" stroke="Transparent" points="348.03,-71 348.03,-371 683.39,-371 683.39,-71 348.03,-71"></polygon>
+<text text-anchor="middle" x="515.71" y="-354.4" font-family="Arial" font-size="14.00">Registros</text>
+<text text-anchor="middle" x="515.71" y="-337.6" font-family="Arial" font-size="14.00">(Pares Clave-Valor)</text>
+</g>
+<!-- k1 -->
+<g id="node1" class="node">
+<title>k1</title>
+<polygon fill="none" stroke="black" points="115.5,-180 16.39,-180 16.39,-144 115.5,-144 115.5,-180"></polygon>
+<text text-anchor="middle" x="65.95" y="-157.8" font-family="Arial" font-size="14.00">"12345678O"</text>
+</g>
+<!-- i2 -->
+<g id="node6" class="node">
+<title>i2</title>
+<polygon fill="none" stroke="black" points="252.42,-203.4 252.42,-238.2 293.78,-238.2 293.78,-203.4 252.42,-203.4"></polygon>
+<text text-anchor="start" x="261.42" y="-216.6" font-family="Arial" font-size="14.00">872</text>
+<polygon fill="none" stroke="black" points="252.42,-168.6 252.42,-203.4 293.78,-203.4 293.78,-168.6 252.42,-168.6"></polygon>
+<text text-anchor="start" x="261.42" y="-181.8" font-family="Arial" font-size="14.00">873</text>
+<polygon fill="none" stroke="black" points="252.42,-133.8 252.42,-168.6 293.78,-168.6 293.78,-133.8 252.42,-133.8"></polygon>
+<text text-anchor="start" x="261.42" y="-147" font-family="Arial" font-size="14.00">874</text>
+</g>
+<!-- k1&#45;&gt;i2 -->
+<g id="edge7" class="edge">
+<title>k1-&gt;i2:index</title>
+<path fill="none" stroke="gray" stroke-dasharray="5,2" d="M115.9,-168.37C158.17,-173.87 216.12,-181.41 240.21,-184.54"></path>
+<polygon fill="gray" stroke="gray" points="239.55,-187.99 249.92,-185.8 240.45,-181.04 239.55,-187.99"></polygon>
+<text text-anchor="middle" x="170.03" y="-174.4" font-family="Arial" font-size="14.00">Hash%1000</text>
+</g>
+<!-- k2 -->
+<g id="node2" class="node">
+<title>k2</title>
+<polygon fill="none" stroke="black" points="114.73,-288 17.16,-288 17.16,-252 114.73,-252 114.73,-288"></polygon>
+<text text-anchor="middle" x="65.95" y="-265.8" font-family="Arial" font-size="14.00">"11224441K"</text>
+</g>
+<!-- i1 -->
+<g id="node5" class="node">
+<title>i1</title>
+<polygon fill="none" stroke="black" points="252.42,-317 252.42,-351.8 293.78,-351.8 293.78,-317 252.42,-317"></polygon>
+<text text-anchor="start" x="261.42" y="-330.2" font-family="Arial" font-size="14.00">000</text>
+<polygon fill="none" stroke="black" points="252.42,-282.2 252.42,-317 293.78,-317 293.78,-282.2 252.42,-282.2"></polygon>
+<text text-anchor="start" x="261.42" y="-295.4" font-family="Arial" font-size="14.00">001</text>
+</g>
+<!-- k2&#45;&gt;i1 -->
+<g id="edge8" class="edge">
+<title>k2-&gt;i1:index</title>
+<path fill="none" stroke="gray" stroke-dasharray="5,2" d="M114.93,-277.7C157.21,-284.48 215.73,-293.87 240.08,-297.78"></path>
+<polygon fill="gray" stroke="gray" points="239.49,-301.23 249.92,-299.36 240.6,-294.32 239.49,-301.23"></polygon>
+<text text-anchor="middle" x="170.03" y="-296.65" font-family="Arial" font-size="14.00">Hash%1000</text>
+</g>
+<!-- k3 -->
+<g id="node3" class="node">
+<title>k3</title>
+<polygon fill="none" stroke="black" points="114.73,-126 17.16,-126 17.16,-90 114.73,-90 114.73,-126"></polygon>
+<text text-anchor="middle" x="65.95" y="-103.8" font-family="Arial" font-size="14.00">"13898743Y"</text>
+</g>
+<!-- i3 -->
+<g id="node7" class="node">
+<title>i3</title>
+<polygon fill="none" stroke="black" points="252.42,-55 252.42,-89.8 293.78,-89.8 293.78,-55 252.42,-55"></polygon>
+<text text-anchor="start" x="261.42" y="-68.2" font-family="Arial" font-size="14.00">998</text>
+<polygon fill="none" stroke="black" points="252.42,-20.2 252.42,-55 293.78,-55 293.78,-20.2 252.42,-20.2"></polygon>
+<text text-anchor="start" x="261.42" y="-33.4" font-family="Arial" font-size="14.00">999</text>
+</g>
+<!-- k3&#45;&gt;i3 -->
+<g id="edge9" class="edge">
+<title>k3-&gt;i3:index</title>
+<path fill="none" stroke="gray" stroke-dasharray="5,2" d="M114.93,-98.74C157.42,-90.54 216.33,-79.17 240.45,-74.52"></path>
+<polygon fill="gray" stroke="gray" points="240.78,-78.02 249.93,-72.69 239.45,-71.15 240.78,-78.02"></polygon>
+<text text-anchor="middle" x="170.03" y="-98.64" font-family="Arial" font-size="14.00">Hash%1000</text>
+</g>
+<!-- k4 -->
+<g id="node4" class="node">
+<title>k4</title>
+<polygon fill="none" stroke="black" points="115.89,-234 16,-234 16,-198 115.89,-198 115.89,-234"></polygon>
+<text text-anchor="middle" x="65.95" y="-211.8" font-family="Arial" font-size="14.00">"11335499M"</text>
+</g>
+<!-- k4&#45;&gt;i2 -->
+<g id="edge10" class="edge">
+<title>k4-&gt;i2:index</title>
+<path fill="none" stroke="gray" stroke-dasharray="5,2" d="M116.38,-207.96C158.64,-201.09 216.31,-191.71 240.27,-187.81"></path>
+<polygon fill="gray" stroke="gray" points="240.62,-191.3 249.92,-186.24 239.49,-184.39 240.62,-191.3"></polygon>
+<text text-anchor="middle" x="170.03" y="-208.77" font-family="Arial" font-size="14.00">Hash%1000</text>
+</g>
+<!-- i1&#45;&gt;i2 -->
+<g id="edge1" class="edge">
+<title>i1-&gt;i2</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M273.1,-278.35C273.1,-266.24 273.1,-254.14 273.1,-242.03"></path>
+</g>
+<!-- r1 -->
+<g id="node8" class="node">
+<title>r1</title>
+<polygon fill="none" stroke="black" points="368.68,-282.6 368.68,-317.4 468.25,-317.4 468.25,-282.6 368.68,-282.6"></polygon>
+<text text-anchor="start" x="377.68" y="-295.8" font-family="Arial" font-size="14.00">"11224441K"</text>
+<polygon fill="none" stroke="black" points="468.25,-282.6 468.25,-317.4 662.74,-317.4 662.74,-282.6 468.25,-282.6"></polygon>
+<text text-anchor="start" x="477.25" y="-295.8" font-family="Arial" font-size="14.00">Nombre = "Pepe" Edad = 30</text>
+</g>
+<!-- i1&#45;&gt;r1 -->
+<g id="edge5" class="edge">
+<title>i1:index-&gt;r1:key</title>
+<path fill="none" stroke="black" d="M294.78,-299.6C294.78,-299.6 335.78,-299.82 356.29,-299.94"></path>
+<polygon fill="black" stroke="black" points="356.15,-303.44 366.17,-299.99 356.19,-296.44 356.15,-303.44"></polygon>
+</g>
+<!-- i2&#45;&gt;i3 -->
+<g id="edge2" class="edge">
+<title>i2-&gt;i3</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M273.1,-130.08C273.1,-117.93 273.1,-105.78 273.1,-93.63"></path>
+</g>
+<!-- r2 -->
+<g id="node9" class="node">
+<title>r2</title>
+<polygon fill="none" stroke="black" points="364.03,-143.6 364.03,-178.4 465.92,-178.4 465.92,-143.6 364.03,-143.6"></polygon>
+<text text-anchor="start" x="373.03" y="-156.8" font-family="Arial" font-size="14.00">"11335499M"</text>
+<polygon fill="none" stroke="black" points="465.92,-143.6 465.92,-178.4 667.39,-178.4 667.39,-143.6 465.92,-143.6"></polygon>
+<text text-anchor="start" x="474.92" y="-156.8" font-family="Arial" font-size="14.00">Nombre = "María" Edad = 22</text>
+</g>
+<!-- i2&#45;&gt;r2 -->
+<g id="edge4" class="edge">
+<title>i2:index-&gt;r2:key</title>
+<path fill="none" stroke="black" d="M294.78,-186C294.78,-186 333.17,-171.94 352.36,-164.91"></path>
+<polygon fill="black" stroke="black" points="353.42,-168.25 361.61,-161.52 351.01,-161.67 353.42,-168.25"></polygon>
+</g>
+<!-- r4 -->
+<g id="node11" class="node">
+<title>r4</title>
+<polygon fill="none" stroke="black" points="370.24,-82.6 370.24,-117.4 469.81,-117.4 469.81,-82.6 370.24,-82.6"></polygon>
+<text text-anchor="start" x="379.24" y="-95.8" font-family="Arial" font-size="14.00">"13898743Y"</text>
+<polygon fill="none" stroke="black" points="469.81,-82.6 469.81,-117.4 661.18,-117.4 661.18,-82.6 469.81,-82.6"></polygon>
+<text text-anchor="start" x="478.81" y="-95.8" font-family="Arial" font-size="14.00">Nombre = "Sara" Edad = 27</text>
+</g>
+<!-- i3&#45;&gt;r4 -->
+<g id="edge6" class="edge">
+<title>i3:index-&gt;r4:key</title>
+<path fill="none" stroke="black" d="M294.78,-72.4C294.78,-72.4 337.98,-88.41 358.57,-96.05"></path>
+<polygon fill="black" stroke="black" points="357.23,-99.28 367.82,-99.47 359.66,-92.72 357.23,-99.28"></polygon>
+</g>
+<!-- r3 -->
+<g id="node10" class="node">
+<title>r3</title>
+<polygon fill="none" stroke="black" points="369.07,-221.6 369.07,-256.4 470.19,-256.4 470.19,-221.6 369.07,-221.6"></polygon>
+<text text-anchor="start" x="378.07" y="-234.8" font-family="Arial" font-size="14.00">"12345678O"</text>
+<polygon fill="none" stroke="black" points="470.19,-221.6 470.19,-256.4 662.35,-256.4 662.35,-221.6 470.19,-221.6"></polygon>
+<text text-anchor="start" x="479.19" y="-234.8" font-family="Arial" font-size="14.00">Nombre = "Juan" Edad = 33</text>
+</g>
+<!-- r2&#45;&gt;r3 -->
+<g id="edge3" class="edge">
+<title>r2:key-&gt;r3:key</title>
+<path fill="none" stroke="black" d="M418.36,-209.34C416.98,-197.14 414.97,-179.4 414.97,-179.4"></path>
+<polygon fill="black" stroke="black" points="414.86,-209.55 419.46,-219.1 421.82,-208.77 414.86,-209.55"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<p>Si nos fijamos, internamente el diccionario guarda una tabla de <strong><code>n</code></strong> elementos de capacidad y esto es importante para que funcionen de manera eficiente. De hecho si a priori conocemos cuantos elementos va a tener diccionario podremos dimensionarla en el constructor. Por ejemplo, si queremos que tenga una capacidad de <strong>1000</strong> como en nuestro ejemplo podríamos construir el diccionario de la siguiente manara ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> personas <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> Persona<span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Internamente calcula el Hash de la <strong>clave</strong>. En C# el Hash es un valor numérico entero que se obtiene a través del método <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.object.gethashcode">GetHashCode()</a></strong> que cualquier objeto implemente por estar definido en la clase <strong><code>Object</code></strong> como virtual y que por tanto podremos invalidar en nuestras definiciones de tipos.</p>
+<p>Si consultamos como funciona la <strong>función de Hash</strong> por ejemplo en la <strong><a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_hash">Wikipedia</a></strong> podemos deducir que, para un determinado estado de un objeto, esta me devuelve un valor numérico '<em>único</em>'.</p>
+<p>Pero... ¿Para que nos sirve calcular el Hash de la clave?. Si nos fijamos en el diagrama, lo que hace el diccionario es calcular el módulo del Hash entre la capacidad de la tabla <strong><code>Hash % 1000</code></strong> esto nos asegurará obtener un resto entre <strong><code>0 y 999</code></strong> que son índices válidos para la tabla definida. Por tanto, podemos inferir que el Hash me permitirá crear una <strong>correspondencia entre</strong> los <strong>objetos usados como clave</strong> (<strong><code>string</code></strong> en nuestro caso) y un <strong>índice</strong> dónde guardar <strong>el valor asociado</strong> en la tabla, tal y como se muestra en la ilustración.</p>
+<p>Pero... ¿Si la tabla tiene poca capacidad entonces, las posibilidades de que el resto de dividir el Hash de dos claves por el tamaño me de el mismo índice es muy alta?. Efectivamente, por eso si nos fijamos en la ilustración hay dos DNI que al dar el mismo índice se deben guardar en la misma posición, por ejemplo a través de una lista enlazada. Una vez vamos a esa posición de la tabla deberemos buscar la clave en la lista. Es por esa razón, que cada registro de la lista guarda pares de clave-valor y no únicamente el valor. Además, para saber buscar la clave en la lista deberemos saber si dos claves son iguales y por ello <strong>los objetos que usemos como clave deben implementar</strong> la interfaz <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a></strong>.</p>
+<blockquote>
+<p>✋ <strong>Importante:</strong> No debemos preocuparnos por <strong>los tipos básicos y los definidos en las BCL</strong>, puesto que <strong><code>IEquatable&lt;T&gt;</code></strong> está implementado en todos ellos.</p>
+<p>📣 <strong>Resumen:</strong></p>
+<p>Podemos decir que <strong>para que un tipo pueda hacer de clave</strong> debe invalidar <strong><code>GetHashCode()</code></strong> y debe implementar <strong><code>IEquatable&lt;T&gt;</code></strong>. Afortunadamente, no debemos preocuparnos porque <strong>los tipos básicos y los definidos en las BCL</strong> cumplen estas condiciones.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Tips:</strong> Del funcionamiento descrito podemos entender los siguiente métodos de optimización y rendimiento de los diccionarios ...</p>
+<ol>
+<li>
+<p><strong><code>int EnsureCapacity(int capacity)</code></strong><br>
+<strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.dictionary-2.ensurecapacity">EnsureCapacity</a></strong> me permitirá definir el tamaño de la tabla interna del diccionario si tengo muchas entradas evitando así que se repitan índices en las claves.</p>
+</li>
+<li>
+<p><strong><code>void TrimExcess()</code></strong><br>
+<strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.dictionary-2.trimexcess">TrimExcess</a></strong> si he realizado un Clear() o voy a tener pocos elementos en el diccionario me permitirá reducir el tamaño de la tabla adecuándolo al número de entradas.</p>
+</li>
+</ol>
+</blockquote>
+<div style="page-break-after:always;"></div>
+<h5 id="usando-tipos-propios-como-claves">Usando tipos propios como claves </h5>
+<p>Imaginemos que queremos definir un diccionario donde la <strong>clave</strong> ahora será la clase <strong><code>Persona</code></strong> que hemos utilizado a lo largo del tema y el valor será una lista de cadenas con los nombres de las mascotas de esa persona.</p>
+<p>La definición básica del tipo <strong><code>Persona</code></strong> para usarlo como clave sería la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Debe implementar IEquatable&lt;Persona&gt;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Persona</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IEquatable<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Edad <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">Persona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> edad<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        Edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Es interesante que redefinamos el ToString para que represente el estado del</span>
+    <span class="token comment">// objeto mediante una cadena.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Edad</span><span class="token punctuation">}</span></span><span class="token string"> años"</span></span><span class="token punctuation">;</span>
+    <span class="token comment">// Invalidamos GetHashCode() y una forma simple es usar la función</span>
+    <span class="token comment">// HashCode.Combine(...) para generar el hashcode a partir de los parámetros.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>Nombre<span class="token punctuation">,</span> Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Implementamos el interfaz, que nos obliga a implementar Equals y podemos </span>
+    <span class="token comment">// comparar fácilmente dos objetos, viendo si tienen el mismo Hash o no.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">AllowNull</span></span><span class="token punctuation">]</span> <span class="token class-name">Persona</span> o<span class="token punctuation">)</span>
+    <span class="token operator">=&gt;</span> o <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span> <span class="token operator">&amp;&amp;</span> Nombre <span class="token operator">==</span> o<span class="token punctuation">.</span>Nombre <span class="token operator">&amp;&amp;</span> Edad <span class="token operator">==</span> o<span class="token punctuation">.</span>Edad<span class="token punctuation">;</span>
+
+    <span class="token comment">// Comparar por HasCode no sería una opción válida ya que según la longitud</span>
+    <span class="token comment">// del Hash existe la posibilidad de que objetos diferentes me devuelvan el</span>
+    <span class="token comment">// el mismo Hash.</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">The most damaging phrase in the language is.. it's always been done this way.</div>
+        <div class="autor">- Grace Hopper</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<p>Analicemos la siguiente propuesta código de ejemplo comentado donde usamos la clase <strong><code>Persona</code></strong> que hemos definido como clave...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Definimos el diccionario donde la clave es una persona y</span>
+    <span class="token comment">// el valor una lista de mascotas.</span>
+    <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">,</span> List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> mascotasXPersona <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Creamos un objeto persona pepe y para ese objeto  </span>
+    <span class="token comment">// añadimos una lista vacía de mascotas.</span>
+    <span class="token class-name">Persona</span> pepe <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span><span class="token string">"Pepe"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+    mascotasXPersona<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>pepe<span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Usamos la misma referencia al objeto pepe para acceder</span>
+    <span class="token comment">// a su lista de mascotas y añadir dos nombres.</span>
+    mascotasXPersona<span class="token punctuation">[</span>pepe<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"Snowball"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mascotasXPersona<span class="token punctuation">[</span>pepe<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"Velvet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Creamos un objeto persona de nombre María del que no nos guardamos la </span>
+    <span class="token comment">// referencia y añadimos una lista inicializada en la definición con dos mascotas.</span>
+    mascotasXPersona<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span><span class="token string">"María"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token string">"Simba"</span><span class="token punctuation">,</span> <span class="token string">"Bella"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Añadimos una tercera mascota a María, pero volvemos a instanciar otro objeto</span>
+    <span class="token comment">// Persona para María porque no nos guardamos la referencia como con pepe.</span>
+    <span class="token comment">// No debería ser problema porque ambos deberían generar el mismo Hash y además</span>
+    <span class="token comment">// sabemos comparar objetos persona con Equal.</span>
+    mascotasXPersona<span class="token punctuation">[</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona</span><span class="token punctuation">(</span><span class="token string">"María"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"Lucy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Mostramos la lista de mascotas por persona.</span>
+    <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name">Persona</span> p <span class="token keyword keyword-in">in</span> mascotasXPersona<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">p</span><span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> mascotasXPersona<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Prueba a ejecutar este código y comprueba que funciona correctamente. Prueba ahora a eliminar la invalidación de <strong><code>GetHashCode()</code></strong> de <strong><code>Persona</code></strong> y ver que sucede. Deberías obtener un error en la <strong><code>línea 24</code></strong> puesto que estamos intentado usar como clave de acceso un objeto <strong><code>Persona</code></strong> de nombre <strong>María</strong> y edad <strong>22</strong> años que <em>'supuestamente'</em> no está definida en el diccionario porque su Hash es diferente al del objeto con que se añadió.</p>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<p>🎓 <strong>Caso de estudio:</strong></p>
+<p>Vamos su uso a través de un simple <strong>programa de ejemplo</strong> que realice un pequeño examen sobre las capitales de la UE. Para ello, el programa preguntará 5 capitales. Puntuando con 2 puntos cada pregunta acertada.</p>
+<p>Veamos una posible solución usando diccionarios y otras colecciones vistas en el tema...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Definimos el diccionario con los países y sus capitales.</span>
+    <span class="token class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> capitalesPorPais <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Dictionary<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token punctuation">{</span><span class="token string">"España"</span><span class="token punctuation">,</span> <span class="token string">"Madrid"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// Par clave país, valor capital.</span>
+        <span class="token punctuation">{</span><span class="token string">"Portugal"</span><span class="token punctuation">,</span> <span class="token string">"Lisboa"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+        <span class="token punctuation">{</span><span class="token string">"Francia"</span><span class="token punctuation">,</span> <span class="token string">"Paris"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span><span class="token string">"Luxemburgo"</span><span class="token punctuation">,</span> <span class="token string">"Luxemburgo"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+        <span class="token punctuation">{</span><span class="token string">"Irlanda"</span><span class="token punctuation">,</span> <span class="token string">"Dublin"</span><span class="token punctuation">}</span>
+        
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>  
+    <span class="token comment">// Aunque hemos definido por extensión. Podemos añadir elemetos a posteriori.</span>
+    capitalesPorPais<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"Belgica"</span><span class="token punctuation">,</span> <span class="token string">"Bruselas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    capitalesPorPais<span class="token punctuation">[</span><span class="token string">"Alemania"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Berlin"</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Obtenemos una lista de claves indizable por un entero.</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> paises <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>capitalesPorPais<span class="token punctuation">.</span>Keys<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Lista donde almacenaré los países ya preguntados para no repetirnos.</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> paisesPreguntados <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> NUMERO_PREGUNTAS <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token class-name">Random</span> semilla <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-uint">uint</span></span> puntos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUMERO_PREGUNTAS<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> paisPreguntado<span class="token punctuation">;</span>
+
+        <span class="token comment">// Buscamos un país que ún no hayamos preguntado.</span>
+        <span class="token keyword keyword-do">do</span>
+        <span class="token punctuation">{</span>
+            paisPreguntado <span class="token operator">=</span> paises<span class="token punctuation">[</span>semilla<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> paises<span class="token punctuation">.</span>Count<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>paisesPreguntados<span class="token punctuation">.</span><span class="token function">Contains</span><span class="token punctuation">(</span>paisPreguntado<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        paisesPreguntados<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>paisPreguntado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Console<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"¿Cual es la capital de </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">paisPreguntado</span><span class="token punctuation">}</span></span><span class="token string">? &gt; "</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> capitalRespondida <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> respuestaCorrecta <span class="token operator">=</span> capitalRespondida <span class="token operator">==</span> capitalesPorPais<span class="token punctuation">[</span>paisPreguntado<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>respuestaCorrecta<span class="token punctuation">)</span> 
+            puntos <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> mensaje <span class="token operator">=</span> <span class="token punctuation">(</span>respuestaCorrecta
+                            <span class="token punctuation">?</span> <span class="token string">"Correcto !!"</span>
+                            <span class="token punctuation">:</span> <span class="token interpolation-string"><span class="token string">$"Incorrecto !!\nLa respuesta es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">capitalesPorPais<span class="token punctuation">[</span>paisPreguntado<span class="token punctuation">]</span></span><span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">)</span>
+                            <span class="token operator">+</span> <span class="token interpolation-string"><span class="token string">$"\nLlevas </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">puntos</span><span class="token punctuation">}</span></span><span class="token string"> puntos.\n"</span></span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>mensaje<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Tu nota final es </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">puntos</span><span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div> <!-- fin caso_estudio -->
+<div style="page-break-after:always;"></div>
+<h3 id="listas-enlazadas">Listas enlazadas </h3>
+<p>Concreciones de las listas para resolver problemas o algoritmos con un conjunto de operaciones o métodos específicos y restringidos de las mismas como:</p>
+<ul>
+<li>Las <strong>Pilas</strong> (LIFO) acrónimo en ingles de <em>'<strong>Último</strong> en Entrar, <strong>Primero</strong> en Salir'</em>. Implementado a través del tipo <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.stack-1">Stack&lt;T&gt;</a></strong></li>
+<li>las <strong>Colas</strong> (FIFO) acrónimo en ingles de <em>'<strong>Primero</strong> en Entrar, <strong>Primero</strong> en Salir'</em>. Implementado a través del tipo <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.queue-1">Queue&lt;T&gt;</a></strong></li>
+</ul>
+<ol start="4">
+<li>
+<p>Las <strong>listas enlazadas</strong> implementadas a través del tipo <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.linkedlist-1">LinkedList&lt;T&gt;</a></strong> al contrario que <strong><code>List&lt;T&gt;</code></strong> <strong>realizará inserciones y borrados eficientes</strong> con complejidad <strong><code>O(1)</code></strong> sin embargo <strong>será menos eficiente en accesos y modificaciones</strong>.</p>
+</li>
+<li>
+<p>Colecciones ordenadas donde <strong>las búsquedas se realizan de forma eficiente</strong> como:</p>
+<ul>
+<li><strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.sortedset-1">SortedSet&lt;T&gt;</a></strong> optimizado para guardar datos de forma ordenada y <strong>sin duplicados</strong> de forma eficiente.<br>
+EL tipo de colección <strong><code>Set</code></strong> o '<em>conjunto</em>' también se utiliza en otros lenguajes para denotar <strong>colecciones sin duplicados</strong>.</li>
+<li><strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.sorteddictionary-2">SortedDictionary&lt;TKey,TValue&gt;</a></strong> Serían diccionarios ordenados que optimizan las operaciones de inserción y eliminación.</li>
+<li><strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.sortedlist-2">SortedList&lt;TKey,TValue&gt;</a></strong> Serían listas ordenadas que optimizan memoria y operaciones de acceso y modificación.</li>
+</ul>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

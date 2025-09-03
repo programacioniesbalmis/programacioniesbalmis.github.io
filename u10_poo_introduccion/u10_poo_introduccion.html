@@ -1,0 +1,957 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 10</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-10">Unidad 10 </h1>
+<p>Descargar estos apunte en <a href="./u10_poo_introduccion.pdf">pdf</a> o <a href="./u10_poo_introduccion.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#programación-orientada-a-objetos" class="md-toc-link"><p>Programación Orientada a Objetos</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definición-de-tipo-abstracto-de-datos-o-tad" class="md-toc-link">
+            <p>Definición de Tipo Abstracto De Datos o TAD</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definición-de-clase" class="md-toc-link"><p>Definición de clase</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#elementos-que-definen-una-clase" class="md-toc-link">
+            <p>Elementos que definen una clase</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definición-de-objeto" class="md-toc-link"><p>Definición de objeto</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#composición-de-un-objeto" class="md-toc-link">
+            <p>Composición de un objeto</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definición-de-campo" class="md-toc-link">
+            <p>Definición de Campo</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definición-de-método" class="md-toc-link"><p>Definición de Método</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#enfoque-de-los-métodos-desde-la-teoría-de-poo" class="md-toc-link">
+            <p>Enfoque de los métodos desde la teoría de POO</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definición-de-encapsulación" class="md-toc-link">
+            <p>Definición de Encapsulación</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definición-de-constructor-y-destructor" class="md-toc-link">
+            <p>Definición de Constructor Y Destructor</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#instanciando-objectos-de-una-clase" class="md-toc-link"><p>Instanciando objectos de una clase</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#representando-objetos-instanciados-en-memoria" class="md-toc-link">
+            <p>Representando objetos instanciados en memoria</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#concepto-de-inmutabilidad" class="md-toc-link">
+            <p>Concepto de inmutabilidad</p>
+
+          </a></div>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="programación-orientada-a-objetos">Programación Orientada a Objetos </h2>
+<h3 id="introducción">Introducción </h3>
+<p>La POO es un paradigma de programación que pretende mejorar aspectos de la programación imperativa tradicional tales como:</p>
+<ul>
+<li><strong>Abstracción</strong> con la que representamos el problema.</li>
+<li><strong>Portabilidad</strong> del código y por tanto su reusabilidad.</li>
+<li><strong>Modularidad</strong> del código y por tanto legibilidad.</li>
+</ul>
+<p>Cuando programamos en lenguaje orientado a objetos, lo que se debe hacer es atacar los problemas dividiéndolos en <strong>unidades lógicas denominadas objetos</strong>, que colaborarán entre ellos para resolver el problema.</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<p>Podemos considerar el paradigma Orientado a Objetos como un '<strong>superconjunto</strong>' de la programación imperativa y estructurada. Esto es, nos proporciona más herramientas para abordar la resolución de los problemas.</p>
+</div>
+<div class="col-sm-6 my-auto">
+<p></p><p class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="250pt" height="100pt" viewBox="0.00 0.00 250.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.5 0.5) rotate(0) translate(3.54 174)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-3.54,26 -3.54,-174 496.46,-174 496.46,26 -3.54,26"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster_poo</title>
+<path fill="#cae1ff" stroke="#cae1ff" d="M20,-8C20,-8 472.91,-8 472.91,-8 478.91,-8 484.91,-14 484.91,-20 484.91,-20 484.91,-128 484.91,-128 484.91,-134 478.91,-140 472.91,-140 472.91,-140 20,-140 20,-140 14,-140 8,-134 8,-128 8,-128 8,-20 8,-20 8,-14 14,-8 20,-8"></path>
+</g>
+<!-- POO -->
+<g id="node1" class="node">
+<title>POO</title>
+<path fill="none" stroke="none" d="M237.09,-131.6C237.09,-131.6 28,-131.6 28,-131.6 22,-131.6 16,-125.6 16,-119.6 16,-119.6 16,-28.4 16,-28.4 16,-22.4 22,-16.4 28,-16.4 28,-16.4 237.09,-16.4 237.09,-16.4 243.09,-16.4 249.09,-22.4 249.09,-28.4 249.09,-28.4 249.09,-119.6 249.09,-119.6 249.09,-125.6 243.09,-131.6 237.09,-131.6"></path>
+<text text-anchor="middle" x="132.55" y="-79.4" font-family="Arial" font-size="18.00" fill="navy">Programación</text>
+<text text-anchor="middle" x="132.55" y="-57.8" font-family="Arial" font-size="18.00" fill="navy">Orientada a Objetos</text>
+</g>
+<!-- PI -->
+<g id="node2" class="node">
+<title>PI</title>
+<path fill="#6e7b8b" stroke="#6e7b8b" d="M464.91,-112.4C464.91,-112.4 297.09,-112.4 297.09,-112.4 291.09,-112.4 285.09,-106.4 285.09,-100.4 285.09,-100.4 285.09,-47.6 285.09,-47.6 285.09,-41.6 291.09,-35.6 297.09,-35.6 297.09,-35.6 464.91,-35.6 464.91,-35.6 470.91,-35.6 476.91,-41.6 476.91,-47.6 476.91,-47.6 476.91,-100.4 476.91,-100.4 476.91,-106.4 470.91,-112.4 464.91,-112.4"></path>
+<text text-anchor="middle" x="381" y="-78.2" font-family="Arial" font-size="14.00" fill="white">Programación</text>
+<text text-anchor="middle" x="381" y="-61.4" font-family="Arial" font-size="14.00" fill="white">Imperativa/Estructurada</text>
+</g>
+<!-- POO&#45;&#45;PI -->
+<g id="edge1" class="edge">
+<title>POO--PI</title>
+<path fill="none" stroke="none" d="M249.56,-74C261.3,-74 273.12,-74 284.6,-74"></path>
+</g>
+</g>
+</svg>
+</p><p></p>
+</div>
+</div>
+<h3 id="definición-de-tipo-abstracto-de-datos-o-tad">Definición de Tipo Abstracto De Datos o TAD </h3>
+<p>Para definir una clase en POO (Programación Orientada a Objetos), debemos pensar en términos de <strong>Tipo Abstracto de Datos (TAD)</strong> y para definir un TAD, nos preguntaremos que tipos de <strong>entidades intervienen en un problema y las operaciones que se pueden realizar entre ellas</strong>.Posteriormente, intentaremos describirlas de forma abstracta, <strong>libres de cuestiones de implementación y representación</strong>.</p>
+<p>Por tanto, a esta definición abstracta, completa y no ambigua de una estructura de datos junto con el conjunto de operaciones que se pueden hacer sobre ese tipo de datos la denominaremos <strong>TAD</strong>.</p>
+<p>Deberemos tener en cuenta que un TAD puede tener una o más implementaciones y <strong>una de estas implementaciones se definirá a través de una clase</strong>.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="definición-de-clase">Definición de clase </h3>
+<p>Puesto qui son la implementación total o parcial de un <strong>TAD</strong>. Podemos decir que es una <strong>definición de tipo abstracta</strong>, que permite agrupar datos en una entidad y asociarle un comportamiento.</p>
+<p>Una clase <strong>nos permitirá definir objetos</strong> que van a tener la misma estructura y comportamiento. Además, también se diferencias de los TAD en que añade conceptos como el de <strong>encapsulamiento</strong>, <strong>paso de mensajes</strong>, <strong>herencia</strong> y <strong>polimorfismo</strong> que no se contemplan en los TAD y que son propios de la POO.</p>
+<p>Existen autores que las definen con <strong>2 naturalezas</strong>:</p>
+<ol>
+<li>
+<p><strong>Como Tipo</strong>: Implementa un TAD con sus atributos y operaciones.</p>
+ <div class="row">
+ <div class="col-sm-7 my-auto">
+<p>Por ejemplo, en C#, la <strong>clase Array</strong> implementa el TAD <strong>Colección</strong> e implementa una <strong>concreción que permite almacenar una colección de elementos del mismo tipo (homogénea)</strong> y realizar operaciones sobre ellas, como acceder a un elemento por su índice, ordenar los elementos, etc. Además, <strong>nos permite crear objetos de tipo <code>Array</code></strong> que representan un conjunto de elementos. Nosotros la hemos estado utilizando en la unidad anterior sin pensar en estos términos.</p>
+ </div>
+ <div class="col-sm-5 my-auto">
+<p><img src="assets/imagenes/tad.png" alt="tad"></p>
+ </div>
+ </div>
+</li>
+<li>
+<p><strong>Como módulo</strong>: Organización y encapsulación de software.</p>
+<p>Por ejemplo, en C#, son las que hemos estado creando hasta ahora y que <strong>solo contenían métodos estáticos (módulos)</strong>. Un ejemplo puede ser la clase <strong><code>Math</code></strong> de las BCL y que solo contiene funciones de utilidad matemática. A esta organización también se las conoce con el <strong>estereotipo</strong> <strong><code>&lt;&lt;Utility&gt;&gt;</code></strong> en POO.</p>
+ <div class="contenedor">
+     <div class="fondo">
+         <div class="abre_comilla">"</div>
+         <div class="cierra_comilla">"</div>
+         <div class="cita">Una clase es un tipo definido por el usuario que encapsula datos y comportamiento.</div>
+         <div class="autor">- Bjarne Stroustrup (Crador del lenguaje C++) </div>
+     </div>
+ </div>
+</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h4 id="elementos-que-definen-una-clase">Elementos que definen una clase </h4>
+<ol>
+<li><strong>Un Nombre</strong>: Que describe a la clase.</li>
+<li><strong>Atributos o Campos</strong>: Son datos necesarios para describir los objetos creados a partir de la clase.<br>
+La combinación de sus valores determina el <strong>estado de un objeto</strong>.</li>
+<li><strong>Operaciones, Métodos o Servicios</strong><br>
+Describe la operaciones posibles sobré un objeto de esa clase ya descritas en el TAD.<br>
+Debería se el único modo de acceder a los atributos.</li>
+<li><strong>Roles</strong>: Relaciones que una clase establece con otras clases.</li>
+</ol>
+<p>Por ejemplo, en este dibujo que representa una clase en UML:</p>
+<p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="251pt" height="117pt" viewBox="0.00 0.00 250.86 117.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 113)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-113 246.86,-113 246.86,4 -4,4"></polygon>
+<!-- Cuenta -->
+<g id="node1" class="node">
+<title>Cuenta</title>
+<polygon fill="none" stroke="black" points="0,-0.5 0,-108.5 242.86,-108.5 242.86,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="121.43" y="-91.9" font-family="Arial" font-size="14.00">Cuenta</text>
+<polyline fill="none" stroke="black" points="0,-83.7 242.86,-83.7"></polyline>
+<text text-anchor="start" x="8" y="-67.1" font-family="Arial" font-size="14.00">+ Saldo : double</text>
+<text text-anchor="start" x="8" y="-50.3" font-family="Arial" font-size="14.00">+ Titular : string</text>
+<polyline fill="none" stroke="black" points="0,-42.1 242.86,-42.1"></polyline>
+<text text-anchor="start" x="8" y="-25.5" font-family="Arial" font-size="14.00">+ Reintegro() : double</text>
+<text text-anchor="start" x="8" y="-8.7" font-family="Arial" font-size="14.00">+ Ingreso(in cantidad : double) : void</text>
+</g>
+</g>
+</svg>
+</p><p></p>
+<ol>
+<li><strong>Nombre</strong>: <strong><code>Cuenta</code></strong></li>
+<li><strong>Campos</strong>:
+<ul>
+<li><strong><code>Saldo</code></strong>: Representa el saldo de la cuenta y por tanto su estado.</li>
+<li><strong><code>Titular</code></strong>: Representa el titular de la cuenta y no debería cambiar a lo largo de la vida de la cuenta, esto es, es <strong>inmutable</strong>.</li>
+</ul>
+</li>
+<li><strong>Operaciones</strong>:
+<ul>
+<li><strong><code>Ingreso(in cantidad: double): void</code></strong>: Permite ingresar una cantidad de dinero en la cuenta y cambia el <strong><code>Saldo</code></strong> y por tanto su estado.</li>
+<li><strong><code>Reintegro(): double</code></strong>: Permite retirar una cantidad de dinero de la cuenta y cambia el <strong><code>Saldo</code></strong> y por tanto su estado.</li>
+</ul>
+</li>
+<li><strong>Roles</strong>: No tiene relaciones con otras clases en este ejemplo.</li>
+</ol>
+<div style="page-break-after:always;"></div>
+<h3 id="definición-de-objeto">Definición de objeto </h3>
+<div class="row">
+<div class="col-sm-7 my-auto">
+<p>La creación o <strong>instancia en memoria</strong> de un elemento de la clase.</p>
+<p>De las anteriores definiciones se infiere que: "Un objeto es un conjunto de atributos y métodos que permiten manipular y/o modificar dichos atributos, cambiando así el <strong>estado</strong> del mismo."</p>
+<blockquote>
+<p>📌 <strong>Nota</strong>: Para la mayoría de lenguajes actuales como C#, <strong>todo son objetos</strong>. De hecho los tipos básicos que hemos visto hasta ahora también son, para él, '<em>objetos</em>'.</p>
+</blockquote>
+</div>
+<div class="col-sm-5 my-auto">
+<p><img src="assets/imagenes/objetos.png" alt="objeto"></p>
+</div>
+</div>
+<h4 id="composición-de-un-objeto">Composición de un objeto </h4>
+<ol>
+<li>
+<p><strong>Estado</strong>: Vendrá dado por el <strong>valor de sus campos</strong> y su rol durante la ejecución.</p>
+</li>
+<li>
+<p><strong>Comportamiento</strong>: Que será el modo en que las operaciones cambian a su estado.</p>
+</li>
+<li>
+<p>Una <strong>Identidad</strong>: que me permitirá distinguirlo de otros.</p>
+<ul>
+<li>Dos objetos son iguales si tienen el mismo estado.</li>
+<li>No es lo mismo <strong>identidad</strong> que <strong>igualdad</strong>.</li>
+</ul>
+<p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="558pt" height="75pt" viewBox="0.00 0.00 557.97 75.40" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 71.4)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-71.4 553.97,-71.4 553.97,4 -4,4"></polygon>
+<!-- Cuenta1 -->
+<g id="node1" class="node">
+<title>Cuenta1</title>
+<polygon fill="none" stroke="black" points="0,-0.5 0,-66.9 122.63,-66.9 122.63,-0.5 0,-0.5"></polygon>
+<text text-anchor="middle" x="61.32" y="-50.3" font-family="Arial" font-size="14.00">cuenta1 : Cuenta</text>
+<polyline fill="none" stroke="black" points="0,-42.1 122.63,-42.1"></polyline>
+<text text-anchor="start" x="8" y="-25.5" font-family="Arial" font-size="14.00">Saldo = 30000</text>
+<text text-anchor="start" x="8" y="-8.7" font-family="Arial" font-size="14.00">Titular = "Xusa"</text>
+</g>
+<!-- Cuenta2 -->
+<g id="node2" class="node">
+<title>Cuenta2</title>
+<polygon fill="none" stroke="black" points="141,-0.5 141,-66.9 263.63,-66.9 263.63,-0.5 141,-0.5"></polygon>
+<text text-anchor="middle" x="202.32" y="-50.3" font-family="Arial" font-size="14.00">cuenta2 : Cuenta</text>
+<polyline fill="none" stroke="black" points="141,-42.1 263.63,-42.1"></polyline>
+<text text-anchor="start" x="149" y="-25.5" font-family="Arial" font-size="14.00">Saldo = 30000</text>
+<text text-anchor="start" x="149" y="-8.7" font-family="Arial" font-size="14.00">Titular = "Xusa"</text>
+</g>
+<!-- Cuenta3 -->
+<g id="node3" class="node">
+<title>Cuenta3</title>
+<polygon fill="none" stroke="black" points="282,-0.5 282,-66.9 404.63,-66.9 404.63,-0.5 282,-0.5"></polygon>
+<text text-anchor="middle" x="343.32" y="-50.3" font-family="Arial" font-size="14.00">cuenta3 : Cuenta</text>
+<polyline fill="none" stroke="black" points="282,-42.1 404.63,-42.1"></polyline>
+<text text-anchor="start" x="290" y="-25.5" font-family="Arial" font-size="14.00">Saldo = 15000</text>
+<text text-anchor="start" x="290" y="-8.7" font-family="Arial" font-size="14.00">Titular = "Juanjo"</text>
+</g>
+<!-- Equality -->
+<g id="node4" class="node">
+<title>Equality</title>
+<text text-anchor="middle" x="486.32" y="-46.3" font-family="Arial" font-size="14.00">cuenta1≡cuenta1</text>
+<text text-anchor="middle" x="486.32" y="-29.5" font-family="Arial" font-size="14.00">cuenta1=cuenta2</text>
+<text text-anchor="middle" x="486.32" y="-12.7" font-family="Arial" font-size="14.00">cuenta1≠cuenta3</text>
+</g>
+</g>
+</svg>
+</p><p></p>
+</li>
+</ol>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">Un objeto es una entidad con estado, comportamiento e identidad.</div>
+        <div class="autor">- From the Book Object-OrientOriented Modeling and Design.</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h3 id="definición-de-campo">Definición de Campo </h3>
+<p>También conocido según el contexto como <strong>Atributo</strong> o <strong>Propiedades</strong>. Nos describirá los objetos de una clase y sus valores indicarán el estado de un objeto.</p>
+<p><strong>¿Qué tipos hay?</strong></p>
+<ol>
+<li><strong>De Instancia o también (de objeto)</strong>
+<ul>
+<li>Serán <strong>diferentes en cada objeto</strong>.</li>
+<li>Necesitaré de un objeto <strong>instanciado (creado) en memoria</strong> para acceder a ellos.</li>
+</ul>
+</li>
+<li><strong>De clase o también estáticos</strong>
+<ul>
+<li>Tendrán el <strong>mismo valor en todos los objetos</strong> de la clase, por tanto almacenan características comunes a todos ellos.</li>
+<li>No necesito un objeto instanciado para acceder a ellos.</li>
+<li>Son visibles desde cualquier método de la clase (ya sea de instancia o no).</li>
+</ul>
+</li>
+</ol>
+<h3 id="definición-de-método">Definición de Método </h3>
+<p>Definen el <strong>Comportamiento</strong> y las <strong>Operaciones</strong> que se pueden realizar con los objetos. Además, permiten interactuar y relacionarse a los objetos.</p>
+<p><strong>¿Qué tipos hay?</strong></p>
+<ol>
+<li><strong>De instancia o también (de objeto)</strong>
+<ul>
+<li>Necesitaré de un objeto <strong>instanciado (creado) en memoria</strong> para acceder a ellos.</li>
+<li>Pueden <strong>acceder a campos</strong> de <strong>instancia</strong> como de <strong>clase</strong>.</li>
+<li>Pueden modificar el <strong>estado de un objeto</strong> concreto en memoria si este es mutable.</li>
+</ul>
+</li>
+<li><strong>De clase o también estáticos</strong>
+<ul>
+<li>No necesito tener un objeto instanciado en memoria para acceder a ellos.</li>
+<li><strong>Solo pueden acceder a los campos de clase</strong> y no a los de instancia.</li>
+</ul>
+</li>
+<li><strong>De acceso y actualización</strong>
+<ul>
+<li>También se les conoce como <strong>Accesores</strong> - <strong>Mutadores</strong> en general, <strong>Propiedades</strong> (C#, Kotlin, Swift, etc.), <strong>Getters</strong> - <strong>Setters</strong> (Java, C++, etc.).</li>
+</ul>
+</li>
+</ol>
+<div class="contenedor">
+    <div class="fondo">
+        <div class="abre_comilla">"</div>
+        <div class="cierra_comilla">"</div>
+        <div class="cita">Certainly not every good program is object-oriented, and not every object-oriented program is good.</div>
+        <div class="autor">- Bjarne Stroustrup (C++ creator)</div>
+    </div>
+</div>
+<div style="page-break-after:always;"></div>
+<h4 id="enfoque-de-los-métodos-desde-la-teoría-de-poo">Enfoque de los métodos desde la teoría de POO </h4>
+<p>En la teoría tradicional de la POO, los objetos se comunican entre ellos a través de un mecanismo de <strong>paso de mensajes</strong>. (<strong><a href="https://en.wikipedia.org/wiki/Alan_Kay">Alan Kay</a></strong>, <strong><a href="https://en.wikipedia.org/wiki/Bertrand_Meyer">Bertrand Meyer</a></strong>) Esto significa que, en el fondo, <strong>cuando desde un método de un objeto de instancia llamamos o invocamos a un método de otro objetos</strong>, estaremos haciendo este paso de mensajes y por tanto comunicando ambos objetos. Aunque existen más formas de pasar estos mensajes, pero la más básica es esta.</p>
+<p>Vamos a verlo a través de un ejemplo <em>'<strong>simplificado</strong>'</em> de código para entender el concepto <em>'<strong>abstracto</strong>'</em> de mensaje y comunicación entre objetos:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Persona</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoDeInstancia</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">Phone</span> tlf <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"iPhone 17"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Mensaje 1</span>
+        <span class="token comment">// Un objeto concreto de Persona (en el ejemplo 'María')</span>
+        <span class="token comment">// Se comunica con e objetos tlf a través de un</span>
+        <span class="token comment">// mensaje, esto és llamando a su método Enciende()</span>
+        <span class="token comment">// Esto cambia el estado del objeto tlf a encendido.</span>
+        tlf<span class="token punctuation">.</span><span class="token function">Enciende</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Mensaje 2</span>
+        <span class="token comment">// María pasa el mensaje a tlf de que llame a un número </span>
+        <span class="token comment">// cambiando su estado a llamando...</span>
+        tlf<span class="token punctuation">.</span><span class="token function">Llama</span><span class="token punctuation">(</span><span class="token number">676345266</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="600pt" height="100pt" viewBox="0.00 0.00 600.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.9 0.9) rotate(0) translate(23.16 109.56)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-23.16,1.56 -23.16,-109.56 643.51,-109.56 643.51,1.56 -23.16,1.56"></polygon>
+<!-- p -->
+<g id="node1" class="node">
+<title>p</title>
+<polygon fill="none" stroke="black" points="8,-54 8,-92.8 192.04,-92.8 192.04,-54 8,-54"></polygon>
+<text text-anchor="start" x="24.94" y="-69.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maría : Persona &nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="8,-15.2 8,-54 192.04,-54 192.04,-15.2 8,-15.2"></polygon>
+<text text-anchor="start" x="19" y="-30.4" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre = "María" &nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- tlf -->
+<g id="node2" class="node">
+<title>tlf</title>
+<polygon fill="none" stroke="black" points="408.81,-54 408.81,-92.8 612.35,-92.8 612.35,-54 408.81,-54"></polygon>
+<text text-anchor="start" x="455.72" y="-69.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tlf : Phone &nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="408.81,-15.2 408.81,-54 612.35,-54 612.35,-15.2 408.81,-15.2"></polygon>
+<text text-anchor="start" x="419.81" y="-30.4" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modelo = "iPhone 17" &nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- p&#45;&gt;tlf -->
+<g id="edge1" class="edge">
+<title>p-&gt;tlf</title>
+<path fill="none" stroke="black" d="M199.93,-36C199.93,-36 389.31,-36 389.31,-36"></path>
+<polygon fill="black" stroke="black" points="389.31,-39.5 399.31,-36 389.31,-32.5 389.31,-39.5"></polygon>
+<text text-anchor="start" x="240.4" y="-77.6" font-family="Arial" font-size="12.00">Mensaje1: </text>
+<text text-anchor="start" x="299.1" y="-77.6" font-family="Arial" font-weight="bold" font-size="12.00">Enciende()</text>
+</g>
+<!-- p&#45;&gt;tlf -->
+<g id="edge2" class="edge">
+<title>p-&gt;tlf</title>
+<path fill="none" stroke="black" d="M199.93,-72C199.93,-72 389.31,-72 389.31,-72"></path>
+<polygon fill="black" stroke="black" points="389.31,-75.5 399.31,-72 389.31,-68.5 389.31,-75.5"></polygon>
+<text text-anchor="start" x="218.04" y="-40.6" font-family="Arial" font-size="12.00">Mensaje2: </text>
+<text text-anchor="start" x="276.74" y="-40.6" font-family="Arial" font-weight="bold" font-size="12.00">Llama( </text>
+<text text-anchor="start" x="318.75" y="-40.6" font-family="Arial" font-weight="bold" font-size="12.00" fill="lightblue">676345266</text>
+<text text-anchor="start" x="378.81" y="-40.6" font-family="Arial" font-weight="bold" font-size="12.00">)</text>
+</g>
+</g>
+</svg>
+</p><p></p>
+<h3 id="definición-de-encapsulación">Definición de Encapsulación </h3>
+<p>En POO, se denomina encapsulación al la <strong>ocultación del estado</strong>, es decir, de los atributos, de un objeto. De tal manera que, solo se puede cambiar mediante las operaciones definidas para ese objeto o sus accesores - mutadores. De esta forma el usuario de la clase solo interacciona con los objetos abstrayéndose de como están implementados (<strong>no sabe nada de la implementación</strong>). Con esto, <strong>se evita que el usuario pueda cambiar su estado de maneras imprevistas e incontroladas</strong>.</p>
+<div style="page-break-after:always;"></div>
+<h3 id="definición-de-constructor-y-destructor">Definición de Constructor Y Destructor </h3>
+<p><strong>Constructor:</strong></p>
+<p>Método o métodos especiales que me servirán para instanciar e inicializar el estado de un objeto en memoria.<br>
+Toda clase debe tener al menos un constructor.</p>
+<p><strong>Destructor:</strong></p>
+<p>Un único método especial encargado de eliminar una instancia en memoria de un objeto.<br>
+En la gram mayoría de lenguajes OO modernos no hace falta definirlos y llamarlos, ya que de esta labor de eliminación de instancias de objetos en memoria, se encarga el denominado <em>'<strong>recolector de basura</strong>'</em> (GC), cuando un objeto ya no es referenciado por nadie.</p>
+<h3 id="instanciando-objectos-de-una-clase">Instanciando objectos de una clase </h3>
+<p>Para <strong>crear</strong> o <strong>instanciar</strong> objetos de una determinada clase se utiliza el operador <strong><code>new</code></strong></p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token generic-method"><span class="token function">new</span> <span class="token generic class-name"><span class="token punctuation">&lt;</span>NombreTipo<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token operator">&lt;</span>parametros<span class="token operator">&gt;</span><span class="token punctuation">)</span>
+</code></pre><p>Este operador crea un nuevo objeto del tipo cuyo nombre se le indica. Para ello llama al <strong>constructor</strong> del objeto mas apropiado según los valores que se le pasen <strong><code>&lt;parametros&gt;</code></strong>, y devuelve una referencia a la dirección de memoria dinámica donde se ha creado el objeto.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Cuenta</span> cuenta1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Cuenta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Cuenta</span> cuenta1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Para acceder a los <strong>campos</strong> y a los <strong>métodos</strong> de un objeto usaremos el operador <strong><code>.</code></strong> que es el <strong>operador de acceso a miembros</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token operator">&lt;</span>objeto<span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token operator">&lt;</span>campo<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>objeto<span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token operator">&lt;</span>método<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>parámetros<span class="token operator">&gt;</span><span class="token punctuation">)</span>
+</code></pre><p>Por ejemplo, para acceder a los campos y métodos de la clase <strong><code>Cuenta</code></strong> que hemos definido anteriormente, lo haríamos de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>cuenta1<span class="token punctuation">.</span>Saldo <span class="token operator">=</span> <span class="token number">30000</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">Writeline</span><span class="token punctuation">(</span>cuenta1<span class="token punctuation">.</span>Titular<span class="token punctuation">;</span>
+</code></pre><div style="page-break-after:always;"></div>
+<h4 id="representando-objetos-instanciados-en-memoria">Representando objetos instanciados en memoria </h4>
+<p>Los objetos definidos por nosotros suelen ser <strong>tipos referencia</strong>, significa que el identificador <strong><code>cuenta1</code></strong> <strong>será una referencia</strong> en el <strong>Stack</strong> a una instancia en memoria de un objeto de tipo <strong><code>Cuenta</code></strong> en el <strong>Heap</strong>. Puedes ver los conceptos de <strong>Stack</strong> (Pila) y <strong>Heap</strong> (Memoria Montón) descritos en el <strong>Anexo I de la Unidad 3</strong>.</p>
+<p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="500pt" height="150pt" viewBox="0.00 0.00 500.00 150.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.7 0.7) rotate(0) translate(51.19 186.64)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-51.19,27.64 -51.19,-186.64 663.1,-186.64 663.1,27.64 -51.19,27.64"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster1</title>
+<polygon fill="SteelBlue" stroke="black" points="82,-26 82,-133 271.48,-133 271.48,-26 82,-26"></polygon>
+<text text-anchor="middle" x="176.74" y="-116.4" font-family="Arial" font-size="14.00" fill="white">STACK</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster2</title>
+<polygon fill="LightSteelBlue" stroke="black" points="365.48,-8 365.48,-151 603.91,-151 603.91,-8 365.48,-8"></polygon>
+<text text-anchor="middle" x="484.7" y="-134.4" font-family="Arial" font-size="14.00">HEAP</text>
+</g>
+<!-- stack -->
+<g id="node1" class="node">
+<title>stack</title>
+<text text-anchor="start" x="118" y="-62.8" font-family="Arial" font-size="14.00" fill="white">cuenta1</text>
+<polygon fill="CornflowerBlue" stroke="none" points="187.82,-37.6 187.82,-96.4 255.48,-96.4 255.48,-37.6 187.82,-37.6"></polygon>
+<polygon fill="none" stroke="white" points="187.82,-37.6 187.82,-96.4 255.48,-96.4 255.48,-37.6 187.82,-37.6"></polygon>
+<text text-anchor="start" x="208.82" y="-62.8" font-family="Arial" font-size="14.00" fill="white">(ref)</text>
+</g>
+<!-- heap -->
+<g id="node2" class="node">
+<title>heap</title>
+<polygon fill="none" stroke="black" points="381.48,-75.4 381.48,-114.2 587.91,-114.2 587.91,-75.4 381.48,-75.4"></polygon>
+<text text-anchor="start" x="392.48" y="-90.6" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuenta1 : Cuenta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="381.48,-19.8 381.48,-75.4 587.91,-75.4 587.91,-19.8 381.48,-19.8"></polygon>
+<text text-anchor="start" x="397.45" y="-51.8" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo = 30000</text>
+<text text-anchor="start" x="397.45" y="-35" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titular = "Xusa" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge2" class="edge">
+<title>stack:e-&gt;heap:w</title>
+<path fill="none" stroke="black" d="M263.34,-60.86C294.11,-60.27 329.35,-60.11 362.53,-60.38"></path>
+<polygon fill="black" stroke="black" points="362.14,-63.88 372.18,-60.47 362.21,-56.88 362.14,-63.88"></polygon>
+</g>
+<!-- stack&#45;&gt;heap -->
+<g id="edge3" class="edge">
+<title>stack-&gt;heap</title>
+<path fill="none" stroke="none" d="M271.48,-73.28C300.23,-73.76 332.24,-73.87 362.53,-73.62"></path>
+<polygon fill="none" stroke="none" points="354.11,-77.44 363.97,-73.57 353.85,-70.44 354.11,-77.44"></polygon>
+</g>
+<!-- Cima\nPila -->
+<g id="node3" class="node">
+<title>Cima\nPila</title>
+<text text-anchor="middle" x="27" y="-100.2" font-family="Arial" font-size="14.00">Cima</text>
+<text text-anchor="middle" x="27" y="-83.4" font-family="Arial" font-size="14.00">Pila</text>
+</g>
+<!-- Cima\nPila&#45;&gt;stack -->
+<g id="edge1" class="edge">
+<title>Cima\nPila-&gt;stack:nw</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M53.68,-96.22C88.97,-96.53 150.99,-97.08 176.44,-97.3"></path>
+<polygon fill="black" stroke="black" points="176.28,-100.8 186.31,-97.39 176.34,-93.8 176.28,-100.8"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<p>Nosotros para simplificar en estos apuntes, este tipo de referencias las vamos a representar a partir de ahora de la siguiente forma equivalente al esquema que hemos dibujado arriba. De tal manera que si hacemos ...</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Cuenta</span> cuenta1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+cuenta1<span class="token punctuation">.</span>Saldo <span class="token operator">=</span> <span class="token number">30000</span><span class="token punctuation">;</span>
+cuenta1<span class="token punctuation">.</span>Titular <span class="token operator">=</span> <span class="token string">"Xusa"</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="col-sm-6 my-auto">
+<p></p><p class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="225pt" height="100pt" viewBox="0.00 0.00 225.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.5 0.5) rotate(0) translate(50.38 151.2)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-50.38,48.8 -50.38,-151.2 399.62,-151.2 399.62,48.8 -50.38,48.8"></polygon>
+<!-- cuenta1 -->
+<g id="node1" class="node">
+<title>cuenta1</title>
+<ellipse fill="none" stroke="black" cx="45.4" cy="-51.2" rx="45.4" ry="45.4"></ellipse>
+<text text-anchor="middle" x="45.4" y="-47" font-family="Arial" font-size="14.00">cuenta1</text>
+</g>
+<!-- Cuenta -->
+<g id="node2" class="node">
+<title>Cuenta</title>
+<polygon fill="none" stroke="black" points="134.8,-59.6 134.8,-98.4 341.23,-98.4 341.23,-59.6 134.8,-59.6"></polygon>
+<text text-anchor="start" x="145.8" y="-74.8" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuenta1 : Cuenta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="134.8,-4 134.8,-59.6 341.23,-59.6 341.23,-4 134.8,-4"></polygon>
+<text text-anchor="start" x="150.77" y="-36" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo = 30000</text>
+<text text-anchor="start" x="150.77" y="-19.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titular = "Xusa" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- cuenta1&#45;&gt;Cuenta -->
+<g id="edge1" class="edge">
+<title>cuenta1-&gt;Cuenta</title>
+<path fill="none" stroke="black" d="M91.09,-51.2C98.74,-51.2 107.01,-51.2 115.58,-51.2"></path>
+<polygon fill="black" stroke="black" points="115.48,-54.7 125.48,-51.2 115.48,-47.7 115.48,-54.7"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+</div>
+</div>
+<p>y si asignaramos la referencia de <strong><code>cuenta1</code></strong> a otra variable, por ejemplo <strong><code>cuenta2</code></strong>, lo representaremos de la siguiente manera:</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Cuenta</span> cuenta2 <span class="token operator">=</span> cuenta1<span class="token punctuation">;</span>
+
+<span class="token comment">// Mostrará "Iguales: True"</span>
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> iguales <span class="token operator">=</span> cuenta2 <span class="token operator">==</span> cuenta1<span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Iguales: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">iguales</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// Mostrará "Idénticos: True"</span>
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> identicos <span class="token operator">=</span> <span class="token function">ReferenceEquals</span><span class="token punctuation">(</span>cuenta2<span class="token punctuation">,</span> cuenta1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$"Idénticos<span class="token punctuation">:</span> <span class="token punctuation">{</span>identicos<span class="token punctuation">)</span><span class="token punctuation">}</span>"<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="col-sm-6 my-auto">
+<p></p><p class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="225pt" height="125pt" viewBox="0.00 0.00 225.00 125.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.5 0.5) rotate(0) translate(19.64 224.9)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-19.64,25.1 -19.64,-224.9 430.36,-224.9 430.36,25.1 -19.64,25.1"></polygon>
+<!-- cuenta1 -->
+<g id="node1" class="node">
+<title>cuenta1</title>
+<ellipse fill="none" stroke="black" cx="45.4" cy="-154.4" rx="45.4" ry="45.4"></ellipse>
+<text text-anchor="middle" x="45.4" y="-150.2" font-family="Arial" font-size="14.00">cuenta1</text>
+</g>
+<!-- oc1 -->
+<g id="node3" class="node">
+<title>oc1</title>
+<polygon fill="none" stroke="black" points="134.8,-107.8 134.8,-146.6 402.72,-146.6 402.72,-107.8 134.8,-107.8"></polygon>
+<text text-anchor="start" x="145.8" y="-123" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuenta1 , cuenta2 : Cuenta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="134.8,-52.2 134.8,-107.8 402.72,-107.8 402.72,-52.2 134.8,-52.2"></polygon>
+<text text-anchor="start" x="181.51" y="-84.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo = 30000</text>
+<text text-anchor="start" x="181.51" y="-67.4" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titular = "Xusa" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- cuenta1&#45;&gt;oc1 -->
+<g id="edge1" class="edge">
+<title>cuenta1-&gt;oc1</title>
+<path fill="none" stroke="black" d="M89.87,-143.6C97.93,-141.6 106.74,-139.41 116.01,-137.11"></path>
+<polygon fill="black" stroke="black" points="116.74,-140.53 125.61,-134.72 115.06,-133.74 116.74,-140.53"></polygon>
+</g>
+<!-- cuenta2 -->
+<g id="node2" class="node">
+<title>cuenta2</title>
+<ellipse fill="none" stroke="black" cx="45.4" cy="-45.4" rx="45.4" ry="45.4"></ellipse>
+<text text-anchor="middle" x="45.4" y="-41.2" font-family="Arial" font-size="14.00">cuenta2</text>
+</g>
+<!-- cuenta2&#45;&gt;oc1 -->
+<g id="edge2" class="edge">
+<title>cuenta2-&gt;oc1</title>
+<path fill="none" stroke="black" d="M89.87,-56.01C97.93,-57.97 106.74,-60.12 116.01,-62.38"></path>
+<polygon fill="black" stroke="black" points="115.06,-65.75 125.6,-64.72 116.72,-58.95 115.06,-65.75"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+</div>
+</div>
+<p>Recuerda que ambas referencias '<em>apuntarán</em>' <strong>al mismo objeto en la memoria montón</strong> y por tanto el método <strong><code>ReferenceEquals</code></strong> nos devolverá <strong><code>True</code></strong> indicándonos que ambas variables apuntas al mismo objeto en la memoria (<strong>HEAP</strong>).</p>
+<div style="page-break-after:always;"></div>
+<p>Pero, ¿<strong>qué pasa si hacemos una copia del objeto</strong>?...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">Cuenta</span> cuenta2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Cuenta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+cuenta2<span class="token punctuation">.</span>Saldo <span class="token operator">=</span> cuenta1<span class="token punctuation">.</span>Saldo<span class="token punctuation">;</span>
+cuenta2<span class="token punctuation">.</span>Titular <span class="token operator">=</span> cuenta1<span class="token punctuation">.</span>Titular<span class="token punctuation">;</span>
+
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> iguales <span class="token operator">=</span> cuenta2 <span class="token operator">==</span> cuenta1<span class="token punctuation">;</span>
+<span class="token comment">// Mostrará "Iguales: False"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Iguales: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">iguales</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> identicos <span class="token operator">=</span> <span class="token function">ReferenceEquals</span><span class="token punctuation">(</span>cuenta2<span class="token punctuation">,</span> cuenta1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Mostrará "Idénticos: False"</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Idénticos: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">identicos</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p></p><p align="center" class="dot"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
+<!-- Generated by graphviz version 12.2.0 (20241103.1931)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="550pt" height="150pt" viewBox="0.00 0.00 550.00 150.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.7 0.7) rotate(0) translate(25.63 158.34)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.63,55.94 -25.63,-158.34 760.09,-158.34 760.09,55.94 -25.63,55.94"></polygon>
+<!-- cuenta1 -->
+<g id="node1" class="node">
+<title>cuenta1</title>
+<ellipse fill="none" stroke="black" cx="45.4" cy="-51.2" rx="45.4" ry="45.4"></ellipse>
+<text text-anchor="middle" x="45.4" y="-47" font-family="Arial" font-size="14.00">cuenta1</text>
+</g>
+<!-- oc1 -->
+<g id="node3" class="node">
+<title>oc1</title>
+<polygon fill="none" stroke="black" points="134.8,-59.6 134.8,-98.4 341.23,-98.4 341.23,-59.6 134.8,-59.6"></polygon>
+<text text-anchor="start" x="145.8" y="-74.8" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuenta1 : Cuenta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="134.8,-4 134.8,-59.6 341.23,-59.6 341.23,-4 134.8,-4"></polygon>
+<text text-anchor="start" x="150.77" y="-36" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo = 30000</text>
+<text text-anchor="start" x="150.77" y="-19.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titular = "Xusa" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- cuenta1&#45;&gt;oc1 -->
+<g id="edge1" class="edge">
+<title>cuenta1-&gt;oc1</title>
+<path fill="none" stroke="black" d="M91.09,-51.2C98.74,-51.2 107.01,-51.2 115.58,-51.2"></path>
+<polygon fill="black" stroke="black" points="115.48,-54.7 125.48,-51.2 115.48,-47.7 115.48,-54.7"></polygon>
+</g>
+<!-- cuenta2 -->
+<g id="node2" class="node">
+<title>cuenta2</title>
+<ellipse fill="none" stroke="black" cx="430.63" cy="-51.2" rx="45.4" ry="45.4"></ellipse>
+<text text-anchor="middle" x="430.63" y="-47" font-family="Arial" font-size="14.00">cuenta2</text>
+</g>
+<!-- oc2 -->
+<g id="node4" class="node">
+<title>oc2</title>
+<polygon fill="none" stroke="black" points="520.03,-59.6 520.03,-98.4 726.46,-98.4 726.46,-59.6 520.03,-59.6"></polygon>
+<text text-anchor="start" x="531.03" y="-74.8" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuenta2 : Cuenta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+<polygon fill="none" stroke="black" points="520.03,-4 520.03,-59.6 726.46,-59.6 726.46,-4 520.03,-4"></polygon>
+<text text-anchor="start" x="536" y="-36" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo = 30000</text>
+<text text-anchor="start" x="536" y="-19.2" font-family="Arial" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Titular = "Xusa" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+</g>
+<!-- cuenta2&#45;&gt;oc2 -->
+<g id="edge3" class="edge">
+<title>cuenta2-&gt;oc2</title>
+<path fill="none" stroke="black" d="M476.32,-51.2C483.97,-51.2 492.24,-51.2 500.81,-51.2"></path>
+<polygon fill="black" stroke="black" points="500.71,-54.7 510.71,-51.2 500.71,-47.7 500.71,-54.7"></polygon>
+</g>
+<!-- oc1&#45;&gt;cuenta2 -->
+<g id="edge2" class="edge">
+<title>oc1-&gt;cuenta2</title>
+<path fill="none" stroke="none" d="M349.07,-51.2C357.4,-51.2 365.58,-51.2 373.34,-51.2"></path>
+<polygon fill="none" stroke="none" points="373.25,-54.7 383.25,-51.2 373.25,-47.7 373.25,-54.7"></polygon>
+</g>
+</g>
+</svg>
+</p><p></p>
+<div class="admonition warning">
+<p class="admonition-title">Cuidado</p>
+<p>Aunque <strong><code>cuenta2</code></strong> y <strong><code>cuenta1</code></strong> referencian a diferentes objetos en memoria y por tanto <strong><code>ReferenceEquals(cuenta2, cuenta1)</code></strong> se evaluará a <strong><code>False</code></strong> siempre, podríamos pensar que <strong><code>cuenta2 == cuenta1</code></strong> se evaluaría a <strong><code>True</code></strong> ya que t<strong>ienen el mismo contenido</strong>, pero esto no es así. Ya que no le hemos indicado a C# cómo comparar dos objetos de tipo <strong><code>Cuenta</code></strong> y por tanto, C# compara las referencias de ambos objetos y no su contenido. Por tanto, <strong><code>cuenta2 == cuenta1</code></strong> se evaluará a <strong><code>False</code></strong> en este momento.</p>
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="concepto-de-inmutabilidad">Concepto de inmutabilidad </h2>
+<p>Son <strong>objetos inmutables</strong> aquellos que una vez creados no pueden ser modificados. Es decir, no se puede cambiar el valor de sus campos o atributos.</p>
+<p>Esto supone que cualquier operación que se realice sobre un objeto inmutable, <strong>devolverá un nuevo objeto</strong> con el resultado de la operación, pero el objeto original permanecerá sin cambios.</p>
+<p>Aportan una serie de ventajas de las que podemos destacar ahora que:</p>
+<ul>
+<li>Permiten <strong>evitar efectos secundarios</strong> no deseados en el código, ya que al no poder modificarse, se garantiza que su estado no cambiará una vez creado.</li>
+<li>Son ideales para <strong>obtener instantáneas de datos</strong>, ya que una consulta de datos no debería tener ningún tipo de operación que la modifique.</li>
+<li>Facilitan la <strong>concurrencia</strong> y el <strong>paralelismo</strong>, ya que al no poder modificarse, no hay riesgo de que varios hilos de ejecución modifiquen el mismo objeto al mismo tiempo.</li>
+<li>Permiten una <strong>mejor optimización</strong> por parte del compilador y el recolector de basura, ya que al no poder modificarse, <strong>se pueden reutilizar</strong> objetos inmutables en lugar de crear nuevos objetos cada vez.</li>
+<li>Facilitan la <strong>comparación de objetos</strong>, ya que al no poder modificarse, se puede comparar el estado de un objeto inmutable con otro objeto inmutable sin preocuparse por cambios posteriores.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Más adelante veremos <strong>cómo definir nuestras propias clases</strong> o tipos de datos, además de muchos otros conceptos relacionados con el diseño orientado a objetos. Pero antes, a lo largo de las próximas unidades, vamos a ver una serie de clases que <strong>podremos encontrar ya definidas en la mayoría de lenguajes actuales</strong>, y que me permitirán <strong>instanciar objetos de una serie de objetos de uso común</strong> para manejo de cadenas, expresiones regulares, etc...</p>
+</div>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
