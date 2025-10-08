@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
 @page a4landscape {
   size: A4 landscape;
@@ -807,7 +807,10 @@ Combinaciones -&gt; (2,6)(3,5)(4,4)(5,3)(6,2)
     <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-uint">uint</span></span> dado1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> dado1 <span class="token operator">&lt;=</span> TIRADA_MAXIMA<span class="token punctuation">;</span> dado1<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         <span class="token class-name"><span class="token keyword keyword-uint">uint</span></span> dado2 <span class="token operator">=</span> sumaDados <span class="token operator">-</span> dado1<span class="token punctuation">;</span>
-        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>dado2 <span class="token operator">&lt;=</span> TIRADA_MAXIMA<span class="token punctuation">)</span>
+        <span class="token comment">// Si quisieramos evitar una combinación repetida</span>
+        <span class="token comment">// con los dados intercambiados podríamos añadir</span>
+        <span class="token comment">// a la condición: &amp;&amp; dado2 &lt;= dado1</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>dado2 <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> dado2 <span class="token operator">&lt;=</span> TIRADA_MAXIMA<span class="token punctuation">)</span>
             salida <span class="token operator">+=</span> <span class="token interpolation-string"><span class="token string">$"(</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dado1</span><span class="token punctuation">}</span></span><span class="token string">,</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">dado2</span><span class="token punctuation">}</span></span><span class="token string">)"</span></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>salida<span class="token punctuation">)</span><span class="token punctuation">;</span>
