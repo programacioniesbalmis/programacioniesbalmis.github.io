@@ -273,6 +273,7 @@ Cada ejercicio estará compuesto por dos métodos:</p>
 <ul>
 <li>Uno con el mismo nombre del ejercicio que servirá para la recogida de datos y para la llamada al método que realiza la funcionalidad. Este método viene con el proyecto y tendrás que añadir la funcionalidad sustituyendo las líneas <strong><code>//TODO:</code></strong> por el código de solución del ejercicio.</li>
 <li>El o los otros métodos que deberán tener el nombre que se indica en cada uno de los ejercicios.</li>
+<li>Seguramente querrás pasar los Test a la vez que vayas resolviendo ejercicios, por lo que deberás comentar los test de los métodos que todavía no hayas creado, para quitar los errores usa <code>/* */</code> incluyendo dentro las líneas de código que no necesites.</li>
 </ul>
 </div>
 <div class="box_bg_lightgreen">
@@ -307,8 +308,8 @@ El volumen de la esfera es: 113,10
 </pre>
 <p><strong>Requisitos:</strong></p>
 <ul>
-<li>Define una función estática <strong><code>void VolumenEsfera(double radio)</code></strong>.</li>
-<li>Usa la fórmula: V = (4/3) × π × r³</li>
+<li>Define una función estática <strong><code>void MuestraVolumenEsfera(double radio)</code></strong>.</li>
+<li>Usa la fórmula: V = (4.0/3.0) × π × r³</li>
 <li>Usa <code>Math.PI</code> y <code>Math.Pow()</code> para los cálculos.</li>
 <li>Muestra el resultado con dos decimales en la propia función.</li>
 </ul>
@@ -327,7 +328,14 @@ El mayor de los tres números es: 23
 <li>Define una función estática <strong><code>void Mayor(int a, int b, int c)</code></strong>.</li>
 <li>Usa condicionales para determinar el mayor.</li>
 <li>La función debe mostrar el valor mayor.</li>
+<li>Si los tres números son iguales la función mostrará.</li>
 </ul>
+<pre class="salida_consola">Ejercicio 3: Función con múltiples parámetros y sin retorno
+Introduce el primer número: 3
+Introduce el segundo número: 3
+Introduce el tercer número: 3
+Los números son iguales
+</pre>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-4-función-sin-parámetros-de-entrada-y-con-parámetros-de-retorno">Ejercicio 4. Función sin parámetros de entrada y con parámetros de retorno </h2>
@@ -339,9 +347,8 @@ Hoy estamos a 13 de noviembre de 2025
 <ul>
 <li>Define una función estática <strong><code>string FormateaFecha()</code></strong>.</li>
 <li>Usa la clase DateTime de <strong><a href="https://learn.microsoft.com/en-us/dotnet/api/system.datetime.addhours">System.DateTime</a></strong> para conseguir la fecha actual.</li>
-<li>Usa un objeto de tipo <strong><code>CultureInfo</code></strong> para establecer la información de formato de España, de la forma:<br>
-<strong><code>var cultura = new CultureInfo("es-ES")</code></strong>;</li>
-<li>Con el método toString del objeto DateTime formatea la fecha, para crear una cadena como la de la salida.</li>
+<li>Con el método toString del objeto DateTime obtén el mes con formato largo.</li>
+<li>Crea la cadena con los datos extraídos del objeto DateTime y con el mes obtenido.</li>
 <li>El método retornará la cadena.</li>
 <li>Evidentemente, la fecha que se muestra en la salida no será la actual del momento de ejecución de tu programa.</li>
 </ul>
@@ -380,10 +387,19 @@ Contraseña generada: AbcDefGhiJkL
 <p>Si <code>incluirNumeros = true</code>, añade dígitos <strong><code>0-9</code></strong>.</p>
 </li>
 <li>
-<p>Si <code>incluirSimbolos = true</code>, añade símbolos como <strong><code>!@#$%&amp;*</code></strong></p>
+<p>Si <code>incluirSimbolos = true</code>, añade símbolos como <strong><code>!#"$%&amp;</code></strong></p>
 </li>
 <li>
-<p>Usa <code>Random</code> para generar caracteres aleatorios.</p>
+<p>Usa <code>Random</code> para generar caracteres aleatorios. Como ya sabemos el Random nos puede proporcionar números aleatorios, pero lo que necesitamos en este ejercicio son caracteres, por lo que vamos a convertir el número generado en carácter:</p>
+<ul>
+<li>Para ello generaremos los números que se asocian en la <a href="https://es.wikipedia.org/wiki/ASCII">tabla ASCII</a>, a los caracteres que necesitamos. Por ejemplo, para los caracteres especiales podemos coger el rango entre <code>33 y 38</code>. El número generado tendrás que convertirlo a char usando <code>Convert.ToChar()</code> o una conversión más explícita con el casting directo <code>(char)numero</code></li>
+</ul>
+</li>
+<li>
+<p>Además podremos mejorar el ejercicio si para cada nuevo carácter que queremos generar, le damos aleatoriedad de forma que pueda ser mayúscula, minúscula, número o carácter especial indistintamente. Para ello podremos generar números aleatorios entre 1 y 4 y con switch de expresión con when optar por una de las opciones.</p>
+</li>
+<li>
+<p>Deberemos generar números mientras la contraseña no tenga la longitud deseada.</p>
 </li>
 </ul>
 </div>
@@ -396,12 +412,12 @@ Introduce la tasa de interés anual (%): 5
 Introduce el plazo en años: 3
 
 === DETALLES DEL PRÉSTAMO ===
-Monto: 10.000,00€
+Monto: 10.000,00
 Tasa anual: 5,00%
 Plazo: 3 años (36 meses)
-Pago mensual: 299,71€
-Total a pagar: 10.789,66€
-Intereses totales: 789,66€
+Pago mensual: 299,71
+Total a pagar: 10.789,66
+Intereses totales: 789,66
 ============================
 </pre>
 <p><strong>Requisitos:</strong></p>
@@ -410,11 +426,20 @@ Intereses totales: 789,66€
 <p>Define una función estática: <strong><code>(double pagoMensual, double totalPagar, double interesesTotales) CalculaPrestamo(double monto, double tasaAnual, int años)</code></strong></p>
 </li>
 <li>
-<p>Usa la fórmula de amortización:<br>
+<p>Usa la fórmula de amortización, donde <strong>PMT</strong> es el pago mensual:<br>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mi>M</mi><mi>T</mi><mo>=</mo><mi>P</mi><mo>⋅</mo><mfrac><mrow><mi>r</mi><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">PMT = P \cdot \frac{r(1+r)^n}{(1+r)^n - 1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">PMT</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5904em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 </li>
 <li>
 <p>Donde <strong>P = monto</strong>, <strong>r = tasa mensual</strong>, <strong>n = número de pagos</strong></p>
+</li>
+<li>
+<p><strong>r</strong> es <strong><code>tasaAnual/100/12</code></strong></p>
+</li>
+<li>
+<p>El <strong><code>totalPagar</code></strong> se calcula multiplicando por 12 el pago mensual.</p>
+</li>
+<li>
+<p>Los <strong><code>interesesTotales</code></strong> es total a pagar menos el monto.</p>
 </li>
 <li>
 <p>Valida que todos los valores sean positivos con <code>Debug.Assert()</code>.</p>
