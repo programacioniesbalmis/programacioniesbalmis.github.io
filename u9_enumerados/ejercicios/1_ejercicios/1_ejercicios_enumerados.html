@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -21,7 +21,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
 @page a4landscape {
   size: A4 landscape;
@@ -503,30 +503,15 @@ Operación: s
 </pre>
 <p><strong>Requisitos:</strong></p>
 <ul>
-<li>
-<p>Definir enumeración <strong>TurnoTrabajo</strong> con atributo <code>[Flags]</code>: Ninguno=0b_0000_0000, Mañana=0b_0000_0001, Tarde=0b_0000_0010, Noche=0b_0000_0100, FinDeSemana=0b_0000_1000.</p>
-</li>
-<li>
-<p>Método <strong>ParseaTurnos</strong> que convierta una string con todos los  caracteres de los turnos (parámetro de entrada al método), a la variable de retorno de tipo TurnoTrabajo con la combinación de turnos, usando operaciones de bits.</p>
-</li>
-<li>
-<p>Método <strong>TieneTurno</strong> al que le llegan dos parámetros de entrada de tipo TurnoTrabajo, uno con todos los turnos del empleado y otro con el turno a verificar. Con esto se debe verificar si un empleado tiene un turno específico usando operaciones de bits.</p>
-</li>
-<li>
-<p>Método <strong>CalculaHorasSemanales</strong> que calcule el total de horas semanales del empleado (parámetro de entrada TurnoTrabajo). Según los turnos que tenga, se irán añadiendo las horas según  (Mañana=8h, Tarde=8h, Noche=8h, FinDeSemana=10h). Usa el método TieneTurno para comprobar si el empleado ha hecho ese turno.</p>
-</li>
-<li>
-<p>Método <strong>CalculaSalario</strong> método parecido al anterior, pero que calcule salario base (€10/hora normal, €15/hora noche, €20/hora fin de semana). Usa el método TieneTurno para comprobar si el empleado ha hecho ese turno.</p>
-</li>
-<li>
-<p>Método <strong>AñadeTurno</strong> al que le llegan los turnos actuales y el turno nuevo y devuelve los turnos con el nuevo añadido. Usando operador OR (<code>|</code>).</p>
-</li>
-<li>
-<p>Método <strong>QuitaTurno</strong> que quite un turno usando operadores AND y NOT (<code>&amp; ~</code>). Igual que el anterior pero quitando un turno.</p>
-</li>
-<li>
-<p>Método <strong>MuestraInformacion</strong> que muestre toda la información del empleado como se puede ver en la salida. Al método le llegará el nombre del empleado y sus turnos.</p>
-</li>
+<li>Definir enumeración <strong>TurnoTrabajo</strong> con atributo <code>[Flags]</code>: Ninguno=0b_0000_0000, Mañana=0b_0000_0001, Tarde=0b_0000_0010, Noche=0b_0000_0100, FinDeSemana=0b_0000_1000.</li>
+<li>Método <strong>ParseaTurnos</strong> que convierta una string con todos los  caracteres de los turnos (parámetro de entrada al método), a la variable de retorno de tipo TurnoTrabajo con la combinación de turnos, usando operaciones de bits.</li>
+<li>Método <strong>CaracterATurno</strong> que a partir de un carácter ('M','T','N','F') como parámetro de enrtada, devuelva el valor correspondiente de la enumeración <strong><code>TurnoTrabajo</code></strong>. Puedes usar un switch de expresión.</li>
+<li>Método <strong>TieneTurno</strong> al que le llegan dos parámetros de entrada de tipo TurnoTrabajo, uno con todos los turnos del empleado y otro con el turno a verificar. Con esto se debe verificar si un empleado tiene un turno específico usando operaciones de bits.</li>
+<li>Método <strong>CalculaHorasSemanales</strong> que calcule el total de horas semanales del empleado (parámetro de entrada TurnoTrabajo). Según los turnos que tenga, se irán añadiendo las horas según  (Mañana=8h, Tarde=8h, Noche=8h, FinDeSemana=10h). Usa el método TieneTurno para comprobar si el empleado ha hecho ese turno.</li>
+<li>Método <strong>CalculaSalario</strong> método parecido al anterior, pero que calcule salario base (€10/hora normal, €15/hora noche, €20/hora fin de semana). Usa el método TieneTurno para comprobar si el empleado ha hecho ese turno.</li>
+<li>Método <strong>AñadeTurno</strong> al que le llegan los turnos actuales y el turno nuevo y devuelve los turnos con el nuevo añadido. Usando operador OR (<code>|</code>).</li>
+<li>Método <strong>QuitaTurno</strong> que quite un turno usando operadores AND y NOT (<code>&amp; ~</code>). Igual que el anterior pero quitando un turno.</li>
+<li>Método <strong>MuestraInformacion</strong> que muestre toda la información del empleado como se puede ver en la salida. Al método le llegará el nombre del empleado y sus turnos.</li>
 </ul>
 </div>
 
