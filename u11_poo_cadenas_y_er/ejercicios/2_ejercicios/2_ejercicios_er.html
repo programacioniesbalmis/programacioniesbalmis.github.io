@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
       
       
       
@@ -229,24 +229,24 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejercicio-1-buscador-de-etiquetas" class="md-toc-link">
-            <p>Ejercicio 1. Buscador de etiquetas</p>
+          <a href="#ejercicio-1-iniciándonos-con-er" class="md-toc-link">
+            <p>Ejercicio 1. Iniciándonos con ER</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejercicio-2-reescritor-tiko-extendido-versión-con-expresiones-regulares" class="md-toc-link">
-            <p>Ejercicio 2. Reescritor Tiko extendido (versión con expresiones regulares)</p>
+          <a href="#ejercicio-2-validación-de--cif" class="md-toc-link">
+            <p>Ejercicio 2. Validación de  CIF</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejercicio-3-evaluador-de-expresiones-aritméticas-simples" class="md-toc-link">
-            <p>Ejercicio 3. Evaluador de expresiones aritméticas simples</p>
+          <a href="#ejercicio-3-analizador-de-logs" class="md-toc-link">
+            <p>Ejercicio 3. Analizador de logs</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejercicio-4-analizador-de-logs" class="md-toc-link">
-            <p>Ejercicio 4. Analizador de logs</p>
+          <a href="#ejercicio-4-extrae-contenido-de-html" class="md-toc-link">
+            <p>Ejercicio 4. Extrae contenido de HTML</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ejercicio-5-creador-de-etiquetas-markdown" class="md-toc-link">
-            <p>Ejercicio 5. Creador de etiquetas Markdown</p>
+          <a href="#ejercicio-5-reescritor-tiko-extendido-versión-con-expresiones-regulares" class="md-toc-link">
+            <p>Ejercicio 5. Reescritor Tiko extendido (versión con expresiones regulares)</p>
 
           </a></div>
         </div>
@@ -257,69 +257,122 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <p><a href="./2_ejercicios_cadenas.pdf">Descargar estos ejercicios</a></p>
 <div class="admonition info">
 <p class="admonition-title">Antes de empezar</p>
-</div>
 <p>Para realizar estos ejercicios, deberás descargar los recursos del enlace de <a href="./recursos/2_ejercicios_er_recurso.zip">proyecto_expresiones_regulares</a>. Como puedes ver, la solución está compuesta de varios proyectos. Cada uno de ellos corresponde con un ejercicio, deberás implementar todo el código, tanto de la Main como de los métodos que se piden en cada ejercicio. Cada proyecto contiene el test correspondiente, que deberás pasar para comprobar que has hecho el ejercicio correctamente.<br>
-Estos ejercicios están pensados para trabajar de forma avanzada el manejo de EERR en C#. Se recomienda revisar los apuntes de la unidad antes de resolverlos.</p>
+Los últimos ejercicios están pensados para trabajar de forma avanzada el manejo de EERR en C#. Se recomienda revisar los apuntes de la unidad antes de resolverlos.</p>
+</div>
 <div class="box_bg_lightgreen">
-<h3 id="ejercicio-1-buscador-de-etiquetas">Ejercicio 1. Buscador de etiquetas </h3>
-<p>Implementa un método que permita extraer contenido entre etiquetas HTML (no contemples la posibilidad de etiquetas anidadas). Usa expresiones regulares para capturar todos los bloques <code>&lt;etiqueta&gt;...&lt;/etiqueta&gt;</code> válidos.</p>
-<p><strong>Salida por consola:</strong></p>
-<pre class="salida_consola">ExtraeEtiquetas("&lt;p&gt;Hola mundo&lt;/p&gt;&lt;p&gt;¿Qué tal estás?&lt;/p&gt;")
-// Devuelve: ["Hola mundo", "¿Qué tal estás?"]
+<h3 id="ejercicio-1-iniciándonos-con-er">Ejercicio 1. Iniciándonos con ER </h3>
+<p>En este ejercicio deberemos crear las expresiones regulares que sirvan para validar los siguientes formatos.</p>
+<ul>
+<li>
+<p>Patrón <strong>numeroTarjetaCredito</strong> que verifique si una cadena representa un número de tarjeta de crédito válido en formato típico. Debe aceptar tarjetas con o sin espacios, agrupadas en bloques de 4 dígitos. El patrón debe:</p>
+<ul>
+<li>Aceptar exactamente 16 dígitos</li>
+<li>Permitir espacios opcionales entre cada 4 dígitos</li>
+<li>Rechazar si hay letras o si los bloques son incorrectos</li>
+</ul>
+<pre data-role="codeBlock" data-info="console" class="language-console console"><code>Ejemplos válidos:
+1234 5678 9012 3456
+1234567890123456
+</code></pre></li>
+<li>
+<p>Patrón <strong>nombreUsuario</strong> que valide nombres de usuario para una web. Las reglas son:</p>
+<ul>
+<li>Deben empezar con una letra</li>
+<li>Pueden contener letras, números, guiones bajos o puntos</li>
+<li>Longitud mínima: 5 caracteres</li>
+<li>Longitud máxima: 15 caracteres</li>
+<li>No pueden terminar en punto ni guion bajo</li>
+</ul>
+<pre data-role="codeBlock" data-info="console" class="language-console console"><code>Ejemplos válidos: juan_87, maria.rosa, Carlos1990
+Ejemplos inválidos: 123mario, luis_, .pepe, ana-too-long-user-name
+</code></pre></li>
+<li>
+<p>Patrón <strong>matriculaCoche</strong> para validar las matrículas de coche con el formato actual de España: 4 números seguidos de 3 letras. <em><strong>Las letras no pueden incluir vocales</strong></em>.</p>
+<pre data-role="codeBlock" data-info="consola" class="language-consola consola"><code>Ejemplo válido: 1234BCD
+Ejemplo inválido: 12AB345, 1234AEI
+</code></pre></li>
+<li>
+<p>Patrón <strong>codigoPostal</strong> que sirva para validar códigos postales Españoles. Debe aceptar únicamente códigos de 5 dígitos, donde los dos primeros estén entre 01 y 52.</p>
+<pre data-role="codeBlock" data-info="console" class="language-console console"><code>Ejemplo válido: 46010, 28013
+Ejemplo inválido: 99000, 523456
+</code></pre></li>
+</ul>
+<pre class="salida_consola">Ejercicio 1: Iniciándonos con ER
+
+=== VALIDACIÓN DE TARJETA DE CRÉDITO ===
+Introduce un número de tarjeta: 1234 45671235 2145
+La '1234 45671235 2145' es válida
+
+=== VALIDACIÓN DE NOMBRE DE USUARIO ===
+Introduce un nombre de usuario: Pepe_Garcia.Info
+La 'Pepe_Garcia.Info' no es válida
+
+=== VALIDACIÓN DE MATRÍCULA ===
+Introduce una matrícula: 1234CTK
+La '1234CTK' es válida
+
+=== VALIDACIÓN DE CÓDIGO POSTAL ===
+Introduce un código postal: 51423
+La '51423' es válida
+
+Presiona Enter para salir...
+
 </pre>
 <p><strong>Requisitos:</strong></p>
 <ul>
-<li>Utiliza expresiones regulares con grupos de captura.</li>
-<li>Debe funcionar con etiquetas sin anidar y diferentes tipos de etiquetas.</li>
-<li>No utilices métodos manuales para buscar los delimitadores.</li>
+<li>Nos crearemos <em><strong>variables estáticas y públicas</strong></em> en la clase program con el nombre indicado en cada uno de los puntos, que contendrán el patrón creado.</li>
+<li>Crearemos un método <strong>ValidaEntrada</strong> al que le llegará el patrón y la entrada y mostrará el mensaje de si la cadena se corresponde con el patrón o no, según la salida propuesta.</li>
+<li>Desde la Main llamaremos al método con la  entrada de usuario y con el patrón, para cada uno de los casos. Este código se da hecho.</li>
 </ul>
 </div>
 <div class="box_bg_lightgreen">
-<h3 id="ejercicio-2-reescritor-tiko-extendido-versión-con-expresiones-regulares">Ejercicio 2. Reescritor Tiko extendido (versión con expresiones regulares) </h3>
-<p>En esta segunda parte vas a mejorar el traductor al lenguaje Tiko permitiendo el uso de <strong>expresiones regulares (Regex)</strong> para hacer el procesamiento más potente, limpio y flexible.</p>
-<p>A partir de una frase introducida por el usuario, realiza las siguientes transformaciones, ahora utilizando <code>Regex</code> en los puntos señalados:</p>
-<ol>
-<li>✅ Traducción de dígitos a texto</li>
-<li>✅ Eliminación de duplicados de letras consecutivas</li>
-<li>✅ Sustitución de onomatopeyas por emojis</li>
-<li>✅ Transformaciones adicionales opcionales</li>
-</ol>
-<p><strong>Salida por consola:</strong></p>
-<pre class="salida_consola">Introduce una frase: jajajaja tengo 2 perros y holaaa x q no vienes?
-Tiko extendido: 😂 tengo dos perros y hola por qué no vienes?
+<h3 id="ejercicio-2-validación-de--cif">Ejercicio 2. Validación de  CIF </h3>
+<p>Crea la expresión regular para comprobar el formato del <strong>Código de Identificación Fiscal</strong> (C.I.F.).</p>
+<pre class="salida_consola">Ejercicio 2: Validación de CIF
+
+Introduce un CIF: B 1256478 A
+CIF válido: B 1256478 A
+  - Tipo de organización: B
+  - Código provincial: 12
+  - Numeración secuencial: 56478
+  - Dígito de control: A
+
+Presiona Enter para salir...
 </pre>
-<p><strong>Requisitos:</strong></p>
+<p><strong>Requisitos</strong></p>
 <ul>
-<li>Usa <code>Regex.Replace()</code>.</li>
-<li>Emplea correctamente los grupos de captura y los cuantificadores (<code>+</code>, <code>*</code>, <code>{n,m}</code>).</li>
-<li>No uses métodos manuales (<code>foreach</code>, <code>if</code>, <code>for</code>) para las transformaciones que pueden resolverse con expresiones regulares.</li>
-<li>Utiliza <code>StringBuilder</code> solo si lo necesitas para la aleatorización final de mayúsculas.</li>
-</ul>
-</div>
-<div class="box_bg_lightgreen">
-<h3 id="ejercicio-3-evaluador-de-expresiones-aritméticas-simples">Ejercicio 3. Evaluador de expresiones aritméticas simples </h3>
-<p>Crea un evaluador de expresiones tipo “2+3*4-1”. Usa expresiones regulares para separar los números y operadores, y luego calcula el resultado respetando la prioridad de operadores.</p>
-<p><strong>Salida por consola:</strong></p>
-<pre class="salida_consola">Introduce una expresión: 2+3*4-1
-Resultado: 13
-</pre>
-<p><strong>Requisitos:</strong></p>
+<li>
+<p>Tendrá el siguiente formato: <strong>T&lt;sep&gt;PPNNNNN&lt;sep&gt;C</strong> donde <strong>&lt;sep&gt;</strong> podrá ser <strong>' ', '-' o nada</strong>.</p>
 <ul>
-<li>Utiliza expresiones regulares para separar operandos y operadores.</li>
-<li>Debe respetar la prioridad de operadores: multiplicación y división antes que suma y resta.</li>
-<li>No utilices <code>eval</code> ni métodos de ejecución directa de código.</li>
+<li><strong>T</strong>: Letra de tipo de Organización, una de las siguientes: <strong>A, B, C, D, E, F, G, H ,K, L, M, N, P, Q, S, U, V y W</strong>.</li>
+<li><strong>PP</strong>: Código provincial numérico.</li>
+<li><strong>NNNNN</strong>: Numeración secuencial dentro de la provincia.</li>
+<li><strong>C</strong>: Dígito de control, un número ó letra: <strong>Aó1, Bó2, Có3, Dó4, Eó5, Fó6, Gó7, Hó8, Ió9, Jó0</strong>.</li>
 </ul>
-</div>
+</li>
+<li>
+<p>Deberemos crear grupos con nombre para cada una de las partes (tipo, provincia, secuencial y control).</p>
+</li>
+<li>
+<p>La expresión regular la crearemos en la clase Program pública y estática.</p>
+</li>
+<li>
+<p>Tendremos el método <strong>CompruebaCif</strong> al que le llegará la cadena, validará si el formato es correcto y en ese caso se extraerá la información de los grupos para mostrar la salida como en el ejemplo.</p>
+</li>
+</ul>
+</div> <!-- fin ejercicio -->
 <div class="box_bg_lightgreen">
-<h3 id="ejercicio-4-analizador-de-logs">Ejercicio 4. Analizador de logs </h3>
+<h3 id="ejercicio-3-analizador-de-logs">Ejercicio 3. Analizador de logs </h3>
 <p>Dado un conjunto de líneas de log con marcas de tiempo tipo <code>[2025-07-28 12:34:56]</code>, extrae:</p>
 <ul>
 <li>Todos los errores (<code>ERROR:</code>)</li>
 <li>Todos los eventos únicos por tipo (INFO, WARN, etc.)</li>
 <li>El primer y último mensaje</li>
 </ul>
-<p><strong>Salida por consola:</strong></p>
-<pre class="salida_consola">AnalizarLogs([
+<pre class="salida_consola">Ejercicio 3. Analizador de logs
+
+AnalizarLogs([
   "[2025-07-28 12:34:56] INFO: Inicio",
   "[2025-07-28 12:35:00] ERROR: Fallo de conexión",
   "[2025-07-28 12:36:00] WARN: Memoria baja",
@@ -335,27 +388,50 @@ Primer mensaje: Inicio
 <p><strong>Requisitos:</strong></p>
 <ul>
 <li>Utiliza expresiones regulares para extraer los tipos de eventos y mensajes.</li>
+<li>Usa  <strong><code>MatchCollection matches = regex.Matches(texto)</code></strong> para extraer todas las ocurrencias del texto. Donde <strong><code>regex</code></strong> es un objeto de tipo <strong><code>Regex</code></strong>.</li>
 <li>Debe identificar el primer y último mensaje del log.</li>
 <li>Presenta los resultados en listas separadas.</li>
 </ul>
 </div>
 <div class="box_bg_lightgreen">
-<h3 id="ejercicio-5-creador-de-etiquetas-markdown">Ejercicio 5. Creador de etiquetas Markdown </h3>
-<p>Crea un método que convierta un texto plano con delimitadores personalizados en formato Markdown. Ejemplo:</p>
-<ul>
-<li><code>**negrita**</code> → <code>&lt;strong&gt;</code></li>
-<li><code>_cursiva_</code> → <code>&lt;em&gt;</code></li>
-<li><code>[enlace](url)</code> → <code>&lt;a href="url"&gt;enlace&lt;/a&gt;</code></li>
-</ul>
-<p><strong>Salida por consola:</strong></p>
-<pre class="salida_consola">Introduce un texto: Esto es **importante** y _cursivo_ y [Google](https://google.com)
-Convertido: Esto es <strong>importante</strong> y <em>cursivo</em> y <a href="https://google.com">Google</a>
+<h3 id="ejercicio-4-extrae-contenido-de-html">Ejercicio 4. Extrae contenido de HTML </h3>
+<p>Implementa un método <strong>ExtraeEtiquetas</strong> al que le llega una cadena y extrae el contenido entre etiquetas HTML de todas las coincidencias de la cadena de entrada. Usa expresiones regulares para capturar todos los bloques <code>&lt;etiqueta&gt;...&lt;/etiqueta&gt;</code> válidos.</p>
+<pre class="salida_consola"> Ejercicio 4: Extracción de contenido de etiquetas HTML
+
+ Introduce la línea HTML: &lt;p&gt;Hola mundo&lt;/p&gt;&lt;p&gt;¿Qué tal estás?&lt;/p&gt;
+ El contenido de la línea es: ["Hola mundo", "¿Qué tal estás?"]
+
+Presiona Enter para salir...
 </pre>
 <p><strong>Requisitos:</strong></p>
 <ul>
-<li>Utiliza expresiones regulares para detectar los delimitadores.</li>
-<li>Convierte los formatos Markdown a HTML.</li>
-<li>Debe funcionar con varios formatos en la misma cadena.</li>
+<li>Utiliza expresiones regulares con grupos de captura y extracción múltiple.</li>
+<li>Debe funcionar con etiquetas sin anidar y diferentes tipos de etiquetas.</li>
+<li>Debe coincidir la etiqueta de inicio con la de fin de cerrado. <em><strong>Usa referencia inversa para ello</strong></em>.</li>
+<li>No utilices métodos manuales para buscar los delimitadores.</li>
+</ul>
+</div>
+<div class="box_bg_lightgreen">
+<h3 id="ejercicio-5-reescritor-tiko-extendido-versión-con-expresiones-regulares">Ejercicio 5. Reescritor Tiko extendido (versión con expresiones regulares) </h3>
+<p>En esta segunda parte vas a mejorar el traductor al lenguaje Tiko permitiendo el uso de <strong>expresiones regulares (Regex)</strong> para hacer el procesamiento más potente, limpio y flexible.</p>
+<p>A partir de una frase introducida por el usuario, realiza las siguientes transformaciones, ahora utilizando <code>Regex</code> en los puntos señalados:</p>
+<ol>
+<li>✅ Traducción de dígitos a texto</li>
+<li>✅ Eliminación de duplicados de letras consecutivas</li>
+<li>✅ Sustitución de onomatopeyas por emojis</li>
+<li>✅ Transformaciones de los <strong><code>x q</code></strong> por <strong><code>por qué</code></strong></li>
+</ol>
+<pre class="salida_consola">Ejercicio 5. Reescritor Tiko extendido ER
+
+Introduce una frase: jajajaja tengo 2 perros y holaaa x q no vienes?
+Tiko extendido: 😂 tengo dos perros y hola por qué no vienes?
+</pre>
+<p><strong>Requisitos:</strong></p>
+<ul>
+<li>Deberás usar referencia inversa para controlar que el carácter está repetido.</li>
+<li>Fíjate con la repetición de jajaja o jeje, etc puede ser más de dos veces.</li>
+<li>Usa <code>Regex.Replace()</code> con la sustitución de la <a href="https://learn.microsoft.com/es-es/dotnet/api/system.text.regularexpressions.regex.replace?view=net-8.0">primera referencia capturada</a>.</li>
+<li>No uses métodos manuales (<code>foreach</code>, <code>if</code>, <code>for</code>) para las transformaciones que pueden resolverse con expresiones regulares.</li>
 </ul>
 </div>
 
