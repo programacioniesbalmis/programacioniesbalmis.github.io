@@ -1,0 +1,834 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 20</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-20">Unidad 20 </h1>
+<p>Descargar estos apunte en <a href="./u20_programacion_funcional.pdf">pdf</a> o <a href="./u20_programacion_funcional.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#programación-funcional" class="md-toc-link"><p>Programación funcional</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#introducción" class="md-toc-link">
+            <p>Introducción</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#algunas-definiciones-interesantes" class="md-toc-link">
+            <p>Algunas definiciones interesantes</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#almacenando-referencias-a-funciones-en-variables" class="md-toc-link"><p>Almacenando referencias a funciones en variables</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tipos-delegados-en-csharp" class="md-toc-link"><p>Tipos Delegados en CSharp</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#usando-delegados-en-csharp" class="md-toc-link">
+            <p>Usando delegados en CSharp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#rocket-ampliación-opcional---multidifusión-de-delegados" class="md-toc-link">
+            <p>🚀 Ampliación Opcional - Multidifusión de delegados</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#delegados-vs-interfaces-en-csharp" class="md-toc-link"><p>Delegados vs Interfaces en Csharp</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cuándo-usar-delegados-vs-interfaces-en-csharp" class="md-toc-link">
+            <p>¿Cuándo usar Delegados vs Interfaces en CSharp?</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#delegados-parametrizados" class="md-toc-link"><p>Delegados Parametrizados</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definiciones-para-procedimientos-action" class="md-toc-link">
+            <p>Definiciones para procedimientos <strong><code>Action</code></strong></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#definiciones-para-funciones-func" class="md-toc-link">
+            <p>Definiciones para funciones <strong><code>Func</code></strong></p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tipos-anónimos-inmutables" class="md-toc-link">
+            <p>Tipos Anónimos Inmutables</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="programación-funcional">Programación funcional </h2>
+<h3 id="introducción">Introducción </h3>
+<p>La <strong>programación funcional</strong> es un <strong>paradigma de programación declarativa</strong> basado en el uso de <strong>funciones matemáticas</strong>, en contraste con la programación <strong>imperativa</strong>, que enfatiza los cambios de estado mediante la mutación de variables.</p>
+<p>Existen lenguaje de programación funcionales puros como por ejemplo <strong><a href="https://es.wikipedia.org/wiki/Haskell">Haskell</a></strong> y <strong><a href="https://es.wikipedia.org/wiki/Clojure">Clojure</a></strong>. Sin embargo, el paradigma funcional ha ido cogiendo cada vez más peso en la programación moderna. Tanto es así, que lenguajes imperativos y orientados a objetos tradicionales como <strong>C++</strong>, <strong>Java</strong>, <strong>C#</strong> o <strong>PHP</strong> han incluido características de la programación funcional en su sintaxis o potenciando las que ya tenían lenguajes como <strong>JavaScript</strong>, <strong>Python</strong>. Además, los lenguajes multi-paradigma de nueva creación como <strong>Scala</strong>, <strong>Go</strong>, <strong>F#</strong> o <strong>Kotlin</strong> (este último en menor medida) se han diseñado para que tenga más peso la programación funcional que la orientada a objetos e imperativa.</p>
+<p>Simplificando y a grandes rasgos podemos decir que <strong>se basa en los siguientes pilares</strong> matemáticos:</p>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Lambda_calculus">Cálculo Lambda</a>.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">Clausuras</a>.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Category_theory">Teoría de categorías</a> y más en concreto el concepto de <a href="https://en.wikipedia.org/wiki/Functor">functor</a> y su aplicación a las ciencias de la computación a través de:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Monad_(category_theory)">Mónadas</a>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)">Covarianza y Contravarianza.</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Recursion">Recursión o Recursividad</a> (Formaría parte del Cálculo Lambda).</p>
+</li>
+</ul>
+<p>Cómo se puede observar, su bases son bastante amplias y llevaría bastante ahondar todos estos conceptos. Por esta razón, <strong>este tema pretende ser meramente introductorio y por tanto en él solo vamos a abordar algunos conceptos a través del lenguaje C#</strong>. Estos conceptos serán extrapolables a otros lenguajes ya que como hemos comentados todos utilizan, en mayor o medida, dicho paradigma.</p>
+<h3 id="algunas-definiciones-interesantes">Algunas definiciones interesantes </h3>
+<p>Algunos de los <strong>conceptos a destacar</strong> en la programación funcional son:</p>
+<ul>
+<li>
+<p><strong>Función</strong>: En programación funcional, una <strong>función</strong> es un bloque de código que toma uno o más argumentos de entrada y produce un valor de salida. A diferencia de las funciones en la programación imperativa, las funciones en la programación funcional son <em><strong>'ciudadanos de primera clase'</strong></em>, lo que significa que pueden ser tratadas como cualquier otro valor, como números o cadenas. Esto implica que las funciones pueden ser:</p>
+<ul>
+<li><strong>Asignadas a variables</strong>.</li>
+<li><strong>Pasadas como argumentos a otras funciones</strong>.</li>
+<li><strong>Devueltas como valores desde otras funciones</strong>.</li>
+<li>Almacenadas en estructuras de datos.</li>
+<li>Combinadas para crear nuevas funciones.</li>
+<li>Anidadas dentro de otras funciones.</li>
+</ul>
+</li>
+<li>
+<p><strong>Funciones lambda</strong>: Las funciones lambda son funciones anónimas que se pueden definir de manera concisa y se utilizan comúnmente para operaciones de orden superior. Se <strong>tratan como expresiones</strong> que pueden ser asignadas a variables o pasadas como argumentos. (Las trataremos más adelante).</p>
+</li>
+<li>
+<p><strong>Funciones de orden superior (HOF)</strong>: Las funciones de orden superior son aquellas que pueden tomar otras funciones como argumentos o devolver funciones como resultados. Esto permite una mayor abstracción y reutilización del código.</p>
+</li>
+<li>
+<p><strong>Funciones puras</strong>: Las funciones puras son aquellas que siempre producen el mismo resultado para los mismos argumentos y no tienen efectos secundarios, es decir, no modifican ningún estado externo.</p>
+</li>
+<li>
+<p><strong>Callbacks</strong>: Nombre tradicional con el que se conoce a las funciones que se pasan como argumentos a otras funciones y <strong>se ejecutan en un momento determinado, generalmente cuando ocurre un evento o se completa una tarea</strong>. Por tanto, los callbacks <strong>son un caso concreto de HOF</strong>.</p>
+</li>
+<li>
+<p><strong>Expresiones en lugar de declaraciones</strong>: La programación funcional se basa en la evaluación de expresiones en lugar de la ejecución de declaraciones. Esto significa que el enfoque está en qué se quiere lograr en lugar de cómo lograrlo.</p>
+</li>
+</ul>
+<h3 id="almacenando-referencias-a-funciones-en-variables">Almacenando referencias a funciones en variables </h3>
+<p>El <strong>mecanismo variará según el lenguaje</strong> de programación. En C y C++ se usan <strong>punteros a funciones</strong>, en Java o Kotlin se usan <strong>interfaces funcionales (SAM)</strong>, en Python o JavaScript se usan <strong>funciones anónimas (lambdas)</strong> y en C# se usan <strong>delegados</strong>.</p>
+<h4 id="tipos-delegados-en-csharp">Tipos Delegados en CSharp </h4>
+<p>Un delegado es un <strong>tipo especial de clase cuyos objetos pueden almacenar referencias a uno o más métodos con la misma signatura</strong> de tal manera que; a través del objeto, sea posible solicitar la ejecución en cadena de todos ellos. En otras palabras, podemos decir que es un objeto que almacena una o más referencias a un método para ejecutarlo posteriormente.</p>
+<h5 id="usando-delegados-en-csharp">Usando delegados en CSharp </h5>
+<p>Si un delegado en un objeto, deberá haber un tipo que lo defina. Este tipo tendrá un nombre (identificador) y me indicará la signatura de los métodos que referenciará el objeto delegado.</p>
+<p>La sintaxis para definir el tipo será:<br>
+<strong><code>&lt;modificadores&gt; delegate &lt;tipoRetorno&gt; &lt;TipoDelegado&gt;(&lt;parámetros formales&gt;);</code></strong></p>
+<p>Donde:</p>
+<ul>
+<li><strong><code>&lt;TipoDelegado&gt;</code></strong> será el <strong>nombre del tipo</strong> que me servirá para definir objetos delegado.</li>
+<li><strong><code>&lt;tipoRetorno&gt;</code></strong> y <strong><code>&lt;parámetros formales&gt;</code></strong> se corresponderán, respectivamente, con el tipo del valor de retorno y la lista de parámetros formales que definirán la signatura de los métodos cuyas referencias contendrán los objetos de ese tipo delegado.</li>
+</ul>
+<p>La sintaxis para instanciar objetos delegado del tipo definido será:<br>
+<strong><code>TipoDelegado oDelegado = IdMetodoQueCumpleLaSignaturaDelTipo;</code></strong><br>
+que será un <em>syntactic sugar</em> del siguiente código...<br>
+<strong><code>TipoDelegado oDelegado = new TipoDelegado(IdMetodoQueCumpleLaSignaturaDelTipo);</code></strong></p>
+<p>La sintaxis para hacer una llamada al método o métodos que almacena un objeto delegado será:<br>
+<strong><code>tipoRetorno resultado = oDelegado(&lt;parámetros reales&gt;);</code></strong><br>
+que será un <em>syntactic sugar</em> del siguiente código...<br>
+<strong><code>tipoRetorno resultado = oDelegado.Invoke(&lt;parámetros reales&gt;);</code></strong><br>
+y que realmente estaremos haciendo una llamada al método...<br>
+<strong><code>tipoRetorno resultado = IdMetodoQueCumpleLaSignaturaDelTipo(&lt;parámetros reales&gt;);</code></strong></p>
+<p><strong>¿No te han quedado claro las diferentes sintaxis?</strong>. Veámoslo a través de un ejemplo concreto de uso comentado que puedes descargar de <strong><a href="assets/ejemplos/delegados_ejemplo.cs">este enlace</a></strong>.</p>
+<p>Definamos un <strong>tipo delegado</strong> llamado <strong><code>Operacion</code></strong> que referenciará a métodos que reciban dos parámetros de tipo <strong><code>double</code></strong> y retornen un valor de tipo <strong><code>double</code></strong>. Fíjate, sobre todo, que lo que estamos definiendo es un <strong>tipo</strong> como si fuera una clase más.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Operacion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> op2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Definamos ahora dos métodos estáticos con cuerpo de expresión que cumplen la signatura definida en el tipo delegado anterior. Esto es, ambos métodos reciben dos parámetros de tipo <strong><code>double</code></strong> y retornan un valor de tipo <strong><code>double</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Suma</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> op2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> op1 <span class="token operator">+</span> op2<span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Multiplica</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> op2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> op1 <span class="token operator">*</span> op2<span class="token punctuation">;</span> 
+</code></pre><p>Método <strong><code>OperaArrays</code></strong> que recibe dos arrays de valores y un objeto delegado del tipo <strong><code>Operacion</code></strong>. El parámetro <strong><code>operacion</code></strong> indicará la '<em>estrategia</em>' (Strategy) a seguir para operar con los valores de ambos arrays. El método devolverá un nuevo array con los resultados de aplicar la operación indicada a cada par de valores de los arrays de entrada.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[3,7]}" class="language-csharp csharp" data-line="3,7"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token function">OperaArrays</span><span class="token punctuation">(</span>
+                            <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> ops1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> ops2<span class="token punctuation">,</span> 
+                            <span class="token class-name">Operacion</span> operacion<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> resultados <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name"><span class="token keyword keyword-double">double</span></span><span class="token punctuation">[</span>ops1<span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> resultados<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        resultados<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">operacion</span><span class="token punctuation">(</span>ops1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> ops2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> resultados<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper">
+
+<div aria-hidden="true" class="line-highlight" data-range="3" data-start="3">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><p>Programa principal donde se definen dos arrays de valores y se usan ambos métodos definidos anteriormente para realizar sumas y multiplicaciones a través del método <strong><code>OperaArrays</code></strong>. Fíjate como en la <strong><code>línea 6</code></strong> estámos guardando las función suma en la variable <strong><code>operacion</code></strong> del tipo delegado <strong><code>Operacion</code></strong> y se la pasamos al método <strong><code>OperaArrays</code></strong>.</p>
+<p>En la <strong><code>línea 10</code></strong> estamos pasando directamente la función multiplicación al método sin necesidad de definir una variable intermedia.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[6,7, 10]}" class="language-csharp csharp" data-line="6,7,10"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> ops1 <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> ops2 <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Operacion</span> operacion <span class="token operator">=</span> Suma<span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> sumas <span class="token operator">=</span> <span class="token function">OperaArrays</span><span class="token punctuation">(</span>ops1<span class="token punctuation">,</span> ops2<span class="token punctuation">,</span> operacion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Sumas: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">,</span> sumas<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> multiplicaciones <span class="token operator">=</span> <span class="token function">OperaArrays</span><span class="token punctuation">(</span>ops1<span class="token punctuation">,</span> ops2<span class="token punctuation">,</span> Multiplica<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Multiplicaciones: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp"><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">,</span> multiplicaciones<span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div></pre><div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<h5 id="rocket-ampliación-opcional---multidifusión-de-delegados">🚀 Ampliación Opcional - Multidifusión de delegados </h5>
+<p>Se producirá cuando un objeto delegado <strong>llama a más de un método</strong> cuando se invoca. Esta cualidad de los delegados nos será útil, más adelante, cuando veamos el concepto de <strong>evento</strong>.</p>
+<ul>
+<li>Para <strong>encadenar</strong> un método / delegado en la multidifusión usaré el <strong><code>operador +=</code></strong></li>
+<li>Para <strong>retirar</strong> un método / delegado de la multidifusión de llamadas usaré el <strong><code>operador -=</code></strong></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>Tiene sentido para <strong>métodos que no retornan nada</strong> (procedimientos), ya que si los delegados retornan algo como en el ejemplo anterior, se asignará el resultado <strong>de la última llamada</strong>.</p>
+</div>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Ejemplo</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Métodos a añadir al objeto delegado.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">VerSuma</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> op2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1</span><span class="token punctuation">}</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op2</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1 <span class="token operator">+</span> op2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">VerMultiplicacion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> op2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1</span><span class="token punctuation">}</span></span><span class="token string"> * </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op2</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1 <span class="token operator">*</span> op2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">VerDividion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> op2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1</span><span class="token punctuation">}</span></span><span class="token string"> / </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op2</span><span class="token punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">op1 <span class="token operator">/</span> op2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Definición del tipo delegado con la signarura de los métodos anteriores.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">VerOperacion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> op1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> op2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// La primera referencia al método a ejecutar la podemos asignar directamente.</span>
+        <span class="token class-name">VerOperacion</span> verOperaciones <span class="token operator">=</span> VerSuma<span class="token punctuation">;</span>
+        <span class="token comment">// Las siguientes las añadimos con el operador +=</span>
+        verOperaciones <span class="token operator">+=</span> VerMultiplicacion<span class="token punctuation">;</span>
+        verOperaciones <span class="token operator">+=</span> VerDividion<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+            <span class="token comment">// En esta invocación del objeto delegado se realizará una multidifusión</span>
+            <span class="token comment">// a los tres métodos que referencia, ejecutándose los tres.</span>
+            <span class="token function">verOperaciones</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div> <!-- fin ejemplo -->
+<div style="page-break-after:always;"></div>
+<h4 id="delegados-vs-interfaces-en-csharp">Delegados vs Interfaces en Csharp </h4>
+<p>De lo visto en este tema, podemos deducir que hay <strong>otra forma de aproximarnos al patrón Strategy</strong> además de usando Interfaces como vimos en temas anteriores.</p>
+<p>Vamos a tratar de aproximarnos a ambas a través de un <strong><a href="assets/ejemplos/list_sort_ejemplo.cs">sencillo ejemplo</a></strong> de uso ya definido en las BCL. Para ello supongamos la siguiente implementación de la clase <strong><code>Persona</code></strong> que hemos usado con anterioridad.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Persona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Supongamos ahora el siguiente programa principal, donde instanciamos una lista de personas...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Principal</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">List<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span> personas <span class="token operator">=</span> 
+        <span class="token punctuation">[</span>
+            <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Sonia"</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Antonio"</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Margarita"</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Manuel"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Si quisiéramos ordenar las personas por <strong><code>Edad</code></strong>, la clase list nos va a ofrecer el método <strong><code>Sort</code></strong>. Como nuestra clase <strong><code>Persona</code></strong> no implementa <strong><code>IComparable&lt;Persona&gt;</code></strong>, deberemos indicarle de algún modo al <strong><code>Sort</code></strong> la '<em>estrategia</em>' de ordenación. Por esta razón <strong><code>Sort</code></strong> nos ofrecerá las siguientes sobrecargas ...</p>
+<ol>
+<li>
+<p>public void <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.sort#System_Collections_Generic_List_1_Sort_System_Comparison__0__">Sort</a></strong>(<strong>IComparer&lt;T&gt;?</strong> comparer);</p>
+<p>y si buscáramos la definición del tipo <strong><code>IComparer&lt;T&gt;</code></strong> obtendríamos el siguiente <strong>interfaz</strong> parametrizado.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">IComparer<span class="token punctuation">&lt;</span><span class="token keyword keyword-in">in</span> T<span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">{</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">Compare</span><span class="token punctuation">(</span><span class="token class-name">T<span class="token punctuation">?</span></span> x<span class="token punctuation">,</span> <span class="token class-name">T<span class="token punctuation">?</span></span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p>public void <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.sort#System_Collections_Generic_List_1_Sort_System_Collections_Generic_IComparer__0__">Sort</a></strong>(<strong>Comparison&lt;T&gt;</strong> comparison);</p>
+<p>y si buscáramos la definición del tipo <strong><code>Comparison&lt;T&gt;</code></strong> obtendríamos el siguiente <strong>delegado</strong> parametrizado.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token generic-method"><span class="token function">Comparison</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-in">in</span> T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> x<span class="token punctuation">,</span> <span class="token class-name">T</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<p>Recordemos que si quisiéramos usar el interfaz para ordenar por edad deberíamos definir una clase que implemente el interfaz. Por ejemplo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Persona</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Edad<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Definición de la clase que implementa el interfaz </span>
+    <span class="token comment">// con la estrategia de comparación.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ComparaEdad</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IComparer<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span></span>
+    <span class="token punctuation">{</span>
+        <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> IComparer<span class="token operator">&lt;</span>Persona<span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token function">Compare</span><span class="token punctuation">(</span><span class="token class-name">Persona<span class="token punctuation">?</span></span> x<span class="token punctuation">,</span> <span class="token class-name">Persona<span class="token punctuation">?</span></span> y<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token keyword keyword-switch">switch</span>
+        <span class="token punctuation">{</span>
+            <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token punctuation">(</span><span class="token keyword keyword-null">null</span><span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token punctuation">(</span>_<span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            _ <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span>Edad<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>Edad<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span> personas <span class="token operator">=</span>
+    <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Sonia"</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Antonio"</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Margarita"</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Manuel"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    personas<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Persona<span class="token punctuation">.</span>ComparaEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> personas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="col-sm-6">
+<p>Si ejemcutamos el programa principal ahora veremos que las personas se han ordenado por edad. <strong>Mostrando por consola</strong>:</p>
+<pre class="salida_consola">Persona { Nombre = Margarita, Edad = 32 }
+Persona { Nombre = Sonia, Edad = 35 }
+Persona { Nombre = Manuel, Edad = 50 }
+Persona { Nombre = Antonio, Edad = 55 }</pre> <!-- fin salida consola -->
+</div>
+</div>
+<p>Sin embargo, si quisiéramos usar el delegado <strong><code>Comparison&lt;T&gt;</code></strong> tendríamos <strong>una composición de código más sencilla</strong>...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Implementamos un método estático que cumpla la signatura del delegado</span>
+<span class="token comment">// e implemente la estrategia de ordenación.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">ComparaEdad</span><span class="token punctuation">(</span><span class="token class-name">Persona</span> p1<span class="token punctuation">,</span> <span class="token class-name">Persona</span> p2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> p1<span class="token punctuation">.</span>Edad<span class="token punctuation">.</span><span class="token function">CompareTo</span><span class="token punctuation">(</span>p2<span class="token punctuation">.</span>Edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Persona<span class="token punctuation">&gt;</span></span> personas <span class="token operator">=</span>
+    <span class="token punctuation">[</span>
+        <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Sonia"</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Antonio"</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Margarita"</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">(</span><span class="token string">"Manuel"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    personas<span class="token punctuation">.</span><span class="token function">Sort</span><span class="token punctuation">(</span>ComparaEdad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> personas<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h5 id="cuándo-usar-delegados-vs-interfaces-en-csharp">¿Cuándo usar Delegados vs Interfaces en CSharp? </h5>
+<p><strong>Usaremos delegados cuando:</strong></p>
+<ul>
+<li>Se utilice un modelo de diseño de <strong>eventos</strong>.</li>
+<li>Se prefiere a la hora de encapsular un <strong>método estático o de clase</strong>.</li>
+<li>El autor de las llamadas no tiene ninguna necesidad de obtener acceso a otras propiedades, métodos o interfaces en el objeto que implementa el método.</li>
+<li>Se desea conseguir una <strong>composición sencilla</strong>.</li>
+<li>Una clase puede necesitar más de una implementación del método.</li>
+</ul>
+<p><strong>Usaremos interfaces cuando:</strong></p>
+<ul>
+<li>Haya un <strong>grupo de métodos relacionados</strong> a los que se pueda llamar.</li>
+<li>Una clase <strong>sólo necesita una implementación del método</strong>.</li>
+<li>La clase que utiliza la interfaz <strong>deseará convertir esa interfaz en otra interfaz</strong> o tipos de clase.</li>
+</ul>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<p>🎓 <strong>Caso de estudio:</strong></p>
+<p>Supongamos el siguiente programa de ejemplo, donde dado un array de valores. Queremos calcular la media de las raíces cuadradas de los valores y también la media de elevar <strong>e</strong> a los valores.</p>
+<p>Una posible propuesta sería la siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">MediaRaiz</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> valores<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> total <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> valores<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            total <span class="token operator">+=</span> Math<span class="token punctuation">.</span><span class="token function">Sqrt</span><span class="token punctuation">(</span>valores<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> total <span class="token operator">/</span> valores<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">MediaExponencial</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> valores<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> total <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> valores<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            total <span class="token operator">+=</span> Math<span class="token punctuation">.</span><span class="token function">Exp</span><span class="token punctuation">(</span>valores<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> total <span class="token operator">/</span> valores<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> valores <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media raíces:"</span> <span class="token operator">+</span> <span class="token function">MediaRaiz</span><span class="token punctuation">(</span>valores<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media exponentes:"</span> <span class="token operator">+</span> <span class="token function">MediaExponencial</span><span class="token punctuation">(</span>valores<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Sin embargo en la propuesta anterior se repite el código para calcular la media y cómo nos sucedía en otros casos solo se repite la función aplicada al valor.</p>
+<p><strong>Piensa cómo sería la solución usando interfaces</strong>.<br>
+Si no se te ocurre puedes ver la solución el la siguiente página...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Debemos definir el interfaz que implemente la función.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">IFuncion</span>
+<span class="token punctuation">{</span>
+    <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Funcion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Definir tipos que implementen el interfaz con la función específica a aplicar.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MediaRa</span>íz <span class="token punctuation">:</span> IFuncion
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Funcion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Math<span class="token punctuation">.</span><span class="token function">Sqrt</span><span class="token punctuation">(</span>valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MediaExponente</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IFuncion</span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Funcion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Math<span class="token punctuation">.</span><span class="token function">Exp</span><span class="token punctuation">(</span>valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Media ahora recibe el objeto que implementa dicho interfaz.</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Media</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> puntos<span class="token punctuation">,</span> <span class="token class-name">IFuncion</span> funcion<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> total <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> puntos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            total <span class="token operator">+=</span> funcion<span class="token punctuation">.</span><span class="token function">Funcion</span><span class="token punctuation">(</span>puntos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> total <span class="token operator">/</span> puntos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> puntos <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media raíces:"</span> <span class="token operator">+</span> <span class="token function">Media</span><span class="token punctuation">(</span>puntos<span class="token punctuation">,</span> <span class="token keyword keyword-new">new</span> MediaRaí<span class="token function">z</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media exponentes:"</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">MediaExponente</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Cómo vemos en este caso es más apropiado usar delegados porque tenemos una única función. No hay extensión del interfaz y estamos generando mucho código de definición de tipos a cambio repetir el código de cálculo de la media.</p>
+<p><strong>Piensa cómo sería la solución usando delegados</strong>.<br>
+Si no se te ocurre puedes ver la solución el la siguiente página...</p>
+<p>Supongamos el siguiente programa de ejemplo, donde dado un array de valores.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// Definimos el tipo delegado que más adelante incluso nos podremos ahorrar</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Funcion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Media</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> puntos<span class="token punctuation">,</span> <span class="token class-name">Funcion</span> funcion<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-double">double</span></span> total <span class="token operator">=</span> <span class="token number">0.0D</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> puntos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            total <span class="token operator">+=</span> <span class="token function">funcion</span><span class="token punctuation">(</span>puntos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> total <span class="token operator">/</span> puntos<span class="token punctuation">.</span>Length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> puntos <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media raíces:"</span> <span class="token operator">+</span> <span class="token function">Media</span><span class="token punctuation">(</span>puntos<span class="token punctuation">,</span> Math<span class="token punctuation">.</span>Sqrt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Media exponentes:"</span> <span class="token operator">+</span> <span class="token function">Media</span><span class="token punctuation">(</span>puntos<span class="token punctuation">,</span> Math<span class="token punctuation">.</span>Exp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div> <!-- fin caso de estudio -->
+<div style="page-break-after:always;"></div>
+<h4 id="delegados-parametrizados">Delegados Parametrizados </h4>
+<p>Podemos definir un delegado de forma parametrizada o que use genéricos. Esto me permitirá usar un <strong>tipos delegado predefinidos para las signaturas de métodos más comunes que se me pueden dar</strong>.</p>
+<p>Por ejemplo, es muy común definir delegados en los que se evalúe un parámetro entrada a modo de <a href="https://es.wikipedia.org/wiki/Predicado_(l%C3%B3gica)">'<em>predicado lógico</em>'</a> que se evaluarán a cierto o falso.</p>
+<p>Una posible definición sería...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token generic-method"><span class="token function">Predicado</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>y nos permitiría definir un tipo para cualquier signatura de método que evalúe una entrada a modo de predicado. Por ejemplo...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Esté método estático me permite evaluar la si es cierto o no </span>
+<span class="token comment">// el predicado 'Valor es un número par'</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EsPar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> valor <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Esté método estático me permite evaluar la si es cierto o no </span>
+<span class="token comment">// el predicado 'Texto empieza por mayúscula'</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EmpiezaPorMayuscula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// En ambos casos puedo usar la misma definición de</span>
+    <span class="token comment">// delegado parametrizado para referenciar a los </span>
+    <span class="token comment">// métodos anteriores.</span>
+    <span class="token class-name">Predicado<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> predicado1 <span class="token operator">=</span> EsPar<span class="token punctuation">;</span>
+    <span class="token class-name">Predicado<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> predicado2 <span class="token operator">=</span> EmpiezaPorMayuscula<span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado1</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado2</span><span class="token punctuation">(</span><span class="token string">"Hola"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>De hecho, ya existe una definición similar en el espacio de nombres <strong><code>System</code></strong> de C#...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token generic-method"><span class="token function">Predicate</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-in">in</span> T<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>y es usada en algunos métodos de las BCL <strong>como por ejemplo</strong> el método <strong><code>public List&lt;T&gt; FindAll(Predicate&lt;T&gt; match);</code></strong> definido en <strong><code>List&lt;T&gt;</code></strong>. De tal manera que podríamos usar nuestro método <strong><code>EsPar</code></strong> para obtener todos los números pares en una lista de números de la siguiente manera ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> l <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">,</span> l<span class="token punctuation">.</span><span class="token function">FindAll</span><span class="token punctuation">(</span>EsPar<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Además de <strong><code>delegate bool Predicate&lt;in T&gt;(T obj)</code></strong> podemos destacar la siguientes definiciones en las BCL de delegados parametrizados...</p>
+<h5 id="definiciones-para-procedimientos-action">Definiciones para procedimientos <strong><code>Action</code></strong> </h5>
+<p>Bajo el tipo <strong><code>Action</code></strong> tendremos predefinidos delegados que admitirán métodos que no retornan nada (void) y que podrán tener de 0 a 16 parámetros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Si no parametrizamos es porque no habrá parámetros de entrada.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Action</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token generic-method"><span class="token function">Action</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-in">in</span> T1<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> T2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> T16<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T1</span> obj1<span class="token punctuation">,</span> <span class="token class-name">T2</span> obj2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> <span class="token class-name">T16</span> obj16<span class="token punctuation">)</span>
+</code></pre><p>Un ejemplo de uso de este delegado sería el método <strong><code>public void ForEach(Action&lt;T&gt; action);</code></strong> definido en <strong><code>List&lt;T&gt;</code></strong>. De tal manera que me permitirá recorrer los elementos de la secuencia e ir aplicando a cada uno de ellos la acción especificada en forma de delegado...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Muestra</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">valor</span><span class="token format-string"><span class="token punctuation">:</span>D2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> valores <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Defino un delegado para métodos con un solo parámetro de entrada entero.</span>
+    <span class="token class-name">Action<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">&gt;</span></span> accion <span class="token operator">=</span> Muestra<span class="token punctuation">;</span>
+    valores<span class="token punctuation">.</span><span class="token function">ForEach</span><span class="token punctuation">(</span>accion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// o directamente ... valores.ForEach(Muestra);</span>
+<span class="token punctuation">}</span>
+</code></pre><div style="page-break-after:always;"></div>
+<h5 id="definiciones-para-funciones-func">Definiciones para funciones <strong><code>Func</code></strong> </h5>
+<p>Bajo el tipo <strong><code>Func</code></strong> tendremos predefinidos delegados que admitirán métodos que no retornan un tipo a modo de '<em>función</em>' y que como los <strong><code>Action</code></strong> podrán tener de 0 a 16 parámetros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Fíjate que ahora la parametrizacion define al menos el tipo R de (Retorno) de la función.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name">R</span> <span class="token generic-method"><span class="token function">Func</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-out">out</span> R<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token comment">// El tipo de retorno se definirá siempre al final en la parametrización.</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-delegate">delegate</span> <span class="token return-type class-name">R</span> <span class="token generic-method"><span class="token function">Func</span><span class="token generic class-name"><span class="token punctuation">&lt;</span><span class="token keyword keyword-in">in</span> T1<span class="token punctuation">,</span> …<span class="token punctuation">,</span> <span class="token keyword keyword-in">in</span> T16<span class="token punctuation">,</span> <span class="token keyword keyword-out">out</span> R<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token class-name">T1</span> obj1<span class="token punctuation">,</span>  …<span class="token punctuation">,</span> <span class="token class-name">T16</span> obj16<span class="token punctuation">)</span>
+</code></pre><p>Iremos encontrando este tipo de delegado más adelante, en ciertas definiciones de las BCL de <strong><code>System.Linq</code></strong>. Para poner nuestro ejemplo, vamos a fijarnos que el tipo delegado <strong><code>Predicado&lt;T&gt;</code></strong> que definimos en el nuestro primer ejemplo. Se puede definir también con <strong><code>Func</code></strong> de la siguiente manera <strong><code>Func&lt;T, bool&gt;</code></strong>. Aunque ambos delegados admitan métodos con la misma signatura, para C# serán tipos diferentes.</p>
+<p>Veamos cómo reescribir el ejemplo de los predicados usando <strong><code>Func</code></strong>...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EsPar</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> valor<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> valor <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EmpiezaPorMayuscula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> texto<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword keyword-char">char</span><span class="token punctuation">.</span><span class="token function">ToUpper</span><span class="token punctuation">(</span>texto<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">// En ambos casos al ser el último tipo parametrizado un bool</span>
+    <span class="token comment">// estaremos indicando que la signatura de los métodos debe retornar eso.</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-bool">bool</span><span class="token punctuation">&gt;</span></span> predicado1 <span class="token operator">=</span> EsPar<span class="token punctuation">;</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">,</span> <span class="token keyword keyword-bool">bool</span><span class="token punctuation">&gt;</span></span> predicado2 <span class="token operator">=</span> EmpiezaPorMayuscula<span class="token punctuation">;</span>
+
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado1</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token function">predicado2</span><span class="token punctuation">(</span><span class="token string">"Hola"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Aunque solo se dará en casos aislados</strong>, a lo mejor queremos definir un delegado que referencie a un método con más de un parámetro de salida. En este caso, si nos acordamos de principio de curso, usaremos tuplas para definir el valor de retornos.</p>
+<p>Recordemos el ejemplo que vimos para este caso...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> sen<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> cos<span class="token punctuation">)</span></span> <span class="token function">Direccion</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> anguloGr<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span></span> anguloRad <span class="token operator">=</span> anguloGr <span class="token operator">*</span> Math<span class="token punctuation">.</span>PI <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">Cos</span><span class="token punctuation">(</span>anguloRad<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>No obstante, como comentamos, a partir de C#7 no sería necesario. Si quisiéramos usar <strong><code>Func</code></strong> para definir un tipo delegado que referenciase a los métodos anteriores podríamos hacer lo siguiente...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">Func<span class="token punctuation">&lt;</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">)</span><span class="token punctuation">&gt;</span></span> f <span class="token operator">=</span> Direccion<span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> seno<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> coseno<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"s=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">seno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">, c=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">coseno</span><span class="token format-string"><span class="token punctuation">:</span>F2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="tipos-anónimos-inmutables">Tipos Anónimos Inmutables </h3>
+<p><strong>Definición:</strong> Los tipos anónimos son una manera de encapsular un conjunto de propiedades de solo lectura en un único objeto <strong>sin tener que definir un tipo</strong>. Para ello, el compilador genera el nombre del tipo transparente para el programador y por tanto no disponible en el nivel de código fuente.</p>
+<p><strong>Restricciones:</strong> Solo podremos definir propiedades y por tanto, no son válidos ningún otro tipo de miembros de clase, como métodos o eventos. Además, la expresión que se usa para inicializar una propiedad no puede ser <strong><code>null</code></strong>.</p>
+<p>En el ejemplo siguiente se muestra dos tipos anónimo que se inicializa con una propiedad <strong><code>Name</code></strong> el primero y dos propiedades <strong><code>Nombre</code></strong> y <strong><code>Edad</code></strong> el segundo.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> estudianteDesconocido  <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"Rigoberto"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> estudianteDesconocido2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">"Pedro"</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token string">"12"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Podemos ahorrarnos el indicar los nombres de las propiedades si utilizamos <strong>identificadores de variables</strong> para inicializar el tipo anónimo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-double">double</span></span> X <span class="token operator">=</span> <span class="token number">9.1</span><span class="token punctuation">;</span> 
+<span class="token class-name"><span class="token keyword keyword-float">float</span></span> Y <span class="token operator">=</span> <span class="token number">3.2</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// La variable point1 tendrá una propiedad llamada X de tipo double y </span>
+<span class="token comment">// otra llamada Y del tipo float. </span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> point1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> X<span class="token punctuation">,</span> Y <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// Incluso podemos combinar las formas de inicializar, </span>
+<span class="token comment">// en este el siguiente caso point2 tiene como propiedades X y SuperY.</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> point2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> X<span class="token punctuation">,</span> SuperY <span class="token operator">=</span> Y <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre><p>También se puede definir un array de elementos con tipo anónimo, combinando una variable local con tipo implícito y una matriz con tipo implícito. Por ejemplo ...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> fruitsSize <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">[</span><span class="token punctuation">]</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> Diameter <span class="token operator">=</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+    <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Name <span class="token operator">=</span> <span class="token string">"Grape"</span><span class="token punctuation">,</span> Diameter <span class="token operator">=</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><blockquote>
+<p>✋ <strong>Importante:</strong> En este caso hemos creado <strong>dos objetos anónimos con el mismo nombre de propiedades</strong> y por tanto del '<em>mismo tipo</em>'. Esto será detectado internamente por el Runtime que <strong>combinará ambos tipos anónimos creados</strong>, en uno solo.</p>
+</blockquote>
+<p><strong>No pueden declararse</strong> como <strong>tipos anónimos</strong>:</p>
+<ul>
+<li>Campos privados.</li>
+<li>Propiedades.</li>
+<li>Eventos.</li>
+<li>Tipos devueltos por métodos.</li>
+<li>Parámetros formales de métodos.</li>
+</ul>
+<p>Al compararse con bool <strong><code>Equals(object obj)</code></strong> <strong>se considerará iguales</strong> aquellos métodos anónimos que tengan:</p>
+<ul>
+<li>Las mismas propiedades, en nombre y número.</li>
+<li>El mismo orden de declaración de las propiedades.</li>
+<li>Los mismos valores para esas propiedades.</li>
+</ul>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">"María"</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">"María"</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Mostrará True a pesar de que sean referencias a</span>
+<span class="token comment">// objetos diferentes en memoria.</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>anonimo1<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>anonimo2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Por último, puesto que heredan de la clase <strong><code>object</code></strong> podrán mostrarse <strong><code>string ToString()</code></strong> por ejemplo...</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-var">var</span></span> anonimo <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token punctuation">{</span> Nombre <span class="token operator">=</span> <span class="token string">"María"</span><span class="token punctuation">,</span> Edad <span class="token operator">=</span> <span class="token number">23</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Mostrará "{ Nombre = "María", Edad = 23 }" sin necesidad de invalidar ToString().</span>
+Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>anonimo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
