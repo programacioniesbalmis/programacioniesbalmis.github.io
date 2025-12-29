@@ -274,6 +274,29 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-1-gestión-de-lista-de-platos">Ejercicio 1. Gestión de lista de Platos </h2>
 <p>Implementa un sistema para gestionar una colección de platos utilizando <code>List&lt;T&gt;</code> y métodos para realizar operaciones básicas como añadir, eliminar, buscar y filtrar platos según diferentes criterios.</p>
+<pre class="salida_consola">Ejercicio 1. Gestión de lista de Platos
+
+Lista de Platos:
+1. Ensalada - 10,5 - Entrante
+2. Solomillo - 20,0 - Principal
+3. Tarta de Queso - 6,5 - Postre
+
+Buscando plato Solomillo 20.0:
+Plato encontrado en la posición: 1
+Buscando plato Solomillo 25.0:
+Plato no encontrado.
+
+Eliminando plato en posición 0: Ensalada - 10,5 - Entrante
+Lista de Platos:
+1. Solomillo - 20,0 - Principal
+2. Tarta de Queso - 6,5 - Postre
+
+Plato añadido: Sopa - 8,0 - Entrante
+Lista de Platos:
+1. Solomillo - 20,0 - Principal
+2. Tarta de Queso - 6,5 - Postre
+3. Sopa - 8,0 - Entrante
+</pre>
 <p><strong>Requisitos</strong></p>
 <ul>
 <li>Define una clase <code>Plato</code> con propiedades: <code>Nombre</code>, <code>Precio</code> (decimal), <code>Categoria</code> (enum: Entrante, Principal, Postre).</li>
@@ -285,9 +308,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li>Método <code>AñadePlato</code> que a partir de una lista y un plato, añadirá este a la lista.</li>
 <li><code>EliminaPlato</code> que eliminará el plato con la posición en la lista que coincida con el índice <strong><code>i</code></strong> que se haya pasado como argumento.</li>
 <li><code>MuestrarLista(List&lt;Plato&gt; lista)</code> muestra el contenido completo de la lista numerado.</li>
+<li>¿Porque crees que funciona IndexOf?, comenta la implementación de Equals, GetHasCode y los operadores de igualdad y prueba el programa otra vez. ¿Sigue funcionando?.</li>
 </ul>
 </li>
-<li>En el método <code>Main</code>, demuestra el uso de todos los métodos creando una lista inicial, realizando búsquedas con <code>IndexOf</code>, eliminaciones y adiciones.</li>
 </ul>
 </div>
 <div class="box_bg_lightgreen">
@@ -299,7 +322,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 Añadiendo automóviles a la lista...
 Lista actual (5 automóviles):
 1. Toyota Corolla - 1600cc - 2020 - Blanco
-2. Honda Civic - 1800cc - 2019 - Negro  
+2. Honda Civic - 1800cc - 2019 - Negro
 3. Ford Focus - 2000cc - 2020 - Rojo
 4. Nissan Sentra - 1600cc - 2018 - Azul
 5. Volkswagen Golf - 1400cc - 2020 - Blanco
@@ -331,13 +354,11 @@ Lista final (5 automóviles):
 3. Nissan Sentra - 1600cc - 2018 - Azul
 4. Volkswagen Golf - 1400cc - 2020 - Blanco
 5. BMW Serie 3 - 2000cc - 2021 - Gris
-
-Fin de la demostración.
 </pre>
 <p><strong>Requisitos</strong></p>
 <ul>
 <li>
-<p>Define un record <code>Automovil</code> con propiedades: <code>Marca</code>, <code>Modelo</code>, <code>Cilindrada</code> (int), <code>AñoFabricacion</code> (int), <code>Color</code>.</p>
+<p>Define un record <code>Automovil</code> con propiedades: <code>Marca</code>, <code>Modelo</code>, <code>Cilindrada</code> (int), <code>AñoFabricacion</code> (int), <code>Color</code> tipo enumerado.</p>
 </li>
 <li>
 <p>Implementa un método <code>ToString()</code> que muestre la información del automóvil en formato como se muestra en la salida.</p>
@@ -373,14 +394,27 @@ Fin de la demostración.
 <li>
 <p>En el método <code>Main</code>, demuestra el uso de todos los métodos creando una lista inicial, realizando búsquedas, eliminaciones y adiciones.</p>
 </li>
-<li>
-<p>(Opcional) Añade métodos adicionales como <code>AutomovilesPorMarca(List&lt;Automovil&gt; lista, string marca)</code> o <code>AutomovilesOrdenadosPorAño(List&lt;Automovil&gt; lista)</code>.</p>
-</li>
 </ul>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-3-comparación-y-búsqueda-en-colecciones">Ejercicio 3. Comparación y Búsqueda en Colecciones </h2>
 <p>Vamos a trabajar con diferentes formas de comparación y búsqueda en colecciones.</p>
+<pre class="salida_consola">Ejercicio 3. Comparación y Búsqueda en Colecciones
+
+--- Parte 1: Búsqueda lineal con Contains ---
+¿Existe la publicación 29/12/2025 9:11:00? True
+¿Existe con EqualityComparer? True
+
+--- Parte 2: Búsqueda de Usuarios ---
+¿Existe el usuario user1? True
+
+--- Parte 3: Búsqueda Binaria ---
+Lista ordenada por fecha.
+Posición encontrada (BinarySearch): 1
+Posición encontrada (BinarySearch con IComparer): 1
+
+Pulsar Enter para salir...
+</pre> 
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>Crea un tipo <strong><code>record Usuario</code></strong> con las propiedades: <code>UserName</code>, <code>NombreCompleto</code> y <code>FechaRegistro</code> (DateOnly).</li>
@@ -404,10 +438,47 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <li>Realizar una <strong><code>BinarySearch</code></strong> sobre la lista de publicaciones basándonos en el <strong><code>Id</code></strong>. Para que esto sea posible, primero deberás <strong>ordenar</strong> la lista. Además de que la clase <code>Publicacion</code> deberá implementar la interfaz <strong><code>IComparable&lt;Publicacion&gt;</code></strong> comparando por la propiedad <code>Id</code>.</li>
 </ul>
 <p>Crea un método <strong><code>BuscaPublicacionIComparer</code></strong> que realizará la búsqueda binaria pero usando la sobrecarga a la que se le pasa un objeto de tipo <code>IComparer&lt;T&gt;</code></p>
+<p>Completa el programa principal para probar todas las funcionalidades creadas.</p>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-4-diccionario-contador-de-palabras">Ejercicio 4. Diccionario contador de palabras </h2>
 <p>Utilizando la clase genérica <em><code>Dictionary&lt;K, V&gt;</code></em> definida en System.Collections.Generic,implementa un sencillo programa de consola que pida nombres por teclado hasta que introduzcamos la cadena "fin".</p>
+<pre class="salida_consola">Ejercicio 4. Diccionario contador de palabras
+
+Introduce nombres (escribe 'fin' para terminar):
+Ana
+Pablo
+Maria
+Ana
+Juan
+Sofia
+Sofia
+Laura
+Pedro
+Pablo
+Ana
+fin
+
+Nombres introducidos (Claves):
+Ana
+Pablo
+Maria
+Juan
+Sofia
+Laura
+Pedro
+
+Conteo de nombres (Pares Clave-Valor):
+Ana: 3
+Pablo: 2
+Maria: 1
+Juan: 1
+Sofia: 2
+Laura: 1
+Pedro: 1
+
+Pulsar Enter para salir...
+</pre>
 <p><strong>Requisitos</strong></p>
 <ul>
 <li>Todo el ejercicio se realizará en un método <strong>GestionPalabras</strong> que tendrá el diccionario como variable local.</li>
@@ -422,6 +493,23 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-5-diccionario-con-clave-personalizada">Ejercicio 5. Diccionario con Clave Personalizada </h2>
 <p>Vamos a crear un inventario de productos donde la clave del diccionario será un objeto de tipo <code>Producto</code> y el valor será el stock disponible (un entero). Este ejercicio demostrará la importancia de implementar correctamente <code>Equals</code> y <code>GetHashCode</code> cuando se usan objetos propios como claves en un diccionario.</p>
+<pre class="salida_consola">
+//Salida sin implementación correcta
+Ejercicio 5. Diccionario con Clave Personalizada
+
+Añadido p1: Laptop (A001) con stock 10
+¿El inventario contiene p2 (misma info que p1)? False
+No se pudo recuperar el stock con p2.
+
+//Salida conn implementación correcta
+Ejercicio 5. Diccionario con Clave Personalizada
+
+Añadido p1: Laptop (A001) con stock 10
+¿El inventario contiene p2 (misma info que p1)? True
+Stock recuperado con p2: 10
+
+
+</pre> <!-- fin salida consola -->
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>Crea una clase <strong><code>Producto</code></strong> con las propiedades: <code>Codigo</code> (string) y <code>Nombre</code> (string).</li>
@@ -450,6 +538,26 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-6-red-social-con-diccionarios">Ejercicio 6. Red Social con Diccionarios </h2>
 <p>Vamos a crear una estructura básica para una red social utilizando las clases <code>Usuario</code> y <code>Publicacion</code> del ejercicio anterior, pero gestionándolas con diccionarios para un acceso eficiente.</p>
+<pre class="salida_consola">Ejercicio 6. Red Social con Diccionarios
+
+Usuarios registrados correctamente.
+Publicaciones añadidas.
+
+--- Todas las Publicaciones (Cronológico) ---
+29/12/2025 13:35:15 - dev_master: Hola mundo! (5 likes)
+29/12/2025 13:40:15 - code_ninja: Aprendiendo C# (10 likes)
+29/12/2025 13:45:15 - dev_master: Diccionarios son útiles (3 likes)
+
+--- Publicaciones de dev_master ---
+29/12/2025 13:35:15 - dev_master: Hola mundo! (5 likes)
+29/12/2025 13:45:15 - dev_master: Diccionarios son útiles (3 likes)
+
+--- Publicaciones de code_ninja ---
+29/12/2025 13:40:15 - code_ninja: Aprendiendo C# (10 likes)
+
+Pulsar Enter para salir...
+
+</pre>
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>
@@ -460,14 +568,14 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <ul>
 <li><code>Dictionary&lt;string, Usuario&gt; usuarios</code>: Donde la clave es el <code>UserName</code> y el valor es el objeto <code>Usuario</code>.</li>
 <li><code>SortedDictionary&lt;DateTime, Publicacion&gt; publicaciones</code>: Donde la clave es el <code>Id</code> de la publicación y el valor es el objeto <code>Publicacion</code>. Esto mantendrá las publicaciones ordenadas cronológicamente.</li>
-<li><code>Dictionary&lt;string, List&lt;int&gt;&gt; publicacionesPorUsuario</code>: Donde la clave es el <code>UserName</code> y el valor es una lista de enteros que representan los <code>Id</code> de las publicaciones de ese usuario.</li>
+<li><code>Dictionary&lt;string, List&lt;long&gt;&gt; publicacionesPorUsuario</code>: Donde la clave es el <code>UserName</code> y el valor es una lista de enteros que representan los <code>Id</code> de las publicaciones de ese usuario.</li>
 </ul>
 </li>
 <li>
 <p>Implementa los siguientes métodos en la clase <code>RedSocial</code>:</p>
 <ul>
-<li><strong><code>RegistraUsuario(Usuario usuario)</code></strong>: Añade un usuario al sistema. Debe verificar si el usuario ya existe.</li>
-<li><strong><code>private void AñadePublicacionAUsuario(Usuario usuario, int idPublicacion)</code></strong>: Método privado que añade el <code>Id</code> de la publicación a la lista de publicaciones del usuario correspondiente en el diccionario <code>publicacionesPorUsuario</code>. Deberá realizar las comprobaciones necesarias, para que no se repitan ID en el usuario.</li>
+<li><strong><code>RegistraUsuario(Usuario usuario)</code></strong>: Añade un usuario al sistema. Debe verificar si el usuario ya existe, lanzando una excepción del tipo RedSocialExcepción indicando que ha ocurrido.</li>
+<li><strong><code>private void AñadePublicacionAUsuario(Usuario usuario, long idPublicacion)</code></strong>: Método privado que añade el <code>Id</code> de la publicación a la lista de publicaciones del usuario correspondiente en el diccionario <code>publicacionesPorUsuario</code>. Deberá realizar las comprobaciones necesarias, para que no se repitan ID en el usuario.</li>
 <li><strong><code>public void AñadePublicacion(Publicacion publicacion)</code></strong>: Añade una publicación al <code>SortedDictionary</code> de publicaciones y llama al método <code>AñadePublicacionAUsuario</code> para vincularla con su autor.</li>
 <li><strong><code>MostrarPublicacionesUsuario(string userName)</code></strong>: Muestra todas las publicaciones de un usuario específico, recuperándolas a partir de sus IDs.</li>
 <li><strong><code>MostrarTodasPublicaciones()</code></strong>: Muestra todas las publicaciones ordenadas por fecha (gracias al <code>SortedDictionary</code>).</li>
@@ -481,6 +589,32 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-7-lista-de-reproducción-musical-linkedlist">Ejercicio 7. Lista de Reproducción Musical (LinkedList) </h2>
 <p>Vamos a simular una lista de reproducción de música donde el orden de las canciones es importante y queremos poder navegar entre ellas (siguiente, anterior) así como insertar canciones en posiciones específicas de forma eficiente. Para ello utilizaremos <code>LinkedList&lt;T&gt;</code>.</p>
+<pre class="salida_consola">Ejercicio 7. Reproductor de Música con LinkedList
+
+--- Reproduciendo (Inicio a Fin) ---
+Reproduciendo: Imagine - John Lennon
+Reproduciendo: Bohemian Rhapsody - Queen
+Reproduciendo: Stairway to Heaven - Led Zeppelin
+
+Insertando 'Hotel California' después de 'Imagine'...
+--- Reproduciendo (Inicio a Fin) ---
+Reproduciendo: Imagine - John Lennon
+Reproduciendo: Hotel California - Eagles
+Reproduciendo: Bohemian Rhapsody - Queen
+Reproduciendo: Stairway to Heaven - Led Zeppelin
+
+Eliminando 'Stairway to Heaven'...
+--- Reproduciendo (Inicio a Fin) ---
+Reproduciendo: Imagine - John Lennon
+Reproduciendo: Hotel California - Eagles
+Reproduciendo: Bohemian Rhapsody - Queen
+--- Reproduciendo (Fin a Inicio) ---
+Reproduciendo: Bohemian Rhapsody - Queen
+Reproduciendo: Hotel California - Eagles
+Reproduciendo: Imagine - John Lennon
+
+Pulsar Enter para salir...
+</pre>
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>
@@ -515,45 +649,39 @@ Crea un método <strong><code>BuscaPublicación</code></strong> al que le llega 
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-8-sistema-de-pedidos-de-restaurante-con-colecciones-especializadas">Ejercicio 8. Sistema de pedidos de restaurante con colecciones especializadas </h2>
 <p>Desarrolla un sistema para gestionar pedidos de un restaurante usando colecciones apropiadas para cada tipo de operación: menú ordenado, ingredientes únicos, cola de pedidos y histórico de clientes.</p>
-<pre class="salida_consola">Ejercicio 2: Sistema de pedidos de restaurante
+<pre class="salida_consola">Ejercicio 8: Sistema de pedidos de restaurante
 
 === MENÚ DEL DÍA (por categorías) ===
 ENTRANTES:
-  - Ensalada César ($8.50)
-  - Bruschetta ($6.00)
-PRINCIPALES:
-  - Paella Valenciana ($15.20)
-  - Salmón a la plancha ($18.50)
+  - Ensalada César ($8,50)
+  - Bruschetta ($6,00)
+PRINCIPALS:
+  - Paella Valenciana ($15,20)
+  - Salmón a la plancha ($18,50)
 POSTRES:
-  - Tiramisu ($7.80)
-  - Flan casero ($5.50)
-
-=== GESTIÓN DE INGREDIENTES ===
-Ingredientes disponibles: Lechuga, Tomate, Queso, Arroz, Azafrán, Salmón, Huevos, Café
-Platos vegetarianos disponibles: Ensalada César, Flan casero
-Alerta: El ingrediente 'Azafrán' está en varios platos (verificar stock)
+  - Tiramisu ($7,80)
+  - Flan casero ($5,50)
 
 === COLA DE PEDIDOS ===
 Cola actual (3 pedidos esperando):
-1. Mesa 5: Paella Valenciana, Tiramisu - Total: $23.00
-2. Mesa 2: Ensalada César, Salmón a la plancha - Total: $27.00  
-3. Mesa 8: Bruschetta, Flan casero - Total: $11.50
+1. 29/12/2025 - Mesa 5: Paella Valenciana, Tiramisu - Total: 23,00
+2. 29/12/2025 - Mesa 2: Ensalada César, Salmón a la plancha - Total: 27,00
+3. 29/12/2025 - Mesa 8: Bruschetta, Flan casero - Total: 11,50
 
 Cocinando pedido de Mesa 5...
 Pedido completado. Cola actualizada (2 pedidos).
 
-=== CLIENTES FRECUENTES ===
-Top 3 clientes por número de visitas:
-1. Juan Martínez - 15 visitas - Gasto promedio: $25.30
-2. Ana López - 12 visitas - Gasto promedio: $31.50
-3. Carlos García - 8 visitas - Gasto promedio: $19.80
 
-Cliente Juan Martínez - Historial últimas 3 visitas:
-- 2025-10-05: $28.50 (Paella + Tiramisu)
-- 2025-10-02: $22.10 (Ensalada + Salmón)  
-- 2025-09-28: $15.20 (Solo Paella)
+Cliente Juan Martínez - Visitas: 6, Gasto promedio: $18,47
+Pedidos:
+        29/12/2025 - Mesa 0: Paella Valenciana - Total: 15,20
+        29/12/2025 - Mesa 0: Paella Valenciana - Total: 15,20
+        29/12/2025 - Mesa 0: Paella Valenciana - Total: 15,20
+        05/10/2025 - Mesa 5: Paella Valenciana, Tiramisu - Total: 23,00
+        02/10/2025 - Mesa 5: Ensalada César, Salmón a la plancha - Total: 27,00
+        28/09/2025 - Mesa 5: Paella Valenciana - Total: 15,20
 
-Fin de la demostración.
+Pulsar Enter para salir...
 </pre>
 <p><strong>Requisitos</strong></p>
 <ul>
@@ -581,6 +709,25 @@ Fin de la demostración.
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-9-implementación-de-una-pila-genérica-wrapper">Ejercicio 9. Implementación de una Pila Genérica (Wrapper) </h2>
 <p>Vamos a crear nuestra propia implementación de una pila (Stack) genérica, pero en lugar de usar un array interno (como hace <code>Stack&lt;T&gt;</code> de .NET), utilizaremos una <code>List&lt;T&gt;</code> privada para almacenar los elementos. Esto nos permitirá "capar" la funcionalidad de la lista y exponer solo las operaciones LIFO (Last In, First Out).</p>
+<pre class="salida_consola">Ejercicio 9. Implementación de una Pila Genérica
+
+--- Pila de Enteros ---
+Pila con 3 elementos
+Cima (Peek): 30
+Desapilando (Pop): 30
+Nueva Cima (Peek): 20
+¿Está vacía?: False
+
+--- Pila de Cadenas (desde Array) ---
+Pila con 3 elementos
+Desapilando: C#
+Desapilando: Mundo
+Desapilando: Hola
+Excepción esperada: La pila está vacía.
+
+Fin de la demostración de la pila.
+
+</pre>
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>Crea una clase genérica <strong><code>Pila&lt;T&gt;</code></strong>.</li>
@@ -607,6 +754,16 @@ Fin de la demostración.
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-10-patrón-iterator-en-la-pila-genérica">Ejercicio 10. Patrón Iterator en la Pila Genérica </h2>
 <p>Vamos a ampliar la clase <code>Pila&lt;T&gt;</code> del ejercicio anterior para que sea posible recorrer sus elementos utilizando un bucle <code>foreach</code>.</p>
+<pre class="salida_consola">Ejercicio 10. Patrón Iterator en la Pila Genérica
+
+Recorriendo la pila con foreach (LIFO):
+Cuarto
+Tercero
+Segundo
+Primero
+
+Pulsar Enter para salir...
+</pre> 
 <p><strong>Requisitos</strong></p>
 <ol>
 <li><strong>Intento inicial:</strong> En el <code>Main</code>, intenta recorrer una instancia de tu <code>Pila&lt;T&gt;</code> con un bucle <code>foreach</code>. Observarás que el compilador da un error porque tu clase no implementa <code>IEnumerable</code> ni tiene un método <code>GetEnumerator</code>.</li>
