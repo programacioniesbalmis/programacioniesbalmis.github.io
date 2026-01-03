@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutas Absolutas vs Relativas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Estilos para textos dentro del SVG */
+        .title-absolute { font-size: 28px; font-weight: bold; fill: #0074D9; }
+        .title-relative { font-size: 28px; font-weight: bold; fill: #2ECC40; }
+        .subtitle { font-size: 16px; fill: #333; }
+        .label { font-size: 14px; fill: #333; }
+        .path-text { font-family: monospace; font-size: 15px; fill: #333; }
+        .location-text { font-size: 14px; font-weight: bold; fill: #DC3545; }
+        .note-text { font-size: 12px; fill: #555; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <g id="icon-folder">
+                <path d="M2 4 L8 4 L10 6 L28 6 L28 20 L2 20 Z" fill="#FFD54F" stroke="#F57F17" stroke-width="1.5"/>
+                <path d="M2 8 L28 8" stroke="#F57F17" stroke-width="1" opacity="0.5"/>
+            </g>
+            <g id="icon-file">
+                <path d="M4 2 L18 2 L24 8 L24 24 L4 24 Z" fill="#E3F2FD" stroke="#1976D2" stroke-width="1.5"/>
+                <polyline points="18 2 18 8 24 8" fill="none" stroke="#1976D2" stroke-width="1.5"/>
+                <line x1="8" y1="12" x2="20" y2="12" stroke="#1976D2" stroke-width="1.5" opacity="0.5"/>
+                <line x1="8" y1="16" x2="20" y2="16" stroke="#1976D2" stroke-width="1.5" opacity="0.5"/>
+                <line x1="8" y1="20" x2="16" y2="20" stroke="#1976D2" stroke-width="1.5" opacity="0.5"/>
+            </g>
+            <g id="icon-pin">
+                <path d="M12 0 C5.37 0 0 5.37 0 12 C0 21 12 32 12 32 C12 32 24 21 24 12 C24 5.37 18.63 0 12 0 Z" fill="#DC3545"/>
+                <circle cx="12" cy="12" r="4" fill="white"/>
+            </g>
+        </defs>
+
+        <line x1="400" y1="20" x2="400" y2="480" stroke="#ccc" stroke-width="1"/>
+
+        <g transform="translate(0,0)">
+            <text x="200" y="40" text-anchor="middle" class="title-absolute">RUTA ABSOLUTA</text>
+            <text x="200" y="70" text-anchor="middle" class="subtitle">Trayectoria completa desde el directorio raíz (C:\)</text>
+
+            <g transform="translate(50, 100)" stroke="#999" stroke-width="2" fill="none">
+                <path d="M150 20 V 50 H 50 V 70"/> <path d="M150 50 H 150 V 70"/> <path d="M150 50 H 250 V 70"/> <path d="M50 90 V 120 H 100 V 140"/> <path d="M100 160 V 190 H 50 V 210"/> <path d="M100 190 H 180 V 210"/> <path d="M50 230 V 260 H 80"/> </g>
+
+            <g transform="translate(50, 100)" stroke="#0074D9" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M150 20 V 50 H 50 V 120 H 100 V 190 H 50 V 260 H 75" marker-end="url(#arrow-blue)"/>
+            </g>
+
+            <g transform="translate(50, 100)">
+                <use href="#icon-folder" x="135" y="0"/>
+                <text x="175" y="15" class="label">C:\ (Raíz)</text>
+                <use href="#icon-folder" x="35" y="70"/> <text x="75" y="85" class="label">usuarios</text>
+                <use href="#icon-folder" x="135" y="70"/> <text x="175" y="85" class="label">temp</text>
+                <use href="#icon-folder" x="235" y="70"/> <text x="275" y="85" class="label">windows</text>
+                <use href="#icon-folder" x="85" y="140"/> <text x="125" y="155" class="label">juan</text>
+                <use href="#icon-folder" x="35" y="210"/> <text x="75" y="225" class="label">documentos</text>
+                <use href="#icon-folder" x="165" y="210"/> <text x="205" y="225" class="label">imágenes</text>
+                <use href="#icon-file" x="85" y="250"/> <text x="120" y="270" class="label">informe.pdf</text>
+            </g>
+
+            <g transform="translate(20, 400)">
+                <rect x="0" y="0" width="360" height="40" rx="8" fill="#E0E0E0" stroke="#ccc"/>
+                <text x="180" y="25" text-anchor="middle" class="path-text">C:\usuarios\juan\documentos\informe.pdf</text>
+            </g>
+        </g>
+
+        <g transform="translate(400,0)">
+            <text x="200" y="40" text-anchor="middle" class="title-relative">RUTA RELATIVA</text>
+            <text x="200" y="70" text-anchor="middle" class="subtitle">Trayectoria desde el directorio actual de trabajo</text>
+
+            <g transform="translate(50, 100)" stroke="#999" stroke-width="2" fill="none">
+                 <path d="M150 20 V 50 H 50 V 70"/> <path d="M150 50 H 150 V 70"/> <path d="M150 50 H 250 V 70"/> <path d="M50 90 V 120 H 100 V 140"/> <path d="M100 160 V 190 H 50 V 210"/> <path d="M100 190 H 180 V 210"/> <path d="M50 230 V 260 H 80"/> </g>
+
+             <g transform="translate(50, 100)" stroke="#2ECC40" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M100 160 V 190 H 50 V 260 H 75"/>
+            </g>
+
+            <g transform="translate(50, 100)">
+                <use href="#icon-folder" x="135" y="0"/> <text x="175" y="15" class="label">C:\ (Raíz)</text>
+                <use href="#icon-folder" x="35" y="70"/> <text x="75" y="85" class="label">usuarios</text>
+                <use href="#icon-folder" x="135" y="70"/> <text x="175" y="85" class="label">temp</text>
+                <use href="#icon-folder" x="235" y="70"/> <text x="275" y="85" class="label">windows</text>
+                <use href="#icon-folder" x="85" y="140"/> <text x="125" y="155" class="label">juan</text>
+                
+                <g transform="translate(155, 130)">
+                    <use href="#icon-pin"/>
+                    <text x="30" y="10" class="location-text">Ubicación</text>
+                    <text x="30" y="28" class="location-text">Actual</text>
+                </g>
+
+                <use href="#icon-folder" x="35" y="210"/> <text x="75" y="225" class="label">documentos</text>
+                <use href="#icon-folder" x="165" y="210"/> <text x="205" y="225" class="label">imágenes</text>
+                <use href="#icon-file" x="85" y="250"/> <text x="120" y="270" class="label">informe.pdf</text>
+            </g>
+
+            <g transform="translate(20, 400)">
+                <rect x="25" y="0" width="310" height="40" rx="8" fill="#E0E0E0" stroke="#ccc"/>
+                <text x="180" y="25" text-anchor="middle" class="path-text">documentos\informe.pdf</text>
+                <text x="180" y="55" text-anchor="middle" class="note-text">Depende de dónde estés (aquí: en C:\usuarios\juan)</text>
+            </g>
+        </g>
+    </svg>
+</div>
+
+</body>
+</html>
