@@ -1,0 +1,653 @@
+<!DOCTYPE html><html><head>
+      <title>Programación 1º DAM Unidad 22</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css);
+code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face{font-family:"Material Icons";font-style:normal;font-weight:400;src:local("Material Icons"),local("MaterialIcons-Regular"),url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAfIAAsAAAAADDAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kosY21hcAAAAYAAAADTAAACjtP6ytBnbHlmAAACVAAAAxgAAAQ4zRtvlGhlYWQAAAVsAAAALwAAADYRwZsnaGhlYQAABZwAAAAcAAAAJAeKAzxobXR4AAAFuAAAABIAAAA8OGQAAGxvY2EAAAXMAAAAIAAAACAG5AfwbWF4cAAABewAAAAfAAAAIAEfAERuYW1lAAAGDAAAAVcAAAKFkAhoC3Bvc3QAAAdkAAAAYgAAAK2vz7wkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkPsQ4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVLy4xKzzX4chhrmK4QpQmBEkBwAZygyweJzFkr0NwjAQhZ+TEP6CRUfHBEwRUWaQTICyQbpMwRCskA5RUIONxG0RnnNpKAIV4qzPku/8c353ACYAYrIjCWCuMAh2ptf0/hiL3p/gyPUWa3osqlt0L1zu9r71z8dGrJRykFoauXQd932Lj5vhG+MjxGeYI8MKETObMpslf5EyP8tg+vHun5r539PvlvXzaVhRFVQDTPEWKVQR90KhnnC5Ek67vUKN4VuFasM/ldARj43CCkCsEjpJSoVVgRyU0GVSK6wUpFFCx8lFgX0BiXpRPQB4nE2TTWjcRhTH3xttpDhxN7uxPlp3u/FK7moRPixafRijNosxSw/LUsIwNcaEHPZggo/FmEKMCKWU4kNOOftQSlhE8alnH0Ix9BqWnHooPRrTQ0+mnu2bXTu2pPdGM9LM/6c3fwECTM4gBBMYQNqxzLrZAjqYSlqu2TAHZQA0/DQJH6FtzqGDnvbt4Ggwvzw/nL8EfH8kW0fsuRqhgWXZnY7M1picaUL7Du5BHeDzMIl83dAt016wH1qmvtSMo5R6YRJHTR//FXsff/nj/tc/5K9P5d+nP22+fFK5u7v3K39SW3y+OtDKO3L85vD09PD9z5X17a2N1g4tqk01RlqX7gyoEmnsWQtVr4rtZMmukEaFBZxzefkCn11cyKMLZgshRwgTYNoLNXCBz2ja7HvZG7hDpPSNfoo5vs0knK/9hb+rNpu+8kHPgk/Ao4kK3tWtTpSEtvkA9c+wE6UaUdwieNkaHg55tBEtRiEPw1s0+FtrtTcc9two2lhMknV7PZF/cs6+uUFTmpTGbEx7sQCPSLOttHS3GRltqp7SNzVSKzl6aWnZT/CX5k6/v9N3Hh8fHBwffJVjhrC6OgH5dkIt/tPsq+d/PD5Qz7G7efzq1THFjdZVPe/N6ulQ3JnDWSE5junsFsVIiFwL/htf1S5gJ3BfOcUxfHKLnzqpFpyfZ9cX+/5WB6a+Y0pHpzkNrYNVDwMsikK+y7WuLCRg/oFHkA8VT3rDg5ZnU6ktzzINymV0m74Xd5pfIGXyFeVEQSShkzqG7TBBa2OxVRKitLXv7h3uuftXnXq7lz2tZ/WnWa9dx9dCjDhHzmuVQATlmljr9dZErUydSo2Hbi/b1vXtrOeGCk2/8s3ZlO8+ueJT8BVlw5pGw2oYccdSiHHqx0RlabHqdNR9jAETl6PreJcPBnnfpTLnOQ8C3OV8AmQGzouV1iZdeb5SSIoVc8W8/kcDtksUH5FrU6/aqBqNWcMEzxG4DAQ14qRQhi9mWU0rzepKezbjfgCwQKxVYq5ajRgpRqy45CqwkJydcEkbTkvRz8P5/2ZpDTN4nGNgZGBgAOKb6v+/xvPbfGXgZmEAgeuB2kkI+v8bFgbmKiCXg4EJJAoAPyAKhQB4nGNgZGBg1vmvwxDDwgACQJKRARXwAwAzZQHQeJxjYQCCFAYGFgbSMQAcWACdAAAAAAAAAAwALgBgAIQAmADSAQgBIgE8AVABoAHeAfwCHHicY2BkYGDgZ7BgYGMAASYg5gJCBob/YD4DAA/hAWQAeJxlkbtuwkAURMc88gApQomUJoq0TdIQzEOpUDokKCNR0BuzBiO/tF6QSJcPyHflE9Klyyekz2CuG8cr7547M3d9JQO4xjccnJ57vid2cMHqxDWc40G4Tv1JuEF+Fm6ijRfhM+oz4Ra6eBVu4wZvvMFpXLIa40PYQQefwjVc4Uu4Tv1HuEH+FW7i1mkKn6Hj3Am3sHC6wm08Ou8tpSZGe1av1PKggjSxPd8zJtSGTuinyVGa6/Uu8kxZludCmzxMEzV0B6U004k25W35fj2yNlCBSWM1paujKFWZSbfat+7G2mzc7weiu34aczzFNYGBhgfLfcV6iQP3ACkSaj349AxXSN9IT0j16JepOb01doiKbNWt1ovippz6sVYYwsXgX2rGVFIkq7Pl2PNrI6qW6eOshj0xaSq9mpNEZIWs8LZUfOouNkVXxp/d5woqebeYIf4D2J1ywQB4nG3LOw6AIBAE0B384B+PAkgEa+QwNnYmHt+EpXSal5lkSBBnoP8oCFSo0aCFRIceA0ZMmLFAYSW88rmvtMUjG3RiQ9HvpfusM6zWNmtc5H/iPewha50tOt5PS/QBx2IeSwAA") format("woff")}.admonition{box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12),0 3px 1px -2px rgba(0,0,0,.2);position:relative;margin:1.5625em 0;padding:0 1.2rem;border-left:.4rem solid rgba(68,138,255,.8);border-radius:.2rem;background-color:rgba(255,255,255,.05);overflow:auto}.admonition>p{margin-top:.8rem}.admonition>.admonition-title{margin:0 -1.2rem;padding:.8rem 1.2rem .8rem 3.6rem;border-bottom:1px solid rgba(68,138,255,.2);background-color:rgba(68,138,255,.1);font-weight:700}.admonition>.admonition-title:before{position:absolute;left:1.2rem;font-size:1.5rem;color:rgba(68,138,255,.8);content:"\E3C9"}.admonition>.admonition-title:before{font-family:Material Icons;font-style:normal;font-variant:normal;font-weight:400;line-height:2rem;text-transform:none;white-space:nowrap;speak:none;word-wrap:normal;direction:ltr}.admonition.abstract,.admonition.summary,.admonition.tldr{border-left-color:rgba(0,176,255,.8)}.admonition.abstract>.admonition-title,.admonition.summary>.admonition-title,.admonition.tldr>.admonition-title{background-color:rgba(0,176,255,.1);border-bottom-color:rgba(0,176,255,.2)}.admonition.abstract>.admonition-title:before,.admonition.summary>.admonition-title:before,.admonition.tldr>.admonition-title:before{color:#00b0ff;content:"\E8D2"}.admonition.hint,.admonition.tip{border-left-color:rgba(0,191,165,.8)}.admonition.hint>.admonition-title,.admonition.tip>.admonition-title{background-color:rgba(0,191,165,.1);border-bottom-color:rgba(0,191,165,.2)}.admonition.hint>.admonition-title:before,.admonition.tip>.admonition-title:before{color:#00bfa5;content:"\E80E"}.admonition.info,.admonition.todo{border-left-color:rgba(0,184,212,.8)}.admonition.info>.admonition-title,.admonition.todo>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.info>.admonition-title:before,.admonition.todo>.admonition-title:before{color:#00b8d4;content:"\E88E"}.admonition.check,.admonition.done,.admonition.success{border-left-color:rgba(0,200,83,.8)}.admonition.check>.admonition-title,.admonition.done>.admonition-title,.admonition.success>.admonition-title{background-color:rgba(0,200,83,.1);border-bottom-color:rgba(0,200,83,.2)}.admonition.check>.admonition-title:before,.admonition.done>.admonition-title:before,.admonition.success>.admonition-title:before{color:#00c853;content:"\E876"}.admonition.faq,.admonition.help,.admonition.question{border-left-color:rgba(100,221,23,.8)}.admonition.faq>.admonition-title,.admonition.help>.admonition-title,.admonition.question>.admonition-title{background-color:rgba(100,221,23,.1);border-bottom-color:rgba(100,221,23,.2)}.admonition.faq>.admonition-title:before,.admonition.help>.admonition-title:before,.admonition.question>.admonition-title:before{color:#64dd17;content:"\E887"}.admonition.attention,.admonition.caution,.admonition.warning{border-left-color:rgba(255,145,0,.8)}.admonition.attention>.admonition-title,.admonition.caution>.admonition-title,.admonition.warning>.admonition-title{background-color:rgba(255,145,0,.1);border-bottom-color:rgba(255,145,0,.2)}.admonition.attention>.admonition-title:before{color:#ff9100;content:"\E417"}.admonition.caution>.admonition-title:before,.admonition.warning>.admonition-title:before{color:#ff9100;content:"\E002"}.admonition.fail,.admonition.failure,.admonition.missing{border-left-color:rgba(255,82,82,.8)}.admonition.fail>.admonition-title,.admonition.failure>.admonition-title,.admonition.missing>.admonition-title{background-color:rgba(255,82,82,.1);border-bottom-color:rgba(255,82,82,.2)}.admonition.fail>.admonition-title:before,.admonition.failure>.admonition-title:before,.admonition.missing>.admonition-title:before{color:#ff5252;content:"\E14C"}.admonition.bug,.admonition.danger,.admonition.error{border-left-color:rgba(255,23,68,.8)}.admonition.bug>.admonition-title,.admonition.danger>.admonition-title,.admonition.error>.admonition-title{background-color:rgba(255,23,68,.1);border-bottom-color:rgba(255,23,68,.2)}.admonition.danger>.admonition-title:before{color:#ff1744;content:"\E3E7"}.admonition.error>.admonition-title:before{color:#ff1744;content:"\E14C"}.admonition.bug>.admonition-title:before{color:#ff1744;content:"\E868"}.admonition.example,.admonition.snippet{border-left-color:rgba(0,184,212,.8)}.admonition.example>.admonition-title,.admonition.snippet>.admonition-title{background-color:rgba(0,184,212,.1);border-bottom-color:rgba(0,184,212,.2)}.admonition.example>.admonition-title:before,.admonition.snippet>.admonition-title:before{color:#00b8d4;content:"\E242"}.admonition.cite,.admonition.quote{border-left-color:rgba(158,158,158,.8)}.admonition.cite>.admonition-title,.admonition.quote>.admonition-title{background-color:rgba(158,158,158,.1);border-bottom-color:rgba(158,158,158,.2)}.admonition.cite>.admonition-title:before,.admonition.quote>.admonition-title:before{color:#9e9e9e;content:"\E244"}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+}
+@page a4landscape {
+  size: A4 landscape;
+  margin: 1cm;
+}
+@page a4portrait {
+  size: A4 portrait;
+  margin: 1cm 1cm 2.5cm 1cm;
+}
+.markdown-preview.markdown-preview .landscape {
+  page: a4landscape;
+}
+.markdown-preview.markdown-preview .portrait {
+  page: a4portrait;
+}
+.markdown-preview.markdown-preview .box_bg_lightgray {
+  background-color: #f5f5f5;
+  border: 2px solid #969696;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .box_bg_lightgreen {
+  background-color: #f5faf5;
+  border: 2px solid #969b96;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 rgba(78, 120, 158, 0.1);
+}
+.markdown-preview.markdown-preview .salida_consola {
+  background-color: #000000;
+  color: aquamarine;
+  border: 3px solid slategrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px 0 slategrey;
+  font-family: "Lucida Console", Courier, monospace;
+  font-size: 0.8rem;
+}
+.markdown-preview.markdown-preview .contenedor {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto 30px auto;
+}
+.markdown-preview.markdown-preview .fondo {
+  background: url(https://balmisdigigs.github.io/digitalizacion.github.io/imagenes/fondos/quote.png);
+  background-size: cover;
+  width: 75%;
+  height: 160px;
+  border-radius: 10px;
+  position: relative;
+}
+.markdown-preview.markdown-preview .cita {
+  font-family: Arial;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.5rem;
+  opacity: 0.6;
+  color: white;
+  padding: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview.markdown-preview .abre_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, -15%);
+}
+.markdown-preview.markdown-preview .cierra_comilla {
+  font-family: "Catamaran";
+  font-weight: 600;
+  color: white;
+  padding-right: 30px;
+  right: 0%;
+  position: absolute;
+  font-size: 6rem;
+  transform: translate(0%, 55%);
+}
+.markdown-preview.markdown-preview .autor {
+  font-family: Arial;
+  color: white;
+  margin: 0px;
+  padding-left: 30px;
+  position: absolute;
+  top: 83%;
+  font-size: 1rem;
+}
+.markdown-preview.markdown-preview .flotante {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: center;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante {
+    flex-direction: row;
+  }
+}
+.markdown-preview.markdown-preview .flotante_izq {
+  margin-right: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_izq {
+    width: auto;
+  }
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .flotante_der {
+    width: auto;
+  }
+}
+.markdown-preview.markdown-preview .galeria_imagenes {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+@media (max-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) {
+  .markdown-preview.markdown-preview .galeria_imagenes {
+    flex-direction: row;
+  }
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+    const configureMermaidIconPacks = () => {
+        window["mermaid"].registerIconPacks([
+            {
+                name: "logos",
+                loader: () =>
+                    fetch("https://unpkg.com/@iconify-json/logos@1/icons.json").then(
+                        (res) => res.json()
+                    ),
+            },
+        ]);
+    };
+
+    if (document.readyState !== 'loading') {
+        configureMermaidIconPacks();
+    } else {
+        document.addEventListener("DOMContentLoaded", () => {
+            configureMermaidIconPacks();
+        });
+    }
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="unidad-22">Unidad 22 </h1>
+<p>Descargar estos apunte en <a href="./u22_librerias_de_clases.pdf">pdf</a> o <a href="./u22_librerias_de_clases.html">html</a></p>
+<h2 id="índice">Índice </h2>
+
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#índice" class="md-toc-link">
+            <p>Índice</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#librerías-de-clases" class="md-toc-link"><p>Librerías de clases</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#definiciones" class="md-toc-link"><p>Definiciones</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#paquete-de-clases" class="md-toc-link">
+            <p>Paquete de clases</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#artefacto" class="md-toc-link">
+            <p>Artefacto</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#empaquetando-clases-en-csharp" class="md-toc-link">
+            <p>Empaquetando clases en CSharp</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#accediendo-las-clases-definidas-en-un-paquete" class="md-toc-link">
+            <p>Accediendo las clases definidas en un paquete</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#separando-en-librerías" class="md-toc-link"><p>Separando en '<em>librerías</em>'</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#archivos-generados" class="md-toc-link">
+            <p>Archivos generados</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#gestores-de-paquetes-de-librerías-o-artefactos" class="md-toc-link">
+            <p>Gestores de paquetes de librerías o artefactos</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+<div style="page-break-after:always;"></div>
+<h2 id="librerías-de-clases">Librerías de clases </h2>
+<p>Antes de ver cómo <strong>organizar en librerías</strong> nuestras clases en C#, vamos a ver una serie de <strong>definiciones relacionadas con la organización de Software en UML</strong> y vamos a ver su correspondencia en .NET.</p>
+<h3 id="definiciones">Definiciones </h3>
+<h4 id="paquete-de-clases">Paquete de clases </h4>
+<p>La primera definición sería de la <strong><a href="https://www.uml-diagrams.org/package-diagrams.html#package">paquete de clases</a></strong> la cual podemos decir que es un <strong>espacio de nombres</strong> que se utiliza para agrupar definiciones de tipos (clases, interfaces, estructuras, etc.) que están relacionados entre sí por una raíz semántica común o pueden cambiar juntos.</p>
+<p>Según el lenguaje tendremos diferentes formas de definirlos, pero en C# los haremos a través de ña palabra reservada <strong><code>namespace</code></strong> como vimos de forma más superficial a principio del curso y seguramente ya habríamos intuido por la definición.</p>
+<div class="row">
+<div class="col-sm-7">
+<p>Nosotros en estos apuntes los vamos a representar mediante la siguiente figura en cuya pestaña vamos a poner el nombre del paquete.</p>
+</div>
+<div class="col-sm-5 my-auto">
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="DESCRIPTION" height="92.7px" preserveAspectRatio="none" style="width:233px;height:92px;" version="1.1" viewBox="0 0 233 92" width="233.1px" zoomAndPan="magnify"><defs></defs><g><!--cluster Nombre--><g class="cluster" data-entity="Nombre" data-source-line="12" data-uid="ent0002" id="cluster_Nombre"><path d="M7.65,5.4 L56.1568,5.4 A3.375,3.375 0 0 1 58.4068,7.65 L64.7068,26.6484 L224.55,26.6484 A2.25,2.25 0 0 1 226.8,28.8984 L226.8,84.15 A2.25,2.25 0 0 1 224.55,86.4 L7.65,86.4 A2.25,2.25 0 0 1 5.4,84.15 L5.4,7.65 A2.25,2.25 0 0 1 7.65,5.4" fill="#FFFFFF" style="stroke:#000000;stroke-width:1.35;"></path><line style="stroke:#000000;stroke-width:1.35;" x1="5.4" x2="64.7068" y1="26.6484" y2="26.6484"></line><text fill="#000000" font-family="sans-serif" font-size="12.6" font-weight="bold" lengthAdjust="spacing" textLength="47.6068" x="9" y="20.2799">Nombre</text></g><!--entity Aqu? tambi?n puede ir **Nombre**--><g class="entity" data-entity="Aqu. tambi.n puede ir ..Nombre.." data-source-line="13" data-uid="ent0003" id="entity_Aqu. tambi.n puede ir ..Nombre.."><text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="123.2807" x="28.8" y="59.8799">Aquí también puede ir</text><text fill="#000000" font-family="sans-serif" font-size="12.6" font-weight="bold" lengthAdjust="spacing" textLength="47.6068" x="155.5813" y="59.8799">Nombre</text></g><!--SRC=[RSyx3i8m30RWFQUmEdP0h8mj4mjBaPYTr9I8D2bEeaf578Y1K_HYH2f3YV3e_vCVNg4Xs6vsGlYRjWCoze3CRjmxunXgW-hs4mLzGHNgrExOHTikhfeYqyeDASUESdQ-wh1cog3tjUEM-F- -1MHJ6kl6t5GXi9Onq44vs-WfFRKYCfjmOhG-HMI34DzReJYwNZ8Ly12Gog0a0qLrZ_CR0lPIpoyBGwIMG3EKvSBBiX3F3m00]--></g></svg></p><p></p>
+</div>
+</div>
+<div class="box_bg_lightgray">
+<p><strong>Ejemplo:</strong></p>
+<p>En C# las clases relacionadas con texto <strong><code>StringBuilder</code></strong> y <strong><code>UTF8Encoding</code></strong> C# las agrupa en el paquete de clases de nombre <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.text">System.Text</a></strong>. Pero además, tendremos otro sub-paquete de clases dentro de <strong><code>System.Text</code></strong> denominado <strong><a href="https://docs.microsoft.com/es-es/dotnet/api/system.text.regularexpressions">System.Text.RegularExpressions</a></strong> donde podremos encontrar definiciones de clases relacionadas con el manejo de texto y más específicamente con su gestión a través de expresiones regulares como son <strong><code>Regex</code></strong> o <strong><code>Match</code></strong></p>
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="163.1px" preserveAspectRatio="none" style="width:421px;height:163px;" version="1.1" viewBox="0 0 421 163" width="421.4px" zoomAndPan="magnify"><defs></defs><g><!--cluster System--><g class="cluster" data-entity="System" data-source-line="14" data-uid="ent0004" id="cluster_System"><path d="M5.95,4.2 L41.5146,4.2 A2.625,2.625 0 0 1 43.2646,5.95 L48.1646,20.7266 L414.75,20.7266 A1.75,1.75 0 0 1 416.5,22.4766 L416.5,156.45 A1.75,1.75 0 0 1 414.75,158.2 L5.95,158.2 A1.75,1.75 0 0 1 4.2,156.45 L4.2,5.95 A1.75,1.75 0 0 1 5.95,4.2" fill="#FFFFFF" style="stroke:#000000;stroke-width:1.05;"></path><line style="stroke:#000000;stroke-width:1.05;" x1="4.2" x2="48.1646" y1="20.7266" y2="20.7266"></line><text fill="#000000" font-family="sans-serif" font-size="9.8" font-weight="bold" lengthAdjust="spacing" textLength="34.8646" x="7" y="15.7732">System</text></g><!--cluster Text--><g class="cluster" data-entity="Text" data-source-line="13" data-uid="ent0002" id="cluster_Text"><path d="M22.75,35 L43.6003,35 A2.625,2.625 0 0 1 45.3503,36.75 L50.2503,51.5266 L397.95,51.5266 A1.75,1.75 0 0 1 399.7,53.2766 L399.7,139.65 A1.75,1.75 0 0 1 397.95,141.4 L22.75,141.4 A1.75,1.75 0 0 1 21,139.65 L21,36.75 A1.75,1.75 0 0 1 22.75,35" fill="#FFFFFF" style="stroke:#000000;stroke-width:1.05;"></path><line style="stroke:#000000;stroke-width:1.05;" x1="21" x2="50.2503" y1="51.5266" y2="51.5266"></line><text fill="#000000" font-family="sans-serif" font-size="9.8" font-weight="bold" lengthAdjust="spacing" textLength="20.1503" x="23.8" y="46.5732">Text</text></g><!--cluster RegularExpressions--><g class="cluster" data-entity="RegularExpressions" data-source-line="18" data-uid="ent0006" id="cluster_RegularExpressions"><path d="M238.35,65.8 L333.82,65.8 A2.625,2.625 0 0 1 335.57,67.55 L340.47,82.3266 L381.15,82.3266 A1.75,1.75 0 0 1 382.9,84.0766 L382.9,122.85 A1.75,1.75 0 0 1 381.15,124.6 L238.35,124.6 A1.75,1.75 0 0 1 236.6,122.85 L236.6,67.55 A1.75,1.75 0 0 1 238.35,65.8" fill="#FFFFFF" style="stroke:#000000;stroke-width:1.05;"></path><line style="stroke:#000000;stroke-width:1.05;" x1="236.6" x2="340.47" y1="82.3266" y2="82.3266"></line><text fill="#000000" font-family="sans-serif" font-size="9.8" font-weight="bold" lengthAdjust="spacing" textLength="94.77" x="239.4" y="77.3732">RegularExpressions</text></g><!--class StringBuilder--><g class="entity" data-entity="StringBuilder" data-source-line="14" data-uid="ent0003" id="entity_StringBuilder"><rect fill="#FFFAFA" height="22.4" rx="1.75" ry="1.75" style="stroke:#000000;stroke-width:0.35;" width="78.506" x="144.9" y="91"></rect><ellipse cx="155.4" cy="102.2" fill="#ADD1B2" rx="7.7" ry="7.7" style="stroke:#181818;stroke-width:0.7;"></ellipse><path d="M157.3359,99.3125 Q157.4453,99.1594 157.5766,99.0828 Q157.7078,99.0062 157.8609,99.0062 Q158.1234,99.0062 158.2875,99.1922 Q158.4516,99.3672 158.4516,99.7937 L158.4516,100.8109 Q158.4516,101.2375 158.2875,101.4234 Q158.1234,101.6094 157.8609,101.6094 Q157.6203,101.6094 157.4781,101.4672 Q157.3359,101.3359 157.2594,100.975 Q157.2266,100.7234 157.0953,100.5922 Q156.8656,100.3297 156.4391,100.1766 Q156.0125,100.0234 155.575,100.0234 Q155.0391,100.0234 154.5906,100.2531 Q154.1531,100.4828 153.8031,101.0078 Q153.4641,101.5328 153.4641,102.2547 L153.4641,103.0203 Q153.4641,103.8844 154.0875,104.4641 Q154.7109,105.0328 155.8266,105.0328 Q156.4828,105.0328 156.9422,104.8578 Q157.2156,104.7484 157.5109,104.4422 Q157.6969,104.2562 157.7953,104.2016 Q157.9047,104.1469 158.0469,104.1469 Q158.2766,104.1469 158.4516,104.3328 Q158.6375,104.5078 158.6375,104.7484 Q158.6375,104.9891 158.3969,105.2734 Q158.0469,105.6781 157.4891,105.9078 Q156.7344,106.225 155.8266,106.225 Q154.7656,106.225 153.9234,105.7875 Q153.2344,105.4375 152.7531,104.6937 Q152.2719,103.9391 152.2719,103.0422 L152.2719,102.2328 Q152.2719,101.3031 152.6984,100.5047 Q153.1359,99.6953 153.9016,99.2687 Q154.6672,98.8312 155.5312,98.8312 Q156.0453,98.8312 156.4937,98.9516 Q156.9531,99.0609 157.3359,99.3125 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.8" lengthAdjust="spacing" textLength="56.106" x="165.2" y="106.21">StringBuilder</text></g><!--class UTF8Encoding--><g class="entity" data-entity="UTF8Encoding" data-source-line="16" data-uid="ent0005" id="entity_UTF8Encoding"><rect fill="#FFFAFA" height="22.4" rx="1.75" ry="1.75" style="stroke:#000000;stroke-width:0.35;" width="87.7652" x="32.55" y="91"></rect><ellipse cx="43.05" cy="102.2" fill="#ADD1B2" rx="7.7" ry="7.7" style="stroke:#181818;stroke-width:0.7;"></ellipse><path d="M44.9859,99.3125 Q45.0953,99.1594 45.2266,99.0828 Q45.3578,99.0062 45.5109,99.0062 Q45.7734,99.0062 45.9375,99.1922 Q46.1016,99.3672 46.1016,99.7937 L46.1016,100.8109 Q46.1016,101.2375 45.9375,101.4234 Q45.7734,101.6094 45.5109,101.6094 Q45.2703,101.6094 45.1281,101.4672 Q44.9859,101.3359 44.9094,100.975 Q44.8766,100.7234 44.7453,100.5922 Q44.5156,100.3297 44.0891,100.1766 Q43.6625,100.0234 43.225,100.0234 Q42.6891,100.0234 42.2406,100.2531 Q41.8031,100.4828 41.4531,101.0078 Q41.1141,101.5328 41.1141,102.2547 L41.1141,103.0203 Q41.1141,103.8844 41.7375,104.4641 Q42.3609,105.0328 43.4766,105.0328 Q44.1328,105.0328 44.5922,104.8578 Q44.8656,104.7484 45.1609,104.4422 Q45.3469,104.2562 45.4453,104.2016 Q45.5547,104.1469 45.6969,104.1469 Q45.9266,104.1469 46.1016,104.3328 Q46.2875,104.5078 46.2875,104.7484 Q46.2875,104.9891 46.0469,105.2734 Q45.6969,105.6781 45.1391,105.9078 Q44.3844,106.225 43.4766,106.225 Q42.4156,106.225 41.5734,105.7875 Q40.8844,105.4375 40.4031,104.6937 Q39.9219,103.9391 39.9219,103.0422 L39.9219,102.2328 Q39.9219,101.3031 40.3484,100.5047 Q40.7859,99.6953 41.5516,99.2687 Q42.3172,98.8312 43.1812,98.8312 Q43.6953,98.8312 44.1437,98.9516 Q44.6031,99.0609 44.9859,99.3125 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.8" lengthAdjust="spacing" textLength="65.3652" x="52.85" y="106.21">UTF8Encoding</text></g><!--class Regex--><g class="entity" data-entity="Regex" data-source-line="19" data-uid="ent0007" id="entity_Regex"><rect fill="#FFFAFA" height="22.4" rx="1.75" ry="1.75" style="stroke:#000000;stroke-width:0.35;" width="50.7281" x="321.3" y="91"></rect><ellipse cx="331.8" cy="102.2" fill="#ADD1B2" rx="7.7" ry="7.7" style="stroke:#181818;stroke-width:0.7;"></ellipse><path d="M333.7359,99.3125 Q333.8453,99.1594 333.9766,99.0828 Q334.1078,99.0062 334.2609,99.0062 Q334.5234,99.0062 334.6875,99.1922 Q334.8516,99.3672 334.8516,99.7937 L334.8516,100.8109 Q334.8516,101.2375 334.6875,101.4234 Q334.5234,101.6094 334.2609,101.6094 Q334.0203,101.6094 333.8781,101.4672 Q333.7359,101.3359 333.6594,100.975 Q333.6266,100.7234 333.4953,100.5922 Q333.2656,100.3297 332.8391,100.1766 Q332.4125,100.0234 331.975,100.0234 Q331.4391,100.0234 330.9906,100.2531 Q330.5531,100.4828 330.2031,101.0078 Q329.8641,101.5328 329.8641,102.2547 L329.8641,103.0203 Q329.8641,103.8844 330.4875,104.4641 Q331.1109,105.0328 332.2266,105.0328 Q332.8828,105.0328 333.3422,104.8578 Q333.6156,104.7484 333.9109,104.4422 Q334.0969,104.2562 334.1953,104.2016 Q334.3047,104.1469 334.4469,104.1469 Q334.6766,104.1469 334.8516,104.3328 Q335.0375,104.5078 335.0375,104.7484 Q335.0375,104.9891 334.7969,105.2734 Q334.4469,105.6781 333.8891,105.9078 Q333.1344,106.225 332.2266,106.225 Q331.1656,106.225 330.3234,105.7875 Q329.6344,105.4375 329.1531,104.6937 Q328.6719,103.9391 328.6719,103.0422 L328.6719,102.2328 Q328.6719,101.3031 329.0984,100.5047 Q329.5359,99.6953 330.3016,99.2687 Q331.0672,98.8312 331.9312,98.8312 Q332.4453,98.8312 332.8937,98.9516 Q333.3531,99.0609 333.7359,99.3125 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.8" lengthAdjust="spacing" textLength="28.3281" x="341.6" y="106.21">Regex</text></g><!--class Match--><g class="entity" data-entity="Match" data-source-line="21" data-uid="ent0008" id="entity_Match"><rect fill="#FFFAFA" height="22.4" rx="1.75" ry="1.75" style="stroke:#000000;stroke-width:0.35;" width="49.0868" x="247.8" y="91"></rect><ellipse cx="258.3" cy="102.2" fill="#ADD1B2" rx="7.7" ry="7.7" style="stroke:#181818;stroke-width:0.7;"></ellipse><path d="M260.2359,99.3125 Q260.3453,99.1594 260.4766,99.0828 Q260.6078,99.0062 260.7609,99.0062 Q261.0234,99.0062 261.1875,99.1922 Q261.3516,99.3672 261.3516,99.7937 L261.3516,100.8109 Q261.3516,101.2375 261.1875,101.4234 Q261.0234,101.6094 260.7609,101.6094 Q260.5203,101.6094 260.3781,101.4672 Q260.2359,101.3359 260.1594,100.975 Q260.1266,100.7234 259.9953,100.5922 Q259.7656,100.3297 259.3391,100.1766 Q258.9125,100.0234 258.475,100.0234 Q257.9391,100.0234 257.4906,100.2531 Q257.0531,100.4828 256.7031,101.0078 Q256.3641,101.5328 256.3641,102.2547 L256.3641,103.0203 Q256.3641,103.8844 256.9875,104.4641 Q257.6109,105.0328 258.7266,105.0328 Q259.3828,105.0328 259.8422,104.8578 Q260.1156,104.7484 260.4109,104.4422 Q260.5969,104.2562 260.6953,104.2016 Q260.8047,104.1469 260.9469,104.1469 Q261.1766,104.1469 261.3516,104.3328 Q261.5375,104.5078 261.5375,104.7484 Q261.5375,104.9891 261.2969,105.2734 Q260.9469,105.6781 260.3891,105.9078 Q259.6344,106.225 258.7266,106.225 Q257.6656,106.225 256.8234,105.7875 Q256.1344,105.4375 255.6531,104.6937 Q255.1719,103.9391 255.1719,103.0422 L255.1719,102.2328 Q255.1719,101.3031 255.5984,100.5047 Q256.0359,99.6953 256.8016,99.2687 Q257.5672,98.8312 258.4312,98.8312 Q258.9453,98.8312 259.3937,98.9516 Q259.8531,99.0609 260.2359,99.3125 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="9.8" lengthAdjust="spacing" textLength="26.6868" x="268.1" y="106.21">Match</text></g><!--SRC=[RO_1JiCm38RlUOeyGSKDhkqq90v8Y7RYxAMcZPOcbUretL3VdQ1E8eJvwE_p_yjyidu6WadNHE6y2owGRXoOa-8CYVq48qrQ3nIYxpUllaR2p7jB70OijO_HIgxj730tWNga-tsRKAIqFfnBfnOXUuo2BoRurbvHFsHAcT0HU4u8lIZ51bpIgqUbHjkZnccMYvvmEYAnchTFT7jXmQdgS17zfNGQyzEhszJhXoPQbvwuaJNZX-xvQUzDw9Fr1zy9hjvnY0velyo4p3PulftyvYK5bsox5lmLn8p_-AhMRm00]--></g></svg></p><p></p>
+</div> <!-- fin caso de estudio -->
+<h4 id="artefacto">Artefacto </h4>
+<p>Un <strong><a href="https://www.uml-diagrams.org/artifact.html">artefacto</a></strong> es un producto tangible o entidad física resultante del proceso de desarrollo de software. En esta definición tan amplia, podríamos incluir cosas como un <strong>documento de texto</strong>, un archivo <strong>fuente con un script</strong>, un archivo <strong>ejecutable</strong>, una <strong>librería</strong>, etc.</p>
+<p>En el caso de C# y estos apuntes, serán ensamblados o ensambles tales como ficheros <strong>ejecutables</strong> <strong>.exe</strong> o <strong>librerías</strong> de clases con extensión <strong>.dll</strong> los vamos a representar mediante la siguiente figura.</p>
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="CLASS" height="71px" preserveAspectRatio="none" style="width:277px;height:71px;" version="1.1" viewBox="0 0 277 71" width="277px" zoomAndPan="magnify"><defs></defs><g><!--entity **libreria.dll**--><g class="entity" data-entity="..libreria.dll.." data-source-line="14" data-uid="ent0002" id="entity_..libreria.dll.."><rect fill="#F0FFFF" height="58.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.9102" x="7" y="7"></rect><polygon fill="#F0FFFF" points="86.9102,12,86.9102,26,98.9102,26,98.9102,18,92.9102,12,86.9102,12" style="stroke:#181818;stroke-width:0.5;"></polygon><line style="stroke:#181818;stroke-width:0.5;" x1="92.9102" x2="92.9102" y1="12" y2="18"></line><line style="stroke:#181818;stroke-width:0.5;" x1="98.9102" x2="92.9102" y1="18" y2="18"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="53.6895" x="23.6104" y="34.5332">«library»</text><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="66.9102" x="17" y="52.1426">libreria.dll</text></g><!--entity **ejecutable.exe**--><g class="entity" data-entity="..ejecutable.exe.." data-source-line="17" data-uid="ent0003" id="entity_..ejecutable.exe.."><rect fill="#F0FFFF" height="58.2188" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="125.7236" x="139.5" y="7"></rect><polygon fill="#F0FFFF" points="248.2236,12,248.2236,26,260.2236,26,260.2236,18,254.2236,12,248.2236,12" style="stroke:#181818;stroke-width:0.5;"></polygon><line style="stroke:#181818;stroke-width:0.5;" x1="254.2236" x2="254.2236" y1="12" y2="18"></line><line style="stroke:#181818;stroke-width:0.5;" x1="260.2236" x2="254.2236" y1="18" y2="18"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.2891" x="155.7173" y="34.5332">«executable»</text><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="95.7236" x="149.5" y="52.1426">ejecutable.exe</text></g><!--SRC=[RS-n3e8m40RWlK_HcO7WJaY0oSq44-UZd5YfhRaUGJ6-kqKOa3XTylzVxd9UWK6vYnCXVAVj7GXkCYToG-cC8raOKDrFnVeCYeiGj-Hwsymk7tl2bJk47bhSijD5yvgL1hml73L8_-_DOBEbicxOcfoPTDqpxfMpbHvH9YkotN0ai3vKQ5c4pv6bnqbowAopA63vKqQHqJKXQOWROw98fkaK03spJBx4MwmfNb7r3BN161_unM4kqU8_]--></g></svg></p><p></p>
+<div class="admonition tip">
+<p class="admonition-title">Importante</p>
+<p>En estos apuntes describiremos un <strong>tipo de especial de artefacto de .NET</strong> que serán los <strong>paquetes de ensamblados de NuGet</strong> que son ficheros comprimidos con extensión <strong>.ngpkg</strong> y que pueden llevarnos a confusión con los <strong>paquetes de clases</strong> por llamarse también paquetes.</p>
+</div>
+<h3 id="empaquetando-clases-en-csharp">Empaquetando clases en CSharp </h3>
+<p>Ya hemos visto que clases relacionadas se pueden agrupar bajo un espacio de nombres (namespace) al que podremos denominar también "<em>Paquete de <strong>clases</strong></em>".</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=1}" class="language-csharp csharp" data-line="1"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div></pre><p>También podemos hacer <em>subagrupaciones</em> anidando definiciones de espacios de nombres.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,6]}" class="language-csharp csharp" data-line="1,6"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+    <span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdSubPaquete</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+        <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre><p>Una <strong>sintaxis más conveniente</strong> y equivalente a la anterior podría ser:</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,7]}" class="language-csharp csharp" data-line="1,7"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>IdSubPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="7" data-start="7">
+</div></div></pre><p>Además, una de las principales ventajas de los namespaces, es que <strong>podremos repetir el identificador o nombre de una clase</strong> en paquetes diferentes.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,6]}" class="language-csharp csharp" data-line="1,6"><code><span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete1</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete2</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="6" data-start="6">
+</div></div></pre><div style="page-break-after:always;"></div>
+<h3 id="accediendo-las-clases-definidas-en-un-paquete">Accediendo las clases definidas en un paquete </h3>
+<p>Para acceder a las clases '<em>públicas</em>' de un paquete, desde otro paquete podremos usar el <strong>nombre completamente cualificado (<code>CCN</code>)</strong>, esto es, indicando la ruta separada por puntos.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,22,23]}" class="language-csharp csharp" data-line="1,2,22,23"><code><span class="token comment">// Supongamos que queremos usar alguna de las clases definidas anteriormente y </span>
+<span class="token comment">// que estarían en otro fichero fuente e incluso en otro ensamblado.</span>
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseB</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>IdSubPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseC</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseD</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Clase definida en MiClase.cs ------------------------------------------</span>
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">IdPaquete<span class="token punctuation">.</span>ClaseA</span> a <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">IdPaquete<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">IdPaquete<span class="token punctuation">.</span>SubPaquete<span class="token punctuation">.</span>ClaseD</span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">IdPaquete<span class="token punctuation">.</span>SubPaquete<span class="token punctuation">.</span>ClaseD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="22" data-start="22">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="23" data-start="23">
+</div></div></pre><p>O podremos usar la cláusula <strong><code>using &lt;NombreDelPaquete&gt;;</code></strong> normalmente al principio del fuente y donde indicaremos aquellos espacios de nombres o paquetes de los que queramos utilizar sus clases '<em>públicas</em>'.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,10,11]}" class="language-csharp csharp" data-line="1,2,10,11"><code><span class="token keyword keyword-using">using</span> <span class="token namespace">IdPaquete</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-using">using</span> <span class="token namespace">IdPaquete<span class="token punctuation">.</span>SubPaquete</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">ClaseA</span> a <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ClaseA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">ClaseD</span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ClaseD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>    
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="10" data-start="10">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="11" data-start="11">
+</div></div></pre><p>Otra característica del <strong><code>using</code></strong>, es que <strong>me permite crear alias</strong> que nos facilitas el acceso a espacios de nombres o a tipos sobre todo <strong>cuando hay un nombre de clase repetido</strong>.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Es uso de alias es menos frecuente.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="csharp {highlight=[1,2,16,17,25,26]}" class="language-csharp csharp" data-line="1,2,16,17,25,26"><code><span class="token comment">// Supongamos que queremos usar alguna de las dos ClassA definidas anteriormente y </span>
+<span class="token comment">// que estarían en otro ficheros fuentes o ensamblados diferentes</span>
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete1</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">IdPaquete2</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseA</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Clase definida en MiClase.cs ------------------------------------------</span>
+<span class="token comment">// Accedo directamente al tipo del paquete y con el using le doy</span>
+<span class="token comment">// otro nombre directamente.</span>
+<span class="token keyword keyword-using">using</span> <span class="token class-name">ClaseA1</span> <span class="token operator">=</span> <span class="token class-name">IdPaquete1<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-using">using</span> <span class="token class-name">ClaseA2</span> <span class="token operator">=</span> <span class="token class-name">IdPaquete2<span class="token punctuation">.</span>ClaseA</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-namespace">namespace</span> <span class="token namespace">MiPaquete</span> 
+<span class="token punctuation">{</span> 
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MiClase</span> 
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">MetodoDeMiClase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token class-name">ClaseA1</span> a1 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ClaseA1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">ClaseA2</span> a2 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ClaseA2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token range operator">..</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token range operator">..</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1" data-start="1">
+</div></div><div class="line-highlight-wrapper">
+<div aria-hidden="true" class="line-highlight" data-range="2" data-start="2">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="16" data-start="16">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="17" data-start="17">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="25" data-start="25">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="26" data-start="26">
+</div></div></pre><div style="page-break-after:always;"></div>
+<h3 id="separando-en-librerías">Separando en '<em>librerías</em>' </h3>
+<p>Además de por espacios de nombres, también podremos separar nuestras clases en unidades mayores denominadas <strong>librerías</strong>, en el mundo java se les llama directamente <strong>artefactos</strong>.</p>
+<p>En el caso de C# son ficheros que contendrán <strong>IL</strong> de clases organizadas en uno o más espacios de nombres o paquetes.</p>
+<h4 id="archivos-generados">Archivos generados </h4>
+<p>En lenguajes compilados a <strong>bytecode</strong>. Estás librerías podrán ser archivos aunque normalmente se publicarán e instalarán a través de algún <strong><a href="https://es.wikipedia.org/wiki/Interfaz_de_l%C3%ADnea_de_comandos">CLI</a></strong>:</p>
+<ul>
+<li><strong>Ensamblados</strong> con extensión <strong>.dll</strong> en para <strong>C#</strong> y F# en Windows.</li>
+<li><strong>Artefactos</strong> con extensión <strong>.jar</strong> en el caso de <strong>Java</strong>, Kotlin, Sacala o Groovy.</li>
+</ul>
+<p>En lenguajes interpretados normalmente, los generaremos e instalaremos directamente desde un CLI:</p>
+<ul>
+<li><strong>Librerías</strong> con extensión <strong>.tar.ar</strong> o <strong>.whl</strong> en el caso de <strong>Python</strong> en el caso de querer instalarlas <strong>offline</strong>.</li>
+</ul>
+<h4 id="gestores-de-paquetes-de-librerías-o-artefactos">Gestores de paquetes de librerías o artefactos </h4>
+<p>Podré <strong>publicar mis librerías opensource</strong> y usar <strong>librerías de terceros</strong> a través de gestores de paquetes como:</p>
+<ul>
+<li><strong><a href="https://www.nuget.org/">NuGet</a></strong> para ensamblados de <strong>C#</strong> y F#.</li>
+<li><strong><a href="https://search.maven.org/">Maven</a></strong> para artefactos de <strong>Java</strong>, Kotlin, Scala o Groovy.</li>
+<li><strong><a href="https://pypi.org/">PyPI</a></strong> para librerías/artefactos de <strong>Python</strong>.</li>
+<li><strong><a href="https://www.npmjs.com/">npm</a></strong> para librerías de <strong>JavaScript</strong> y TypeScript.</li>
+</ul>
+<p>Aunque vamos ha hablar de ellos más adelante para el caso concreto de <strong>NuGet</strong>, podemos resumir que son <strong>repositorios</strong> de artefactos públicos o privados con <strong>control de versiones</strong>.</p>
+<blockquote>
+<p>📌 <strong>Nota:</strong> En la practica todos los lenguajes dispondrán de un <strong>gestor de paquetes</strong> que se encargará de publicar y descargar los paquetes online. Esto es así porque normalmente existan <strong>dependencias</strong> con otros paquetes y el gestor se encargará también de descargarlas.</p>
+</blockquote>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
