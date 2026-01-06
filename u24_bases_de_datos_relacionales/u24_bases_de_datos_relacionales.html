@@ -344,6 +344,10 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#delete" class="md-toc-link">
             <p>Delete</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#count" class="md-toc-link">
+            <p>Count</p>
+
           </a></div>
         </div>
       </details>
@@ -493,13 +497,13 @@ CREATE TABLE IF NOT <span class="token return-type class-name">EXISTS</span> per
 <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 comando<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><p>Fíjate que estamos utilizando la cláusula <strong><code>using</code></strong></p>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
+<div class="admonition danger">
+<p class="admonition-title">Cuidado</p>
 <p>Cómo vemos en el ejemplo anterior, estamos incluyendo lenguaje SQL cómo cadena dentro de otro lenguaje como C#. Esto tiene varias desventajas:</p>
 <ol>
-<li>Los errores de sintaxis en el SQL no se detectan hasta que se ejecute el método <strong><code>ExecuteNonQuery()</code></strong>.</li>
-<li>La cadena SQL no tiene resaltado de sintaxis ni autocompletado.</li>
-<li>Si interpolamos cadenas dentro de la sentencia SQL, podemos ser vulnerables a ataques de <strong>SQL Injection</strong>.</li>
+<li>Los <strong>errores de sintaxis en el SQL no se detectan hasta que se ejecute</strong> el método <strong><code>ExecuteNonQuery()</code></strong>.</li>
+<li>La <strong>cadena SQL no tiene resaltado de sintaxis ni autocompletado</strong>.</li>
+<li>Si interpolamos cadenas dentro de la sentencia SQL, podemos ser vulnerables a ataques de <strong>SQL Injection 💀</strong>. Por tanto, <mark><strong>nunca deberemos hacerlo ❌</strong></mark>.</li>
 </ol>
 <p>Todas estas desventajas se pueden evitar utilizando <strong>Query Builders</strong> o <strong>ORMs</strong>.</p>
 </div>
@@ -513,7 +517,7 @@ INSERT <span class="token return-type class-name">INTO</span> persona <span clas
 <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteCommand</span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 comando<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><p>Si nos fijamos la forma de ejecutarlas es idéntica a las <strong>DDL</strong>.</p>
-<p>También podremos <strong>parametrizar las consultas</strong> para evitar <strong>SQL Injection</strong>.</p>
+<p>También podremos <strong>parametrizar las consultas</strong> para evitar <strong>SQL Injection 💀</strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name"><span class="token keyword keyword-string">string</span></span> sql <span class="token operator">=</span> <span class="token string">""</span>"
 INSERT <span class="token return-type class-name">INTO</span> persona <span class="token return-type class-name"><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> apellidos<span class="token punctuation">,</span> edad<span class="token punctuation">)</span></span> VALUES <span class="token punctuation">(</span>@nombre<span class="token punctuation">,</span> @apellidos<span class="token punctuation">,</span> @edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token string">""</span>"<span class="token punctuation">;</span>
@@ -555,12 +559,22 @@ comando<span class="token punctuation">.</span><span class="token function">Exec
 <div style="page-break-after:always;"></div>
 <h3 id="ejemplo-creación-y-manipulación-de-una-tabla-de-libros">Ejemplo: Creación y Manipulación de una Tabla de Libros </h3>
 <p>Puedes descargar el código del ejemplo de <strong><a href="assets/ejemplos/sqlite_una_tabla_ejemplo.cs">este enlace</a></strong>.</p>
-<p><strong>Paso 1</strong>: Vamos a crear una base de datos con <strong>SQLite</strong> con una sola tabla de <strong>libros</strong> llamada <strong><code>biblioteca_1t.db</code></strong> usando C#.</p>
+<p><strong>Paso 1</strong>: Vamos a crear una base de datos con <strong>SQLite</strong> con una sola tabla de <strong>libros</strong> llamada <strong><code>biblioteca_1t.db</code></strong> usando C#. Para ello, vamos a definir en primer lugar un método estático <strong><code>RutaEjecucion</code></strong> que <strong>nos devolverá la ruta del proyecto</strong> independientemente de si estamos ejecutando desde VSCode o desde el terminal con <strong><code>dotnet run</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">RutaEjecucion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Regex<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>
+    <span class="token named-parameter punctuation">input</span><span class="token punctuation">:</span> Directory<span class="token punctuation">.</span><span class="token function">GetCurrentDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token named-parameter punctuation">pattern</span><span class="token punctuation">:</span> <span class="token string">@"^(?&lt;ruta&gt;.*?)(?=\\bin)"</span><span class="token punctuation">,</span>
+    <span class="token named-parameter punctuation">options</span><span class="token punctuation">:</span> RegexOptions<span class="token punctuation">.</span>IgnoreCase
+<span class="token punctuation">)</span><span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token string">"ruta"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">;</span>
+</code></pre><p>Para <strong>tener localizada nuestra base de datos</strong>, vamos a crear si no existe un directorio llamado <strong><code>datos</code></strong> en la raíz del proyecto y dentro de él crearemos la base de datos <strong><code>biblioteca_1t.db</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-try">try</span>
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion <span class="token operator">=</span> <span class="token string">"Data Source=biblioteca_1t.db"</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> rutaEjecucion <span class="token operator">=</span> <span class="token function">RutaEjecucion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> rutaDatos <span class="token operator">=</span> Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>rutaEjecucion<span class="token punctuation">,</span> <span class="token string">"datos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"Data Source=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">,</span> <span class="token string">"biblioteca_1t.db"</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
         <span class="token keyword keyword-using">using</span> <span class="token class-name">SqliteConnection</span> conexion <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>cadenaConexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
         conexion<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -569,7 +583,8 @@ comando<span class="token punctuation">.</span><span class="token function">Exec
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><p><strong>Paso 2</strong>: A continuación, creamos un método estático <strong><code>CrearTablaLibros</code></strong> que recibe la conexión a la base de datos y crea la tabla <strong><code>libro</code></strong> borrándola si ya existe previamente.</p>
+</code></pre><div style="page-break-after:always;"></div>
+<p><strong>Paso 2</strong>: A continuación, creamos un método estático <strong><code>CrearTablaLibros</code></strong> que recibe la conexión a la base de datos y crea la tabla <strong><code>libro</code></strong> borrándola si ya existe previamente.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">CrearTablaLibros</span><span class="token punctuation">(</span><span class="token class-name">SqliteConnection</span> conexion<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> borrarTabla <span class="token operator">=</span> <span class="token string">"DROP TABLE IF EXISTS libro"</span><span class="token punctuation">;</span>
@@ -623,8 +638,7 @@ Añ<span class="token function">adeLibros</span><span class="token punctuation">
 
 
 <div aria-hidden="true" class="line-highlight" data-range="4" data-start="4">
-</div></div></pre><div style="page-break-after:always;"></div>
-<p><strong>Paso 4</strong>: Por último, creamos un método para ver todos los libros realizando una consulta a la BD.</p>
+</div></div></pre><p><strong>Paso 4</strong>: Por último, creamos un método para ver todos los libros realizando una consulta a la BD.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">VerLibros</span><span class="token punctuation">(</span><span class="token class-name">SqliteConnection</span> conexion<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> verLibros <span class="token operator">=</span> <span class="token string">"SELECT * FROM libro"</span><span class="token punctuation">;</span>
@@ -723,7 +737,7 @@ Añ<span class="token function">adeLibros</span><span class="token punctuation">
 </div>
 <p>1️⃣ Vamos a extensiones y buscamos <strong>sqlite</strong>. Instalamos la extensión llamada <strong>SQLite</strong> de <strong>alexcvzz</strong> que es la más popular y suficiente para nuestros propósitos.<br>
 2️⃣ Vamos a la opción de menú <strong><code>Ver -&gt; Paleta de Comandos</code></strong> (o <strong><code>Ctrl+Shift+P</code></strong>) y filtramos por <strong><code>SQL...</code></strong> y nos ofrecerá todos los comandos relacionados con SQLite. Seleccionamos <strong><code>SQLite: Open Database</code></strong>.<br>
-3️⃣ Nos mostrará todas las bases de datos <strong><code>.db</code></strong> que encuentre en el espacio de trabajo abierto ya sea proyecto o solución. Seleccionamos la que queramos examinar. <strong>Si aún no hemos generado ninguna, deberemos ejecutar alguna aplicación que cree una base de datos SQLite.</strong><br>
+3️⃣ Nos mostrará todas las bases de datos <strong><code>.db</code></strong> que encuentre en el espacio de trabajo abierto ya sea proyecto o solución. Seleccionamos la que queramos examinar que se debería encontrar en la carpeta <strong><code>datos\biblioteca_1t.db</code></strong>. <strong>Si aún no hemos generado ninguna, deberemos ejecutar alguna aplicación que cree una base de datos SQLite.</strong><br>
 4️⃣ Aparecerá el icono del explorador de BD de SQLite en la barra lateral izquierda. Hacemos clic en él para ver las tablas de la base de datos y al ejecutar una tabla nos mostrará sus datos en una nueva pestaña.</p>
 <div style="page-break-after:always;"></div>
 <h3 id="transacciones">Transacciones </h3>
@@ -895,13 +909,13 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     titulo <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     autor <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>Simplemente la podemos denominar <strong><code>Libro</code></strong> yen algunos casos se le puede llamar <strong><code>LibroEntity</code></strong>. Nosotros la vamos a llamar de esta última forma.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">LibroEntity</span>
+</code></pre><p>Simplemente la podemos denominar <strong><code>Libro</code></strong> yen algunos casos se le puede llamar <strong><code>LibroEntity</code></strong>. Nosotros la vamos a llamar simplemente <strong><code>Libro</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Libro</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> Id <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Titulo <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Autor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-set">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token keyword keyword-public">public</span> <span class="token function">LibroEntity</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> id<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> titulo<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> autor<span class="token punctuation">)</span>
+    <span class="token keyword keyword-public">public</span> <span class="token function">Libro</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> id<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> titulo<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> autor<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         Id <span class="token operator">=</span> id<span class="token punctuation">;</span>
         Titulo <span class="token operator">=</span> titulo<span class="token punctuation">;</span>
@@ -910,12 +924,15 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
 <span class="token punctuation">}</span>
 </code></pre><h4 id="definiendo-un-dao">Definiendo un DAO </h4>
 <p><strong>DAO</strong> (<strong>Data Access Object</strong>) es un patrón de diseño que se utiliza para abstraer la capa de acceso a datos de una aplicación. Este patrón permite separar la lógica de negocio de la lógica de acceso a datos, facilitando el mantenimiento y la escalabilidad del código.</p>
-<p>Podemos decir que la lógica de negocio se encuentra en las entidades, en nuestro ejemplo la clase <strong><code>Libro</code></strong> y la lógica de acceso a datos en los DAOs.</p>
-<p>De tal manera que desde la vista (la consola) solo se interactuará con las entidades y no con la base de datos directamente.</p>
+<p>Podemos decir que la lógica de negocio se encuentra en las entidades, en nuestro ejemplo la clase <strong><code>Libro</code></strong> y la lógica de acceso a datos en los DAOs. De tal manera que desde la vista (la consola) solo se interactuará con las entidades o clases de nuestro modelo y no con la base de datos directamente.</p>
 <p>Primero vamos ha definir la clase <strong><code>LibroDAO</code></strong> que contendrá una propiedad de tipo <strong><code>SqliteConnection</code></strong> y un constructor que reciba la cadena de conexión y la abra. Además, implementará la interfaz <strong><code>IDisposable</code></strong> para cerrar la conexión y poder usar la cláusula <strong><code>using</code></strong> a la hora de crear un objeto de esta clase. Por tanto, todas las operaciones sobre la BD, se realizarán usando la misma conexión.</p>
+<p>Si te fijas en el código siguiente, primero definimos la propiedad <strong><code>Conexion</code></strong> que es de <strong>solo lectura y privada</strong>.</p>
+<p>Luego implementamos el interfaz <strong><code>IDisposable</code></strong> para cerrar la conexión cuando ya no se necesite. Para ello, implementamos el <strong>patrón de disposición recomendado por Microsoft</strong> que incluye un campo privado <strong><code>_disposed</code></strong> para evitar llamadas múltiples al método <strong><code>Dispose</code></strong>. En él, primero invalidamos el método <strong><code>Dispose</code></strong> público llamando al método protegido <strong><code>Dispose(bool disposing)</code></strong> (que es una invalidación de la clase <strong><code>Object</code></strong>) con el parámetro <strong><code>true</code></strong> y luego llamamos a <strong><code>GC.SuppressFinalize(this)</code></strong> para evitar que el recolector de basura llame al finalizador.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">LibroDAO</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IDisposable</span></span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-private">private</span> <span class="token return-type class-name">SqliteConnection<span class="token punctuation">?</span></span> Conexion <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> _disposed <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
     <span class="token keyword keyword-public">public</span> <span class="token function">LibroDAO</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         Conexion <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteConnection</span><span class="token punctuation">(</span>cadenaConexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -923,9 +940,24 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Conexion <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span> <span class="token operator">&amp;&amp;</span> Conexion<span class="token punctuation">.</span>State <span class="token operator">!=</span> ConnectionState<span class="token punctuation">.</span>Closed<span class="token punctuation">)</span>
+        <span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GC<span class="token punctuation">.</span><span class="token function">SuppressFinalize</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-protected">protected</span> <span class="token keyword keyword-virtual">virtual</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Dispose</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-bool">bool</span></span> disposing<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>_disposed<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
-            Conexion<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>disposing<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>Conexion <span class="token operator">!=</span> <span class="token keyword keyword-null">null</span> 
+                    <span class="token operator">&amp;&amp;</span> Conexion<span class="token punctuation">.</span>State 
+                       <span class="token operator">!=</span> ConnectionState<span class="token punctuation">.</span>Closed<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    Conexion<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            _disposed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -936,7 +968,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
 <p>Inicialmente, nosotros vamos ha usar los nombres de los métodos en inglés, pero no tienen porque estar en inglés o incluso podemos utilizar sinónimos de los mismos. Por ejemplo, en lugar de <strong><code>Create</code></strong> podríamos utilizar <strong><code>Insert</code></strong>.</p>
 </div>
 <h5 id="create-o-insert">Create o Insert </h5>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Create</span><span class="token punctuation">(</span><span class="token class-name">LibroEntity</span> libro<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Create</span><span class="token punctuation">(</span><span class="token class-name">Libro</span> libro<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> insertarDatos <span class="token operator">=</span> <span class="token string">"INSERT INTO libro (titulo, autor) VALUES (@titulo, @autor)"</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteCommand</span><span class="token punctuation">(</span>insertarDatos<span class="token punctuation">,</span> Conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -946,12 +978,12 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
 <span class="token punctuation">}</span>
 </code></pre><p>Si nos fijamos en el método <strong><code>Create</code></strong>, recibe un objeto de la clase <strong><code>Libro</code></strong> y lo inserta en la tabla <strong><code>libro</code></strong>. Encapsulando la lógica de acceso a datos. En nuestro caso la consulta <strong>SQL</strong> de inserción.</p>
 <h5 id="read">Read </h5>
-<p><strong><code>IEnumerable&lt;LibroEntity&gt; Read()</code></strong> sería el método más básico de lectura es el que nos devuelve todos los registros de la tabla. Una posible implementación sería devolviendo una <strong>secuencia perezosa</strong> de objetos <strong><code>LibroEntity</code></strong> utilizando <strong><code>yield return</code></strong>. Es la opción más eficiente en cuanto a memoria y rendimiento <strong>si la tabla tiene miles de registros</strong>.</p>
+<p><strong><code>IEnumerable&lt;Libro&gt; Read()</code></strong> sería el método más básico de lectura es el que nos devuelve todos los registros de la tabla. Una posible implementación sería devolviendo una <strong>secuencia perezosa</strong> de objetos <strong><code>Libro</code></strong> utilizando <strong><code>yield return</code></strong>. Es la opción más eficiente en cuanto a memoria y rendimiento <strong>si la tabla tiene miles de registros</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Podríamos pensar que <strong><code>rs</code></strong> que es de tipo <strong><code>SqliteDataReader</code></strong> contiene todos los registros cargados en memoria. Pero no es así, <strong><code>SqliteDataReader</code></strong> implementa una lectura por streaming con una caché interna que va leyendo los registros de la base de datos según se van necesitando.</p>
 </div>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>LibroEntity<span class="token punctuation">&gt;</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>Libro<span class="token punctuation">&gt;</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> verLibros <span class="token operator">=</span> <span class="token string">"SELECT * FROM libro"</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> query <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteCommand</span><span class="token punctuation">(</span>verLibros<span class="token punctuation">,</span> Conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -968,7 +1000,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><p>También es interesante tener un método <strong><code>Read</code></strong> que nos devuelva un libro por su <strong><code>id</code></strong> o por su <strong><code>titulo</code></strong> para realizar búsquedas simples. En las siguientes propuestas <strong><code>Libro</code></strong> es un tipo <strong>nullable</strong> para poder devolver <strong><code>null</code></strong> en caso de que no se encuentre el libro.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">LibroEntity<span class="token punctuation">?</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> id<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Libro<span class="token punctuation">?</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> id<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> verLibro <span class="token operator">=</span> <span class="token string">"SELECT * FROM libro WHERE id = @id"</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> query <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteCommand</span><span class="token punctuation">(</span>verLibro<span class="token punctuation">,</span> Conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -976,7 +1008,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> rs <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">ExecuteReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword keyword-return">return</span> rs<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span>
+    <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Libro</span>
     <span class="token punctuation">(</span>
         <span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> Convert<span class="token punctuation">.</span><span class="token function">ToInt32</span><span class="token punctuation">(</span>rs<span class="token punctuation">[</span><span class="token string">"id"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> rs<span class="token punctuation">[</span><span class="token string">"titulo"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">,</span>
@@ -984,7 +1016,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     <span class="token punctuation">)</span> 
     <span class="token punctuation">:</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">LibroEntity<span class="token punctuation">?</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> titulo<span class="token punctuation">)</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Libro<span class="token punctuation">?</span></span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> titulo<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token class-name"><span class="token keyword keyword-string">string</span></span> verLibro <span class="token operator">=</span> <span class="token string">"SELECT * FROM libro WHERE titulo = @titulo"</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> query <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteCommand</span><span class="token punctuation">(</span>verLibro<span class="token punctuation">,</span> Conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -992,7 +1024,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> rs <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">ExecuteReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword keyword-return">return</span> rs<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span>
+    <span class="token punctuation">?</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Libro</span>
     <span class="token punctuation">(</span>
         <span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> Convert<span class="token punctuation">.</span><span class="token function">ToInt32</span><span class="token punctuation">(</span>rs<span class="token punctuation">[</span><span class="token string">"id"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> rs<span class="token punctuation">[</span><span class="token string">"titulo"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">,</span>
@@ -1035,7 +1067,7 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
 </code></pre><div style="page-break-after:always;"></div>
 <h5 id="update">Update </h5>
 <p>En la siguiente propuesta de implementación del método <strong><code>Update</code></strong>, recibe el libro a actualizar y definimos una precondición que es que el libro tenga un <strong><code>id</code></strong> existente en la tabla.</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token class-name">LibroEntity</span> libro<span class="token punctuation">)</span>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token class-name">Libro</span> libro<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">Read</span><span class="token punctuation">(</span>libro<span class="token punctuation">.</span>Id<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span>
         <span class="token keyword keyword-throw">throw</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token string">"El libro no tiene un ID válido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1059,32 +1091,92 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
     comando<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">AddWithValue</span><span class="token punctuation">(</span><span class="token string">"@id"</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     comando<span class="token punctuation">.</span><span class="token function">ExecuteNonQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+</code></pre><h5 id="count">Count </h5>
+<p>Aunque no es parte del CRUD, es interesante tener un método que nos devuelva el número de registros de la tabla. Para ello, podemos utilizar la función de agregación <strong><code>COUNT(*)</code></strong> de SQL y posteriormente ejecutar el método <strong><code>ExecuteScalar()</code></strong> que nos devolverá <strong>la primera columna de la primera fila del conjunto de resultados</strong> en este caso el número de registros.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> query <span class="token operator">=</span> <span class="token string">"SELECT COUNT(*) FROM libro"</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-using">using</span> <span class="token class-name"><span class="token keyword keyword-var">var</span></span> comando <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">SqliteCommand</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> Conexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> Convert<span class="token punctuation">.</span><span class="token function">ToInt32</span><span class="token punctuation">(</span>comando<span class="token punctuation">.</span><span class="token function">ExecuteScalar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre><div style="page-break-after:always;"></div>
 <h4 id="uso-de-un-dao">Uso de un DAO </h4>
 <p>Recuerda que puedes bajarte el código completo del ejemplo en el <strong><a href="assets/ejemplos/sqlite_una_tabla_dao_ejemplo.zip">siguiente enlace</a></strong>:</p>
-<ol>
-<li>Fíjate que usamos <strong><code>using</code></strong> al definir el <strong><code>LibroDAO</code></strong> para asegurarnos de que la conexión se cierra correctamente.</li>
-<li>Seguimos manteniendo el método <strong><code>CrearTablaLibros</code></strong> porque las operaciones <strong>DDL</strong> no tienen sentido que las realice el <strong>DAO</strong>.</li>
-</ol>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>En el zip con el código del ejemplo, hemos incluido un archivo <strong><code>libros.json</code></strong> con una lista de libros para la <strong>carga inicial de la base de datos que haremos solo si está vacía</strong>. En el programa hemos supuesto que está situada en la carpeta <strong><code>datos</code></strong> junto a la base de datos.</p>
+<p>Definiremos pues en <strong><code>Program</code></strong> el método <strong><code>CargaJson</code></strong> que leerá el archivo JSON y devolverá una lista de objetos <strong><code>Libro</code></strong>.</p>
+<div class="row">
+<div class="col-sm-5 my-auto">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">"Id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"Titulo"</span><span class="token operator">:</span> <span class="token string">"Macbeth"</span><span class="token punctuation">,</span>
+    <span class="token property">"Autor"</span><span class="token operator">:</span> <span class="token string">"William Shakespeare"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  ...
+<span class="token punctuation">]</span>
+</code></pre></div>
+<div class="col-sm-7 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">List<span class="token punctuation">&lt;</span>Libro<span class="token punctuation">&gt;</span></span> <span class="token function">CargaJson</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> ruta<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> json <span class="token operator">=</span> File<span class="token punctuation">.</span><span class="token function">ReadAllText</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>Libro<span class="token punctuation">&gt;</span><span class="token punctuation">?</span></span> libros <span class="token operator">=</span> 
+    JsonSerializer<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Deserialize</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>List<span class="token punctuation">&lt;</span>Libro<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> libros <span class="token operator">??</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div>
+<p>Fíjate que usamos <strong><code>using</code></strong> al definir el <strong><code>LibroDAO</code></strong> para asegurarnos de que la conexión se cierra correctamente.<br>
+Además, Seguimos manteniendo el método <strong><code>CrearTablaLibros</code></strong> porque las operaciones <strong>DDL</strong> no tienen sentido que las realice el <strong>DAO</strong>.</p>
+<pre data-role="codeBlock" data-info="csharp {highlight=[12,15]}" class="language-csharp csharp" data-line="12,15"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-try">try</span>
     <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion <span class="token operator">=</span> <span class="token string">"Data Source=biblioteca_1t.db"</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> rutaEjecucion <span class="token operator">=</span> <span class="token function">RutaEjecucion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> rutaDatos <span class="token operator">=</span> Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>rutaEjecucion<span class="token punctuation">,</span> <span class="token string">"datos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Directory<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            Directory<span class="token punctuation">.</span><span class="token function">CreateDirectory</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> cadenaConexion <span class="token operator">=</span> <span class="token interpolation-string"><span class="token string">$"Data Source=</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">,</span> <span class="token string">"biblioteca_1t.db"</span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span>
         <span class="token function">CrearTablaLibros</span><span class="token punctuation">(</span>cadenaConexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token keyword keyword-using">using</span> <span class="token class-name">LibroDAO</span> libroDAO <span class="token operator">=</span> <span class="token keyword keyword-new">new</span><span class="token punctuation">(</span>cadenaConexion<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"Macbeth"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"William Shakespeare"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"20.000 Leguas de Viaje Submarino"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"Julio Verne"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Count</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token function">CargaJson</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>rutaDatos<span class="token punctuation">,</span> <span class="token string">"libros.json"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ForEach</span><span class="token punctuation">(</span>libro <span class="token operator">=&gt;</span> libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>libro<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">MostrarLibros</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Creando Hamlet..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"Hamlet"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"Julio Verne"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Libro</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"Hamlet"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"Julio Verne"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">MostrarLibros</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code><div class="line-highlight-wrapper">
 
-</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Modificando Hamlet..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">LibroEntity</span> hamlet <span class="token operator">=</span> libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token string">"Hamlet"</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="12" data-start="12">
+</div></div><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="15" data-start="15">
+</div></div></pre><pre data-role="codeBlock" data-info="csharp  {highlight=18}" class="language-csharp csharp" data-line="18"><code>        Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Modificando Hamlet..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Libro</span> hamlet <span class="token operator">=</span> libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token string">"Hamlet"</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
         hamlet<span class="token punctuation">.</span>Autor <span class="token operator">=</span> <span class="token string">"William Shakespeare"</span><span class="token punctuation">;</span>
         libroDAO<span class="token punctuation">.</span><span class="token function">Update</span><span class="token punctuation">(</span>hamlet<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">MostrarLibros</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1094,19 +1186,36 @@ Imaginemos que queremos insertar dos personas en la tabla <strong><code>persona<
         <span class="token function">MostrarLibros</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Insertando Sueño de una noche de verano..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">LibroEntity</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"Sueño de una noche de verano"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"William Shakespeare"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        libroDAO<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">Libro</span><span class="token punctuation">(</span><span class="token named-parameter punctuation">id</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">titulo</span><span class="token punctuation">:</span> <span class="token string">"Sueño de una noche de verano"</span><span class="token punctuation">,</span> <span class="token named-parameter punctuation">autor</span><span class="token punctuation">:</span> <span class="token string">"William Shakespeare"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">MostrarLibros</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token string">"Consultando libros por autor..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">MostrarLibrosPorAutor</span><span class="token punctuation">(</span>libroDAO<span class="token punctuation">.</span><span class="token function">ReadLibrosPorAutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token punctuation">}</span>
     <span class="token keyword keyword-catch">catch</span> <span class="token punctuation">(</span><span class="token class-name">SqliteException</span> e<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
         Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
+</code><div class="line-highlight-wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="18" data-start="18">
+</div></div></pre>
       </div>
       
       

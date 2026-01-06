@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.Data.Sqlite;
 
 public class Biblioteca
@@ -64,12 +65,21 @@ public class Biblioteca
 
         Console.WriteLine(salida);
     }
+    public static string RutaEjecucion() => Regex.Match(
+        input: Directory.GetCurrentDirectory(),
+        pattern: @"^(?<ruta>.*?)(?=\\bin)",
+        options: RegexOptions.IgnoreCase
+    ).Groups["ruta"].Value;
 
     public static void Main()
     {
         try
         {
-            string cadenaConexion = "Data Source=biblioteca_1t.db";
+            string rutaEjecucion = RutaEjecucion();
+            string rutaDatos = Path.Combine(rutaEjecucion, "datos");
+            if (!Directory.Exists(rutaDatos))
+                Directory.CreateDirectory(rutaDatos);
+            string cadenaConexion = $"Data Source={Path.Combine(rutaDatos, "biblioteca_1t.db")}";
             using SqliteConnection conexion = new(cadenaConexion);
             conexion.Open();
             CrearTablaLibros(conexion);
