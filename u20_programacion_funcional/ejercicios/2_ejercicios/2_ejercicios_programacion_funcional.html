@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>1_ejercicios_programacion_funcional</title>
+      <title>2_ejercicios_programacion_funcional</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -223,32 +223,28 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-1-delegado-operación" class="md-toc-link">
-            <p>Ejercicio 1. Delegado Operación</p>
+          <a href="#ejercicio-1-gestión-en-biblioteca" class="md-toc-link">
+            <p>Ejercicio 1. Gestión en Biblioteca</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-2-delegados-con-parámetros-variados" class="md-toc-link">
-            <p>Ejercicio 2. Delegados con parámetros variados</p>
+          <a href="#ejercicio-2-coincidencia-en-lista-de-cadenas" class="md-toc-link">
+            <p>Ejercicio 2. Coincidencia en lista de cadenas</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-3-delegado-genérico-comparador" class="md-toc-link">
-            <p>Ejercicio 3. Delegado genérico Comparador</p>
+          <a href="#ejercicio-3--múltiplos-en-lista-de-números" class="md-toc-link">
+            <p>Ejercicio 3.  Múltiplos en lista de números</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-4-refactorizando-ejercicio-1--y-ejercicio-2" class="md-toc-link">
-            <p>Ejercicio 4. Refactorizando ejercicio 1  y ejercicio 2</p>
+          <a href="#ejercicio-4-operaciones-con-funciones-lambda" class="md-toc-link">
+            <p>Ejercicio 4. Operaciones con funciones Lambda</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-5-practicando-con-delegados-predefinidos" class="md-toc-link">
-            <p>Ejercicio 5. Practicando con delegados predefinidos</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-6-sustitución-de-interfaces-por-delegados" class="md-toc-link">
-            <p>Ejercicio 6. Sustitución de interfaces por delegados</p>
+          <a href="#ejercicio-5" class="md-toc-link">
+            <p>Ejercicio 5.</p>
 
           </a></div>
 </div>
-<h2 id="ejercicios-unidad-20---programación-funcional---delegados">Ejercicios Unidad 20 - Programación Funcional - Delegados </h2>
+<h2 id="ejercicios-unidad-20---programación-funcional---lambda">Ejercicios Unidad 20 - Programación Funcional - Lambda </h2>
 <p><a href="./1_ejercicios_programacion_funcional.pdf">Descargar estos ejercicios</a></p>
 <div class="admonition info">
 <p class="admonition-title">Antes de empezar</p>
@@ -256,195 +252,183 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 </div>
 <div style="page-break-after:always;"></div>
 <div class="box_bg_lightgreen">
-<h2 id="ejercicio-1-delegado-operación">Ejercicio 1. Delegado Operación </h2>
-<p>Para practicar un primer uso de los delegados y entender el concepto.</p>
-<pre class="salida_consola">Ejercicio 1. Delegado Operación
+<h2 id="ejercicio-1-gestión-en-biblioteca">Ejercicio 1. Gestión en Biblioteca </h2>
+<p>A partir del código que se proporciona como recurso y que contiene un <code>Value Object Libro</code> y el método que nos proporciona una lista con los datos de una serie de libros. Vamos a realizar el código necesario para gestionar nuestra biblioteca:</p>
+<pre class="salida_consola">Ejercicio 1. Gestión en Biblioteca
 
-Selecciona número entero: 4
-[1] Cuadrado
-[2] Cubo
-[3] Cambiar número
-[4] Salir
-Selecciona una opción: 2
-Resultado: 64
+Prestando ... { DNI = 22111333, Titulo = Cien años de soledad, ISBN = 9788420471839 }
+Prestando ... { DNI = 22111333, Titulo = Los mejores cuentos de Clarín, ISBN = 9788431533441 }
+True
+False
+Título: Los mejores cuentos de Clarín, Autor: Leopoldo Alas Clarín, Editorial: De Vecchi, 
+ISBN: 9788431533441, Nº Páginas: 145, Reseña: Una cuidadosa selección que nos muestra la
+riqueza de los recursos estilísticos de este gran escritor del s. XIX.En el volumen se incluyen:
+Doña Berta, Benedictino, Manín de Pepa José, Zurita, Cambio de luz, y la Conversión de Chiripa.
 
-</pre>
-<p><strong>Requisitos</strong></p>
-<p>Crea un tipo delegado denominado <code>Operacion</code> de parámetro entero y de retorno entero.</p>
-<ul>
-<li>En una clase de utilidad (estática) denominada <code>Cálculos</code> añade dos métodos con esa misma signatura llamados <code>Cuadrado</code> y <code>Cubo</code>, que te devuelvan respectivamente el cuadrado y el cubo de un número introducido.</li>
-<li>Crea una aplicación en el programa principal con un menú que asigne un delegado con uno de los dos métodos de utilidad según la elección del usuario. Posteriormente deberás usar ese delegado para realizar la operación.</li>
-</ul>
-</div>
-<div class="box_bg_lightgreen">
-<h2 id="ejercicio-2-delegados-con-parámetros-variados">Ejercicio 2. Delegados con parámetros variados </h2>
-<p>Vamos a practicar con delegados que aceptan múltiples parámetros de diferentes tipos para realizar cálculos de lógica de negocio.</p>
-<pre class="salida_consola">Ejercicio 2. Delegados con parámetros variados
-
-Ejercicio 2. Delegados con parámetros variados
-
-Pedido 1: Importe=1000, Cantidad=12, VIP=True
--&gt; Usando DescuentoPorCantidad:
-   Descuento aplicado: 150 (Precio Final: 850)
--&gt; Usando DescuentoVip:
-   Descuento aplicado: 200 (Precio Final: 800)
--&gt; Usando DescuentoCombinado:
-   Descuento aplicado: 250 (Precio Final: 750)
-
-Pedido 2: Importe=500, Cantidad=3, VIP=False
--&gt; Usando DescuentoPorCantidad:
-   Descuento aplicado: 0 (Precio Final: 500)
--&gt; Usando DescuentoCombinado:
-   Descuento aplicado: 0 (Precio Final: 500)
-Pulsar una tecla para finalizar...
-</pre>
-<p><strong>Requisitos</strong></p>
-<p>Crea un tipo delegado denominado <code>CalculoDescuento</code> que acepte los siguientes parámetros:</p>
-<ul>
-<li><code>importe</code> (double): El importe total de la compra.</li>
-<li><code>cantidad</code> (int): El número de artículos comprados.</li>
-<li><code>esVip</code> (bool): Indica si el cliente es VIP.</li>
-<li>Retorno: <code>double</code> (el importe del descuento a aplicar).</li>
-</ul>
-<p>En una clase estática <code>ReglasDescuento</code>, implementa tres métodos que cumplan con la firma del delegado:</p>
-<ol>
-<li><code>DescuentoPorCantidad</code>: Aplica un 15% si la cantidad es &gt; 10, un 5% si es &gt; 5, y 0 en otro caso.</li>
-<li><code>DescuentoVip</code>: Aplica un 20% si es VIP, 0 en caso contrario.</li>
-<li><code>DescuentoCombinado</code>: Si es VIP y cantidad &gt; 5 aplica un 25%. Si solo es VIP un 15%. Si solo cantidad &gt; 5 un 10%.</li>
-</ol>
-<p>Crea un método en el programa principal llamado <code>ProcesaPedido</code> que reciba:</p>
-<ul>
-<li>Los datos del pedido (importe, cantidad, esVip).</li>
-<li>Un delegado de tipo <code>CalculoDescuento</code>.</li>
-</ul>
-<p>El método debe calcular el descuento usando el delegado, restar el descuento al importe y mostrar por consola el precio final y el descuento aplicado.</p>
-<p>En el <code>Main</code>, prueba <code>ProcesaPedido</code> con diferentes combinaciones de datos y pasando los distintos métodos de descuento.</p>
-</div>
-<div class="box_bg_lightgreen">
-<h2 id="ejercicio-3-delegado-genérico-comparador">Ejercicio 3. Delegado genérico Comparador </h2>
-<p>Una vez comprendido el concepto de delegados, se va generalizar creando un primer delegado genérico. Para ello deberás:</p>
-<pre class="salida_consola">Ejercicio 3. Delegado genérico Comparador
-     
-     SAL    AGUA  AZUCAR    VINO
-    COLA    CAFE    ZUMO   LECHE
-
-       3       4       5
-     2,4     4,4       5
-
-Pulsar una tecla para finalizar...
-</pre>
-<p><strong>Requisitos</strong></p>
-<p>Crea una aplicación con un método estático genérico <code>Mostrar</code>, al que le pases una dentada del tipo <strong><code>T</code></strong> y la muestre con una correcta tabulación. Posteriormente, prueba este método con diferentes tipos.</p>
-<p>Crea un objeto delegado <strong>predefinido genérico</strong> de la BCL para el método <code>Mostrar</code> y comprueba su funcionamiento.</p>
-</div> 
-<div class="box_bg_lightgreen">
-<h2 id="ejercicio-4-refactorizando-ejercicio-1--y-ejercicio-2">Ejercicio 4. Refactorizando ejercicio 1  y ejercicio 2 </h2>
-<p>Modifica el ejercicio 1 y 2 para que ahora utilicen los delegados genéricos de la BCL</p>
-<pre class="salida_consola">Ejercicio 4. Refactorización con Delegados Genéricos
-
-1. Ejecutar Ejercicio 1 (Operación)
-2. Ejecutar Ejercicio 2 (Descuentos)
-3. Salir
-Selecciona una opción:
-</pre> 
-</div>
-<div class="box_bg_lightgreen">
-<h2 id="ejercicio-5-practicando-con-delegados-predefinidos">Ejercicio 5. Practicando con delegados predefinidos </h2>
-<pre class="salida_consola">Ejercicio 5. Practicando con delegados predefinidos
-
-AddTwoNumbers --&gt; 15
-SquareANumber --&gt; 64
-GetTopSpeed --&gt; 108,4
-MultiploCinco --&gt; False
-ProcedimientoDesconocido --&gt;5 7 9 7,400000095367432 10,400000095367432 12
-Introduce Valor 1
-5
-Introduce Valor 2
 3
-Calcula --&gt; 15
+Título: El camino, Autor: Miguel Delibes, Editorial: Espasa, 
+ISBN: 9788467023664, Nº Páginas: 187, Reseña: Una de las más importantes obras de Miguel Delibes cuenta
+la historia de un niño , Daniel el Mochuelo, que tiene que trasladarse a la ciudad para cursar bachillerato. 
+Una noche antes de partir Daniel recordará todo lo que le ha ocurrido en este lugar, sus amigos, sus peripecias,
+y descubrirá que su camino está en esa aldea, unido a lo que ha sido hasta ese momento su vida. 
+Nostálgica novela realista a través de la cual podemos aprender que nunca sabemos lo que tenemos hasta que
+se nos ha escapado.
 
-Pulsa una tecla para continuar...
+TituloAutor { Titulo = Los mejores cuentos de Clarín, Autor = Leopoldo Alas Clarín }
+
+Pulsa una tecla para finalizar...
 </pre> 
 <p><strong>Requisitos</strong></p>
-<p>Crea un objeto de los <strong>delegados predefinidos genéricos</strong> para los siguientes métodos y prueba su funcionamiento en el programa principal:</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">Suma</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> n1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span></span> n2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> n1 <span class="token operator">+</span> n2<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-int">int</span></span> <span class="token function">CuadradoDe</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> number<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> number <span class="token operator">*</span> number<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">GetVelocidadParada</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">108.4</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">EsMultiploDeCinco</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-int">int</span></span> n<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> n <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-double">double</span></span> <span class="token function">Calcula</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> tipo<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> nom1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> nom2<span class="token punctuation">)</span>
+<p>Crear una clase denominada <strong><code>Biblioteca</code></strong> que tendrá como propiedades: un <strong><code>Nombre</code></strong> de tipo string, una <strong><code>lista de Libros</code></strong> y una lista de string <strong><code>Prestamos</code></strong>.</p>
+<ul>
+<li>
+<p>Su constructor recibirá el nombre y la lista de libros.</p>
+</li>
+<li>
+<p>Crea un método público denominado <code>BuscaPorISBN</code> que reciba una cadena con el ISBN y devuelva el primer libro con ese ISBN o null si no lo encuentra.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name">Libro</span> <span class="token function">BuscaPorISBN</span><span class="token punctuation">(</span><span class="token class-name">String</span> isbn<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Introduce </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nom1</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> temp1 <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> var1 <span class="token operator">=</span> Int32<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>temp1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"Introduce </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">nom2</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> temp2 <span class="token operator">=</span> Console<span class="token punctuation">.</span><span class="token function">ReadLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> var2 <span class="token operator">=</span> Int32<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span>temp2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-return">return</span> tipo <span class="token operator">==</span> <span class="token string">"Potencia"</span> <span class="token punctuation">?</span> var1<span class="token operator">*</span>var2 <span class="token punctuation">:</span> var1 <span class="token operator">/</span> var2<span class="token punctuation">;</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">Tipo</span></span><span class="token punctuation">]</span> TieneISBN <span class="token operator">=</span> <span class="token punctuation">[</span>funcion<span class="token operator">-</span>λ<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> Libros<span class="token punctuation">.</span><span class="token function">Find</span><span class="token punctuation">(</span>TieneISBN<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">ProcedimientoDesconocido</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token punctuation">]</span></span> x<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> y<span class="token punctuation">,</span> <span class="token class-name">String</span> z<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>Length<span class="token operator">==</span>y<span class="token punctuation">.</span>Length<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token class-name"><span class="token keyword keyword-int">int</span></span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-foreach">foreach</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-double">double</span></span> c <span class="token keyword keyword-in">in</span> x<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            z <span class="token operator">+=</span> <span class="token punctuation">(</span>c <span class="token operator">+</span> y<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            z <span class="token operator">+=</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-            p<span class="token operator">++</span><span class="token punctuation">;</span> 
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre></div>
+</code></pre></li>
+<li>
+<p>Ahora vamos a practicar con el concepto '<em>de tipos anónimos</em>' para guardar solo los datos referentes a un préstamo de un <strong><code>Libro</code></strong> en la lista Prestamos. <strong>Sin definir una nueva clase o tipo Préstamo</strong>.</p>
+<ul>
+<li>Para ello, vamos a crear un método público en la clase Biblioteca denominado <code>Presta</code>. Este método recibirá dos string: <strong><code>dni</code></strong> del socio <strong><code>ISBN</code></strong> del libro a prestar.</li>
+<li>Buscaremos el <strong><code>ISBN</code></strong> en la lista de libros y si lo encontramos, crearemos un nuevo objeto anónimo var préstamo con las propiedades <strong><code>DNI</code></strong>, <strong><code>Titulo</code></strong> e <strong><code>ISBN</code></strong>.</li>
+</ul>
+<blockquote>
+<p>📌 <strong>Nota:</strong> En caso de no existir el lSBN en la biblioteca generaremos una BliblitecaException con el mensaje correspondiente.</p>
+</blockquote>
+<ul>
+<li>Por último, añadiremos a la lista de <code>Prestamos</code> la cadena resultado de pasar a <strong>ToString</strong> este objeto anónimo.</li>
+</ul>
+</li>
+<li>
+<p>Crea otro método público <code>EstaPrestado</code> al que se le pasará el <strong><code>ISBN</code></strong> de un libro y devolverá un Booleano que nos indicará si el libro se encuentra prestado o no,</p>
+</li>
+<li>
+<p>Crea un método público <code>CuentaLibrosConNumeroDePaginasMenorA</code> que reciba un valor entero y te devuelva la cantidad de líbros con un número de páginas menor a ese valor entero.</p>
+</li>
+<li>
+<p>Crea un método público <code>EliminaPorAutor</code> que reciba el nombre de un autor y borre de la biblioteca aquellos libros de ese autor.</p>
+</li>
+<li>
+<p>Redefine el método <code>ToString()</code> en <strong><code>Libro</code></strong> <strong>creando un tipo anónimo</strong> con <strong><code>Libro</code></strong>, <strong><code>Autor</code></strong>, e <strong><code>ISBN</code></strong> y devolviendo su ToString.</p>
+</li>
+<li>
+<p>Redefine un método <strong><code>AutorTitulo</code></strong> al que le llega un ISB y devuelve el libro de la biblioteca que coincida con el ISB, pero esta vez solo nos interesará sacar la información de Título y Autor, por lo que se creará un <strong>Tipo Record</strong> para hacerlo.</p>
+</li>
+</ul>
+</div>
 <div class="box_bg_lightgreen">
-<h2 id="ejercicio-6-sustitución-de-interfaces-por-delegados">Ejercicio 6. Sustitución de interfaces por delegados </h2>
-<p>Partiendo de la propuesta de solución (o la tuya) al <strong>ejercicio 6 de genéricos (unidad 18)</strong>, donde implementábamos diferentes formas de calcular la media y obtener la temperatura usando interfaces a modo de '<em>estrategia</em>'. Realiza las siguientes modificaciones:</p>
-<pre class="salida_consola">Ejercicio 6. Delegados genéricos con múltiples parámetros
+<h2 id="ejercicio-2-coincidencia-en-lista-de-cadenas">Ejercicio 2. Coincidencia en lista de cadenas </h2>
+<p>Crea una aplicación que sirva para <strong>buscar coincidencias en una lista de cadenas</strong>.</p>
+<pre class="salida_consola">Ejercicio 2.  Coincidencia en lista de cadenas
 
-De cuantas provincias quieres recoger la temperatura: 5
-Introduce la provincia nº1:  Alicante
-Introduce la provincia nº2:  Valencia
-Introduce la provincia nº3:  Castellón
-Introduce la provincia nº4:  Murcia
-Introduce la provincia nº5:  Albacete
+Lista: rosa mesa flor ventana blanco perro sillón azul melón
+Introduce una cadena a buscar: an
 
-Provincias con temperatura máxima mayor que la media:
-Valencia
-Murcia
+Buscar coincidencias de an - Usando Clausuras
+Pulsa una tecla...
+ventana blanco
+Buscar coincidencias de an - Sin usar Clausuras
+Pulsa una tecla...
+ventana blanco
 
-Provincias con temperatura mínima menor que la media:
-Valencia
-Albacete
+Pulsa una tecla...
+</pre>
+<p><strong>Requisitos</strong></p>
+<ul>
+<li>Para ello, asignaremos a <strong>un delegado genérico</strong> una <strong>función-λ</strong> que reciba una lista y una cadena y sobre la lista con el método <strong><code>FindAll</code></strong> busque la cadena.<br>
+Ten en cuenta que el método <strong><code>FindAll</code></strong> necesitará un predicado para el cual utilizaremos otra función-λ para formarlo. Todo el código lo debes hacer en la Main.</li>
+<li>Hazlo de dos forma diferentes, usando clausura sobre la lista y sin clausura.</li>
+<li>Crea un delegado público y estatico <code> CoincidenciasCadena_UsandoClausuras</code> y otro <code> CoincidenciasCadena_UsandoClausuras</code> con la funcionalidad necesaria.</li>
+</ul>
+<blockquote>
+<p>📌 <strong>Nota:</strong> Puede serte de utilidad la operación <strong><code>Contains</code></strong> sobre cadenas.<br>
+Por último, muestra, con el método <strong><code>public void ForEach (Action&lt;T&gt; action);</code></strong> <a href="https://docs.microsoft.com/es-es/dotnet/api/system.collections.generic.list-1.foreach">definido en  <code>List&lt;T&gt;</code></a>, la lista resultante que devuelva la invocación del delegado.</p>
+</blockquote>
+</div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-3--múltiplos-en-lista-de-números">Ejercicio 3.  Múltiplos en lista de números </h2>
+<p>Crea una aplicación que a partir de una Lista de enteros, te muestre los múltiplos de un número introducido por teclado que existan en la lista, usando <strong>funciones-λ</strong> y el operador <strong><code>?:</code></strong>. Realiza todo el código en la Main usando funciones lambda.</p>
+<p><strong>Requisitos</strong></p>
+<ul>
+<li>Hazlo de dos forma diferentes, usando clausura sobre el número introducido y sin clausura.</li>
+<li>Crea un delegado público y estatico <code>EsMultiploDe_ConClausura y otro </code>EsMultiploDe_SinClausura` con la funcionalidad necesaria.</li>
+</ul>
+<pre class="salida_consola">Ejercicio 3.  Múltiplos en lista de números
 
-Provincias con temperatura mínima igual que la media:
+Lista: 2 4 12 3 18 4 7 6 21 33 17 30 27
+Introduce un número: 6
+
+Múltiplos de 6 - Usando Clausuras
+Pulsa una tecla...
+12 18 6 30
+Múltiplos de 6 - Sin usar Clausuras
+Pulsa una tecla...
+12 18 6 30
+
+Pulsa una tecla...
+</pre>
+</div>
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-4-operaciones-con-funciones-lambda">Ejercicio 4. Operaciones con funciones Lambda </h2>
+<p>Programa para seguir practicando las funciones lambda con operaciones sencillas.</p>
+<pre class="salida_consola">Ejercicio 4. Operaciones con funciones Lambda
+
+50,26548245743669
+True
+la palabra Esto tiene una longitud de 4
+la palabra es tiene una longitud de 2
+la palabra una tiene una longitud de 3
+la palabra prueba tiene una longitud de 6
+la palabra para tiene una longitud de 4
+la palabra crear tiene una longitud de 5
+la palabra el tiene una longitud de 2
+la palabra diccionario tiene una longitud de 11
 
 Pulsa una tecla para finalizar...
 </pre>
 <p><strong>Requisitos</strong></p>
-<ol>
+<ul>
 <li>
-<p>Elimina la definición de los interfaces y las clases que los implementaban.</p>
+<p>Escribir una función <strong>VolumenEsfera</strong> que devuelva un Delegado con el valor de este, a partir de un radio.</p>
 </li>
 <li>
-<p>Los métodos que se definían en esas clases ahora serán métodos estáticos dentro de la clase <code>Program</code> o una clase estática que los agrupe como métodos de utilidad con la siguiente implementación...</p>
-<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-float">float</span></span> <span class="token function">ObtenTemperaturaMaxima</span><span class="token punctuation">(</span><span class="token class-name">TemperaturasXProvincia</span> txp<span class="token punctuation">)</span> 
-                    <span class="token operator">=&gt;</span> txp<span class="token punctuation">.</span>TemperaturaMaxima<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-float">float</span></span> <span class="token function">ObtenTemperaturaMinima</span><span class="token punctuation">(</span><span class="token class-name">TemperaturasXProvincia</span> txp<span class="token punctuation">)</span> 
-                    <span class="token operator">=&gt;</span> txp<span class="token punctuation">.</span>TemperaturaMinima<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">MayorQue</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-float">float</span></span> t1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-float">float</span></span> t2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> t1 <span class="token operator">&gt;</span> t2<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">MenorQue</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-float">float</span></span> t1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-float">float</span></span> t2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> t1 <span class="token operator">&lt;</span> t2<span class="token punctuation">;</span>
-<span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-bool">bool</span></span> <span class="token function">IgualQue</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-float">float</span></span> t1<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword keyword-float">float</span></span> t2<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> t1 <span class="token operator">==</span> t2<span class="token punctuation">;</span>
-</code></pre></li>
-<li>
-<p>Sustituye en los métodos <code>MediaTemperaturas</code> y <code>MuestraProvincias</code> donde pasábamos una parámetro formal de tipo interfaz <strong>por un tipo delegado genéricos</strong> de tipo <code>Func&lt;T1, T2, ..., R&gt;</code>.</p>
+<p>Escribe un método <strong>EsCapitular</strong>, que devuelva un Delegado indicando si la primera letra de una palabra es mayúscula. Comprueba que la palabra no es nula.</p>
 </li>
 <li>
-<p>Sustituye en el <code>Main</code> la creación del objeto que implementaban los interfaces que hemos borrado por el métodos que equivalentes que hemos definido en el punto 2, cumplen con el interfaz definido en el delegado y hacen ahora la operación.</p>
+<p>Escribe un método <strong>DiccionarioDePalabras</strong>, que reciba una frase y devuelva un diccionario con las palabras que contiene y la longitud de estas.</p>
 </li>
-</ol>
+</ul>
 </div> 
+<div class="box_bg_lightgreen">
+<h2 id="ejercicio-5">Ejercicio 5. </h2>
+<p>Programa que permite crear un carrito de compra usando funciones lambda combinadas.</p>
+<pre class="salida_consola">Ejercicio 5. Carrito compra con funcional
+
+para un precio de 4euros y un iva de 3% el total final será: 4,12
+para un precio de 4euros y un descuento de 3% el total final será: 3,88
+el total del carrito con un descuento de de 3%  será: 58,6
+
+Pulsa una tecla para finalizar...
+</pre> 
+<p><strong>Requisitos</strong></p>
+<ul>
+<li>
+<p>Escribe un método <code>AplicaIva</code>, que devuelva un Delegado con el precio total de un producto, a partir de aplicar un IVA al precio inicial.</p>
+</li>
+<li>
+<p>Escribe un método <code>AplicaDescuento</code>, que devuelva un Delegado con el precio total de un producto a partir de aplicar un descuento a un precio inicial.</p>
+</li>
+<li>
+<p>Escribe un método <code>CarritoCompra</code>, que devuelva un Delegado con el precio total de una lista de la compra. La lista de la compra se recibirá como una lista de tuplas o pares de valores, donde el primer valor es el precio y el segundo el porcentaje (valor que se referirá al posible descuento o IVA aplicado). El delegado también recibirá una de las funciones anónimas predefinidas anteriormente (descuento o IVA).</p>
+</li>
+</ul>
+</div>
 
       </div>
       
