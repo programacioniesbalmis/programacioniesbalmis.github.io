@@ -254,6 +254,17 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-1-jugando-con-rutas-path">Ejercicio 1. Jugando con Rutas (Path) </h2>
 <p>Vamos a practicar el uso de la clase estática <strong><code>Path</code></strong> para manipular cadenas de texto que representan rutas, sin necesidad de tocar el disco físico.</p>
+<pre class="salida_consola">Ejercicio 1. Jugando con Rutas
+
+Introduce nombre de archivo: archivo1.txt
+Introduce nombre de carpeta: carpeta1
+Ruta combinada: carpeta1\Documentos\archivo1.txt
+Extensión: .txt
+Nombre sin extensión: archivo1
+Ruta con extensión cambiada: carpeta1\Documentos\archivo1.bak
+Nombre aleatorio generado: h2ydt234.gsr
+Pulsa una tecla para finalizar...
+</pre>
 <p><strong>Requisitos</strong></p>
 <p>Crea un programa que solicite al usuario el nombre de un archivo (con extensión) y el nombre de una carpeta. Utiliza la clase <code>Path</code> para realizar las siguientes operaciones y mostrar los resultados por consola:</p>
 <ol>
@@ -263,21 +274,26 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 <li><strong>Cambio de extensión</strong>: Simula que cambias la extensión del archivo a <code>.bak</code> y muestra la nueva ruta resultante.</li>
 <li><strong>Nombre aleatorio</strong>: Genera y muestra un nombre de archivo aleatorio usando el método correspondiente de la clase <code>Path</code>.</li>
 </ol>
-<pre class="salida_consola">Ejercicio 1. Jugando con Rutas
-
-Introduce nombre de archivo: informe.docx
-Introduce nombre de carpeta: Proyectos
-
-Ruta combinada: Proyectos\Documentos\informe.docx
-Extensión: .docx
-Nombre sin extensión: informe
-Ruta con extensión cambiada: Proyectos\Documentos\informe.bak
-Nombre aleatorio generado: 4k2j1l3h.tmp
-</pre>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-2-gestión-de-directorios-y-archivos">Ejercicio 2. Gestión de Directorios y Archivos </h2>
 <p>Vamos a utilizar las clases estáticas <strong><code>Directory</code></strong> y <strong><code>File</code></strong> para manipular el sistema de archivos real.</p>
+<pre class="salida_consola">Ejercicio 2. Gestión de Archivos y Directorios
+
+Carpeta Laboratorio creada.
+Subcarpetas Originales y Copias creadas.
+Fichero mensaje.txt creado en Originales.
+Fichero copiado a Copias como mensaje_copia.txt.
+Fichero original movido a raiz Laboratorio como mensaje_movido.txt.
+Archivos en Copias:
+mensaje_copia.txt
+Archivos en Laboratorio:
+mensaje_movido.txt
+¿Quieres borrar todo? (S/N)
+s
+Carpeta Laboratorio y contenido eliminados.
+Pulsa una tecla para finalizar...
+</pre> 
 <p><strong>Requisitos</strong></p>
 <p>Crea un programa que realice la siguiente secuencia de acciones controlada. Muestra mensajes por consola tras cada paso.</p>
 <ol>
@@ -293,10 +309,17 @@ Nombre aleatorio generado: 4k2j1l3h.tmp
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-3-copia-con-filestream-byte-a-byte">Ejercicio 3. Copia con FileStream (Byte a Byte) </h2>
 <p>Para entender cómo funcionan los flujos de bajo nivel, vamos a copiar un fichero usándo directamente <strong><code>FileStream</code></strong>.</p>
+<pre class="salida_consola">Ejercicio 3. Copia de Ficheros Byte a Byte
+
+Fichero datos_origen.dat creado con 100 bytes aleatorios.
+Copia finalizada.
+Verificación exitosa: datos_destino.dat existe y tiene el mismo tamaño (100 bytes).
+Pulsa una tecla para finalizar...
+</pre> 
 <p><strong>Requisitos</strong></p>
 <ol>
-<li>Crea programáticamente un fichero llamado <code>datos_origen.dat</code> y escribe en él 100 bytes con valores aleatorios (puedes usar un array de bytes y <code>File.WriteAllBytes</code> para prepararlo).</li>
-<li>Implementa un método <code>CopiarFichero(string origen, string destino)</code> que:
+<li>En el método <code>GeneraFicheroOrigen</code> al que le llega el nombre del fichero, genera programáticamente un fichero y escribe en él 100 bytes con valores aleatorios (puedes usar un array de bytes y <code>File.WriteAllBytes</code> para prepararlo).</li>
+<li>Implementa un método <code>CopiaFichero(string origen, string destino)</code> que:
 <ul>
 <li>Abra un <code>FileStream</code> de lectura sobre el origen.</li>
 <li>Abra un <code>FileStream</code> de escritura sobre el destino.</li>
@@ -304,7 +327,7 @@ Nombre aleatorio generado: 4k2j1l3h.tmp
 <li><em>Opcional: Si te animas, hazlo con un buffer de 1024 bytes en lugar de byte a byte para ser más eficiente.</em></li>
 </ul>
 </li>
-<li>Verifica que el fichero <code>datos_destino.dat</code> existe y tiene el mismo tamaño que el origen.</li>
+<li>Crea el método <code>VerificaCopia</code>al que le llegan los nombres de ficheros origen y destino y se encarga de Verificar que el fichero destino existe y tiene el mismo tamaño que el origen.</li>
 </ol>
 <blockquote>
 <p>💡 <strong>Nota:</strong> Recuerda usar bloques <code>using</code> para asegurar que los streams se cierran y liberan los recursos correctamente.</p>
@@ -312,7 +335,19 @@ Nombre aleatorio generado: 4k2j1l3h.tmp
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-4-datos-binarios-y-exportación-csv">Ejercicio 4. Datos Binarios y Exportación CSV </h2>
-<p>Vamos a diferenciar entre guardar datos en formato binario (propio de la aplicación) y formato texto (intercambiable).</p>
+<p>Vamos a diferenciar entre guardar datos en formato binario (propio de la aplicación) y formato texto (intercambiable). Fíjate en la llamada a los métodos, para crear estos y definir el código que corresponde a cada uno.</p>
+<pre class="salida_consola">Ejercicio 4. Gestión de Inventario
+
+Datos guardados en inventario.bin (Binario).
+Leyendo datos desde binario:
+Producto: Manzana, Precio: 0,5, Stock: 100
+Producto: Pan, Precio: 1,2, Stock: 50
+Producto: Leche, Precio: 0,9, Stock: 30
+Producto: Huevos, Precio: 2,5, Stock: 20
+Datos exportados a inventario.csv (CSV).
+
+Pulsa una tecla para finalizar...
+</pre> 
 <p><strong>Requisitos</strong></p>
 <p>Crea una clase simple <code>Producto</code> con las propiedades: <code>string Nombre</code>, <code>double Precio</code>, <code>int Stock</code>.<br>
 Crea una lista con 3 o 4 productos de ejemplo.</p>
@@ -331,6 +366,14 @@ Crea una lista con 3 o 4 productos de ejemplo.</p>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-5-diario-con-streamwriter-y-streamreader">Ejercicio 5. Diario con StreamWriter y StreamReader </h2>
 <p>Vamos a crear un pequeño sistema de logs o diario personal.</p>
+<pre class="salida_consola">Escribe una entrada (FIN para salir): Hoy he aprendido C#
+Entrada guardada.
+Escribe una entrada (FIN para salir): FIN
+
+--- LEYENDO DIARIO ---
+1. 08/01/2026 10:00:00 - Ayer empecé con ficheros
+2. 08/01/2026 10:05:23 - Hoy he aprendido C#
+</pre>
 <p><strong>Requisitos</strong></p>
 <ol>
 <li>El programa pedirá al usuario que escriba una frase para añadir a su diario.</li>
@@ -343,14 +386,6 @@ Crea una lista con 3 o 4 productos de ejemplo.</p>
 <li>Cuando el usuario termine, usa <strong><code>StreamReader</code></strong> para abrir <code>diario.txt</code>.</li>
 <li>Lee el fichero <strong>línea a línea</strong> y muéstralo por consola enumerando las líneas para que el usuario pueda ver todo su historial de entradas.</li>
 </ol>
-<pre class="salida_consola">Escribe una entrada (FIN para salir): Hoy he aprendido C#
-Entrada guardada.
-Escribe una entrada (FIN para salir): FIN
-
---- LEYENDO DIARIO ---
-1. 08/01/2026 10:00:00 - Ayer empecé con ficheros
-2. 08/01/2026 10:05:23 - Hoy he aprendido C#
-</pre>
 </div>
 
       </div>
