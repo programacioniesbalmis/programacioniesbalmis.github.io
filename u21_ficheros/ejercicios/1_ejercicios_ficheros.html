@@ -238,11 +238,20 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#ejercicio-4-datos-binarios-y-exportación-csv" class="md-toc-link">
             <p>Ejercicio 4. Datos Binarios y Exportación CSV</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-5-diario-con-streamwriter-y-streamreader" class="md-toc-link">
-            <p>Ejercicio 5. Diario con StreamWriter y StreamReader</p>
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#ejercicio-5-diario-con-streamwriter-y-streamreader" class="md-toc-link"><p>Ejercicio 5. Diario con StreamWriter y StreamReader</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ejercicio-6-procesamiento-de-archivos-y-conteo-de-palabras" class="md-toc-link">
+            <p>Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras</p>
 
           </a></div>
+        </div>
+      </details>
+    
 </div>
 <h2 id="ejercicios-unidad-21---ficheros">Ejercicios Unidad 21 - Ficheros </h2>
 <p><a href="./1_ejercicios_ficheros.pdf">Descargar estos ejercicios</a></p>
@@ -366,7 +375,9 @@ Crea una lista con 3 o 4 productos de ejemplo.</p>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-5-diario-con-streamwriter-y-streamreader">Ejercicio 5. Diario con StreamWriter y StreamReader </h2>
 <p>Vamos a crear un pequeño sistema de logs o diario personal.</p>
-<pre class="salida_consola">Escribe una entrada (FIN para salir): Hoy he aprendido C#
+<pre class="salida_consola">Ejercicio 5. Diario con StreamWriter y StreamReader
+
+Escribe una entrada (FIN para salir): Hoy he aprendido C#
 Entrada guardada.
 Escribe una entrada (FIN para salir): FIN
 
@@ -387,7 +398,80 @@ Escribe una entrada (FIN para salir): FIN
 <li>Lee el fichero <strong>línea a línea</strong> y muéstralo por consola enumerando las líneas para que el usuario pueda ver todo su historial de entradas.</li>
 </ol>
 </div>
+<div class="box_bg_lightgreen">
+<h3 id="ejercicio-6-procesamiento-de-archivos-y-conteo-de-palabras">Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras </h3>
+<p>Sistema de procesamiento de archivos y control de excepciones.</p>
+<pre class="salida_consola">Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras
 
+Introduce la ruta del archivo: datos.txt
+El archivo tiene 120 palabras.
+
+Introduce la ruta del archivo: archivo_inexistente.txt
+Error al leer el archivo: No se pudo leer el archivo.
+Causa original: El archivo especificado no se encontró.
+
+Introduce la ruta del archivo: datos.pdf
+Error: Solo se permiten archivos de texto (.txt).
+
+Introduce la ruta del archivo: 
+Error: La ruta no puede estar vacía.
+</pre>
+<p><strong>Requisitos</strong></p>
+<p>Crea un sistema con las siguientes clases:</p>
+<ol>
+<li>
+<p><strong>Excepción personalizada</strong></p>
+<ul>
+<li><code>ArchivoLecturaException</code> (hereda de Exception). Su constructor debe aceptar un mensaje y una excepción interna.</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase GestorArchivos</strong></p>
+<ul>
+<li>Método <code>LeerArchivo(string ruta)</code>:
+<ul>
+<li>Si la ruta es nula o vacía, lanza un <code>ArgumentException</code>.</li>
+<li>Si la extensión del archivo no es <code>.txt</code>, lanza un <code>NotSupportedException</code>. Usa expresiones regulares para validar la extensión.</li>
+<li>Intenta leer el archivo con <code>File.ReadAllText</code>.
+<ul>
+<li>Si el archivo no existe, captura el <code>FileNotFoundException</code> y lanza un <code>ArchivoLecturaException</code> con la excepción original como inner exception.</li>
+<li>Si ocurre cualquier otro error de E/S (<code>IOException</code>), lanza también un <code>ArchivoLecturaException</code> encadenando la excepción original.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Clase ProcesadorTexto</strong></p>
+<ul>
+<li>Método <code>ContarPalabras(string texto)</code>:
+<ul>
+<li>Si el texto es nulo o vacío, lanza un <code>ArgumentException</code>.</li>
+<li>Devuelve el número de palabras del texto.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>En el método Main:</strong></p>
+<ul>
+<li>Pide al usuario la ruta de un archivo.</li>
+<li>Usa <code>GestorArchivos.LeerArchivo</code> para leer el contenido.</li>
+<li>Usa <code>ProcesadorTexto.ContarPalabras</code> para contar las palabras.</li>
+<li>Gestiona todas las excepciones posibles:
+<ul>
+<li>Si ocurre un <code>ArchivoLecturaException</code>, muestra el mensaje y el mensaje de la excepción interna.</li>
+<li>Si ocurre cualquier otra excepción, muestra un mensaje genérico.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Ampliación!! Implementa el encadenamiento de excepciones usando inner exception.</li>
+</ul>
+</div>
       </div>
       
       
