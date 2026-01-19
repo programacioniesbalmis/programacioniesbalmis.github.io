@@ -306,7 +306,7 @@ Presiona cualquier tecla para salir...
 Creando eventos...
 
 Evento: CitaMedica
- 
+
   - Evento -&gt; Desde: 2025-09-10 09:30, Hasta: 2025-09-10 10:00 -  Cita Médica: Consulta Cardiología - Horario específico
     Dirección: Av. de la Salud, 15
 
@@ -321,39 +321,61 @@ Presiona cualquier tecla para salir...
 <p><strong>Requisitos:</strong></p>
 <p>El union type debe implementarse como un record abstracto <code>RangoEvento</code> con variantes:</p>
 <ul>
-<li><code>TodoElDia</code> vacia.</li>
-<li><code>HorarioEspecifico</code> (con inicio y fin) ambos de tipo <code>DateTime</code></li>
-<li><code>TodoElMes</code> (con nombre del mes, string)</li>
+<li><strong><code>TodoElDia</code></strong> vacia.</li>
+<li><strong><code>HorarioEspecifico</code></strong> (con inicio y fin) ambos de tipo <strong><code>DateTime</code></strong></li>
+<li><strong><code>TodoElMes</code></strong> (con nombre del mes, string)</li>
 </ul>
-<p>La clase base abstracta <code>EventoAgenda</code> debe tener:</p>
+<p>La clase base abstracta <strong><code>EventoAgenda</code></strong> debe tener:</p>
 <ul>
-<li>Propiedad <code>Descripcion</code> (string, solo lectura)</li>
-<li>Propiedad <code>FechaInicio</code> (DateTime, solo lectura)</li>
-<li>Propiedad <code>FechaFin</code> (DateTime, solo lectura)</li>
-<li>Constructor que recibe la descripción y un parámetro de tipo union type <code>RangoEvento</code>. El constructor debe asignar <code>FechaInicio</code> , <code>FechaFin</code> y una aclaración a la <code>Descripcion</code> con información según el tipo de rango recibido (usando <code>switch</code> de expresión, tuplas y las funciones del DateTime para formatear las entradas).</li>
-<li>Método abstracto <code>DescripcionEvento()</code></li>
-<li>Sobrescribe <code>ToString()</code> para mostrar: descripción, fecha de inicio y fecha de fin.</li>
+<li>
+<p>Propiedad <strong><code>Descripcion</code></strong> (string, solo lectura)</p>
+</li>
+<li>
+<p>Propiedad <strong><code>FechaInicio</code></strong> (DateTime, solo lectura)</p>
+</li>
+<li>
+<p>Propiedad <strong><code>FechaFin</code></strong> (DateTime, solo lectura)</p>
+</li>
+<li>
+<p>Constructor que recibe la descripción y un parámetro de tipo union type <strong><code>RangoEvento</code></strong>. El constructor debe asignar <strong><code>FechaInicio</code></strong> , <strong><code>FechaFin</code></strong> y una aclaración a la <strong><code>Descripcion</code></strong> con información según el tipo de rango recibido (usando <strong><code>switch</code> de expresión</strong>, <strong>tuplas</strong> y las funciones del <strong><code>DateTime</code></strong> para formatear las entradas).</p>
+<p>Para calcular la fecha de inicio y fin de todo el día puedes usar las propiedades:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Obtiene las 00:00:00 horas del día actual</span>
+<span class="token class-name">DateTime</span> inicioDia <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>Today<span class="token punctuation">;</span>
+<span class="token comment">// Obtiene las 23:59:00  horas del día actual</span>
+<span class="token class-name">DateTime</span> finDia <span class="token operator">=</span> DateTime<span class="token punctuation">.</span>Today<span class="token punctuation">.</span><span class="token function">AddDays</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">AddMinutes</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Para calcular el inicio y fin del mes actual puedes usar:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token comment">// Obtiene las 00:00:00 horas del día 1 del mes actual.</span>
+<span class="token class-name">DateTime</span> inicioMes <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DateTime</span><span class="token punctuation">(</span>DateTime<span class="token punctuation">.</span>Today<span class="token punctuation">.</span>Year<span class="token punctuation">,</span> DateTime<span class="token punctuation">.</span>Today<span class="token punctuation">.</span>Month<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Obtiene las 00:00:00 horas del día 1 del mes siguiente.</span>
+<span class="token class-name">DateTime</span> finMes <span class="token operator">=</span> inicioMes<span class="token punctuation">.</span><span class="token function">AddMonths</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>Método abstracto <strong><code>DescripcionEvento()</code></strong></p>
+</li>
+<li>
+<p>Sobrescribe <strong><code>ToString()</code></strong> para mostrar: descripción, fecha de inicio y fecha de fin.</p>
+</li>
 </ul>
 <p>Debes crear al menos dos concreciones:</p>
 <ul>
-<li><code>CitaMedica</code> (hereda de <code>EventoAgenda</code>):
+<li><strong><code>CitaMedica</code></strong> (hereda de <strong><code>EventoAgenda</code></strong>):
 <ul>
-<li>Propiedad adicional: <code>direccion</code> (string)</li>
+<li>Propiedad adicional: <strong><code>direccion</code></strong> (string)</li>
 <li>Constructor igual que la base, añadiendo la dirección.</li>
-<li>Sobrescribe <code>DescripcionEvento()</code> para devolver información específica de la cita médica.</li>
-<li>Sobrescribe <code>ToString()</code> para añadir información relevante de la cita, incluyendo la dirección.</li>
+<li>Sobrescribe <strong><code>DescripcionEvento()</code></strong> que devolverá el texto: <em>"<code>Cita Médica</code>"</em>.</li>
+<li>Sobrescribe <strong><code>ToString()</code></strong> para añadir información relevante de la cita, incluyendo la dirección.</li>
 </ul>
 </li>
-<li><code>ReunionTrabajo</code> (hereda de <code>EventoAgenda</code>):
+<li><strong><code>ReunionTrabajo</code></strong> (hereda de <strong><code>EventoAgenda</code></strong>):
 <ul>
-<li>Propiedad adicional <code>asistentes</code> (<code>List&lt;string&gt;</code>)</li>
+<li>Propiedad adicional <strong><code>asistentes</code></strong> (<strong><code>List&lt;string&gt;</code></strong>)</li>
 <li>Constructor que recibe descripción, rango y lista de asistentes.</li>
-<li>Sobrescribe <code>DescripcionEvento()</code> para devolver información específica de la reunión.</li>
-<li>Sobrescribe <code>ToString()</code> para añadir información relevante de la reunión, incluyendo los asistentes.</li>
+<li>Sobrescribe <strong><code>DescripcionEvento()</code></strong> que devolverá el texto: <em>"<code>Reunión</code>"</em>.</li>
+<li>Sobrescribe <strong><code>ToString()</code></strong> para añadir información relevante de la reunión, incluyendo los asistentes.</li>
 </ul>
 </li>
 </ul>
-<p>En la clase <code>Program</code>, implementa un método <code>GestionaEventos</code> que permita crear eventos de diferentes tipos (<code>CitaMedica</code> y <code>ReunionTrabajo</code>) usando las tres variantes de <code>RangoEvento</code> (<code>HorarioEspecifico</code>, <code>TodoElDia</code>, <code>TodoElMes</code>).</p>
+<p>En la clase <strong><code>Program</code></strong>, implementa un método <strong><code>GestionaEventos</code></strong> que permita crear eventos de diferentes tipos (<strong><code>CitaMedica</code></strong> y <strong><code>ReunionTrabajo</code></strong>) usando las tres variantes de <strong><code>RangoEvento</code></strong> (<strong><code>HorarioEspecifico</code></strong>, <strong><code>TodoElDia</code></strong>, <strong><code>TodoElMes</code></strong>).</p>
 </div>
 <div style="page-break-after:always;"></div>
 <div class="box_bg_lightgreen">
