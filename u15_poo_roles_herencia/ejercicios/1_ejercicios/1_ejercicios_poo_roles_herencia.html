@@ -541,9 +541,12 @@ Presiona cualquier tecla para salir...
 Seleccione opción: 3
 
 === ESTADO ACTUAL ===
-Montaña Verde -&gt; Ocupación: 3/40 (7%) Precio base: 22.00€ Precio actual: 25.30€
-City Hostel   -&gt; Ocupación: 5/80 (6%) Precio base: 18.00€ Precio actual: 18.00€
-Surf Point    -&gt; Ocupación: 10/55 (18%) Precio base: 20.00€ Precio actual: 23.00€
+Montaña Verde (AlbergueRural) - Capacidad: 40, Ocupación: 8%, Servicios: [Desayuno, Cena, Rutas]
+ Precio base: 22 ,Precio actual: 25,3
+City Hostel (AlbergueUrbano) - Capacidad: 80, Ocupación: 6%, Servicios: [WiFi, Lavandería]
+ Precio base: 18 ,Precio actual: 18
+Surf Point (AlbergueCostero) - Capacidad: 55, Ocupación: 18%, Servicios: [Clases de surf, Parking]
+ Precio base: 20 ,Precio actual: 20
 
 Pulse una tecla para continuar...
 --- MENÚ GESTIÓN ALBERGUES ---
@@ -586,9 +589,8 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <li><code>Nombre</code> (string, readonly)</li>
 <li><code>Capacidad</code> (int, readonly, &gt; 0)</li>
 <li><code>Direccion</code> (Direccion, composición y readonly)</li>
-<li><code>Servicios</code> (List<string>)</string></li>
-<li><code>Reservas</code> (List<reserva>, protegida y de tipo agregación)</reserva></li>
-<li><code>PrecioBase</code> (double y protegida)</li>
+<li><code>Servicios</code> (<code>List&lt;string&gt;</code>)</li>
+<li><code>Reservas</code> (<code>List&lt;Reserva&gt;</code>, protegida y de tipo agregación)</li>
 <li><code>Precio</code> propiedad pública calculada (double, readonly y redefinible)</li>
 <li><code>PlazasOcupadas</code> propiedad calculada (int, readonly y protegida) que devolverá el número total de reservas.</li>
 <li><code>PorcentajeOcupacion</code> propiedad calculada (int, readonly  y pública) que devolverá el porcentaje de ocupación.</li>
@@ -611,20 +613,20 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <ol>
 <li><code>AlbergueRural</code>:
 <ul>
-<li>Precio: si temporada alta en alguna reserva (existe alguna <code>EsTemporadaAlta</code>) y ocupación &gt; 20% =&gt; <code>PrecioBase * 2.15</code> si no <code>PrecioBase * 1.15</code> ya aplicado por incluir desayuno y cena.</li>
+<li>Precio: si temporada alta en alguna reserva (existe alguna <code>EsTemporadaAlta</code>) y ocupación &gt; 20% =&gt; <code>Precio * 2.15</code> si no <code>Precio * 1.15</code> ya aplicado por incluir desayuno y cena.</li>
 <li>AdmiteReserva: además de la base, rechaza peticiones &gt; 50% de la capacidad total en una sola reserva.</li>
 <li>InformacionComplementaria devuelve un texto de clima simulado.</li>
 </ul>
 </li>
 <li><code>AlbergueUrbano</code>:
 <ul>
-<li>Precio: si ocupación &gt;= 60% =&gt; <code>PrecioBase * 1.10</code> si no <code>PrecioBase</code>.</li>
+<li>Precio: si ocupación &gt;= 60% =&gt; <code>Precio * 1.10</code> si no <code>Precio</code>.</li>
 <li>AdmiteReserva: permite reservas grandes mientras queden plazas (no añade restricciones extra).</li>
 </ul>
 </li>
 <li><code>AlbergueCostero</code>:
 <ul>
-<li>Precio: si es temporada alta en la última reserva registrada =&gt; <code>PrecioBase + 3</code> y si ocupación &gt; 40% añade +2 extra.</li>
+<li>Precio: si es temporada alta en la última reserva registrada =&gt; <code>Precio + 3</code> y si ocupación &gt; 40% añade +2 extra.</li>
 <li>AdmiteReserva: rechaza si temporada ALTA y plazas solicitadas &gt; 60% de la capacidad restante.</li>
 <li>InformacionComplementaria devuelve un texto sobre el oleaje.</li>
 </ul>
