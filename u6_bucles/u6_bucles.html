@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     

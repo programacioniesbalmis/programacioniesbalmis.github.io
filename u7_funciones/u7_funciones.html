@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -21,7 +21,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
 @page a4landscape {
   size: A4 landscape;
@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -1219,7 +1345,7 @@ Número válido introducido: 5
 </pre>
 <div style="page-break-after:always;"></div>
 <h3 id="resumen-y-consejos-para-definir-un-interfaz">Resumen y consejos para definir un interfaz </h3>
-<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="MINDMAP" height="390px" preserveAspectRatio="none" style="width:732px;height:390px;background:#FFFFFF;" version="1.1" viewBox="0 0 732 390" width="732px" zoomAndPan="magnify"><defs></defs><g><rect fill="#FFFFFF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="117.9307" x="10" y="163.2959"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="81.7305" x="28.1001" y="191.4277">Según el tipo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="15.5723" x="25" y="207.5264">de</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="68.4688" x="44.4619" y="207.5264">parámetro</text><rect fill="#FFFFFF" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="82.124" x="187.9307" y="33.0493"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="52.124" x="202.9307" y="61.1812">Entrada</text><rect fill="#F5F5F5" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="180.1924" x="330.0547" y="25"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="150.1924" x="345.0547" y="53.1318">Paso de parámetros por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="33.4619" x="403.4199" y="69.2305">valor</text><path d="M270.0547,56.0986 L280.0547,56.0986 C295.0547,56.0986 305.0547,56.0986 320.0547,56.0986 L330.0547,56.0986" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,56.0986 177.9307,56.0986 L187.9307,56.0986" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#FFFFFF" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="71.2412" x="187.9307" y="171.3452"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="41.2412" x="202.9307" y="199.4771">Salida</text><rect fill="#F5F5F5" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="152.1855" x="319.1719" y="163.2959"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="118.2959" x="334.1719" y="191.4277">Usando la cláusula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="47.1064" x="371.7114" y="207.5264">'return'</text><rect fill="#F0F8FF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="169.3096" x="531.3574" y="117.1973"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="17.8965" x="552.2158" y="145.3291">Un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="73.8965" x="574.002" y="145.3291">tipo simple</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="28.0205" x="651.7881" y="145.3291">para</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="139.3096" x="546.3574" y="161.4277">un solo valor de salida</text><path d="M471.3574,194.3945 L481.3574,194.3945 C496.3574,194.3945 506.3574,148.2959 521.3574,148.2959 L531.3574,148.2959" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#F0F8FF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="189.5371" x="531.3574" y="209.3945"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="17.8965" x="567.7847" y="237.5264">Un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="62.9863" x="589.5708" y="237.5264">tipo tupla</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="28.0205" x="656.4468" y="237.5264">para</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="159.5371" x="546.3574" y="253.625">más de un valor de salida</text><path d="M471.3574,194.3945 L481.3574,194.3945 C496.3574,194.3945 506.3574,240.4932 521.3574,240.4932 L531.3574,240.4932" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M259.1719,194.3945 L269.1719,194.3945 C284.1719,194.3945 294.1719,194.3945 309.1719,194.3945 L319.1719,194.3945" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,194.3945 177.9307,194.3945 L187.9307,194.3945" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#FFC0CB" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="180.5684" x="187.9307" y="301.5918"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="97.2549" x="229.5874" y="329.7236">Entrada/Salida</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="150.5684" x="202.9307" y="345.8223">No lo vamos ha hacer 💀</text><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,332.6904 177.9307,332.6904 L187.9307,332.6904" fill="none" style="stroke:#000000;stroke-width:1;"></path><!--SRC=[VP9TQXin4CVVTOg1FYHPo8TTkwGcb2Isa-BQgQdZlDHv6EzEriBQqI9fNP8Iw1bwWU9hzDKNwX4wk_57AQLYMQJHp6_-8_xdFg0BcUOamrmfGmy1WWMdqrc0H3kAWxQir9aFZuRUgNLcHsFgC8El2cJrDLDiZNKmDHZFgzYLvN236S65qsYseP5-8gWrgZFRXDQ4SWqnIJIdK6jkGmDqgUO_8- -jqq_2GNDXTCePSO1OVkIsAPSYuThPWfDsfUdBJ0UgRf_LipexNa-Y8XXHklh9G0Q2pks4HKuKvUXMouo2ir4aIP64kXmS9YZdA8e-lwg0FhDpkXVHteBKxQeyvDPDE8eMADrBnWjaX4R_cp7so8a5Wn2RrRBmXUnAm9wZK3ZUUwcH8Y74D3L5MSE2B5M3rrbkI5g819nmmU1bRAYwbyfyrVT_X53a1hU0RBNqPPs0_cQe4f5hdj_l7kLuCzU4RsI6id4cRp13-M9oyEl7zszAdPFOPcEoeK4Euq4V5kIyk0jgH_MJUlEeiJ_203rfN3-5sklMoTjMlGdjxkWMoli3jNyzxCjqXOj9lEc3qzEYjEU1wk42uLF1GMVKWeyvSQ_pOHE0BY-qivLPLEzki4juqpYyr45yu4GAt0rKXnwmC44gObkQiGNZswl3KzL7JWjCXKrUjSLRmJsse3lw3G00]--></g></svg></p><p></p>
+<p></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="MINDMAP" height="390px" preserveAspectRatio="none" style="width:732px;height:390px;background:#FFFFFF;" version="1.1" viewBox="0 0 732 390" width="732px" zoomAndPan="magnify"><defs></defs><g><rect fill="#FFFFFF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="117.9307" x="10" y="163.2959"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="81.7305" x="28.1001" y="191.4277">Según el tipo</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="15.5723" x="25" y="207.5264">de</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="68.4688" x="44.4619" y="207.5264">parámetro</text><rect fill="#FFFFFF" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="82.124" x="187.9307" y="33.0493"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="52.124" x="202.9307" y="61.1812">Entrada</text><rect fill="#F5F5F5" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="180.1924" x="330.0547" y="25"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="150.1924" x="345.0547" y="53.1318">Paso de parámetros por</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="33.4619" x="403.4199" y="69.2305">valor</text><path d="M270.0547,56.0986 L280.0547,56.0986 C295.0547,56.0986 305.0547,56.0986 320.0547,56.0986 L330.0547,56.0986" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,56.0986 177.9307,56.0986 L187.9307,56.0986" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#FFFFFF" height="46.0986" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="71.2412" x="187.9307" y="171.3452"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="41.2412" x="202.9307" y="199.4771">Salida</text><rect fill="#F5F5F5" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="152.1855" x="319.1719" y="163.2959"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="118.2959" x="334.1719" y="191.4277">Usando la cláusula</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="47.1064" x="371.7114" y="207.5264">'return'</text><rect fill="#F0F8FF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="169.3096" x="531.3574" y="117.1973"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="17.8965" x="552.2158" y="145.3291">Un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="73.8965" x="574.002" y="145.3291">tipo simple</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="28.0205" x="651.7881" y="145.3291">para</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="139.3096" x="546.3574" y="161.4277">un solo valor de salida</text><path d="M471.3574,194.3945 L481.3574,194.3945 C496.3574,194.3945 506.3574,148.2959 521.3574,148.2959 L531.3574,148.2959" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#F0F8FF" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="189.5371" x="531.3574" y="209.3945"></rect><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="17.8965" x="567.7847" y="237.5264">Un</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="62.9863" x="589.5708" y="237.5264">tipo tupla</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="28.0205" x="656.4468" y="237.5264">para</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="159.5371" x="546.3574" y="253.625">más de un valor de salida</text><path d="M471.3574,194.3945 L481.3574,194.3945 C496.3574,194.3945 506.3574,240.4932 521.3574,240.4932 L531.3574,240.4932" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M259.1719,194.3945 L269.1719,194.3945 C284.1719,194.3945 294.1719,194.3945 309.1719,194.3945 L319.1719,194.3945" fill="none" style="stroke:#000000;stroke-width:1;"></path><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,194.3945 177.9307,194.3945 L187.9307,194.3945" fill="none" style="stroke:#000000;stroke-width:1;"></path><rect fill="#FFC0CB" height="62.1973" rx="12.5" ry="12.5" style="stroke:#000000;stroke-width:1.5;" width="180.5684" x="187.9307" y="301.5918"></rect><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="97.2549" x="229.5874" y="329.7236">Entrada/Salida</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="150.5684" x="202.9307" y="345.8223">No lo vamos ha hacer 💀</text><path d="M127.9307,194.3945 L137.9307,194.3945 C152.9307,194.3945 162.9307,332.6904 177.9307,332.6904 L187.9307,332.6904" fill="none" style="stroke:#000000;stroke-width:1;"></path><!--SRC=[VLBRQXin47tNLmpq8V52BdRjaffGSdDIZ1rCryvBdOVnhh8MqOuMNLoI4kWtz0UAVwEl_g5-GaVhIqef5SiYZUPSHfmpvz7wKb5UOYM4bWyUl06hYhc7N5cPUML8Y5FddxJy83QTLmeBYoLy5S1he4XcHXiBCutPOrsxDkHliPHmRXNgNIbLpnAQxVfC9fSRXhX6cEUA2cXsTgKXsaBHdvMFngfdva5zhbL1fIGF6V-atRLSi8KRQmBbbxMdBtFbPNtx8bx4wT5c4f50AelLJmAfmQlAJ8dj94c5ThKifRScIRWfuLAFlCKS-PmaoUStDQ4hpQEyPzFE0EDUKGugOwUK90jazSYn9abHgtzpJ1nIRa0ZP7gr32xmBXBiMUc3fRqrXa7CaCcP3X53J1bTWrDbfILBi0MSKY1mF3RKwj6PgtN_n-13fN57KAwMBkAOw6yE4IagHO_thuzoj9rhIhSyGnGk-Gtco5ycBVpwyVsR46UIOxCDsKWZ-Sbm00jf7QSBceUjurRdiBsVeeS-2xTEeFcsU_o-s-h0PIyTGxnlYFsRqO2d2pQJd4tdhPg56C-6wEC2uLCWhqhPXNZQ7myRaFQsHUZHGbbJ1qRqxuRh9ewJJolZw-PtxOCBvJaKbdt1tL1SoGSCsZCqCp6PNPYChmzEn02f25Yma7JYaeFcxLCNUkbl]--></g></svg></p><p></p>
 <h4 id="determinar-el-nombre-o-identificador">Determinar el nombre o identificador </h4>
 <ol>
 <li>Usaremos <strong>PascalCasing</strong>. Ej: double CalculaDistancia(…)</li>

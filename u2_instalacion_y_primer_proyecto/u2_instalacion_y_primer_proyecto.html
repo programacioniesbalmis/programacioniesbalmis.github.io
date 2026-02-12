@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -21,7 +21,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
   font-family: 'Catamaran';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/catamaran/v27/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/catamaran/v28/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5a7dvg.ttf) format('truetype');
 }
 @page a4landscape {
   size: A4 landscape;
@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -332,7 +458,7 @@ Tiene varios inconvenientes:</p>
 <p>Si al ejecutar VS Code detecta la carpeta <strong><code>data</code></strong>, dentro de la misma creara la carpeta <strong><code>user-data</code></strong> donde se guardarán los datos de configuración del editor y la carpeta <strong><code>extensions</code></strong> donde se guardarán las extensiones que instalemos.</p>
 </div>
 <div class="col-sm-4 my-auto">
-<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="86.4px" preserveAspectRatio="none" style="width:183px;height:86px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 86" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.6" x="43.2" y="58.3734">[data]</text><path d="M32.4,66.45 L32.4,67.65 L42,67.65 L42,66.45 L32.4,66.45 M32.4,68.85 L32.4,75.942 C32.4,76.002 32.448,76.05 32.508,76.05 L41.88,76.05 C41.94,76.05 41.988,76.002 41.988,75.942 L41.988,68.85 L38.424,68.85 L38.424,70.086 L35.988,70.086 L35.988,68.85 L32.388,68.85 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="76.4859">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="70.5938" y2="70.5938"></line><!--SRC=[LKvDQuD04BtlhvXJIGoACIOKAINKc88rD5JZHN9OTMeNp6vPLsi9-UzP8w5qBZFpldZhHb6f6beh0YGkQ8qmjnnzdmdeEIUtDOEdXrpqpraQ-w94yuVnXMFsAzUohEEecC70MDZZ_HyjXf6LLD6ZOVp7ivpnqNeX5x96NjvAa7rDkJhi8kXGDapmeOxjkDPYadoriCKSvajmRC-rFNi9Vf30G4_9v7KVGIDQMI2Kh56IvQtI_Ya9QKVXe-MAdT23zs_auURj3a30EoO5Fo5N94ntVuALQxum1J5AtGJI7TdW9srhfHs5A1clF3WaM_EHH9HNBQrqDZR45pfN_deGn5S0]--></g></svg></p><p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="122.4px" preserveAspectRatio="none" style="width:183px;height:122px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 122" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="62.4" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.6" x="43.2" y="58.3734">[data]</text><path d="M44.4,66.45 L44.4,67.65 L54,67.65 L54,66.45 L44.4,66.45 M44.4,68.85 L44.4,75.942 C44.4,76.002 44.448,76.05 44.508,76.05 L53.88,76.05 C53.94,76.05 53.988,76.002 53.988,75.942 L53.988,68.85 L50.424,68.85 L50.424,70.086 L47.988,70.086 L47.988,68.85 L44.388,68.85 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="70.8" x="55.2" y="76.4859">[user-data]</text><path d="M44.4,84.5625 L44.4,85.7625 L54,85.7625 L54,84.5625 L44.4,84.5625 M44.4,86.9625 L44.4,94.0545 C44.4,94.1145 44.448,94.1625 44.508,94.1625 L53.88,94.1625 C53.94,94.1625 53.988,94.1145 53.988,94.0545 L53.988,86.9625 L50.424,86.9625 L50.424,88.1985 L47.988,88.1985 L47.988,86.9625 L44.388,86.9625 " fill="#808080" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="79.2" x="55.2" y="94.5984">[extensions]</text><path d="M32.4,102.675 L32.4,103.875 L42,103.875 L42,102.675 L32.4,102.675 M32.4,105.075 L32.4,112.167 C32.4,112.227 32.448,112.275 32.508,112.275 L41.88,112.275 C41.94,112.275 41.988,112.227 41.988,112.167 L41.988,105.075 L38.424,105.075 L38.424,106.311 L35.988,106.311 L35.988,105.075 L32.388,105.075 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="112.7109">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="51.2813"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="70.5938" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="88.7063" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="106.8188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="106.8188" y2="106.8188"></line><!--SRC=[VKzRQy8m57xFhpXFGoijjLOPPOYiwi0faxNw8dr8sxCkK9EHYwk8_tsf5yPUbfVaVBUJRw8qbLhHMXCWIK5hXBuNsFU9W3sdz7BruEaX5yrujqrYKQBxpVWWS9jHw7bUTbNqe6KyRF0-NosEiokfffdZt71B5A8MCgeaFOvlkKQXT2-w_rJOQEIA2QwolqjsEUDNw4pEP8Ayl3GYwvfolLajuO2ozRNT_23q1ftqqy0SS-WF8V2Zq8_y8SIp55gwIpelwoKeOMI1K3Ab9SkDjlukMT03XNV3DTjZ16zVo1VJrpi0CtvWKl0zSaqMszMlO1Iwpqn3WjB-1BOhCiKFQcfj7OKe6QyYsAHpzv4iAQyChMmsAX8BcokF4SoI7m00]--></g></svg></p></div>
+<p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SALT" height="86.4px" preserveAspectRatio="none" style="width:183px;height:86px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 86" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144.0703" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="61.643" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.1992" x="43.2" y="58.3734">[data]</text><path d="M32.4,66.45 L32.4,67.65 L42,67.65 L42,66.45 L32.4,66.45 M32.4,68.85 L32.4,75.942 C32.4,76.002 32.448,76.05 32.508,76.05 L41.88,76.05 C41.94,76.05 41.988,76.002 41.988,75.942 L41.988,68.85 L38.424,68.85 L38.424,70.086 L35.988,70.086 L35.988,68.85 L32.388,68.85" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.218" x="43.2" y="76.4859">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="70.5938" y2="70.5938"></line><!--SRC=[LKvDQuD04BtlhvXJKODBOZv8fPJGrBP8XD0rNYI7DMvbmUoMTRIMaF_UDP93vpBpthmtypODSeCDhv40OITU2vZHmCuN0hOkwQrDuEcXqFrpdh6jBeN_8zKyyFlLWb9w71KJ63PKzEAEHuldvIL7VlIy_tnUI3LQh-HADaALjn1aNtE5XsG7dJ2Dr6g8CmsMTE4mZX2t2e8rpERXz34Cbh2DM0h3tYNE-tu7ZMxDIK0f6pIoQD4US4dCEmwVhK9v5Y4Co4aJ5rXq9o5IdJHQdOL24cV9A88FZUnRuqsyMlWl4e49OtD1bf1NySNR6gtrf4kfgX0EwPk_9ZkkgfPNzf5eo5RR1-OtX8Zz0G00]--></g></svg></p><p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SALT" height="122.4px" preserveAspectRatio="none" style="width:183px;height:122px;background:#FFFFFF;" version="1.1" viewBox="0 0 183 122" width="183.6px" zoomAndPan="magnify"><defs></defs><g><path d="M20.4,12.1125 L20.4,13.3125 L30,13.3125 L30,12.1125 L20.4,12.1125 M20.4,14.5125 L20.4,21.6045 C20.4,21.6645 20.448,21.7125 20.508,21.7125 L29.88,21.7125 C29.94,21.7125 29.988,21.6645 29.988,21.6045 L29.988,14.5125 L26.424,14.5125 L26.424,15.7485 L23.988,15.7485 L23.988,14.5125 L20.388,14.5125" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="144.0703" x="31.2" y="22.1484">[VSCode-win32-x64...]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="61.643" x="31.2" y="40.2609">Code.exe</text><path d="M32.4,48.3375 L32.4,49.5375 L42,49.5375 L42,48.3375 L32.4,48.3375 M32.4,50.7375 L32.4,57.8295 C32.4,57.8895 32.448,57.9375 32.508,57.9375 L41.88,57.9375 C41.94,57.9375 41.988,57.8895 41.988,57.8295 L41.988,50.7375 L38.424,50.7375 L38.424,51.9735 L35.988,51.9735 L35.988,50.7375 L32.388,50.7375" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="39.1992" x="43.2" y="58.3734">[data]</text><path d="M44.4,66.45 L44.4,67.65 L54,67.65 L54,66.45 L44.4,66.45 M44.4,68.85 L44.4,75.942 C44.4,76.002 44.448,76.05 44.508,76.05 L53.88,76.05 C53.94,76.05 53.988,76.002 53.988,75.942 L53.988,68.85 L50.424,68.85 L50.424,70.086 L47.988,70.086 L47.988,68.85 L44.388,68.85" fill="#808080"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="68.8359" x="55.2" y="76.4859">[user-data]</text><path d="M44.4,84.5625 L44.4,85.7625 L54,85.7625 L54,84.5625 L44.4,84.5625 M44.4,86.9625 L44.4,94.0545 C44.4,94.1145 44.448,94.1625 44.508,94.1625 L53.88,94.1625 C53.94,94.1625 53.988,94.1145 53.988,94.0545 L53.988,86.9625 L50.424,86.9625 L50.424,88.1985 L47.988,88.1985 L47.988,86.9625 L44.388,86.9625" fill="#808080"></path><text fill="#808080" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8445" x="55.2" y="94.5984">[extensions]</text><path d="M32.4,102.675 L32.4,103.875 L42,103.875 L42,102.675 L32.4,102.675 M32.4,105.075 L32.4,112.167 C32.4,112.227 32.448,112.275 32.508,112.275 L41.88,112.275 C41.94,112.275 41.988,112.227 41.988,112.167 L41.988,105.075 L38.424,105.075 L38.424,106.311 L35.988,106.311 L35.988,105.075 L32.388,105.075" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.218" x="43.2" y="112.7109">[bin]</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="15.0562"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="34.3688"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="34.3688" y2="34.3688"></line><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="22.8" y="51.2813"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="52.4812" y2="52.4812"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="70.5938" y2="70.5938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="24" y1="54.8813" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="24" x2="33.6" y1="88.7063" y2="88.7063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="18.6563" y2="106.8188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="106.8188" y2="106.8188"></line><!--SRC=[VKzBQy904BxlhvXJyK62HYis597Qj4KCI3Tw4GzhCWqBSRViJcn4_E_T97hefNFPcUyntyxSaZ1aHK4C64z5WJ3q0zTV6BYw9CtJX-U7WwvckorVw0oz7wb6WLTDnhxlxrj57sh6nmhlSslfzNQP8B7lzMwu8r9TQ1FcHfndjxsbHUCrklzKM14gAxMo-xyXkuDKBNHbLpP7bJKNiNKX56tY5PpGrBxwja7mw8yxN10iImN158QZSF0K1e-mY7W2DTzbdVVr2gmkJOgGIKj67afo2xfiAKu2Faj5yeWXr5CdYRl0epi8aJf9ezKH5R7bDcv5yA69Vsjgn9Enzo89E1htBzZ6x1M_H5cGiwOwaoeFOPEyULEs4YelHUw2qBA5TW7c74B4Vm40]--></g></svg></p></div>
 </div>
 <p>Si <strong>quisiéramos actualizar</strong> la versión de VS Code, solo tendríamos que copiar la nueva versión en la carpeta <strong><code>VSCode-win32-x64...</code></strong> y no perderíamos los datos de configuración ni las extensiones instaladas. También podríamos descomprimir en una nueva ubicación y copiar la carpeta <strong><code>data</code></strong> a la nueva ubicación.</p>
 <h3 id="instalando-extensiones">Instalando extensiones </h3>
@@ -489,7 +615,7 @@ C:\ejemplo&gt;dotnet new globaljson
 <p>Lo más simple para abrir un proyecto creado desde la consola, sería abrir o arrastrar a VS Code la carpeta donde se encuentra el proyecto. En nuestro caso <strong><code>C:\ejemplo</code></strong>. Automáticamente nos abrirá el proyecto y la solución si existe. Si no existe, <strong>creará una solución con el mismo nombre que el proyecto</strong> y añadirá el proyecto a la solución.</p>
 </div>
 <div class="col-sm-4 my-auto">
-<p align="center" class="puml"><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="147.6px" preserveAspectRatio="none" style="width:138px;height:147px;background:#FFFFFF;" version="1.1" viewBox="0 0 138 147" width="138px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="63.6" x="31.2" y="47.4609">[ejemplo]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="65.5734">[bin]</text><path d="M32.4,73.65 L32.4,74.85 L42,74.85 L42,73.65 L32.4,73.65 M32.4,76.05 L32.4,83.142 C32.4,83.202 32.448,83.25 32.508,83.25 L41.88,83.25 C41.94,83.25 41.988,83.202 41.988,83.142 L41.988,76.05 L38.424,76.05 L38.424,77.286 L35.988,77.286 L35.988,76.05 L32.388,76.05 " fill="#000000" style="stroke:;stroke-width:0.0;stroke-dasharray:;"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.6" x="43.2" y="83.6859">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="98.4" x="31.2" y="101.7984">ejemplo.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="78" x="31.2" y="119.9109">ejemplo.sln</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="76.8" x="31.2" y="138.0234">Program.cs</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="77.7938" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="114.0188" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="132.1313" y2="132.1313"></line><!--SRC=[NOxTQi9048NlzodcgkYA4cqi9PGYzQTW4ofDzAPLsCHfkY7PbTrDg8ZltargAdHkPlZEdCEPQCEKqImt14YOi1nXE1ZP-qJ0pcxgVUoQwnGrgmUKFjp4ylln7JCi3hdSKlghzE0Yn5ni_o4PPt_euXia-g1arb9AMwvpSOrSAPagLjXdswbcPt8c4nJxfZ9PvKoOTU13XKfpAUhopiWTt7QYhn8M6CDm32F7SntF6SDq7a4jTqddUUM3bgLA4FPS6yNZqbX_bonPnU2j58ONwC7h0SLozj82c8kAAoaA58OiDy7ruSxjFt438IhR13O1cU4dAtDZ7OdSSv5wi8uM_NlYCv6MBBNPgCbKsbnrz60U_W00]--></g></svg></p></div>
+<p align="center" class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" data-diagram-type="SALT" height="147.6px" preserveAspectRatio="none" style="width:132px;height:147px;background:#FFFFFF;" version="1.1" viewBox="0 0 132 147" width="132px" zoomAndPan="magnify"><defs></defs><g><rect fill="#EEEEEE" height="21.7125" style="stroke:#000000;stroke-width:1.2;" width="46.8" x="7.2" y="7.2"></rect><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="18.4008" x="9.6" y="24.5484">C:\</text><line style="stroke:#000000;stroke-width:1.2;" x1="40.8" x2="40.8" y1="7.2" y2="28.9125"></line><polygon fill="#000000" points="44.4,14.4,51.6,14.4,48,22.9125" style="stroke:#000000;stroke-width:1.2;"></polygon><path d="M20.4,37.425 L20.4,38.625 L30,38.625 L30,37.425 L20.4,37.425 M20.4,39.825 L20.4,46.917 C20.4,46.977 20.448,47.025 20.508,47.025 L29.88,47.025 C29.94,47.025 29.988,46.977 29.988,46.917 L29.988,39.825 L26.424,39.825 L26.424,41.061 L23.988,41.061 L23.988,39.825 L20.388,39.825" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="64.0055" x="31.2" y="47.4609">[ejemplo]</text><path d="M32.4,55.5375 L32.4,56.7375 L42,56.7375 L42,55.5375 L32.4,55.5375 M32.4,57.9375 L32.4,65.0295 C32.4,65.0895 32.448,65.1375 32.508,65.1375 L41.88,65.1375 C41.94,65.1375 41.988,65.0895 41.988,65.0295 L41.988,57.9375 L38.424,57.9375 L38.424,59.1735 L35.988,59.1735 L35.988,57.9375 L32.388,57.9375" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.218" x="43.2" y="65.5734">[bin]</text><path d="M32.4,73.65 L32.4,74.85 L42,74.85 L42,73.65 L32.4,73.65 M32.4,76.05 L32.4,83.142 C32.4,83.202 32.448,83.25 32.508,83.25 L41.88,83.25 C41.94,83.25 41.988,83.202 41.988,83.142 L41.988,76.05 L38.424,76.05 L38.424,77.286 L35.988,77.286 L35.988,76.05 L32.388,76.05" fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="27.218" x="43.2" y="83.6859">[obj]</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="92.8406" x="31.2" y="101.7984">ejemplo.csproj</text><text fill="#000000" font-family="sans-serif" font-size="14.4" font-weight="bold" lengthAdjust="spacing" textLength="79.2211" x="31.2" y="119.9109">ejemplo.sln</text><text fill="#000000" font-family="sans-serif" font-size="14.4" lengthAdjust="spacing" textLength="73.6172" x="31.2" y="138.0234">Program.cs</text><rect fill="none" height="2.4" style="stroke:#888888;stroke-width:1.2;" width="2.4" x="10.8" y="40.3688"></rect><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="59.6813" y2="59.6813"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="77.7938" y2="77.7938"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="95.9063" y2="95.9063"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="114.0188" y2="114.0188"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="12" y1="43.9688" y2="132.1313"></line><line style="stroke:#888888;stroke-width:1.2;" x1="12" x2="21.6" y1="132.1313" y2="132.1313"></line><!--SRC=[NOxHQy8m4CRVyrVSqx0LYtOwN1b3vheDiL2MwikcaBPPYRI99DUo8VxlfbKtM5voz_k-k_jc1fb6mqeaG6Z6IWuZpxVrWO1zstdmkUsgGz9zVN3TXvjKVJz-y1slzgNQkEvPwSD5I8NS_4CgtVsYovoNcRrMkojrtIitfVnR6MjLQ5PPiytKiYCvaXcNUHUPn2MJk8gMq71jX99j-A4_ySOzoX0MjGH_2gFRO7WV-1EOXpI1LdT8xpLUWb6rpZZamg0MQOrsWKCMh67mNaiK5G-WxNf9v00Dhn12sGYjPCKbaiKwEflWJI7TA-pCT-F1aq2WNDjSi8x8C_zYTObsD5Eva4K0g-HbC2LB9ekQ5VOGDsIkx07z4q18Jm00]--></g></svg></p></div>
 </div>
 <h3 id="solución-con-varios-proyectos-desde-consola">Solución con varios proyectos desde consola </h3>
 <p>Veamos cómo sería el proceso, paso a paso:</p>
