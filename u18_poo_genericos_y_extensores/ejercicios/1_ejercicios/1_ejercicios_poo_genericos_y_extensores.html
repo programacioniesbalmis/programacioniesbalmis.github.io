@@ -417,19 +417,6 @@ Pulsa una tecla para continuar...
 <li>Propiedad <code>Conteo</code> que devuelve cuántas lecturas hay.</li>
 <li>Método <code>Agrega</code> que añade una nueva lectura al contenedor, pero solo en el caso de que esa lectura no se hubiese añadido antes (no permite contener lecturas repetidas)</li>
 <li>Método <code>LecturaIndice</code> al que le llegue un entero de posición y devuelva la lectura correcpondiente a esa posición o lanza una excepción de tipo <code>ContenedorException</code> con el mensaje apropiado si no existe esa lectura.</li>
-<li>Método private static string FormateaValor(T valor) con el siguiente código:<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>  <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">FormateaValor</span><span class="token punctuation">(</span><span class="token class-name">T</span> valor<span class="token punctuation">)</span> 
-  <span class="token punctuation">{</span>
-      <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>valor <span class="token keyword keyword-is">is</span> <span class="token class-name"><span class="token keyword keyword-float">float</span></span> f<span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-          <span class="token keyword keyword-return">return</span> f<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"F2"</span><span class="token punctuation">,</span> CultureInfo<span class="token punctuation">.</span>InvariantCulture<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>valor <span class="token keyword keyword-is">is</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> d<span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-          <span class="token keyword keyword-return">return</span> d<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"F2"</span><span class="token punctuation">,</span> CultureInfo<span class="token punctuation">.</span>InvariantCulture<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-      <span class="token keyword keyword-return">return</span> valor<span class="token punctuation">?.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-</code></pre></li>
 <li>Anula el <code>ToString</code> para que devuelva una cadena formateada como: <code>Lecturas (N): v1, v2, v3</code>. Donde N es la cantidad de lecturas recogidas.</li>
 <li>Método <code>Limpia</code> que elimina todas las lecturas.</li>
 <li>Método <code>AgregaRango</code> al que le llega un objeto de tipo <code>ContenedorLecturas</code> y las añadirá al contenedor. Solo las que no sean repetidas.</li>
@@ -485,6 +472,21 @@ Fin de la aplicación.
 <li>Método <code>Comprueba</code> Se ejecuta tras encender la alarma. Entra en un bucle mientras <code>encendida</code> sea true. Cada iteración obtiene <code>ValorActual</code> del sensor y lo compara con el <code>Umbral</code> (usa <code>IComparable&lt;T&gt;</code>). Si el valor supera el umbral y no está activada, llama a <code>Activa()</code>. Si el valor baja del umbral y está activada, llama a <code>Desactiva</code>. Debe hacer pequeñas pausas (<code>Thread.Sleep</code>) para no saturar la CPU. Si se detecta una tecla pulsada (<code>Console.KeyAvailable</code>), se pregunta: "¿Desea apagar la alarma? (S/N):". Si el usuario responde S (s o S), se llama <code>Apaga()</code> y se sale del bucle; en caso contrario el bucle continúa. Muestra cada lectura como se ve en la salida.</li>
 </ul>
 </li>
+<li>
+<p>Método private static string FormateaValor(T valor) con el siguiente código:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>  <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">FormateaValor</span><span class="token punctuation">(</span><span class="token class-name">T</span> valor<span class="token punctuation">)</span> 
+  <span class="token punctuation">{</span>
+      <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>valor <span class="token keyword keyword-is">is</span> <span class="token class-name"><span class="token keyword keyword-float">float</span></span> f<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+          <span class="token keyword keyword-return">return</span> f<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"F2"</span><span class="token punctuation">,</span> CultureInfo<span class="token punctuation">.</span>InvariantCulture<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>valor <span class="token keyword keyword-is">is</span> <span class="token class-name"><span class="token keyword keyword-double">double</span></span> d<span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+          <span class="token keyword keyword-return">return</span> d<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token string">"F2"</span><span class="token punctuation">,</span> CultureInfo<span class="token punctuation">.</span>InvariantCulture<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword keyword-return">return</span> valor<span class="token punctuation">?.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</code></pre></li>
 <li>
 <p>Implementa un método en la clase principal <code>GestionAlarma</code> de prueba que cree una alarma con <code>SensorBasico</code> (umbral configurable) y demuestre el flujo de: encender, comprobar, interactuar, continuar o apagar. Añade otra instancia usando <code>SensorPreciso</code> para mostrar lecturas con decimales.</p>
 </li>
