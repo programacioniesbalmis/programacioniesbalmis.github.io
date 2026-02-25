@@ -580,9 +580,10 @@ Presiona cualquier tecla para salir...
 <p>Completa el diseño mostrado en el diagrama aplicando estas pautas:</p>
 <ul>
 <li>La alarma tendrá siempre al menos un avisador (inyectado en el constructor) y permitirá añadir otros mediante <code>AñadeAvisador</code>. Rechaza valores nulos y evita duplicar la misma instancia.</li>
+<li>Los métodos <code>Activa</code> y <code>Desactiva</code> activarán y desactivarán todos los avisadores respectivamente (solo se desactivarán los que estén activos).</li>
 <li>Modificaremos el método Comprueba para que:
 <ul>
-<li>Al pasar de estado “no activada” a “activada” (supera umbral) se llama a <code>Activa</code> de todos los avisadores. Mientras que el umbral este superado, se llamará en cada pasada del bucle a Activa, para simular la realidad. Al volver a quedar por debajo del umbral se llama a <code>Desactiva</code> de todos (solo si estaban activos).</li>
+<li>Al pasar de estado “no activada” a “activada” (supera umbral) se llama a <code>Activa</code>. Mientras que el umbral este superado, se llamará en cada pasada del bucle a Activa, para simular la realidad. Al volver a quedar por debajo del umbral se llama a <code>Desactiva</code>.</li>
 </ul>
 </li>
 <li><code>Avisador Timbre</code> al activarse se activa el sonido (simulado mediante el mensaje Sonido) que irá apareciendo con pequeños retardos. El mensaje dejará de aparecer cuando el tiempo en segundos haya transcurrido o se haya bajado del umbral (usa DateTime para controlar esto).</li>
@@ -627,7 +628,7 @@ Presiona una tecla para finalizar...
 <li>Define el enum <code>TipoIngrediente</code>con al menos [Proteina, Carbohidrato, Grasa, Vegetal, Fruta, Especia, Liquido ]`.</li>
 <li>Crea el record base <code>Ingrediente(string Nombre, string Unidad, TipoIngrediente Tipo, double CaloriasPorGramo)</code>; sobrescribe <code>ToString()</code> para que devuelva solo el nombre.</li>
 <li>Crea el record <code>IngredienteReceta(string Nombre, string Unidad, TipoIngrediente Tipo, double CaloriasPorGramo, int CantidadUsada, double CaloriasTotales)</code>.</li>
-<li>Crea la clase estática <code>IngredienteExtension</code> con el método de extensión <code>ToIngrediente(this Ingrediente receta, int cantidadUsada)</code> que devuelve un <code>IngredienteReceta</code> calculando las calorías totales (cantidad * calorías/gramo).</li>
+<li>Crea la clase estática <code>IngredienteExtension</code> con el método de extensión <code>ToIngredienteReceta(this Ingrediente receta, int cantidadUsada)</code> que devuelve un <code>IngredienteReceta</code> calculando las calorías totales (cantidad * calorías/gramo).</li>
 <li>Crea la clase estática <code>IngredienteRecetaExtension</code> con el método <code>ToIngrediente(this IngredienteReceta receta)</code> que reconstruye el record base (sin cantidad ni calorías totales).</li>
 <li>Implementa la clase <code>Receta</code> con: propiedad <code>Nombre</code>, lista <code>List&lt;IngredienteReceta&gt; Ingredientes</code>, método <code>AgregaIngrediente(Ingrediente ingrediente, int cantidadUsada)</code> que usa el extensor, método <code>ListaIngredientes()</code> que devuelve una lista nueva de <code>Ingrediente</code> y método <code>CaloriasTotales()</code> que suma las calorías de cada elemento.</li>
 </ul>
