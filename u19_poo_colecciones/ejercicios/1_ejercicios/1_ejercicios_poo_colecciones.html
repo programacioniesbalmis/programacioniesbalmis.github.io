@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -388,7 +514,7 @@ Lista final (5 automóviles):
 <ul>
 <li>Verificar que el índice sea válido antes de eliminar.</li>
 <li>Comprobar que la lista no sea null en todos los métodos.</li>
-<li>Manejar casos donde no se encuentren automóviles que coincidan con los criterios de búsqueda.</li>
+<li>Manejar casos donde no se encuentren automóviles que coincidan con los criterios de búsqueda. En ese caso lanza un excepción que creas apropiada de la BCL.</li>
 </ul>
 </li>
 <li>
@@ -685,23 +811,38 @@ Pulsar Enter para salir...
 </pre>
 <p><strong>Requisitos</strong></p>
 <ul>
-<li>Usa la clase <code>Plato</code> del ejercicio 1.</li>
-<li>Clase <code>Pedido</code>: <code>NumeroMesa</code>, <code>Platos</code> (List<plato>), <code>FechaHora</code> (DateTime), <code>Total</code> (calculado).</plato></li>
-<li>Clase <code>Cliente</code>: <code>Nombre</code>, <code>HistorialPedidos</code> (List<pedido>), propiedades calculadas: <code>NumeroVisitas</code>, <code>GastoPromedio</code>.</pedido></li>
-<li>Clase <code>Restaurante</code> que use:
+<li>Define un enum <code>Categoria</code> con los valores: Entrante, Principal, Postre.</li>
+<li>Define la clase <code>Plato</code> con propiedades: <code>Nombre</code>, <code>Precio</code> (decimal), <code>Categoria</code>. Implementa <code>ToString</code> para mostrar nombre y precio.</li>
+<li>Define la clase <code>Pedido</code> con propiedades: <code>NumeroMesa</code>, <code>Platos</code> (List<plato>), <code>FechaHora</code> (DateTime).
 <ul>
-<li><code>SortedDictionary&lt;Categoria, List&lt;Plato&gt;&gt;</code> para menú organizado.</li>
-<li><code>Queue&lt;Pedido&gt;</code> para cola de cocina.</li>
-<li><code>Dictionary&lt;string, Cliente&gt;</code> para clientes frecuentes.</li>
+<li>Propiedad calculada <code>Total</code> que suma el precio de los platos.</li>
+<li>Implementa <code>ToString</code> para mostrar fecha, mesa, nombres de platos y total.</li>
+</ul>
+</plato></li>
+<li>Define la clase <code>Cliente</code> con propiedades: <code>Nombre</code>, <code>HistorialPedidos</code> (List<pedido>).
+<ul>
+<li>Propiedad calculada <code>NumeroVisitas</code> (conteo de pedidos).</li>
+<li>Propiedad calculada <code>GastoPromedio</code> (suma de totales / visitas).</li>
+<li>Implementa <code>ToString</code> para mostrar nombre, visitas, gasto promedio y el detalle de los pedidos.</li>
+</ul>
+</pedido></li>
+<li>Define la clase <code>Restaurante</code> que gestione:
+<ul>
+<li><code>_menu</code>: <code>SortedDictionary&lt;Categoria, List&lt;Plato&gt;&gt;</code> para organizar los platos por categoría.</li>
+<li><code>_colaPedidos</code>: <code>Queue&lt;Pedido&gt;</code> para gestionar los pedidos en orden de llegada.</li>
+<li><code>_clientes</code>: <code>Dictionary&lt;string, Cliente&gt;</code> para almacenar clientes por nombre.</li>
 </ul>
 </li>
-<li>Métodos principales:
+<li>Implementa los siguientes métodos en <code>Restaurante</code>:
 <ul>
-<li><code>AgregaPlato(Plato plato)</code> - organiza por categoría.</li>
-<li><code>EncolaPedido(Pedido pedido)</code> - añade a cola de cocina.</li>
-<li><code>ProcesaPedido()</code> - saca de la cola y procesa.</li>
-<li><code>ActualizaCliente(string nombre, Pedido pedido)</code> - actualiza historial.</li>
-<li><code>TopClientesFrecuentes(int cantidad)</code> - ordena por número de visitas.</li>
+<li><code>AgregaPlato(Plato plato)</code>: Añade el plato a la lista correspondiente en el diccionario <code>_menu</code>. Si la categoría no existe, la crea.</li>
+<li><code>EncolaPedido(Pedido pedido)</code>: Añade un pedido a la cola <code>_colaPedidos</code>.</li>
+<li><code>ProcesaPedido()</code>: Saca el siguiente pedido de la cola y muestra un mensaje simulando que se cocina.</li>
+<li><code>ActualizaCliente(string nombre, Pedido pedido)</code>: Busca al cliente (o lo crea si no existe) y añade el pedido a su historial.</li>
+<li><code>MuestraMenu()</code>: Recorre el diccionario <code>_menu</code> y muestra los platos agrupados por categoría.</li>
+<li><code>MuestraColaPedidos()</code>: Muestra los pedidos pendientes en la cola.</li>
+<li><code>PlatoDe(string nombre)</code>: Busca un plato por nombre en todo el menú y lo devuelve.</li>
+<li><code>AñadeCliente(Cliente c)</code>: Añade un cliente directamente al diccionario <code>_clientes</code>.</li>
 </ul>
 </li>
 </ul>
