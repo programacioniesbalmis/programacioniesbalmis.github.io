@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
       
       
       
@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -238,20 +364,15 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
           <a href="#ejercicio-4-datos-binarios-y-exportación-csv" class="md-toc-link">
             <p>Ejercicio 4. Datos Binarios y Exportación CSV</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#ejercicio-5-diario-con-streamwriter-y-streamreader" class="md-toc-link"><p>Ejercicio 5. Diario con StreamWriter y StreamReader</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ejercicio-5-diario-con-streamwriter-y-streamreader" class="md-toc-link">
+            <p>Ejercicio 5. Diario con StreamWriter y StreamReader</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#ejercicio-6-procesamiento-de-archivos-y-conteo-de-palabras" class="md-toc-link">
             <p>Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras</p>
 
           </a></div>
-        </div>
-      </details>
-    
 </div>
 <h2 id="ejercicios-unidad-21---ficheros">Ejercicios Unidad 21 - Ficheros </h2>
 <p><a href="./1_ejercicios_ficheros.pdf">Descargar estos ejercicios</a></p>
@@ -274,7 +395,7 @@ Ruta con extensión cambiada: carpeta1\Documentos\archivo1.bak
 Nombre aleatorio generado: h2ydt234.gsr
 Pulsa una tecla para finalizar...
 </pre>
-<p><strong>Requisitos</strong></p>
+<p><strong>Requisitos:</strong></p>
 <p>Crea un programa que solicite al usuario el nombre de un archivo (con extensión) y el nombre de una carpeta. Utiliza la clase <code>Path</code> para realizar las siguientes operaciones y mostrar los resultados por consola:</p>
 <ol>
 <li><strong>Combinar</strong>: Crea una ruta completa combinando la carpeta, el nombre del archivo y una subcarpeta llamada "Documentos". (Ej: <code>carpeta\Documentos\archivo.txt</code>).</li>
@@ -302,8 +423,8 @@ mensaje_movido.txt
 s
 Carpeta Laboratorio y contenido eliminados.
 Pulsa una tecla para finalizar...
-</pre> 
-<p><strong>Requisitos</strong></p>
+</pre>
+<p><strong>Requisitos:</strong></p>
 <p>Crea un programa que realice la siguiente secuencia de acciones controlada. Muestra mensajes por consola tras cada paso.</p>
 <ol>
 <li>Crea una carpeta llamada "Laboratorio" en el directorio actual.</li>
@@ -324,23 +445,24 @@ Fichero datos_origen.dat creado con 100 bytes aleatorios.
 Copia finalizada.
 Verificación exitosa: datos_destino.dat existe y tiene el mismo tamaño (100 bytes).
 Pulsa una tecla para finalizar...
-</pre> 
-<p><strong>Requisitos</strong></p>
+</pre>
+<p><strong>Requisitos:</strong></p>
 <ol>
-<li>En el método <code>GeneraFicheroOrigen</code> al que le llega el nombre del fichero, genera programáticamente un fichero y escribe en él 100 bytes con valores aleatorios (puedes usar un array de bytes y <code>File.WriteAllBytes</code> para prepararlo).</li>
-<li>Implementa un método <code>CopiaFichero(string origen, string destino)</code> que:
+<li>En el método <strong><code>GeneraFicheroOrigen</code></strong> al que le llega el nombre del fichero, genera programáticamente un fichero y escribe en él 100 bytes con valores aleatorios (puedes usar un array de bytes y <strong><code>File.WriteAllBytes</code></strong> para prepararlo).</li>
+<li>Implementa un método <strong><code>CopiaFichero</code></strong> que:
 <ul>
-<li>Abra un <code>FileStream</code> de lectura sobre el origen.</li>
-<li>Abra un <code>FileStream</code> de escritura sobre el destino.</li>
-<li>Lea el fichero origen <strong>byte a byte</strong> (usando <code>ReadByte()</code>) y lo escriba en el destino (usando <code>WriteByte()</code>) hasta llegar al final del stream.</li>
+<li>Abra un <strong><code>FileStream</code></strong> de lectura sobre el origen.</li>
+<li>Abra un <strong><code>FileStream</code></strong> de escritura sobre el destino.</li>
+<li>Lea el fichero origen <strong>byte a byte</strong> (usando <strong><code>ReadByte()</code></strong>) y lo escriba en el destino (usando <strong><code>WriteByte()</code></strong>) hasta llegar al final del stream.</li>
 <li><em>Opcional: Si te animas, hazlo con un buffer de 1024 bytes en lugar de byte a byte para ser más eficiente.</em></li>
 </ul>
 </li>
-<li>Crea el método <code>VerificaCopia</code>al que le llegan los nombres de ficheros origen y destino y se encarga de Verificar que el fichero destino existe y tiene el mismo tamaño que el origen.</li>
+<li>Crea el método <strong><code>VerificaCopia</code></strong> al que le llegan los nombres de ficheros origen y destino y se encarga de Verificar que el fichero destino existe y tiene el mismo tamaño que el origen.</li>
 </ol>
-<blockquote>
-<p>💡 <strong>Nota:</strong> Recuerda usar bloques <code>using</code> para asegurar que los streams se cierran y liberan los recursos correctamente.</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Recuerda usar bloques <strong><code>using</code></strong> para asegurar que los streams se cierran y liberan los recursos correctamente.</p>
+</div>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-4-datos-binarios-y-exportación-csv">Ejercicio 4. Datos Binarios y Exportación CSV </h2>
@@ -356,20 +478,20 @@ Producto: Huevos, Precio: 2,5, Stock: 20
 Datos exportados a inventario.csv (CSV).
 
 Pulsa una tecla para finalizar...
-</pre> 
-<p><strong>Requisitos</strong></p>
-<p>Crea una clase simple <code>Producto</code> con las propiedades: <code>string Nombre</code>, <code>double Precio</code>, <code>int Stock</code>.<br>
+</pre>
+<p><strong>Requisitos:</strong></p>
+<p>Crea una clase simple <strong><code>Producto</code></strong> con las propiedades: <strong><code>string Nombre</code></strong>, <strong><code>double Precio</code></strong>, <strong><code>int Stock</code></strong>.<br>
 Crea una lista con 3 o 4 productos de ejemplo.</p>
-<p><strong>Parte A: Binario</strong></p>
+<p><strong>Parte A - Binario:</strong></p>
 <ol>
-<li>Usa <strong><code>BinaryWriter</code></strong> para guardar la lista de productos en un fichero <code>inventario.bin</code>. Deberás iterar la lista y escribir cada propiedad (string, double, int) en orden.</li>
-<li>Usa <strong><code>BinaryReader</code></strong> para leer <code>inventario.bin</code>, reconstruir la lista de productos y mostrarlos por consola.</li>
+<li>Usa <strong><code>BinaryWriter</code></strong> para guardar la lista de productos en un fichero <strong><code>inventario.bin</code></strong>. Deberás iterar la lista y escribir cada propiedad (string, double, int) en orden.</li>
+<li>Usa <strong><code>BinaryReader</code></strong> para leer <strong><code>inventario.bin</code></strong>, reconstruir la lista de productos y mostrarlos por consola.</li>
 </ol>
-<p><strong>Parte B: Texto (CSV)</strong></p>
+<p><strong>Parte B - Texto (CSV):</strong></p>
 <ol>
-<li>Genera un fichero <code>inventario.csv</code>. Recorre la misma lista y escribe cada producto en una línea siguiendo el formato estándar CSV: <code>Nombre;Precio;Stock</code>.</li>
-<li>Usa <code>SteamWriter</code> para esto.</li>
-<li>Abre el fichero CSV generado con el Bloc de notas o Excel para comprobar que es legible por humanos, a diferencia del <code>.bin</code>.</li>
+<li>Genera un fichero <strong><code>inventario.csv</code></strong>. Recorre la misma lista y escribe cada producto en una línea siguiendo el formato estándar CSV: <strong><code>Nombre;Precio;Stock</code></strong>.</li>
+<li>Usa <strong><code>StreamWriter</code></strong> para esto.</li>
+<li>Abre el fichero CSV generado con el Bloc de notas o Excel para comprobar que es legible por humanos, a diferencia del <strong><code>inventario.bin</code></strong>.</li>
 </ol>
 </div>
 <div class="box_bg_lightgreen">
@@ -385,21 +507,21 @@ Escribe una entrada (FIN para salir): FIN
 1. 08/01/2026 10:00:00 - Ayer empecé con ficheros
 2. 08/01/2026 10:05:23 - Hoy he aprendido C#
 </pre>
-<p><strong>Requisitos</strong></p>
+<p><strong>Requisitos:</strong></p>
 <ol>
 <li>El programa pedirá al usuario que escriba una frase para añadir a su diario.</li>
-<li>Usa <strong><code>StreamWriter</code></strong> con la opción <strong><code>append: true</code></strong> para añadir esa frase al final de un fichero <code>diario.txt</code>.
+<li>Usa <strong><code>StreamWriter</code></strong> con la opción <strong><code>append: true</code></strong> para añadir esa frase al final de un fichero <strong><code>diario.txt</code></strong>.
 <ul>
 <li>Añade también la fecha y hora actual antes de la frase.</li>
 <li>Repite el proceso hasta que el usuario escriba "FIN".</li>
 </ul>
 </li>
-<li>Cuando el usuario termine, usa <strong><code>StreamReader</code></strong> para abrir <code>diario.txt</code>.</li>
+<li>Cuando el usuario termine, usa <strong><code>StreamReader</code></strong> para abrir <strong><code>diario.txt</code></strong>.</li>
 <li>Lee el fichero <strong>línea a línea</strong> y muéstralo por consola enumerando las líneas para que el usuario pueda ver todo su historial de entradas.</li>
 </ol>
 </div>
 <div class="box_bg_lightgreen">
-<h3 id="ejercicio-6-procesamiento-de-archivos-y-conteo-de-palabras">Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras </h3>
+<h2 id="ejercicio-6-procesamiento-de-archivos-y-conteo-de-palabras">Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras </h2>
 <p>Sistema de procesamiento de archivos y control de excepciones.</p>
 <pre class="salida_consola">Ejercicio 6. Procesamiento de Archivos y Conteo de Palabras
 
@@ -416,7 +538,7 @@ Error: Solo se permiten archivos de texto (.txt).
 Introduce la ruta del archivo: 
 Error: La ruta no puede estar vacía.
 </pre>
-<p><strong>Requisitos</strong></p>
+<p><strong>Requisitos:</strong></p>
 <p>Crea un sistema con las siguientes clases:</p>
 <ol>
 <li>
@@ -428,10 +550,10 @@ Error: La ruta no puede estar vacía.
 <li>
 <p><strong>Clase GestorArchivos</strong></p>
 <ul>
-<li>Método <code>LeerArchivo(string ruta)</code>:
+<li>Método <strong><code>LeerArchivo(string ruta)</code></strong>:
 <ul>
-<li>Si la ruta es nula o vacía, lanza un <code>ArgumentException</code>.</li>
-<li>Si la extensión del archivo no es <code>.txt</code>, lanza un <code>NotSupportedException</code>. Usa expresiones regulares para validar la extensión.</li>
+<li>Si la ruta es nula o vacía, lanza un <strong><code>ArgumentException</code></strong>.</li>
+<li>Si la extensión del archivo no es <strong><code>.txt</code></strong>, lanza un <strong><code>NotSupportedException</code></strong>. Usa expresiones regulares para validar la extensión.</li>
 <li>Intenta leer el archivo con <code>File.ReadAllText</code>.
 <ul>
 <li>Si el archivo no existe, captura el <code>FileNotFoundException</code> y lanza un <code>ArchivoLecturaException</code> con la excepción original como inner exception.</li>
@@ -445,9 +567,9 @@ Error: La ruta no puede estar vacía.
 <li>
 <p><strong>Clase ProcesadorTexto</strong></p>
 <ul>
-<li>Método <code>ContarPalabras(string texto)</code>:
+<li>Método <strong><code>ContarPalabras(string texto)</code></strong>:
 <ul>
-<li>Si el texto es nulo o vacío, lanza un <code>ArgumentException</code>.</li>
+<li>Si el texto es nulo o vacío, lanza un <strong><code>ArgumentException</code></strong>.</li>
 <li>Devuelve el número de palabras del texto.</li>
 </ul>
 </li>
@@ -457,11 +579,11 @@ Error: La ruta no puede estar vacía.
 <p><strong>En el método Main:</strong></p>
 <ul>
 <li>Pide al usuario la ruta de un archivo.</li>
-<li>Usa <code>GestorArchivos.LeerArchivo</code> para leer el contenido.</li>
-<li>Usa <code>ProcesadorTexto.ContarPalabras</code> para contar las palabras.</li>
+<li>Usa <strong><code>GestorArchivos.LeerArchivo</code></strong> para leer el contenido.</li>
+<li>Usa <strong><code>ProcesadorTexto.ContarPalabras</code></strong> para contar las palabras.</li>
 <li>Gestiona todas las excepciones posibles:
 <ul>
-<li>Si ocurre un <code>ArchivoLecturaException</code>, muestra el mensaje y el mensaje de la excepción interna.</li>
+<li>Si ocurre un <strong><code>ArchivoLecturaException</code></strong>, muestra el mensaje y el mensaje de la excepción interna.</li>
 <li>Si ocurre cualquier otra excepción, muestra un mensaje genérico.</li>
 </ul>
 </li>
@@ -469,7 +591,7 @@ Error: La ruta no puede estar vacía.
 </li>
 </ol>
 <ul>
-<li>Ampliación!! Implementa el encadenamiento de excepciones usando inner exception.</li>
+<li><strong>Ampliación</strong>!! Implementa el encadenamiento de excepciones usando inner exception.</li>
 </ul>
 </div>
       </div>
