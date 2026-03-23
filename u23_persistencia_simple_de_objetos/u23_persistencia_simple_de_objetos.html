@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -283,7 +409,11 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#mortar_board-caso-de-estudio" class="md-toc-link">
+            <p>🎓 Caso de estudio</p>
+
+          </a></div>
 </div>
 <div style="page-break-after:always;"></div>
 <h2 id="serialización-de-objetos">Serialización de Objetos </h2>
@@ -602,6 +732,202 @@ vídeo comprimido a través de la red.</li>
 <span class="token punctuation">}</span>
 </code></pre></div>
 </div>
+<div style="page-break-after:always;"></div>
+<div class="box_bg_lightgray">
+<h2 id="mortar_board-caso-de-estudio">🎓 Caso de estudio </h2>
+<p>Veamos el siguiente caso de estudio explicado paso a paso, donde recuperamos información en un JSON de una cartelera de películas, donde tendremos diferentes tipos, tipos anidados y arrays. Puedes descargar el proyecto con el código que vamos a ver a continuación del siguiente enlace: <strong><a href="https://programacioniesbalmis.github.io/u23_persistencia_simple_de_objetos/assets/ejemplos/cartelera_peliculas_caso_de_estudio.zip">cartelera_peliculas.zip</a></strong></p>
+<p>Dentro de la carpeta <strong><code>datos</code></strong> del proyecto del enlace anterior encontrarás un fichero denominado <strong><code>datos/cartelera.json</code></strong> con una colección de datos de películas con la siguiente información y estructura:</p>
+<div class="row">
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"titulo"</span><span class="token operator">:</span> <span class="token string">"Legado en los huesos"</span><span class="token punctuation">,</span>
+        <span class="token property">"año"</span><span class="token operator">:</span> <span class="token number">2019</span><span class="token punctuation">,</span>
+        <span class="token property">"duracion"</span><span class="token operator">:</span> <span class="token number">99</span><span class="token punctuation">,</span>
+        <span class="token property">"pais"</span><span class="token operator">:</span> <span class="token string">"España"</span><span class="token punctuation">,</span>
+        <span class="token property">"staff"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"productora"</span><span class="token operator">:</span> <span class="token string">"Atresmedia"</span><span class="token punctuation">,</span>
+            <span class="token property">"director"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"FGON"</span><span class="token punctuation">,</span>
+                <span class="token property">"nombre"</span><span class="token operator">:</span> <span class="token string">"Fernando González"</span><span class="token punctuation">,</span>
+                <span class="token property">"nacionalidad"</span><span class="token operator">:</span> <span class="token string">"España"</span><span class="token punctuation">,</span>
+                <span class="token property">"fechaNacimiento"</span><span class="token operator">:</span> <span class="token string">"1977-05-12"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"reparto"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"Marta Etura"</span><span class="token punctuation">,</span>
+                <span class="token string">"Leonardo Sbaraglia"</span><span class="token punctuation">,</span>
+                <span class="token string">"Elvira Mínguez"</span><span class="token punctuation">,</span>
+                <span class="token string">"Imanol Arias"</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"generos"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"intriga"</span><span class="token punctuation">,</span>
+            <span class="token string">"crimen"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"valoracion"</span><span class="token operator">:</span> <span class="token number">6.2</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    ...
+<span class="token punctuation">]</span>
+</code></pre></div>
+<div class="col-sm-6 my-top">
+<p>Lo primero que haremos será identificar los tipos de datos que tenemos en el documento JSON para crear las clases.<br>
+Identificamos primero un array de objetos al empezar y finalizar el documento con corchetes <strong><code>[ ]</code></strong>. Esto nos indica que el objeto raíz del documento JSON es un array de objetos. En nuestro caso, el array de objetos es un array de películas. Por tanto, el primer tipo que vamos a crear será una clase denominada <strong><code>Pelicula</code></strong>. A su vez la clase <strong><code>Pelicula</code></strong> tiene una propiedad denominada <strong><code>staff</code></strong> que <strong>es un objeto anidado</strong> con información del staff de la película, por tanto, tendremos que crear una clase denominada <strong><code>Staff</code></strong>. Además, dentro del objeto <strong><code>staff</code></strong> tenemos <strong>un objeto anidado denominado</strong> <strong><code>director</code></strong> con información del director de la película, por tanto, tendremos que crear una clase denominada <strong><code>Director</code></strong>.</p>
+</div>
+</div>
+<div style="page-break-after:always;"></div>
+<p>Por último, también tenemos dos propiedades que son arrays de strings, una con los géneros de la película y otra con el reparto de la película pero dentro del objeto <strong><code>staff</code></strong>. Para representar estos arrays de strings, usaremos o secuencias del tipo <strong><code>IEnumerable&lt;string&gt;</code></strong> o algún tipo de colección concreta como <strong><code>List&lt;string&gt;</code></strong>. En nuestro caso, usaremos <strong><code>List&lt;string&gt;</code></strong> para representar ambos arrays de strings.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Este proceso es sencillo de hacer, si tenemos Internet, con la herramienta <strong><a href="https://app.quicktype.io/">QuickType</a></strong> que nos generará el código de las clases a partir del JSON. Para ello, sólo tenemos que copiar el JSON en la parte izquierda de la herramienta y seleccionar el lenguaje C# en la parte derecha y nos generará el código de las clases. Además, obviamente si tenemos acceso a algún tipo de LLM como Claude, Gemini, etc. también podríamos usarlo para generar el código de las clases a partir del JSON.</p>
+</div>
+<p>Si lo hacemos nosotros mismos, deberíamos empezar por la clase más interna que es la clase <strong><code>Director</code></strong> y luego ir creando las clases más externas. El código de las clases quedaría de la siguiente manera:</p>
+<div class="row">
+<div class="col-sm-6">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Director</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Id<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nacionalidad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nacionalidad<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"fechaNacimiento"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">DateOnly</span> FechaNacimiento
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Staff</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"productora"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Productora<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"director"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">Director</span> Director<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"reparto"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> Reparto
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="col-sm-6">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">Pelicula</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Id<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"titulo"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Titulo<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"año"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-int">int</span> Año<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"duracion"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-int">int</span></span> Duracion<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"pais"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Pais<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"staff"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">Staff</span> Staff<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"generos"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span><span class="token keyword keyword-string">string</span><span class="token punctuation">&gt;</span></span> Generos<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"valoracion"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-double">double</span></span> Valoracion
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+</div>
+<div style="page-break-after:always;"></div>
+<p>Fíjate que en la clase <strong><code>Director</code></strong> tenemos una propiedad de tipo <strong><code>DateOnly</code></strong> para representar la fecha de nacimiento del director. El tipo <strong><code>DateOnly</code></strong> no es un tipo de dato primitivo, por lo que no se serializa ni deserializa automáticamente a JSON. Para poder serializar y deserializar esta propiedad, tendremos que crear un <strong>convertidor personalizado</strong> que herede de la clase <strong><code>JsonConverter&lt;DateOnly&gt;</code></strong> y que implemente los métodos <strong><code>Read</code></strong> y <strong><code>Write</code></strong> para convertir el tipo <strong><code>DateOnly</code></strong> a una cadena JSON y viceversa. El código del convertidor personalizado quedaría de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">DateOnlyJsonConverter</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">JsonConverter<span class="token punctuation">&lt;</span>DateOnly<span class="token punctuation">&gt;</span></span></span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token keyword keyword-const">const</span> <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Format <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name">DateOnly</span> <span class="token function">Read</span><span class="token punctuation">(</span><span class="token keyword keyword-ref">ref</span> <span class="token class-name">Utf8JsonReader</span> reader<span class="token punctuation">,</span> <span class="token class-name">Type</span> typeToConvert<span class="token punctuation">,</span> <span class="token class-name">JsonSerializerOptions</span> options<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> DateOnly<span class="token punctuation">.</span><span class="token function">ParseExact</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span><span class="token function">GetString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">,</span> Format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Write</span><span class="token punctuation">(</span><span class="token class-name">Utf8JsonWriter</span> writer<span class="token punctuation">,</span> <span class="token class-name">DateOnly</span> <span class="token keyword keyword-value">value</span><span class="token punctuation">,</span> <span class="token class-name">JsonSerializerOptions</span> options<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        writer<span class="token punctuation">.</span><span class="token function">WriteStringValue</span><span class="token punctuation">(</span><span class="token keyword keyword-value">value</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span>Format<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Perfecto, con este modelo ya podemos serializar y deserializar objetos de la clase <strong><code>Pelicula</code></strong> a JSON.</p>
+<p>Tenemos que saber donde se encuentra el fichero JSON. Una forma simple de hacerlo sería copiar el fichero JSON en la carpeta donde se encuentra el ejecutable de la aplicación, es decir, en la carpeta <strong><code>...\proyecto\bin\Debug\net9.0</code></strong>. Pero nosotros hemos creado una carpeta denominada <strong><code>datos</code></strong> en la raíz del proyecto y hemos puesto el fichero <code>cartelera.json</code> dentro. Para acceder a esta ruta independientemente de donde se encuentre el proyecto podemos definir el método de utilidad <strong><code>RutaEjecucion</code></strong> siguiente:</p>
+<div class="row">
+<div class="col-sm-5">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">RutaEjecucion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+    Regex<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>
+        <span class="token named-parameter punctuation">input</span><span class="token punctuation">:</span> Directory<span class="token punctuation">.</span><span class="token function">GetCurrentDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token named-parameter punctuation">pattern</span><span class="token punctuation">:</span> <span class="token string">@"^(?&lt;ruta&gt;.*?)(?=\\bin)"</span><span class="token punctuation">,</span>
+        <span class="token named-parameter punctuation">options</span><span class="token punctuation">:</span> RegexOptions<span class="token punctuation">.</span>IgnoreCase
+    <span class="token punctuation">)</span><span class="token punctuation">.</span>Groups<span class="token punctuation">[</span><span class="token string">"ruta"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="col-sm-7 my-auto">
+<p>El método obtiene la ruta de ejecución del programa con el método <strong><code>Directory.GetCurrentDirectory()</code></strong>, por ejemplo, <code>E:\proyectosDAM\cartelera_peliculas\bin\Debug\net9.0</code> y luego usa una expresión regular para extraer la parte de la ruta que se encuentra antes de la carpeta <strong><code>bin</code></strong> que es <code>E:\proyectosDAM\cartelera_peliculas\</code>.</p>
+</div>
+</div>
+<p>De esta manera podremos acceder a la carpeta <strong><code>datos</code></strong> que se encuentra en la raíz del proyecto con el comando <code>Path.Combine(RutaEjecucion(), "datos", "cartelera.json")</code> que nos devolverá la ruta completa del fichero JSON con independencia de donde se encuentre el proyecto.</p>
+<p>Podemos definir ahora un método <strong><code>List&lt;Pelicula&gt; CragaCartelera(string ruta)</code></strong> que reciba la ruta del fichero JSON y devuelva una lista de objetos de la clase <strong><code>Pelicula</code></strong> con la información del documento JSON. El código del método quedaría de la siguiente manera:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Program</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">List<span class="token punctuation">&lt;</span>Pelicula<span class="token punctuation">&gt;</span></span> <span class="token function">CragaCartelera</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> ruta<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token keyword keyword-string">string</span></span> json <span class="token operator">=</span> File<span class="token punctuation">.</span><span class="token function">ReadAllText</span><span class="token punctuation">(</span>ruta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> options <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">JsonSerializerOptions</span>
+        <span class="token punctuation">{</span>
+            Converters <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DateOnlyJsonConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword keyword-var">var</span></span> peliculas <span class="token operator">=</span> JsonSerializer<span class="token punctuation">.</span><span class="token generic-method"><span class="token function">Deserialize</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>List<span class="token punctuation">&lt;</span>Pelicula<span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> peliculas <span class="token operator">??</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-static">static</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token class-name">List<span class="token punctuation">&lt;</span>Pelicula<span class="token punctuation">&gt;</span></span> cartelera <span class="token operator">=</span> <span class="token function">CragaCartelera</span><span class="token punctuation">(</span>Path<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span><span class="token function">RutaEjecucion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"datos"</span><span class="token punctuation">,</span> <span class="token string">"cartelera.json"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Fíjate que hemos tenido que añadir el convertidor personalizado a las opciones de deserialización para poder deserializar la propiedad de tipo <strong><code>DateOnly</code></strong> de la clase <strong><code>Director</code></strong> a través de la propiedad <strong><code>Converters</code></strong> de la clase <strong><code>JsonSerializerOptions</code></strong>.</p>
+<p>Hasta ahora hemos cargado los datos y ahora podemos usar la programación funcional que hemos visto en otros temas <strong>para agrupar las películas por director y obtener una colección con una proyección de datos del director con algunos datos de las películas que ha dirigido</strong>. Esta lista, la podríamos serializar a JSON a la misma carpeta de <strong><code>datos</code></strong> con el nombre <strong><code>peliculas_por_director.json</code></strong>. Nosotros simplemente vamos a mostrar el resultado de la serialización por consola.</p>
+<p>Primero definimos los Data Transfer Object (DTO) que usaremos para la proyección de datos del director con algunos datos de las películas que ha dirigido como hemos comentado. El código de los DTO quedaría de la siguiente manera:</p>
+<div class="row">
+<div class="col-sm-6">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">DirectorDto</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nombre<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nacionalidad"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Nacionalidad<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"peliculas"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name">List<span class="token punctuation">&lt;</span>PeliculaDto<span class="token punctuation">&gt;</span></span> Peliculas
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="col-sm-6 my-auto">
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-record">record</span> <span class="token class-name"><span class="token keyword keyword-class">class</span></span> <span class="token function">PeliculaDto</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"titulo"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Titulo<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"año"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-int">int</span> Año<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"pais"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Pais<span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token target keyword">property</span><span class="token punctuation">:</span> <span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"productora"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token class-name"><span class="token keyword keyword-string">string</span></span> Productora
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+</div>
+<p>Es una consulta compleja, pero básicamente lo que hace es agrupar las películas por el id del director y luego proyectar cada grupo a un objeto de tipo <strong><code>DirectorDto</code></strong> con el nombre y la nacionalidad del director y una lista de objetos de tipo <strong><code>PeliculaDto</code></strong> con el título, año, país y productora de cada película dirigida por ese director.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token class-name">List<span class="token punctuation">&lt;</span>DirectorDto<span class="token punctuation">&gt;</span></span> peliculasPorDirector <span class="token operator">=</span> cartelera<span class="token punctuation">.</span><span class="token function">GroupBy</span><span class="token punctuation">(</span>
+    p <span class="token operator">=&gt;</span> p<span class="token punctuation">.</span>Staff<span class="token punctuation">.</span>Director<span class="token punctuation">.</span>Id<span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>idDirector<span class="token punctuation">,</span> peliculas<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">DirectorDto</span><span class="token punctuation">(</span>
+            <span class="token named-parameter punctuation">Nombre</span><span class="token punctuation">:</span> peliculas<span class="token punctuation">.</span><span class="token function">First</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Staff<span class="token punctuation">.</span>Director<span class="token punctuation">.</span>Nombre<span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Nacionalidad</span><span class="token punctuation">:</span> peliculas<span class="token punctuation">.</span><span class="token function">First</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Staff<span class="token punctuation">.</span>Director<span class="token punctuation">.</span>Nacionalidad<span class="token punctuation">,</span>
+            <span class="token named-parameter punctuation">Peliculas</span><span class="token punctuation">:</span> peliculas<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>p <span class="token operator">=&gt;</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">PeliculaDto</span><span class="token punctuation">(</span>
+                                                    <span class="token named-parameter punctuation">Titulo</span><span class="token punctuation">:</span> p<span class="token punctuation">.</span>Titulo<span class="token punctuation">,</span>
+                                                    Año<span class="token punctuation">:</span> p<span class="token punctuation">.</span>Año<span class="token punctuation">,</span>
+                                                    <span class="token named-parameter punctuation">Pais</span><span class="token punctuation">:</span> p<span class="token punctuation">.</span>Pais<span class="token punctuation">,</span>
+                                                    <span class="token named-parameter punctuation">Productora</span><span class="token punctuation">:</span> p<span class="token punctuation">.</span>Staff<span class="token punctuation">.</span>Productora
+                                                  <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                                    
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Por último, podemos serializa simplemente usando las siguiente opciones de serialización para mostrar el resultado por consola de forma decuada:</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code>Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>JsonSerializer<span class="token punctuation">.</span><span class="token function">Serialize</span><span class="token punctuation">(</span>
+    <span class="token keyword keyword-value">value</span><span class="token punctuation">:</span> peliculasPorDirector<span class="token punctuation">,</span>
+    <span class="token named-parameter punctuation">options</span><span class="token punctuation">:</span> <span class="token keyword keyword-new">new</span> <span class="token constructor-invocation class-name">JsonSerializerOptions</span> <span class="token punctuation">{</span> 
+        WriteIndented <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        Encoder <span class="token operator">=</span> JavaScriptEncoder<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>UnicodeRanges<span class="token punctuation">.</span>BasicLatin<span class="token punctuation">,</span> UnicodeRanges<span class="token punctuation">.</span>Latin1Supplement<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div> <!-- fin caso de estudio -->
 
       </div>
       
