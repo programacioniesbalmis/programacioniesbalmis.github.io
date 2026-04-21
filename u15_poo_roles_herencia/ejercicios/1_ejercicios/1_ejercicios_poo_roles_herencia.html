@@ -715,7 +715,7 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <li><code>Nombre</code> (string, readonly)</li>
 <li><code>Capacidad</code> (int, readonly, &gt; 0 definiendo en el contructor que si la capacidad entrante es menor a 1, como mínimo se asignará una plaza).</li>
 <li><code>Direccion</code> (Direccion, composición, readonly y privada)</li>
-<li><code>Servicios</code> (<code>List&lt;string&gt;</code> de tipo protegida)</li>
+<li><code>Servicios</code> (<code>List&lt;string&gt;</code> de tipo pública)</li>
 <li><code>Reservas</code> (<code>List&lt;Reserva&gt;</code>, protegida y de tipo composición)</li>
 <li><code>PrecioBase</code> propiedad protegida (double y readonly)</li>
 <li><code>PlazasOcupadas</code> propiedad calculada (int, readonly y protegida) que devolverá el número total de plazas ocupadas en todas las reservas.</li>
@@ -752,7 +752,7 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 </li>
 <li><code>AlbergueCostero</code>:
 <ul>
-<li>Precio (en calcula precio): si es temporada alta en la última reserva registrada =&gt; <code>Precio + 3</code> y si ocupación &gt;= 40% añade +2 extra.</li>
+<li>Precio : si es temporada alta en la última reserva registrada =&gt; <code>Precio + 3</code> y si ocupación &gt;= 40% añade +2 extra.</li>
 <li>AdmiteReserva: rechaza si temporada ALTA y plazas solicitadas &gt; 60% de la capacidad restante.</li>
 <li>InformacionComplementaria devuelve un texto sobre el oleaje (según muestra salida).</li>
 </ul>
@@ -760,7 +760,30 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 </ol>
 <p><strong>Programa principal:</strong></p>
 <ul>
-<li>Se da el código que servirá de ayuda para desarrollar las clases que se pide.</li>
+<li>
+<p>Crea un método <code>GestionAlbergues</code> que muestra un MENÚ hasta que el usuario pulse la tecla ESC que permita:</p>
+<ol>
+<li>"Añadir albergue", que llamará a un método <code>AñadeAlbergue</code> que pedirá los datos y añadirá un albergue a la lista.</li>
+</ol>
+<ul>
+<li>Pedir tipo (R/U/C).</li>
+<li>Pedir nombre, capacidad (&gt;0), precio base (&gt;0), ciudad y país.</li>
+<li>Permitir introducir servicios separados por coma.</li>
+</ul>
+<ol start="2">
+<li>"Registrar reserva", que llamará a un método <code>ReguistraReserva</code> que:</li>
+</ol>
+<ul>
+<li>Listar albergues con índice.</li>
+<li>Pedir índice válido, plazas (int &gt;0) y si es temporada alta (S/N).</li>
+<li>Llamar a <code>RegistraReserva</code> e indicar ACEPTADA o RECHAZADA.</li>
+</ul>
+<ol start="3">
+<li>"Mostrar estado", muestra directamente el estado como en salida.</li>
+<li>"Mostrar información complementaria", muestra la información complementaria.</li>
+<li>"ESC",Finaliza el bucle.</li>
+</ol>
+</li>
 </ul>
 </div>
 
