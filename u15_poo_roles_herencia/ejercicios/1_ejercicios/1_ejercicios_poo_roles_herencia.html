@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -213,6 +251,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
         document.addEventListener("DOMContentLoaded", () => {
             configureMermaidIconPacks();
         });
+    }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
     }
 </script></head><body for="html-export">
     
@@ -503,7 +629,7 @@ Presiona cualquier tecla para salir...
 <p>Nuevas subclases a añadir:</p>
 <ol>
 <li><strong>SierraElectrica</strong> con las propiedades específicas <code>potenciaW</code> (int), <code>diametroHojaMm</code> (int) y un método propio <code>Corta(material: string, grosorMm: int): string</code>. En el Precio, aplica un recargo ambiental del 10% sobre el <code>precioBase</code> si la potencia es &gt; 1300W; si no, deja el precio base.</li>
-<li><strong>Lijadora</strong> con las propiedades específicas <code>rpm</code> (int), <code>diametroDiscoMm</code> (int) y un método propio <code>Pule(superficieM2: double): double</code> que devuelve los segundos estimados (tiempoSeg = (superficieM2 * 60) / (rpm * 0.012)). En cuanto al Precio, aplicará un descuento ecológico del 10% si <code>rpm &lt; 10000</code>, si no mantiene el precio base.</li>
+<li><strong>Lijadora</strong> con las propiedades específicas <code>rpm</code> (int), <code>diametroDiscoMm</code> (int) y un método propio <code>Pule(superficieM2: double): string</code> que devuelve los segundos estimados (tiempoSeg = (superficieM2 * 60) / (rpm * 0.012)). En cuanto al Precio, aplicará un descuento ecológico del 10% si <code>rpm &lt; 10000</code>, si no mantiene el precio base.</li>
 <li>A la clase <strong>Taladro</strong> se le añadirá un método propio <code>Perfora(diametroMm: int, profundidadMm: int): string</code>.</li>
 </ol>
 </li>
@@ -584,16 +710,16 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <p><strong>Clase base Albergue:</strong></p>
 <ul>
 <li>
-<p>Que tendrá las siguientes propiedades privadas si no se especifica lo contrario:</p>
+<p>Que tendrá las siguientes propiedades públicas si no se especifica lo contrario:</p>
 <ul>
 <li><code>Nombre</code> (string, readonly)</li>
-<li><code>Capacidad</code> (int, readonly, &gt; 0)</li>
-<li><code>Direccion</code> (Direccion, composición y readonly)</li>
-<li><code>Servicios</code> (<code>List&lt;string&gt;</code>)</li>
-<li><code>Reservas</code> (<code>List&lt;Reserva&gt;</code>, protegida y de tipo agregación)</li>
-<li><code>Precio</code> propiedad pública calculada (double, readonly y redefinible)</li>
-<li><code>PlazasOcupadas</code> propiedad calculada (int, readonly y protegida) que devolverá el número total de reservas.</li>
-<li><code>PorcentajeOcupacion</code> propiedad calculada (int, readonly  y pública) que devolverá el porcentaje de ocupación.</li>
+<li><code>Capacidad</code> (int, readonly, &gt; 0 definiendo en el contructor que si la capacidad entrante es menor a 1, como mínimo se asignará una plaza).</li>
+<li><code>Direccion</code> (Direccion, composición, readonly y privada)</li>
+<li><code>Servicios</code> (<code>List&lt;string&gt;</code> de tipo protegida)</li>
+<li><code>Reservas</code> (<code>List&lt;Reserva&gt;</code>, protegida y de tipo composición)</li>
+<li><code>PrecioBase</code> propiedad protegida (double y readonly)</li>
+<li><code>PlazasOcupadas</code> propiedad calculada (int, readonly y protegida) que devolverá el número total de plazas ocupadas en todas las reservas.</li>
+<li><code>PorcentajeOcupacion</code> propiedad calculada (int, readonly  y pública) que devolverá el porcentaje de ocupación según las plazas ocupadas y la capacidad del albergue.</li>
 </ul>
 </li>
 <li>
@@ -603,7 +729,7 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <li><code>AñadeReservaInterna</code> método privado al que le llega una reserva y actualiza la ocupación.</li>
 <li><code>AdmiteReserva</code> método protegido y redefinible al que le llega el número de plazas y un boolean indicando si es temporada alta, devolverá un boolean admitiendo o no la reserva dependiendo de si todavía quedan plazas en el albergue (teniendo en cuenta las que se quieren reservar), o si la reserva es válida <em>plazas &gt; 0</em>:</li>
 <li><code>RegistraReserva</code> método público al que le llega el número de plazas y un boolean indicando si es temporada Alta, con esta información llamará a <code>AdmiteReserva</code> y si la reserva es posible la añadirá y devolverá un boolean confirmando que ha sido registrada o false en caso contrario.</li>
-<li><code>CalculaPrecioActual</code> método público y redefinible que devolverá el precio como doble. Por defecto devolverá el precio base.</li>
+<li><code>CalculaPrecioActual</code> método redefinible que por defecto devolverá el precio base.</li>
 <li><code>InformacionComplementaria</code> método público y redefinible que devolverá una cadena con datos de contexto externo (clima, oleaje, eventos urbanos, etc.). Devolverá como base "Sin información complementaria".</li>
 <li><code>Anula el ToString</code> para que conseguir una salida como la que se muestra con: nombre, tipo, capacidad, porcentaje y servicios.</li>
 </ul>
@@ -613,54 +739,28 @@ Se parte de una clase base <code>Albergue</code> y tres subclases: <code>Albergu
 <ol>
 <li><code>AlbergueRural</code>:
 <ul>
-<li>Precio: si temporada alta en alguna reserva (existe alguna <code>EsTemporadaAlta</code>) y ocupación &gt;= 20% =&gt; <code>Precio * 2.15</code> si no <code>Precio * 1.15</code> ya aplicado por incluir desayuno y cena.</li>
+<li>Precio (en calcula precio): si temporada alta en alguna reserva (existe alguna <code>EsTemporadaAlta</code>) y ocupación &gt;= 20% =&gt; <code>Precio * 2.15</code> si no <code>Precio * 1.15</code> ya aplicado por incluir desayuno y cena.</li>
 <li>AdmiteReserva: además de la base, rechaza peticiones &gt; 50% de la capacidad total en una sola reserva.</li>
 <li>InformacionComplementaria devuelve un texto de clima simulado.</li>
 </ul>
 </li>
 <li><code>AlbergueUrbano</code>:
 <ul>
-<li>Precio: si ocupación &gt;= 60% =&gt; <code>Precio * 1.10</code> si no <code>Precio</code>.</li>
+<li>Precio (en calcula precio): si ocupación &gt;= 60% =&gt; <code>Precio * 1.10</code> si no <code>Precio</code>.</li>
 <li>AdmiteReserva: permite reservas grandes mientras queden plazas (no añade restricciones extra).</li>
 </ul>
 </li>
 <li><code>AlbergueCostero</code>:
 <ul>
-<li>Precio: si es temporada alta en la última reserva registrada =&gt; <code>Precio + 3</code> y si ocupación &gt;= 40% añade +2 extra.</li>
+<li>Precio (en calcula precio): si es temporada alta en la última reserva registrada =&gt; <code>Precio + 3</code> y si ocupación &gt;= 40% añade +2 extra.</li>
 <li>AdmiteReserva: rechaza si temporada ALTA y plazas solicitadas &gt; 60% de la capacidad restante.</li>
-<li>InformacionComplementaria devuelve un texto sobre el oleaje.</li>
+<li>InformacionComplementaria devuelve un texto sobre el oleaje (según muestra salida).</li>
 </ul>
 </li>
 </ol>
 <p><strong>Programa principal:</strong></p>
 <ul>
-<li>
-<p>En el programa principal inicializa una lista con los 3 albergues de ejemplo y sus servicios, y registra las reservas iniciales.</p>
-</li>
-<li>
-<p>Crea un método <code>GestionAlbergues</code> que muestra un MENÚ hasta que el usuario pulse la tecla ESC que permita:</p>
-<ol>
-<li>"Añadir albergue", que llamará a un método <code>AñadeAlbergue</code> que pedirá los datos y añadirá un albergue a la lista.</li>
-</ol>
-<ul>
-<li>Pedir tipo (R/U/C).</li>
-<li>Pedir nombre, capacidad (&gt;0), precio base (&gt;0), ciudad y país.</li>
-<li>Permitir introducir servicios separados por coma.</li>
-</ul>
-<ol start="2">
-<li>"Registrar reserva", que llamará a un método <code>ReguistraReserva</code> que:</li>
-</ol>
-<ul>
-<li>Listar albergues con índice.</li>
-<li>Pedir índice válido, plazas (int &gt;0) y si es temporada alta (S/N).</li>
-<li>Llamar a <code>RegistraReserva</code> e indicar ACEPTADA o RECHAZADA.</li>
-</ul>
-<ol start="3">
-<li>"Mostrar estado", muestra directamente el estado como en salida.</li>
-<li>"Mostrar información complementaria", muestra la información complementaria.</li>
-<li>"ESC",Finaliza el bucle.</li>
-</ol>
-</li>
+<li>Se da el código que servirá de ayuda para desarrollar las clases que se pide.</li>
 </ul>
 </div>
 
