@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
       
       
       
@@ -229,7 +229,7 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
 }
 
       </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+      <script type="text/javascript">
 
     // Configure Mermaid to load icon packs from Iconify
 
@@ -340,9 +340,9 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             button.classList.remove('copied');
         }, 2000);
     }
-</script></head><body for="html-export">
-    
-    
+</script>
+    </head>
+    <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
 <h1 id="unidad-23">Unidad 23 </h1>
@@ -469,6 +469,10 @@ vídeo comprimido a través de la red.</li>
 </code></pre><p>Otro ejemplo sería el atributo <strong><code>[NotNull]</code></strong> que se puede aplicar a un parámetro de un método y que indica que el parámetro no puede ser nulo incluso si el tipo de dato del parámetro es un tipo de dato que puede ser nulo.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-void">void</span></span> <span class="token function">Metodo</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">NotNull</span></span><span class="token punctuation">]</span> <span class="token class-name"><span class="token keyword keyword-string">string</span><span class="token punctuation">?</span></span> parametro<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Código del método }</span>
 </code></pre><p>En el ejemplo anterior, el atributo <strong><code>[NotNull]</code></strong> indica que el parámetro <strong><code>parametro</code></strong> no puede ser nulo.</p>
+<div class="admonition tip">
+<p class="admonition-title">Importante</p>
+<p>Los atributos o anotaciones, <strong>se aplican solo sobre el elemento al que anteceden</strong>, es decir, si aplicamos un atributo a una clase, ese atributo sólo afectará a esa clase y no a sus miembros.</p>
+</div>
 <h3 id="serialización-a-json">Serialización a JSON </h3>
 <p>La serialización a JSON es un proceso que convierte un objeto en una cadena JSON y viceversa. JSON es un formato de texto que es fácil de leer y escribir para los humanos y fácil de analizar y generar para las máquinas.</p>
 <h4 id="qué-es-json">¿Qué es JSON? </h4>
@@ -573,7 +577,24 @@ vídeo comprimido a través de la red.</li>
         <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Nombre</span><span class="token punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Tutor</span><span class="token punctuation">}</span></span><span class="token string">)\n\n"</span></span> <span class="token operator">+</span>
         <span class="token keyword keyword-string">string</span><span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">,</span> Estudiantes<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>a <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">a</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><p>Para aplicar algunos de los conceptos que hemos visto en otros temas, como son el principio OCP (SOLID) y los métodos de extensión. Vamos a definir los métodos de serialización y deserialización en una clase estática que llamaremos <strong><code>ClaseJson</code></strong>.</p>
+</code></pre><div style="page-break-after:always;"></div>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Si tenemos en cuenta que un atributo solo se aplica sobre el elemento al que antecede, si queremos aplicar el atributo <strong><code>[JsonPropertyName]</code></strong> a las propiedades de un record, deberemos indicarle que se aplique sobre la propiedad con el modificador <strong><code>property:</code></strong> como hemos hecho en el ejemplo anterior. <strong>Con esto especificamos que solo queremos que se aplique el atributo sobre la propiedad generada y no sobre el parámetro del constructor</strong>.</p>
+<p>Si definiésemos el record o la clase indicando las propiedades de forma explícita. No sería necesario indicar el modificador <strong><code>property:</code></strong>.</p>
+<pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-record">record</span> <span class="token class-name">Clase</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"nombre"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Nombre <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"tutor"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> Tutor <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">JsonPropertyName</span><span class="token attribute-arguments"><span class="token punctuation">(</span><span class="token string">"alumnos"</span><span class="token punctuation">)</span></span></span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-public">public</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>Estudiante<span class="token punctuation">&gt;</span></span> Estudiantes <span class="token punctuation">{</span> <span class="token keyword keyword-get">get</span><span class="token punctuation">;</span> <span class="token keyword keyword-init">init</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-override">override</span> <span class="token return-type class-name"><span class="token keyword keyword-string">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token range operator">..</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>Para aplicar algunos de los conceptos que hemos visto en otros temas, como son el principio OCP (SOLID) y los métodos de extensión. Vamos a definir los métodos de serialización y deserialización en una clase estática que llamaremos <strong><code>ClaseJson</code></strong>.</p>
 <pre data-role="codeBlock" data-info="csharp" class="language-csharp csharp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">ClaseJson</span>
 <span class="token punctuation">{</span>
     <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token return-type class-name">Clase<span class="token punctuation">?</span></span> <span class="token function">Recupera</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword keyword-string">string</span></span> path<span class="token punctuation">)</span>
