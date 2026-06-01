@@ -192,9 +192,47 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
     flex-direction: row;
   }
 }
+.markdown-preview.markdown-preview .code-block-wrapper {
+  position: relative;
+  margin: 16px 0;
+}
+.markdown-preview.markdown-preview .copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.2s;
+  z-index: 10;
+}
+.markdown-preview.markdown-preview .code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+.markdown-preview.markdown-preview .copy-button:hover {
+  background-color: #1976D2;
+}
+.markdown-preview.markdown-preview .copy-button:active {
+  background-color: #0D47A1;
+}
+.markdown-preview.markdown-preview .copy-button.copied {
+  background-color: #4CAF50;
+}
+.markdown-preview.markdown-preview .copy-button.copied::after {
+  content: ' ✓';
+}
 
       </style>
       <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+
+    // Configure Mermaid to load icon packs from Iconify
+
     const configureMermaidIconPacks = () => {
         window["mermaid"].registerIconPacks([
             {
@@ -214,6 +252,94 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             configureMermaidIconPacks();
         });
     }
+
+    // Copy to clipboard functionality for code blocks
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initCopyButtons();
+    });
+
+    function initCopyButtons() {
+        const codeBlocks = document.querySelectorAll('pre[data-role="codeBlock"]');
+
+        codeBlocks.forEach(function (codeBlock) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+            copyButton.addEventListener('click', function () {
+                copyCodeToClipboard(codeBlock, copyButton);
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+    }
+
+    function copyCodeToClipboard(codeBlock, button) {
+        const codeText = extractCodeText(codeBlock);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText)
+                .then(function () {
+                    showCopySuccess(button);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyToClipboard(codeText, button);
+                });
+        } else {
+            fallbackCopyToClipboard(codeText, button);
+        }
+    }
+
+    function extractCodeText(codeBlock) {
+        const clone = codeBlock.cloneNode(true);
+        const text = clone.textContent || clone.innerText;
+        return text.trim();
+    }
+
+    function fallbackCopyToClipboard(text, button) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button);
+            } else {
+                console.error('Fallback copy failed');
+            }
+        } catch (err) {
+            console.error('Fallback copy error: ', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess(button) {
+        const originalText = button.textContent;
+
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+
+        setTimeout(function () {
+            button.textContent = originalText;
+            button.classList.remove('copied');
+        }, 2000);
+    }
 </script></head><body for="html-export">
     
     
@@ -227,8 +353,8 @@ code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-fami
             <p>Ejercicio 1. Gestión de Plantas (DDL y DML)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ejercicio-2-clase-vivero-consultas-y-transacciones" class="md-toc-link">
-            <p>Ejercicio 2. Clase Vivero, Consultas y Transacciones</p>
+          <a href="#ejercicio-2-gestión-de-rutinas-de-gimnasio-dao-básico" class="md-toc-link">
+            <p>Ejercicio 2. Gestión de Rutinas de Gimnasio (DAO Básico)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#ejercicio-3-patrón-dao-data-access-object" class="md-toc-link">
@@ -288,50 +414,80 @@ Te recomendamos utilizar una extensión de VS Code como <strong>SQLite Viewer</s
 </div>
 </div>
 <div class="box_bg_lightgreen">
-<h2 id="ejercicio-2-clase-vivero-consultas-y-transacciones">Ejercicio 2. Clase Vivero, Consultas y Transacciones </h2>
-<p>Vamos a profesionalizar nuestro código separando la lógica de acceso a datos en una clase propia y añadiendo la capacidad de consultar información.</p>
-<pre class="salida_consola">Ejercicio 2: Clase Vivero, Consultas y Transacciones
+<h2 id="ejercicio-2-gestión-de-rutinas-de-gimnasio-dao-básico">Ejercicio 2. Gestión de Rutinas de Gimnasio (DAO Básico) </h2>
+<p>Vamos a crear una aplicación para gestionar una rutina de ejercicios de gimnasio. En este ejercicio, nos centraremos en aplicar el patrón <strong>DAO</strong> para separar la lógica de acceso a datos de la lógica de negocio, usando enumeraciones y DTOs.</p>
+<pre class="salida_consola">Ejercicio 2: Gestión de Rutinas de Gimnasio
 
-Planta { Id = 1, NombreComun = Margarita, NombreCientifico = Argyranthemum, Precio = 3,5, Stock = 999 }
-Planta { Id = 3, NombreComun = Lavanda, NombreCientifico = Lavandula, Precio = 6,75, Stock = 30 }
-Planta { Id = 4, NombreComun = Cactus, NombreCientifico = Cactaceae, Precio = 8, Stock = 25 }
-Planta { Id = 5, NombreComun = Bonsai, NombreCientifico = Ficus retusa, Precio = 45, Stock = 5 }
+Creando e insertando ejercicios...
+Ejercicios que trabajan el músculo 'Pecho':
+- Press de Banca
+- Flexiones
+
+Actualizando 'Flexiones' a 'Flexiones Diamante'...
+Eliminando 'Press de Banca'...
+
+Listado final de ejercicios:
+- Flexiones Diamante (Músculos: Pecho, Triceps)
+- Sentadillas (Músculos: Cuadriceps, Gluteos)
+- Dominadas (Músculos: Espalda, Biceps)
 
 Operaciones completadas.
-
 </pre>
 <p><strong>Requisitos</strong></p>
 <ol>
-<li><strong>Crea un Modelo</strong>: Define una clase o record <code>Planta</code> con las propiedades que se corresponden con la tabla (<code>Id</code>, <code>NombreComun</code>, <code>NombreCientifico</code>, <code>Precio</code>, <code>Stock</code>).</li>
-<li><strong>Crea la clase <code>Vivero</code></strong>: Esta clase encapsulará la lógica de base de datos y la información del comercio.
+<li><strong>Enumeración de Músculos</strong>:
 <ul>
-<li>Añade las propiedades <code>Nombre</code> (string), <code>Direccion</code> (string) y una lista de plantas (<code>List&lt;Planta&gt; Plantas</code>).</li>
-<li>Debe tener un método <code>CreaTabla()</code>.</li>
-<li>Debe tener un método <code>InsertaPlanta(Planta p)</code>.</li>
-<li>Implementa un método <code>ObtenPlantas()</code> que realice un <code>SELECT * FROM planta</code>, lea los datos con <code>SqliteDataReader</code>, convierta cada fila en un objeto <code>Planta</code> y devuelva una <code>List&lt;Planta&gt;</code>.</li>
-<li>Implementa el método <code>ModificaStock(int id, int nuevoStock)</code> que actualice el campo stock (<code>UPDATE</code>).</li>
-<li>Implementa el método <code>EliminaPlanta(int id)</code> que borre el registro correspondiente (<code>DELETE</code>).</li>
+<li>Define una enumeración pública <code>Musculo</code> con al menos 5 valores (ej. <code>Pecho</code>, <code>Espalda</code>, <code>Biceps</code>, <code>Triceps</code>, <code>Cuadriceps</code>, <code>Gluteos</code>).</li>
 </ul>
 </li>
-<li><strong>Programa Principal</strong>:
+<li><strong>Modelo de Datos</strong>:
 <ul>
-<li>Crea una <code>List&lt;Planta&gt;</code> en memoria y rellénala con 5 plantas nuevas.</li>
-<li>Recorre la estructura <code>Vivero</code> para insertarlas en la base de datos (¡Usa transacciones!).</li>
-<li>Llama a <code>ModificaStock</code> para cambiar el stock de una de las plantas.</li>
-<li>Llama a <code>EliminaPlanta</code> para borrar otra.</li>
-<li>Finalmente, llama a <code>ObtenPlantas()</code> y muestra el listado completo para verificar los cambios.</li>
+<li>Crea un record <code>Ejercicio</code> con las propiedades: <code>Id</code> (int), <code>Nombre</code> (string) y <code>GruposMusculares</code> (una <code>List&lt;Musculo&gt;</code>).</li>
+</ul>
+</li>
+<li><strong>Creación de Tablas</strong>:
+<ul>
+<li>Implementa un método estático y público <code>CreaTabla(SqliteConnection conexion)</code> que cree la tabla <code>ejercicios</code> si no existe. La columna <code>grupos_musculares</code> deberá ser de tipo <code>TEXT</code> para almacenar la lista de músculos (p. ej., como una cadena separada por puntos y comas).</li>
+</ul>
+</li>
+<li><strong>Clase DAO (<code>EjercicioDAO</code>)</strong>:
+<ul>
+<li>Crea la clase <code>EjercicioDAO</code> que implemente <code>IDisposable</code>.</li>
+<li>El constructor recibirá la cadena de conexión y gestionará el objeto <code>SqliteConnection</code>.</li>
+<li>Implementa los siguientes métodos <strong>CRUD</strong>:
+<ul>
+<li><code>Crea(Ejercicio ejercicio)</code>: Inserta un nuevo registro. Deberás convertir la <code>List&lt;Musculo&gt;</code> a una cadena para guardarla.</li>
+<li><code>Lee()</code>: Devuelve un <code>IEnumerable&lt;Ejercicio&gt;</code>. Deberás convertir la cadena de la base de datos de nuevo a una <code>List&lt;Musculo&gt;</code>.</li>
+<li><code>Actualiza(Ejercicio ejercicio)</code>: Modifica un ejercicio existente.</li>
+<li><code>Elimina(int id)</code>: Borra un ejercicio por su <code>Id</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Consulta con DTO</strong>:
+<ul>
+<li>Crea un record <code>EjerciciosPorMusculo</code> con las propiedades <code>Musculo</code> (de tipo <code>Musculo</code>) y <code>NombresEjercicios</code> (una <code>List&lt;string&gt;</code>).</li>
+<li>Implementa en el DAO un método <code>ObtenEjerciciosPorMusculo(Musculo musculo)</code> que devuelva un objeto <code>EjerciciosPorMusculo</code>. Este método buscará en la base de datos todos los ejercicios que contengan el músculo especificado en su lista de grupos musculares.</li>
+</ul>
+</li>
+<li><strong>Programa Principal (<code>Main</code>)</strong>:
+<ul>
+<li>Define la cadena de conexión a <code>gimnasio.db</code> y llama al método para crear las tablas.</li>
+<li>Crea una instancia de <code>EjercicioDAO</code> dentro de un bloque <code>using</code>.</li>
+<li>Inserta al menos 3 ejercicios, cada uno con uno o más músculos asociados.</li>
+<li>Llama a <code>ObtenEjerciciosPorMusculo</code> para obtener y mostrar todos los ejercicios que trabajan un músculo concreto (p. ej., <code>Musculo.Pecho</code>).</li>
+<li>Llama a <code>Actualiza</code> para modificar uno de los ejercicios.</li>
+<li>Llama a <code>Elimina</code> para borrar otro.</li>
+<li>Finalmente, llama a <code>Lee()</code> para obtener y mostrar la lista completa de ejercicios restantes, incluyendo sus grupos musculares.</li>
 </ul>
 </li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title"><strong>Transacciones (Bonus Recomendado)</strong></p>
-<p>Cuando realizamos múltiples operaciones de escritura seguidas (como insertar una lista de plantas), es una muy buena práctica utilizar <strong>Transacciones</strong>.</p>
+<p><strong>Pistas</strong>:</p>
 <ul>
-<li>Una transacción asegura que <strong>o se guardan todas las plantas o no se guarda ninguna</strong> (ideal si hay errores a mitad).</li>
-<li>Además, mejora drásticamente el rendimiento.</li>
-<li><strong>Intenta implementarlo</strong>: Abre la transacción antes de cualquier modificación (<code>conexion.BeginTransaction()</code>) y haz el <code>Commit()</code> al acabar.</li>
+<li>Para guardar la lista de enums, puedes usar <code>string.Join(",", ejercicio.GruposMusculares)</code>.</li>
+<li>Para leerla, puedes usar <code>cadena.Split(',').Select(e =&gt; Enum.Parse&lt;Musculo&gt;(e)).ToList()</code>.</li>
+<li>Para la consulta del DTO, puedes usar <code>WHERE</code> con el operador <code>LIKE</code> de SQL (ej. <code>WHERE grupos_musculares LIKE '%Pecho%'</code>).</li>
 </ul>
-</div>
 </div>
 <div class="box_bg_lightgreen">
 <h2 id="ejercicio-3-patrón-dao-data-access-object">Ejercicio 3. Patrón DAO (Data Access Object) </h2>
@@ -341,8 +497,8 @@ Operaciones completadas.
 Vivero: Vivero El Jardín
 Dirección: Calle de las Flores 123
 Inventario Valorado:
-Petunia: 150 unidades - Valor Total: 375,00 ?
-Geranio: 80 unidades - Valor Total: 240,00 ?
+Petunia: 150 unidades - Valor Total: 375,00 €
+Geranio: 80 unidades - Valor Total: 240,00 €
 
 Operaciones completadas.
 </pre> 
@@ -373,7 +529,7 @@ Operaciones completadas.
 <li><strong>Consulta con DTO (Valor del Stock)</strong>:
 <ul>
 <li>Crea un record <code>PlantaStock</code> con las propiedades: <code>Nombre_Comun</code>, <code>Stock</code> y <code>ValorTotal</code> (este último será el cálculo de precio * stock).</li>
-<li>Implementa en el DAO un método <code>ObteneInventario()</code> que devuelva <code>IEnumerable&lt;PlantaStock&gt;</code>.</li>
+<li>Implementa en el DAO un método <code>ObtenerInventario()</code> que devuelva <code>IEnumerable&lt;PlantaStock&gt;</code>.</li>
 <li>La consulta SQL debe proyectar los campos necesarios y calcular el valor total (<code>SELECT ..., precio * stock as valor ...</code>).</li>
 </ul>
 </li>
@@ -383,7 +539,7 @@ Operaciones completadas.
 <li><strong>Instancia el DAO</strong>: Utiliza <code>using PlantaDAO dao = new(...)</code>.</li>
 <li><strong>Carga BD</strong>: Si la base de datos está vacía (<code>dao.Count() == 0</code>), recorre las plantas del objeto <code>Vivero</code> y guárdalas una a una usando <code>dao.Create()</code>.</li>
 <li><strong>Manipulación</strong>: Realiza pruebas de modificación (<code>Update</code>/<code>Delete</code>) utilizando el DAO.</li>
-<li><strong>Informe Final</strong>: Genera un informe por consola que muestre cabecera con el <strong>Nombre y Dirección del Vivero</strong> (del objeto Vivero) y luego el listado de valoración del inventario (obtenido del método <code>ObteneInventario</code> del DAO).</li>
+<li><strong>Informe Final</strong>: Genera un informe por consola que muestre cabecera con el <strong>Nombre y Dirección del Vivero</strong> (del objeto Vivero) y luego el listado de valoración del inventario (obtenido del método <code>ObtenerInventario</code> del DAO).</li>
 </ul>
 </li>
 </ol>
