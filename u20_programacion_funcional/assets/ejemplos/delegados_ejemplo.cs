@@ -27,10 +27,10 @@ class Principal
         // Pasamos el nombre (id) la de función ya que Suma es de tipo Operacion
         Operacion operacion = Suma;
         double[] sumas = OperaArrays(ops1, ops2, operacion);
-        Console.WriteLine($"Sumas: {string.Join(" ", sumas)}");
+        Console.WriteLine($"Sumas: {String.Join(" ", sumas)}");
 
         // También podemos pasar el nombre de la función como parámetro real.
         double[] multiplicaciones = OperaArrays(ops1, ops2, Multiplica);
-        Console.WriteLine($"Multiplicaciones: {string.Join(" ", multiplicaciones)}");
+        Console.WriteLine($"Multiplicaciones: {String.Join(" ", multiplicaciones)}");
     }
 }

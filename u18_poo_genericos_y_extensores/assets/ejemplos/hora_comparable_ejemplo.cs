@@ -32,9 +32,9 @@ public static class Program
         Hora[] aHoras = [.. horas];
 
         horas.Sort();
-        Console.WriteLine(string.Join(", ", horas));
+        Console.WriteLine(String.Join(", ", horas));
 
         Array.Sort<Hora>(aHoras);
-        Console.WriteLine(string.Join<Hora>(", ", aHoras));
+        Console.WriteLine(String.Join<Hora>(", ", aHoras));
     }
 }

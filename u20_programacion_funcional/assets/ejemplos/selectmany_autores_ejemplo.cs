@@ -2,7 +2,7 @@ public record class Autor(string Nombre, string Nacionalidad, DateTime Muerte, I
 {
     public override string ToString() =>
     $"Nombre: {Nombre}\nNacionalidad: {Nacionalidad}\nMuerte: {Muerte:d}\n" +
-    $"Libros:\n\t{string.Join("\n\t", Libros)}";
+    $"Libros:\n\t{String.Join("\n\t", Libros)}";
 }
 public record class Libro(string Titulo, int Año, int Paginas)
 {
@@ -103,7 +103,7 @@ class Principal
                                     
     static void Main()
     {
-        Console.WriteLine(string.Join("\n\n", Datos.Autores));
+        Console.WriteLine(String.Join("\n\n", Datos.Autores));
         IEnumerable<Autor> autoresConLibrosPublicadosDuranteSigloXVII =
         Datos.Autores.Where(a => a.Libros.Any(l => l.Año >= 1600));
 
@@ -123,7 +123,7 @@ class Principal
 
         Console.WriteLine("\n\n");
         IEnumerable<LibroDto> librosDeMenosDeMilPaginasDto = LibrosDeMenosdeMilPaginas();
-        Console.WriteLine(string.Join("\n\n", librosDeMenosDeMilPaginasDto));
+        Console.WriteLine(String.Join("\n\n", librosDeMenosDeMilPaginasDto));
 
     }
 }

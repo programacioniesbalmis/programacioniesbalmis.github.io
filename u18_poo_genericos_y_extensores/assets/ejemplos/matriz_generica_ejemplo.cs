@@ -46,7 +46,7 @@ public class Matriz<T>
         string resultado = string.Empty;
         foreach (var fila in Datos)
         {
-            resultado += string.Join(", ", fila) + "\n";
+            resultado += String.Join(", ", fila) + "\n";
         }
         return resultado.TrimEnd('\n');
     }

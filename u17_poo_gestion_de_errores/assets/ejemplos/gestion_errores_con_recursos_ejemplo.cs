@@ -8,7 +8,7 @@ public class Sesion : IDisposable
     public bool Iniciada { get; private set; } = false;
     public void Login(string usuario, string clave)
     {
-        if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(clave))
+        if (String.IsNullOrWhiteSpace(usuario) || String.IsNullOrWhiteSpace(clave))
             throw new ArgumentException("Usuario y clave no pueden estar vacíos.");
 
         if (Iniciada)

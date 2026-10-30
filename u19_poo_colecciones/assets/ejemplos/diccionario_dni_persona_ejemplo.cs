@@ -35,6 +35,6 @@ class Program
         Console.WriteLine(salida);
 
         Console.WriteLine($"Los DNIs almacenados son:");
-        Console.WriteLine($"- {string.Join("\n -", personas.Keys)}");
+        Console.WriteLine($"- {String.Join("\n -", personas.Keys)}");
     }
 }

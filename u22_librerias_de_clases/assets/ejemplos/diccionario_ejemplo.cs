@@ -29,7 +29,7 @@ public class Program
                 // un array de sugerencias posibles a partir de la palabra introducida.
                 string[] sugerencias = [.. diccionario.Suggest(palabra)];
                 if (sugerencias.Length > 0)
-                    mensaje += $"¿Quisiste decir {string.Join(", ", sugerencias)}?\n";
+                    mensaje += $"¿Quisiste decir {String.Join(", ", sugerencias)}?\n";
             }
             else
                 mensaje = $"{palabra} es correcta.\n";

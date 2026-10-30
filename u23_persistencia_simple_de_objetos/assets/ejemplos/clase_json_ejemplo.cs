@@ -33,7 +33,7 @@ public record Clase(
 {
     public override string ToString() =>
         $"{Nombre} ({Tutor})\n\n" +
-        string.Join("\n", Estudiantes.Select(a => $"{a}"));
+        String.Join("\n", Estudiantes.Select(a => $"{a}"));
 }
 
 public static class ClaseJson

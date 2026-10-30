@@ -5,7 +5,7 @@ public static class StringExtension
     public static string Capitaliza(this string s)
     {
         string sCapitalizada;
-        if (!string.IsNullOrEmpty(s))
+        if (!String.IsNullOrEmpty(s))
         {
             StringBuilder sb = new (s);
             sb[0] = char.ToUpper(sb[0]);

@@ -19,7 +19,7 @@ public record class Isbn13
     {
         get
         {
-            string isbn = string.Join("", Prefijo, GrupoDeRegistro, Titular, Publicacion);
+            string isbn = String.Join("", Prefijo, GrupoDeRegistro, Titular, Publicacion);
             double suma = 0;
             for (int i = 0; i < isbn.Length; i++)
                 suma += ((i % 2 == 0) ? 1 : 3) * int.Parse(isbn[i].ToString());
@@ -51,14 +51,14 @@ public record class Isbn13
             condition: Publicacion.Length <= MAX_LONGITUD_PUBLICACION,
             message: $"La publicación {publicacion} es demasiado larga.");
 
-        string isbn = string.Join("", prefijo, grupoDeRegistro, titular, publicacion);
+        string isbn = String.Join("", prefijo, grupoDeRegistro, titular, publicacion);
         int excesoLongitud = isbn.Length - (LONGITUD_ISBN - 1);
         if (excesoLongitud < 0)
             Publicacion = Publicacion.PadLeft(Math.Abs(excesoLongitud) + Publicacion.Length, '0');
     }
 
     public string ATexto(string separador) =>
-        string.Join(separador, Prefijo, GrupoDeRegistro, Titular, Publicacion, DigitoDeControl.ToString());
+        String.Join(separador, Prefijo, GrupoDeRegistro, Titular, Publicacion, DigitoDeControl.ToString());
 }
 
 public static class Program

@@ -27,8 +27,8 @@ public class Principal
          ];
 
         personas.Sort(new Persona.ComparaEdad());
-        Console.WriteLine(string.Join("\n", personas));
+        Console.WriteLine(String.Join("\n", personas));
         personas.Sort(ComparaEdad);
-        Console.WriteLine(string.Join("\n", personas));
+        Console.WriteLine(String.Join("\n", personas));
     }
 }

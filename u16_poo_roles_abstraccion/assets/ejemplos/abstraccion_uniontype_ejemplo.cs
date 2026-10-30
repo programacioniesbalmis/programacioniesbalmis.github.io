@@ -13,7 +13,7 @@ public static class Validador
         >= 18 => new Validacion.Exito(),
         _ => new Validacion.Error(Mensaje: "El usuario debe ser mayor de 18 años.")
     };
-    public static Validacion ValidaNombre(string nombre) => string.IsNullOrWhiteSpace(nombre) switch
+    public static Validacion ValidaNombre(string nombre) => String.IsNullOrWhiteSpace(nombre) switch
     {
         false => new Validacion.Exito(),
         true => new Validacion.Error(Mensaje: "El nombre no puede estar vacío.")

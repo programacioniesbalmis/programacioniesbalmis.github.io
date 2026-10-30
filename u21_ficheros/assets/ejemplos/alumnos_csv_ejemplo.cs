@@ -168,7 +168,7 @@ public class Program
                     case 2:
                         string salida;
                         salida = File.Exists(FICHERO) 
-                                 ? string.Join("\n", AlumnoCSV.Lee(FICHERO)) 
+                                 ? String.Join("\n", AlumnoCSV.Lee(FICHERO)) 
                                  : $"El fichero de datos {FICHERO} aún no se ha creado.";
                         Console.WriteLine(salida);
                         break;

@@ -34,7 +34,7 @@ class Program
                                     .OrderBy(n => n)          // Ordenamos por nombre.
                                     .Distinct()               // Eliminamos repetidos.
                                     .ToArray();               // Pasamos la secuencia a array.
-        Console.WriteLine(string.Join(", ", nombres));
+        Console.WriteLine(String.Join(", ", nombres));
 
         // ----------------------------------------------------------------------
 

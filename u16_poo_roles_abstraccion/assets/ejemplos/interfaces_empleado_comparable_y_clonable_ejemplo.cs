@@ -58,6 +58,6 @@ static class Programa
         // podemos usar Array.Sort() para ordenar el array por sueldo.
         // Si no lo fuera, se produciría un error al ejecutar.
         Array.Sort(empleados);
-        Console.WriteLine(string.Join<Empleado>("\n", empleados));
+        Console.WriteLine(String.Join<Empleado>("\n", empleados));
     }
 }

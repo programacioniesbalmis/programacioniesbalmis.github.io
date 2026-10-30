@@ -4,7 +4,7 @@ public record class Autor(string Nombre, string Nacionalidad, DateTime Muerte, I
 {
     public override string ToString() =>
     $"Nombre: {Nombre}\nNacionalidad: {Nacionalidad}\nMuerte: {Muerte:d}\n" +
-    $"Libros:\n\t{string.Join("\n\t", Libros)}";
+    $"Libros:\n\t{String.Join("\n\t", Libros)}";
 }
 public record class Libro(string Titulo, int Año, int Paginas)
 {
@@ -100,7 +100,7 @@ public class Principal
                                                                 .Where(a => a.Libros.Count() > 1)
                                                                 .Select(a => a.Nombre)
                                                                 .OrderBy(n => n);
-        Console.WriteLine(string.Join("\n", nombreAutoresConMasDeUnLibro) + "\n");
+        Console.WriteLine(String.Join("\n", nombreAutoresConMasDeUnLibro) + "\n");
 
         Console.WriteLine("Consulta 2: Total de libros escritos por escritores Españoles.");
         var totalLibros = Datos.Autores

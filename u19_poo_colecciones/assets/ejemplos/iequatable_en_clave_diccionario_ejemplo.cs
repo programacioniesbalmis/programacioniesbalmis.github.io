@@ -48,6 +48,6 @@ class Program
         
         // Mostramos la lista de mascotas por persona.
         foreach (Persona p in mascotasXPersona.Keys)
-            Console.WriteLine($"{p}: {string.Join(", ", mascotasXPersona[p])}");
+            Console.WriteLine($"{p}: {String.Join(", ", mascotasXPersona[p])}");
     }
 }
